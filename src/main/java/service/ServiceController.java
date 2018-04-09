@@ -5,22 +5,22 @@ import java.io.Serializable;
 public abstract class ServiceController<E extends Serializable, I extends Serializable, O extends Serializable, S> implements ServiceUpdater<E, I, O> {
     //Generico controllore astratto di servizi
 
-    private S service_state;
+    private S serviceState;
     private boolean working;
 
     //Creatori
-    public ServiceController(S service_state) {
-        this.service_state = service_state;
+    public ServiceController(S serviceState) {
+        this.serviceState = serviceState;
         this.working = true;
     }
 
     //Setter/Getter
-    public void setServiceState(S service_state) {
-        this.service_state = service_state;
+    public void setServiceState(S serviceState) {
+        this.serviceState = serviceState;
     }
 
     public S getServiceState() {
-        return service_state;
+        return serviceState;
     }
     public boolean isWorking() {
         return working;
