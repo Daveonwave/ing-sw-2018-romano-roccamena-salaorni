@@ -108,7 +108,7 @@ public class DocumentsExample {
         void print(String text);
     }
 
-    private class DocumentsController extends ServiceController<DocumentEvent, ControlInput, ControlOutput, DocumentsDatabase> implements Printer {
+    private class DocumentsController extends CallableController<DocumentEvent, ControlInput, ControlOutput, DocumentsDatabase> implements Printer {
         //Controllore centrale documenti
 
         public DocumentsController(DocumentsDatabase documents) {
@@ -163,7 +163,7 @@ public class DocumentsExample {
             return new ControlOutput(null, input.getDocument().getName() + " not found");
         }
 
-        public ControlOutput handleEvent(DocumentEvent event, ControlInput input) throws ServiceException {
+        public ControlOutput handleTask(DocumentEvent event, ControlInput input) throws ServiceException {
             switch (event) {
                 case WRITE:
                     return write(input);
@@ -176,7 +176,7 @@ public class DocumentsExample {
             }
         }
     }
-    private abstract class DocumentsUser extends ServiceUser<DocumentEvent, ControlInput, ControlOutput> implements Printer, Runnable{
+    private abstract class DocumentsUser extends CallerUser<DocumentEvent, ControlInput, ControlOutput> implements Printer, Runnable{
         //Utilizzatore astratto documenti
         //Implementato come thread (richieste asincrone ad un server)
 
@@ -204,7 +204,7 @@ public class DocumentsExample {
             ControlOutput response = null;
 
             try {
-                response = notifyEvent(DocumentEvent.WRITE, new ControlInput(document, name));
+                response = notifyRequest(DocumentEvent.WRITE, new ControlInput(document, name));
             } catch (ServiceException e) {
                 print(e.getMessage());
             }
@@ -216,7 +216,7 @@ public class DocumentsExample {
             ControlOutput response = null;
 
             try {
-                response = notifyEvent(DocumentEvent.APPEND, new ControlInput(document, name));
+                response = notifyRequest(DocumentEvent.APPEND, new ControlInput(document, name));
             } catch (ServiceException e) {
                 print(e.getMessage());
             }
@@ -228,7 +228,7 @@ public class DocumentsExample {
             ControlOutput response = null;
 
             try {
-                response = notifyEvent(DocumentEvent.READ, new ControlInput(new Document(file, ""), name));
+                response = notifyRequest(DocumentEvent.READ, new ControlInput(new Document(file, ""), name));
             } catch (ServiceException e) {
                 print(e.getMessage());
             }

@@ -4,10 +4,10 @@ import game.components.*;
 import game.match.args.MatchEvent;
 import game.match.args.MatchInput;
 import game.match.args.MatchOutput;
-import service.ServiceController;
+import service.CallableController;
 import service.ServiceException;
 
-public abstract class MatchController extends ServiceController<MatchEvent, MatchInput, MatchOutput, Match> {
+public abstract class MatchController extends CallableController<MatchEvent, MatchInput, MatchOutput, Match> {
     //Controllore di una partita
 
     //Creatori
@@ -16,7 +16,7 @@ public abstract class MatchController extends ServiceController<MatchEvent, Matc
     }
 
     //Gestione ricezione eventi di una partita
-    public MatchOutput handleEvent(MatchEvent event, MatchInput input) throws ServiceException {
+    public MatchOutput handleTask(MatchEvent event, MatchInput input) throws ServiceException {
         //Gestione per ogni valore dell'evento
         switch (event) {
             case START_WINDOWS:
