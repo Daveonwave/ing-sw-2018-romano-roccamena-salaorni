@@ -2,7 +2,7 @@ package service;
 
 import java.io.Serializable;
 
-public abstract class CallableController<E extends Serializable, I extends Serializable, O extends Serializable> extends SelfSyncHandler<E, I, O> implements ServiceUpdater<E, I, O> {
+public abstract class CallableController<E extends Serializable, I extends Serializable, O extends Serializable> extends SyncHandler<E, I, O> implements ServiceUpdater<E, I, O> {
     //Generico controllore astratto di servizi che è soggetto a richieste dirette dall'utilizzatore
     //Controllore locale
     //Controllore remoto

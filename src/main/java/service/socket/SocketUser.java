@@ -2,7 +2,7 @@ package service.socket;
 
 import service.ServiceException;
 import service.ServiceNotifier;
-import service.SelfSyncHandler;
+import service.SyncHandler;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 
-public abstract class SocketUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SelfSyncHandler<E, I, O> implements ServiceNotifier<E, I, O> {
+public abstract class SocketUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SyncHandler<E, I, O> implements ServiceNotifier<E, I, O> {
     //Generico utilizzatore astratto di servizi che esegue una richiesta attraverso socket al controllore
 
     private Socket socket;

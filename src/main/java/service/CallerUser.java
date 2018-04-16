@@ -2,7 +2,7 @@ package service;
 
 import java.io.Serializable;
 
-public abstract class CallerUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SelfSyncHandler<E, I, O> implements ServiceNotifier<E, I, O>{
+public abstract class CallerUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SyncHandler<E, I, O> implements ServiceNotifier<E, I, O>{
     //Generico utilizzatore astratto di servizi che esegue una richiesta diretta al controllore
     //Richiesta a controllo locale
     //Richiesta a controllo remoto
