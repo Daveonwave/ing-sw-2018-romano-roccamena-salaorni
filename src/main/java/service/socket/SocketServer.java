@@ -5,7 +5,6 @@ import service.ServiceException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -53,10 +52,10 @@ public abstract class SocketServer<E extends Serializable, I extends Serializabl
     public void accept(SocketController socketController) throws ServiceException {
         try {
             //Accetta un client
-            socketController.setSocket(serverSocket.accept());
-            //Avvia controllo
+            socketController.setClient(serverSocket.accept());
+            //Avvia controllo associato al client
             executorService.submit(socketController);
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ServiceException("failed accepting connection and starting socket controller");
         }
     }

@@ -2,8 +2,15 @@ package service;
 
 import java.io.Serializable;
 
-public abstract class SelfSyncHandler<E extends Serializable, I extends Serializable, O extends Serializable> {
+public abstract class SyncHandler<E extends Serializable, I extends Serializable, O extends Serializable> {
     //Generico gestore astratto di un task
+
+    private Object lock;
+
+    //Costruttori
+    protected SyncHandler(Object lock) {
+        this.lock = lock;
+    }
 
     //Lancia la computazione del task
     //Ottiene il lock per la chiamata alla computazione
@@ -11,7 +18,7 @@ public abstract class SelfSyncHandler<E extends Serializable, I extends Serializ
         O result = null;
 
         //Lock sull'intero oggetto
-        synchronized (this) {
+        synchronized (lock) {
             result = handleTask(event, input);
         }
 
