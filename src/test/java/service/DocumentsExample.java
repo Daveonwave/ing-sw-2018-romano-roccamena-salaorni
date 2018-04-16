@@ -35,6 +35,7 @@ public class DocumentsExample {
             this.content = content;
         }
     }
+
     private abstract class DocumentContainer implements Serializable {
         //Wrapper documento
 
@@ -58,6 +59,7 @@ public class DocumentsExample {
 
         WRITE, APPEND, READ;
     }
+
     private class ControlInput extends DocumentContainer implements Serializable {
         //Input del servizio documenti
 
@@ -76,6 +78,7 @@ public class DocumentsExample {
             this.user = user;
         }
     }
+
     private class ControlOutput extends DocumentContainer implements Serializable {
         //Output del servizio documenti
 
@@ -208,6 +211,7 @@ public class DocumentsExample {
 
             print(response.getMessage());
         }
+
         public void append(Document document) {
             ControlOutput response = null;
 
@@ -219,6 +223,7 @@ public class DocumentsExample {
 
             print(response.getMessage());
         }
+
         public void read(String file) {
             ControlOutput response = null;
 
