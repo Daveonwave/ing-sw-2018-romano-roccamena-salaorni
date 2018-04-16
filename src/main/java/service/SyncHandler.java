@@ -7,14 +7,18 @@ public abstract class SyncHandler<E extends Serializable, I extends Serializable
 
     private Object lock;
 
-    
+    //Costruttori
+    protected SyncHandler(Object lock) {
+        this.lock = lock;
+    }
+
     //Lancia la computazione del task
     //Ottiene il lock per la chiamata alla computazione
     protected O raiseTask(E event, I input) throws ServiceException {
         O result = null;
 
         //Lock sull'intero oggetto
-        synchronized (this) {
+        synchronized (lock) {
             result = handleTask(event, input);
         }
 

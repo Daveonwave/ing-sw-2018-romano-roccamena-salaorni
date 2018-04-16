@@ -21,6 +21,7 @@ public abstract class SocketUser<E extends Serializable, I extends Serializable,
 
     //Costruttori
     public SocketUser(String ip, int port) throws ServiceException {
+        super(new Object());
         this.socket = null;
         this.inStream = null;
         this.outStream = null;

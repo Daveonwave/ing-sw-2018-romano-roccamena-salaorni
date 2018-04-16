@@ -53,9 +53,10 @@ public abstract class SocketServer<E extends Serializable, I extends Serializabl
         try {
             //Accetta un client
             socketController.setClient(serverSocket.accept());
-            //Avvia controllo
-            executorService.submit(socketController);  //avvia i thread e li gestisce
-        } catch (IOException e) {
+
+            //Avvia controllo associato al client
+            executorService.submit(socketController);
+        } catch (Exception e) {
             throw new ServiceException("failed accepting connection and starting socket controller");
         }
     }

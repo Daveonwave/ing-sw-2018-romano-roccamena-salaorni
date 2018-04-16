@@ -1,4 +1,8 @@
-package service;
+package service.call;
+
+import service.ServiceException;
+import service.ServiceUpdater;
+import service.SyncHandler;
 
 import java.io.Serializable;
 
@@ -9,12 +13,13 @@ public abstract class CallableController<E extends Serializable, I extends Seria
 
     //Costruttori
     public CallableController() {
-        super();
+        super(new Object());
     }
 
     //Update
     public O updateRequest(E event, I input) throws ServiceException {
         return raiseTask(event, input);
     }
+    //Algoritmo di controllo astratto
     public abstract O handleTask(E event, I input) throws ServiceException;
 }
