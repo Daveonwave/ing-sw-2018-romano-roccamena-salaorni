@@ -7,11 +7,7 @@ import service.SyncHandler;
 
 import java.io.Serializable;
 
-<<<<<<< HEAD:src/main/java/service/CallerUser.java
-public abstract class CallerUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SyncHandler<E, I, O> implements ServiceNotifier<E, I, O>{
-=======
 public abstract class CallerUser<E extends Serializable, I extends Serializable, O extends Serializable> extends SyncHandler<E, I, O> implements ServiceNotifier<E, I, O> {
->>>>>>> origin/master:src/main/java/service/call/CallerUser.java
     //Generico utilizzatore astratto di servizi che esegue una richiesta diretta al controllore
     //Richiesta a controllo locale
     //Richiesta a controllo remoto

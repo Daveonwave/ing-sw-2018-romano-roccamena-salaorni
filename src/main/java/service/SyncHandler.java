@@ -26,7 +26,5 @@ public abstract class SyncHandler<E extends Serializable, I extends Serializable
     }
 
     //Task astratto
-    protected abstract O handleTask(E event, I input) throws ServiceException{
-
-    }
+    protected abstract O handleTask(E event, I input) throws ServiceException;
 }

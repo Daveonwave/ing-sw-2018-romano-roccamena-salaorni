@@ -49,11 +49,12 @@ public abstract class SocketUser<E extends Serializable, I extends Serializable,
         try {
             //Apre connessione
             socket = new Socket(ip, port);
+            System.out.println(">>> Connection estabilished");
 
             //Salva stream
             inStream = new ObjectInputStream(socket.getInputStream());
             outStream = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ServiceException("can't connect with server");
         }
     }
