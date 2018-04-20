@@ -8,13 +8,13 @@ public class Match implements IdentifyStrategy<Match> {
     private Player[] players;
     private Player roundPlayer;
     private int round;
-    private ObjectiveCard[] objectiveCards;
+    private PrivateObjectiveCard[] objectiveCards;
     private ToolCard[] toolCards;
     private Die[] draftPool;
     private Die[][] roundTrack;
 
     //Creatori
-    public Match(Player[] players, Player roundPlayer, int round, ObjectiveCard[] objectiveCards, ToolCard[] toolCards, Die[] draftPool, Die[][] roundTrack) {
+    public Match(Player[] players, Player roundPlayer, int round, PrivateObjectiveCard[] objectiveCards, ToolCard[] toolCards, Die[] draftPool, Die[][] roundTrack) {
         this.players = players;
         this.roundPlayer = roundPlayer;
         this.round = round;
@@ -34,7 +34,7 @@ public class Match implements IdentifyStrategy<Match> {
     public void setRound(int round) {
         this.round = round;
     }
-    public void setObjectiveCards(ObjectiveCard[] objectiveCards) {
+    public void setObjectiveCards(PrivateObjectiveCard[] objectiveCards) {
         this.objectiveCards = objectiveCards;
     }
     public void setToolCards(ToolCard[] toolCards) {
@@ -56,7 +56,7 @@ public class Match implements IdentifyStrategy<Match> {
     public int getRound() {
         return round;
     }
-    public ObjectiveCard[] getObjectiveCards() {
+    public PrivateObjectiveCard[] getObjectiveCards() {
         return objectiveCards;
     }
     public ToolCard[] getToolCards() {

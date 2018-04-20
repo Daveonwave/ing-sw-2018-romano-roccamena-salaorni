@@ -1,6 +1,8 @@
 package game;
 
 public class LaunchSettings {
+    // per settare la modalità di gioco all'avvio
+
     private boolean runWithGUI; // se false usa CLI
     private boolean runWithRMI; // se false usa socket
     private int numberOfPlayers;

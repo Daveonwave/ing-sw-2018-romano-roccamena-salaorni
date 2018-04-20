@@ -11,11 +11,11 @@ public class MatchOutput implements Serializable {
     private Player player;
     private Window window;
     private Window[] windows;
-    private ObjectiveCard objectiveCard;
+    private PrivateObjectiveCard objectiveCard;
     private PlayerPoints playerPoints;
 
     //Creatori
-    public MatchOutput(Match match, Player player, Window window, Window[] windows, ObjectiveCard objectiveCard, PlayerPoints playerPoints) {
+    public MatchOutput(Match match, Player player, Window window, Window[] windows, PrivateObjectiveCard objectiveCard, PlayerPoints playerPoints) {
         this.match = match;
         this.player = player;
         this.window = window;
@@ -37,7 +37,7 @@ public class MatchOutput implements Serializable {
     public void setWindows(Window[] windows) {
         this.windows = windows;
     }
-    public void setObjectiveCard(ObjectiveCard objectiveCard) {
+    public void setObjectiveCard(PrivateObjectiveCard objectiveCard) {
         this.objectiveCard = objectiveCard;
     }
     public void setPlayerPoints(PlayerPoints playerPoints) {
@@ -56,7 +56,7 @@ public class MatchOutput implements Serializable {
     public Window[] getWindows() {
         return windows;
     }
-    public ObjectiveCard getObjectiveCard() {
+    public PrivateObjectiveCard getObjectiveCard() {
         return objectiveCard;
     }
     public PlayerPoints getPlayerPoints() {
