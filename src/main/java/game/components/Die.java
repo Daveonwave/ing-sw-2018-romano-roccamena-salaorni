@@ -39,28 +39,4 @@ public class Die implements IdentifyStrategy<Die> {
         return color == obj.color && shade == obj.shade;
     }
 
-
-
-
-
-
-    public static void main(String[] args) {
-        int numberOfDice = 100;
-
-        List<Die> rolledDice = new ArrayList<Die>();
-
-        for(int i = 0; i < numberOfDice; i++){
-            rolledDice.add(new Die(DieColor.randomColor(), Shade.randomShade()));
-        }
-
-        for (Die dado: rolledDice) {
-            System.out.println("Dado " + dado.color + " con valore " + dado.getShade());
-        }
-
-
-
-
-
-
-    }
 }
