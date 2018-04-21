@@ -41,22 +41,22 @@ public class Die implements IdentifyStrategy<Die> {
 
 
 
-    //Tira i dadi e ne crea tanti quanti richiesti dal parametro con colore e valore casuali
-    //TODO: sistemare metodo che non va in questa classe
-    public List<Die> rollDice(int numberOfDice){
+
+
+
+    public static void main(String[] args) {
+        int numberOfDice = 100;
+
         List<Die> rolledDice = new ArrayList<Die>();
 
         for(int i = 0; i < numberOfDice; i++){
             rolledDice.add(new Die(DieColor.randomColor(), Shade.randomShade()));
         }
-        return rolledDice;
-    }
 
+        for (Die dado: rolledDice) {
+            System.out.println("Dado " + dado.color + " con valore " + dado.getShade());
+        }
 
-    public static void main(String[] args) {
-        int diceToRoll;
-
-        Die dado;
 
 
 
