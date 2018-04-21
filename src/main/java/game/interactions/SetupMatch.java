@@ -1,24 +1,29 @@
-package game;
+package game.interactions;
 
 import game.components.Die;
 import game.components.PrivateObjectiveCard;
+import game.components.PublicObjectiveCard;
 import game.components.ToolCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SetupMatch {
+public class SetupMatch{
     // inizializza il gioco all'inizio (estrazione carte obiettivo e tool,...)
 
-    private ArrayList<PrivateObjectiveCard> publicObjectiveCards;
+    private ArrayList<PublicObjectiveCard> publicObjectiveCards;
     private ArrayList<PrivateObjectiveCard> privateObjectiveCards;
     private ToolCard toolCards[];
     private Die dies[];
 
-    public ArrayList<PrivateObjectiveCard> choosePublicObjectives(){
-        publicObjectiveCards = new ArrayList<PrivateObjectiveCard>();
+    //crea randomicamente 3 carte obiettivo pubblico
+    public ArrayList<PublicObjectiveCard> choosePublicObjectives(){
+        publicObjectiveCards = new ArrayList<PublicObjectiveCard>();
+
+
 
         //TODO: implemetare scelta randomica carte;
-        return publicObjectiveCards;
+        return(publicObjectiveCards);
     }
 
     public ArrayList<PrivateObjectiveCard> choosePrivateObjectives(){

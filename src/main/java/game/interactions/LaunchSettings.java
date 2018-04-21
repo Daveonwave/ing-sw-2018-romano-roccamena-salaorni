@@ -1,4 +1,4 @@
-package game;
+package game.interactions;
 
 public class LaunchSettings {
     // per settare la modalità di gioco all'avvio

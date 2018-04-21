@@ -8,17 +8,19 @@ public class Match implements IdentifyStrategy<Match> {
     private Player[] players;
     private Player roundPlayer;
     private int round;
-    private PrivateObjectiveCard[] objectiveCards;
+    private PrivateObjectiveCard[] privateObjectiveCards;
+    private PublicObjectiveCard[] publicObjectiveCards;
     private ToolCard[] toolCards;
     private Die[] draftPool;
     private Die[][] roundTrack;
 
     //Creatori
-    public Match(Player[] players, Player roundPlayer, int round, PrivateObjectiveCard[] objectiveCards, ToolCard[] toolCards, Die[] draftPool, Die[][] roundTrack) {
+    public Match(Player[] players, Player roundPlayer, int round, PrivateObjectiveCard[] privateObjectiveCards, PublicObjectiveCard[] publicObjectiveCards, ToolCard[] toolCards, Die[] draftPool, Die[][] roundTrack) {
         this.players = players;
         this.roundPlayer = roundPlayer;
         this.round = round;
-        this.objectiveCards = objectiveCards;
+        this.privateObjectiveCards = privateObjectiveCards;
+        this.publicObjectiveCards = publicObjectiveCards;
         this.toolCards = toolCards;
         this.draftPool = draftPool;
         this.roundTrack = roundTrack;
@@ -34,8 +36,11 @@ public class Match implements IdentifyStrategy<Match> {
     public void setRound(int round) {
         this.round = round;
     }
-    public void setObjectiveCards(PrivateObjectiveCard[] objectiveCards) {
-        this.objectiveCards = objectiveCards;
+    public void setPrivateObjectiveCards(PrivateObjectiveCard[] privateObjectiveCards) {
+        this.privateObjectiveCards = privateObjectiveCards;
+    }
+    public void setPublicObjectiveCards(PublicObjectiveCard[] publicObjectiveCards) {
+        this.publicObjectiveCards = publicObjectiveCards;
     }
     public void setToolCards(ToolCard[] toolCards) {
         this.toolCards = toolCards;
@@ -56,8 +61,11 @@ public class Match implements IdentifyStrategy<Match> {
     public int getRound() {
         return round;
     }
-    public PrivateObjectiveCard[] getObjectiveCards() {
-        return objectiveCards;
+    public PrivateObjectiveCard[] getPrivateObjectiveCards() {
+        return privateObjectiveCards;
+    }
+    public PublicObjectiveCard[] getPublicObjectiveCards() {
+        return publicObjectiveCards;
     }
     public ToolCard[] getToolCards() {
         return toolCards;
