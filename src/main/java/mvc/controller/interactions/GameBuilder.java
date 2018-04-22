@@ -10,6 +10,7 @@ public class GameBuilder {
 
     private static final int SP_PRIVATE_OBJECTIVES_COUNT = 2;
     private static final int SP_PUBLIC_OBJECTIVES_COUNT = 2;
+    private static final int SP_TOOL_CARDS_COUNT = 12;
     private static final int MP_PUBLIC_OBJECTIVES_COUNT = 3;
     private static final int MP_TOOL_CARDS_COUNT = 3;
     private static final int SINGLE_COLOR_DICE_COUNT = 18;
@@ -23,7 +24,7 @@ public class GameBuilder {
         this.random = new Random();
     }
 
-    //Creazione obiettivi pubblici
+    //Creazione obiettivi pubblici TODO: capire se fare in json con serializzazione
     public PublicObjectiveCard createPublicObjectivecard(PublicObjective objective) {
         PublicObjectiveCard result = new PublicObjectiveCard("", "", objective);
 
@@ -87,56 +88,62 @@ public class GameBuilder {
                 countExtracted++;
             }
         }
-
         return result;
     }
 
-    //////////////////////
-    //TODO: arrivati qui//
-    //////////////////////
-
     //Creazione strumenti
-    public ArrayList<Tool> createTools(){
-        MP_TOOL_CARDS_COUNT = new ArrayList<Tool>();
+    public List<Tool> createTools(int difficultyLevelSP){
+        List<Tool> result = new ArrayList<Tool>();
         int countExtracted = 1;
 
-        while(countExtracted < MP_TOOL_CARDS_COUNT){
-            Tool extractedCard = Tool.randomTool();
+        int count;
+        if (singlePlayer) {
+            count = difficultyLevelSP; //da 1 a 5 a seconda della difficoltà a cui si vuole giocare
+        } else {
+            count = MP_TOOL_CARDS_COUNT;
+        }
 
-            if(!MP_TOOL_CARDS_COUNT.contains(extractedCard)){
-                MP_TOOL_CARDS_COUNT.add(extractedCard);
+        while(countExtracted <= count){
+            List<Tool> toolsList = Collections.unmodifiableList(Arrays.asList(Tool.values()));
+            Tool extracted = toolsList.get(random.nextInt(toolsList.size()));
+
+            if(!result.contains(extracted)){
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        return MP_TOOL_CARDS_COUNT;
+        return result;
     }
 
     //Creazione pattern finestre
-    public ArrayList<WindowPattern> createWindowPatterns(int numberOfPlayers){
-        activeWindowPatterns = new ArrayList<WindowPattern>();
+    public List<WindowPattern> createWindowPatterns(int numberOfPlayers){
+        List<WindowPattern> result = new ArrayList<WindowPattern>();
         int countExtracted = 1;
 
         while(countExtracted <= numberOfPlayers * 4){
-            WindowPattern extractedWindowPattern = WindowPattern.randomWindowPattern();
+            List<WindowPattern> windowPatternList = Collections.unmodifiableList(Arrays.asList(WindowPattern.values()));
+            WindowPattern extracted = windowPatternList.get(random.nextInt(windowPatternList.size()));
 
-            if(!activeWindowPatterns.contains(extractedWindowPattern)){
-                activeWindowPatterns.add(extractedWindowPattern);
+            if(!result.contains(extracted)){
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        return activeWindowPatterns;
+        return result;
     }
 
-    //Creazione sacco di dadi
-    public ArrayList<Die> createDiceBag(){
-        diceBag = new ArrayList<Die>();
+
+    //Creazione sacco di dadi.
+    //NOTA random number generator: "rand.nextInt((max - min) + 1) + min"
+    public List<Die> createDiceBag(){
+        List<Die> diceBag = new ArrayList<Die>();
 
         for(int i = 1; i <= SINGLE_COLOR_DICE_COUNT; i++){
-            diceBag.add(new Die(DieColor.YELLOW, Shade.randomShade()));
-            diceBag.add(new Die(DieColor.RED, Shade.randomShade()));
-            diceBag.add(new Die(DieColor.GREEN, Shade.randomShade()));
-            diceBag.add(new Die(DieColor.BLUE, Shade.randomShade()));
-            diceBag.add(new Die(DieColor.PURPLE, Shade.randomShade()));
+            diceBag.add(new Die(DieColor.YELLOW, random.nextInt(6)+1));
+            diceBag.add(new Die(DieColor.RED, random.nextInt(6)+1));
+            diceBag.add(new Die(DieColor.GREEN, random.nextInt(6)+1));
+            diceBag.add(new Die(DieColor.BLUE, random.nextInt(6)+1));
+            diceBag.add(new Die(DieColor.PURPLE, random.nextInt(6)+1));
         }
         Collections.shuffle(diceBag);
 
@@ -149,11 +156,11 @@ public class GameBuilder {
     //Prova temporanea
     public static void main(String[] args) {
 
-        GameBuilder gamePreparation = new GameBuilder();
-        ArrayList<Die> diceBag = gamePreparation.createDiceBag();
+        GameBuilder gamePreparation = new GameBuilder(false);
+        List<Die> diceBag = gamePreparation.createDiceBag();
 
-        for(Die dado : diceBag){
-            System.out.println(dado.getColor().toString() + " " + dado.getShade());
+        for(Die die : diceBag){
+            System.out.println(die.getColor().toString() + " " + die.getShade());
         }
 
 
