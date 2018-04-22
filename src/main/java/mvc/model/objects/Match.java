@@ -8,17 +8,17 @@ public class Match {
     private List<Player> players;
     private Player roundPlayer;
     private int round;
-    private List<ObjectiveCard> objectiveCards;
+    private List<PublicObjectiveCard> publicObjectiveCards;
     private List<ToolCard> toolCards;
     private List<Die> draftPool;
     private List<List<Die>> roundTrack;
 
     //Creatori
-    public Match(List<Player> players, Player roundPlayer, int round, List<ObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
+    public Match(List<Player> players, Player roundPlayer, int round, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
         this.players = players;
         this.roundPlayer = roundPlayer;
         this.round = round;
-        this.objectiveCards = objectiveCards;
+        this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
         this.draftPool = draftPool;
         this.roundTrack = roundTrack;
@@ -34,8 +34,8 @@ public class Match {
     public void setRound(int round) {
         this.round = round;
     }
-    public void setObjectiveCards(List<ObjectiveCard> objectiveCards) {
-        this.objectiveCards = objectiveCards;
+    public void setPublicObjectiveCards(List<PublicObjectiveCard> publicObjectiveCards) {
+        this.publicObjectiveCards = publicObjectiveCards;
     }
     public void setToolCards(List<ToolCard> toolCards) {
         this.toolCards = toolCards;
@@ -56,8 +56,8 @@ public class Match {
     public int getRound() {
         return round;
     }
-    public List<ObjectiveCard> getObjectiveCards() {
-        return objectiveCards;
+    public List<PublicObjectiveCard> getPublicObjectiveCards() {
+        return publicObjectiveCards;
     }
     public List<ToolCard> getToolCards() {
         return toolCards;

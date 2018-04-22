@@ -5,13 +5,13 @@ public class Player {
 
     private User user;
     private Window window;
-    private ObjectiveCard objectiveCard;
+    private PrivateObjectiveCard privateObjectiveCard;
     private int favorTokens;
 
     //Creatori
-    public Player(User user, Window window, ObjectiveCard objectiveCard, int favorTokens) {
+    public Player(User user, Window window, PrivateObjectiveCard objectiveCard, int favorTokens) {
         this.window = window;
-        this.objectiveCard = objectiveCard;
+        this.privateObjectiveCard = objectiveCard;
         this.favorTokens = favorTokens;
     }
 
@@ -22,8 +22,8 @@ public class Player {
     public void setWindow(Window window) {
         this.window = window;
     }
-    public void setObjectiveCard(ObjectiveCard objectiveCard) {
-        this.objectiveCard = objectiveCard;
+    public void setPrivateObjectiveCard(PrivateObjectiveCard privateObjectiveCard) {
+        this.privateObjectiveCard = privateObjectiveCard;
     }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
@@ -35,8 +35,8 @@ public class Player {
     public Window getWindow() {
         return window;
     }
-    public ObjectiveCard getObjectiveCard() {
-        return objectiveCard;
+    public PrivateObjectiveCard getPrivateObjectiveCard() {
+        return privateObjectiveCard;
     }
     public int getFavorTokens() {
         return favorTokens;

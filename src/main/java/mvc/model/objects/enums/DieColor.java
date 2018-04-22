@@ -1,4 +1,4 @@
-package mvc.model.objects;
+package mvc.model.objects.enums;
 
 public enum DieColor {
     //Colori di un dado

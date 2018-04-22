@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import mvc.model.objects.enums.Restriction;
+
 public class Cell {
     //Cella di una finestra
 

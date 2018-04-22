@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import mvc.model.objects.enums.DieColor;
+
 public class Die {
     //Dado del gioco
 
