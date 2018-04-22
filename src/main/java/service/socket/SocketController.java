@@ -27,8 +27,8 @@ public abstract class SocketController <E extends Serializable, I extends Serial
     //Setter/Getter
     public void setClient(Socket client) throws IOException {
         this.client = client;
-        this.inStream = new ObjectInputStream(client.getInputStream());
         this.outStream = new ObjectOutputStream(client.getOutputStream());
+        this.inStream = new ObjectInputStream(client.getInputStream());
     }
 
     public Socket getClient() {
@@ -49,9 +49,10 @@ public abstract class SocketController <E extends Serializable, I extends Serial
                 outStream.flush();
             }
         } catch (Exception e) {
-           runExceptionHandling(e);
+            runExceptionHandling(e);
         }
     }
+
     protected abstract void runExceptionHandling(Exception e);
 
     //Update
@@ -62,6 +63,8 @@ public abstract class SocketController <E extends Serializable, I extends Serial
             throw new ServiceException("error while communicating with client");
         }
     }
+
     //Algoritmo di controllo astratto
     public abstract O updateRequest(E event, I input) throws ServiceException;
 }
+

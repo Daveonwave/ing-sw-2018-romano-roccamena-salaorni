@@ -1,6 +1,6 @@
 package game.components;
 
-public class Card {
+public abstract class Card {
     //Carta generica
 
     private String name;

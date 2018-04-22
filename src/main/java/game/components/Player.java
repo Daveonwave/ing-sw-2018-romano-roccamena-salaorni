@@ -7,11 +7,11 @@ public class Player implements IdentifyStrategy<Player> {
 
     private String name;
     private Window window;
-    private ObjectiveCard objectiveCard;
+    private PrivateObjectiveCard objectiveCard;
     private int favorTokens;
 
     //Creatori
-    public Player(String name, Window window, ObjectiveCard objectiveCard, int favorTokens) {
+    public Player(String name, Window window, PrivateObjectiveCard objectiveCard, int favorTokens) {
         this.name = name;
         this.window = window;
         this.objectiveCard = objectiveCard;
@@ -25,7 +25,7 @@ public class Player implements IdentifyStrategy<Player> {
     public void setWindow(Window window) {
         this.window = window;
     }
-    public void setObjectiveCard(ObjectiveCard objectiveCard) {
+    public void setObjectiveCard(PrivateObjectiveCard objectiveCard) {
         this.objectiveCard = objectiveCard;
     }
     public void setFavorTokens(int favorTokens) {
@@ -38,7 +38,7 @@ public class Player implements IdentifyStrategy<Player> {
     public Window getWindow() {
         return window;
     }
-    public ObjectiveCard getObjectiveCard() {
+    public PrivateObjectiveCard getObjectiveCard() {
         return objectiveCard;
     }
     public int getFavorTokens() {

@@ -1,21 +1,23 @@
 package service;
 
+import org.junit.Test;
 import service.socket.SocketController;
 import service.socket.SocketServer;
 import service.socket.SocketUser;
 
 import java.io.Serializable;
+import java.net.ServerSocket;
 
 public class SocketExample {
 
-    private final static String ipServer = "127.0.0.1";
-    private final static int port = 2222;
+    private final static String ipServer = "192.168.43.203";
+    private final static int port = 1555;
 
     //Eventi, input e output del servizio
     private enum ExampleEvent {
         PRINT_1, PRINT_2;
     }
-    private class ExampleInput implements Serializable {
+    private static class ExampleInput implements Serializable {
         private String text;
 
         private ExampleInput(String text) {
@@ -30,7 +32,7 @@ public class SocketExample {
             this.text = text;
         }
     }
-    private class ExampleOutput implements Serializable {
+    private static class ExampleOutput implements Serializable {
         private String text;
 
         private ExampleOutput(String text) {
@@ -47,19 +49,19 @@ public class SocketExample {
     }
 
     //Unità costituenti del servizio
-    private class ExampleServer extends SocketServer<ExampleEvent, ExampleInput, ExampleOutput> {
+    private static class ExampleServer extends SocketServer<ExampleEvent, ExampleInput, ExampleOutput> {
 
         public ExampleServer() {
             super(port);
         }
     }
-    private class ExampleUser extends SocketUser<ExampleEvent, ExampleInput, ExampleOutput> {
+    private static class ExampleUser extends SocketUser<ExampleEvent, ExampleInput, ExampleOutput> {
 
         public ExampleUser() throws ServiceException {
             super(ipServer, port);
         }
     }
-    private class ExampleController extends SocketController<ExampleEvent, ExampleInput, ExampleOutput> {
+    private static class ExampleController extends SocketController<ExampleEvent, ExampleInput, ExampleOutput> {
 
         public ExampleController(SocketServer socketServer) {
             super(socketServer);
@@ -84,8 +86,72 @@ public class SocketExample {
         }
     }
 
+
+    @Test
+    public void startServer() throws ServiceException{
+        try {
+            ExampleServer server = new ExampleServer();
+            server.start();
+            System.out.println(">>> Server is listening on port: " + server.getPort());
+
+
+            do{
+                System.out.println("Waiting for connection...");
+                server.accept(new ExampleController(server));
+                System.out.println(">>> Server is connected!");
+            }
+            while(true);
+        }
+        catch (ServiceException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @Test
+    public void startClient(){
+        try{
+            ExampleUser client = new ExampleUser();
+
+            System.out.println(">>> Client is connecting...");
+            client.connect();
+            System.out.println(">>> Client connected!");
+
+            client.notifyRequest(ExampleEvent.PRINT_1, new ExampleInput("dave usa print 1"));
+            client.notifyRequest(ExampleEvent.PRINT_2, new ExampleInput("dave usa print 2"));
+        }
+        catch(ServiceException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+
     public static void main(String[] args) {
-        
+
+        try{
+            ExampleUser client = new ExampleUser();
+
+            System.out.println("Connecting to server...");
+            client.connect();
+            System.out.println(">>> Connected to server!\n");
+
+            ExampleOutput out = client.notifyRequest(ExampleEvent.PRINT_1, new ExampleInput("dave usa print 1"));
+            System.out.println(out.getText());
+
+
+            out = client.notifyRequest(ExampleEvent.PRINT_2, new ExampleInput("dave usa print 2"));
+            System.out.println(out.getText());
+
+
+
+
+            client.disconnect();
+        }
+        catch(ServiceException e){
+            e.printStackTrace();
+        }
     }
 
 }
