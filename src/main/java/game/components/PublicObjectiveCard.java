@@ -5,7 +5,6 @@ import game.components.base.PublicObjective;
 
 public class PublicObjectiveCard extends Card implements IdentifyStrategy<PublicObjectiveCard>{
     //Carta obiettivo pubblico
-
     private PublicObjective objective;
 
     //Creatore
