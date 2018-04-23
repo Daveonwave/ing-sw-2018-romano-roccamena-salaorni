@@ -1,13 +1,12 @@
 package mvc.view;
 
-import mvc.model.ModelObserver;
 import mvc.model.objects.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-public abstract class AppView extends UnicastRemoteObject implements ViewResponse, ModelObserver {
+public abstract class AppView extends UnicastRemoteObject implements ViewResponder, ModelObserver {
     //View dell'applicazione
 
     //Costruttori

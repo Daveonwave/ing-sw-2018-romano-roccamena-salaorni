@@ -1,11 +1,10 @@
 package mvc.model;
 
+import com.sun.tools.javac.util.List;
 import mvc.model.objects.Match;
 import mvc.model.objects.Player;
 import mvc.model.objects.User;
 
-import javax.jws.soap.SOAPBinding;
-import java.rmi.RemoteException;
 import java.util.*;
 
 public class AppModel {
@@ -14,16 +13,16 @@ public class AppModel {
     private static AppModel instance;
 
     //Utenti e partite online
-    private final Map<String, User> users;
-    private final Map<String, Match> matches;
+    private final TokenMap<User> users;
+    private final TokenMap<Match> matches;
 
     //Costruttori
     private AppModel() {
-        users = new HashMap<String, User>();
-        matches = new HashMap<String, Match>();
+        users = new TokenMap<User>();
+        matches = new TokenMap<Match>();
     }
 
-    //Getter
+    //Getter statico
     public synchronized static AppModel get() {
         if (instance == null) {
             instance = new AppModel();
@@ -32,72 +31,30 @@ public class AppModel {
         return instance;
     }
 
-    //Crea token libero
-    private String getFreeToken(Map map) {
-        String token;
-        boolean invalid;
+    //Utente
+    public synchronized String createUser(String name) throws ModelException {
+        User user = users.get(name);
 
-        do {
-            token = UUID.randomUUID().toString();
-            invalid = false;
+        if (user == null)
+            throw new ModelException("user named " + name + " already logged in");
 
-            for (Object t : map.keySet()) {
-                if (t.equals(token)) {
-                    invalid = true;
-                    break;
-                }
-            }
-        } while(invalid);
-
-        return token;
+        return users.createObject(new User(name, new ArrayList<Player>()));
+    }
+    public synchronized void destroyUser(String tokenUser) throws ModelException {
+        users.remove(tokenUser);
+    }
+    public synchronized User retrieveUser(String name) {
+        return users.get(name);
     }
 
-    //Login
-    public synchronized String createUser(String name) throws RemoteException {
-        for (User user : users.values()) {
-            if (user.getName().equals(name))
-                throw new RemoteException("user named " + name + " already logged in");
-        }
-
-        String token = getFreeToken(users);
-        users.put(token, new User(name, new ArrayList<Player>()));
-
-        return token;
+    //Partita
+    public synchronized String createMatch(Match match) {
+        return matches.createObject(match);
     }
-    public synchronized void destroyUser(String tokenUser) throws RemoteException {
-        boolean found = false;
-
-       for (String t : users.keySet()) {
-           if (t.equals(tokenUser)) {
-               users.remove(t);
-               found = true;
-               break;
-           }
-       }
-
-       if (!found)
-           throw new RemoteException("unknown user token " + tokenUser);
+    public synchronized void destroyMatch(String tokenMatch) throws ModelException {
+        matches.remove(tokenMatch);
     }
-
-    public synchronized String createMatch(Match match) throws RemoteException {
-        String token = getFreeToken(matches);
-        matches.put(token, match);
-
-        return token;
+    public synchronized Match retrieveMatch(String tokenMatch) {
+        return matches.get(tokenMatch);
     }
-    public synchronized void destroyMatch(String tokenMatch) throws RemoteException {
-        boolean found = false;
-
-        for (String t : matches.keySet()) {
-            if (t.equals(tokenMatch)) {
-                matches.remove(t);
-                found = true;
-                break;
-            }
-        }
-
-        if (!found)
-            throw new RemoteException("unknown match token " + tokenMatch);
-    }
-
 }

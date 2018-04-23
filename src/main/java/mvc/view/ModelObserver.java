@@ -1,4 +1,4 @@
-package mvc.model;
+package mvc.view;
 
 import mvc.model.objects.*;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public interface ModelObserver extends Remote{
     //Osservatore remoto model
 
-    //Match
+    //Partita
     void onMatchCreate(String tokenMatch, Match match) throws RemoteException;
     void onChooseWindows(String tokenMatch, Match match, List<Window> windows) throws RemoteException;
     void onMatchStart(String tokenMatch, Match match) throws RemoteException;
