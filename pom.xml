@@ -33,6 +33,14 @@
         <version>3.4.0.905</version>
       </plugin>
     </plugins>
+          <resources>
+              <resource>
+                  <directory>src/main/java</directory>
+                  <includes>
+                      <include>**/*.fxml</include>
+                  </includes>
+              </resource>
+          </resources>
   </build>
 
   <dependencies>
@@ -59,5 +67,6 @@
           <version>RELEASE</version>
       </dependency>
   </dependencies>
+
 </project>
 
