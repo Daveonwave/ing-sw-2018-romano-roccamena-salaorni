@@ -139,6 +139,11 @@ public class GameBuilder {
         List<Die> diceBag = new ArrayList<Die>();
 
         for(int i = 1; i <= SINGLE_COLOR_DICE_COUNT; i++){
+            diceBag.add(new Die(DieColor.YELLOW, random.nextInt(6)+1,0,0));
+            diceBag.add(new Die(DieColor.RED, random.nextInt(6)+1,0,0));
+            diceBag.add(new Die(DieColor.GREEN, random.nextInt(6)+1,0,0));
+            diceBag.add(new Die(DieColor.BLUE, random.nextInt(6)+1,0,0));
+            diceBag.add(new Die(DieColor.PURPLE, random.nextInt(6)+10,0,0));
 
         }
         Collections.shuffle(diceBag);
