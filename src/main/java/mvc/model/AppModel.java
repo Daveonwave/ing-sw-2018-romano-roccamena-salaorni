@@ -1,6 +1,6 @@
 package mvc.model;
 
-import com.sun.tools.javac.util.List;
+
 import mvc.model.objects.Match;
 import mvc.model.objects.Player;
 import mvc.model.objects.User;
