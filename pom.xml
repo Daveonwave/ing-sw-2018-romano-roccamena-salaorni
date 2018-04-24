@@ -33,6 +33,14 @@
         <version>3.4.0.905</version>
       </plugin>
     </plugins>
+          <resources>
+              <resource>
+                  <directory>src/main/java</directory>
+                  <includes>
+                      <include>**/*.fxml</include>
+                  </includes>
+              </resource>
+          </resources>
   </build>
 
   <dependencies>
@@ -53,6 +61,12 @@
       <version>2.8.2</version>
       <scope>compile</scope>
     </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>RELEASE</version>
+      </dependency>
   </dependencies>
+
 </project>
 
