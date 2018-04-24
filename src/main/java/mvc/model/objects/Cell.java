@@ -10,7 +10,7 @@ public class Cell {
     private int row;
     private int column;
 
-    //Creatori
+    //Costruttori
     public Cell(Die die, Restriction restriction, int row, int column) {
         this.die = die;
         this.restriction = restriction;

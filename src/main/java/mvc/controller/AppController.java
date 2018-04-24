@@ -47,9 +47,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
     }
 
     //Partita
-    private synchronized MultiPlayerHandler retrieveMatchStartHandler(int playersCount) throws ControllerException {
-        MultiPlayerHandler handler;
-
+    private synchronized MultiPlayerHandler retrieveMatchStartHandler(int playersCount) throws RemoteException {
         switch (playersCount) {
             case 2:
                 return ms2;
@@ -58,7 +56,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
             case 4:
                 return ms4;
             default:
-                throw new ControllerException("invalid players count");
+                throw new ControllerException("unsupported players count");
         }
     }
     private synchronized void matchBroadcastAck(String tokenMatch, String message) {
@@ -72,6 +70,10 @@ public class AppController extends UnicastRemoteObject implements Controller {
 
         for (Player player : match.getPlayers())
             player.getUser().getAppView().respondError(message);
+    }
+    private synchronized void reportError(User user, String message) throws RemoteException {
+        user.getAppView().respondError(message);
+        throw new ControllerException(message);
     }
 
     public synchronized void joinMatch(String tokenUser, int playersCount) throws RemoteException {
@@ -99,11 +101,13 @@ public class AppController extends UnicastRemoteObject implements Controller {
             matchBroadcastAck(tokenMatch, "match started");
 
             matchModel.notifyChooseWindows(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "waiting player windows choosing");
+            matchBroadcastAck(tokenMatch, "waiting player choosing windows");
         }
     }
     public synchronized void cancelJoinMatch(String tokenUser, int playersCount) throws RemoteException {
         MultiPlayerHandler handler = retrieveMatchStartHandler(playersCount);
+        if (handler.isReady())
+            reportError(model.retrieveUser(tokenUser), "match is already started");
         handler.leave(tokenUser);
 
         model.retrieveUser(tokenUser).getAppView().respondAck("match leaved");
@@ -116,11 +120,10 @@ public class AppController extends UnicastRemoteObject implements Controller {
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
-        if (!match.getStartWindows().get(tokenUser).contains(window)) {
-            String message = "invalid window assignement";
-            user.getAppView().respondError(message);
-            throw new ControllerException(message);
-        }
+        if (match.getRound() != 0)
+            reportError(user, "match is already started");
+        if (!player.getStartWindows().contains(window))
+            reportError(user, "invalid window choice");
 
         player.setWindow(window);
         player.setFavorTokens(window.getDifficulty());
@@ -140,33 +143,60 @@ public class AppController extends UnicastRemoteObject implements Controller {
             match.setDraftPool(draftPool);
 
             match.notifyFirstRoundStart(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "first round started");
+            matchBroadcastAck(tokenMatch, "match rounds started");
 
             match.notifyRoundStart(tokenMatch, match);
             matchBroadcastAck(tokenMatch, "round " + match.getRound() + " started");
-
         }
     }
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
 
     }
     public synchronized void useToolCard(String tokenUser, String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
-        match.getToolCards().get(0).useToolCard(match);
 
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
-        Player player = model.retrievePlayer(tokenUser, tokenMatch);
         MatchModel match = model.retrieveMatch(tokenMatch);
+        User user = model.retrieveUser(tokenUser);
+        Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
-        if (match.getTurnPlayer().getUser().getName().equals(player.getUser().getName())) {
-            Player nextPlayer=null;
-            //Modifica roundPlayer in match
+        Player nextPlayer=null;
+        //Calcolo giocatore successivo
 
-            match.notifyPlayerTurnEnd(tokenMatch, match, player);
-            matchBroadcastAck(tokenMatch, "player " + player.getUser().getName() + " end turn");
+        boolean matchFinished = match.getRound() > 10;
+        boolean lastTurn = nextPlayer == null;
+        if (lastTurn)
+            match.setRound(11);
 
+        if (matchFinished)
+            reportError(user, "match ended");
+        String turnPlayerName = match.getTurnPlayer().getUser().getName();
+        if (!turnPlayerName.equals(player.getUser().getName()))
+            reportError(user, "invalid move, " + turnPlayerName + " turn");
+
+
+        match.notifyPlayerTurnEnd(tokenMatch, match, player);
+        matchBroadcastAck(tokenMatch, "player " + player.getUser().getName() + " end turn");
+
+        match.setTurnPlayer(nextPlayer);
+
+        if (!lastTurn) {
             match.notifyPlayerTurnStart(tokenMatch, match);
             matchBroadcastAck(tokenMatch, "player " + nextPlayer.getUser().getName() + " start turn");
+        } else {
+            match.notifyLastRoundEnd(tokenMatch, match);
+            matchBroadcastAck(tokenMatch, "match rounds ended");
+
+            for (Player p : match.getPlayers()) {
+                PlayerPoints points=null;
+                //Calcolo punteggio giocatore
+
+                match.notifyGetPoints(tokenMatch, match, player, points);
+                matchBroadcastAck(tokenMatch, player.getUser().getName() + " points calculated");
+
+                matchBroadcastAck(tokenMatch, "match ended");
+                model.destroyMatch(tokenMatch);
+            }
         }
     }
 

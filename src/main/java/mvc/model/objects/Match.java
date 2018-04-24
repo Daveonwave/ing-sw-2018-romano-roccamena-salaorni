@@ -9,18 +9,16 @@ public class Match {
     private List<Player> players;
     private Player turnPlayer;
     private int round;
-    private Map<String, List<Window>> startWindows;
     private List<PublicObjectiveCard> publicObjectiveCards;
     private List<ToolCard> toolCards;
     private List<Die> draftPool;
     private List<List<Die>> roundTrack;
 
-    //Creatori
-    public Match(List<Player> players, Player turnPlayer, int round, Map<String, List<Window>> startWindows, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
+    //Costruttori
+    public Match(List<Player> players, Player turnPlayer, int round, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
         this.players = players;
         this.turnPlayer = turnPlayer;
         this.round = round;
-        this.startWindows = startWindows;
         this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
         this.draftPool = draftPool;
@@ -49,9 +47,6 @@ public class Match {
     public void setRoundTrack(List<List<Die>> roundTrack) {
         this.roundTrack = roundTrack;
     }
-    public void setStartWindows(Map<String, List<Window>> startWindows) {
-        this.startWindows = startWindows;
-    }
 
     public List<Player> getPlayers() {
         return players;
@@ -73,8 +68,5 @@ public class Match {
     }
     public List<List<Die>> getRoundTrack() {
         return roundTrack;
-    }
-    public Map<String, List<Window>> getStartWindows() {
-        return startWindows;
     }
 }

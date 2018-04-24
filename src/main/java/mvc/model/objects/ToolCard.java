@@ -12,7 +12,7 @@ public abstract class ToolCard extends Card{
     private int favorTokens;
     private DieColor dieColor;
 
-    //Costruttore
+    //Costruttori
     public ToolCard(String name, String description, Tool tool, int favorTokens, DieColor dieColor) {
         super(name, description);
         this.tool = tool;

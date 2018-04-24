@@ -7,7 +7,7 @@ public abstract class PrivateObjectiveCard extends Card {
 
     private PrivateObjective objective;
 
-    //Creatori
+    //Costruttori
     public PrivateObjectiveCard(String name, String description, PrivateObjective objective) {
         super(name, description);
         this.objective = objective;

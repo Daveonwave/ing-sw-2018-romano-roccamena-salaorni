@@ -14,12 +14,12 @@ public class MatchModel extends Match {
     private List<MatchObserver> matchObserver;
 
     //Costruttori
-    public MatchModel(List<Player> players, Player roundPlayer, int round, Map<String, List<Window>> startWindows, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
-        super(players, roundPlayer, round, startWindows, objectiveCards, toolCards, draftPool, roundTrack);
+    public MatchModel(List<Player> players, Player roundPlayer, int round, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
+        super(players, roundPlayer, round, objectiveCards, toolCards, draftPool, roundTrack);
         this.matchObserver = new ArrayList<MatchObserver>();
     }
     public MatchModel(Match match) {
-        this(match.getPlayers(), match.getTurnPlayer(), match.getRound(), match.getStartWindows(), match.getPublicObjectiveCards(), match.getToolCards(), match.getDraftPool(), match.getRoundTrack());
+        this(match.getPlayers(), match.getTurnPlayer(), match.getRound(), match.getPublicObjectiveCards(), match.getToolCards(), match.getDraftPool(), match.getRoundTrack());
     }
 
     //Attacco, distacco degli osservatori
