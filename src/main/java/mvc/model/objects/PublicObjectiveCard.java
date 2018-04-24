@@ -3,7 +3,7 @@ package mvc.model.objects;
 import game.components.Card;
 import mvc.model.objects.enums.PublicObjective;
 
-public class PublicObjectiveCard extends Card {
+public abstract class PublicObjectiveCard extends Card {
     //Carta obiettivo pubblico
 
     private PublicObjective objective;
@@ -22,4 +22,7 @@ public class PublicObjectiveCard extends Card {
     public void setObjective(PublicObjective objective) {
         this.objective = objective;
     }
+
+    //Calcolo punteggio
+    public abstract int getPoints(Window window);
 }

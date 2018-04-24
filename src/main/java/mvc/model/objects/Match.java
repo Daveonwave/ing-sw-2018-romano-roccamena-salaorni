@@ -1,23 +1,26 @@
 package mvc.model.objects;
 
 import java.util.List;
+import java.util.Map;
 
 public class Match {
     //Componenti di una partita
 
     private List<Player> players;
-    private Player roundPlayer;
+    private Player turnPlayer;
     private int round;
+    private Map<String, List<Window>> startWindows;
     private List<PublicObjectiveCard> publicObjectiveCards;
     private List<ToolCard> toolCards;
     private List<Die> draftPool;
     private List<List<Die>> roundTrack;
 
     //Creatori
-    public Match(List<Player> players, Player roundPlayer, int round, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
+    public Match(List<Player> players, Player turnPlayer, int round, Map<String, List<Window>> startWindows, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
         this.players = players;
-        this.roundPlayer = roundPlayer;
+        this.turnPlayer = turnPlayer;
         this.round = round;
+        this.startWindows = startWindows;
         this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
         this.draftPool = draftPool;
@@ -28,8 +31,8 @@ public class Match {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-    public void setRoundPlayer(Player roundPlayer) {
-        this.roundPlayer = roundPlayer;
+    public void setTurnPlayer(Player turnPlayer) {
+        this.turnPlayer = turnPlayer;
     }
     public void setRound(int round) {
         this.round = round;
@@ -46,12 +49,15 @@ public class Match {
     public void setRoundTrack(List<List<Die>> roundTrack) {
         this.roundTrack = roundTrack;
     }
+    public void setStartWindows(Map<String, List<Window>> startWindows) {
+        this.startWindows = startWindows;
+    }
 
     public List<Player> getPlayers() {
         return players;
     }
-    public Player getRoundPlayer() {
-        return roundPlayer;
+    public Player getTurnPlayer() {
+        return turnPlayer;
     }
     public int getRound() {
         return round;
@@ -67,5 +73,8 @@ public class Match {
     }
     public List<List<Die>> getRoundTrack() {
         return roundTrack;
+    }
+    public Map<String, List<Window>> getStartWindows() {
+        return startWindows;
     }
 }

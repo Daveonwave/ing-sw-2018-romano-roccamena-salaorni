@@ -1,9 +1,8 @@
 package mvc.model.objects;
 
-import mvc.model.objects.Card;
 import mvc.model.objects.enums.PrivateObjective;
 
-public class PrivateObjectiveCard extends Card {
+public abstract class PrivateObjectiveCard extends Card {
     //Carta obiettivo privato
 
     private PrivateObjective objective;
@@ -22,4 +21,7 @@ public class PrivateObjectiveCard extends Card {
     public PrivateObjective getObjective() {
         return objective;
     }
+
+    //Calcolo punteggio
+    public abstract int getPoints(Window window);
 }
