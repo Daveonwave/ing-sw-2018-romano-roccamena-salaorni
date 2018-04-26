@@ -1,7 +1,7 @@
 package mvc.controller;
 
 import mvc.Controller;
-import mvc.controller.builders.MatchBuilder;
+import mvc.builders.MatchBuilder;
 import mvc.controller.handlers.MultiPlayerHandler;
 import mvc.model.AppModel;
 import mvc.model.MatchModel;
@@ -30,7 +30,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
         this.ms4 = new MultiPlayerHandler(4);
     }
 
-    //Utente
+    //Operazioni su utente
     public synchronized String login(String name, AppView appView) throws RemoteException {
         String token = model.createUser(name, appView);
 
@@ -46,7 +46,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
         appView.respondAck("logged out");
     }
 
-    //Partita
+    //Ottiene gestore di partite corrispondente
     private synchronized MultiPlayerHandler retrieveMatchStartHandler(int playersCount) throws RemoteException {
         switch (playersCount) {
             case 2:
@@ -59,145 +59,177 @@ public class AppController extends UnicastRemoteObject implements Controller {
                 throw new ControllerException("unsupported players count");
         }
     }
-    private synchronized void matchBroadcastAck(String tokenMatch, String message) {
-        MatchModel match = model.retrieveMatch(tokenMatch);
 
-        for (Player player : match.getPlayers())
+    //Ack ed error su utenti di un match o singolarmente
+    private synchronized void matchBroadcastAck(MatchModel matchModel, String message) {
+        for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message);
     }
-    private synchronized void matchBroadcastError(String tokenMatch, String message) {
-        MatchModel match = model.retrieveMatch(tokenMatch);
-
-        for (Player player : match.getPlayers())
+    private synchronized void matchBroadcastError(MatchModel matchModel, String message) throws RemoteException {
+        for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondError(message);
+
+        throw new ControllerException(message);
     }
-    private synchronized void reportError(User user, String message) throws RemoteException {
+    private synchronized void userAck(User user, String message) {
+        user.getAppView().respondError(message);
+    }
+    private synchronized void userError(User user, String message) throws RemoteException {
         user.getAppView().respondError(message);
         throw new ControllerException(message);
     }
 
+    //Mosse degli utenti sulla partita
     public synchronized void joinMatch(String tokenUser, int playersCount) throws RemoteException {
+        //Ottiente gestore partite e partecipa all'attesa
         MultiPlayerHandler handler = retrieveMatchStartHandler(playersCount);
         handler.join(tokenUser);
 
+        //Se sono presenti gli utenti partecipanti necessari
         if (handler.isReady()) {
+            //Ottiene utenti partecipanti
             List<User> partecipantUsers = new ArrayList<User>();
-
             for (String partecipantToken : handler.getWaitingUsersToken())
                 partecipantUsers.add(model.retrieveUser(partecipantToken));
 
+            //Crea nuova partita
             Match match = MatchBuilder.createMultiPlayer(partecipantUsers);
             MatchModel matchModel = new MatchModel(match);
 
-
+            //Registra gli utenti come osservatori della partita
             for (User user : partecipantUsers) {
                 matchModel.attachMatchObserver(user.getAppView());
             }
 
+            //Registra la nuova partita nel model
             String tokenMatch = model.createMatch(matchModel);
 
-            matchModel.notifyMatchStart(tokenMatch, match);
+            //Elimina gli utenti in attesa dal gestore multiplayer
             handler.clear();
-            matchBroadcastAck(tokenMatch, "match started");
 
-            matchModel.notifyChooseWindows(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "waiting player choosing windows");
+            //Inizia la parita
+            match.beginMatch();
+
+            //Notifica inizio della partita
+            matchModel.notifyMatchStart(tokenMatch);
+            matchBroadcastAck(matchModel, "match started");
+
+            //Notifica inizio fase di scelta delle finestre
+            matchModel.notifyChooseWindows(tokenMatch);
+            matchBroadcastAck(matchModel, "waiting player choosing windows");
         }
     }
     public synchronized void cancelJoinMatch(String tokenUser, int playersCount) throws RemoteException {
+        //Ottiene gestore partite
         MultiPlayerHandler handler = retrieveMatchStartHandler(playersCount);
-        if (handler.isReady())
-            reportError(model.retrieveUser(tokenUser), "match is already started");
+
+        //L'utente lascia l'attesa
         handler.leave(tokenUser);
 
-        model.retrieveUser(tokenUser).getAppView().respondAck("match leaved");
+        //Notifica l'utente dell'uscita
+        userAck(model.retrieveUser(tokenUser), "match leaved");
     }
     public synchronized void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //?Serve
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
-        MatchModel match = model.retrieveMatch(tokenMatch);
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
-        if (match.getRound() != 0)
-            reportError(user, "match is already started");
-        if (!player.getStartWindows().contains(window))
-            reportError(user, "invalid window choice");
-
-        player.setWindow(window);
-        player.setFavorTokens(window.getDifficulty());
-
-        boolean nextStep = true;
-        for (Player p : match.getPlayers()) {
-            if (p.getWindow() == null) {
-                nextStep = false;
-                break;
-            }
+        //Esegue la scelta della finestra
+        try {
+            match.chooseWindow(player, window);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
         }
 
-        if (nextStep) {
-            List<Die> draftPool = MatchBuilder.createDraftPool(match);
+        //Se la partita ha inizio
+        if (match.getTurnHandler().isStarted()) {
+            //Notifica inizio dei round
+            matchModel.notifyFirstRoundStart(tokenMatch);
+            matchBroadcastAck(matchModel, "match rounds started");
 
-            match.setRound(1);
-            match.setDraftPool(draftPool);
-
-            match.notifyFirstRoundStart(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "match rounds started");
-
-            match.notifyRoundStart(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "round " + match.getRound() + " started");
+            //Notifica inizio round
+            matchModel.notifyRoundStart(tokenMatch);
+            matchBroadcastAck(matchModel, "round " + match.getTurnHandler().getRound() + " started");
         }
     }
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        Match match = matchModel.getMatch();
+        User user = model.retrieveUser(tokenUser);
+        Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
+        //Esegue il piazzamento del dado
+        try {
+            match.placeDie(player, cell, die);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
+        }
+
+        //Notifica il piazzamento del dado
+        matchModel.notifyPlaceDie(tokenMatch, player, cell, die);
+        matchBroadcastAck(matchModel, "player " + user.getName() + " placed a die");
     }
     public synchronized void useToolCard(String tokenUser, String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
 
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
-        MatchModel match = model.retrieveMatch(tokenMatch);
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
-        Player nextPlayer=null;
-        //Calcolo giocatore successivo
+        //Esegue la fine del turno
+        try {
+            match.endTurn(player);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
+        }
 
-        boolean matchFinished = match.getRound() > 10;
-        boolean lastTurn = nextPlayer == null;
-        if (lastTurn)
-            match.setRound(11);
+        //Notifica fine turno del giocatore
+        matchModel.notifyPlayerTurnEnd(tokenMatch, player);
+        matchBroadcastAck(matchModel, "player " + player.getUser().getName() + " ends turn");
 
-        if (matchFinished)
-            reportError(user, "match ended");
-        String turnPlayerName = match.getTurnPlayer().getUser().getName();
-        if (!turnPlayerName.equals(player.getUser().getName()))
-            reportError(user, "invalid move, " + turnPlayerName + " turn");
+        //Notifica fine round
+        if (match.getTurnHandler().isRoundFirstTurn()) {
+            matchModel.notifyRoundEnd(tokenMatch);
+            matchBroadcastAck(matchModel, "round " + (match.getTurnHandler().getRound() - 1) + " ended");
+        }
 
-
-        match.notifyPlayerTurnEnd(tokenMatch, match, player);
-        matchBroadcastAck(tokenMatch, "player " + player.getUser().getName() + " end turn");
-
-        match.setTurnPlayer(nextPlayer);
-
-        if (!lastTurn) {
-            match.notifyPlayerTurnStart(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "player " + nextPlayer.getUser().getName() + " start turn");
-        } else {
-            match.notifyLastRoundEnd(tokenMatch, match);
-            matchBroadcastAck(tokenMatch, "match rounds ended");
-
-            for (Player p : match.getPlayers()) {
-                PlayerPoints points=null;
-                //Calcolo punteggio giocatore
-
-                match.notifyGetPoints(tokenMatch, match, player, points);
-                matchBroadcastAck(tokenMatch, player.getUser().getName() + " points calculated");
-
-                matchBroadcastAck(tokenMatch, "match ended");
-                model.destroyMatch(tokenMatch);
+            //Controllo se i round sono finiti
+        if (!match.getTurnHandler().isEnded()) {
+            //Notifica inizio nuovo round
+            if (match.getTurnHandler().isRoundFirstTurn()) {
+                matchModel.notifyRoundStart(tokenMatch);
+                matchBroadcastAck(matchModel, "round " + match.getTurnHandler().getRound() + " started");
             }
+
+            //Notifica turno giocatore successivo
+            matchModel.notifyPlayerTurnStart(tokenMatch);
+            matchBroadcastAck(matchModel, "player " + match.getTurnPlayer().getUser().getName() + " starts turn");
+        } else {
+            //Notifica ultimo turno dei round
+            matchModel.notifyLastRoundEnd(tokenMatch);
+            matchBroadcastAck(matchModel, "match rounds ended");
+
+            //Per ogni player vengono comunicati i punteggi
+            for (Player p : match.getPlayers()) {
+                PlayerPoints points = match.getPlayerPoints(p);
+                matchModel.notifyGetPoints(tokenMatch, player, points);
+                matchBroadcastAck(matchModel, player.getUser().getName() + " totalized " + (points.getPrivateObjectivePoints()+points.getPublicObjectivePoints()+points.getFavorTokensPoints()-points.getOpenSpacesLostPoints()));
+            }
+
+            //Notifica fine partita
+            matchBroadcastAck(matchModel, "match ended");
+
+            //La partita viene eliminata dal model
+            model.destroyMatch(tokenMatch);
         }
     }
-
 }

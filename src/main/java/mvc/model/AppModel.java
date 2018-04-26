@@ -1,6 +1,5 @@
 package mvc.model;
 
-import mvc.TokenMap;
 import mvc.model.objects.*;
 import mvc.view.AppView;
 
@@ -37,7 +36,7 @@ public class AppModel {
     public synchronized String createUser(String name, AppView appView) throws RemoteException {
         User user = users.get(name);
 
-        if (user == null)
+        if (user != null)
             throw new ModelException("user named " + name + " already logged in");
 
         return users.createObject(new User(name, appView, new ArrayList<Player>()));
@@ -45,8 +44,13 @@ public class AppModel {
     public synchronized void destroyUser(String tokenUser) throws RemoteException {
         users.remove(tokenUser);
     }
-    public synchronized User retrieveUser(String tokenUser) {
-        return users.get(tokenUser);
+    public synchronized User retrieveUser(String tokenUser) throws RemoteException {
+        User user = users.get(tokenUser);
+
+        if (user == null)
+            throw new ModelException("user " + user.getName() + " not found");
+
+        return user;
     }
 
     //Partita
@@ -59,16 +63,12 @@ public class AppModel {
     public synchronized MatchModel retrieveMatch(String tokenMatch) {
         return matches.get(tokenMatch);
     }
-    public synchronized void modifyMatch(String tokenMatch, MatchModel match) throws RemoteException {
-        matches.modifyObject(tokenMatch, match);
-    }
-
-    public synchronized Player retrievePlayer(String tokenUser, String tokenMatch) {
+    public synchronized Player retrievePlayer(String tokenUser, String tokenMatch) throws RemoteException {
         User user = retrieveUser(tokenUser);
         MatchModel match = retrieveMatch(tokenMatch);
 
         Player player = null;
-        for (Player p : match.getPlayers()) {
+        for (Player p : match.getMatch().getPlayers()) {
             if (p.getUser().getName().equals(user.getName())) {
                 player = p;
                 break;

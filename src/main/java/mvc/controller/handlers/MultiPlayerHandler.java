@@ -17,13 +17,15 @@ public class MultiPlayerHandler {
         this.waitingUsersToken = new ArrayList<String>();
     }
 
-    //Chiamate da controllore
+    //Il gestore ha ottenuto abbastanza utenti
     public synchronized boolean isReady() {
         return ready;
     }
+    //Ottiene utenti in attesa
     public synchronized List<String> getWaitingUsersToken() {
         return waitingUsersToken;
     }
+    //Registra un'utente in attesa
     public synchronized void join(String tokenUser) {
         waitingUsersToken.add(tokenUser);
 
@@ -32,9 +34,11 @@ public class MultiPlayerHandler {
         else
             ready = false;
     }
+    //Elimina un'utente dall'attesa
     public synchronized void leave(String tokenUser) {
         waitingUsersToken.remove(tokenUser);
     }
+    //Elimina tutti gli utenti dall'attesa
     public synchronized void clear() {
         waitingUsersToken.clear();
     }

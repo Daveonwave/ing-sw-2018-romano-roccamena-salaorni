@@ -10,6 +10,7 @@ public class Player {
     private List<Window> startWindows;
     private PrivateObjectiveCard privateObjectiveCard;
     private int favorTokens;
+    private PlayerPoints points;
 
     //Costruttori
     public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard objectiveCard, int favorTokens) {

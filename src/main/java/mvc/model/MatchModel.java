@@ -8,18 +8,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MatchModel extends Match {
-    //Model del match
+public class MatchModel {
+    //Decoratore a subject model di una partita
 
+    private Match match;
     private List<MatchObserver> matchObserver;
 
     //Costruttori
-    public MatchModel(List<Player> players, Player roundPlayer, int round, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
-        super(players, roundPlayer, round, objectiveCards, toolCards, draftPool, roundTrack);
+    public MatchModel(Match match) {
+        this.match = new Match(match);
         this.matchObserver = new ArrayList<MatchObserver>();
     }
-    public MatchModel(Match match) {
-        this(match.getPlayers(), match.getTurnPlayer(), match.getRound(), match.getPublicObjectiveCards(), match.getToolCards(), match.getDraftPool(), match.getRoundTrack());
+
+    //Setter/Getter
+    public void setMatch(Match match) {
+        this.match = match;
+    }
+
+    public Match getMatch() {
+        return this.match;
     }
 
     //Attacco, distacco degli osservatori
@@ -31,47 +38,47 @@ public class MatchModel extends Match {
     }
 
     //Notifica osservatori
-    public synchronized void notifyMatchStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyMatchStart(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onMatchStart(tokenMatch, match);
     }
-    public synchronized void notifyChooseWindows(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyChooseWindows(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onChooseWindows(tokenMatch, match);
     }
-    public synchronized void notifyFirstRoundStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyFirstRoundStart(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onFirstRoundStart(tokenMatch, match);
     }
-    public synchronized void notifyRoundStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyRoundStart(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onRoundStart(tokenMatch, match);
     }
-    public synchronized void notifyPlayerTurnStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyPlayerTurnStart(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onPlayerTurnStart(tokenMatch, match);
     }
-    public synchronized void notifyPlaceDie(String tokenMatch, Match match, Player player, Die die) throws RemoteException {
+    public synchronized void notifyPlaceDie(String tokenMatch, Player player, Cell cell, Die die) throws RemoteException {
         for (MatchObserver observer : matchObserver)
-            observer.onPlaceDie(tokenMatch, match, player, die);
+            observer.onPlaceDie(tokenMatch, match, player, cell, die);
     }
-    public synchronized void notifyUseTool(String tokenMatch, Match match, Player player, ToolCard toolCard) throws RemoteException {
+    public synchronized void notifyUseTool(String tokenMatch, Player player, ToolCard toolCard) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onUseTool(tokenMatch, match, player, toolCard);
     }
-    public synchronized void notifyPlayerTurnEnd(String tokenMatch, Match match, Player player) throws RemoteException {
+    public synchronized void notifyPlayerTurnEnd(String tokenMatch, Player player) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onPlayerTurnEnd(tokenMatch, match, player);
     }
-    public synchronized void notifyRoundEnd(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyRoundEnd(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onRoundEnd(tokenMatch, match);
     }
-    public synchronized void notifyLastRoundEnd(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void notifyLastRoundEnd(String tokenMatch) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onLastRoundEnd(tokenMatch, match);
     }
-    public synchronized void notifyGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException {
+    public synchronized void notifyGetPoints(String tokenMatch, Player player, PlayerPoints points) throws RemoteException {
         for (MatchObserver observer : matchObserver)
             observer.onGetPoints(tokenMatch, match, player, points);
     }

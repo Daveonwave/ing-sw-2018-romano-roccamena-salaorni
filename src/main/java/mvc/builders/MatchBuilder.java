@@ -1,4 +1,4 @@
-package mvc.controller.builders;
+package mvc.builders;
 
 import mvc.model.objects.*;
 import mvc.model.objects.enums.*;

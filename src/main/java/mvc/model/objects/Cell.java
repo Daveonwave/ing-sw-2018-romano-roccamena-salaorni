@@ -2,8 +2,13 @@ package mvc.model.objects;
 
 import mvc.model.objects.enums.Restriction;
 
+import java.rmi.RemoteException;
+
 public class Cell {
     //Cella di una finestra
+
+    public final int MAX_ROW = 4;
+    public final int MAX_COLUMN = 5;
 
     private Die die;
     private Restriction restriction;
@@ -44,4 +49,25 @@ public class Cell {
     public void setColumn(int column) {
         this.column = column;
     }
+
+    //Indicano se la cella è in posizioni di bordo o angolo della finestra
+    public boolean isNorthBorder() {
+        return row==0;
+    }
+    public boolean isSouthBorder() {
+        return row==MAX_ROW-1;
+    }
+    public boolean isWestBorder() {
+        return column==0;
+    }
+    public boolean isEastBorder() {
+        return column==MAX_COLUMN-1;
+    }
+
+    //TODO: implementazione, Restriction non incapsula i valori delle restrizioni
+    //Piazza un dado nella cella
+    public void placeDie(Die die) throws RemoteException {
+        throw new MatchException("not implemented");
+    }
+
 }

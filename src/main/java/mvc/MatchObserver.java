@@ -15,7 +15,7 @@ public interface MatchObserver extends Remote{
     void onFirstRoundStart(String tokenMatch, Match match) throws RemoteException;
     void onRoundStart(String tokenMatch, Match match) throws RemoteException;
     void onPlayerTurnStart(String tokenMatch, Match match) throws RemoteException;
-    void onPlaceDie(String tokenMatch, Match match, Player player, Die die) throws RemoteException;
+    void onPlaceDie(String tokenMatch, Match match, Player player, Cell cell, Die die) throws RemoteException;
     void onUseTool(String tokenMatch, Match match, Player player, ToolCard toolCard) throws RemoteException;
     void onPlayerTurnEnd(String tokenMatch, Match match, Player player) throws RemoteException;
     void onRoundEnd(String tokenMatch, Match match) throws RemoteException;
