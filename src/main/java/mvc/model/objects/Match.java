@@ -1,6 +1,6 @@
 package mvc.model.objects;
 
-import mvc.builders.MatchBuilder;
+import mvc.exceptions.MatchException;
 import mvc.model.objects.enums.MatchState;
 
 import java.rmi.RemoteException;
@@ -14,21 +14,21 @@ public class Match {
     private TurnHandler turnHandler;
     private List<PublicObjectiveCard> publicObjectiveCards;
     private List<ToolCard> toolCards;
-    private List<Die> draftPool;
-    private List<List<Die>> roundTrack;
+    private MatchDice matchDice;
+    private RoundTrack roundTrack;
 
     //Costruttori
-    public Match(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, List<Die> draftPool, List<List<Die>> roundTrack) {
+    public Match(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
         this.matchState = MatchState.STARTED;
         this.players = players;
         this.turnHandler = new TurnHandler(players.size(), 0);
         this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
-        this.draftPool = draftPool;
+        this.matchDice = matchDice;
         this.roundTrack = roundTrack;
     }
     public Match(Match match) {
-        this(match.getPlayers(), match.getPublicObjectiveCards(), match.getToolCards(), match.getDraftPool(), match.getRoundTrack());
+        this(match.getPlayers(), match.getPublicObjectiveCards(), match.getToolCards(), match.getMatchDice(), match.getRoundTrack());
     }
 
     //Setter/Getter
@@ -47,10 +47,10 @@ public class Match {
     public void setToolCards(List<ToolCard> toolCards) {
         this.toolCards = toolCards;
     }
-    public void setDraftPool(List<Die> draft_pool) {
-        this.draftPool = draft_pool;
+    public void setMatchDice(MatchDice matchDice) {
+        this.matchDice = matchDice;
     }
-    public void setRoundTrack(List<List<Die>> roundTrack) {
+    public void setRoundTrack(RoundTrack roundTrack) {
         this.roundTrack = roundTrack;
     }
 
@@ -69,10 +69,10 @@ public class Match {
     public List<ToolCard> getToolCards() {
         return toolCards;
     }
-    public List<Die> getDraftPool() {
-        return draftPool;
+    public MatchDice getMatchDice() {
+        return matchDice;
     }
-    public List<List<Die>> getRoundTrack() {
+    public RoundTrack getRoundTrack() {
         return roundTrack;
     }
 
@@ -104,7 +104,6 @@ public class Match {
         //Aggiorna lo stato prossimo
         matchState = MatchState.CHOOSE_WINDOWS;
     }
-
     //Mossa di scelta di una finestra
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
@@ -130,7 +129,6 @@ public class Match {
 
         //Aggiorna stato prossimo
         if (nextStep) {
-            this.draftPool = MatchBuilder.createDraftPool(this);
             turnHandler.startRounds();
 
             matchState = MatchState.PLAY_ROUND;
@@ -148,7 +146,7 @@ public class Match {
         if (!player.getWindow().containsCell(cell))
             throw new MatchException("invalid window cell");
 
-        if (!draftPool.contains(die))
+        if (!matchDice.getDraftPool().contains(die))
             throw new MatchException("invalid die");
 
         //Controlla che il piazzamento rispetti la restrizione del dado iniziale
@@ -171,6 +169,34 @@ public class Match {
         //Posiziona il dado
         cell.placeDie(die);
     }
+    //Mossa di utilizzo di una carta strumento
+    public void useToolCard(Player player, Match match, ToolCard toolCard) throws RemoteException {
+        //Controllo stato corretto della partita e della carta strumento
+        if (matchState != MatchState.PLAY_ROUND)
+            throw new MatchException("can't use a tool card now");
+
+        if (!isPlayerTurn(player))
+            throw new MatchException("it's not your turn");
+
+        if (!toolCards.contains(toolCard))
+            throw new MatchException("invalid tool card");
+
+        //Gestisce tokens player
+        if (toolCard.getFavorTokens() == 0)
+            if (player.getFavorTokens() < 1)
+                throw new MatchException("not enough favor tokens");
+            else
+                player.setFavorTokens(player.getFavorTokens()-1);
+
+        if (toolCard.getFavorTokens() >= 1)
+            if (player.getFavorTokens() < 2)
+                throw new MatchException("not enough favor tokens");
+            else
+                player.setFavorTokens(player.getFavorTokens()-2);
+
+        //Utilizza la carta strumento
+        toolCard.useToolCard(match, player);
+    }
     //Mossa di fine del turno
     public void endTurn(Player player) throws RemoteException {
         //Controllo stato corretto della partita
@@ -184,6 +210,12 @@ public class Match {
         if (!turnHandler.isLastTurn()) {
             //Calcola un nuovo turno
             turnHandler.nextTurn();
+
+            //Se nuovo round sposta draft pool sulla round track e crea nuova draft pool
+            if (turnHandler.isRoundFirstTurn()) {
+                roundTrack.moveDice(matchDice, turnHandler.getRound()-1);
+                matchDice.extractNewDraftPool();
+            }
         } else {
             //Aggiorna stato prossimo
             matchState = MatchState.ENDED;

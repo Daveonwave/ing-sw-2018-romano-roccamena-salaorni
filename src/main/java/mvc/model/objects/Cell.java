@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import mvc.exceptions.MatchException;
+
 import java.rmi.RemoteException;
 
 public class Cell {

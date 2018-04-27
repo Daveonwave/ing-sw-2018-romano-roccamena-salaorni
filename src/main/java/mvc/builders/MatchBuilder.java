@@ -154,13 +154,10 @@ MatchBuilder {
     //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
 
     //TODO: implementazione
-    //Creazione riserva dadi
-    public static List<Die> createDraftPool(Match match) {
-        return null;
-    }
-    //TODO: implementazione
     //Creazione nuovo match multiplayer nello stato iniziale
     public static Match createMultiPlayer(List<User> users) {
+        //Comprende costruzione di un MatchDice e RoundTrack
+
         return null;
     }
     //TODO: implementazione

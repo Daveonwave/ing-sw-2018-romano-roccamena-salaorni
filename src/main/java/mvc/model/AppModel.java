@@ -1,5 +1,6 @@
 package mvc.model;
 
+import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
 import mvc.view.AppView;
 
@@ -37,7 +38,7 @@ public class AppModel {
         User user = users.get(name);
 
         if (user != null)
-            throw new ModelException("user named " + name + " already logged in");
+            throw new AppModelException("user named " + name + " already logged in");
 
         return users.createObject(new User(name, appView, new ArrayList<Player>()));
     }
@@ -48,7 +49,7 @@ public class AppModel {
         User user = users.get(tokenUser);
 
         if (user == null)
-            throw new ModelException("user " + user.getName() + " not found");
+            throw new AppModelException("user " + user.getName() + " not found");
 
         return user;
     }
@@ -63,6 +64,7 @@ public class AppModel {
     public synchronized MatchModel retrieveMatch(String tokenMatch) {
         return matches.get(tokenMatch);
     }
+
     public synchronized Player retrievePlayer(String tokenUser, String tokenMatch) throws RemoteException {
         User user = retrieveUser(tokenUser);
         MatchModel match = retrieveMatch(tokenMatch);

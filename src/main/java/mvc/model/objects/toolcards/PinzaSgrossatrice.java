@@ -1,13 +1,9 @@
 package mvc.model.objects.toolcards;
 
-import mvc.model.objects.Die;
 import mvc.model.objects.Match;
 import mvc.model.objects.Player;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.enums.DieColor;
-import mvc.model.objects.enums.Tool;
-
-import java.util.List;
 
 public class PinzaSgrossatrice extends ToolCard {
 
@@ -18,7 +14,7 @@ public class PinzaSgrossatrice extends ToolCard {
     }
 
     //Usa carta strumento
-    public void useToolCard(Match match, Player player, List<Die> dice) {
+    public void useToolCard(Match match, Player player) {
         if (increase){
             match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()+1);
         }

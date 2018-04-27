@@ -1,9 +1,6 @@
 package mvc.model.objects;
 
 import mvc.model.objects.enums.DieColor;
-import mvc.model.objects.enums.Tool;
-
-import java.util.List;
 
 public abstract class ToolCard extends Card{
     //Carta strumento
@@ -34,6 +31,6 @@ public abstract class ToolCard extends Card{
     }
 
     //Usa carta strumento
-    public abstract void useToolCard(Match match, Player player, List<Die> dice);
+    public abstract void useToolCard(Match match, Player player);
 
 }

@@ -1,5 +1,7 @@
 package mvc.model;
 
+import mvc.exceptions.AppModelException;
+
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.UUID;
@@ -21,7 +23,7 @@ public class TokenMap<T> extends HashMap<String, T> {
         T alias = get(token);
 
         if (alias != null)
-            throw new ModelException("unknown token " + token);
+            throw new AppModelException("unknown token " + token);
     }
 
     //Creazione

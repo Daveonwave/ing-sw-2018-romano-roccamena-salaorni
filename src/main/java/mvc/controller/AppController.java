@@ -1,8 +1,11 @@
 package mvc.controller;
 
-import mvc.Controller;
+import mvc.MatchController;
+import mvc.UserController;
 import mvc.builders.MatchBuilder;
 import mvc.controller.handlers.MultiPlayerHandler;
+import mvc.exceptions.AppControllerException;
+import mvc.exceptions.MatchException;
 import mvc.model.AppModel;
 import mvc.model.MatchModel;
 import mvc.model.objects.*;
@@ -13,7 +16,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppController extends UnicastRemoteObject implements Controller {
+public class AppController extends UnicastRemoteObject implements UserController, MatchController {
     //Controllore dell'applicazione
 
     //Model dell'applicazione
@@ -56,7 +59,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
             case 4:
                 return ms4;
             default:
-                throw new ControllerException("unsupported players count");
+                throw new AppControllerException("unsupported players count");
         }
     }
 
@@ -69,14 +72,14 @@ public class AppController extends UnicastRemoteObject implements Controller {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondError(message);
 
-        throw new ControllerException(message);
+        throw new AppControllerException(message);
     }
     private synchronized void userAck(User user, String message) {
         user.getAppView().respondError(message);
     }
     private synchronized void userError(User user, String message) throws RemoteException {
         user.getAppView().respondError(message);
-        throw new ControllerException(message);
+        throw new AppControllerException(message);
     }
 
     //Mosse degli utenti sulla partita
@@ -176,7 +179,22 @@ public class AppController extends UnicastRemoteObject implements Controller {
         matchBroadcastAck(matchModel, "player " + user.getName() + " placed a die");
     }
     public synchronized void useToolCard(String tokenUser, String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        Match m = matchModel.getMatch();
+        User user = model.retrieveUser(tokenUser);
+        Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
+        //Utilizza la tool card
+        try {
+            m.useToolCard(player, match, toolCard);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
+        }
+
+        //Notifica l'utilizzo della carta strumento
+        matchModel.notifyUseTool(tokenMatch, player, toolCard);
+        matchBroadcastAck(matchModel, "player " + user.getName() + " used toolcard " + toolCard.getName());
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
@@ -222,7 +240,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
             for (Player p : match.getPlayers()) {
                 PlayerPoints points = match.getPlayerPoints(p);
                 matchModel.notifyGetPoints(tokenMatch, player, points);
-                matchBroadcastAck(matchModel, player.getUser().getName() + " totalized " + (points.getPrivateObjectivePoints()+points.getPublicObjectivePoints()+points.getFavorTokensPoints()-points.getOpenSpacesLostPoints()));
+                matchBroadcastAck(matchModel, player.getUser().getName() + " totalized " + (points.getPrivateObjectivePoints()+points.getPublicObjectivePoints()+points.getFavorTokensPoints()-points.getOpenSpacesLostPoints()) + " points");
             }
 
             //Notifica fine partita
