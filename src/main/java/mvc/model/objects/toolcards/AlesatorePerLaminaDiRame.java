@@ -1,9 +1,13 @@
 package mvc.model.objects.toolcards;
 
+import mvc.model.objects.Die;
 import mvc.model.objects.Match;
+import mvc.model.objects.Player;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.enums.DieColor;
 import mvc.model.objects.enums.Tool;
+
+import java.util.List;
 
 public class AlesatorePerLaminaDiRame extends ToolCard{
 
@@ -11,10 +15,7 @@ public class AlesatorePerLaminaDiRame extends ToolCard{
         super(name, description, favorTokens, dieColor);
     }
 
-    @Override
-    public void useToolCard(Match match) {
-        int xPosition = 0,yPosition = 0;
-        match.getPlayers().get(0).getWindow().getCells()[0][0].getDie().setxPosition(xPosition);
-        match.getPlayers().get(0).getWindow().getCells()[0][0].getDie().setyPosition(yPosition);
+    //Usa carta strumento
+    public void useToolCard(Match match, Player player, List<Die> dice) {
     }
 }

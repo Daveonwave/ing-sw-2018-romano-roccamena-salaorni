@@ -8,22 +8,17 @@ import java.util.List;
 public abstract class ToolCard extends Card{
     //Carta strumento
 
-    private Tool tool;
     private int favorTokens;
     private DieColor dieColor;
 
     //Costruttori
-    public ToolCard(String name, String description, Tool tool, int favorTokens, DieColor dieColor) {
+    public ToolCard(String name, String description, int favorTokens, DieColor dieColor) {
         super(name, description);
-        this.tool = tool;
         this.favorTokens = favorTokens;
         this.dieColor = dieColor;
     }
 
     //Setter/Getter
-    public void setTool(Tool tool) {
-        this.tool = tool;
-    }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
     }
@@ -31,9 +26,6 @@ public abstract class ToolCard extends Card{
         this.dieColor = dieColor;
     }
 
-    public Tool getTool() {
-        return tool;
-    }
     public int getFavorTokens() {
         return favorTokens;
     }
@@ -42,6 +34,6 @@ public abstract class ToolCard extends Card{
     }
 
     //Usa carta strumento
-    public abstract Match useToolCard(Match match, Player player, List<Die> dice);
+    public abstract void useToolCard(Match match, Player player, List<Die> dice);
 
 }

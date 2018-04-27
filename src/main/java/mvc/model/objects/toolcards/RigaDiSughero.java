@@ -1,9 +1,13 @@
 package mvc.model.objects.toolcards;
 
+import mvc.model.objects.Die;
 import mvc.model.objects.Match;
+import mvc.model.objects.Player;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.enums.DieColor;
 import mvc.model.objects.enums.Tool;
+
+import java.util.List;
 
 public class RigaDiSughero extends ToolCard {
 
@@ -11,8 +15,7 @@ public class RigaDiSughero extends ToolCard {
         super(name, description, favorTokens, dieColor);
     }
 
-    @Override
-    public void useToolCard(Match match) {
-
+    //Usa carta strumento
+    public void useToolCard(Match match, Player player, List<Die> dice) {
     }
 }
