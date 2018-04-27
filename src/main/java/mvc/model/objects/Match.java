@@ -164,7 +164,7 @@ public class Match {
 
             if (die != null) {
                 if (die.getColor()==placedDie.getColor() || die.getShade()==placedDie.getShade())
-                    throw new MatchException("invalid cell");
+                    throw new MatchException("adjacents dice must have different color and shade");
             }
         }
 

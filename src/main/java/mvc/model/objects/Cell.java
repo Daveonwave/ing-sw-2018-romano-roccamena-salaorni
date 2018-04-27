@@ -1,7 +1,5 @@
 package mvc.model.objects;
 
-import mvc.model.objects.enums.Restriction;
-
 import java.rmi.RemoteException;
 
 public class Cell {
@@ -11,14 +9,14 @@ public class Cell {
     public final int MAX_COLUMN = 5;
 
     private Die die;
-    private Restriction restriction;
+    private CellRestriction cellRestriction;
     private int row;
     private int column;
 
     //Costruttori
-    public Cell(Die die, Restriction restriction, int row, int column) {
+    public Cell(Die die, CellRestriction cellRestriction, int row, int column) {
         this.die = die;
-        this.restriction = restriction;
+        this.cellRestriction = cellRestriction;
         this.row = row;
         this.column = column;
     }
@@ -27,8 +25,8 @@ public class Cell {
     public Die getDie() {
         return die;
     }
-    public Restriction getRestriction() {
-        return restriction;
+    public CellRestriction getCellRestriction() {
+        return cellRestriction;
     }
     public int getRow() {
         return row;
@@ -40,8 +38,8 @@ public class Cell {
     public void setDie(Die die) {
         this.die = die;
     }
-    public void setRestriction(Restriction restriction) {
-        this.restriction = restriction;
+    public void setCellRestriction(CellRestriction cellRestriction) {
+        this.cellRestriction = cellRestriction;
     }
     public void setRow(int row) {
         this.row = row;
@@ -50,7 +48,7 @@ public class Cell {
         this.column = column;
     }
 
-    //Indicano se la cella è in posizioni di bordo o angolo della finestra
+    //Indicano se la cella è in posizioni di bordo dela finestra
     public boolean isNorthBorder() {
         return row==0;
     }
@@ -64,10 +62,12 @@ public class Cell {
         return column==MAX_COLUMN-1;
     }
 
-    //TODO: implementazione, Restriction non incapsula i valori delle restrizioni
     //Piazza un dado nella cella
     public void placeDie(Die die) throws RemoteException {
-        throw new MatchException("not implemented");
+        if (!cellRestriction.canPlaceDie(die))
+            throw new MatchException("selected die must respect cell restriction");
+
+        this.die = die;
     }
 
 }
