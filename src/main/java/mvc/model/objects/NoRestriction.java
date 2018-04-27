@@ -1,4 +1,4 @@
-package mvc.model;
+package mvc.model.objects;
 
 import mvc.model.objects.Die;
 import mvc.model.objects.CellRestriction;
