@@ -16,7 +16,9 @@ public class TokenMap<T> extends HashMap<String, T> {
             token = UUID.randomUUID().toString();
         } while(keySet().contains(token));
 
-        return token;
+        return token;GameBuilder gameBuilder = new GameBuilder(false);
+        List<PublicObjective> testRandomPublicObjectivesCard = new ArrayList<PublicObjective>();
+        testRandomPublicObjectivesCard = gameBuilder.createPublicObjectives();
     }
 
     //Crea un nuovo oggetto registrato e restituisce token associato
