@@ -8,7 +8,7 @@ public class PlayerPoints {
     private int favorTokensPoints;
     private int openSpacesLostPoints;
 
-    //Creatori
+    //Costruttori
     public PlayerPoints(int privateObjectivePoints, int publicObjectivePoints, int favorTokensPoints, int openSpacesLostPoints) {
         this.privateObjectivePoints = privateObjectivePoints;
         this.publicObjectivePoints = publicObjectivePoints;

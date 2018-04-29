@@ -1,12 +1,12 @@
-package mvc.view;
+package mvc.exceptions;
 
 import java.rmi.RemoteException;
 
-public class ViewException extends RemoteException {
+public class AppViewException extends RemoteException {
     //Eccezione della view dell'applicazione
 
     //Costruttori
-    public ViewException(String message) {
+    public AppViewException(String message) {
         super(message);
     }
 }

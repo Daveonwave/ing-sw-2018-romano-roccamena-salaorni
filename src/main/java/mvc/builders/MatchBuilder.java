@@ -1,11 +1,12 @@
-package mvc.controller.interactions;
+package mvc.builders;
 
 import mvc.model.objects.*;
 import mvc.model.objects.enums.*;
 
 import java.util.*;
 
-public class GameBuilder {
+public class
+MatchBuilder {
     //Builder di componenti del gioco
 
     private static final int SP_PRIVATE_OBJECTIVES_COUNT = 2;
@@ -19,7 +20,7 @@ public class GameBuilder {
     private Random random;
 
     //Costruttori
-    public GameBuilder(boolean singlePlayer) {
+    public MatchBuilder(boolean singlePlayer) {
         this.singlePlayer = singlePlayer;
         this.random = new Random();
     }
@@ -132,7 +133,6 @@ public class GameBuilder {
         return result;
     }
 
-
     //Creazione sacco di dadi.
     //NOTA random number generator: "rand.nextInt((max - min) + 1) + min"
     public List<Die> createDiceBag(){
@@ -151,19 +151,19 @@ public class GameBuilder {
         return diceBag;
     }
 
+    //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
 
+    //TODO: implementazione
+    //Creazione nuovo match multiplayer nello stato iniziale
+    public static Match createMultiPlayer(List<User> users) {
+        //Comprende costruzione di un MatchDice e RoundTrack
 
-
-    //Prova temporanea
-    public static void main(String[] args) {
-
-        GameBuilder gamePreparation = new GameBuilder(false);
-        List<Die> diceBag = gamePreparation.createDiceBag();
-
-        for(Die die : diceBag){
-            System.out.println(die.getColor().toString() + " " + die.getShade());
-        }
-
-
+        return null;
     }
+    //TODO: implementazione
+    //Creazione nuovo match singleplayer nello stato iniziale
+    public static Match createSinglePlayer() {
+        return null;
+    }
+
 }

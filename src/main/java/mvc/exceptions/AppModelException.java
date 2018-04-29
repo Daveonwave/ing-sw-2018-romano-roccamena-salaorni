@@ -1,12 +1,12 @@
-package mvc.model;
+package mvc.exceptions;
 
 import java.rmi.RemoteException;
 
-public class ModelException extends RemoteException {
+public class AppModelException extends RemoteException {
     //Eccezione del modello dell'applicazione
 
     //Costruttori
-    public ModelException(String message) {
+    public AppModelException(String message) {
         super(message);
     }
 }

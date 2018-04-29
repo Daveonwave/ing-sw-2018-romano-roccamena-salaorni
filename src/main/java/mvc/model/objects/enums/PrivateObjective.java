@@ -1,12 +1,5 @@
 package mvc.model.objects.enums;
 
-import game.components.base.DieColor;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
 public enum PrivateObjective {
     //Obiettivi privati per ogni giocatore
 

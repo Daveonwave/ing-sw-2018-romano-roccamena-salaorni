@@ -68,7 +68,7 @@ public class SocketExample {
         }
 
         protected void runExceptionHandling(Exception e) {
-            System.out.println("Controller run launched exception: " + e.getMessage());
+            System.out.println("MatchController run launched exception: " + e.getMessage());
         }
         //Algoritmo di controllo
         public ExampleOutput updateRequest(ExampleEvent event, ExampleInput input) throws ServiceException {

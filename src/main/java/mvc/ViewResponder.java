@@ -1,4 +1,4 @@
-package mvc.view;
+package mvc;
 
 import java.rmi.Remote;
 

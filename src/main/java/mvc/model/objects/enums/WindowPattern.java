@@ -1,10 +1,5 @@
 package mvc.model.objects.enums;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
 public enum WindowPattern {
     //24 window pattern
 

@@ -1,9 +1,9 @@
 package mvc.model.objects.toolcards;
 
 import mvc.model.objects.Match;
+import mvc.model.objects.Player;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.enums.DieColor;
-import mvc.model.objects.enums.Tool;
 
 public class PinzaSgrossatrice extends ToolCard {
 
@@ -13,13 +13,13 @@ public class PinzaSgrossatrice extends ToolCard {
         super(name, description, favorTokens, dieColor);
     }
 
-    @Override
-    public void useToolCard(Match match) {
-            if (increase){
-                match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()+1);
-            }
-            else{
-                match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()-1);
-            }
+    //Usa carta strumento
+    public void useToolCard(Match match, Player player) {
+        if (increase){
+            match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()+1);
+        }
+        else{
+            match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()-1);
+        }
     }
 }
