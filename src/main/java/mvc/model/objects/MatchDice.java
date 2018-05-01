@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import mvc.builders.MatchBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 

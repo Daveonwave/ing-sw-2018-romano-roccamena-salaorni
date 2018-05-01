@@ -1,7 +1,7 @@
 package mvc.model;
 
-import mvc.exceptions.AppModelException;
 
+import mvc.exceptions.AppModelException;
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.UUID;
@@ -17,9 +17,7 @@ public class TokenMap<T> extends HashMap<String, T> {
             token = UUID.randomUUID().toString();
         } while(keySet().contains(token));
 
-        return token;GameBuilder gameBuilder = new GameBuilder(false);
-        List<PublicObjective> testRandomPublicObjectivesCard = new ArrayList<PublicObjective>();
-        testRandomPublicObjectivesCard = gameBuilder.createPublicObjectives();
+        return token;
     }
     private void checkIsPresent(String token) throws RemoteException {
         T alias = get(token);
