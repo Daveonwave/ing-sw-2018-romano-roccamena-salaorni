@@ -9,17 +9,11 @@ public class PinzaSgrossatrice extends ToolCard {
 
     private boolean increase;
 
-    public PinzaSgrossatrice(String name, String description, int favorTokens, DieColor dieColor) {
-        super(name, description, favorTokens, dieColor);
+    public PinzaSgrossatrice(String name, String description, Match match, int favorTokens, DieColor dieColor) {
+        super(name, description, match, favorTokens, dieColor);
     }
 
     //Usa carta strumento
-    public void useToolCard(Match match, Player player) {
-        if (increase){
-            match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()+1);
-        }
-        else{
-            match.getDraftPool().get(0).setShade(match.getDraftPool().get(0).getShade()-1);
-        }
+    public void useToolCard(Match newMatch, Player player) {
     }
 }

@@ -7,11 +7,11 @@ import mvc.model.objects.enums.DieColor;
 
 public class TaglierinaManuale extends ToolCard {
 
-    public TaglierinaManuale(String name, String description, int favorTokens, DieColor dieColor) {
-        super(name, description, favorTokens, dieColor);
+    public TaglierinaManuale(String name, String description, Match match, int favorTokens, DieColor dieColor) {
+        super(name, description, match, favorTokens, dieColor);
     }
 
     //Usa carta strumento
-    public void useToolCard(Match match, Player player) {
+    public void useToolCard(Match newMatch, Player player) {
     }
 }
