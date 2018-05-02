@@ -1,28 +1,25 @@
 package mvc.model.objects;
 
 import mvc.model.objects.enums.DieColor;
-import mvc.model.objects.enums.Tool;
-
-import java.util.List;
 
 public abstract class ToolCard extends Card{
     //Carta strumento
 
-    private Tool tool;
+    private Match match;
     private int favorTokens;
     private DieColor dieColor;
 
-    //Costruttore
-    public ToolCard(String name, String description, Tool tool, int favorTokens, DieColor dieColor) {
+    //Costruttori
+    public ToolCard(String name, String description, Match match, int favorTokens, DieColor dieColor) {
         super(name, description);
-        this.tool = tool;
+        this.match = match;
         this.favorTokens = favorTokens;
         this.dieColor = dieColor;
     }
 
     //Setter/Getter
-    public void setTool(Tool tool) {
-        this.tool = tool;
+    public void setMatch(Match match) {
+        this.match = match;
     }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
@@ -31,8 +28,8 @@ public abstract class ToolCard extends Card{
         this.dieColor = dieColor;
     }
 
-    public Tool getTool() {
-        return tool;
+    public Match getMatch() {
+        return match;
     }
     public int getFavorTokens() {
         return favorTokens;
@@ -42,6 +39,5 @@ public abstract class ToolCard extends Card{
     }
 
     //Usa carta strumento
-    public abstract Match useToolCard(Match match, Player player, List<Die> dice);
-
+    public abstract void useToolCard(Match newMatch, Player player);
 }
