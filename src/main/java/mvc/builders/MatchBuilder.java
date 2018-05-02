@@ -20,6 +20,7 @@ MatchBuilder {
     private static final int MP_TOOL_CARDS_COUNT = 3;
     private static final int SINGLE_COLOR_DICE_COUNT = 18;
     private static final int WINDOWS_FOR_PLAYER = 4;
+    private static final int SP_DICE_DRAFTPOOL = 4;
 
     private boolean singlePlayer;
     private Random random;
@@ -93,7 +94,7 @@ MatchBuilder {
 
         int count;
         if (singlePlayer) {
-            count = difficultyLevelSP; //da 1 a 5 a seconda della difficoltà a cui si vuole giocare
+            count = 6 - difficultyLevelSP; //da 1 a 5 a seconda della difficoltà a cui si vuole giocare
         } else {
             count = MP_TOOL_CARDS_COUNT;
         }
@@ -151,34 +152,43 @@ MatchBuilder {
         return diceBag;
     }
 
-    //Creazione riserva //TODO: implementazione
-    //NOTA: numero dadi = 2*numberOfPlayers + 1; se singlePlayer allora 4 dadi
-    public List<Die> createDraftPoll(int numberOfPlayers){
-        return null
-    }
+    //Creazione riserva //
+    //NOTA1: numero dadi = 2*numberOfPlayers + 1; se singlePlayer allora 4 dadi
+    //NOTA2: estraggo i primi 4 perché li ho già mischiati prima
+    public List<Die> createDraftPoll(List<Die> dieBag, int numberOfPlayers){
+        List<Die> result = new ArrayList<Die>();
 
-    //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
-
-    //Estrazione di 4 finestre per ogni player
-    public List<Window> extractWindows(List<Window> createdWindows, int numberOfPlayers){
-        List<Window> result = new ArrayList<Window>();
-
-       for(int i = 0; i < WINDOWS_FOR_PLAYER; i++) {
-
+        if(numberOfPlayers == 1){
+            for(int i = 0; i < SP_DICE_DRAFTPOOL; i++){
+                result.add(dieBag.get(i));
+                dieBag.remove(i);
+            }
         }
-
+        else {
+            for(int i = 0; i < 2 * numberOfPlayers + 1; i++){
+                result.add(dieBag.get(i));
+                dieBag.remove(i);
+            }
+        }
         return result;
     }
 
+    //Creazione roundTrack
+    public RoundTrack createRoundTrack(){
+       List<List<Die>> diceStack = new ArrayList<List<Die>>();
+       RoundTrack result = new RoundTrack(diceStack);
+       return result;
+    }
+    //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
 
 
-    //TODO: implementazione
+    //TODO: implementazione FATTA
     //Creazione nuovo match multiplayer nello stato iniziale
     public static Match createMultiPlayer(List<User> users) {
         //Comprende costruzione di un MatchDice e RoundTrack
 
-        List<Player> players = new ArrayList<Player>();
         MatchBuilder matchBuilder = new MatchBuilder(false);
+        List<Player> players = new ArrayList<Player>();
         List<Window> extractedWindows = matchBuilder.createWindowPatterns(users.size());
         List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchBuilder.createPrivateObjectives(users.size());
         List<PublicObjectiveCard> extractedPublicObjectiveCards = matchBuilder.createPublicObjectives();
@@ -186,32 +196,39 @@ MatchBuilder {
 
         //Crea i giocatori e assegna ad ognuno 4 finestre iniziali e una carte obiettivo privato
         for(int i = 0; i < users.size(); i++){
-            Player player = new Player(users.get(i), null, null ,null, 0);
+            List<Window> startWindows = extractedWindows.subList(i * WINDOWS_FOR_PLAYER, i * WINDOWS_FOR_PLAYER + 4);
+            PrivateObjectiveCard privateObjectiveCard = extractedPrivateObjectiveCards.get(i);
 
-            player.setStartWindows(extractedWindows.subList(i * WINDOWS_FOR_PLAYER, i * WINDOWS_FOR_PLAYER + 4));
-            player.setPrivateObjectiveCard(extractedPrivateObjectiveCards.get(i));
+            Player player = new Player(users.get(i), null, startWindows ,privateObjectiveCard, 0);
             users.get(i).addPlayer(player);
             players.add(player);
 
         }
+        RoundTrack roundTrack = matchBuilder.createRoundTrack();
+        MatchDice matchDice = new MatchDice(users.size(), matchBuilder.createDiceBag());
 
-
-        MatchDice matchDice = new MatchDice(users.size(), matchBuilder.createDiceBag(), )
-
-        Match match = new Match(players, extractedPublicObjectiveCards, extractedToolCards,  );
-
-
-
-        return null;
+        Match match = new Match(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
+        return match;
     }
 
-    //TODO: implementazione
+    //TODO: implementazione FATTA
     //Creazione nuovo match singleplayer nello stato iniziale
-    public static Match createSinglePlayer() {
+    public static Match createSinglePlayer(User user, int difficultyLevelSP) {
+        //Comprende costruzione MatchDice e RoundTrack
+
         MatchBuilder matchBuilder = new MatchBuilder(true);
+        List<Window> extractedWindows = matchBuilder.createWindowPatterns(1);
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchBuilder.createPrivateObjectives(1);
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchBuilder.createPublicObjectives();
+        List<ToolCard> extractedToolCards = matchBuilder.createTools(difficultyLevelSP);
+        RoundTrack roundTrack = matchBuilder.createRoundTrack();
+        MatchDice matchDice = new MatchDice(1, matchBuilder.createDiceBag());
 
-        return null;
+        Player player = new Player(user, null, extractedWindows, extractedPrivateObjectiveCards, 0);
+        user.addPlayer(player);
+
+        Match match = new Match(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
+        return match;
     }
-
 
 }
