@@ -26,22 +26,7 @@ MatchBuilder {
     }
 
     //Creazione obiettivi pubblici TODO: capire se fare in json con serializzazione
-    public PublicObjectiveCard createPublicObjectivecard(PublicObjective objective) {
-        PublicObjectiveCard result = new PublicObjectiveCard("", "", objective);
 
-        switch (objective) {
-            case COLOR_DIAGONALS:
-                result.setName("color diagonals");
-                result.setDescription("obtain points on diagonal");
-                break;
-            case LIGHT_SHADES:
-                result.setName("light sahdes");
-                result.setDescription("obtain points on light shades");
-                break;
-        }
-
-        return result;
-    }
     public List<PublicObjective> createPublicObjectives(){
         List<PublicObjective> result = new ArrayList<PublicObjective>();
         int countExtracted = 1;

@@ -151,7 +151,7 @@ public class AppController extends UnicastRemoteObject implements Controller {
 
     }
     public synchronized void useToolCard(String tokenUser, String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
-        match.getToolCards().get(0).useToolCard(match);
+
 
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
