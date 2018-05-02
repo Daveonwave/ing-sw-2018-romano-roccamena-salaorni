@@ -1,6 +1,6 @@
 package mvc.model.objects;
 
-import mvc.view.AppView;
+import mvc.stubs.AppViewStub;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ public class User {
     //Utente dell'applicazione
 
     private String name;
-    private AppView appView;
+    private AppViewStub appView;
     private List<Player> players;
 
     //Costruttori
-    public User(String name, AppView appView, List<Player> players) {
+    public User(String name, AppViewStub appView, List<Player> players) {
         this.name = name;
         this.appView = appView;
         this.players = players;
@@ -25,7 +25,7 @@ public class User {
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
-    public void setAppView(AppView appView) {
+    public void setAppView(AppViewStub appView) {
         this.appView = appView;
     }
 
@@ -35,7 +35,7 @@ public class User {
     public List<Player> getPlayers() {
         return players;
     }
-    public AppView getAppView() {
+    public AppViewStub getAppView() {
         return appView;
     }
 

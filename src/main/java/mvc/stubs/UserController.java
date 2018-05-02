@@ -1,4 +1,4 @@
-package mvc;
+package mvc.stubs;
 
 import mvc.view.AppView;
 

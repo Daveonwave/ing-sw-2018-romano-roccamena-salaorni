@@ -8,11 +8,16 @@ import java.awt.*;
 
 public class TaglierinaCircolare extends ToolCard {
 
+<<<<<<< HEAD
     public TaglierinaCircolare(String name, String description, int favorTokens, Color color) {
         super(name, description, favorTokens, color);
+=======
+    public TaglierinaCircolare(String name, String description, Match match, int favorTokens, DieColor dieColor) {
+        super(name, description, match, favorTokens, dieColor);
+>>>>>>> origin/master
     }
 
     //Usa carta strumento
-    public void useToolCard(Match match, Player player) {
+    public void useToolCard(Match newMatch, Player player) {
     }
 }

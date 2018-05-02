@@ -5,32 +5,39 @@ import java.awt.*;
 public abstract class ToolCard extends Card{
     //Carta strumento
 
+    private Match match;
     private int favorTokens;
     private Color color;
 
     //Costruttori
-    public ToolCard(String name, String description, int favorTokens, Color color) {
+   public ToolCard(String name, String description, int favorTokens, Color color) {
         super(name, description);
+        this.match = match;
         this.favorTokens = favorTokens;
         this.color = color;
     }
 
     //Setter/Getter
+    public void setMatch(Match match) {
+        this.match = match;
+    }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
     }
-    public void setDieColor(Color dieColor) {
-        this.color = dieColor;
+    public void setDieColor(Color color) {
+        this.color = color;
     }
 
+    public Match getMatch() {
+        return match;
+    }
     public int getFavorTokens() {
         return favorTokens;
     }
-    public Color getDieColor() {
+    public Color getColor() {
         return color;
     }
 
     //Usa carta strumento
-    public abstract void useToolCard(Match match, Player player);
-
+    public abstract void useToolCard(Match newMatch, Player player);
 }

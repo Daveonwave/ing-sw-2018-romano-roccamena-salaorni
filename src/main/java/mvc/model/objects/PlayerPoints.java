@@ -42,4 +42,8 @@ public class PlayerPoints {
     public int getOpenSpacesLostPoints() {
         return openSpacesLostPoints;
     }
+
+    public int getTotalPoints() {
+        return privateObjectivePoints + publicObjectivePoints + favorTokensPoints + openSpacesLostPoints;
+    }
 }
