@@ -8,13 +8,9 @@ import java.awt.*;
 
 public class PennelloPerEglomise extends ToolCard {
 
-<<<<<<< HEAD
     public PennelloPerEglomise(String name, String description, int favorTokens, Color color) {
         super(name, description, favorTokens, color);
-=======
-    public PennelloPerEglomise(String name, String description, Match match, int favorTokens, DieColor dieColor) {
-        super(name, description, match, favorTokens, dieColor);
->>>>>>> origin/master
+
     }
 
     //Usa carta strumento
