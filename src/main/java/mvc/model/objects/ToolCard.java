@@ -1,20 +1,20 @@
 package mvc.model.objects;
 
-import mvc.model.objects.enums.DieColor;
+import java.awt.*;
 
 public abstract class ToolCard extends Card{
     //Carta strumento
 
     private Match match;
     private int favorTokens;
-    private DieColor dieColor;
+    private Color color;
 
     //Costruttori
-    public ToolCard(String name, String description, Match match, int favorTokens, DieColor dieColor) {
+   public ToolCard(String name, String description, int favorTokens, Color color) {
         super(name, description);
         this.match = match;
         this.favorTokens = favorTokens;
-        this.dieColor = dieColor;
+        this.color = color;
     }
 
     //Setter/Getter
@@ -24,8 +24,8 @@ public abstract class ToolCard extends Card{
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
     }
-    public void setDieColor(DieColor dieColor) {
-        this.dieColor = dieColor;
+    public void setDieColor(Color color) {
+        this.color = color;
     }
 
     public Match getMatch() {
@@ -34,8 +34,8 @@ public abstract class ToolCard extends Card{
     public int getFavorTokens() {
         return favorTokens;
     }
-    public DieColor getDieColor() {
-        return dieColor;
+    public Color getColor() {
+        return color;
     }
 
     //Usa carta strumento

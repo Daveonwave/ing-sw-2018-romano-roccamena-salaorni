@@ -18,9 +18,20 @@ public class Match {
     private RoundTrack roundTrack;
 
     //Costruttori
+    //MultiPlayer
     public Match(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
         this.matchState = MatchState.STARTED;
         this.players = players;
+        this.turnHandler = new TurnHandler(players.size(), 0);
+        this.publicObjectiveCards = objectiveCards;
+        this.toolCards = toolCards;
+        this.matchDice = matchDice;
+        this.roundTrack = roundTrack;
+    }
+    //SinglePlayer
+    public Match(Player player, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
+        this.matchState = MatchState.STARTED;
+        this.players.add(player);
         this.turnHandler = new TurnHandler(players.size(), 0);
         this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
@@ -162,7 +173,7 @@ public class Match {
 
             if (die != null) {
                 if (die.getColor()==placedDie.getColor() || die.getShade()==placedDie.getShade())
-                    throw new MatchException("adjacents dice must have different color and shade");
+                    throw new MatchException("adjacents diceStack must have different color and shade");
             }
         }
 

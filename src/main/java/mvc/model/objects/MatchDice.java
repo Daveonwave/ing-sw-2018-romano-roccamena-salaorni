@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import mvc.builders.MatchBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +13,10 @@ public class MatchDice {
     private List<Die> draftPool;
 
     //Costruttori
-    public MatchDice(int playersCount, List<Die> diceBag, List<Die> draftPool) {
+    public MatchDice(int playersCount, List<Die> diceBag) {
         this.playersCount = playersCount;
         this.diceBag = diceBag;
-        this.draftPool = draftPool;
+        extractNewDraftPool();
     }
 
     //Setter/Getter
@@ -38,10 +40,18 @@ public class MatchDice {
         return draftPool;
     }
 
-    //TODO:implementazione
+    //TODO:implementazione FATTA
     //Estrae nuova draft pool dal sacco di dadi
     public void extractNewDraftPool() {
+        if(draftPool.isEmpty()) {
+            boolean singlePlayerFlag = false;
 
+            if (this.playersCount == 1) {
+                singlePlayerFlag = true;
+            }
+            MatchBuilder matchBuilder = new MatchBuilder(singlePlayerFlag);
+            this.draftPool = matchBuilder.createDraftPoll(diceBag, playersCount);
+        }
     }
     //Toglie dalla draft pool tutti i dadi
     public void clearDraftPool() {

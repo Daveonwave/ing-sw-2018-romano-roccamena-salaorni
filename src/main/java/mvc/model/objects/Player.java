@@ -8,18 +8,28 @@ public class Player {
     private User user;
     private Window window;
     private List<Window> startWindows;
-    private PrivateObjectiveCard privateObjectiveCard;
+    private List<PrivateObjectiveCard> privateObjectiveCard;
     private int favorTokens;
     private PlayerPoints points;
 
     //Costruttori
-    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard objectiveCard, int favorTokens) {
+    //MultiPlayer -> un solo obiettivo privato
+    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCard, int favorTokens) {
         this.user = user;
         this.window = window;
         this.startWindows = startWindows;
-        this.privateObjectiveCard = objectiveCard;
+        this.privateObjectiveCard.add(privateObjectiveCard);
         this.favorTokens = favorTokens;
     }
+    //SinglePlayer -> due obiettivi privati
+    public Player(User user, Window window, List<Window> startWindows, List<PrivateObjectiveCard> privateObjectiveCards, int favorTokens) {
+        this.user = user;
+        this.window = window;
+        this.startWindows = startWindows;
+        this.privateObjectiveCard = privateObjectiveCards;
+        this.favorTokens = favorTokens;
+    }
+
 
     //Setter/Getter
     public void setUser(User user) {
@@ -32,7 +42,7 @@ public class Player {
         this.startWindows = startWindows;
     }
     public void setPrivateObjectiveCard(PrivateObjectiveCard privateObjectiveCard) {
-        this.privateObjectiveCard = privateObjectiveCard;
+        this.privateObjectiveCard.add(privateObjectiveCard);
     }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
@@ -47,7 +57,7 @@ public class Player {
     public List<Window> getStartWindows() {
         return startWindows;
     }
-    public PrivateObjectiveCard getPrivateObjectiveCard() {
+    public List<PrivateObjectiveCard> getPrivateObjectiveCard() {
         return privateObjectiveCard;
     }
     public int getFavorTokens() {
