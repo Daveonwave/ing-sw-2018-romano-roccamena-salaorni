@@ -11,17 +11,18 @@ import java.io.IOException;
 
 public class MainMenu extends Application {
 
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws IOException{
-
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("menu.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 }
