@@ -37,7 +37,9 @@
               <resource>
                   <directory>src/main/java</directory>
                   <includes>
-                      <include>**/*.fxml</include>
+                          <include>**/*.fxml</include>
+                          <include>**/*.jpg</include>
+                    <include>**/*.css</include>
                   </includes>
               </resource>
           </resources>

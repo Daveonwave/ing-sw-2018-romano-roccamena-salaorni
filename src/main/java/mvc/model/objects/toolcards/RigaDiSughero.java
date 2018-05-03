@@ -8,16 +8,12 @@ import java.awt.*;
 
 public class RigaDiSughero extends ToolCard {
 
-<<<<<<< HEAD
     public RigaDiSughero(String name, String description, int favorTokens, Color color) {
         super(name, description, favorTokens, color);
-=======
-    public RigaDiSughero(String name, String description, Match match, int favorTokens, DieColor dieColor) {
-        super(name, description, match, favorTokens, dieColor);
->>>>>>> origin/master
+
+    }
+    //Usa carta strumento
+        public void useToolCard(Match newMatch,Player player){
+        }
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match newMatch, Player player) {
-    }
-}
