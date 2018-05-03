@@ -64,7 +64,7 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
     }
 
     //Ack ed error su utenti di un match o singolarmente
-    private synchronized void matchBroadcastAck(MatchModel matchModel, String message) {
+    private synchronized void matchBroadcastAck(MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message);
     }
@@ -74,7 +74,7 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
 
         throw new AppControllerException(message);
     }
-    private synchronized void userAck(User user, String message) {
+    private synchronized void userAck(User user, String message) throws RemoteException {
         user.getAppView().respondError(message);
     }
     private synchronized void userError(User user, String message) throws RemoteException {

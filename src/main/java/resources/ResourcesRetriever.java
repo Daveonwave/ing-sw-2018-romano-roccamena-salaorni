@@ -8,27 +8,27 @@ import mvc.model.objects.enums.*;
 
 import java.util.List;
 
-public class ResourcesRetriver {
+public class ResourcesRetriever {
     //Ottiene gli oggetti da file
 
 
     //TODO: implementazione
-    public static List<Window> retriveWindows(List<WindowPattern> extractedWindows){
+    public static List<Window> retrieveWindows(List<WindowPattern> extractedWindows){
         return null;
     }
 
     //TODO: implementazione
-    public static List<ToolCard> retriveToolCards(List<Tool> extractedTools){
+    public static List<ToolCard> retrieveToolCards(List<Tool> extractedTools){
         return null;
     }
 
     //TODO: implementazione
-    public static List<PublicObjectiveCard> retrivePublicObjectiveCards(List<PublicObjective> extractedPublicObjectives){
+    public static List<PublicObjectiveCard> retrievePublicObjectiveCards(List<PublicObjective> extractedPublicObjectives){
         return null;
     }
 
     //TODO: implementazione
-    public static List<PrivateObjectiveCard> retrivePrivateObjectiveCards(List<PrivateObjective> extractedPrivateObjectives){
+    public static List<PrivateObjectiveCard> retrievePrivateObjectiveCards(List<PrivateObjective> extractedPrivateObjectives){
         return null;
     }
 }

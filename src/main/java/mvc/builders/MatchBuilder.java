@@ -3,7 +3,7 @@ package mvc.builders;
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
 import mvc.model.objects.enums.*;
-import resources.ResourcesRetriver;
+import resources.ResourcesRetriever;
 
 import java.awt.*;
 import java.util.*;
@@ -55,7 +55,7 @@ MatchBuilder {
             }
         }
         Collections.shuffle(extractedPublicObjectives);
-        List<PublicObjectiveCard> result = ResourcesRetriver.retrivePublicObjectiveCards(extractedPublicObjectives);
+        List<PublicObjectiveCard> result = ResourcesRetriever.retrievePublicObjectiveCards(extractedPublicObjectives);
 
         return result;
     }
@@ -82,7 +82,7 @@ MatchBuilder {
             }
         }
         Collections.shuffle(extractedPrivateObjectives);
-        List<PrivateObjectiveCard> result = ResourcesRetriver.retrivePrivateObjectiveCards(extractedPrivateObjectives);
+        List<PrivateObjectiveCard> result = ResourcesRetriever.retrievePrivateObjectiveCards(extractedPrivateObjectives);
 
         return result;
     }
@@ -108,7 +108,7 @@ MatchBuilder {
                 countExtracted++;
             }
         }
-        List<ToolCard> result = ResourcesRetriver.retriveToolCards(extractedTools);
+        List<ToolCard> result = ResourcesRetriever.retrieveToolCards(extractedTools);
 
         return result;
     }
@@ -129,7 +129,7 @@ MatchBuilder {
         }
         Collections.shuffle(extractedWindowPattern);
 
-        List<Window> result = ResourcesRetriver.retriveWindows(extractedWindowPattern);
+        List<Window> result = ResourcesRetriever.retrieveWindows(extractedWindowPattern);
 
         return result;
     }
@@ -179,6 +179,7 @@ MatchBuilder {
        RoundTrack result = new RoundTrack(diceStack);
        return result;
     }
+
     //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
 
 
