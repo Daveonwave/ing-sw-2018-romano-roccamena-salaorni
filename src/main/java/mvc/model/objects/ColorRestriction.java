@@ -2,27 +2,29 @@ package mvc.model.objects;
 
 import game.components.base.DieColor;
 
+import java.awt.*;
+
 public class ColorRestriction extends CellRestriction {
     //Restrizione di colore
 
-    private DieColor dieColor;
+    private Color color;
 
     //Costruttori
-    public ColorRestriction(DieColor dieColor) {
-        this.dieColor = dieColor;
+    public ColorRestriction(Color color) {
+        this.color = color;
     }
 
     //Setter/Getter
-    public void setDieColor(DieColor dieColor) {
-        this.dieColor = dieColor;
+    public void setDieColor(Color color) {
+        this.color = color;
     }
 
-    public DieColor getDieColor() {
-        return dieColor;
+    public Color getColor() {
+        return this.color;
     }
 
     //Verifica che un dado rispetti la restrizione
     public boolean canPlaceDie(Die die) {
-        return dieColor.equals(die.getColor());
+        return color.equals(die.getColor());
     }
 }
