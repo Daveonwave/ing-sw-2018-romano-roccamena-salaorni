@@ -1,5 +1,6 @@
 package resources;
 
+import com.google.gson.Gson;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.ToolCard;
@@ -14,6 +15,10 @@ public class ResourcesRetriver {
 
     //TODO: implementazione
     public static List<Window> retriveWindows(List<WindowPattern> extractedWindows){
+
+
+        Gson gson = new Gson();
+
         return null;
     }
 
