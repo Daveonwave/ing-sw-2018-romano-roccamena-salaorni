@@ -235,6 +235,10 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
 
             //La partita viene eliminata dal model
             model.destroyMatch(tokenMatch);
+        } else {
+            //Notifica inizio nuovo turno
+            matchModel.notifyTurnStart(tokenMatch, match);
+            matchBroadcastAck(matchModel, "player " + match.getTurnPlayer() + " turn");
         }
     }
 }
