@@ -10,7 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="mvc.view.GUI.MainMenuController"
+<AnchorPane fx:controller="mvc.view.GUI.ViewUpdater"
         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fitHeight="613.0" fitWidth="1622.0" pickOnBounds="true" preserveRatio="true">
