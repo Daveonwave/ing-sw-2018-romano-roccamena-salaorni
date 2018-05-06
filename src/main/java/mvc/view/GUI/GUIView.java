@@ -10,20 +10,22 @@ import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 
-
-public class ViewUpdater extends AppView implements Serializable{
+// classe che estende AppView e richiama i metodi del controller
+public class GUIView extends AppView {
 
     private String userToken = "";
     private String output;
 
-    public ViewUpdater() throws RemoteException {
+    //costruttori
+    public GUIView() throws RemoteException {
         super();
     }
 
-    public ViewUpdater(AppControllerStub appController) throws RemoteException {
+    public GUIView(AppControllerStub appController) throws RemoteException {
         super(appController);
     }
 
+    //getter e setter
     public String getUserToken() {
         return userToken;
     }
@@ -35,13 +37,7 @@ public class ViewUpdater extends AppView implements Serializable{
     public void setOutput(String output) {
         this.output = output;
     }
-    public void changeScene(String fxml,Stage stage) throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource(fxml));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
     public void login(String name)throws RemoteException{
         userToken = getAppController().login(name, this);

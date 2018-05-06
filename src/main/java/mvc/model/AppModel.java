@@ -4,10 +4,11 @@ import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
 import mvc.view.AppView;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
-public class AppModel {
+public class AppModel implements Serializable{
     //Model dell'applicazione
 
     //Istanza del model dell'applicazione

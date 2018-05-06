@@ -1,5 +1,7 @@
 package mvc.stubs;
 
-public interface AppViewStub extends ViewResponder, MatchObserver {
+import java.io.Serializable;
+
+public interface AppViewStub extends ViewResponder, MatchObserver, Serializable {
     //Interfaccia di view dell'applicazione
 }

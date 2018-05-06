@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:controller="mvc.view.GUI.GUIHandler"
-            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1091.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.GUI.GUIHandler">
    <children>
       <ImageView fitHeight="613.0" fitWidth="1622.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,7 +16,7 @@
       </ImageView>
       <Button fx:id="rmi" layoutX="355.0" layoutY="495.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" text="RMI" />
       <Button fx:id="socket" layoutX="562.0" layoutY="495.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="191.0" text="Socket" />
-      <Text  fx:id="out" layoutX="374.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegliere il tipo di connessione desiderato:" wrappingWidth="378.13671875">
+      <Text fx:id="out" layoutX="374.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegliere il tipo di connessione desiderato:" wrappingWidth="378.13671875">
          <font>
             <Font name="AdobeSongStd-Light" size="18.0" />
          </font>

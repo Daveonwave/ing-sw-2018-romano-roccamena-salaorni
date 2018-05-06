@@ -11,16 +11,17 @@ import mvc.model.objects.*;
 import mvc.stubs.AppViewStub;
 import mvc.view.AppView;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppController extends UnicastRemoteObject implements AppControllerStub {
+public class AppController extends UnicastRemoteObject implements AppControllerStub{
     //Controllore dell'applicazione
 
     //Model dell'applicazione
-    private transient final AppModel model;
+    private transient  AppModel model;
     //Gestore partite multiplayer (2, 3 o 4 giocatori)
     private transient final MultiPlayerHandler ms2, ms3, ms4;
 
@@ -32,6 +33,15 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
         this.ms3 = new MultiPlayerHandler(3);
         this.ms4 = new MultiPlayerHandler(4);
     }
+
+    public AppModel getModel() {
+        return model;
+    }
+
+    public void setModel(AppModel model){
+        this.model = model;
+    }
+
 
     //Operazioni su utente
     public synchronized String login(String name, AppView appView) throws RemoteException {

@@ -3,6 +3,7 @@ package mvc.model;
 import mvc.stubs.MatchObserver;
 import mvc.model.objects.*;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;

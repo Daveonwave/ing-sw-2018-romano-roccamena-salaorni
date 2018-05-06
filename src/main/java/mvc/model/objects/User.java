@@ -2,9 +2,10 @@ package mvc.model.objects;
 
 import mvc.stubs.AppViewStub;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable{
     //Utente dell'applicazione
 
     private String name;
