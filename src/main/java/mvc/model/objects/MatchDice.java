@@ -1,8 +1,7 @@
 package mvc.model.objects;
 
-import mvc.builders.MatchBuilder;
+import mvc.creators.MatchCreator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MatchDice {
@@ -49,8 +48,8 @@ public class MatchDice {
             if (this.playersCount == 1) {
                 singlePlayerFlag = true;
             }
-            MatchBuilder matchBuilder = new MatchBuilder(singlePlayerFlag);
-            this.draftPool = matchBuilder.createDraftPoll(diceBag, playersCount);
+            MatchCreator matchCreator = new MatchCreator(singlePlayerFlag);
+            this.draftPool = matchCreator.createDraftPoll(diceBag, playersCount);
         }
     }
     //Toglie dalla draft pool tutti i dadi

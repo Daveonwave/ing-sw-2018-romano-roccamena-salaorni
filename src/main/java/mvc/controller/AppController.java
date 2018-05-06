@@ -1,7 +1,7 @@
 package mvc.controller;
 
 import mvc.stubs.AppControllerStub;
-import mvc.builders.MatchBuilder;
+import mvc.creators.MatchCreator;
 import mvc.controller.handlers.MultiPlayerHandler;
 import mvc.exceptions.AppControllerException;
 import mvc.exceptions.MatchException;
@@ -11,7 +11,6 @@ import mvc.model.objects.*;
 import mvc.stubs.AppViewStub;
 import mvc.view.AppView;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -106,7 +105,7 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
                 partecipantUsers.add(model.retrieveUser(partecipantToken));
 
             //Crea nuova partita
-            Match match = MatchBuilder.createMultiPlayer(partecipantUsers);
+            Match match = MatchCreator.createMultiPlayer(partecipantUsers);
             MatchModel matchModel = new MatchModel(match);
 
             //Registra gli utenti come osservatori della partita

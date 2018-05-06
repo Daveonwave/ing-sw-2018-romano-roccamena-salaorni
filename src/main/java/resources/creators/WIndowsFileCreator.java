@@ -1,4 +1,4 @@
-package resources.fileCreators;
+package resources.creators;
 
 import com.google.gson.Gson;
 import mvc.model.objects.*;

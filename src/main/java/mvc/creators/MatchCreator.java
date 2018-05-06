@@ -1,17 +1,15 @@
-package mvc.builders;
+package mvc.creators;
 
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
-import mvc.model.objects.enums.*;
 import resources.ResourcesRetriever;
 
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class
-MatchBuilder {
-    //Builder di componenti del gioco
+public class MatchCreator {
+    //Creatore di componenti del gioco
 
     private static final int SP_PRIVATE_OBJECTIVES_COUNT = 2;
     private static final int SP_PUBLIC_OBJECTIVES_COUNT = 2;
@@ -26,7 +24,7 @@ MatchBuilder {
     private Random random;
 
     //Costruttori
-    public MatchBuilder(boolean singlePlayer) {
+    public MatchCreator(boolean singlePlayer) {
         this.singlePlayer = singlePlayer;
         this.random = new Random();
     }
@@ -173,19 +171,18 @@ MatchBuilder {
        return result;
     }
 
-    //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
+    //-------------------------------- FACTORY -----------------------------------//
 
-    //TODO: implementazione FATTA
     //Creazione nuovo match multiplayer nello stato iniziale
     public static Match createMultiPlayer(List<User> users) {
         //Comprende costruzione di un MatchDice e RoundTrack
 
-        MatchBuilder matchBuilder = new MatchBuilder(false);
+        MatchCreator matchCreator = new MatchCreator(false);
         List<Player> players = new ArrayList<Player>();
-        List<Window> extractedWindows = matchBuilder.createWindowPatterns(users.size());
-        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchBuilder.createPrivateObjectives(users.size());
-        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchBuilder.createPublicObjectives();
-        List<ToolCard> extractedToolCards = matchBuilder.createTools(0);
+        List<Window> extractedWindows = matchCreator.createWindowPatterns(users.size());
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectives(users.size());
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectives();
+        List<ToolCard> extractedToolCards = matchCreator.createTools(0);
 
         //Crea i giocatori e assegna ad ognuno 4 finestre iniziali e una carte obiettivo privato
         for(int i = 0; i < users.size(); i++){
@@ -197,25 +194,24 @@ MatchBuilder {
             players.add(player);
 
         }
-        RoundTrack roundTrack = matchBuilder.createRoundTrack();
-        MatchDice matchDice = new MatchDice(users.size(), matchBuilder.createDiceBag());
+        RoundTrack roundTrack = matchCreator.createRoundTrack();
+        MatchDice matchDice = new MatchDice(users.size(), matchCreator.createDiceBag());
 
         Match match = new Match(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
         return match;
     }
 
-    //TODO: implementazione FATTA
     //Creazione nuovo match singleplayer nello stato iniziale
     public static Match createSinglePlayer(User user, int difficultyLevelSP) {
         //Comprende costruzione MatchDice e RoundTrack
 
-        MatchBuilder matchBuilder = new MatchBuilder(true);
-        List<Window> extractedWindows = matchBuilder.createWindowPatterns(1);
-        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchBuilder.createPrivateObjectives(1);
-        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchBuilder.createPublicObjectives();
-        List<ToolCard> extractedToolCards = matchBuilder.createTools(difficultyLevelSP);
-        RoundTrack roundTrack = matchBuilder.createRoundTrack();
-        MatchDice matchDice = new MatchDice(1, matchBuilder.createDiceBag());
+        MatchCreator matchCreator = new MatchCreator(true);
+        List<Window> extractedWindows = matchCreator.createWindowPatterns(1);
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectives(1);
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectives();
+        List<ToolCard> extractedToolCards = matchCreator.createTools(difficultyLevelSP);
+        RoundTrack roundTrack = matchCreator.createRoundTrack();
+        MatchDice matchDice = new MatchDice(1, matchCreator.createDiceBag());
 
         Player player = new Player(user, null, extractedWindows, extractedPrivateObjectiveCards, 0);
         user.addPlayer(player);

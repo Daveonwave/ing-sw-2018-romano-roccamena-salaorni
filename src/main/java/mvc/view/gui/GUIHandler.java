@@ -1,6 +1,5 @@
-package mvc.view.GUI;
+package mvc.view.gui;
 
-import ingsw2018.App;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +16,9 @@ import mvc.model.AppModel;
 
 import java.io.*;
 import java.rmi.RemoteException;
-import java.security.Guard;
 
-//classe che gestisce la GUI e i cambiamenti di finestra
 public class GUIHandler extends Application {
+    //Gestore della gui dell'applicazione
 
     @FXML
     private TextField input;
@@ -29,13 +27,12 @@ public class GUIHandler extends Application {
     @FXML
     private Button login,rmi,socket;
 
-    //classe che inizializza la gui con la schermata di login
-    @Override
+    //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException{
         changeScene("login.fxml",primaryStage);
     }
 
-    //motodo che viene richimato quando si preme il tasto di login. Salva le istanze di View,Controller e Model dentro ad un file in modo che siano riutilizzabili in fasi successive
+    //Bottone di login: salva le istanze di view,controller e model in modo che siano riutilizzabili
     public void  login(ActionEvent actionEvent) throws IOException{
         GUIView guiView = new GUIView();
         AppController appController = new AppController();
@@ -43,13 +40,13 @@ public class GUIHandler extends Application {
         guiView.setAppController(appController);
         guiView.login(input.getText());
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        save(guiView,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\view.ser");
-        save(appController,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\controller.ser");
-        save(appModel,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\model.ser");
+        save(guiView,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\view.ser");
+        save(appController,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\controller.ser");
+        save(appModel,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\model.ser");
         changeScene("menu.fxml",stage);
     }
 
-    //motodo che cambia scena nella GUI caricandola da un nuovo file FXML
+    //Cambia scena nella gui caricandola da un nuovo file FXML
     public void changeScene(String fxml,Stage stage) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
@@ -58,12 +55,12 @@ public class GUIHandler extends Application {
         stage.show();
     }
 
-    //carica la view da file e gli associa controller e model
+    //Carica la view da file e gli associa controller e model
     public GUIView loadView(){
         GUIView guiView = null;
         AppController appController = loadController();
         appController.setModel(loadModel());
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\view.ser"))){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\view.ser"))){
             guiView = (GUIView) ois.readObject();
         }catch(Exception e){
             e.printStackTrace();
@@ -71,10 +68,10 @@ public class GUIHandler extends Application {
         guiView.setAppController(appController);
         return guiView;
     }
-    //carica il controller da file
+    //Carica il controller da file
     public AppController loadController(){
         AppController appController = null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\controller.ser"))){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\controller.ser"))){
             appController = (AppController) ois.readObject();
         }catch(Exception e){
             e.printStackTrace();
@@ -85,7 +82,7 @@ public class GUIHandler extends Application {
     //carica il model da file
     public AppModel loadModel(){
         AppModel appModel = null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\GUI\\model.ser"))){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\model.ser"))){
             appModel = (AppModel) ois.readObject();
         }catch(Exception e){
             e.printStackTrace();
@@ -94,7 +91,7 @@ public class GUIHandler extends Application {
 
     }
 
-    //salva su file un oggetto
+    //Salva su file un oggetto
     public void save(Object object,String file){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
             oos.writeObject(object);

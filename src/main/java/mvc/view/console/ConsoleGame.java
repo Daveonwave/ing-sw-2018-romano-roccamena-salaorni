@@ -7,7 +7,7 @@ import mvc.view.AppView;
 import java.rmi.RemoteException;
 
 public class ConsoleGame extends AppView {
-    //View gioco console
+    //View console dell'applicazione
 
     private boolean logged = false;
     private String userName = "";

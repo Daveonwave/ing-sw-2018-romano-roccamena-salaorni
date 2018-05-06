@@ -1,4 +1,4 @@
-package resources.fileCreators;
+package resources.creators;
 
 public class ObjectivesFileCreator {
 }
