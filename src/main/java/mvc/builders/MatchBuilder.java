@@ -33,7 +33,8 @@ MatchBuilder {
 
     //Creazione obiettivi pubblici
     public List<PublicObjectiveCard> createPublicObjectives() {
-        List<PublicObjective> extractedPublicObjectives = new ArrayList<PublicObjective>();
+        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
         int countExtracted = 1;
 
         int count;
@@ -44,25 +45,22 @@ MatchBuilder {
         }
 
         while (countExtracted <= count) {
-            List<PublicObjective> publicObjectivesList = Collections.unmodifiableList(Arrays.asList(PublicObjective.values()));
-            PublicObjective extracted = publicObjectivesList.get(random.nextInt(publicObjectivesList.size()));
+            int index = random.nextInt(resourcesRetriever.retrievePublicObjectiveCards().size());
+            PublicObjectiveCard extracted = resourcesRetriever.retrievePublicObjectiveCards().get(index);
 
-            if (!extractedPublicObjectives.contains(extracted)) {
-                PublicObjectiveCard card;
-
-                extractedPublicObjectives.add(extracted);
+            if (!result.contains(extracted)) {
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        Collections.shuffle(extractedPublicObjectives);
-        List<PublicObjectiveCard> result = ResourcesRetriever.retrievePublicObjectiveCards(extractedPublicObjectives);
-
+        Collections.shuffle(result);
         return result;
     }
 
     //Creazione obiettivi privati
     public List<PrivateObjectiveCard> createPrivateObjectives(int numberOfPlayers) {
-        List<PrivateObjective> extractedPrivateObjectives = new ArrayList<PrivateObjective>();
+        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
         int countExtracted = 1;
 
         int count;
@@ -73,23 +71,22 @@ MatchBuilder {
         }
 
         while (countExtracted <= count) {
-            List<PrivateObjective> privateObjectivesList = Collections.unmodifiableList(Arrays.asList(PrivateObjective.values()));
-            PrivateObjective extracted = privateObjectivesList.get(random.nextInt(privateObjectivesList.size()));
+            int index = random.nextInt(resourcesRetriever.retrievePrivateObjectiveCards().size());
+            PrivateObjectiveCard extracted = resourcesRetriever.retrievePrivateObjectiveCards().get(index);
 
-            if (!extractedPrivateObjectives.contains(extracted)) {
-                extractedPrivateObjectives.add(extracted);
+            if (!result.contains(extracted)) {
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        Collections.shuffle(extractedPrivateObjectives);
-        List<PrivateObjectiveCard> result = ResourcesRetriever.retrievePrivateObjectiveCards(extractedPrivateObjectives);
-
+        Collections.shuffle(result);
         return result;
     }
 
     //Creazione strumenti
     public List<ToolCard> createTools(int difficultyLevelSP) {
-        List<Tool> extractedTools = new ArrayList<Tool>();
+        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        List<ToolCard> result = new ArrayList<ToolCard>();
         int countExtracted = 1;
 
         int count;
@@ -100,37 +97,33 @@ MatchBuilder {
         }
 
         while (countExtracted <= count) {
-            List<Tool> toolsList = Collections.unmodifiableList(Arrays.asList(Tool.values()));
-            Tool extracted = toolsList.get(random.nextInt(toolsList.size()));
+            int index = random.nextInt(resourcesRetriever.retrieveToolCards().size());
+            ToolCard extracted = resourcesRetriever.retrieveToolCards().get(index);
 
-            if (!extractedTools.contains(extracted)) {
-                extractedTools.add(extracted);
+            if (!result.contains(extracted)) {
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        List<ToolCard> result = ResourcesRetriever.retrieveToolCards(extractedTools);
-
         return result;
     }
 
     //Creazione pattern finestre
     public List<Window> createWindowPatterns(int numberOfPlayers) {
-        List<WindowPattern> extractedWindowPattern = new ArrayList<WindowPattern>();
+        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        List<Window> result = new ArrayList<Window>();
         int countExtracted = 1;
 
         while (countExtracted <= numberOfPlayers * 4) {
-            List<WindowPattern> windowPatternList = Collections.unmodifiableList(Arrays.asList(WindowPattern.values()));
-            WindowPattern extracted = windowPatternList.get(random.nextInt(windowPatternList.size()));
+            int index = random.nextInt(resourcesRetriever.retrieveWindows().size());
+            Window extracted = resourcesRetriever.retrieveWindows().get(index);
 
-            if (!extractedWindowPattern.contains(extracted)) {
-                extractedWindowPattern.add(extracted);
+            if (!result.contains(extracted)) {
+                result.add(extracted);
                 countExtracted++;
             }
         }
-        Collections.shuffle(extractedWindowPattern);
-
-        List<Window> result = ResourcesRetriever.retrieveWindows(extractedWindowPattern);
-
+        Collections.shuffle(result);
         return result;
     }
 
@@ -181,7 +174,6 @@ MatchBuilder {
     }
 
     //-------------------------------- SPECIFICA PER IMPLEMENTAZIONE -----------------------------------//
-
 
     //TODO: implementazione FATTA
     //Creazione nuovo match multiplayer nello stato iniziale

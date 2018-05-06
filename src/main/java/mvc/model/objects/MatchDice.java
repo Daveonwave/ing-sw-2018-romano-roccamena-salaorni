@@ -43,7 +43,7 @@ public class MatchDice {
     //TODO:implementazione FATTA
     //Estrae nuova draft pool dal sacco di dadi
     public void extractNewDraftPool() {
-        if(draftPool.isEmpty()) {
+        if(draftPool == null) {
             boolean singlePlayerFlag = false;
 
             if (this.playersCount == 1) {

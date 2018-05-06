@@ -26,13 +26,13 @@ public class ConsoleGame extends AppView {
 
     //Print vari
     private void printGameLogo() {
-        Console.printlnCentered(" ____     __       ___   ___      __     ____        __", WIDTH, " ");
-        Console.printlnCentered("|        |  |     /     |   |    |  |   |    \\     |  |   ", WIDTH, " ");
-        Console.printlnCentered("|        |  |    /      |   |    |  |   |     \\    |  |   ", WIDTH, " ");
-        Console.printlnCentered("|____   |    |  /       |___|   |    |  |      |   |  |   ", WIDTH, " ");
-        Console.printlnCentered("     |  |____|  |   __  | \\     |____|  |      |  |____|  ", WIDTH, " ");
-        Console.printlnCentered("     | |      | |     | |  \\   |      | |     /  |      | ", WIDTH, " ");
-        Console.printlnCentered("_____| |      | |_____| |   \\  |      | |____/   |      | ", WIDTH, " ");
+        Console.printlnCentered(" ____     __       ___   ___      __     ____       __", WIDTH, " ");
+        Console.printlnCentered("|        |  |     /     |   |    |  |   |    \\    |  |   ", WIDTH, " ");
+        Console.printlnCentered("|        |  |    /      |   |    |  |   |     \\   |  |   ", WIDTH, " ");
+        Console.printlnCentered("|____   |    |  /       |___|   |    |  |      |  |    |   ", WIDTH, " ");
+        Console.printlnCentered("     |  |____|  |   __  | \\    |____|  |      |  |____|  ", WIDTH, " ");
+        Console.printlnCentered("     | |      | |     | |  \\  |      | |     /  |      | ", WIDTH, " ");
+        Console.printlnCentered("_____| |      | |_____| |   \\ |      | |____/   |      | ", WIDTH, " ");
     }
     private void printLogin() {
         Console.printlnCentered("(1) LOGIN (1)", WIDTH, " ");

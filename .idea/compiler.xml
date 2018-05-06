@@ -9,6 +9,8 @@
         <module name="SagradaProject" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="9" />
+    <bytecodeTargetLevel target="9">
+      <module name="SagradaProject" target="9" />
+    </bytecodeTargetLevel>
   </component>
 </project>

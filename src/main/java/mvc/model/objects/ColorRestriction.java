@@ -1,7 +1,5 @@
 package mvc.model.objects;
 
-import game.components.base.DieColor;
-
 import java.awt.*;
 
 public class ColorRestriction extends CellRestriction {
