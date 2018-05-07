@@ -49,7 +49,7 @@ public class MatchDice {
                 singlePlayerFlag = true;
             }
             MatchCreator matchCreator = new MatchCreator(singlePlayerFlag);
-            this.draftPool = matchCreator.createDraftPoll(diceBag, playersCount);
+            this.draftPool = matchCreator.createDraftPool(diceBag, playersCount);
         }
     }
     //Toglie dalla draft pool tutti i dadi

@@ -8,14 +8,10 @@ import mvc.view.AppView;
 public class GUIView extends AppView {
     //View grafica dell'applicazione
 
-    private String userToken = "";
     private String output;
 
     //Costruttori
-    public GUIView() throws RemoteException {
-        super();
-    }
-    public GUIView(AppControllerStub appController) throws RemoteException {
+    public GUIView(AppControllerStub appController) {
         super(appController);
     }
 
@@ -24,16 +20,13 @@ public class GUIView extends AppView {
         this.output = output;
     }
 
-    public String getUserToken() {
-        return userToken;
-    }
     public String getOutput() {
         return output;
     }
 
     //Login
     public void login(String name)throws RemoteException{
-        userToken = getAppController().login(name, this);
+        setUserToken(getAppController().login(name, this));
     }
     //Logut?
 

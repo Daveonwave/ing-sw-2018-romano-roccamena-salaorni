@@ -1,27 +1,32 @@
-package resources.creators;
+package resources.writers;
 
 import com.google.gson.Gson;
+import io.FileHandler;
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
 import mvc.model.objects.enums.WindowPattern;
+import resources.ResourceFileInfo;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WIndowsFileCreator {
+public class WindowsWriter {
+    //Creatore di risorse di finestre
 
     public static void main(String[] args) {
-
         List<Window> windows = new ArrayList<Window>(24);
 
+        //Crea finestre
         for(int i = 0;i<23;i++){
             Window window = new Window(null, null, 0);
             windows.add(window);
         }
-        Cell[][] cells = new Cell[4][5];
 
+        //Crea celle per ogni finestra
         for(int i = 0; i < windows.size(); i++){
+            Cell[][] cells = new Cell[4][5];
+
             switch (i){
                 case 0:
                     windows.get(i).setWindowPattern(WindowPattern.BELLESGUARD);
@@ -703,9 +708,12 @@ public class WIndowsFileCreator {
 
             }
 
+            //Converte e serializza
             Gson gson = new Gson();
-            String windowsGson =  gson.toJson(windows);
-            System.out.println(windowsGson);
+            String text =  gson.toJson(windows);
+
+            FileHandler fileHandler = new FileHandler();
+            fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME, text);
         }
 
     }

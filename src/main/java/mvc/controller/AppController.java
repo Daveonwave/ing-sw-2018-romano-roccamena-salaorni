@@ -11,28 +11,28 @@ import mvc.model.objects.*;
 import mvc.stubs.AppViewStub;
 import mvc.view.AppView;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppController extends UnicastRemoteObject implements AppControllerStub{
+public class AppController implements AppControllerStub, Serializable {
     //Controllore dell'applicazione
 
     //Model dell'applicazione
     private transient  AppModel model;
     //Gestore partite multiplayer (2, 3 o 4 giocatori)
-    private transient final MultiPlayerHandler ms2, ms3, ms4;
+    private transient final MultiPlayerHandler startMultiPlayer2, startMultiPlayer3, startMultiPlayer4;
 
     //Costruttori
-    public AppController() throws RemoteException {
-        super();
+    public AppController() {
         this.model = AppModel.get();
-        this.ms2 = new MultiPlayerHandler(2);
-        this.ms3 = new MultiPlayerHandler(3);
-        this.ms4 = new MultiPlayerHandler(4);
+        this.startMultiPlayer2 = new MultiPlayerHandler(2);
+        this.startMultiPlayer3 = new MultiPlayerHandler(3);
+        this.startMultiPlayer4 = new MultiPlayerHandler(4);
     }
 
+    //Setter/Getter
     public AppModel getModel() {
         return model;
     }
@@ -40,7 +40,6 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
     public void setModel(AppModel model){
         this.model = model;
     }
-
 
     //Operazioni su utente
     public synchronized String login(String name, AppView appView) throws RemoteException {
@@ -62,11 +61,11 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
     private synchronized MultiPlayerHandler retrieveMatchStartHandler(int playersCount) throws RemoteException {
         switch (playersCount) {
             case 2:
-                return ms2;
+                return startMultiPlayer2;
             case 3:
-                return ms3;
+                return startMultiPlayer3;
             case 4:
-                return ms4;
+                return startMultiPlayer4;
             default:
                 throw new AppControllerException("unsupported players count");
         }
@@ -134,7 +133,7 @@ public class AppController extends UnicastRemoteObject implements AppControllerS
 
             //Notifica inizio fase di scelta delle finestre
             matchModel.notifyChooseWindows(tokenMatch);
-            matchBroadcastAck(matchModel, "waiting player choosing windows");
+            matchBroadcastAck(matchModel, "waiting player choosing window");
         }
     }
     public synchronized void cancelJoinMatch(String tokenUser, int playersCount) throws RemoteException {

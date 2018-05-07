@@ -2,7 +2,7 @@ package mvc.creators;
 
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
-import resources.ResourcesRetriever;
+import resources.ResourceRetriever;
 
 import java.awt.*;
 import java.util.*;
@@ -29,9 +29,9 @@ public class MatchCreator {
         this.random = new Random();
     }
 
-    //Creazione obiettivi pubblici
-    public List<PublicObjectiveCard> createPublicObjectives() {
-        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+    //Creazione carte obiettivo publiche
+    public List<PublicObjectiveCard> createPublicObjectiveCards() {
+        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
         int countExtracted = 1;
 
@@ -43,8 +43,8 @@ public class MatchCreator {
         }
 
         while (countExtracted <= count) {
-            int index = random.nextInt(resourcesRetriever.retrievePublicObjectiveCards().size());
-            PublicObjectiveCard extracted = resourcesRetriever.retrievePublicObjectiveCards().get(index);
+            int index = random.nextInt(resourceRetriever.retrievePublicObjectiveCards().size());
+            PublicObjectiveCard extracted = resourceRetriever.retrievePublicObjectiveCards().get(index);
 
             if (!result.contains(extracted)) {
                 result.add(extracted);
@@ -55,9 +55,9 @@ public class MatchCreator {
         return result;
     }
 
-    //Creazione obiettivi privati
-    public List<PrivateObjectiveCard> createPrivateObjectives(int numberOfPlayers) {
-        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+    //Creazione carte obiettivo private
+    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers) {
+        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
         int countExtracted = 1;
 
@@ -69,8 +69,8 @@ public class MatchCreator {
         }
 
         while (countExtracted <= count) {
-            int index = random.nextInt(resourcesRetriever.retrievePrivateObjectiveCards().size());
-            PrivateObjectiveCard extracted = resourcesRetriever.retrievePrivateObjectiveCards().get(index);
+            int index = random.nextInt(resourceRetriever.retrievePrivateObjectiveCards().size());
+            PrivateObjectiveCard extracted = resourceRetriever.retrievePrivateObjectiveCards().get(index);
 
             if (!result.contains(extracted)) {
                 result.add(extracted);
@@ -81,9 +81,9 @@ public class MatchCreator {
         return result;
     }
 
-    //Creazione strumenti
+    //Creazione carte strumento
     public List<ToolCard> createTools(int difficultyLevelSP) {
-        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<ToolCard> result = new ArrayList<ToolCard>();
         int countExtracted = 1;
 
@@ -95,8 +95,8 @@ public class MatchCreator {
         }
 
         while (countExtracted <= count) {
-            int index = random.nextInt(resourcesRetriever.retrieveToolCards().size());
-            ToolCard extracted = resourcesRetriever.retrieveToolCards().get(index);
+            int index = random.nextInt(resourceRetriever.retrieveToolCards().size());
+            ToolCard extracted = resourceRetriever.retrieveToolCards().get(index);
 
             if (!result.contains(extracted)) {
                 result.add(extracted);
@@ -106,15 +106,15 @@ public class MatchCreator {
         return result;
     }
 
-    //Creazione pattern finestre
+    //Creazione finestre
     public List<Window> createWindowPatterns(int numberOfPlayers) {
-        ResourcesRetriever resourcesRetriever = new ResourcesRetriever();
+        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<Window> result = new ArrayList<Window>();
         int countExtracted = 1;
 
         while (countExtracted <= numberOfPlayers * 4) {
-            int index = random.nextInt(resourcesRetriever.retrieveWindows().size());
-            Window extracted = resourcesRetriever.retrieveWindows().get(index);
+            int index = random.nextInt(resourceRetriever.retrieveWindows().size());
+            Window extracted = resourceRetriever.retrieveWindows().get(index);
 
             if (!result.contains(extracted)) {
                 result.add(extracted);
@@ -143,10 +143,10 @@ public class MatchCreator {
         return diceBag;
     }
 
-    //Creazione riserva //
+    //Creazione riserva dadi
     //NOTA1: numero dadi = 2*numberOfPlayers + 1; se singlePlayer allora 4 dadi
     //NOTA2: estraggo i primi 4 perché li ho già mischiati prima
-    public List<Die> createDraftPoll(List<Die> dieBag, int numberOfPlayers){
+    public List<Die> createDraftPool(List<Die> dieBag, int numberOfPlayers){
         List<Die> result = new ArrayList<Die>();
 
         if(numberOfPlayers == 1){
@@ -164,24 +164,20 @@ public class MatchCreator {
         return result;
     }
 
-    //Creazione roundTrack
+    //Creazione round track
     public RoundTrack createRoundTrack(){
        List<List<Die>> diceStack = new ArrayList<List<Die>>();
        RoundTrack result = new RoundTrack(diceStack);
        return result;
     }
 
-    //-------------------------------- FACTORY -----------------------------------//
-
-    //Creazione nuovo match multiplayer nello stato iniziale
+    //Factory multiplayer
     public static Match createMultiPlayer(List<User> users) {
-        //Comprende costruzione di un MatchDice e RoundTrack
-
         MatchCreator matchCreator = new MatchCreator(false);
         List<Player> players = new ArrayList<Player>();
         List<Window> extractedWindows = matchCreator.createWindowPatterns(users.size());
-        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectives(users.size());
-        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectives();
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(users.size());
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards();
         List<ToolCard> extractedToolCards = matchCreator.createTools(0);
 
         //Crea i giocatori e assegna ad ognuno 4 finestre iniziali e una carte obiettivo privato
@@ -200,15 +196,14 @@ public class MatchCreator {
         Match match = new Match(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
         return match;
     }
-
-    //Creazione nuovo match singleplayer nello stato iniziale
+    //Factory singleplayer
     public static Match createSinglePlayer(User user, int difficultyLevelSP) {
         //Comprende costruzione MatchDice e RoundTrack
 
         MatchCreator matchCreator = new MatchCreator(true);
         List<Window> extractedWindows = matchCreator.createWindowPatterns(1);
-        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectives(1);
-        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectives();
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(1);
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards();
         List<ToolCard> extractedToolCards = matchCreator.createTools(difficultyLevelSP);
         RoundTrack roundTrack = matchCreator.createRoundTrack();
         MatchDice matchDice = new MatchDice(1, matchCreator.createDiceBag());

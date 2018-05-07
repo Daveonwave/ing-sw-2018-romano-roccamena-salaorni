@@ -9,17 +9,11 @@ import java.rmi.RemoteException;
 public class ConsoleGame extends AppView {
     //View console dell'applicazione
 
-    private boolean logged = false;
-    private String userName = "";
-    private String userToken = "";
     private String matchToken = "";
 
     public final int WIDTH = 50;
 
     //Costruttori
-    protected ConsoleGame() throws RemoteException {
-        super();
-    }
     public ConsoleGame(AppControllerStub appController) throws RemoteException {
         super(appController);
     }
@@ -109,15 +103,15 @@ public class ConsoleGame extends AppView {
         switch (choice) {
             case 1:
                 respondAck("NAME?");
-                userName = Console.readLine();
+                setUserName(Console.readLine());
 
                 try {
-                    userToken = getAppController().login(userName, this);
+                    setUserToken(getAppController().login(getUserName(), this));
                 } catch (RemoteException e) {
                     respondError(e.getMessage());
                 }
 
-                logged = true;
+                setLogged(true);
 
                 Console.clearScreen();
 
@@ -125,12 +119,12 @@ public class ConsoleGame extends AppView {
                 break;
             case 2:
                 try {
-                    getAppController().logout(userToken);
+                    getAppController().logout(getUserToken());
                 } catch (RemoteException e) {
                     respondError(e.getMessage());
                 }
 
-                logged = false;
+                setLogged(false);
 
                 Console.clearScreen();
 
@@ -145,7 +139,7 @@ public class ConsoleGame extends AppView {
                 int playersCount = Integer.parseInt("2");
 
                 try {
-                    getAppController().joinMatch(userToken, playersCount);
+                    getAppController().joinMatch(getUserToken(), playersCount);
                 } catch (RemoteException e) {
                     respondError(e.getMessage());
                 }

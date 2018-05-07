@@ -1,25 +1,24 @@
-package resources;
+package io;
 
-import javax.imageio.event.IIOWriteProgressListener;
 import java.io.*;
 
 public class FileHandler {
-    //Gestisce la scrittura e lettura da file
+    //Gesttore di scrittura e lettura da file
 
     //Scrive su file
-    public void resourcesFileWriter(String filePath, String textToWrite) {
+    public void fileWrite(String path, String text) {
         BufferedWriter bufferedWriter = null;
         FileWriter fileWriter = null;
 
         try {
-            File file = new File(filePath);
+            File file = new File(path);
             if (!file.exists()) {
                 file.createNewFile();
             }
             fileWriter = new FileWriter(file.getAbsoluteFile(), false);
             bufferedWriter = new BufferedWriter(fileWriter);
 
-            bufferedWriter.write(textToWrite);
+            bufferedWriter.write(text);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -37,15 +36,14 @@ public class FileHandler {
             }
         }
     }
-
-    //Legge da file e restituisce una stringa
-    public String resourcesFileReader(String filePath){
+    //Legge da file
+    public String fileRead(String path){
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         StringBuilder result =  null;
 
         try{
-            fileReader = new FileReader(filePath);
+            fileReader = new FileReader(path);
             bufferedReader = new BufferedReader(fileReader);
 
             String line;
@@ -53,7 +51,6 @@ public class FileHandler {
 
             while((line = bufferedReader.readLine()) != null){
                 result.append(line);
-                //result.append(System.lineSeparator());
             }
         }
         catch(IOException e){

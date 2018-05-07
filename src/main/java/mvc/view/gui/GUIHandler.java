@@ -1,5 +1,7 @@
 package mvc.view.gui;
 
+import com.google.gson.Gson;
+import io.FileHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +27,7 @@ public class GUIHandler extends Application {
     @FXML
     private Label output;
     @FXML
-    private Button login,rmi,socket;
+    private Button login, rmi, socket;
 
     //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException{
@@ -34,20 +36,34 @@ public class GUIHandler extends Application {
 
     //Bottone di login: salva le istanze di view,controller e model in modo che siano riutilizzabili
     public void  login(ActionEvent actionEvent) throws IOException{
-        GUIView guiView = new GUIView();
         AppController appController = new AppController();
+        GUIView guiView = new GUIView(appController);
         AppModel appModel = appController.getModel();
-        guiView.setAppController(appController);
+
         guiView.login(input.getText());
+
         Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        save(guiView,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\view.ser");
-        save(appController,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\controller.ser");
-        save(appModel,"C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\model.ser");
+
+        //Converte e serializza
+        Gson gson = new Gson();
+
+        FileHandler fileHandler = new FileHandler();
+        String text =  "";
+
+        text = gson.toJson(appModel);
+        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.MODEL_FILE_NAME, text);
+
+        text = gson.toJson(appModel);
+        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.VIEW_FILE_NAME, text);
+
+        text = gson.toJson(appModel);
+        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.CONTROLLER_FILE_NAME, text);
+
         changeScene("menu.fxml",stage);
     }
 
     //Cambia scena nella gui caricandola da un nuovo file FXML
-    public void changeScene(String fxml,Stage stage) throws IOException{
+    public void changeScene(String fxml, Stage stage) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
         Scene scene = new Scene(root);
@@ -55,34 +71,12 @@ public class GUIHandler extends Application {
         stage.show();
     }
 
-    //Carica la view da file e gli associa controller e model
-    public GUIView loadView(){
-        GUIView guiView = null;
-        AppController appController = loadController();
-        appController.setModel(loadModel());
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\view.ser"))){
-            guiView = (GUIView) ois.readObject();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        guiView.setAppController(appController);
-        return guiView;
-    }
-    //Carica il controller da file
-    public AppController loadController(){
-        AppController appController = null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\controller.ser"))){
-            appController = (AppController) ois.readObject();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return appController;
-
-    }
-    //carica il model da file
+    //TODO: cambio gson in login
+    //Carica componenti mvc
     public AppModel loadModel(){
         AppModel appModel = null;
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\LorenzoR\\IdeaProjects\\Sagrada\\ing-sw-2018-romano-roccamena-salaorni\\src\\main\\java\\mvc\\view\\gui\\model.ser"))){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.MODEL_FILE_NAME));
             appModel = (AppModel) ois.readObject();
         }catch(Exception e){
             e.printStackTrace();
@@ -90,15 +84,40 @@ public class GUIHandler extends Application {
         return appModel;
 
     }
+    public GUIView loadView(){
+        GUIView guiView = null;
+        AppController appController = loadController();
+        appController.setModel(loadModel());
+        try{
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.VIEW_FILE_NAME));
+            guiView = (GUIView) ois.readObject();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        guiView.setAppController(appController);
+        return guiView;
+    }
+    public AppController loadController(){
+        AppController appController = null;
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.CONTROLLER_FILE_NAME));
+            appController = (AppController) ois.readObject();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return appController;
 
+    }
+
+    //TODO: cambio gson in login
     //Salva su file un oggetto
     public void save(Object object,String file){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))){
+        try{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(object);
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) throws RemoteException{
