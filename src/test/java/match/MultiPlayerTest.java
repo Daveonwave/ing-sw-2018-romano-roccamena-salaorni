@@ -1,6 +1,7 @@
 package match;
 
 import mvc.controller.AppController;
+import mvc.exceptions.AppControllerException;
 import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
@@ -76,7 +77,7 @@ public class MultiPlayerTest extends AppView {
         try {
             token1 = controller.login(name1, test);
             token2 = controller.login(name2, test);
-        } catch (AppModelException e) {
+        } catch (RemoteException e) {
             assertTrue("during login: " + e.getMessage(), true);
         }
 
@@ -85,7 +86,7 @@ public class MultiPlayerTest extends AppView {
             controller.logout("ciao");
 
             assertTrue("random logout accepted without errors", true);
-        } catch (AppModelException e) {
+        } catch (RemoteException e) {
         }
 
         //Login con stessi nomi
@@ -94,7 +95,7 @@ public class MultiPlayerTest extends AppView {
             controller.login(name2, test);
 
             assertTrue("multiple name login accepted without errors", true);
-        } catch (AppModelException e) {
+        } catch (RemoteException e) {
         }
 
         //Logut e login di nuovo
@@ -103,7 +104,7 @@ public class MultiPlayerTest extends AppView {
             controller.logout(token2);
             token1 = controller.login(name1, test);
             token2 = controller.login(name2, test);
-        } catch (AppModelException e) {
+        } catch (RemoteException e) {
             assertTrue("during logout and relogin: " + e.getMessage(), true);
         }
 
@@ -111,7 +112,7 @@ public class MultiPlayerTest extends AppView {
         try {
             controller.joinMatch(token1, 2);
             controller.joinMatch(token2, 2);
-        } catch (AppModelException e) {
+        } catch (RemoteException e) {
             assertTrue("during join match: " + e.getMessage(), true);
         }
     }

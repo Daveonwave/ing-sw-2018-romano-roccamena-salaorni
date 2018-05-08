@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import mvc.exceptions.AppModelException;
 import mvc.stubs.AppControllerStub;
 import mvc.creators.MatchCreator;
 import mvc.controller.handlers.MultiPlayerHandler;
@@ -16,7 +17,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppController implements AppControllerStub, Serializable {
+public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
     //Model dell'applicazione
@@ -43,18 +44,30 @@ public class AppController implements AppControllerStub, Serializable {
 
     //Operazioni su utente
     public synchronized String login(String name, AppView appView) throws RemoteException {
-        String token = model.createUser(name, appView);
+        String token = "";
 
-        appView.respondAck("logged in as " + name);
+        try {
+            token =  model.createUser(name, appView);
+        } catch (AppModelException e) {
+            viewError(appView, e.getMessage());
+            return null;
+        }
+
+        viewAck(appView, "logged in as " + name);
 
         return token;
     }
     public synchronized void logout(String tokenUser) throws RemoteException {
         AppViewStub appView = model.retrieveUser(tokenUser).getAppView();
 
-        model.destroyUser(tokenUser);
+        try {
+            model.destroyUser(tokenUser);
+        } catch (AppModelException e) {
+            viewError(appView, e.getMessage());
+            return;
+        }
 
-        appView.respondAck("logged out");
+        viewAck(appView, "logged out");
     }
 
     //Ottiene gestore di partite corrispondente
@@ -82,11 +95,18 @@ public class AppController implements AppControllerStub, Serializable {
 
         throw new AppControllerException(message);
     }
+    private synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
+        appView.respondAck(message);
+    }
+    private synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
+        appView.respondError(message);
+        throw new AppControllerException(message);
+    }
     private synchronized void userAck(User user, String message) throws RemoteException {
-        user.getAppView().respondError(message);
+        viewAck(user.getAppView(), message);
     }
     private synchronized void userError(User user, String message) throws RemoteException {
-        user.getAppView().respondError(message);
+        viewError(user.getAppView(), message);
         throw new AppControllerException(message);
     }
 
