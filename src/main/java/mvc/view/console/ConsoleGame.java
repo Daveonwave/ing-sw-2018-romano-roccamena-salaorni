@@ -154,7 +154,7 @@ public class ConsoleGame extends AppView {
         }
     }
 
-    //Risposta scritta
+    //Risposte al controllore
     public void respondError(String message) {
         Console.setColor(ConsoleColors.PURPLE_BOLD);
         Console.printlnCentered(message, WIDTH, " ");
@@ -162,6 +162,14 @@ public class ConsoleGame extends AppView {
     public void respondAck(String message) {
         Console.setColor(ConsoleColors.GREEN);
         Console.printlnCentered(message, WIDTH, " ");
+    }
+
+    //Operazioni su utente
+    public String login(String name) throws RemoteException {
+        return null;
+    }
+    public void logout() throws RemoteException {
+
     }
 
     //Osservazione partita

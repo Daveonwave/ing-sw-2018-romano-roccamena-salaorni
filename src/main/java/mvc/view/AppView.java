@@ -51,6 +51,10 @@ public abstract class AppView implements AppViewStub, Serializable {
         return logged;
     }
 
+    //Operazioni su utente
+    public abstract String login(String name) throws RemoteException;
+    public abstract void logout() throws RemoteException;
+
     //Risposta scritta controllore
     public abstract void respondError(String message) throws RemoteException;
     public abstract void respondAck(String message) throws RemoteException;
