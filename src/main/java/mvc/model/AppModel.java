@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
-public class AppModel implements Serializable{
+public class AppModel {
     //Model dell'applicazione
 
     //Istanza del model dell'applicazione

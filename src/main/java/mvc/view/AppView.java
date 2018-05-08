@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public abstract class AppView implements AppViewStub, Serializable {
+public abstract class AppView implements AppViewStub {
     //View astratta dell'applicazione
 
     private AppControllerStub appController;

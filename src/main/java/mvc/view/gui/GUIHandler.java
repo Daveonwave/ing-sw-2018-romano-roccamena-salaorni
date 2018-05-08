@@ -53,6 +53,7 @@ public class GUIHandler extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
     public static void main(String[] args) throws RemoteException{
         launch(args);
     }
