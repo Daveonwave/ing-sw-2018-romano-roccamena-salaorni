@@ -18,6 +18,14 @@ public class MultiPlayerTest extends AppView {
         super(new AppController());
     }
 
+    //Operazioni su utente
+    public String login(String name) throws RemoteException {
+        return null;
+    }
+    public void logout() throws RemoteException {
+
+    }
+
     //Risposta al controllore
     public void respondError(String message) throws RemoteException {
         System.out.println("[ERROR] " + message);
@@ -43,6 +51,12 @@ public class MultiPlayerTest extends AppView {
     public void onGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException {
     }
     public void onMatchEnd(String tokenMatch, Match match) throws RemoteException {
+    }
+
+    //Test
+    @Test
+    public void multiPlayerTest() {
+
     }
 
     public static void main(String[] args) throws RemoteException {

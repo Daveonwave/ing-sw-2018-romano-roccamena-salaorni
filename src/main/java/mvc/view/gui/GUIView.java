@@ -24,15 +24,32 @@ public class GUIView extends AppView {
         return output;
     }
 
-    //Login
-    public void login(String name)throws RemoteException{
-        setUserToken(getAppController().login(name, this));
+    //Operazioni su utente
+    public String login(String name)throws RemoteException{
+        String userToken = "";
+
+        try {
+            userToken = getAppController().login(name, this);
+        } catch (RemoteException e) {
+            //Gestione errore
+        }
+
+        setUserToken(userToken);
+        setUserName(name);
+
+        return this.output;
     }
-    //Logut?
+    public void logout() throws RemoteException{
+        try {
+            getAppController().logout(getUserToken());
+        } catch (RemoteException e) {
+            //Gestione errore
+        }
+    }
 
     //Risposta al controllore
     public void respondError(String message) throws RemoteException {
-
+        this.output = message;
     }
     public void respondAck(String message) throws RemoteException {
        this.output = message;
