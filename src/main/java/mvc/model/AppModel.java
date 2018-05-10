@@ -4,7 +4,6 @@ import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
 import mvc.view.AppView;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -39,7 +38,7 @@ public class AppModel {
     //Utente
     public synchronized String createUser(String name, AppView appView) throws RemoteException {
         if (names.values().contains(name))
-            throw new AppModelException("user named " + name + " already logged in");
+            throw new AppModelException("l'utente " + name + " è gia connesso");
 
         String token = users.createObject(new User(name, appView, new ArrayList<Player>()));
         names.put(token, name);
@@ -53,7 +52,7 @@ public class AppModel {
         User user = users.get(tokenUser);
 
         if (user == null)
-            throw new AppModelException("user not found");
+            throw new AppModelException("utente non trovato");
 
         return user;
     }

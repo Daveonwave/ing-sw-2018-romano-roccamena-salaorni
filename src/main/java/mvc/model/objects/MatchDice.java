@@ -39,7 +39,6 @@ public class MatchDice {
         return draftPool;
     }
 
-    //TODO:implementazione FATTA
     //Estrae nuova draft pool dal sacco di dadi
     public void extractNewDraftPool() {
         if(draftPool == null) {

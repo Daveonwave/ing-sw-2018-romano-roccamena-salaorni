@@ -110,7 +110,7 @@ public class Match {
     public void beginMatch() throws RemoteException {
         //Controllo stato corretto della partita
         if (matchState != MatchState.STARTED)
-            throw new MatchException("match is already started");
+            throw new MatchException("la partita è gia iniziata");
 
         //Aggiorna lo stato prossimo
         matchState = MatchState.CHOOSE_WINDOWS;
@@ -119,10 +119,10 @@ public class Match {
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
         if (matchState != MatchState.CHOOSE_WINDOWS)
-            throw new MatchException("can't choose a window now");
+            throw new MatchException("non puoi scegliere una finestra ora");
 
         if (!player.getStartWindows().contains(window))
-            throw new MatchException("selected window is not valid");
+            throw new MatchException("la finestra scelta non è valida");
 
         //Assegna la finestra
         player.setWindow(window);
@@ -149,21 +149,21 @@ public class Match {
     public void placeDie(Player player, Cell cell, Die die) throws RemoteException{
         //Controllo stato corretto della partita, della cella e dado scelto
         if (matchState != MatchState.PLAY_ROUND)
-            throw new MatchException("can't place die now");
+            throw new MatchException("non puoi piazzare un dado ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("it's not your turn");
+            throw new MatchException("non è il tuo turno");
 
         if (!player.getWindow().containsCell(cell))
-            throw new MatchException("invalid window cell");
+            throw new MatchException("cella non valida");
 
         if (!matchDice.getDraftPool().contains(die))
-            throw new MatchException("invalid die");
+            throw new MatchException("dado non valido");
 
         //Controlla che il piazzamento rispetti la restrizione del dado iniziale
         if (player.getWindow().isEmpty()) {
             if (!cell.isNorthBorder()&&!cell.isSouthBorder()&&!cell.isWestBorder()&&!cell.isEastBorder())
-                throw new MatchException("first die must be placed in border cells");
+                throw new MatchException("il primo dado va piazzato vicino ai bordi");
         }
 
         //Controlla che il piazzamento rispetti la restrizione dei dadi adiacenti
@@ -173,7 +173,7 @@ public class Match {
 
             if (die != null) {
                 if (die.getColor()==placedDie.getColor() || die.getShade()==placedDie.getShade())
-                    throw new MatchException("adjacents diceStack must have different color and shade");
+                    throw new MatchException("restrizione dadi adiacenti non rispettata");
             }
         }
 
@@ -184,24 +184,24 @@ public class Match {
     public void useToolCard(Player player, Match match, ToolCard toolCard) throws RemoteException {
         //Controllo stato corretto della partita e della carta strumento
         if (matchState != MatchState.PLAY_ROUND)
-            throw new MatchException("can't use a tool card now");
+            throw new MatchException("non puoi usare una carta strumento ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("it's not your turn");
+            throw new MatchException("non è il tuo turno");
 
         if (!toolCards.contains(toolCard))
-            throw new MatchException("invalid tool card");
+            throw new MatchException("carta strumento non valida");
 
         //Gestisce tokens player
         if (toolCard.getFavorTokens() == 0)
             if (player.getFavorTokens() < 1)
-                throw new MatchException("not enough favor tokens");
+                throw new MatchException("punti favore insufficenti");
             else
                 player.setFavorTokens(player.getFavorTokens()-1);
 
         if (toolCard.getFavorTokens() >= 1)
             if (player.getFavorTokens() < 2)
-                throw new MatchException("not enough favor tokens");
+                throw new MatchException("punti favore insufficenti");
             else
                 player.setFavorTokens(player.getFavorTokens()-2);
 
@@ -212,10 +212,10 @@ public class Match {
     public void endTurn(Player player) throws RemoteException {
         //Controllo stato corretto della partita
         if (matchState != MatchState.PLAY_ROUND)
-            throw new MatchException("can't end your turn now");
+            throw new MatchException("non puoi terminare il turno ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("it's not your turn");
+            throw new MatchException("non è il tuo turno");
 
         //Controllo se ultimo turno
         if (!turnHandler.isLastTurn()) {
