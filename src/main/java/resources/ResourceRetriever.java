@@ -11,13 +11,10 @@ import java.util.List;
 
 public class ResourceRetriever {
     //Ottiene gli oggetti da file
-    private static final String PUBLICOBJECTIVECARDS_PATH = "";
-    private static final String PRIVATEOBJECTIVECARDS_PATH = "";
 
     //Costruttori
     public ResourceRetriever() {}
 
-    //TODO: implementazione
     //Ottiene i vari oggetti di una partita
     public List<PublicObjectiveCard> retrievePublicObjectiveCards(){
         FileHandler fileHandler = new FileHandler();
