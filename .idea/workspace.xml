@@ -3,20 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a3d8f886-be45-4f94-9867-86bcec95c959" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/files/windows.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/files/windows.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -445,7 +431,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526311371494</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix vari update serializzazione carte strumento">
+      <created>1526312380235</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1526312380235</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -533,7 +526,8 @@
     <MESSAGE value="fix e sviluppo cli, piccoli fix controller e cambio messaggi mvc in italiano" />
     <MESSAGE value="sviluppo toolcard e vari" />
     <MESSAGE value="fix vari update struttura test" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix vari update struttura test" />
+    <MESSAGE value="fix vari update serializzazione carte strumento" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix vari update serializzazione carte strumento" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
