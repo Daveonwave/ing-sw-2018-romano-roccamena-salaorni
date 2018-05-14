@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 public class PinzaSgrossatrice extends ToolCard {
 
     //Costruttori
-    public PinzaSgrossatrice(String name, String description, int favorTokens, Color color) {
-        super("pinza sgrossatrice", "dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", favorTokens, color);
+    public PinzaSgrossatrice() {
+        super("pinza sgrossatrice", "dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", 0, GameConstants.PURPLE);
     }
 
 

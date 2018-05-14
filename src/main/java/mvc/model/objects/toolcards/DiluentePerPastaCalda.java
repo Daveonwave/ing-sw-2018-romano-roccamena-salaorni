@@ -1,16 +1,14 @@
 package mvc.model.objects.toolcards;
 
-import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
 
-import java.awt.Color;
 import java.rmi.RemoteException;
 
 public class DiluentePerPastaCalda extends ToolCard {
 
     //Costruttori
-    public DiluentePerPastaCalda(String name, String description, int favorTokens, Color color) {
-        super("diluente per pasta calda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", favorTokens, color);
+    public DiluentePerPastaCalda() {
+        super("diluente per pasta calda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", 0, GameConstants.PURPLE);
     }
 
     //Usa carta strumento

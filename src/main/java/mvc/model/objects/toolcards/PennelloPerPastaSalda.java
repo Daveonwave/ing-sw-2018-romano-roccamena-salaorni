@@ -9,20 +9,9 @@ import java.rmi.RemoteException;
 public class PennelloPerPastaSalda extends ToolCard {
 
     //Costruttori
-    public PennelloPerPastaSalda(String name, String description, int favorTokens, Color color) {
-        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", favorTokens, color);
+    public PennelloPerPastaSalda() {
+        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", 0, GameConstants.PURPLE);
 
-    }
-
-    private boolean canPlace(Window window, Die die) {
-        for (Cell[] cc : window.getCells()) {
-            for (Cell c : cc) {
-                if (window.noWindowRestriction(c, die))
-                    return true;
-            }
-        }
-
-        return false;
     }
 
     //Usa carta strumento

@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 public class Martelletto extends ToolCard {
 
     //Costruttori
-    public Martelletto(String name, String description, int favorTokens, Color color) {
-        super("martelletto", "tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", favorTokens, color);
+    public Martelletto() {
+        super("martelletto", "tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", 0, GameConstants.BLUE);
 
     }
 

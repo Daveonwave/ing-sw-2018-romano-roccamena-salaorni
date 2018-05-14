@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 public class RigaDiSughero extends ToolCard {
 
     //Costruttori
-    public RigaDiSughero(String name, String description, int favorTokens, Color color) {
-        super("riga di sughero", "dopo aver scelto un dado, piazzalo in una cella che non sia adiacente ad un altro, rispettando tutte le altre restrizioni", favorTokens, color);
+    public RigaDiSughero() {
+        super("riga di sughero", "dopo aver scelto un dado, piazzalo in una cella che non sia adiacente ad un altro, rispettando tutte le altre restrizioni", 0, GameConstants.YELLOW);
 
     }
     //Usa carta strumento

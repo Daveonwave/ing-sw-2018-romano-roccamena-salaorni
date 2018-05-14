@@ -1,5 +1,6 @@
 package mvc.model.objects.toolcards;
 
+import mvc.model.objects.GameConstants;
 import mvc.model.objects.Match;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.ToolCardInput;
@@ -10,8 +11,8 @@ import java.rmi.RemoteException;
 public class TamponeDiamantato extends ToolCard{
 
     //Costruttori
-    public TamponeDiamantato(String name, String description, int favorTokens, Color color) {
-        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", favorTokens, color);
+    public TamponeDiamantato() {
+        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", 0, GameConstants.GREEN);
 
     }
 

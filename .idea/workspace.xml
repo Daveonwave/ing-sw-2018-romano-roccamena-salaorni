@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3d8f886-be45-4f94-9867-86bcec95c959" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/files/windows.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/files/windows.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,26 +36,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ControlTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/mvc/ControlTest.java">
+      <file leaf-file-name="WindowsWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="81" selection-end-column="31" />
+            <state relative-caret-position="119">
+              <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#twoPlayerLocal1#0;class#ControlTest#0" />
+                <element signature="method#main#0;class#WindowsWriter#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultiPlayerTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java">
+      <file leaf-file-name="ToolsWriter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="238">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#main#0;class#ToolsWriter#0" />
+                <element signature="e#362#372#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,19 +78,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/PlayerPoints.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCardInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCardEffect.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Match.java" />
@@ -91,9 +88,6 @@
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/TokenMap.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Die.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/GameConstants.java" />
@@ -122,6 +116,19 @@
         <option value="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/mvc/ControlTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java" />
       </list>
     </option>
   </component>
@@ -169,28 +176,15 @@
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ingsw2018" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="mvc" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -198,10 +192,22 @@
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="match" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
@@ -246,29 +252,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="BaseApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mvc.view.gui.BaseApplication" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mvc.view.gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="ConsoleTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="views.ConsoleTest" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
+  <component name="RunManager" selected="Application.ToolsWriter">
     <configuration name="ControlTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mvc.ControlTest" />
       <module name="SagradaProject" />
@@ -287,6 +271,28 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="mvc.view.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="ToolsWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="resources.writers.ToolsWriter" />
+      <module name="SagradaProject" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="resources.writers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="WindowsWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="resources.writers.WindowsWriter" />
+      <module name="SagradaProject" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="resources.writers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -357,18 +363,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.GUIHandler" />
-      <item itemvalue="Application.BaseApplication" />
-      <item itemvalue="Application.ConsoleTest" />
       <item itemvalue="JUnit.ControlTest.twoPlayerLocal" />
       <item itemvalue="Application.ControlTest" />
+      <item itemvalue="Application.WindowsWriter" />
+      <item itemvalue="Application.ToolsWriter" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ToolsWriter" />
+        <item itemvalue="Application.WindowsWriter" />
         <item itemvalue="JUnit.ControlTest.twoPlayerLocal" />
         <item itemvalue="Application.ControlTest" />
         <item itemvalue="Application.GUIHandler" />
-        <item itemvalue="Application.ConsoleTest" />
-        <item itemvalue="Application.BaseApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -432,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526304566828</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix vari update struttura test">
+      <created>1526311371494</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1526311371494</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -451,7 +464,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -520,7 +532,8 @@
     <MESSAGE value="aggiunta form base" />
     <MESSAGE value="fix e sviluppo cli, piccoli fix controller e cambio messaggi mvc in italiano" />
     <MESSAGE value="sviluppo toolcard e vari" />
-    <option name="LAST_COMMIT_MESSAGE" value="sviluppo toolcard e vari" />
+    <MESSAGE value="fix vari update struttura test" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix vari update struttura test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -528,90 +541,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/PlayerPoints.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-          <folding>
-            <element signature="method#PlayerPoints#0;class#PlayerPoints#0" />
-            <element signature="method#setPrivateObjectivePoints#0;class#PlayerPoints#0" />
-            <element signature="method#setPublicObjectivePoints#0;class#PlayerPoints#0" />
-            <element signature="method#getTotalPoints#0;class#PlayerPoints#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCardInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-          <folding>
-            <element signature="method#ToolCardInput#0;class#ToolCardInput#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCardEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
-          <folding>
-            <element signature="method#ToolCardEffect#0;class#ToolCardEffect#0" />
-            <element signature="method#setIgnoreAdjacentCellsRestriction#0;class#ToolCardEffect#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-          <folding>
-            <element signature="method#Card#0;class#Card#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/CellRestriction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-          <folding>
-            <element signature="method#User#0;class#User#0" />
-            <element signature="method#sameUser#0;class#User#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="87" column="45" selection-start-line="87" selection-start-column="45" selection-end-line="87" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Player#0;class#Player#0" />
-            <element signature="method#Player#1;class#Player#0" />
-            <element signature="method#setPrivateObjectiveCards#0;class#Player#0" />
-            <element signature="method#samePlayer#0;class#Player#0" />
-            <element signature="method#retrieveStartWindow#0;class#Player#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/TokenMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -623,95 +552,6 @@
             <element signature="method#destroyObject#0;class#TokenMap#0" />
             <element signature="method#modifyObject#0;class#TokenMap#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="26" column="27" lean-forward="true" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="31" column="33" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#canPlace#0;class#PennelloPerPastaSalda#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="13" column="153" selection-start-line="13" selection-start-column="153" selection-end-line="13" selection-end-column="153" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1077,18 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/views/ConsoleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#cliTest#0;class#ConsoleTest#0" />
-            <element signature="method#main#0;class#ConsoleTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1113,6 +941,171 @@
           <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/views/ConsoleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#cliTest#0;class#ConsoleTest#0" />
+            <element signature="method#main#0;class#ConsoleTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding>
+            <element signature="method#fileWrite#0;class#FileHandler#0" />
+            <element signature="method#fileRead#0;class#FileHandler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/resources/files/windows.ser">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-202" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <element signature="method#ToolCard#0;class#ToolCard#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="12" column="112" selection-start-line="12" selection-start-column="112" selection-end-line="12" selection-end-column="112" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="175" selection-start-line="11" selection-start-column="175" selection-end-line="11" selection-end-column="175" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="85" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#PennelloPerPastaSalda#0;class#PennelloPerPastaSalda#0" />
+            <element signature="method#useToolCard#0;class#PennelloPerPastaSalda#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="27" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Martelletto#0;class#Martelletto#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <folding>
+            <element signature="method#main#0;class#WindowsWriter#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/resources/files/tool.ser">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/ToolsWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#main#0;class#ToolsWriter#0" />
+            <element signature="e#362#372#0" expanded="true" />
           </folding>
         </state>
       </provider>

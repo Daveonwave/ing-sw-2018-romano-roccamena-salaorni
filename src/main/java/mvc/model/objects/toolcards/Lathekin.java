@@ -9,8 +9,8 @@ import java.rmi.RemoteException;
 public class Lathekin extends ToolCard {
 
     //Costruttori
-    public Lathekin(String name, String description, int favorTokens, Color color) {
-        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", favorTokens, color);
+    public Lathekin() {
+        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", 0, GameConstants.YELLOW);
 
     }
 
