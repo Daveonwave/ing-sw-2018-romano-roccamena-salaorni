@@ -7,11 +7,11 @@ import mvc.model.objects.ToolCardInput;
 import java.awt.*;
 import java.rmi.RemoteException;
 
-public class TamponeDiamantato extends ToolCard{
+public class TenagliaRotelle extends ToolCard {
 
     //Costruttori
-    public TamponeDiamantato(String name, String description, int favorTokens, Color color) {
-        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", favorTokens, color);
+    public TenagliaRotelle(String name, String description, int favorTokens, Color color) {
+        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", favorTokens, color);
 
     }
 

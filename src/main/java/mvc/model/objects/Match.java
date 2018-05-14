@@ -1,7 +1,7 @@
 package mvc.model.objects;
 
+import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
-import mvc.model.objects.enums.MatchState;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -18,6 +18,9 @@ public class Match {
     private RoundTrack roundTrack;
 
     //Costruttori
+    public Match(Match match) {
+        this(match.getPlayers(), match.getPublicObjectiveCards(), match.getToolCards(), match.getMatchDice(), match.getRoundTrack());
+    }
     //MultiPlayer
     public Match(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
         this.matchState = MatchState.STARTED;
@@ -37,9 +40,6 @@ public class Match {
         this.toolCards = toolCards;
         this.matchDice = matchDice;
         this.roundTrack = roundTrack;
-    }
-    public Match(Match match) {
-        this(match.getPlayers(), match.getPublicObjectiveCards(), match.getToolCards(), match.getMatchDice(), match.getRoundTrack());
     }
 
     //Setter/Getter
@@ -87,10 +87,39 @@ public class Match {
         return roundTrack;
     }
 
-    //TODO: implementazione
+    //Ottiene carta strumento
+    public synchronized ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
+        ToolCard result = null;
+        for (ToolCard c : toolCards) {
+            if (c.sameCard(toolCard)) {
+                result = c;
+                break;
+            }
+        }
+        if (result == null)
+            throw new AppModelException("carta strumento non valida");
+
+        return result;
+    }
+
     //Calcolo punteggio di un giocatore
     public PlayerPoints getPlayerPoints(Player player) {
-        return null;
+        int privatePoints = 0;
+        int publicPoints = 0;
+        int favorsPoints = 0;
+        int openLost = 0;
+
+        //Obiettivi privati
+        for (PrivateObjectiveCard card : player.getPrivateObjectiveCards())
+            privatePoints += card.getPoints(player.getWindow());
+
+        //Obiettivi pubblici
+        for (PublicObjectiveCard card : publicObjectiveCards)
+            publicPoints += card.getPoints(player.getWindow());
+
+        //TODO: punti token e persi per celle vuote
+
+        return new PlayerPoints(privatePoints, publicPoints, favorsPoints, openLost);
     }
 
     //Ottiene giocatore che gioca per primo al round corrente
@@ -103,7 +132,7 @@ public class Match {
     }
     //Ottiene se un giocatore si trova nel suo turno
     public boolean isPlayerTurn(Player player) {
-        return getTurnPlayer().getUser().getName().equals(player.getUser().getName());
+        return getTurnPlayer().samePlayer(player);
     }
 
     //Inizia partita
@@ -118,15 +147,11 @@ public class Match {
     //Mossa di scelta di una finestra
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
-        if (matchState != MatchState.CHOOSE_WINDOWS)
+        if (matchState != MatchState.CHOOSE_WINDOWS || player.getWindow() != null)
             throw new MatchException("non puoi scegliere una finestra ora");
 
-        if (!player.getStartWindows().contains(window))
-            throw new MatchException("la finestra scelta non è valida");
-
-        //Assegna la finestra
+        //Assegna vetrata e favor tokens
         player.setWindow(window);
-        //Assegna i favor tokens
         player.setFavorTokens(window.getDifficulty());
 
         //Calcola se tutti hanno la propria finestra assegnata
@@ -147,66 +172,54 @@ public class Match {
     }
     //Mossa di piazzamento di un dado in una finestra
     public void placeDie(Player player, Cell cell, Die die) throws RemoteException{
-        //Controllo stato corretto della partita, della cella e dado scelto
+        //Controllo stato corretto partita e parametri
         if (matchState != MatchState.PLAY_ROUND)
             throw new MatchException("non puoi piazzare un dado ora");
 
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        if (!player.getWindow().containsCell(cell))
-            throw new MatchException("cella non valida");
+        if (player.getTurnDiePlaced())
+            throw new MatchException("hai gia piazzato un dado");
 
-        if (!matchDice.getDraftPool().contains(die))
-            throw new MatchException("dado non valido");
-
-        //Controlla che il piazzamento rispetti la restrizione del dado iniziale
-        if (player.getWindow().isEmpty()) {
-            if (!cell.isNorthBorder()&&!cell.isSouthBorder()&&!cell.isWestBorder()&&!cell.isEastBorder())
-                throw new MatchException("il primo dado va piazzato vicino ai bordi");
-        }
-
-        //Controlla che il piazzamento rispetti la restrizione dei dadi adiacenti
-        Cell[] adjacentCells = player.getWindow().getAdjacentCells(cell);
-        for (Cell c : adjacentCells) {
-            Die placedDie = c.getDie();
-
-            if (die != null) {
-                if (die.getColor()==placedDie.getColor() || die.getShade()==placedDie.getShade())
-                    throw new MatchException("restrizione dadi adiacenti non rispettata");
-            }
-        }
+        if (player.getToolCardEffect().getChoosenDie() != null)
+            if (!player.getToolCardEffect().getChoosenDie().sameDie(die))
+                throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
-        cell.placeDie(die);
+        player.getWindow().placeDie(cell, die);
+
+        //Aggiorna segnali
+        player.setTurnDiePlaced(true);
+        player.getToolCardEffect().setChoosenDie(null);
+        player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
     //Mossa di utilizzo di una carta strumento
-    public void useToolCard(Player player, Match match, ToolCard toolCard) throws RemoteException {
-        //Controllo stato corretto della partita e della carta strumento
+    public void useToolCard(Player player, ToolCardInput input, ToolCard toolCard) throws RemoteException {
+        //Controllo correttezza stato partita e parametri
         if (matchState != MatchState.PLAY_ROUND)
             throw new MatchException("non puoi usare una carta strumento ora");
 
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        if (!toolCards.contains(toolCard))
-            throw new MatchException("carta strumento non valida");
-
-        //Gestisce tokens player
-        if (toolCard.getFavorTokens() == 0)
+        boolean firstUse = player.getFavorTokens() == 0;
+        if (firstUse)
             if (player.getFavorTokens() < 1)
                 throw new MatchException("punti favore insufficenti");
-            else
-                player.setFavorTokens(player.getFavorTokens()-1);
-
-        if (toolCard.getFavorTokens() >= 1)
+        else
             if (player.getFavorTokens() < 2)
                 throw new MatchException("punti favore insufficenti");
-            else
-                player.setFavorTokens(player.getFavorTokens()-2);
 
         //Utilizza la carta strumento
-        toolCard.useToolCard(match, player);
+        toolCard.useToolCard(this, input);
+
+        //Il giocatore paga i favor tokens
+        if (firstUse)
+            player.setFavorTokens(player.getFavorTokens()-1);
+        else
+            player.setFavorTokens(player.getFavorTokens()-2);
+
     }
     //Mossa di fine del turno
     public void endTurn(Player player) throws RemoteException {
@@ -222,10 +235,13 @@ public class Match {
             //Calcola un nuovo turno
             turnHandler.nextTurn();
 
+            //Il player potrà piazzare un nuovo dado
+            getTurnPlayer().setTurnDiePlaced(false);
+
             //Se nuovo round sposta draft pool sulla round track e crea nuova draft pool
             if (turnHandler.isRoundFirstTurn()) {
                 roundTrack.moveDice(matchDice, turnHandler.getRound()-1);
-                matchDice.extractNewDraftPool();
+                matchDice.extractDraftPoolFromBag();
             }
         } else {
             //Aggiorna stato prossimo

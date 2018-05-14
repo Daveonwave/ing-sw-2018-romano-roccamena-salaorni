@@ -25,7 +25,7 @@ public class TokenMap<T> extends HashMap<String, T> {
         T alias = get(token);
 
         if (alias == null)
-            throw new AppModelException("token sconosciuto " + token);
+            throw new AppModelException("errore di comunicazione token");
     }
 
     //Creazione

@@ -172,10 +172,12 @@ public class AppController implements AppControllerStub {
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
-        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
         Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
+
+        window = player.retrieveStartWindow(window);
 
         //Esegue la scelta della finestra
         try {
@@ -194,10 +196,13 @@ public class AppController implements AppControllerStub {
     }
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
         //Ottiene oggetti dal model
-        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
         Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
+
+        cell = player.getWindow().retrieveCell(cell);
+        die = match.getMatchDice().retrieveDieFromDraftPool(die);
 
         //Esegue il piazzamento del dado
         try {
@@ -211,16 +216,18 @@ public class AppController implements AppControllerStub {
         matchModel.notifyPlaceDie(tokenMatch, cell, die);
         matchBroadcastAck(matchModel, "il giocatore " + user.getName() + " ha piazzato un dado");
     }
-    public synchronized void useToolCard(String tokenUser, String tokenMatch, Match newMatch, ToolCard toolCard) throws RemoteException {
+    public synchronized void useToolCard(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         //Ottiene oggetti dal model
-        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
         Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
+        toolCard = match.retrieveToolCard(toolCard);
+
         //Utilizza la tool card
         try {
-            match.useToolCard(player, newMatch, toolCard);
+            match.useToolCard(player, input, toolCard);
         } catch (MatchException e) {
             userError(user, e.getMessage());
             return;
@@ -232,7 +239,7 @@ public class AppController implements AppControllerStub {
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
-        MatchModel matchModel = model.retrieveMatch(tokenMatch);
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
         Match match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
@@ -261,6 +268,10 @@ public class AppController implements AppControllerStub {
             //Notifica fine partita
             matchModel.notifyMatchEnd(tokenMatch);
             matchBroadcastAck(matchModel, "partita conclusa");
+
+            //Elimina giocatore associato a ogni utente
+            for (Player p : match.getPlayers())
+                p.getUser().removePlayer(p);
 
             //La partita viene eliminata dal model
             model.destroyMatch(tokenMatch);

@@ -11,8 +11,6 @@ import java.util.List;
 
 public class ResourceRetriever {
     //Ottiene gli oggetti da file
-    private static final String PUBLICOBJECTIVECARDS_PATH = "";
-    private static final String PRIVATEOBJECTIVECARDS_PATH = "";
 
     //Costruttori
     public ResourceRetriever() {}

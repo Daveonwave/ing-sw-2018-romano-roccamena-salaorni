@@ -1,8 +1,6 @@
 package match;
 
 import mvc.controller.AppController;
-import mvc.exceptions.AppControllerException;
-import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;

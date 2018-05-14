@@ -1,4 +1,4 @@
-package mvc.model.objects.enums;
+package mvc.model.objects;
 
 public enum MatchState {
     //Stati di esecuzione della partita

@@ -19,6 +19,15 @@ public class ShadeRestriction extends CellRestriction {
         return shade;
     }
 
+    //Verifica uguaglianza
+    public boolean sameCellRestriction(CellRestriction cellRestriction) {
+        ShadeRestriction converted = (ShadeRestriction) cellRestriction;
+        if (converted == null)
+            return false;
+
+        return converted.getShade() == shade;
+    }
+
     //Verifica che un dado rispetti la restrizione
     public boolean canPlaceDie(Die die) {
         return shade == die.getShade();

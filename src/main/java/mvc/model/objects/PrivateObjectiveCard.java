@@ -1,7 +1,5 @@
 package mvc.model.objects;
 
-import mvc.model.objects.enums.PrivateObjective;
-
 public abstract class PrivateObjectiveCard extends Card {
     //Carta obiettivo privato
 
