@@ -10,7 +10,6 @@ import mvc.model.AppModel;
 import mvc.model.MatchModel;
 import mvc.model.objects.*;
 import mvc.stubs.AppViewStub;
-import mvc.view.AppView;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class AppController implements AppControllerStub {
         this.model = model;
     }
 
-    //Ack ed error su utenti di un match o singolarmente
+    //Ack ed error su utenti di un mvc.match o singolarmente
     private synchronized void matchBroadcastAck(MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message);
@@ -67,7 +66,7 @@ public class AppController implements AppControllerStub {
     }
 
     //Operazioni su utente
-    public synchronized String login(String name, AppView appView) throws RemoteException {
+    public synchronized String login(String name, AppViewStub appView) throws RemoteException {
         String token = "";
 
         try {
@@ -88,7 +87,10 @@ public class AppController implements AppControllerStub {
             appView = model.retrieveUser(tokenUser).getAppView();
             model.destroyUser(tokenUser);
         } catch (AppModelException e) {
-            return;
+            if (appView != null)
+                viewError(appView, "utente sconosciuto");
+            else
+                throw new AppControllerException("utente sconosciuto");
         }
 
         viewAck(appView, "disconnesso");

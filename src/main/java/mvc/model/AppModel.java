@@ -2,7 +2,7 @@ package mvc.model;
 
 import mvc.exceptions.AppModelException;
 import mvc.model.objects.*;
-import mvc.view.AppView;
+import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
 import java.util.*;
@@ -37,7 +37,7 @@ public class AppModel {
     }
 
     //Utente
-    public synchronized String createUser(String name, AppView appView) throws RemoteException {
+    public synchronized String createUser(String name, AppViewStub appView) throws RemoteException {
         if (names.values().contains(name))
             throw new AppModelException("l'utente " + name + " è gia connesso");
 

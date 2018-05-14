@@ -2,45 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3d8f886-be45-4f94-9867-86bcec95c959" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/TokenMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/TokenMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/CellRestriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/CellRestriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ColorRestriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ColorRestriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Die.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Die.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchDice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchDice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/NoRestriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/NoRestriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PlayerPoints.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PlayerPoints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ShadeRestriction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ShadeRestriction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/TurnHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/TurnHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/enums/MatchState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/DiluentePerPastaCalda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerEglomise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PennelloPerPastaSalda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/RigaDiSughero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaCircolare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/ResourceRetriever.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/ResourceRetriever.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,20 +30,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MatchState.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchState.java">
+      <file leaf-file-name="ControlTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/mvc/ControlTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+            <state relative-caret-position="323">
+              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="81" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#twoPlayerLocal1#0;class#ControlTest#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIHandler.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java">
+      <file leaf-file-name="MultiPlayerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+            <state relative-caret-position="374">
+              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,28 +71,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/menu/LoginHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/menu/LogoutHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/menu/MultiPlayerHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/ConsoleView.java" />
-        <option value="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/resources/ResourceRetriever.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/Console.java" />
-        <option value="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/ToolCardInput.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/ToolCardEffect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/NoRestriction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ColorRestriction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ShadeRestriction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/CellRestriction.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TaglierinaManuale.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/PlayerPoints.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Martelletto.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/PinzaSgrossatrice.java" />
@@ -134,7 +90,6 @@
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/TokenMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/AlesatorePerLaminaDiRame.java" />
@@ -149,6 +104,24 @@
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/TurnHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ingsw2018/ControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ingsw2018/MainTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ControllerFactory.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ingsw2018/MVCTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mvc/MVCTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mvc/TestView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" />
+        <option value="$PROJECT_DIR$/src/test/java/BaseTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/objects/EmptyView.java" />
+        <option value="$PROJECT_DIR$/src/test/java/objects/BaseConsoleView.java" />
+        <option value="$PROJECT_DIR$/src/test/java/views/ConsoleTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mvc/ControlTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java" />
       </list>
     </option>
   </component>
@@ -196,33 +169,6 @@
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mvc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="mvc" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,6 +177,39 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ingsw2018" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="match" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -250,6 +229,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="mvc" />
+      <recent name="ingsw2018" />
       <recent name="" />
     </key>
   </component>
@@ -265,7 +246,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GUIHandler">
+  <component name="RunManager">
     <configuration name="BaseApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mvc.view.gui.BaseApplication" />
       <module name="SagradaProject" />
@@ -288,6 +269,17 @@
         </pattern>
       </extension>
     </configuration>
+    <configuration name="ControlTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mvc.ControlTest" />
+      <module name="SagradaProject" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration name="GUIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mvc.view.gui.GUIHandler" />
       <module name="SagradaProject" />
@@ -299,30 +291,31 @@
         </pattern>
       </extension>
     </configuration>
-    <configuration name="MultiPlayerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="match.MultiPlayerTest" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="match.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="WindowsWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="resources.writers.WindowsWriter" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="resources.writers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="ControlTest.twoPlayerLocal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SagradaProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="objects.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="mvc" />
+      <option name="MAIN_CLASS_NAME" value="mvc.ControlTest" />
+      <option name="METHOD_NAME" value="twoPlayerLocal" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -364,18 +357,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.GUIHandler" />
-      <item itemvalue="Application.MultiPlayerTest" />
-      <item itemvalue="Application.WindowsWriter" />
       <item itemvalue="Application.BaseApplication" />
       <item itemvalue="Application.ConsoleTest" />
+      <item itemvalue="JUnit.ControlTest.twoPlayerLocal" />
+      <item itemvalue="Application.ControlTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ControlTest.twoPlayerLocal" />
+        <item itemvalue="Application.ControlTest" />
         <item itemvalue="Application.GUIHandler" />
         <item itemvalue="Application.ConsoleTest" />
         <item itemvalue="Application.BaseApplication" />
-        <item itemvalue="Application.MultiPlayerTest" />
-        <item itemvalue="Application.WindowsWriter" />
       </list>
     </recent_temporary>
   </component>
@@ -432,8 +425,29 @@
       <option name="project" value="LOCAL" />
       <updated>1525979697602</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="sviluppo toolcard e vari">
+      <created>1526304566828</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1526304566828</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="MVCTest_twoPlayerLocal - 2018.05.14 at 16h 42m 30s.xml">
+      <configuration name="MVCTest.twoPlayerLocal" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ControlTest_twoPlayerLocal - 2018.05.14 at 16h 54m 54s.xml">
+      <configuration name="ControlTest.twoPlayerLocal" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ControlTest_twoPlayerLocal - 2018.05.14 at 17h 14m 10s.xml">
+      <configuration name="ControlTest.twoPlayerLocal" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ControlTest_twoPlayerLocal - 2018.05.14 at 17h 19m 51s.xml">
+      <configuration name="ControlTest.twoPlayerLocal" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -441,31 +455,31 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32913387" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32913387" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.8393701" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.8629921" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24304539" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32913387" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.6472441" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.35748032" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.329429" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32913387" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32913387" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -505,141 +519,19 @@
     <MESSAGE value="fix vari" />
     <MESSAGE value="aggiunta form base" />
     <MESSAGE value="fix e sviluppo cli, piccoli fix controller e cambio messaggi mvc in italiano" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix e sviluppo cli, piccoli fix controller e cambio messaggi mvc in italiano" />
+    <MESSAGE value="sviluppo toolcard e vari" />
+    <option name="LAST_COMMIT_MESSAGE" value="sviluppo toolcard e vari" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="35" />
+      <option name="time" value="42" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/ResourceRetriever.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/io/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/handlers/MultiPlayerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/NoRestriction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ShadeRestriction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ColorRestriction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TamponeDiamantato.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/TenagliaRotelle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="132" selection-start-line="13" selection-start-column="132" selection-end-line="13" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/AppView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-215">
-          <caret line="655" column="24" selection-start-line="655" selection-start-column="24" selection-end-line="655" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/views/ConsoleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/MatchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#AppModel#0;class#AppModel#0" />
-            <element signature="method#get#0;class#AppModel#0" />
-            <element signature="method#createUser#0;class#AppModel#0" />
-            <element signature="method#destroyUser#0;class#AppModel#0" />
-            <element signature="method#retrieveUser#0;class#AppModel#0" />
-            <element signature="method#destroyMatch#0;class#AppModel#0" />
-            <element signature="method#retrieveMatchModel#0;class#AppModel#0" />
-            <element signature="method#retrievePlayer#0;class#AppModel#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -660,6 +552,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
           <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding>
+            <element signature="method#ToolCardInput#0;class#ToolCardInput#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -667,6 +562,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="30" column="52" selection-start-line="30" selection-start-column="52" selection-end-line="30" selection-end-column="52" />
+          <folding>
+            <element signature="method#ToolCardEffect#0;class#ToolCardEffect#0" />
+            <element signature="method#setIgnoreAdjacentCellsRestriction#0;class#ToolCardEffect#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -684,33 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="239" column="97" selection-start-line="239" selection-start-column="97" selection-end-line="239" selection-end-column="97" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#AppController#0;class#AppController#0" />
-            <element signature="method#matchBroadcastAck#0;class#AppController#0" />
-            <element signature="method#matchBroadcastError#0;class#AppController#0" />
-            <element signature="method#viewAck#0;class#AppController#0" />
-            <element signature="method#viewError#0;class#AppController#0" />
-            <element signature="method#userAck#0;class#AppController#0" />
-            <element signature="method#userError#0;class#AppController#0" />
-            <element signature="method#login#0;class#AppController#0" />
-            <element signature="method#logout#0;class#AppController#0" />
-            <element signature="method#retrieveMatchStartHandler#0;class#AppController#0" />
-            <element signature="method#joinMatch#0;class#AppController#0" />
-            <element signature="method#cancelJoinMatch#0;class#AppController#0" />
-            <element signature="method#leaveMatch#0;class#AppController#0" />
-            <element signature="method#chooseWindow#0;class#AppController#0" />
-            <element signature="method#placeDie#0;class#AppController#0" />
-            <element signature="method#useToolCard#0;class#AppController#0" />
-            <element signature="method#endTurn#0;class#AppController#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -744,6 +616,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="23" column="69" selection-start-line="23" selection-start-column="69" selection-end-line="23" selection-end-column="69" />
+          <folding>
+            <element signature="method#getFreeToken#0;class#TokenMap#0" />
+            <element signature="method#checkIsPresent#0;class#TokenMap#0" />
+            <element signature="method#createObject#0;class#TokenMap#0" />
+            <element signature="method#destroyObject#0;class#TokenMap#0" />
+            <element signature="method#modifyObject#0;class#TokenMap#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -855,29 +734,6 @@
             <element signature="method#retrieveDieFromDraftPool#0;class#MatchDice#0" />
             <element signature="method#extractDieFromBag#0;class#MatchDice#0" />
             <element signature="method#extractDraftPoolFromBag#0;class#MatchDice#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-43">
-          <caret line="11" selection-start-line="11" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#MatchCreator#0;class#MatchCreator#0" />
-            <element signature="method#createPublicObjectiveCards#0;class#MatchCreator#0" />
-            <element signature="method#createPrivateObjectiveCards#0;class#MatchCreator#0" />
-            <element signature="method#createTools#0;class#MatchCreator#0" />
-            <element signature="method#createWindows#0;class#MatchCreator#0" />
-            <element signature="e#3751#3759#0" expanded="true" />
-            <element signature="method#createDiceBag#0;class#MatchCreator#0" />
-            <element signature="method#createDraftPool#0;class#MatchCreator#0" />
-            <element signature="method#createRoundTrack#0;class#MatchCreator#0" />
-            <element signature="e#5745#5756#0" expanded="true" />
-            <element signature="method#createMultiPlayer#0;class#MatchCreator#0" />
-            <element signature="e#6143#6151#0" expanded="true" />
-            <element signature="method#createSinglePlayer#0;class#MatchCreator#0" />
           </folding>
         </state>
       </provider>
@@ -1036,6 +892,225 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ControllerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="35" lean-forward="true" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+          <folding>
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/UserView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/AppControllerStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/AppView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="46" column="5" lean-forward="true" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#AppModel#0;class#AppModel#0" />
+            <element signature="method#get#0;class#AppModel#0" />
+            <element signature="method#createUser#0;class#AppModel#0" />
+            <element signature="method#destroyUser#0;class#AppModel#0" />
+            <element signature="method#retrieveUser#0;class#AppModel#0" />
+            <element signature="method#destroyMatch#0;class#AppModel#0" />
+            <element signature="method#retrieveMatchModel#0;class#AppModel#0" />
+            <element signature="method#retrievePlayer#0;class#AppModel#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#MatchCreator#0;class#MatchCreator#0" />
+            <element signature="method#createPublicObjectiveCards#0;class#MatchCreator#0" />
+            <element signature="method#createPrivateObjectiveCards#0;class#MatchCreator#0" />
+            <element signature="method#createTools#0;class#MatchCreator#0" />
+            <element signature="method#createWindows#0;class#MatchCreator#0" />
+            <element signature="method#createDiceBag#0;class#MatchCreator#0" />
+            <element signature="method#createDraftPool#0;class#MatchCreator#0" />
+            <element signature="method#createRoundTrack#0;class#MatchCreator#0" />
+            <element signature="method#createSinglePlayer#0;class#MatchCreator#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/objects/BaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="82" column="77" selection-start-line="82" selection-start-column="77" selection-end-line="82" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#AppController#0;class#AppController#0" />
+            <element signature="method#matchBroadcastAck#0;class#AppController#0" />
+            <element signature="method#matchBroadcastError#0;class#AppController#0" />
+            <element signature="method#viewAck#0;class#AppController#0" />
+            <element signature="method#viewError#0;class#AppController#0" />
+            <element signature="method#userAck#0;class#AppController#0" />
+            <element signature="method#userError#0;class#AppController#0" />
+            <element signature="method#login#0;class#AppController#0" />
+            <element signature="method#logout#0;class#AppController#0" />
+            <element signature="method#retrieveMatchStartHandler#0;class#AppController#0" />
+            <element signature="method#joinMatch#0;class#AppController#0" />
+            <element signature="e#4316#4322#0" expanded="true" />
+            <element signature="method#cancelJoinMatch#0;class#AppController#0" />
+            <element signature="method#leaveMatch#0;class#AppController#0" />
+            <element signature="method#chooseWindow#0;class#AppController#0" />
+            <element signature="method#placeDie#0;class#AppController#0" />
+            <element signature="method#useToolCard#0;class#AppController#0" />
+            <element signature="method#endTurn#0;class#AppController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/objects/BaseConsoleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#login#0;class#EmptyView#0" />
+            <element signature="method#logout#0;class#EmptyView#0" />
+            <element signature="method#respondError#0;class#EmptyView#0" />
+            <element signature="method#respondAck#0;class#EmptyView#0" />
+            <element signature="method#onMatchStart#0;class#EmptyView#0" />
+            <element signature="method#onChooseWindows#0;class#EmptyView#0" />
+            <element signature="method#onTurnStart#0;class#EmptyView#0" />
+            <element signature="method#onTurnEnd#0;class#EmptyView#0" />
+            <element signature="method#onPlaceDie#0;class#EmptyView#0" />
+            <element signature="method#onUseTool#0;class#EmptyView#0" />
+            <element signature="method#onGetPoints#0;class#EmptyView#0" />
+            <element signature="method#onMatchEnd#0;class#EmptyView#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/objects/EmptyView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#login#0;class#TestView#0" />
+            <element signature="method#logout#0;class#TestView#0" />
+            <element signature="method#respondError#0;class#TestView#0" />
+            <element signature="method#respondAck#0;class#TestView#0" />
+            <element signature="method#onMatchStart#0;class#TestView#0" />
+            <element signature="method#onChooseWindows#0;class#TestView#0" />
+            <element signature="method#onTurnStart#0;class#TestView#0" />
+            <element signature="method#onTurnEnd#0;class#TestView#0" />
+            <element signature="method#onPlaceDie#0;class#TestView#0" />
+            <element signature="method#onUseTool#0;class#TestView#0" />
+            <element signature="method#onGetPoints#0;class#TestView#0" />
+            <element signature="method#onMatchEnd#0;class#TestView#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/views/ConsoleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#cliTest#0;class#ConsoleTest#0" />
+            <element signature="method#main#0;class#ConsoleTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ingsw2018/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/mvc/ControlTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="81" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#twoPlayerLocal1#0;class#ControlTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/mvc/match/MultiPlayerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
