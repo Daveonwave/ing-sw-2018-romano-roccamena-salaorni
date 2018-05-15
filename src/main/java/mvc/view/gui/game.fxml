@@ -9,7 +9,10 @@
 
 <AnchorPane prefHeight="716.0" prefWidth="1000.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.gui.GUIHandler">
    <children>
-      <ImageView fx:id="w1" fitHeight="165.0" fitWidth="186.0" layoutX="395.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="w1" fitHeight="165.0" fitWidth="186.0" layoutX="395.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../../Desktop/immagini/finestra.PNG" />
+         </image></ImageView>
       <ImageView fitHeight="549.0" fitWidth="875.0" layoutX="72.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../resources/images/container1.png" />

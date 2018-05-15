@@ -51,6 +51,7 @@ public class FileHandler {
 
             while((line = bufferedReader.readLine()) != null){
                 result.append(line);
+                result.append(System.lineSeparator());
             }
         }
         catch(IOException e){

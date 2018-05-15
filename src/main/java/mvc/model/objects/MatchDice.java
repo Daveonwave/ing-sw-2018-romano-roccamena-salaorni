@@ -54,6 +54,7 @@ public class MatchDice {
         if (matchDice.getDiceBag() == null)
             return false;
 
+
         if (diceBag.size() != matchDice.getDiceBag().size())
             return false;
 

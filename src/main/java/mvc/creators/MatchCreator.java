@@ -136,7 +136,6 @@ public class MatchCreator {
 
         }
         Collections.shuffle(diceBag);
-
         return diceBag;
     }
 
