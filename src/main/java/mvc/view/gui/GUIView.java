@@ -11,6 +11,10 @@ public class GUIView extends AppView {
 
     private String output;
     private GUIHandler guiHandler;
+    private CardView cardView;
+    private CellView cellView;
+    private DieView dieView;
+    private WindowView windowView;
 
     //Costruttori
     public GUIView(AppControllerStub appController) {
@@ -25,12 +29,36 @@ public class GUIView extends AppView {
     public String getOutput() {
         return output;
     }
+    public CardView getCardView() {
+        return cardView;
+    }
+    public CellView getCellView() {
+        return cellView;
+    }
+    public DieView getDieView() {
+        return dieView;
+    }
+    public WindowView getWindowView() {
+        return windowView;
+    }
 
     public void setGuiHandler(GUIHandler guiHandler) {
         this.guiHandler = guiHandler;
     }
     public void setOutput(String output) {
         this.output = output;
+    }
+    public void setCardView(CardView cardView) {
+        this.cardView = cardView;
+    }
+    public void setCellView(CellView cellView) {
+        this.cellView = cellView;
+    }
+    public void setDieView(DieView dieView) {
+        this.dieView = dieView;
+    }
+    public void setWindowView(WindowView windowView) {
+        this.windowView = windowView;
     }
 
     //Operazioni su utente
