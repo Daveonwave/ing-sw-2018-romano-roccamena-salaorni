@@ -60,7 +60,7 @@ public class Window {
             }
         }
 
-        return false;
+        return true;
     }
 
     //Ottiene celle adiacenti ad una data

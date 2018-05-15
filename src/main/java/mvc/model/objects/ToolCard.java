@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+
+
 import java.awt.*;
 
 public abstract class ToolCard extends Card{
@@ -8,7 +10,6 @@ public abstract class ToolCard extends Card{
     private Match match;
     private int favorTokens;
     private Color color;
-
     //Costruttori
    public ToolCard(String name, String description, int favorTokens, Color color) {
         super(name, description);

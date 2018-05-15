@@ -21,7 +21,7 @@ public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
     //Model dell'applicazione
-    private transient  AppModel model;
+    private transient final AppModel model;
     //Gestore partite multiplayer (2, 3 o 4 giocatori)
     private transient final MultiPlayerHandler startMultiPlayer2, startMultiPlayer3, startMultiPlayer4;
 
@@ -36,10 +36,6 @@ public class AppController implements AppControllerStub {
     //Setter/Getter
     public AppModel getModel() {
         return model;
-    }
-
-    public void setModel(AppModel model){
-        this.model = model;
     }
 
     //Operazioni su utente
@@ -115,7 +111,6 @@ public class AppController implements AppControllerStub {
         //Ottiente gestore partite e partecipa all'attesa
         MultiPlayerHandler handler = retrieveMatchStartHandler(playersCount);
         handler.join(tokenUser);
-
         //Se sono presenti gli utenti partecipanti necessari
         if (handler.isReady()) {
             //Ottiene utenti partecipanti

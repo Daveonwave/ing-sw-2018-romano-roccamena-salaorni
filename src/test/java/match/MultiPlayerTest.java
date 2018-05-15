@@ -85,7 +85,7 @@ public class MultiPlayerTest extends AppView {
         try {
             controller.logout("ciao");
 
-            assertTrue("random logout accepted without errors", true);
+            assertTrue("random cancel accepted without errors", true);
         } catch (RemoteException e) {
         }
 
@@ -105,7 +105,7 @@ public class MultiPlayerTest extends AppView {
             token1 = controller.login(name1, test);
             token2 = controller.login(name2, test);
         } catch (RemoteException e) {
-            assertTrue("during logout and relogin: " + e.getMessage(), true);
+            assertTrue("during cancel and relogin: " + e.getMessage(), true);
         }
 
         //Partecipa partita

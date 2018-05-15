@@ -1,5 +1,6 @@
 package mvc.model.objects;
 
+
 public class Card {
     //Carta generica
 
@@ -26,4 +27,6 @@ public class Card {
     public String getDescription() {
         return description;
     }
-}
+
+    }
+

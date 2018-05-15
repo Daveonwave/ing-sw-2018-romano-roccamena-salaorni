@@ -1,5 +1,6 @@
 package mvc.view.gui;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
@@ -9,6 +10,7 @@ public class GUIView extends AppView {
     //View grafica dell'applicazione
 
     private String output;
+    private GUIHandler guiHandler;
 
     //Costruttori
     public GUIView(AppControllerStub appController) {
@@ -16,12 +18,19 @@ public class GUIView extends AppView {
     }
 
     //Setter/Getter
-    public void setOutput(String output) {
-        this.output = output;
-    }
 
+    public GUIHandler getGuiHandler() {
+        return guiHandler;
+    }
     public String getOutput() {
         return output;
+    }
+
+    public void setGuiHandler(GUIHandler guiHandler) {
+        this.guiHandler = guiHandler;
+    }
+    public void setOutput(String output) {
+        this.output = output;
     }
 
     //Operazioni su utente
@@ -57,7 +66,12 @@ public class GUIView extends AppView {
 
     //Osservazione partita
     public void onMatchStart(String tokenMatch, Match match) throws RemoteException {
-
+        this.getGuiHandler().setReady(true);
+        try {
+            this.getGuiHandler().startGame();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void onChooseWindows(String tokenMatch, Match match) throws RemoteException {
 

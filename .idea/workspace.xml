@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3d8f886-be45-4f94-9867-86bcec95c959" name="Default" comment="" />
+    <list default="true" id="a3d8f886-be45-4f94-9867-86bcec95c959" name="Default" comment="modifiche alla gui">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/ing-sw-2018-romano-roccamena-salaorni.iml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/mvc/view/gui/game.fxml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/coloridiversi-colonna.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/coloridiversi-riga.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/container1.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/container2.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/container3.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/container4.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/diagonalicolorate.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/menu.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumatureblu.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturechiare.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturediverse-colonna.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturediverse-riga.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturediverse.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturegialle.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturemedie.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturerosse.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumaturescure.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumatureverdi.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/sfumatureviola.PNG" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/resources/images/varietadicolore.PNG" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/AppView.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/view/AppView.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java" afterPath="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/SAGRADA.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/alesatoreperlaminadirame.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/alesatoreperlaminadirame.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/diluenteperpastacalda.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/diluenteperpastacalda.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/lathekin.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/lathekin.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/martelletto.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/martelletto.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/pennellopereglomise.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/pennellopereglomise.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/pennelloperpastacalda.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/pennelloperpastacalda.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/pinzasgrossatrice.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/pinzasgrossatrice.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/rigadisughero.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/rigadisughero.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/taglierinacircolare.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/taglierinacircolare.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/taglierinamanuale.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/taglierinamanuale.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/tamponediamantato.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/tamponediamantato.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/tenagliaarotelle.PNG" afterPath="$PROJECT_DIR$/src/main/java/resources/images/tenagliaarotelle.PNG" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mvc/view/gui/menu.fxml" afterPath="$PROJECT_DIR$/src/main/java/mvc/view/gui/menu.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" afterPath="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,22 +71,131 @@
     </SUITE>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="GUIHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+              <folding>
+                <element signature="e#1108#1109#0" expanded="true" />
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#1169#1170#0" expanded="true" />
+                <element signature="e#1199#1200#0" expanded="true" />
+                <element signature="e#1235#1236#0" expanded="true" />
+                <element signature="e#1267#1268#0" expanded="true" />
+                <element signature="e#1298#1299#0" expanded="true" />
+                <element signature="e#1325#1326#0" expanded="true" />
+                <element signature="e#1357#1358#0" expanded="true" />
+                <element signature="e#1385#1386#0" expanded="true" />
+                <element signature="e#1417#1418#0" expanded="true" />
+                <element signature="e#1445#1446#0" expanded="true" />
+                <element signature="e#1476#1477#0" expanded="true" />
+                <element signature="e#1504#1505#0" expanded="true" />
+                <element signature="e#1602#1603#0" expanded="true" />
+                <element signature="e#1645#1646#0" expanded="true" />
+                <element signature="e#1683#1684#0" expanded="true" />
+                <element signature="e#1734#1735#0" expanded="true" />
+                <element signature="e#1776#1777#0" expanded="true" />
+                <element signature="e#1817#1818#0" expanded="true" />
+                <element signature="e#1849#1850#0" expanded="true" />
+                <element signature="e#1892#1893#0" expanded="true" />
+                <element signature="e#1926#1927#0" expanded="true" />
+                <element signature="e#1969#1970#0" expanded="true" />
+                <element signature="e#2003#2004#0" expanded="true" />
+                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#2078#2079#0" expanded="true" />
+                <element signature="method#start#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#login#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#cancel#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#connection#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#multiplayer#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#waitGame#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#startGame#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#changeScene#0;class#GUIHandler#0" expanded="false" />
+                <element signature="method#main#0;class#GUIHandler#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/game.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MatchModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/MatchModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIView.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="426">
+              <caret line="68" column="32" lean-forward="false" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+              <folding>
+                <element signature="method#login#0;class#GUIView#0" expanded="false" />
+                <element signature="method#logout#0;class#GUIView#0" expanded="false" />
+                <element signature="method#respondError#0;class#GUIView#0" expanded="false" />
+                <element signature="method#respondAck#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onChooseWindows#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onTurnStart#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onTurnEnd#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onPlaceDie#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onUseTool#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onGetPoints#0;class#GUIView#0" expanded="false" />
+                <element signature="method#onMatchEnd#0;class#GUIView#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/view/console/ConsoleGame.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/creators/WIndowsFileCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/ResourcesRetriever.java" />
@@ -46,61 +207,179 @@
         <option value="$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/ResourceFileInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/FileHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/resources/ResourceRetriever.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIFileInfo.java" />
         <option value="$PROJECT_DIR$/SagradaProject.iml" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/mvc/view/AppView.java" />
         <option value="$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/images/base.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/menu.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/game.fxml" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/PublicObjectiveCard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java" />
+        <option value="$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/model/objects/Die.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/CardView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/DieView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/CellView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/WindowView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/AppView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/style.css" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java" />
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="10" />
-    <option name="y" value="20" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Sagrada" type="462c0819:PsiDirectoryNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="handlers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SagradaProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ing-sw-2018-romano-roccamena-salaorni" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="writers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -119,55 +398,100 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MultiPlayerTest">
+  <component name="RunManager" selected="Application.GUIHandler">
     <configuration name="GUIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mvc.view.gui.GUIHandler" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
           <option name="PATTERN" value="mvc.view.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="MAIN_CLASS_NAME" value="mvc.view.gui.GUIHandler" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ing-sw-2018-romano-roccamena-salaorni" />
+      <envs />
     </configuration>
     <configuration name="MultiPlayerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="match.MultiPlayerTest" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
           <option name="PATTERN" value="match.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="MAIN_CLASS_NAME" value="match.MultiPlayerTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SagradaProject" />
+      <envs />
     </configuration>
     <configuration name="WIndowsFileCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="resources.creators.WIndowsFileCreator" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
           <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="MAIN_CLASS_NAME" value="resources.creators.WIndowsFileCreator" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SagradaProject" />
+      <envs />
     </configuration>
     <configuration name="WindowsWriter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="resources.writers.WindowsWriter" />
-      <module name="SagradaProject" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
+      <extension name="coverage" enabled="false" merge="false" runner="idea">
         <pattern>
           <option name="PATTERN" value="resources.writers.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="MAIN_CLASS_NAME" value="resources.writers.WindowsWriter" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="SagradaProject" />
+      <envs />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" />
@@ -177,13 +501,17 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
+      <envs />
       <patterns />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
@@ -196,29 +524,35 @@
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
       <option name="USE_DEFAULT_REPORTERS" value="false" />
       <option name="PROPERTIES_FILE" />
+      <envs />
       <properties />
       <listeners />
     </configuration>
-    <list>
-      <item itemvalue="Application.GUIHandler" />
-      <item itemvalue="Application.MultiPlayerTest" />
-      <item itemvalue="Application.WIndowsFileCreator" />
-      <item itemvalue="Application.WindowsWriter" />
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Application.GUIHandler" />
+      <item index="1" class="java.lang.String" itemvalue="Application.MultiPlayerTest" />
+      <item index="2" class="java.lang.String" itemvalue="Application.WIndowsFileCreator" />
+      <item index="3" class="java.lang.String" itemvalue="Application.WindowsWriter" />
     </list>
     <recent_temporary>
-      <list>
-        <item itemvalue="Application.MultiPlayerTest" />
-        <item itemvalue="Application.WindowsWriter" />
-        <item itemvalue="Application.GUIHandler" />
-        <item itemvalue="Application.WIndowsFileCreator" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Application.GUIHandler" />
+        <item index="1" class="java.lang.String" itemvalue="Application.MultiPlayerTest" />
+        <item index="2" class="java.lang.String" itemvalue="Application.WindowsWriter" />
+        <item index="3" class="java.lang.String" itemvalue="Application.WIndowsFileCreator" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -230,6 +564,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1525684888933</updated>
+      <workItem from="1525796880088" duration="160000" />
+      <workItem from="1525797105952" duration="2803000" />
+      <workItem from="1525856738708" duration="4405000" />
+      <workItem from="1525879819455" duration="7767000" />
+      <workItem from="1525892259830" duration="1356000" />
+      <workItem from="1526042089007" duration="1307000" />
+      <workItem from="1526045643670" duration="5368000" />
+      <workItem from="1526117755897" duration="2711000" />
+      <workItem from="1526375286454" duration="160000" />
     </task>
     <task id="LOCAL-00001" summary="fix vari">
       <created>1525719131032</created>
@@ -262,65 +605,74 @@
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="26037000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32913387" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32913387" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24304539" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.329429" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32913387" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32913387" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868353" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21535982" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39930254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868353" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.32913387" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24304539" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32913387" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Messages" order="0" weight="0.32913387" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24304539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -329,7 +681,9 @@
     <MESSAGE value="iml ripristinato" />
     <MESSAGE value="fix controller" />
     <MESSAGE value="fix vari" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix vari" />
+    <MESSAGE value="modifiche funzionali alla gui" />
+    <MESSAGE value="modifiche alla gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="modifiche alla gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,20 +694,31 @@
           <properties />
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="9" />
+      <option name="time" value="16" />
     </breakpoint-manager>
+    <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SagradaProject.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/SagradaProject.iml">
       <provider selected="true" editor-type-id="text-editor">
@@ -365,19 +730,19 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1768">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
+          <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
-            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondError#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondAck#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" />
-            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" />
-            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" />
-            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" />
+            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondError#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondAck#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -385,178 +750,105 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
+          <caret line="16" column="43" lean-forward="false" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
-          <caret line="105" selection-start-line="105" selection-end-line="105" />
+          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
-            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondError#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondAck#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" />
-            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" />
-            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" />
-            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" />
+            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondError#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondAck#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/ObjectivesWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/creators/MatchCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
-          <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
+          <caret line="166" column="27" lean-forward="false" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/io/FileHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIFileInfo.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchDice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/handlers/MultiPlayerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/resources/ResourceFileInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" lean-forward="true" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/UserView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/AppViewStub.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/ViewResponder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchObserver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/MatchController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/stubs/AppControllerStub.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Match.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2788">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
-          <folding>
-            <element signature="method#start#0;class#GUIHandler#0" />
-            <element signature="method#login#0;class#GUIHandler#0" />
-            <element signature="method#changeScene#0;class#GUIHandler#0" />
-            <element signature="method#main#0;class#GUIHandler#0" />
-          </folding>
+          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/toolcards/Lathekin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/console/ConsoleGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding>
-            <element signature="method#ConsoleGame#0;class#ConsoleGame#0" />
-            <element signature="method#printGameLogo#0;class#ConsoleGame#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/AppView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -570,44 +862,19 @@
     <entry file="file://$PROJECT_DIR$/src/test/java/match/MultiPlayerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
+          <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
           <folding>
-            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondError#0;class#MultiPlayerTest#0" />
-            <element signature="method#respondAck#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" />
-            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" />
-            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" />
-            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" />
-            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" />
-            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="method#AppController#0;class#AppController#0" />
-            <element signature="method#login#0;class#AppController#0" />
-            <element signature="method#retrieveMatchStartHandler#0;class#AppController#0" />
-            <element signature="method#matchBroadcastAck#0;class#AppController#0" />
-            <element signature="method#matchBroadcastError#0;class#AppController#0" />
-            <element signature="method#viewAck#0;class#AppController#0" />
-            <element signature="method#viewError#0;class#AppController#0" />
-            <element signature="method#userAck#0;class#AppController#0" />
-            <element signature="method#userError#0;class#AppController#0" />
-            <element signature="method#joinMatch#0;class#AppController#0" />
-            <element signature="method#cancelJoinMatch#0;class#AppController#0" />
-            <element signature="method#leaveMatch#0;class#AppController#0" />
-            <element signature="method#chooseWindow#0;class#AppController#0" />
-            <element signature="method#placeDie#0;class#AppController#0" />
-            <element signature="method#useToolCard#0;class#AppController#0" />
-            <element signature="method#endTurn#0;class#AppController#0" />
+            <element signature="method#MultiPlayerTest#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondError#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#respondAck#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onChooseWindows#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnStart#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onTurnEnd#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onPlaceDie#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onUseTool#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onGetPoints#0;class#MultiPlayerTest#0" expanded="false" />
+            <element signature="method#onMatchEnd#0;class#MultiPlayerTest#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -615,12 +882,301 @@
     <entry file="file://$PROJECT_DIR$/SagradaProject.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/images/base.fxml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/menu.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/MatchDice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/PublicObjectiveCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/resources/writers/WindowsWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2757">
+          <caret line="353" column="74" lean-forward="false" selection-start-line="353" selection-start-column="74" selection-end-line="353" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Cell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="20" column="77" lean-forward="true" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Die.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/PrivateObjectiveCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/RoundTrack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/ToolCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/CardView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/DieView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/CellView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="25" column="34" lean-forward="false" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/WindowView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" column="77" lean-forward="false" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/console/ConsoleGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2495">
+          <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/objects/Match.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/AppView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="63" column="92" lean-forward="false" selection-start-line="63" selection-start-column="92" selection-end-line="63" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/MatchModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/model/AppModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding>
+            <element signature="method#get#0;class#AppModel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/handlers/MultiPlayerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="method#join#0;class#MultiPlayerHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/controller/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="109" column="98" lean-forward="false" selection-start-line="109" selection-start-column="98" selection-end-line="109" selection-end-column="98" />
+          <folding>
+            <element signature="method#AppController#0;class#AppController#0" expanded="false" />
+            <element signature="method#login#0;class#AppController#0" expanded="false" />
+            <element signature="method#logout#0;class#AppController#0" expanded="false" />
+            <element signature="method#retrieveMatchStartHandler#0;class#AppController#0" expanded="false" />
+            <element signature="method#matchBroadcastAck#0;class#AppController#0" expanded="false" />
+            <element signature="method#matchBroadcastError#0;class#AppController#0" expanded="false" />
+            <element signature="method#viewAck#0;class#AppController#0" expanded="false" />
+            <element signature="method#viewError#0;class#AppController#0" expanded="false" />
+            <element signature="method#userAck#0;class#AppController#0" expanded="false" />
+            <element signature="method#userError#0;class#AppController#0" expanded="false" />
+            <element signature="method#joinMatch#0;class#AppController#0" expanded="false" />
+            <element signature="method#cancelJoinMatch#0;class#AppController#0" expanded="false" />
+            <element signature="method#leaveMatch#0;class#AppController#0" expanded="false" />
+            <element signature="method#chooseWindow#0;class#AppController#0" expanded="false" />
+            <element signature="method#placeDie#0;class#AppController#0" expanded="false" />
+            <element signature="method#useToolCard#0;class#AppController#0" expanded="false" />
+            <element signature="method#endTurn#0;class#AppController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/game.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="70" column="52" lean-forward="false" selection-start-line="70" selection-start-column="52" selection-end-line="70" selection-end-column="52" />
+          <folding>
+            <element signature="e#1108#1109#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1169#1170#0" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1267#1268#0" expanded="true" />
+            <element signature="e#1298#1299#0" expanded="true" />
+            <element signature="e#1325#1326#0" expanded="true" />
+            <element signature="e#1357#1358#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+            <element signature="e#1417#1418#0" expanded="true" />
+            <element signature="e#1445#1446#0" expanded="true" />
+            <element signature="e#1476#1477#0" expanded="true" />
+            <element signature="e#1504#1505#0" expanded="true" />
+            <element signature="e#1602#1603#0" expanded="true" />
+            <element signature="e#1645#1646#0" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
+            <element signature="e#1734#1735#0" expanded="true" />
+            <element signature="e#1776#1777#0" expanded="true" />
+            <element signature="e#1817#1818#0" expanded="true" />
+            <element signature="e#1849#1850#0" expanded="true" />
+            <element signature="e#1892#1893#0" expanded="true" />
+            <element signature="e#1926#1927#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2003#2004#0" expanded="true" />
+            <element signature="e#2044#2045#0" expanded="true" />
+            <element signature="e#2078#2079#0" expanded="true" />
+            <element signature="method#start#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#login#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#cancel#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#connection#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#multiplayer#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#waitGame#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#startGame#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#changeScene#0;class#GUIHandler#0" expanded="false" />
+            <element signature="method#main#0;class#GUIHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/mvc/view/gui/GUIView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="68" column="32" lean-forward="false" selection-start-line="68" selection-start-column="32" selection-end-line="68" selection-end-column="32" />
+          <folding>
+            <element signature="method#login#0;class#GUIView#0" expanded="false" />
+            <element signature="method#logout#0;class#GUIView#0" expanded="false" />
+            <element signature="method#respondError#0;class#GUIView#0" expanded="false" />
+            <element signature="method#respondAck#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onChooseWindows#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onTurnStart#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onTurnEnd#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onPlaceDie#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onUseTool#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onGetPoints#0;class#GUIView#0" expanded="false" />
+            <element signature="method#onMatchEnd#0;class#GUIView#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
@@ -662,7 +1218,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9</last-edited>
+          <last-edited>1.9</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -674,11 +1230,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>SagradaProject</last-edited>
+          <last-edited>ing-sw-2018-romano-roccamena-salaorni</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

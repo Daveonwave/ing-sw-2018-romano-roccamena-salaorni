@@ -4,6 +4,7 @@ import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 import mvc.model.objects.*;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

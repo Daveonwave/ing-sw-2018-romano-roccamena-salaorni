@@ -1,7 +1,9 @@
 package mvc.model.objects;
 
+
 import mvc.exceptions.MatchException;
 
+import java.awt.*;
 import java.rmi.RemoteException;
 
 public class Cell {
@@ -21,6 +23,7 @@ public class Cell {
         this.cellRestriction = cellRestriction;
         this.row = row;
         this.column = column;
+
     }
 
     //Setter/Getter

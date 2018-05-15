@@ -8,6 +8,8 @@ public class RoundTrack {
     List<List<Die>> diceStack;
 
     //Costruttori
+
+
     public RoundTrack(List<List<Die>> diceStack) {
         this.diceStack = diceStack;
     }
@@ -20,6 +22,7 @@ public class RoundTrack {
     public List<List<Die>> getDiceStack() {
         return diceStack;
     }
+
 
     //Ottiene i dadi di un turno della round track
     public List<Die> retrieveDice(int round) {
