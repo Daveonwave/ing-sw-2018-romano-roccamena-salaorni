@@ -4,11 +4,12 @@ import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 import mvc.model.objects.*;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public abstract class AppView implements AppViewStub, Serializable {
+public abstract class AppView implements AppViewStub {
     //View astratta dell'applicazione
 
     private AppControllerStub appController;
@@ -50,6 +51,10 @@ public abstract class AppView implements AppViewStub, Serializable {
     public boolean isLogged() {
         return logged;
     }
+
+    //Operazioni su utente
+    public abstract String login(String name) throws RemoteException;
+    public abstract void logout() throws RemoteException;
 
     //Risposta scritta controllore
     public abstract void respondError(String message) throws RemoteException;

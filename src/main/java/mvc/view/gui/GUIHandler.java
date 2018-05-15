@@ -1,20 +1,18 @@
 package mvc.view.gui;
 
-import com.google.gson.Gson;
-import io.FileHandler;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mvc.controller.AppController;
-import mvc.model.AppModel;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -22,44 +20,160 @@ import java.rmi.RemoteException;
 public class GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
+    private static GUIView guiView;
+    private int players = 0;
+    private boolean connected = false;
+    private boolean mode = false;
+    private boolean queue = false;
+    private boolean ready = false;
+    private boolean hide = true;
+    private Stage stage;
+
     @FXML
-    private TextField input;
+    TextField input;
     @FXML
-    private Label output;
+    Button rmi, socket, fourplayers, multi,single, twoplayers,threeplayers, annulla, privateObjective, publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, observe;
     @FXML
-    private Button login, rmi, socket;
+    Button d1,d2,d3,d4,d5,d6,d7,d8,d9;
+    @FXML
+    Text text;
+    @FXML
+    Pane pane, pane2;
+    @FXML
+    ImageView w1,w2,w3,w4;
+    @FXML
+    Button p1_11,p1_12,p1_13,p1_14,p1_15,p1_21,p1_22,p1_23,p1_24,p1_25,p1_31,p1_32,p1_33,p1_34,p1_35,p1_41,p1_42,p1_43,p1_44,p1_45;
+    @FXML
+    ImageView p2_11,p2_12,p2_13,p2_14,p2_15,p2_21,p2_22,p2_23,p2_24,p2_25,p2_31,p2_32,p2_33,p2_34,p2_35,p2_41,p2_42,p2_43,p2_44,p2_45;
+    @FXML
+    ImageView p3_11,p3_12,p3_13,p3_14,p3_15,p3_21,p3_22,p3_23,p3_24,p3_25,p3_31,p3_32,p3_33,p3_34,p3_35,p3_41,p3_42,p3_43,p3_44,p3_45;
+    @FXML
+    ImageView p4_11,p4_12,p4_13,p4_14,p4_15,p4_21,p4_22,p4_23,p4_24,p4_25,p4_31,p4_32,p4_33,p4_34,p4_35,p4_41,p4_42,p4_43,p4_44,p4_45;
+
+    //Getter/Setter
+    public static void setGuiView(GUIView guiView) {
+        GUIHandler.guiView = guiView;
+    }
+    public void setPlayers(int players) {
+        this.players = players;
+    }
+    public void setConnected(boolean connected) {
+        this.connected = connected;
+    }
+    public void setMode(boolean mode) {
+        this.mode = mode;
+    }
+    public void setQueue(boolean queue) {
+        this.queue = queue;
+    }
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public static GUIView getGuiView() {
+        return guiView;
+    }
+    public int getPlayers() {
+        return players;
+    }
+    public boolean isConnected() {
+        return connected;
+    }
+    public boolean isMode() {
+        return mode;
+    }
+    public boolean isQueue() {
+        return queue;
+    }
+    public boolean isReady() {
+        return ready;
+    }
+    public Stage getStage() {
+        return stage;
+    }
 
     //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException{
-        changeScene("login.fxml",primaryStage);
+        guiView = new GUIView(new AppController());
+        changeScene("menu.fxml",primaryStage);
+        guiView.setGuiHandler(this);
+        this.stage = primaryStage;
     }
 
-    //Bottone di login: salva le istanze di view,controller e model in modo che siano riutilizzabili
+    //Gestori bottoni
     public void  login(ActionEvent actionEvent) throws IOException{
-        AppController appController = new AppController();
-        GUIView guiView = new GUIView(appController);
-        AppModel appModel = appController.getModel();
+        pane.setVisible(false);
+        fourplayers.setVisible(false);
+        text.setText(guiView.login(input.getText()) + ".Scegliere il tipo di connessione");
+    }
+    public void cancel(ActionEvent actionEvent)throws RemoteException{
+        if (!connected) {
+            pane.setVisible(true);
+            text.setText("Inserire il nome utente");
+            guiView.logout();
+        }
+        else{
+            if(!mode) {
+                rmi.setVisible(true);
+                socket.setVisible(true);
+                text.setText("Scegliere il tipo di connessione");
+                connected = false;
+            }
+            else{
+                if(!queue) {
+                    multi.setVisible(true);
+                    single.setVisible(true);
+                    fourplayers.setVisible(false);
+                    mode = false;
+                }
+                else {
+                    text.setText("Scegliere numero di giocatori");
+                    fourplayers.setVisible(true);
+                    twoplayers.setVisible(true);
+                    threeplayers.setVisible(true);
+                    queue = false;
+                    this.guiView.getAppController().cancelJoinMatch(guiView.getUserToken(), this.players);
+                }
 
-        guiView.login(input.getText());
+            }
+        }
+    }
+    public void connection(ActionEvent actionEvent){
+        rmi.setVisible(false);
+        socket.setVisible(false);
+        text.setText("Scegliere la modalita' di gioco");
+        this.connected = true;
+    }
+    public void multiplayer(ActionEvent actionEvent){
+        multi.setVisible(false);
+        single.setVisible(false);
+        fourplayers.setVisible(true);
+        mode = true;
+        text.setText("Scegliere numero di giocatori");
+    }
 
-        Stage stage =(Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-
-        //Converte e serializza
-        Gson gson = new Gson();
-
-        FileHandler fileHandler = new FileHandler();
-        String text =  "";
-
-        text = gson.toJson(appModel);
-        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.MODEL_FILE_NAME, text);
-
-        text = gson.toJson(appModel);
-        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.VIEW_FILE_NAME, text);
-
-        text = gson.toJson(appModel);
-        fileHandler.fileWrite(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.CONTROLLER_FILE_NAME, text);
-
-        changeScene("menu.fxml",stage);
+    //Attesa
+    public void waitGame(ActionEvent actionEvent) throws RemoteException{
+        if (actionEvent.getSource().equals(twoplayers)) this.players = 2;
+        if (actionEvent.getSource().equals(threeplayers)) this.players = 3;
+        if (actionEvent.getSource().equals(fourplayers)) this.players = 4;
+        this.guiView.getAppController().joinMatch(guiView.getUserToken(), players);
+        fourplayers.setVisible(false);
+        twoplayers.setVisible(false);
+        threeplayers.setVisible(false);
+        queue = true;
+        text.setText("In attesa di altri giocatori...");
+    }
+    //Inizia gico
+    public void startGame() throws IOException{
+        changeScene("game.fxml",this.stage);
+    }
+    //Osservazione
+    public void observe(ActionEvent actionEvent){
+        observe.setVisible(!hide);
     }
 
     //Cambia scena nella gui caricandola da un nuovo file FXML
@@ -67,57 +181,10 @@ public class GUIHandler extends Application {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/style.css");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
-    }
-
-    //TODO: cambio gson in login
-    //Carica componenti mvc
-    public AppModel loadModel(){
-        AppModel appModel = null;
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.MODEL_FILE_NAME));
-            appModel = (AppModel) ois.readObject();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return appModel;
-
-    }
-    public GUIView loadView(){
-        GUIView guiView = null;
-        AppController appController = loadController();
-        appController.setModel(loadModel());
-        try{
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.VIEW_FILE_NAME));
-            guiView = (GUIView) ois.readObject();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        guiView.setAppController(appController);
-        return guiView;
-    }
-    public AppController loadController(){
-        AppController appController = null;
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(GUIFileInfo.GUI_FILES_PATH + "/" + GUIFileInfo.CONTROLLER_FILE_NAME));
-            appController = (AppController) ois.readObject();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return appController;
-
-    }
-
-    //TODO: cambio gson in login
-    //Salva su file un oggetto
-    public void save(Object object,String file){
-        try{
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-            oos.writeObject(object);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
     }
 
     public static void main(String[] args) throws RemoteException{

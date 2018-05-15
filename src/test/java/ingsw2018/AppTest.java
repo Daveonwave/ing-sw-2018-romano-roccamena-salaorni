@@ -1,10 +1,9 @@
 package ingsw2018;
 
-import static org.junit.Assert.*;
+import objects.BaseTest;
 
 
-public class AppTest {
-
+public class AppTest extends BaseTest {
     //Testing applicazione
-
+    //TODO: updating
 }

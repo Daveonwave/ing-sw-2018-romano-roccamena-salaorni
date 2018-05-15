@@ -1,16 +1,23 @@
 package views;
 
 import mvc.controller.AppController;
-import mvc.view.console.ConsoleGame;
+import mvc.view.console.ConsoleView;
+import objects.BaseTest;
+import org.junit.Test;
 
-import java.rmi.RemoteException;
+public class ConsoleTest extends BaseTest {
+    //Test su view console
 
-public class ConsoleTest {
+    //Test
+    @Test
+    public void cliTest() {
 
-    public static void main(String[] args) throws RemoteException {
-        ConsoleGame consoleGame = new ConsoleGame(new AppController());
+    }
 
-        consoleGame.start();
+    public static void main(String[] args) throws Exception {
+        ConsoleView consoleGame = new ConsoleView(new AppController());
+
+        consoleGame.show();
     }
 
 }

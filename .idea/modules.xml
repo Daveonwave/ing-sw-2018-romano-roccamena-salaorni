@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SagradaProject.iml" filepath="$PROJECT_DIR$/SagradaProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ing-sw-2018-romano-roccamena-salaorni.iml" filepath="$PROJECT_DIR$/.idea/ing-sw-2018-romano-roccamena-salaorni.iml" />
     </modules>
   </component>
 </project>

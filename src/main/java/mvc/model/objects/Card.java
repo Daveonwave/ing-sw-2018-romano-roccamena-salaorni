@@ -26,4 +26,12 @@ public class Card {
     public String getDescription() {
         return description;
     }
+
+    //Verifica uguaglianze
+    public boolean sameCard(Card card) {
+        if (card == null)
+            return false;
+
+        return card.name.equals(name);
+    }
 }
