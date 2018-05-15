@@ -703,6 +703,18 @@ public class ResourceRetriever {
         return result;
 
     }
+    public List<PublicObjectiveCard> retrievePublicObjectiveCards(){
+        FileHandler fileHandler = new FileHandler();
+        Gson gson = new Gson();
+
+        String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PUBLIC_OBJECTIVE_CARDS_FILE_NAME);
+
+        Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
+        List<PublicObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
+
+        return result;
+
+    }
     public List<ToolCard> retrieveToolCards(){
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();

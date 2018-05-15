@@ -50,60 +50,49 @@ public class GUIHandler extends Application {
     @FXML
     ImageView p4_11,p4_12,p4_13,p4_14,p4_15,p4_21,p4_22,p4_23,p4_24,p4_25,p4_31,p4_32,p4_33,p4_34,p4_35,p4_41,p4_42,p4_43,p4_44,p4_45;
 
-    public static GUIView getGuiView() {
-        return guiView;
-    }
-
-    public int getPlayers() {
-        return players;
-    }
-
-    public boolean isConnected() {
-        return connected;
-    }
-
-    public boolean isMode() {
-        return mode;
-    }
-
-    public boolean isQueue() {
-        return queue;
-    }
-
-    public boolean isReady() {
-        return ready;
-    }
-
-    public Stage getStage() {
-        return stage;
-    }
-
+    //Getter/Setter
     public static void setGuiView(GUIView guiView) {
         GUIHandler.guiView = guiView;
     }
-
     public void setPlayers(int players) {
         this.players = players;
     }
-
     public void setConnected(boolean connected) {
         this.connected = connected;
     }
-
     public void setMode(boolean mode) {
         this.mode = mode;
     }
-
     public void setQueue(boolean queue) {
         this.queue = queue;
     }
-
     public void setReady(boolean ready) {
         this.ready = ready;
     }
-
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    public static GUIView getGuiView() {
+        return guiView;
+    }
+    public int getPlayers() {
+        return players;
+    }
+    public boolean isConnected() {
+        return connected;
+    }
+    public boolean isMode() {
+        return mode;
+    }
+    public boolean isQueue() {
+        return queue;
+    }
+    public boolean isReady() {
+        return ready;
+    }
+    public Stage getStage() {
+        return stage;
     }
 
     //Inizializza la gui con la schermata di login
@@ -114,13 +103,12 @@ public class GUIHandler extends Application {
         this.stage = primaryStage;
     }
 
-    //Bottone di login
+    //Gestori bottoni
     public void  login(ActionEvent actionEvent) throws IOException{
         pane.setVisible(false);
         fourplayers.setVisible(false);
         text.setText(guiView.login(input.getText()) + ".Scegliere il tipo di connessione");
     }
-
     public void cancel(ActionEvent actionEvent)throws RemoteException{
         if (!connected) {
             pane.setVisible(true);
@@ -153,14 +141,12 @@ public class GUIHandler extends Application {
             }
         }
     }
-
     public void connection(ActionEvent actionEvent){
         rmi.setVisible(false);
         socket.setVisible(false);
         text.setText("Scegliere la modalita' di gioco");
         this.connected = true;
     }
-
     public void multiplayer(ActionEvent actionEvent){
         multi.setVisible(false);
         single.setVisible(false);
@@ -169,6 +155,7 @@ public class GUIHandler extends Application {
         text.setText("Scegliere numero di giocatori");
     }
 
+    //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
         if (actionEvent.getSource().equals(twoplayers)) this.players = 2;
         if (actionEvent.getSource().equals(threeplayers)) this.players = 3;
@@ -180,11 +167,11 @@ public class GUIHandler extends Application {
         queue = true;
         text.setText("In attesa di altri giocatori...");
     }
-
+    //Inizia gico
     public void startGame() throws IOException{
         changeScene("game.fxml",this.stage);
     }
-
+    //Osservazione
     public void observe(ActionEvent actionEvent){
         observe.setVisible(!hide);
     }
