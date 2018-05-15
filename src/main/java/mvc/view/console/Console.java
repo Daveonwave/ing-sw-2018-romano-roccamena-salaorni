@@ -1,11 +1,11 @@
 package mvc.view.console;
 
-import java.util.Scanner;
+import java.io.*;
 
 public final class Console {
     //Funzioni base di visualizzazione console
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
     //Ottiene stringa centrata
     public static String centeredStringBorder(String text, int width, String pad) {
@@ -33,11 +33,8 @@ public final class Console {
     }
 
     //Lettura
-    public static String read() {
-        return scanner.next();
-    }
-    public static String readLine() {
-        return scanner.nextLine();
+    public static String readLine() throws IOException {
+        return in.readLine();
     }
 
     //Scrittura

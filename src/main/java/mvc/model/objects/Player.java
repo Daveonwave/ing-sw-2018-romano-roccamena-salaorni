@@ -1,6 +1,9 @@
 package mvc.model.objects;
 
+import mvc.exceptions.AppModelException;
+
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class Player implements Serializable{
@@ -9,28 +12,32 @@ public class Player implements Serializable{
     private User user;
     private Window window;
     private List<Window> startWindows;
-    private List<PrivateObjectiveCard> privateObjectiveCard;
+    private List<PrivateObjectiveCard> privateObjectiveCards;
     private int favorTokens;
-    private PlayerPoints points;
+    private ToolCardEffect toolCardEffect;
+    private boolean turnDiePlaced;
 
     //Costruttori
     //MultiPlayer -> un solo obiettivo privato
-    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCard, int favorTokens) {
+    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCards, int favorTokens) {
         this.user = user;
         this.window = window;
         this.startWindows = startWindows;
-        this.privateObjectiveCard.add(privateObjectiveCard);
+        this.privateObjectiveCards.add(privateObjectiveCards);
         this.favorTokens = favorTokens;
+        this.toolCardEffect = new ToolCardEffect();
+        this.turnDiePlaced = false;
     }
     //SinglePlayer -> due obiettivi privati
     public Player(User user, Window window, List<Window> startWindows, List<PrivateObjectiveCard> privateObjectiveCards, int favorTokens) {
         this.user = user;
         this.window = window;
         this.startWindows = startWindows;
-        this.privateObjectiveCard = privateObjectiveCards;
+        this.privateObjectiveCards = privateObjectiveCards;
         this.favorTokens = favorTokens;
+        this.toolCardEffect = new ToolCardEffect();
+        this.turnDiePlaced = false;
     }
-
 
     //Setter/Getter
     public void setUser(User user) {
@@ -42,11 +49,17 @@ public class Player implements Serializable{
     public void setStartWindows(List<Window> startWindows) {
         this.startWindows = startWindows;
     }
-    public void setPrivateObjectiveCard(PrivateObjectiveCard privateObjectiveCard) {
-        this.privateObjectiveCard.add(privateObjectiveCard);
+    public void setPrivateObjectiveCards(PrivateObjectiveCard privateObjectiveCards) {
+        this.privateObjectiveCards.add(privateObjectiveCards);
     }
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
+    }
+    public void setToolCardEffect(ToolCardEffect toolCardEffect) {
+        this.toolCardEffect = toolCardEffect;
+    }
+    public void setTurnDiePlaced(boolean turnDiePlaced) {
+        this.turnDiePlaced = turnDiePlaced;
     }
 
     public User getUser() {
@@ -58,10 +71,41 @@ public class Player implements Serializable{
     public List<Window> getStartWindows() {
         return startWindows;
     }
-    public List<PrivateObjectiveCard> getPrivateObjectiveCard() {
-        return privateObjectiveCard;
+    public List<PrivateObjectiveCard> getPrivateObjectiveCards() {
+        return privateObjectiveCards;
     }
     public int getFavorTokens() {
         return favorTokens;
+    }
+    public ToolCardEffect getToolCardEffect() {
+        return toolCardEffect;
+    }
+    public boolean getTurnDiePlaced() {
+        return turnDiePlaced;
+    }
+
+    //Verifica uguaglianze
+    public boolean samePlayer(Player player) {
+        if (player == null)
+            return false;
+        if (player.getUser() == null)
+            return false;
+
+        return player.getUser().sameUser(user);
+    }
+
+    //Ottiene finestra iniziale
+    public synchronized Window retrieveStartWindow(Window window) throws RemoteException {
+        Window result = null;
+        for (Window w : startWindows) {
+            if (w.sameWindow(window)) {
+                result = w;
+                break;
+            }
+        }
+        if (result == null)
+            throw new AppModelException("finestra non valida");
+
+        return result;
     }
 }

@@ -40,6 +40,15 @@ public class User implements Serializable{
         return appView;
     }
 
+    //Verifica uguaglianze
+    public boolean sameUser(User user) {
+        if (user.getName() == null)
+            return false;
+
+        return user.getName().equals(name);
+    }
+
+    //Operazioni su giocatori associati
     public void addPlayer(Player player){
         players.add(player);
     }

@@ -12,6 +12,9 @@ public class TurnHandler {
     private boolean roundFirstTurn;
     private boolean roundLastTurn;
 
+    private boolean changeTurnWave;
+    private boolean firstTurnWave;
+
     //Costruttori
     public TurnHandler(int playersCount, int firstPlayerIndex) {
         this.playersCount = playersCount;
@@ -20,6 +23,8 @@ public class TurnHandler {
         this.round = 0;
         this.roundLastTurn = false;
         this.roundFirstTurn = true;
+        this.changeTurnWave = false;
+        this.firstTurnWave = false;
     }
 
     //Getter e osservatori
@@ -36,6 +41,7 @@ public class TurnHandler {
         return round;
     }
 
+    //Proprietà di round e turni
     public boolean isRoundFirstTurn() {
         return roundFirstTurn;
     }
@@ -47,34 +53,83 @@ public class TurnHandler {
         return round == 1 && turnPlayerIndex == firstPlayerIndex;
     }
     public boolean isLastTurn() {
-        return round == 10 && turnPlayerIndex == firstPlayerIndex;
+        return round == GameConstants.ROUNDS_COUNT && turnPlayerIndex == firstPlayerIndex;
     }
 
     public boolean isStarted() {
         return round > 0;
     }
     public boolean isEnded() {
-        return round > 10;
+        return round > GameConstants.ROUNDS_COUNT;
     }
 
-    //Calcola index player successivo
-    private int playerIndexShift(int playerIndex) {
+    public boolean isTurnWaveChanging() {
+        return changeTurnWave;
+    }
+    public boolean isFirstTurnWave() {
+        return firstTurnWave;
+    }
+
+    //Shift indici
+    private int leftIndexShift(int playerIndex) {
+        if (playerIndex == 0)
+            return playersCount - 1;
+        else
+            return playerIndex - 1;
+    }
+    private int rightIndexShift(int playerIndex) {
         if (playerIndex == playersCount - 1)
             return 0;
         else
             return playerIndex + 1;
     }
+    private int prevPlayerIndex(int playerIndex) {
+        if (firstTurnWave) {
+            return leftIndexShift(playerIndex);
+        }
+        else {
+            if (playerIndex == prevPlayerIndex(playerIndex)) {
+                return playerIndex;
+            } else {
+                return rightIndexShift(playerIndex);
+            }
+        }
+    }
+    private int nextPlayerIndex(int playerIndex) {
+        if (firstTurnWave) {
+            if (changeTurnWave) {
+                firstTurnWave = false;
+                changeTurnWave = false;
+                return leftIndexShift(playerIndex);
+            } else {
+                if (playerIndex == prevPlayerIndex(playerIndex)) {
+                    changeTurnWave = true;
+                    return playerIndex;
+                }
+                else {
+                    return rightIndexShift(playerIndex);
+                }
+            }
+        }
+        else {
+            return leftIndexShift(playerIndex);
+        }
+    }
+
     //Round successivo
     private void nextRound() {
         //Aumenta round
         round += 1;
+
         //Imposta segnali
         roundFirstTurn = true;
         roundLastTurn = false;
 
+        firstTurnWave = true;
+
         //Se non è il primo round calcola il nuovo primo giocatore
         if (round != 1)
-            firstPlayerIndex = playerIndexShift(firstPlayerIndex);
+            firstPlayerIndex = nextPlayerIndex(firstPlayerIndex);
 
         //Il giocatore corrente è il primo
         turnPlayerIndex = firstPlayerIndex;
@@ -91,7 +146,7 @@ public class TurnHandler {
             roundFirstTurn = false;
 
         //Assegna il giocatore successivo
-        turnPlayerIndex = playerIndexShift(turnPlayerIndex);
+        turnPlayerIndex = nextPlayerIndex(turnPlayerIndex);
 
         //Imposta segnale di ultimo turno del round
         roundLastTurn = turnPlayerIndex == firstPlayerIndex && !roundFirstTurn;

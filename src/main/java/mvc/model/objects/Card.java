@@ -1,6 +1,5 @@
 package mvc.model.objects;
 
-
 public class Card {
     //Carta generica
 
@@ -28,5 +27,11 @@ public class Card {
         return description;
     }
 
-    }
+    //Verifica uguaglianze
+    public boolean sameCard(Card card) {
+        if (card == null)
+            return false;
 
+        return card.name.equals(name);
+    }
+}

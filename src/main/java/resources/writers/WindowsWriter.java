@@ -19,7 +19,7 @@ public class WindowsWriter {
 
         //Crea finestre
         for(int i = 0;i<23;i++){
-            Window window = new Window(null, null, 0);
+            Window window = new Window(null, 0);
             windows.add(window);
         }
 
@@ -29,7 +29,6 @@ public class WindowsWriter {
 
             switch (i){
                 case 0:
-                    windows.get(i).setWindowPattern(WindowPattern.BELLESGUARD);
                     windows.get(i).setDifficulty(3);
 
                     //Creazione celle finestra
@@ -57,7 +56,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 1:
-                    windows.get(i).setWindowPattern(WindowPattern.FRACTAL_DROPS);
                     windows.get(i).setDifficulty(3);
 
                     //Creazione celle finestra
@@ -85,7 +83,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 2:
-                    windows.get(i).setWindowPattern(WindowPattern.LUZ_CELESTIAL);
                     windows.get(i).setDifficulty(3);
 
                     //Creazione celle finestra
@@ -113,7 +110,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 3:
-                    windows.get(i).setWindowPattern(WindowPattern.SUN_CATCHER);
                     windows.get(i).setDifficulty(3);
 
                     //Creazione celle finestra
@@ -141,7 +137,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 4:
-                    windows.get(i).setWindowPattern(WindowPattern.AURORA_SAGRADIS);
                     windows.get(i).setDifficulty(4);
 
                     //Creazione celle finestra
@@ -169,7 +164,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 5:
-                    windows.get(i).setWindowPattern(WindowPattern.CHROMATIC_SPLENDOR);
                     windows.get(i).setDifficulty(4);
 
                     //Creazione celle finestra
@@ -197,7 +191,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 6:
-                    windows.get(i).setWindowPattern(WindowPattern.KALEIDOSCOPIC_DREAM);
                     windows.get(i).setDifficulty(4);
 
                     //Creazione celle finestra
@@ -225,7 +218,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 7:
-                    windows.get(i).setWindowPattern(WindowPattern.VIA_LUX);
                     windows.get(i).setDifficulty(4);
 
                     //Creazione celle finestra
@@ -253,7 +245,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 8:
-                    windows.get(i).setWindowPattern(WindowPattern.AURORAE_MAGNIFICUS);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -282,7 +273,6 @@ public class WindowsWriter {
                     break;
 
                 case 9:
-                    windows.get(i).setWindowPattern(WindowPattern.BATTLO);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -310,7 +300,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 10:
-                    windows.get(i).setWindowPattern(WindowPattern.COMITAS);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -339,7 +328,6 @@ public class WindowsWriter {
                     break;
 
                 case 11:
-                    windows.get(i).setWindowPattern(WindowPattern.FIRELIGHT);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -368,7 +356,6 @@ public class WindowsWriter {
                     break;
 
                 case 12:
-                    windows.get(i).setWindowPattern(WindowPattern.FIRMITAS);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -397,7 +384,6 @@ public class WindowsWriter {
                     break;
 
                 case 13:
-                    windows.get(i).setWindowPattern(WindowPattern.FULGOR_DEL_CIELO);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -425,7 +411,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 14:
-                    windows.get(i).setWindowPattern(WindowPattern.GRAVITAS);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -453,7 +438,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 15:
-                    windows.get(i).setWindowPattern(WindowPattern.INDUSTRIA);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -481,7 +465,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 16:
-                    windows.get(i).setWindowPattern(WindowPattern.LUX_ASTRAM);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -509,7 +492,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 17:
-                    windows.get(i).setWindowPattern(WindowPattern.RIPPLE_OF_LIGHT);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -537,7 +519,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 18:
-                    windows.get(i).setWindowPattern(WindowPattern.SHADOW_THIEF);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -565,7 +546,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 19:
-                    windows.get(i).setWindowPattern(WindowPattern.VIRTUS);
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -593,7 +573,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 20:
-                    windows.get(i).setWindowPattern(WindowPattern.SYMPHONY_OF_LIGHT);
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra
@@ -621,7 +600,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 21:
-                    windows.get(i).setWindowPattern(WindowPattern.WATER_OF_LIGHT);
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra
@@ -649,7 +627,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 22:
-                    windows.get(i).setWindowPattern(WindowPattern.LUX_MUNDI);
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra
@@ -677,7 +654,6 @@ public class WindowsWriter {
                     windows.get(i).setCells(cells);
                     break;
                 case 23:
-                    windows.get(i).setWindowPattern(WindowPattern.SUNSS_GLORY);
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra

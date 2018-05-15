@@ -21,6 +21,15 @@ public class ColorRestriction extends CellRestriction {
         return this.color;
     }
 
+    //Verifica uguaglianza
+    public boolean sameCellRestriction(CellRestriction cellRestriction) {
+        ColorRestriction converted = (ColorRestriction) cellRestriction;
+        if (converted == null)
+            return false;
+
+        return converted.getColor().equals(color);
+    }
+
     //Verifica che un dado rispetti la restrizione
     public boolean canPlaceDie(Die die) {
         return color.equals(die.getColor());
