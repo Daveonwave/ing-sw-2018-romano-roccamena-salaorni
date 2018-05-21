@@ -2,6 +2,7 @@ package mvc.creators;
 
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
+import mvc.model.objects.enums.Tool;
 import resources.ResourceRetriever;
 
 import java.util.*;
@@ -31,7 +32,9 @@ public class MatchCreator {
             count = GameConstants.MP_PUBLIC_OBJECTIVES_COUNT;
         }
 
-        List<PublicObjectiveCard> cards = resourceRetriever.retrievePublicObjectiveCards();
+        //TODO: update serializzazione
+        //List<PublicObjectiveCard> cards = resourceRetriever.retrievePublicObjectiveCards();
+        List<PublicObjectiveCard> cards = ObjectivesCreator.createPublicObjectiveCards();
 
         while (countExtracted <= count) {
             int index = random.nextInt(cards.size());
@@ -58,7 +61,9 @@ public class MatchCreator {
             count = numberOfPlayers;
         }
 
-        List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
+        //TODO: update serializzazione
+        //List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
+        List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
 
         while (countExtracted <= count) {
             int index = random.nextInt(cards.size());
@@ -85,7 +90,9 @@ public class MatchCreator {
             count = GameConstants.MP_TOOL_CARDS_COUNT;
         }
 
-        List<ToolCard> cards = resourceRetriever.retrieveToolCards();
+        //TODO: update serializzazione
+        //List<ToolCard> cards = resourceRetriever.retrieveToolCards();
+        List<ToolCard> cards = ToolsCreator.createToolCards();
 
         while (countExtracted <= count) {
             int index = random.nextInt(cards.size());
@@ -107,7 +114,9 @@ public class MatchCreator {
         List<Window> result = new ArrayList<Window>();
         int countExtracted = 1;
 
-        List<Window> windows = resourceRetriever.retrieveWindows();
+        //TODO: update serializzazione
+        //List<Window> windows = resourceRetriever.retrieveWindows();
+        List<Window> windows = WindowsCreator.createWindows();
 
         while (countExtracted <= numberOfPlayers*4) {
             int index = random.nextInt(windows.size());
@@ -140,8 +149,6 @@ public class MatchCreator {
     }
 
     //Creazione riserva dadi
-    //NOTA1: numero dadi = 2*numberOfPlayers + 1; se singlePlayer allora 4 dadi
-    //NOTA2: estraggo i primi 4 perché li ho già mischiati prima
     public List<Die> createDraftPool(List<Die> dieBag, int numberOfPlayers){
         List<Die> result = new ArrayList<Die>();
 
@@ -173,7 +180,7 @@ public class MatchCreator {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Factory partite MP e SP
+    //Factory partite multiplayer e singleplayer
     public static Match createMultiPlayer(List<User> users) {
         //Crea giocatori, finestre iniziali e le carte
         MatchCreator matchCreator = new MatchCreator(false);

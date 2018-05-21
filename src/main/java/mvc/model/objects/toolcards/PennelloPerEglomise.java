@@ -2,7 +2,6 @@ package mvc.model.objects.toolcards;
 
 import mvc.model.objects.*;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 
 public class PennelloPerEglomise extends ToolCard {

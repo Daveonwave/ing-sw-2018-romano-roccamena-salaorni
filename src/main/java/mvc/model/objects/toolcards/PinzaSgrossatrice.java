@@ -3,7 +3,6 @@ package mvc.model.objects.toolcards;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 
 public class PinzaSgrossatrice extends ToolCard {

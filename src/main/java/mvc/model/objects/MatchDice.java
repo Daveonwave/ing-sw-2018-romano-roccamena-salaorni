@@ -114,6 +114,7 @@ public class MatchDice {
 
         this.draftPool.addAll(matchCreator.createDraftPool(diceBag, playersCount));
     }
+
     //Toglie dalla draft pool tutti i dadi
     public void clearDraftPool() {
         this.draftPool.clear();

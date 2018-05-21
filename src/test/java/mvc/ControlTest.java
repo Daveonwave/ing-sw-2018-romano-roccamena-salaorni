@@ -68,7 +68,7 @@ public class ControlTest extends BaseTest {
             controller.joinMatch(token1);
             controller.joinMatch(token2);
         } catch (RemoteException e) {
-            testAssertError("during join mvc.match: " + e.getMessage());
+            testAssertError("during join match: " + e.getMessage());
         } catch (Exception e) {
             testAssertError("in fase di sviluppo matchCreator");
         }

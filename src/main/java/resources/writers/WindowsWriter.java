@@ -1,6 +1,7 @@
 package resources.writers;
 
 import com.google.gson.Gson;
+import mvc.creators.WindowsCreator;
 import util.FileHandler;
 import mvc.model.objects.Window;
 import resources.ResourceFileInfo;
@@ -13,7 +14,7 @@ public class WindowsWriter {
 
     public static void main(String[] args) {
             //Crea finestre
-            List<Window> windows = new ResourceRetriever().createWindows();
+            List<Window> windows = WindowsCreator.createWindows();
 
             //Converte e serializza
             Gson gson = new Gson();

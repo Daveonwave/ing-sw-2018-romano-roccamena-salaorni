@@ -1,11 +1,7 @@
 package mvc.model.objects.toolcards;
 
-import mvc.model.objects.GameConstants;
-import mvc.model.objects.Match;
-import mvc.model.objects.ToolCard;
-import mvc.model.objects.ToolCardInput;
+import mvc.model.objects.*;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 
 public class TamponeDiamantato extends ToolCard{
@@ -18,5 +14,10 @@ public class TamponeDiamantato extends ToolCard{
 
     //Usa carta strumento
     public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+        //Ottiene dati
+        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
+
+        //Esegue effetto
+        die.invertShade();
     }
 }

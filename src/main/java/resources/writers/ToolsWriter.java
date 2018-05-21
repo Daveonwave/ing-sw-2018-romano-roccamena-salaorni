@@ -1,6 +1,9 @@
 package resources.writers;
 
 import com.google.gson.Gson;
+import mvc.creators.ToolsCreator;
+import mvc.model.objects.Window;
+import resources.ResourceRetriever;
 import util.FileHandler;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.toolcards.*;
@@ -13,22 +16,12 @@ public class ToolsWriter {
     //Creatore di carte strumento
 
     public static void main(String[] args) {
-        List<ToolCard> toolCards = new ArrayList<ToolCard>();
-
-        //Crea ogni carta strumento
-        toolCards.add(new AlesatorePerLaminaDiRame());
-        toolCards.add(new DiluentePerPastaCalda());
-        toolCards.add(new Lathekin());
-        toolCards.add(new Martelletto());
-        toolCards.add(new PennelloPerEglomise());
-        toolCards.add(new PennelloPerPastaSalda());
-        toolCards.add(new PinzaSgrossatrice());
-        toolCards.add(new RigaDiSughero());
-        toolCards.add(new TaglierinaCircolare());    //TODO: aggiungi ultime 3
+        //Crea finestre
+        List<ToolCard> cards = ToolsCreator.createToolCards();
 
         //Converte e serializza
         Gson gson = new Gson();
-        String text =  gson.toJson(toolCards);
+        String text =  gson.toJson(cards);
 
         FileHandler fileHandler = new FileHandler();
         fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.TOOL_CARDS_FILE_NAME, text);
