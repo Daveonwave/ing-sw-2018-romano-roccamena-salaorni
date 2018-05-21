@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ing-sw-2018-romano-roccamena-salaorni" />
         <module name="SagradaProject" />
       </profile>
     </annotationProcessing>
+<<<<<<< Updated upstream
     <bytecodeTargetLevel>
       <module name="SagradaProject" target="9" />
     </bytecodeTargetLevel>
+=======
+>>>>>>> Stashed changes
   </component>
 </project>
