@@ -732,13 +732,10 @@ public class ResourceRetriever {
     public List<Window> retrieveWindows(){
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
-
         String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME);
-
         Type founderListType = new TypeToken<ArrayList<Window>>(){}.getType();
         List<Window> result = gson.fromJson(jsonFile, founderListType);
 
         return result;
     }
-
 }

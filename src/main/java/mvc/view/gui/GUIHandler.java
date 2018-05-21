@@ -21,9 +21,7 @@ public class GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;
-    private int players = 0;
     private boolean connected = false;
-    private boolean mode = false;
     private boolean queue = false;
     private boolean ready = false;
     private boolean hide = true;
@@ -33,7 +31,7 @@ public class GUIHandler extends Application {
     @FXML
     TextField input;
     @FXML
-    Button rmi, socket, fourplayers, multi,single, twoplayers,threeplayers, annulla, privateObjective, publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, observe;
+    Button rmi, socket, multi,single, annulla, privateObjective, publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, observe;
     @FXML
     Button d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
@@ -55,14 +53,8 @@ public class GUIHandler extends Application {
     public static void setGuiView(GUIView guiView) {
         GUIHandler.guiView = guiView;
     }
-    public void setPlayers(int players) {
-        this.players = players;
-    }
     public void setConnected(boolean connected) {
         this.connected = connected;
-    }
-    public void setMode(boolean mode) {
-        this.mode = mode;
     }
     public void setQueue(boolean queue) {
         this.queue = queue;
@@ -77,14 +69,8 @@ public class GUIHandler extends Application {
     public static GUIView getGuiView() {
         return guiView;
     }
-    public int getPlayers() {
-        return players;
-    }
     public boolean isConnected() {
         return connected;
-    }
-    public boolean isMode() {
-        return mode;
     }
     public boolean isQueue() {
         return queue;
@@ -107,7 +93,6 @@ public class GUIHandler extends Application {
     //Gestori bottoni
     public void  login(ActionEvent actionEvent) throws IOException{
         pane.setVisible(false);
-        fourplayers.setVisible(false);
         text.setText(guiView.login(input.getText()) + ".Scegliere il tipo di connessione");
     }
     public void cancel(ActionEvent actionEvent)throws RemoteException{
@@ -117,28 +102,17 @@ public class GUIHandler extends Application {
             guiView.logout();
         }
         else{
-            if(!mode) {
+            if(!queue) {
                 rmi.setVisible(true);
                 socket.setVisible(true);
                 text.setText("Scegliere il tipo di connessione");
                 connected = false;
             }
             else{
-                if(!queue) {
-                    multi.setVisible(true);
-                    single.setVisible(true);
-                    fourplayers.setVisible(false);
-                    mode = false;
-                }
-                else {
-                    text.setText("Scegliere numero di giocatori");
-                    fourplayers.setVisible(true);
-                    twoplayers.setVisible(true);
-                    threeplayers.setVisible(true);
-                    queue = false;
-                    this.guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
-                }
-
+                multi.setVisible(true);
+                single.setVisible(true);
+                guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
+                queue = false;
             }
         }
     }
@@ -148,23 +122,13 @@ public class GUIHandler extends Application {
         text.setText("Scegliere la modalita' di gioco");
         this.connected = true;
     }
-    public void multiplayer(ActionEvent actionEvent){
-        multi.setVisible(false);
-        single.setVisible(false);
-        fourplayers.setVisible(true);
-        mode = true;
-        text.setText("Scegliere numero di giocatori");
-    }
 
     //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
-        if (actionEvent.getSource().equals(twoplayers)) this.players = 2;
-        if (actionEvent.getSource().equals(threeplayers)) this.players = 3;
-        if (actionEvent.getSource().equals(fourplayers)) this.players = 4;
+        multi.setVisible(false);
+        single.setVisible(false);
         this.guiView.getAppController().joinMatch(guiView.getUserToken());
-        fourplayers.setVisible(false);
-        twoplayers.setVisible(false);
-        threeplayers.setVisible(false);
+        guiView.getAppController().joinMatch(guiView.getUserToken());
         queue = true;
         text.setText("In attesa di altri giocatori...");
     }
