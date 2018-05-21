@@ -1,40 +1,42 @@
 package mvc.controller.handlers;
 
+import mvc.controller.AppController;
+import mvc.stubs.AppControllerStub;
+
 import java.util.*;
 
 public class MultiPlayerHandler {
     //Gestore servizio multigiocatore
 
-    public static final int WAIT_TIME = 2 * 1000;
+    private AppController controller;
 
     private boolean ready;
     private int usersCount;
     private List<String> waitingUsersToken;
-    private Timer timer;
-    private TimerTask timerTask;
+
+    private NoPlayersHandler noPlayersHandler;
 
     //Costruttori
-    public MultiPlayerHandler(int usersCount, TimerTask timerTask) {
+    public MultiPlayerHandler(AppController controller, int usersCount, int mpDelay) {
         this.ready = false;
         this.usersCount = usersCount;
         this.waitingUsersToken = new ArrayList<String>();
-        this.timer = new Timer();
-        this.timerTask = timerTask;
+        this.controller = controller;
+        this.noPlayersHandler = new NoPlayersHandler(controller, mpDelay);
     }
 
     //Setter/Getter
-    public synchronized void setTimerTask(TimerTask timerTask) {
-        this.timerTask = timerTask;
+    public AppController getController() {
+        return controller;
     }
-
     public synchronized boolean isReady() {
         return ready;
     }
     public synchronized List<String> getWaitingUsersToken() {
         return waitingUsersToken;
     }
-    public synchronized TimerTask getTimerTask() {
-        return timerTask;
+    public NoPlayersHandler getNoPlayersHandler() {
+        return noPlayersHandler;
     }
 
     //Elimina tutti gli utenti dall'attesa
@@ -58,12 +60,12 @@ public class MultiPlayerHandler {
     public synchronized void join(String tokenUser) {
         waitingUsersToken.add(tokenUser);
 
-        if (waitingUsersToken.size() == 1)
-            timer.schedule(timerTask, WAIT_TIME);
+        if (waitingUsersToken.size() == 2)
+            noPlayersHandler.start();
 
         if (waitingUsersToken.size() == usersCount) {
             ready = true;
-            timer.cancel();
+            noPlayersHandler.stop();
         }
         else
             ready = false;

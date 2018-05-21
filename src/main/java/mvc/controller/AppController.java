@@ -1,6 +1,5 @@
 package mvc.controller;
 
-import mvc.controller.handlers.NoPlayersHandler;
 import mvc.exceptions.AppModelException;
 import mvc.stubs.AppControllerStub;
 import mvc.creators.MatchCreator;
@@ -30,7 +29,7 @@ public class AppController implements AppControllerStub {
     //Costruttori
     public AppController() {
         this.model = AppModel.get();
-        this.multiPlayerLobby = new MultiPlayerHandler(4, new NoPlayersHandler(this, MP_WAIT_TIME));
+        this.multiPlayerLobby = new MultiPlayerHandler(this, 4, MP_WAIT_TIME);
     }
 
     //Setter/Getter

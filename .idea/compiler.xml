@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ing-sw-2018-romano-roccamena-salaorni" target="9" />
+      <module name="SagradaProject" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
