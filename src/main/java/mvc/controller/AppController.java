@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import mvc.controller.handlers.NoPlayersHandler;
 import mvc.exceptions.AppModelException;
 import mvc.stubs.AppControllerStub;
 import mvc.creators.MatchCreator;
@@ -18,50 +19,57 @@ import java.util.List;
 public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
+    //Tempo massimo di attesa del multiplayer
+    public static final int MP_WAIT_TIME = 2 * 1000;
+
     //Model dell'applicazione
-    private transient  AppModel model;
-    //Gestore partite multiplayer (2, 3 o 4 giocatori)
-    private transient final MultiPlayerHandler startMultiPlayer2, startMultiPlayer3, startMultiPlayer4;
+    private transient AppModel model;
+    //Gestore partite multiplayer
+    private transient MultiPlayerHandler multiPlayerLobby;
 
     //Costruttori
     public AppController() {
         this.model = AppModel.get();
-        this.startMultiPlayer2 = new MultiPlayerHandler(2);
-        this.startMultiPlayer3 = new MultiPlayerHandler(3);
-        this.startMultiPlayer4 = new MultiPlayerHandler(4);
+        this.multiPlayerLobby = new MultiPlayerHandler(4, new NoPlayersHandler(this, MP_WAIT_TIME));
     }
 
     //Setter/Getter
-    public AppModel getModel() {
-        return model;
-    }
-
     public void setModel(AppModel model){
         this.model = model;
     }
+    public void setMultiPlayerLobby(MultiPlayerHandler multiPlayerLobby) {
+        this.multiPlayerLobby = multiPlayerLobby;
+    }
+
+    public AppModel getModel() {
+        return model;
+    }
+    public MultiPlayerHandler getMultiPlayerLobby() {
+        return multiPlayerLobby;
+    }
 
     //Ack ed error su utenti di un mvc.match o singolarmente
-    private synchronized void matchBroadcastAck(MatchModel matchModel, String message) throws RemoteException {
+    public synchronized void matchBroadcastAck(MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message);
     }
-    private synchronized void matchBroadcastError(MatchModel matchModel, String message) throws RemoteException {
+    public synchronized void matchBroadcastError(MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondError(message);
 
         throw new AppControllerException(message);
     }
-    private synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
+    public synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
         appView.respondAck(message);
     }
-    private synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
+    public synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
         appView.respondError(message);
         throw new AppControllerException(message);
     }
-    private synchronized void userAck(User user, String message) throws RemoteException {
+    public synchronized void userAck(User user, String message) throws RemoteException {
         viewAck(user.getAppView(), message);
     }
-    private synchronized void userError(User user, String message) throws RemoteException {
+    public synchronized void userError(User user, String message) throws RemoteException {
         viewError(user.getAppView(), message);
     }
 
@@ -96,33 +104,18 @@ public class AppController implements AppControllerStub {
         viewAck(appView, "disconnesso");
     }
 
-    //Ottiene gestore di partite corrispondente
-    private synchronized MultiPlayerHandler retrieveMatchStartHandler(User user, int playersCount) throws RemoteException {
-        switch (playersCount) {
-            case 2:
-                return startMultiPlayer2;
-            case 3:
-                return startMultiPlayer3;
-            case 4:
-                return startMultiPlayer4;
-            default:
-                userError(user, "numero giocatori non valido");
-                return null;
-        }
-    }
-
     //Mosse degli utenti sulla partita
-    public synchronized void joinMatch(String tokenUser, int playersCount) throws RemoteException {
+    public synchronized void joinMatch(String tokenUser) throws RemoteException {
         //Ottiente gestore partite e partecipa all'attesa
         User user = model.retrieveUser(tokenUser);
-        MultiPlayerHandler handler = retrieveMatchStartHandler(user, playersCount);
-        handler.join(tokenUser);
+        multiPlayerLobby.join(tokenUser);
 
         //Se sono presenti gli utenti partecipanti necessari
-        if (handler.isReady()) {
+        if (multiPlayerLobby.isReady()) {
             //Ottiene utenti partecipanti
+            List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
             List<User> partecipantUsers = new ArrayList<User>();
-            for (String partecipantToken : handler.getWaitingUsersToken())
+            for (String partecipantToken : partecipantTokens)
                 partecipantUsers.add(model.retrieveUser(partecipantToken));
 
             //Crea nuova partita
@@ -136,9 +129,6 @@ public class AppController implements AppControllerStub {
 
             //Registra la nuova partita nel model
             String tokenMatch = model.createMatch(matchModel);
-
-            //Elimina gli utenti in attesa dal gestore multiplayer
-            handler.clear();
 
             //Inizia la parita
             try {
@@ -158,13 +148,12 @@ public class AppController implements AppControllerStub {
             matchBroadcastAck(matchModel, "i giocatori stanno scegliendo le finestre");
         }
     }
-    public synchronized void cancelJoinMatch(String tokenUser, int playersCount) throws RemoteException {
+    public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
         //Ottiene gestore partite
         User user = model.retrieveUser(tokenUser);
-        MultiPlayerHandler handler = retrieveMatchStartHandler(user, playersCount);
 
         //L'utente lascia l'attesa
-        handler.leave(tokenUser);
+        multiPlayerLobby.leave(tokenUser);
 
         //Notifica l'utente dell'uscita
         userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");

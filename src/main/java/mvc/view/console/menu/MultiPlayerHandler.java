@@ -15,51 +15,35 @@ public class MultiPlayerHandler extends MenuInputHandler {
 
     //Gestione input
     public void onInputHandle() throws Exception {
-        ConsoleView game = getParentGame();
+        ConsoleView view = getConsoleView();
         ConsoleMenu menu = getParentMenu();
 
         //Controlla che l'utente sia loggato
-        if (!game.isLogged()){
-            game.signalError("non sei connesso al server");
+        if (!view.isLogged()){
+            view.signalError("non sei connesso al server");
 
             Console.clearScreen();
 
-            game.show();
+            view.show();
             return;
         }
 
-        //Chiede numero giocatori
-        String input = "";
-        int playersCount = -1;
-        boolean ok = true;
-
-        do {
-            boolean exception = false;
-
-            input = game.askInput("quanti giocatori? (2/3/4)");
-            try {
-                playersCount = Integer.parseInt(input);
-            } catch (Exception e) {
-                exception = true;
-            }
-
-            if (exception)
-                ok = false;
-            else
-                ok = true;
-        } while (!ok);
+        //Notifica attesa
+        view.printInfo("in attesa di partecipanti...");
 
         //Richiesta controllore
         try {
-            game.getAppController().joinMatch(game.getUserToken(), playersCount);
+            getConsoleView().setWaitingMultiplayer(true);
+
+            view.getAppController().joinMatch(view.getUserToken());
         } catch (AppModelException e) {
-            game.signalError(e.getMessage());
+            view.signalError(e.getMessage());
             Console.clearScreen();
-            game.show();
+            view.show();
             return;
         } catch (AppControllerException e) {
             Console.clearScreen();
-            game.show();
+            view.show();
             return;
         }
 

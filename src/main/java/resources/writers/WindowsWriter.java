@@ -1,15 +1,11 @@
 package resources.writers;
 
 import com.google.gson.Gson;
-import io.FileHandler;
-import mvc.model.objects.*;
+import util.FileHandler;
 import mvc.model.objects.Window;
-import mvc.model.objects.enums.WindowPattern;
 import resources.ResourceFileInfo;
 import resources.ResourceRetriever;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WindowsWriter {

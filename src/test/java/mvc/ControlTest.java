@@ -65,8 +65,8 @@ public class ControlTest extends BaseTest {
 
         //Partecipa partita
         try {
-            controller.joinMatch(token1, 2);
-            controller.joinMatch(token2, 2);
+            controller.joinMatch(token1);
+            controller.joinMatch(token2);
         } catch (RemoteException e) {
             testAssertError("during join mvc.match: " + e.getMessage());
         } catch (Exception e) {
