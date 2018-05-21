@@ -1,35 +1,25 @@
 package mvc.model.objects;
 
-
-
 import java.awt.*;
 import java.rmi.RemoteException;
 
-public abstract class ToolCard extends Card{
+public abstract class ToolCard extends ColorCard{
     //Carta strumento
 
     private int favorTokens;
-    private Color color;
     //Costruttori
-   public ToolCard(String name, String description, int favorTokens, Color color) {
-        super(name, description);
-        this.favorTokens = favorTokens;
-        this.color = color;
+    public ToolCard(String name, String description, Color color) {
+        super(name, description, color);
     }
+
 
     //Setter/Getter
     public void setFavorTokens(int favorTokens) {
         this.favorTokens = favorTokens;
     }
-    public void setDieColor(Color color) {
-        this.color = color;
-    }
 
     public int getFavorTokens() {
         return favorTokens;
-    }
-    public Color getColor() {
-        return color;
     }
 
     //Usa carta strumento

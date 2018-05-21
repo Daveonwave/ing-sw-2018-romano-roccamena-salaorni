@@ -3,13 +3,23 @@ package mvc.model.objects.private_objectives_cards;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
 
+import java.awt.*;
+
 public class ShadesOfPurple extends PrivateObjectiveCard {
-    public ShadesOfPurple(String name, String description) {
-        super(name, description);
+    public ShadesOfPurple() {
+        super("sfumature viola", "somma dei valori di utti i dadi viola. ", new Color(148,0,211));
     }
 
     @Override
     public int getPoints(Window window) {
-        return 0;
+        int points = 0;
+        for (int i = 0; i < 4; i++){
+            for(int j= 0; j < 5; j++){
+                if(window.getCells()[i][j].getDie().getColor().equals(this.getColor())){
+                    points += window.getCells()[i][j].getDie().getShade();
+                }
+            }
+        }
+        return points;
     }
 }
