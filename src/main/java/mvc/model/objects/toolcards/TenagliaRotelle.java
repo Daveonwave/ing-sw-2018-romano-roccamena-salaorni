@@ -12,7 +12,7 @@ public class TenagliaRotelle extends ToolCard {
 
     //Costruttori
     public TenagliaRotelle() {
-        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", 0, GameConstants.RED);
+        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", GameConstants.RED);
 
     }
 

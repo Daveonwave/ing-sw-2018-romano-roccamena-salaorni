@@ -9,7 +9,7 @@ public class RigaDiSughero extends ToolCard {
 
     //Costruttori
     public RigaDiSughero() {
-        super("riga di sughero", "dopo aver scelto un dado, piazzalo in una cella che non sia adiacente ad un altro, rispettando tutte le altre restrizioni", 0, GameConstants.YELLOW);
+        super("riga di sughero", "dopo aver scelto un dado, piazzalo in una cella che non sia adiacente ad un altro, rispettando tutte le altre restrizioni", GameConstants.YELLOW);
 
     }
     //Usa carta strumento

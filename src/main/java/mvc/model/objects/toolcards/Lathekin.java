@@ -10,7 +10,7 @@ public class Lathekin extends ToolCard {
 
     //Costruttori
     public Lathekin() {
-        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", 0, GameConstants.YELLOW);
+        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", GameConstants.YELLOW);
     }
 
     //Usa carta strumento

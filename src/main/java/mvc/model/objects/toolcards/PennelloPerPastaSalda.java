@@ -9,7 +9,7 @@ public class PennelloPerPastaSalda extends ToolCard {
 
     //Costruttori
     public PennelloPerPastaSalda() {
-        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", 0, GameConstants.PURPLE);
+        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", GameConstants.PURPLE);
 
     }
 

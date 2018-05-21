@@ -8,7 +8,7 @@ public class TamponeDiamantato extends ToolCard{
 
     //Costruttori
     public TamponeDiamantato() {
-        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", 0, GameConstants.GREEN);
+        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", GameConstants.GREEN);
 
     }
 

@@ -9,7 +9,7 @@ public class PinzaSgrossatrice extends ToolCard {
 
     //Costruttori
     public PinzaSgrossatrice() {
-        super("pinza sgrossatrice", "dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", 0, GameConstants.PURPLE);
+        super("pinza sgrossatrice", "dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", GameConstants.PURPLE);
     }
 
 

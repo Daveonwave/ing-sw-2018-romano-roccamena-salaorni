@@ -1,5 +1,6 @@
 package mvc.model.objects.private_objectives_cards;
 
+import mvc.model.objects.GameConstants;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
 
@@ -7,7 +8,7 @@ import java.awt.*;
 
 public class ShadesOfRed extends PrivateObjectiveCard {
     public ShadesOfRed() {
-        super("sfumature rosse", "somma dei valori di tutti i dadi rossi", Color.RED);
+        super("sfumature rosse", "somma dei valori di tutti i dadi rossi", GameConstants.RED);
     }
 
     @Override

@@ -8,7 +8,7 @@ public class PennelloPerEglomise extends ToolCard {
 
     //Costruttori
     public PennelloPerEglomise() {
-        super("pennello per eglomise", "muovi un qualunque tuo dado piazzato ignorando le restrizioni di colore, rispettando tutte le altre restrizioni", 0, GameConstants.BLUE);
+        super("pennello per eglomise", "muovi un qualunque tuo dado piazzato ignorando le restrizioni di colore, rispettando tutte le altre restrizioni", GameConstants.BLUE);
 
     }
 

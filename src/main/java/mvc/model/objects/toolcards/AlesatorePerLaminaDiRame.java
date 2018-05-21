@@ -8,7 +8,7 @@ public class AlesatorePerLaminaDiRame extends ToolCard{
 
     //Costruttori
     public AlesatorePerLaminaDiRame() {
-        super("alesatore per lamina di rame", "muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", 0, GameConstants.RED);
+        super("alesatore per lamina di rame", "muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", GameConstants.RED);
     }
 
     //Usa carta strumento
