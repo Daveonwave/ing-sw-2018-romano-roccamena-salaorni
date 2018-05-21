@@ -4,8 +4,8 @@ import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
 
 public class DeepShades extends PublicObjectiveCard {
-    public DeepShades(String name, String description) {
-        super(name, description);
+    public DeepShades() {
+        super("sfumature scure", "set di 5 & 6 ovunque");
     }
 
     @Override

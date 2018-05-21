@@ -1,15 +1,25 @@
 package mvc.model.objects.public_objectives_cards;
 
+import mvc.model.objects.Cell;
 import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
 
 public class ColorDiagonals extends PublicObjectiveCard {
-    public ColorDiagonals(String name, String description) {
-        super(name, description);
+
+    //Costruttori
+    public ColorDiagonals() {
+        super("diagonali colorate", "numero di dadi" +
+                " dello stesso colore diagonalmente adiacenti");
     }
 
     @Override
     public int getPoints(Window window) {
-        return 0;
+
+        int points = 0;
+        Cell cell;
+
+
+
+        return points;
     }
 }

@@ -4,8 +4,8 @@ import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
 
 public class MediumShades extends PublicObjectiveCard {
-    public MediumShades(String name, String description) {
-        super(name, description);
+    public MediumShades() {
+        super("sfumature medie", "set di 3 & 4 ovunque");
     }
 
     @Override

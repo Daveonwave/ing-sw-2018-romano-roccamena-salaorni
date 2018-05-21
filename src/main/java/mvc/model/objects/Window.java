@@ -83,7 +83,7 @@ public class Window {
         return true;
     }
 
-    //Ottiene celle adiacenti ad una data
+    //Ottiene celle ortogonalmente adiacenti ad una data
     public Cell getUpCell(Cell cell) {
         if (cell.isNorthBorder())
             return null;
@@ -109,6 +109,7 @@ public class Window {
             return cells[cell.getRow()][cell.getColumn()+1];
     }
 
+    //Ottiene tutte le celle ortogonalmente adiacenti
     public Cell[] getAdjacentCells(Cell cell) {
         List<Cell> cells = new ArrayList<Cell>();
 
@@ -127,6 +128,55 @@ public class Window {
             cells.add(right);
 
         return (Cell[]) cells.toArray();
+    }
+
+    //Ottiene celle diagonalmente adiacenti ad una data
+    public Cell getUpLeftCell(Cell cell) {
+        if(cell.isNorthBorder() || cell.isWestBorder()){
+            return null;
+        }
+        else
+            return cells[cell.getRow()-1][cell.getColumn()-1];
+    }
+    public Cell getUpRightCell(Cell cell){
+        if(cell.isNorthBorder() || cell.isEastBorder()){
+            return null;
+        }
+        else
+            return cells[cell.getRow()-1][cell.getColumn()+1];
+    }
+    public Cell getDownLeftCell(Cell cell) {
+        if(cell.isSouthBorder() || cell.isWestBorder())
+            return null;
+        else
+            return cells[cell.getRow()+1][cell.getColumn()-1];
+    }
+    public Cell getDownRightCell(Cell cell){
+        if(cell.isSouthBorder() || cell.isEastBorder())
+            return null;
+        else
+            return cells[cell.getRow()+1][cell.getColumn()+1];
+    }
+
+    //Ottiene tutte le celle diagonalmente adiacenti
+    public List<Cell> getDiagonalsCells(Cell cell){
+        List<Cell> cells = new ArrayList<Cell>();
+
+        Cell upLeft = getUpLeftCell(cell);
+        Cell upRight = getUpRightCell(cell);
+        Cell downLeft = getDownLeftCell(cell);
+        Cell downRight = getDownRightCell(cell);
+
+        if(upLeft != null)
+            cells.add(upLeft);
+        if(upRight != null)
+            cells.add(upRight);
+        if(downLeft != null)
+            cells.add(downLeft);
+        if(downRight != null)
+            cells.add(downRight);
+
+        return cells;
     }
 
     //Verifica restrizioni di finestra
