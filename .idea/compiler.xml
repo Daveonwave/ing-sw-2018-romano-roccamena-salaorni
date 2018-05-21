@@ -9,11 +9,8 @@
         <module name="SagradaProject" />
       </profile>
     </annotationProcessing>
-<<<<<<< Updated upstream
     <bytecodeTargetLevel>
       <module name="SagradaProject" target="9" />
     </bytecodeTargetLevel>
-=======
->>>>>>> Stashed changes
   </component>
 </project>
