@@ -8,8 +8,8 @@ import java.rmi.RemoteException;
 public interface MatchController extends Remote{
     //Controllore remoto partita
 
-    void joinMatch(String tokenUser, int playersCount) throws RemoteException;
-    void cancelJoinMatch(String tokenUser, int playersCount) throws RemoteException;
+    void joinMatch(String tokenUser) throws RemoteException;
+    void cancelJoinMatch(String tokenUser) throws RemoteException;
     void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException;
     void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException;
     void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException;

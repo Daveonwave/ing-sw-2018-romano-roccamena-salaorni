@@ -2,7 +2,7 @@ package resources;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.FileHandler;
+import util.FileHandler;
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
 
@@ -690,7 +690,7 @@ public class ResourceRetriever {
             return windows;
     }
 
-    //Ottiene da file gli oggetti di una partita
+    //Ottiene carte
     public List<PrivateObjectiveCard> retrievePrivateObjectiveCards(){
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
@@ -727,6 +727,8 @@ public class ResourceRetriever {
         return result;
 
     }
+
+    //Ottiene finestre
     public List<Window> retrieveWindows(){
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();

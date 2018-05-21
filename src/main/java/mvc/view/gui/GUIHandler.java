@@ -29,6 +29,7 @@ public class GUIHandler extends Application {
     private boolean hide = true;
     private Stage stage;
 
+    //Componenti gui
     @FXML
     TextField input;
     @FXML
@@ -135,7 +136,7 @@ public class GUIHandler extends Application {
                     twoplayers.setVisible(true);
                     threeplayers.setVisible(true);
                     queue = false;
-                    this.guiView.getAppController().cancelJoinMatch(guiView.getUserToken(), this.players);
+                    this.guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
                 }
 
             }
@@ -160,7 +161,7 @@ public class GUIHandler extends Application {
         if (actionEvent.getSource().equals(twoplayers)) this.players = 2;
         if (actionEvent.getSource().equals(threeplayers)) this.players = 3;
         if (actionEvent.getSource().equals(fourplayers)) this.players = 4;
-        this.guiView.getAppController().joinMatch(guiView.getUserToken(), players);
+        this.guiView.getAppController().joinMatch(guiView.getUserToken());
         fourplayers.setVisible(false);
         twoplayers.setVisible(false);
         threeplayers.setVisible(false);
@@ -181,7 +182,7 @@ public class GUIHandler extends Application {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/style.css");
+        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

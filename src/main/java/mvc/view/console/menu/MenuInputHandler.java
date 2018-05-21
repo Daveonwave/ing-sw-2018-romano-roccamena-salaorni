@@ -5,25 +5,25 @@ import mvc.view.console.ConsoleView;
 public abstract class MenuInputHandler {
     //Input di un menu
 
-    private ConsoleView parentGame;
+    private ConsoleView consoleView;
     private ConsoleMenu parentMenu;
 
     //Costruttori
-    public MenuInputHandler(ConsoleView parentGame, ConsoleMenu parentMenu) {
-        this.parentGame = parentGame;
+    public MenuInputHandler(ConsoleView consoleView, ConsoleMenu parentMenu) {
+        this.consoleView = consoleView;
         this.parentMenu = parentMenu;
     }
 
     //Setter/Getter
-    public void setParentGame(ConsoleView parentGame) {
-        this.parentGame = parentGame;
+    public void setConsoleView(ConsoleView consoleGame) {
+        this.consoleView = consoleGame;
     }
     public void setParentMenu(ConsoleMenu parentMenu) {
         this.parentMenu = parentMenu;
     }
 
-    public ConsoleView getParentGame() {
-        return parentGame;
+    public ConsoleView getConsoleView() {
+        return consoleView;
     }
     public ConsoleMenu getParentMenu() {
         return parentMenu;

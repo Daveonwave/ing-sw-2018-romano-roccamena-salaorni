@@ -15,7 +15,7 @@ public class LoginHandler extends MenuInputHandler {
 
     //Gestione input
     public void onInputHandle() throws Exception {
-        ConsoleView game = getParentGame();
+        ConsoleView game = getConsoleView();
         ConsoleMenu menu = getParentMenu();
 
         //Controlla che l'utente sia gia loggato

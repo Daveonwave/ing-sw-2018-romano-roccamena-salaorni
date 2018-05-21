@@ -21,6 +21,8 @@ public class ConsoleView extends AppView {
     private List<String> ackMessages;
     private List<String> errorMessages;
 
+    private boolean waitingMultiplayer;
+
     public final int WIDTH = 50;
 
     //Costruttori
@@ -30,6 +32,16 @@ public class ConsoleView extends AppView {
         this.matchToken = "";
         this.ackMessages = new ArrayList<String>();
         this.errorMessages = new ArrayList<String>();
+        this.waitingMultiplayer = false;
+    }
+
+    //Setter/Getter
+    public boolean getWaitingMultiplayer() {
+        return waitingMultiplayer;
+    }
+
+    public void setWaitingMultiplayer(boolean waitingMultiplayer) {
+        this.waitingMultiplayer = waitingMultiplayer;
     }
 
     //Visualizzazioni varie
@@ -89,7 +101,23 @@ public class ConsoleView extends AppView {
         mainMenu.handleInput(input);
     }
 
-    //Richiesta input
+    //Metodi input output gico
+    public void printInfo(String text) {
+        Console.setColor(ConsoleColors.GREEN);
+        Console.printlnCentered(text, WIDTH, " ");
+    }
+    public void printAck() {
+        Console.setColor(ConsoleColors.GREEN);
+
+        for (String message : ackMessages)
+            Console.printlnCentered(message, WIDTH, " ");
+    }
+    public void printError() {
+        Console.setColor(ConsoleColors.PURPLE_BOLD);
+
+        for (String message : errorMessages)
+            Console.printlnCentered(message, WIDTH, " ");
+    }
     public String askInput(String text) throws IOException {
         Console.setColor(ConsoleColors.GREEN);
         Console.printlnCentered(text, WIDTH, " ");
@@ -105,26 +133,22 @@ public class ConsoleView extends AppView {
         errorMessages.add(message);
     }
 
-    //Print ack ed error
-    public void printAck() {
-        Console.setColor(ConsoleColors.GREEN);
-
-        for (String message : ackMessages)
-            Console.printlnCentered(message, WIDTH, " ");
-    }
-    public void printError() {
-        Console.setColor(ConsoleColors.PURPLE_BOLD);
-
-        for (String message : errorMessages)
-            Console.printlnCentered(message, WIDTH, " ");
-    }
-
     //Risposte al constrollore
     public void respondAck(String message) {
         signalAck(message);
     }
     public void respondError(String message) {
         signalError(message);
+
+        //Gestione attesa multiplayer
+        if (waitingMultiplayer) {
+            waitingMultiplayer = false;
+
+            Console.clearScreen();
+            try {
+                showMainMenu();
+            } catch (IOException e) {}
+        }
     }
 
     //Operazioni su utente

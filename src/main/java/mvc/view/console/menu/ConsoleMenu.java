@@ -10,13 +10,13 @@ public abstract class ConsoleMenu {
     //Menu della view console
 
     private int width;
-    private ConsoleView parentGame;
+    private ConsoleView consoleView;
     private Map<String, MenuInputHandler> menuInputHandlers;
 
     //Costruttori
     public ConsoleMenu(int width, ConsoleView parentGame) {
         this.width = width;
-        this.parentGame = parentGame;
+        this.consoleView = parentGame;
         this.menuInputHandlers = new HashMap<String, MenuInputHandler>();
     }
 
@@ -24,23 +24,22 @@ public abstract class ConsoleMenu {
     public void setWidth(int width) {
         this.width = width;
     }
-    public void setParentGame(ConsoleView parentGame) {
-        this.parentGame = parentGame;
+    public void setConsoleView(ConsoleView consoleView) {
+        this.consoleView = consoleView;
     }
     public void setMenuInputHandlers(Map<String, MenuInputHandler> menuInputHandlers) {
         this.menuInputHandlers = menuInputHandlers;
     }
 
-    public Map<String, MenuInputHandler> getMenuInputHandlers() {
-        return menuInputHandlers;
-    }
-    public ConsoleView getParentGame() {
-        return parentGame;
-    }
     public int getWidth() {
         return width;
     }
-
+    public ConsoleView getConsoleView() {
+        return consoleView;
+    }
+    public Map<String, MenuInputHandler> getMenuInputHandlers() {
+        return menuInputHandlers;
+    }
 
     //Verifica input valido
     public boolean isValidInput(String input) {
