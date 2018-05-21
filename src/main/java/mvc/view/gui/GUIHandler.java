@@ -22,7 +22,6 @@ public class GUIHandler extends Application {
 
     private static GUIView guiView;
     private boolean connected = false;
-    private boolean mode = false;
     private boolean queue = false;
     private boolean ready = false;
     private boolean hide = true;
@@ -57,9 +56,6 @@ public class GUIHandler extends Application {
     public void setConnected(boolean connected) {
         this.connected = connected;
     }
-    public void setMode(boolean mode) {
-        this.mode = mode;
-    }
     public void setQueue(boolean queue) {
         this.queue = queue;
     }
@@ -75,9 +71,6 @@ public class GUIHandler extends Application {
     }
     public boolean isConnected() {
         return connected;
-    }
-    public boolean isMode() {
-        return mode;
     }
     public boolean isQueue() {
         return queue;
@@ -109,35 +102,17 @@ public class GUIHandler extends Application {
             guiView.logout();
         }
         else{
-            if(!mode) {
+            if(!queue) {
                 rmi.setVisible(true);
                 socket.setVisible(true);
                 text.setText("Scegliere il tipo di connessione");
                 connected = false;
             }
             else{
-<<<<<<< Updated upstream
-                if(!queue) {
-                    multi.setVisible(true);
-                    single.setVisible(true);
-                    fourplayers.setVisible(false);
-                    mode = false;
-                }
-                else {
-                    text.setText("Scegliere numero di giocatori");
-                    fourplayers.setVisible(true);
-                    twoplayers.setVisible(true);
-                    threeplayers.setVisible(true);
-                    queue = false;
-                    this.guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
-                }
-
-=======
                 multi.setVisible(true);
                 single.setVisible(true);
                 guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
-                mode = false;
->>>>>>> Stashed changes
+                queue = false;
             }
         }
     }
@@ -147,26 +122,13 @@ public class GUIHandler extends Application {
         text.setText("Scegliere la modalita' di gioco");
         this.connected = true;
     }
-    public void multiplayer(ActionEvent actionEvent){
-        multi.setVisible(false);
-        single.setVisible(false);
-        mode = true;
-        text.setText("Scegliere numero di giocatori");
-    }
 
     //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
-<<<<<<< Updated upstream
-        if (actionEvent.getSource().equals(twoplayers)) this.players = 2;
-        if (actionEvent.getSource().equals(threeplayers)) this.players = 3;
-        if (actionEvent.getSource().equals(fourplayers)) this.players = 4;
+        multi.setVisible(false);
+        single.setVisible(false);
         this.guiView.getAppController().joinMatch(guiView.getUserToken());
-        fourplayers.setVisible(false);
-        twoplayers.setVisible(false);
-        threeplayers.setVisible(false);
-=======
         guiView.getAppController().joinMatch(guiView.getUserToken());
->>>>>>> Stashed changes
         queue = true;
         text.setText("In attesa di altri giocatori...");
     }
