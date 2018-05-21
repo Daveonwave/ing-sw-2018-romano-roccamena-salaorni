@@ -21,11 +21,8 @@
                 <Font name="AdobeSongStd-Light" size="22.0" />
             </font>
         </Text>
-      <Button fx:id="fourplayers" layoutX="439.0" layoutY="574.0" mnemonicParsing="false" onAction="#waitGame" prefHeight="53.0" prefWidth="107.0" text="4 giocatori" />
-      <Button fx:id="threeplayers" layoutX="439.0" layoutY="514.0" mnemonicParsing="false" onAction="#waitGame" prefHeight="53.0" prefWidth="107.0" text="3 giocatori" />
-      <Button fx:id="twoplayers" layoutX="439.0" layoutY="455.0" mnemonicParsing="false" onAction="#waitGame" prefHeight="53.0" prefWidth="107.0" text="2 giocatori" />
       <Button fx:id="single" layoutX="439.0" layoutY="449.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="107.0" text="Singleplayer" />
-      <Button fx:id="multi" layoutX="439.0" layoutY="514.0" mnemonicParsing="false" onAction="#multiplayer" prefHeight="53.0" prefWidth="107.0" text="Multiplayer" />
+      <Button fx:id="multi" layoutX="439.0" layoutY="514.0" mnemonicParsing="false" onAction="#waitGame" prefHeight="53.0" prefWidth="107.0" text="Multiplayer" />
       <Button fx:id="rmi" layoutX="439.0" layoutY="514.0" mnemonicParsing="false" onAction="#connection" prefHeight="53.0" prefWidth="113.0" text="RMI" />
       <Button fx:id="socket" layoutX="439.0" layoutY="449.0" mnemonicParsing="false" onAction="#connection" prefHeight="59.0" prefWidth="113.0" text="Socket" />
       <Button fx:id="annulla" layoutX="439.0" layoutY="651.0" mnemonicParsing="false" onAction="#cancel" prefHeight="53.0" prefWidth="113.0" text="Annulla" />
