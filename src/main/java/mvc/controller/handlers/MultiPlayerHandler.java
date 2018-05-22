@@ -1,7 +1,6 @@
 package mvc.controller.handlers;
 
 import mvc.controller.AppController;
-import mvc.stubs.AppControllerStub;
 
 import java.util.*;
 

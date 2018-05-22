@@ -10,22 +10,22 @@ public class ToolsCreator {
     //Creatore carte strumento gioco
 
     public static List<ToolCard> createToolCards() {
-        List<ToolCard> toolCards = new ArrayList<ToolCard>();
+        List<ToolCard> cards = new ArrayList<ToolCard>();
 
         //Crea ogni carta strumento
-        toolCards.add(new AlesatorePerLaminaDiRame());
-        toolCards.add(new DiluentePerPastaCalda());
-        toolCards.add(new Lathekin());
-        toolCards.add(new Martelletto());
-        toolCards.add(new PennelloPerEglomise());
-        toolCards.add(new PennelloPerPastaSalda());
-        toolCards.add(new PinzaSgrossatrice());
-        toolCards.add(new RigaDiSughero());
-        toolCards.add(new TaglierinaCircolare());
-        toolCards.add(new TaglierinaManuale());
-        toolCards.add(new TamponeDiamantato());
-        toolCards.add(new TenagliaRotelle());
+        cards.add(new AlesatorePerLaminaDiRame());
+        cards.add(new DiluentePerPastaCalda());
+        cards.add(new Lathekin());
+        cards.add(new Martelletto());
+        cards.add(new PennelloPerEglomise());
+        cards.add(new PennelloPerPastaSalda());
+        cards.add(new PinzaSgrossatrice());
+        cards.add(new RigaDiSughero());
+        cards.add(new TaglierinaCircolare());
+        cards.add(new TaglierinaManuale());
+        cards.add(new TamponeDiamantato());
+        cards.add(new TenagliaRotelle());
 
-        return toolCards;
+        return cards;
     }
 }

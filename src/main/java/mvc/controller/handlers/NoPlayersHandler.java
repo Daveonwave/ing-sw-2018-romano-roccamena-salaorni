@@ -25,7 +25,8 @@ public class NoPlayersHandler extends TimedSubcontroller {
 
             //Comunica fine attesa partita
             getController().userError(user, "nessun giocatore disponibile");
-        }
+        } else
+            getController().startMatch();
     }
     public synchronized void onTimedTaskException(Exception e) {
         //Non fa nulla

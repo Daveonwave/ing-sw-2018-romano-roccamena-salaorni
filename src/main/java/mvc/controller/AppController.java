@@ -103,6 +103,44 @@ public class AppController implements AppControllerStub {
         viewAck(appView, "disconnesso");
     }
 
+    //Inizia partita
+    public synchronized void startMatch() throws RemoteException {
+        //Ottiene utenti partecipanti
+        List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
+        List<User> partecipantUsers = new ArrayList<User>();
+        for (String partecipantToken : partecipantTokens)
+            partecipantUsers.add(model.retrieveUser(partecipantToken));
+
+        //Crea nuova partita
+        Match match = MatchCreator.createMultiPlayer(partecipantUsers);
+        MatchModel matchModel = new MatchModel(match);
+
+        //Registra gli utenti come osservatori della partita
+        for (User partecipantUser : partecipantUsers) {
+            matchModel.attachMatchObserver(partecipantUser.getAppView());
+        }
+
+        //Registra la nuova partita nel model
+        String tokenMatch = model.createMatch(matchModel);
+
+        //Inizia la parita
+        try {
+            match.beginMatch();
+        } catch (MatchException e) {
+            matchBroadcastError(matchModel, e.getMessage());
+            return;
+        }
+        match.beginMatch();
+
+        //Notifica inizio della partita
+        matchModel.notifyMatchStart(tokenMatch);
+        matchBroadcastAck(matchModel, "partita iniziata");
+
+        //Notifica inizio fase di scelta delle finestre
+        matchModel.notifyChooseWindows(tokenMatch);
+        matchBroadcastAck(matchModel, "i giocatori stanno scegliendo le finestre");
+    }
+
     //Mosse degli utenti sulla partita
     public synchronized void joinMatch(String tokenUser) throws RemoteException {
         //Ottiente gestore partite e partecipa all'attesa
@@ -110,42 +148,8 @@ public class AppController implements AppControllerStub {
         multiPlayerLobby.join(tokenUser);
 
         //Se sono presenti gli utenti partecipanti necessari
-        if (multiPlayerLobby.isReady()) {
-            //Ottiene utenti partecipanti
-            List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
-            List<User> partecipantUsers = new ArrayList<User>();
-            for (String partecipantToken : partecipantTokens)
-                partecipantUsers.add(model.retrieveUser(partecipantToken));
-
-            //Crea nuova partita
-            Match match = MatchCreator.createMultiPlayer(partecipantUsers);
-            MatchModel matchModel = new MatchModel(match);
-
-            //Registra gli utenti come osservatori della partita
-            for (User partecipantUser : partecipantUsers) {
-                matchModel.attachMatchObserver(user.getAppView());
-            }
-
-            //Registra la nuova partita nel model
-            String tokenMatch = model.createMatch(matchModel);
-
-            //Inizia la parita
-            try {
-                match.beginMatch();
-            } catch (MatchException e) {
-                matchBroadcastError(matchModel, e.getMessage());
-                return;
-            }
-            match.beginMatch();
-
-            //Notifica inizio della partita
-            matchModel.notifyMatchStart(tokenMatch);
-            matchBroadcastAck(matchModel, "partita iniziata");
-
-            //Notifica inizio fase di scelta delle finestre
-            matchModel.notifyChooseWindows(tokenMatch);
-            matchBroadcastAck(matchModel, "i giocatori stanno scegliendo le finestre");
-        }
+        if (multiPlayerLobby.isReady())
+            startMatch();
     }
     public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
         //Ottiene gestore partite

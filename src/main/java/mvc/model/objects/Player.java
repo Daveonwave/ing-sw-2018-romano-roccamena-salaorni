@@ -4,6 +4,7 @@ import mvc.exceptions.AppModelException;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements Serializable{
@@ -19,11 +20,14 @@ public class Player implements Serializable{
 
     //Costruttori
     //MultiPlayer -> un solo obiettivo privato
-    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCards, int favorTokens) {
+    public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCard, int favorTokens) {
         this.user = user;
         this.window = window;
         this.startWindows = startWindows;
-        this.privateObjectiveCards.add(privateObjectiveCards);
+
+        this.privateObjectiveCards = new ArrayList<PrivateObjectiveCard>();
+        this.privateObjectiveCards.add(privateObjectiveCard);
+
         this.favorTokens = favorTokens;
         this.toolCardEffect = new ToolCardEffect();
         this.turnDiePlaced = false;
@@ -33,7 +37,9 @@ public class Player implements Serializable{
         this.user = user;
         this.window = window;
         this.startWindows = startWindows;
+
         this.privateObjectiveCards = privateObjectiveCards;
+
         this.favorTokens = favorTokens;
         this.toolCardEffect = new ToolCardEffect();
         this.turnDiePlaced = false;

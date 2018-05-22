@@ -80,5 +80,6 @@ public class ControlTest extends BaseTest {
 
         //Lancia i test
         test.twoPlayerLocal1();
+
     }
 }
