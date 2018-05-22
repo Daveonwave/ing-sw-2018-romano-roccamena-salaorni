@@ -57,6 +57,8 @@ public class Cell {
     public boolean sameDie(Cell cell) {
         if (cell == null)
             return false;
+        if (cell.getDie() == null)
+            return false;
 
         return cell.getDie().sameDie(die);
     }

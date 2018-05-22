@@ -76,6 +76,7 @@ public class AppController implements AppControllerStub {
     public synchronized String login(String name, AppViewStub appView) throws RemoteException {
         String token = "";
 
+        //Crea utente nel model
         try {
             token =  model.createUser(name, appView);
         } catch (AppModelException e) {
@@ -130,7 +131,6 @@ public class AppController implements AppControllerStub {
             matchBroadcastError(matchModel, e.getMessage());
             return;
         }
-        match.beginMatch();
 
         //Notifica inizio della partita
         matchModel.notifyMatchStart(tokenMatch);

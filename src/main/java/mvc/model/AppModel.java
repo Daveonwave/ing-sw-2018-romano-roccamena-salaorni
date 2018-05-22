@@ -14,11 +14,11 @@ public class AppModel {
     private static AppModel instance;
 
     //Nomi utenti online
-    private final TokenMap<String> names;
+    public final TokenMap<String> names;
     //Utenti online
-    private final TokenMap<User> users;
+    public final TokenMap<User> users;
     //Partite online
-    private final TokenMap<MatchModel> matches;
+    public final TokenMap<MatchModel> matches;
 
     //Costruttori
     private AppModel() {
@@ -27,7 +27,7 @@ public class AppModel {
         this.matches = new TokenMap<MatchModel>();
     }
 
-    //Getter statico
+    //Getter singleton
     public synchronized static AppModel get() {
         if (instance == null) {
             instance = new AppModel();
@@ -41,7 +41,7 @@ public class AppModel {
         if (names.values().contains(name))
             throw new AppModelException("l'utente " + name + " è gia connesso");
 
-        String token = users.createObject(new User(name, appView, new ArrayList<Player>()));
+        String token = users.createObject(new User(name, appView));
         names.put(token, name);
         return token;
     }

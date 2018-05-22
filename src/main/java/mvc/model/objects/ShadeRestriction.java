@@ -21,9 +21,10 @@ public class ShadeRestriction extends CellRestriction {
 
     //Verifica uguaglianza
     public boolean sameCellRestriction(CellRestriction cellRestriction) {
-        ShadeRestriction converted = (ShadeRestriction) cellRestriction;
-        if (converted == null)
+        if (!(cellRestriction instanceof ShadeRestriction))
             return false;
+
+        ShadeRestriction converted = (ShadeRestriction) cellRestriction;
 
         return converted.getShade() == shade;
     }

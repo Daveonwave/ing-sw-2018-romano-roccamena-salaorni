@@ -87,6 +87,21 @@ public class Match {
         return roundTrack;
     }
 
+    //Ottiene giocatore
+    public synchronized Player retrievePlayer(Player player) throws RemoteException {
+        Player result = null;
+        for (Player p : players) {
+            if (player.samePlayer(p)) {
+                result = p;
+                break;
+            }
+        }
+
+        if (result==null)
+            throw new MatchException("giocatore non trovato");
+
+        return result;
+    }
     //Ottiene carta strumento
     public synchronized ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
         ToolCard result = null;

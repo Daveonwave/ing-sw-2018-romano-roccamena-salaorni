@@ -23,9 +23,10 @@ public class ColorRestriction extends CellRestriction {
 
     //Verifica uguaglianza
     public boolean sameCellRestriction(CellRestriction cellRestriction) {
-        ColorRestriction converted = (ColorRestriction) cellRestriction;
-        if (converted == null)
+        if (!(cellRestriction instanceof ColorRestriction))
             return false;
+
+        ColorRestriction converted = (ColorRestriction) cellRestriction;
 
         return converted.getColor().equals(color);
     }

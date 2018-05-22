@@ -3,6 +3,7 @@ package mvc.model.objects;
 import mvc.stubs.AppViewStub;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable{
@@ -17,6 +18,9 @@ public class User implements Serializable{
         this.name = name;
         this.appView = appView;
         this.players = players;
+    }
+    public User(String name, AppViewStub appView) {
+        this(name, appView, new ArrayList<Player>());
     }
 
     //Setter/Getter

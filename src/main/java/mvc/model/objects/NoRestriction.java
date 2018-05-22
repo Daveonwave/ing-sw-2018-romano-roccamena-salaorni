@@ -8,9 +8,10 @@ public class NoRestriction extends CellRestriction {
 
     //Verifica uguaglianza
     public boolean sameCellRestriction(CellRestriction cellRestriction) {
-        NoRestriction converted = (NoRestriction) cellRestriction;
-        if (converted == null)
+        if (!(cellRestriction instanceof NoRestriction))
             return false;
+
+        NoRestriction converted = (NoRestriction) cellRestriction;
 
         return true;
     }
