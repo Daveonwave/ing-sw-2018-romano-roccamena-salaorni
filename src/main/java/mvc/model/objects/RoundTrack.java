@@ -27,13 +27,16 @@ public class RoundTrack {
     //Verifica uguglianze
     public boolean sameRoundDice(RoundTrack roundTrack, int round) {
         List<Die> roundDice = diceStack.get(round-1);
-        List<Die> roundDiceArg = roundTrack.getDiceStack().get(round-1);
+        List<Die> otherRoundDice = roundTrack.getDiceStack().get(round-1);
 
-        if (roundDice.size() != roundDiceArg.size())
+        if (otherRoundDice==null)
             return false;
 
-        for (int i=0; i<roundDiceArg.size(); i++) {
-            if (!roundDice.get(i).sameDie(roundDiceArg.get(i)))
+        if (roundDice.size() != otherRoundDice.size())
+            return false;
+
+        for (int i=0; i<otherRoundDice.size(); i++) {
+            if (!roundDice.get(i).sameDie(otherRoundDice.get(i)))
                 return false;
         }
 

@@ -2,6 +2,7 @@ package mvc.model.objects;
 
 import mvc.creators.MatchCreator;
 import mvc.exceptions.AppModelException;
+import mvc.exceptions.MatchException;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -51,15 +52,17 @@ public class MatchDice {
     public boolean sameDiceBag(MatchDice matchDice) {
         if (matchDice == null)
             return false;
-        if (matchDice.getDiceBag() == null)
+
+        List<Die> otherDiceBag = matchDice.getDiceBag();
+
+        if (otherDiceBag == null)
             return false;
 
-
-        if (diceBag.size() != matchDice.getDiceBag().size())
+        if (diceBag.size() != otherDiceBag.size())
             return false;
 
         for (int i=0; i<diceBag.size(); i++)
-            if (!diceBag.get(i).sameDie(matchDice.getDiceBag().get(i)))
+            if (!diceBag.get(i).sameDie(otherDiceBag.get(i)))
                 return false;
 
         return true;
@@ -67,14 +70,17 @@ public class MatchDice {
     public boolean sameDraftPool(MatchDice matchDice) {
         if (matchDice == null)
             return false;
-        if (matchDice.getDraftPool() == null)
+
+        List<Die> otherDraftPool = matchDice.getDraftPool();
+
+        if (otherDraftPool == null)
             return false;
 
-        if (draftPool.size() != matchDice.getDraftPool().size())
+        if (draftPool.size() != otherDraftPool.size())
             return false;
 
         for (int i=0; i<draftPool.size(); i++)
-            if (!draftPool.get(i).sameDie(matchDice.getDraftPool().get(i)))
+            if (!draftPool.get(i).sameDie(otherDraftPool.get(i)))
                 return false;
 
         return true;
@@ -85,6 +91,9 @@ public class MatchDice {
 
     //Ottiene dado da riserva dadi
     public synchronized Die retrieveDieFromDraftPool(Die die) throws RemoteException {
+        if (die==null)
+            throw new MatchException("dado non valido");
+
         Die result = null;
         for (Die d : draftPool) {
             if (die.sameDie(d)) {

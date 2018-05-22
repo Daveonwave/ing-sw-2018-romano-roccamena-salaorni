@@ -89,9 +89,14 @@ public class Match {
 
     //Ottiene giocatore
     public synchronized Player retrievePlayer(Player player) throws RemoteException {
+        //Controlla correttezza
+        if (player==null)
+            throw new MatchException("giocatore non valido");
+
+        //Ottiene giocatore
         Player result = null;
         for (Player p : players) {
-            if (player.samePlayer(p)) {
+            if (p.samePlayer(player)) {
                 result = p;
                 break;
             }
@@ -104,6 +109,11 @@ public class Match {
     }
     //Ottiene carta strumento
     public synchronized ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
+        //Controlla correttezza
+        if (toolCard==null)
+            throw new MatchException("carta non valida");
+
+        //Ottiene carta
         ToolCard result = null;
         for (ToolCard c : toolCards) {
             if (c.sameCard(toolCard)) {

@@ -46,10 +46,15 @@ public class User implements Serializable{
 
     //Verifica uguaglianze
     public boolean sameUser(User user) {
-        if (user.getName() == null)
+        if (user==null)
             return false;
 
-        return user.getName().equals(name);
+        String otherName = user.getName();
+
+        if (otherName == null)
+            return false;
+
+        return otherName.equals(name);
     }
 
     //Operazioni su giocatori associati

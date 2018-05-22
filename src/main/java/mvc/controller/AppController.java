@@ -80,8 +80,10 @@ public class AppController implements AppControllerStub {
         try {
             token =  model.createUser(name, appView);
         } catch (AppModelException e) {
-            viewError(appView, e.getMessage());
-            return null;
+            if (appView != null)
+                viewError(appView, "utente sconosciuto");
+            else
+                throw new AppControllerException("utente sconosciuto");
         }
 
         viewAck(appView, "connesso come " + name);
@@ -91,6 +93,7 @@ public class AppController implements AppControllerStub {
     public synchronized void logout(String tokenUser) throws RemoteException {
         AppViewStub appView = null;
 
+        //Ottiene view e distrugge l'utente
         try {
             appView = model.retrieveUser(tokenUser).getAppView();
             model.destroyUser(tokenUser);

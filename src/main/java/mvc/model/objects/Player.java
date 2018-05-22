@@ -1,6 +1,7 @@
 package mvc.model.objects;
 
 import mvc.exceptions.AppModelException;
+import mvc.exceptions.MatchException;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -94,21 +95,29 @@ public class Player implements Serializable{
     public boolean samePlayer(Player player) {
         if (player == null)
             return false;
-        if (player.getUser() == null)
+
+        User otherUser = player.getUser();
+
+        if (otherUser == null)
             return false;
 
-        return player.getUser().sameUser(user);
+        return otherUser.sameUser(user);
     }
 
     //Ottiene finestra iniziale
     public synchronized Window retrieveStartWindow(Window window) throws RemoteException {
+        if (window==null)
+            throw new MatchException("finestra non valida");
+
         Window result = null;
+
         for (Window w : startWindows) {
             if (w.sameWindow(window)) {
                 result = w;
                 break;
             }
         }
+
         if (result == null)
             throw new AppModelException("finestra non valida");
 

@@ -40,10 +40,15 @@ public class Die {
     public boolean sameColor(Die die) {
         if (die == null)
             return false;
-        if (die.getColor() == null)
+
+        Color otherDie = die.getColor();
+
+        if (color == null && otherDie == null)
+            return true;
+        if (color == null ^ otherDie == null)
             return false;
 
-        return  die.getColor().equals(color);
+        return  otherDie.equals(color);
     }
     public boolean sameShade(Die die) {
         if (die == null)

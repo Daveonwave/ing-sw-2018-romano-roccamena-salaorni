@@ -46,7 +46,6 @@ public class ControlTest extends BaseTest {
         //Logut a caso
         try {
             controller.logout("ciao");
-
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
@@ -61,12 +60,16 @@ public class ControlTest extends BaseTest {
         //Login con stessi nomi
         try {
             controller.login(name1, view);
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+        try {
             controller.login(name2, view);
-
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
 
+        //Controllo correttezze registrazioni
         if (controller.getModel().users.size()!=2)
             testAssertError(FAILED_OPERATION_MESSAGE);
         if (!controller.getModel().users.containsKey(token1))
@@ -90,6 +93,28 @@ public class ControlTest extends BaseTest {
             testAssertError(FAILED_OPERATION_MESSAGE);
         if (!controller.getModel().users.containsKey(token2))
             testAssertError(FAILED_OPERATION_MESSAGE);
+
+        //Logout e login malformati
+        try {
+            controller.login(null, view);
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+        try {
+            controller.login("", null);
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+        try {
+            controller.login(null, null);
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+        try {
+            controller.logout(null);
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
     }
 
     public static void main(String[] args) throws RemoteException {

@@ -57,18 +57,28 @@ public class Cell {
     public boolean sameDie(Cell cell) {
         if (cell == null)
             return false;
-        if (cell.getDie() == null)
+
+        Die otherDie = cell.getDie();
+
+        if (die == null && otherDie == null)
+            return true;
+        if (die == null ^ otherDie == null)
             return false;
 
-        return cell.getDie().sameDie(die);
+        return otherDie.sameDie(die);
     }
     public boolean sameRestriction(Cell cell) {
         if (cell == null)
             return false;
-        if (cell.getCellRestriction() == null)
+
+        CellRestriction otherRestriction = cell.getCellRestriction();
+
+        if (otherRestriction == null && cellRestriction == null)
+            return true;
+        if (otherRestriction == null ^ cellRestriction == null)
             return false;
 
-        return cell.getCellRestriction().sameCellRestriction(cellRestriction);
+        return otherRestriction.sameCellRestriction(cellRestriction);
     }
     public boolean samePosition(Cell cell) {
         if (cell == null)

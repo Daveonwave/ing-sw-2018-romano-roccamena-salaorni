@@ -39,9 +39,17 @@ public class Window {
         if (window == null)
             return false;
 
+        Cell[][] otherCells = window.getCells();
+
+        if (otherCells == null)
+            return false;
+
         for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
-                if (cells[row][col].sameCellStructure(window.getCells()[row][col]))
+                if (cells[row][col]==null^otherCells[row][col]==null)
+                    return false;
+
+                if (!cells[row][col].sameCellStructure(otherCells[row][col]))
                     return false;
             }
         }
@@ -49,9 +57,20 @@ public class Window {
         return true;
     }
     public boolean sameWindow(Window window) {
+        if (window == null)
+            return false;
+
+        Cell[][] otherCells = window.getCells();
+
+        if (otherCells == null)
+            return false;
+
         for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
-                if (cells[row][col].sameCell(window.getCells()[row][col]))
+                if (cells[row][col]==null^otherCells[row][col]==null)
+                    return false;
+
+                if (!cells[row][col].sameCell(otherCells[row][col]))
                     return false;
             }
         }

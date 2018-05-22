@@ -3,6 +3,7 @@ package mvc;
 import mvc.controller.AppController;
 import mvc.creators.MatchCreator;
 import mvc.model.objects.*;
+import mvc.model.objects.toolcards.AlesatorePerLaminaDiRame;
 import objects.BaseTest;
 import objects.EmptyView;
 import org.junit.Test;
@@ -74,22 +75,17 @@ public class MultiPlayerTest extends BaseTest {
 
         //Azioni non concesse a partita non iniziata
         try {
-            match.chooseWindow(player1, null);
-
+            match.chooseWindow(player1, player1.getStartWindows().get(0));
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
-
         try {
-            match.placeDie(player2, null, null);
-
+            match.placeDie(player2, new Cell(null, null, 0, 0), new Die(null, 1));
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
-
         try {
             match.endTurn(player1);
-
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
@@ -105,27 +101,22 @@ public class MultiPlayerTest extends BaseTest {
 
         //Azioni non concesse a partita iniziata
         try {
-            match.useToolCard(player2, new ToolCardInput(null, null, null, null, 0, null, null, 1, true), null);
-
+            match.useToolCard(player2, new ToolCardInput(null, null, null, null, 0, null, null, 1, true), new AlesatorePerLaminaDiRame());
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
-
         try {
-            match.placeDie(player1, null, null);
-
+            match.placeDie(player1, new Cell(null, null, 0, 0), new Die(null, 1));
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
-
         try {
             match.endTurn(player2);
-
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
 
-        //Riinizio partita
+        //Riinizio scorretto partita
         try {
             match.beginMatch();
 
@@ -136,13 +127,23 @@ public class MultiPlayerTest extends BaseTest {
         //Scelta finestre non valide
         try {
             match.chooseWindow(player1, player1.retrieveStartWindow(player2.getStartWindows().get(0)));
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+        try {
             match.chooseWindow(player2, player2.retrieveStartWindow(player1.getStartWindows().get(0)));
-
             testAssertError(INVALID_ACTION_MESSAGE);
         } catch (RemoteException e) {
         }
 
-        //Scelta finestre
+        //Scelta finestre malformate
+        try {
+            match.chooseWindow(player1, player1.retrieveStartWindow(new Window(null, 3)));
+            testAssertError(INVALID_ACTION_MESSAGE);
+        } catch (RemoteException e) {
+        }
+
+        //Scelta finestre corretta
         try {
             match.chooseWindow(player1, player1.retrieveStartWindow(player1.getStartWindows().get(0)));
             match.chooseWindow(player2, player2.retrieveStartWindow(player2.getStartWindows().get(0)));
@@ -157,14 +158,9 @@ public class MultiPlayerTest extends BaseTest {
             testAssertError("during player retrieve: " + e.getMessage());
         }
 
-        if (player1==null)
-            testAssertError(FAILED_OPERATION_MESSAGE);
-        if (player2==null)
-            testAssertError(FAILED_OPERATION_MESSAGE);
-
         if (!player1.getWindow().sameWindow(player1.getStartWindows().get(0)))
             testAssertError(FAILED_OPERATION_MESSAGE);
-        if (!player2.getWindow().sameWindow(player1.getStartWindows().get(0)))
+        if (!player2.getWindow().sameWindow(player2.getStartWindows().get(0)))
             testAssertError(FAILED_OPERATION_MESSAGE);
     }
 
