@@ -1,7 +1,10 @@
 package mvc.model.objects.public_objectives_cards;
 
+import mvc.model.objects.Cell;
 import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
+
+import java.util.List;
 
 public class ShadeVariety extends PublicObjectiveCard {
     public ShadeVariety() {
@@ -10,6 +13,19 @@ public class ShadeVariety extends PublicObjectiveCard {
 
     @Override
     public int getPoints(Window window) {
-        return 0;
+        int points;
+        int lowerShadeAmount = 20;
+        List<Cell> shadeCells;
+
+        //Ciclo su ogni gruppo di dadi con la stessa sfumatura
+        for(int indexShade = 1; indexShade <= 6; indexShade++){
+            shadeCells = window.getSameShadeCells(indexShade);
+
+            if(shadeCells.size() < lowerShadeAmount){
+                lowerShadeAmount = shadeCells.size();
+            }
+        }
+        points = lowerShadeAmount * 5;
+        return points;
     }
 }

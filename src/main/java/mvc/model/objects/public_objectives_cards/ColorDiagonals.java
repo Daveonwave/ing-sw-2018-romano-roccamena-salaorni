@@ -16,7 +16,8 @@ public class ColorDiagonals extends PublicObjectiveCard {
     public int getPoints(Window window) {
 
         int points = 0;
-        Cell cell;
+
+
 
 
 

@@ -2,7 +2,9 @@ package mvc.model.objects;
 
 import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
+import mvc.model.objects.enums.DieColor;
 
+import java.awt.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +104,32 @@ public class Window {
         return true;
     }
 
+    //Ottiene una riga
+    public List<Cell> getRowCells(int rowIndex){
+        List<Cell> result = new ArrayList<Cell>();
+
+        for(Cell[] cc : cells){
+            for(Cell c : cc){
+                if(c.getRow() == rowIndex)
+                    result.add(c);
+            }
+        }
+        return result;
+    }
+
+    //Ottiene una colonna
+    public List<Cell> getColumnCells(int columnIndex){
+        List<Cell> result = new ArrayList<Cell>();
+
+        for(Cell[] cc : cells){
+            for(Cell c : cc){
+                if(c.getColumn() == columnIndex)
+                    result.add(c);
+            }
+        }
+        return result;
+    }
+
     //Ottiene celle ortogonalmente adiacenti ad una data
     public Cell getUpCell(Cell cell) {
         if (cell.isNorthBorder())
@@ -196,6 +224,32 @@ public class Window {
             cells.add(downRight);
 
         return cells;
+    }
+
+    //Ottiene celle per colore
+    public List<Cell> getSameColorCells(DieColor color){
+        List<Cell> result = new ArrayList<Cell>();
+
+        for(Cell[] cc : cells){
+            for(Cell c : cc){
+                if(color.equals(c.getDie().getColor()))
+                    result.add(c);
+            }
+        }
+        return result;
+    }
+
+    //Ottiene celle per sfumatura
+    public List<Cell> getSameShadeCells(int shade){
+        List<Cell> result = new ArrayList<Cell>();
+
+        for(Cell[] cc : cells){
+            for(Cell c : cc){
+                if(c.getDie().getShade() == shade)
+                    result.add(c);
+            }
+        }
+        return result;
     }
 
     //Verifica restrizioni di finestra

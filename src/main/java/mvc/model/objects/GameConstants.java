@@ -18,7 +18,7 @@ public final class GameConstants {
     public static final int WINDOWS_FOR_PLAYER = 4;
 
     public static final int WINDOW_ROWS_COUNT = 4;
-    public static final int WINDOW_COLUMNS_COUNT = 4;
+    public static final int WINDOW_COLUMNS_COUNT = 5;
 
     public static final Color YELLOW = Color.YELLOW;
     public static final Color RED = Color.RED;
