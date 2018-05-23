@@ -198,6 +198,8 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(FAILED_OPERATION_MESSAGE);
         if (match.getTurnHandler().isTurnWaveChanging())
             testAssertError(FAILED_OPERATION_MESSAGE);
+        if (match.getTurnHandler().isEnded())
+            testAssertError(FAILED_OPERATION_MESSAGE);
     }
     @Test
     public void twoPlayerRounds1() {
@@ -250,17 +252,53 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
+
+        //Piazzamento dado
         try {
             cell = window1.retrieveCell(window1.getCells()[0][2]);
-            die = matchDice.retrieveDieFromDraftPool(matchDice.getDraftPool().get(0));
+            die = matchDice.retrieveDieFromDraftPool(matchDice.getDraftPool().get(1));
         } catch (RemoteException e) {
             testAssertError("during placing die: " + e.getMessage());
+        }
+        try {
+            match.placeDie(player1, cell, die);
+        } catch (RemoteException e) {
+            testAssertError("during placing die: " + e.getMessage());
+        }
+
+        //Controllo correttezza piazzamento
+        if (matchDice.getDraftPool().size()!=4)
+            testAssertError(FAILED_OPERATION_MESSAGE);
+
+        if (cell.getDie()==null)
+            testAssertError(FAILED_OPERATION_MESSAGE);
+
+        if (!cell.getDie().sameDie(die))
+            testAssertError(FAILED_OPERATION_MESSAGE);
+
+        if (!player1.getTurnDiePlaced())
+            testAssertError(FAILED_OPERATION_MESSAGE);
+
+        //Ripiazzamento da rifiutare
+        try {
+            cell = window1.retrieveCell(window1.getCells()[0][3]);
+            die = matchDice.retrieveDieFromDraftPool(matchDice.getDraftPool().get(2));
+        } catch (RemoteException e) {
+            testAssertError("during replacing die: " + e.getMessage());
         }
         try {
             match.placeDie(player1, cell, die);
             testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
+
+        //Controllo turni
+        if (!match.getTurnHandler().isStarted())
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!match.getTurnHandler().isFirstTurnWave())
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (match.getTurnHandler().isLastTurn())
+            testAssertError(INVALID_STATE_MESSAGE);
     }
 
     public static void main(String[] args) throws RemoteException {

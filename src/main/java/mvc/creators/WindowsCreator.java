@@ -465,26 +465,26 @@ public class WindowsCreator {
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
-                    cells[0][0] = new Cell(null, new NoRestriction(), 1, 1);
-                    cells[0][1] = new Cell(null, new ShadeRestriction(1), 1, 2);
-                    cells[0][2] = new Cell(null, new ColorRestriction(Color.GREEN), 1, 3);
-                    cells[0][3] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 1, 4);
-                    cells[0][4] = new Cell(null, new ShadeRestriction(4), 1, 5);
-                    cells[1][0] = new Cell(null, new ShadeRestriction(6), 2, 1);
-                    cells[1][1] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 2, 2);
-                    cells[1][2] = new Cell(null, new ShadeRestriction(2), 2, 3);
-                    cells[1][3] = new Cell(null, new ShadeRestriction(5), 2, 4);
-                    cells[1][4] = new Cell(null, new ColorRestriction(Color.GREEN), 2, 5);
-                    cells[2][0] = new Cell(null, new ShadeRestriction(1), 3, 1);
-                    cells[2][1] = new Cell(null, new ColorRestriction(Color.GREEN), 3, 2);
-                    cells[2][2] = new Cell(null, new ShadeRestriction(5), 3, 3);
-                    cells[2][3] = new Cell(null, new ShadeRestriction(3), 3, 4);
-                    cells[2][4] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 3, 5);
-                    cells[3][0] = new Cell(null, new NoRestriction(), 4, 1);
-                    cells[3][1] = new Cell(null, new NoRestriction(), 4, 2);
-                    cells[3][2] = new Cell(null, new NoRestriction(), 4, 3);
-                    cells[3][3] = new Cell(null, new NoRestriction(), 4, 4);
-                    cells[3][4] = new Cell(null, new NoRestriction(), 4, 5);
+                    cells[0][0] = new Cell(null, new NoRestriction(), 0, 0);
+                    cells[0][1] = new Cell(null, new ShadeRestriction(1), 0, 1);
+                    cells[0][2] = new Cell(null, new ColorRestriction(Color.GREEN), 0, 2);
+                    cells[0][3] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 0, 3);
+                    cells[0][4] = new Cell(null, new ShadeRestriction(4), 0, 4);
+                    cells[1][0] = new Cell(null, new ShadeRestriction(6), 1, 0);
+                    cells[1][1] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 1, 1);
+                    cells[1][2] = new Cell(null, new ShadeRestriction(2), 1, 2);
+                    cells[1][3] = new Cell(null, new ShadeRestriction(5), 1, 3);
+                    cells[1][4] = new Cell(null, new ColorRestriction(Color.GREEN), 1, 4);
+                    cells[2][0] = new Cell(null, new ShadeRestriction(1), 2, 0);
+                    cells[2][1] = new Cell(null, new ColorRestriction(Color.GREEN), 2, 1);
+                    cells[2][2] = new Cell(null, new ShadeRestriction(5), 2, 2);
+                    cells[2][3] = new Cell(null, new ShadeRestriction(3), 2, 3);
+                    cells[2][4] = new Cell(null, new ColorRestriction(new Color(148, 0, 211)), 2, 4);
+                    cells[3][0] = new Cell(null, new NoRestriction(), 3, 0);
+                    cells[3][1] = new Cell(null, new NoRestriction(), 3, 1);
+                    cells[3][2] = new Cell(null, new NoRestriction(), 3, 2);
+                    cells[3][3] = new Cell(null, new NoRestriction(), 3, 3);
+                    cells[3][4] = new Cell(null, new NoRestriction(), 3, 4);
 
                     windows.get(i).setCells(cells);
                     break;

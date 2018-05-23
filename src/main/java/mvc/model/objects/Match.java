@@ -215,6 +215,8 @@ public class Match {
         //Posiziona il dado
         player.getWindow().placeDie(cell, die);
 
+        matchDice.getDraftPool().remove(die);
+
         //Aggiorna segnali
         player.setTurnDiePlaced(true);
         player.getToolCardEffect().setChoosenDie(null);
