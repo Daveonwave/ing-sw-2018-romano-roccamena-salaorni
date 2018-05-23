@@ -3,6 +3,7 @@ package mvc.model.objects;
 import mvc.creators.MatchCreator;
 import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
+import util.RandomHandler;
 
 import java.rmi.RemoteException;
 import java.util.List;
@@ -14,14 +15,12 @@ public class MatchDice {
     private int playersCount;
     private List<Die> diceBag;
     private List<Die> draftPool;
-    private Random random;
 
     //Costruttori
     public MatchDice(int playersCount, List<Die> diceBag, List<Die> draftPool) {
         this.playersCount = playersCount;
         this.diceBag = diceBag;
         this.draftPool = draftPool;
-        this.random = new Random();
     }
 
     //Setter/Getter
@@ -109,7 +108,7 @@ public class MatchDice {
 
     //Estrae un dado dal sacco di dadi
     public Die extractDieFromBag() {
-        int index = random.nextInt(draftPool.size());
+        int index = RandomHandler.retrieveRandom().nextInt(draftPool.size());
 
         draftPool.remove(index);
 

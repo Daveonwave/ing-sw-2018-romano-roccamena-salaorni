@@ -1,6 +1,6 @@
 package ingsw2018;
 
-import objects.BaseTest;
+import base.BaseTest;
 
 
 public class AppTest extends BaseTest {

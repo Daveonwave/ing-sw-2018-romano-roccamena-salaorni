@@ -1,4 +1,4 @@
-package objects;
+package base;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;

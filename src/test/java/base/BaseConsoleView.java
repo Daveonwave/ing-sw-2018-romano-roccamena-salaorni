@@ -1,4 +1,4 @@
-package objects;
+package base;
 
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
