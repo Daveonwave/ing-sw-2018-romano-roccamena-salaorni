@@ -17,7 +17,8 @@ import mvc.controller.AppController;
 import java.io.*;
 import java.rmi.RemoteException;
 
-public class GUIHandler extends Application {
+public class
+GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;

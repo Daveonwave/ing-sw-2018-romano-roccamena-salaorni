@@ -104,7 +104,59 @@ public class Window {
         return true;
     }
 
-    //Ottiene una riga
+    //Verifica che dado o cella sia contenuto
+    public boolean containsDie(Die die) {
+        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+                Cell cell = cells[row][col];
+
+                if (cell==null)
+                    continue;
+
+                if (die==null ^ cell.getDie()==null)
+                    return false;
+                if (die==null && cell.getDie()==null)
+                    return true;
+
+                if (cell.getDie().sameDie(die))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+    public boolean containsCellStructure(Cell cell) {
+        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+                Cell c = cells[row][col];
+
+                if (c==null)
+                    continue;
+
+                if (c.sameCellStructure(cell))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+    public boolean containsCell(Cell cell) {
+        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+                Cell c = cells[row][col];
+
+                if (c==null)
+                    continue;
+
+                if (c.sameCell(cell))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    //Ottiene una righe o colonne
     public List<Cell> getRowCells(int rowIndex){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -116,8 +168,6 @@ public class Window {
         }
         return result;
     }
-
-    //Ottiene una colonna
     public List<Cell> getColumnCells(int columnIndex){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -144,13 +194,13 @@ public class Window {
             return cells[cell.getRow()+1][cell.getColumn()];
     }
     public Cell getLeftCell(Cell cell) {
-        if (cell.isNorthBorder())
+        if (cell.isWestBorder())
             return null;
         else
             return cells[cell.getRow()][cell.getColumn()-1];
     }
     public Cell getRightCell(Cell cell) {
-        if (cell.isNorthBorder())
+        if (cell.isEastBorder())
             return null;
         else
             return cells[cell.getRow()][cell.getColumn()+1];
@@ -177,7 +227,7 @@ public class Window {
         return cells;
     }
 
-    //Ottiene celle diagonalmente adiacenti ad una data
+    //Ottiene celle ortogonalmente adiacenti ad una data
     public Cell getUpLeftCell(Cell cell) {
         if(cell.isNorthBorder() || cell.isWestBorder()){
             return null;
@@ -226,7 +276,7 @@ public class Window {
         return cells;
     }
 
-    //Ottieni diagonale armonica (alto sx - basso dx)
+    //Ottieni diagonali armoniche e disarmoniche
     public List<Cell> getHarmoniousDiagonal(Cell cell){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -242,8 +292,6 @@ public class Window {
         }
         return result;
     }
-
-    //Ottieni diagonale disarmonica (alto dx - basso sx)
     public List<Cell> getDisharmoniousDiagonal(Cell cell){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -260,7 +308,7 @@ public class Window {
         return result;
     }
 
-    //Ottiene celle per colore
+    //Ottiene celle per caratteristica
     public List<Cell> getSameColorCells(DieColor color){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -272,8 +320,6 @@ public class Window {
         }
         return result;
     }
-
-    //Ottiene celle per sfumatura
     public List<Cell> getSameShadeCells(int shade){
         List<Cell> result = new ArrayList<Cell>();
 
@@ -295,7 +341,6 @@ public class Window {
 
         return true;
     }
-
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
         List<Cell> adjacentCells = getAdjacentCells(cell);
 

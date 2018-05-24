@@ -27,6 +27,15 @@ public class ToolCardInput {
         this.choosenShade = choosenShade;
         this.increaseShade = increaseShade;
     }
+    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2) {
+        this(originCell1, originCell2, destinationCell1, destinationCell2, 0, null, null, 0, true);
+    }
+    public ToolCardInput(int roundTrackRound, Die roundTrackDie, Die choosenDie) {
+        this(null, null, null, null, roundTrackRound, roundTrackDie, choosenDie, 0, true);
+    }
+    public ToolCardInput(Die choosenDie) {
+        this(null, null, null, null, 0, null, choosenDie, 0, true);
+    }
 
     //Setter//Getter
     public void setOriginCell1(Cell originCell1) {

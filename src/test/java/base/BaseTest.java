@@ -13,5 +13,11 @@ public abstract class BaseTest {
     public void testAssertError(String message) {
         assertTrue(message, false);
     }
+    public void testAssertWaitingUpdate(String updateObject) {
+        testAssertError("waiting " + updateObject + " update");
+    }
+    public void testAssertWaitingUpdate() {
+        testAssertWaitingUpdate("test");
+    }
 
 }

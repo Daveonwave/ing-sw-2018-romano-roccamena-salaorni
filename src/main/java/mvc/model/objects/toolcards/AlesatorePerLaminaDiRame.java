@@ -17,7 +17,7 @@ public class AlesatorePerLaminaDiRame extends ToolCard{
         Player player = match.getTurnPlayer();
         Window window = player.getWindow();
         Cell origin = player.getWindow().retrieveCell(input.getOriginCell1());
-        Cell destination = player.getWindow().retrieveCell(input.getDestinationCell2());
+        Cell destination = player.getWindow().retrieveCell(input.getDestinationCell1());
 
         //Esegue il movimento
         window.moveDie(origin, destination, false, false, false, true);

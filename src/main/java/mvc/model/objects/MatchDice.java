@@ -88,8 +88,36 @@ public class MatchDice {
         return samePlayersCount(matchDice) && sameDiceBag(matchDice) && sameDraftPool(matchDice);
     }
 
+    //Verifica che il dado sia contenuto
+    public boolean containsDieInBag(Die die) {
+        for (Die d : diceBag) {
+            if (d==null ^ die==null)
+                return false;
+            if (d==null && die==null)
+                return true;
+
+            if (d.sameDie(die))
+                return true;
+        }
+
+        return false;
+    }
+    public boolean containsDieInPool(Die die) {
+        for (Die d : draftPool) {
+            if (d==null ^ die==null)
+                return false;
+            if (d==null && die==null)
+                return true;
+
+            if (d.sameDie(die))
+                return true;
+        }
+
+        return false;
+    }
+
     //Ottiene dado da riserva dadi
-    public synchronized Die retrieveDieFromDraftPool(Die die) throws RemoteException {
+    public Die retrieveDieFromDraftPool(Die die) throws RemoteException {
         if (die==null)
             throw new MatchException("dado non valido");
 

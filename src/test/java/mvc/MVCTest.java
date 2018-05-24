@@ -1,7 +1,7 @@
 package mvc;
 
 import mvc.controller.AppController;
-import mvc.model.objects.User;
+import mvc.model.objects.*;
 import base.BaseTest;
 import base.EmptyView;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class MVCTest extends BaseTest {
     //Test su controllo mvc
 
-    public final User user1 = new User("john", new EmptyView(createTestController()));
-    public final User user2 = new User("fred", new EmptyView(createTestController()));
-    public final User user3 = new User("jack", new EmptyView(createTestController()));
-    public final User user4 = new User("bob", new EmptyView(createTestController()));
+    protected final User user1 = new User("john", new EmptyView(createTestController()));
+    protected final User user2 = new User("fred", new EmptyView(createTestController()));
+    protected final User user3 = new User("jack", new EmptyView(createTestController()));
+    protected final User user4 = new User("bob", new EmptyView(createTestController()));
 
     //Crea controller locale di test
     public static AppController createTestController() {
@@ -48,5 +48,19 @@ public class MVCTest extends BaseTest {
         result.add(user4);
 
         return result;
+    }
+
+    //Crea altri oggetti
+    public Die createInvalidDie1() {
+        return new Die(GameConstants.YELLOW, 1);
+    }
+    public Cell createInvalidCell1() {
+        return new Cell(createInvalidDie1(), new NoRestriction(), 2, 2);
+    }
+    public Window createInvalidWindow1() {
+        return new Window(null, 5);
+    }
+    public ToolCardInput createInvalidToolCardInput1() {
+        return new ToolCardInput(null, null, null, null, 0, createInvalidDie1(), null, 1, true);
     }
 }

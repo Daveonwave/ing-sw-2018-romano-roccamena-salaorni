@@ -144,7 +144,7 @@ public class Cell {
 
     public void moveDie(Cell destination, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
-        if (destination.getDie() != null)
+        if (die==null || destination.getDie()!=null)
             throw new MatchException("impossibile muovere dado");
 
         //Esegue movimento

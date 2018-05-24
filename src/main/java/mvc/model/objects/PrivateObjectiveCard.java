@@ -1,6 +1,5 @@
 package mvc.model.objects;
 
-import javafx.scene.paint.Color;
 
 public abstract class PrivateObjectiveCard extends ColorCard {
     //Carta obiettivo privato
