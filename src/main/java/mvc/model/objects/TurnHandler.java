@@ -24,7 +24,7 @@ public class TurnHandler {
         this.roundLastTurn = false;
         this.roundFirstTurn = true;
         this.changeTurnWave = false;
-        this.firstTurnWave = false;
+        this.firstTurnWave = true;
     }
 
     //Getter e osservatori
@@ -152,8 +152,7 @@ public class TurnHandler {
         roundLastTurn = turnPlayerIndex == firstPlayerIndex && !roundFirstTurn;
 
         //Se è l'ultimo passa al prossimo round
-        if (roundLastTurn) {
+        if (roundLastTurn)
             nextRound();
-        }
     }
 }

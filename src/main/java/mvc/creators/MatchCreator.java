@@ -2,8 +2,8 @@ package mvc.creators;
 
 import mvc.model.objects.*;
 import mvc.model.objects.Window;
-import mvc.model.objects.enums.Tool;
 import resources.ResourceRetriever;
+import util.RandomHandler;
 
 import java.util.*;
 
@@ -11,16 +11,14 @@ public class MatchCreator {
     //Creatore di componenti del gioco
 
     private boolean singlePlayer;
-    private Random random;
 
     //Costruttori
     public MatchCreator(boolean singlePlayer) {
         this.singlePlayer = singlePlayer;
-        this.random = new Random();
     }
 
     //Creazione carte
-    public List<PublicObjectiveCard> createPublicObjectiveCards() {
+    public List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
         int countExtracted = 1;
@@ -37,7 +35,7 @@ public class MatchCreator {
         List<PublicObjectiveCard> cards = ObjectivesCreator.createPublicObjectiveCards();
 
         while (countExtracted <= count) {
-            int index = random.nextInt(cards.size());
+            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
             PublicObjectiveCard extracted = cards.get(index);
 
             if (!result.contains(extracted)) {
@@ -45,11 +43,15 @@ public class MatchCreator {
                 countExtracted++;
             }
         }
-        Collections.shuffle(result);
+        if (shuffle)
+            Collections.shuffle(result);
 
         return result;
     }
-    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers) {
+    public List<PublicObjectiveCard> createPublicObjectiveCards() {
+        return createPublicObjectiveCards(true);
+    }
+    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
         int countExtracted = 1;
@@ -66,7 +68,7 @@ public class MatchCreator {
         List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
 
         while (countExtracted <= count) {
-            int index = random.nextInt(cards.size());
+            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
             PrivateObjectiveCard extracted = cards.get(index);
 
             if (!result.contains(extracted)) {
@@ -74,11 +76,15 @@ public class MatchCreator {
                 countExtracted++;
             }
         }
-        Collections.shuffle(result);
+        if(shuffle)
+            Collections.shuffle(result);
 
         return result;
     }
-    public List<ToolCard> createTools(int difficultyLevelSP) {
+    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers) {
+        return createPrivateObjectiveCards(numberOfPlayers, true);
+    }
+    public List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<ToolCard> result = new ArrayList<ToolCard>();
         int countExtracted = 1;
@@ -95,7 +101,7 @@ public class MatchCreator {
         List<ToolCard> cards = ToolsCreator.createToolCards();
 
         while (countExtracted <= count) {
-            int index = random.nextInt(cards.size());
+            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
             ToolCard extracted = cards.get(index);
 
             if (!result.contains(extracted)) {
@@ -103,13 +109,17 @@ public class MatchCreator {
                 countExtracted++;
             }
         }
-        Collections.shuffle(result);
+        if (shuffle)
+            Collections.shuffle(result);
 
         return result;
     }
+    public List<ToolCard> createTools(int difficultyLevelSP) {
+        return createTools(difficultyLevelSP, true);
+    }
 
     //Creazione finestre
-    public List<Window> createWindows(int numberOfPlayers) {
+    public List<Window> createWindows(int numberOfPlayers, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<Window> result = new ArrayList<Window>();
         int countExtracted = 1;
@@ -119,7 +129,7 @@ public class MatchCreator {
         List<Window> windows = WindowsCreator.createWindows();
 
         while (countExtracted <= numberOfPlayers*4) {
-            int index = random.nextInt(windows.size());
+            int index = RandomHandler.retrieveRandom().nextInt(windows.size());
             Window extracted = windows.get(index);
 
             if (!result.contains(extracted)) {
@@ -127,13 +137,17 @@ public class MatchCreator {
                 countExtracted++;
             }
         }
-        Collections.shuffle(result);
+        if (shuffle)
+            Collections.shuffle(result);
 
         return result;
     }
+    public List<Window> createWindows(int numberOfPlayers) {
+        return createWindows(numberOfPlayers, true);
+    }
 
     //Creazione sacco di dadi
-    public List<Die> createDiceBag() {
+    public List<Die> createDiceBag(boolean shuffle) {
         List<Die> diceBag = new ArrayList<Die>();
 
         for (int i = 1; i <= GameConstants.SINGLE_COLOR_DICE_COUNT; i++) {
@@ -144,14 +158,20 @@ public class MatchCreator {
             diceBag.add(new Die(GameConstants.PURPLE));
 
         }
-        Collections.shuffle(diceBag);
+        if (shuffle)
+            Collections.shuffle(diceBag);
+
         return diceBag;
+    }
+    public List<Die> createDiceBag() {
+        return createDiceBag(true);
     }
 
     //Creazione riserva dadi
     public List<Die> createDraftPool(List<Die> dieBag, int numberOfPlayers){
         List<Die> result = new ArrayList<Die>();
 
+        //Aggiunge dadi a riserva e li toglie dal sacco
         if(numberOfPlayers == 1){
             for(int i = 0; i < GameConstants.SP_DRAFTPOOL_SIZE; i++){
                 result.add(dieBag.get(i));
@@ -164,6 +184,7 @@ public class MatchCreator {
                 dieBag.remove(i);
             }
         }
+
         return result;
     }
 
@@ -181,14 +202,23 @@ public class MatchCreator {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Factory partite multiplayer e singleplayer
-    public static Match createMultiPlayer(List<User> users) {
+    public static Match createMultiPlayer(List<User> users, long seed) {
+        //Verifica condizione sulla casualità
+        boolean seeded = seed > 0;
+
         //Crea giocatori, finestre iniziali e le carte
         MatchCreator matchCreator = new MatchCreator(false);
+
+        if (seeded)
+            RandomHandler.createRandom(seed);
+        else
+            RandomHandler.createRandom();
+
         List<Player> players = new ArrayList<Player>();
-        List<Window> extractedWindows = matchCreator.createWindows(users.size());
-        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(users.size());
-        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards();
-        List<ToolCard> extractedToolCards = matchCreator.createTools(0);
+        List<Window> extractedWindows = matchCreator.createWindows(users.size(), !seeded);
+        List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(users.size(), !seeded);
+        List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards(!seeded);
+        List<ToolCard> extractedToolCards = matchCreator.createTools(0, !seeded);
 
         //Crea i giocatori e li assegna agli utenti, assegna finestra e carte obiettivo private
         for(int i = 0; i < users.size(); i++){
@@ -203,7 +233,7 @@ public class MatchCreator {
 
         //Crea tracciato, sacco e riserva dadi
         RoundTrack roundTrack = matchCreator.createRoundTrack();
-        List<Die> diceBag = matchCreator.createDiceBag();
+        List<Die> diceBag = matchCreator.createDiceBag(!seeded);
         List<Die> draftPool = matchCreator.createDraftPool(diceBag, users.size());
         MatchDice matchDice = new MatchDice(users.size(),diceBag, draftPool);
 
@@ -212,6 +242,10 @@ public class MatchCreator {
 
         return match;
     }
+    public static Match createMultiPlayer(List<User> users) {
+        return createMultiPlayer(users, -1);
+    }
+
     public static Match createSinglePlayer(User user, int difficultyLevelSP) {
         //Crea giocatori, finestre iniziali e le carte
         MatchCreator matchCreator = new MatchCreator(true);

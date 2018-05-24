@@ -166,6 +166,7 @@ public class Match {
         if (matchState != MatchState.STARTED)
             throw new MatchException("la partita è gia iniziata");
 
+
         //Aggiorna lo stato prossimo
         matchState = MatchState.CHOOSE_WINDOWS;
     }
@@ -213,6 +214,8 @@ public class Match {
 
         //Posiziona il dado
         player.getWindow().placeDie(cell, die);
+
+        matchDice.getDraftPool().remove(die);
 
         //Aggiorna segnali
         player.setTurnDiePlaced(true);

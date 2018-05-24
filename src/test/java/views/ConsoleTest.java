@@ -2,7 +2,7 @@ package views;
 
 import mvc.controller.AppController;
 import mvc.view.console.ConsoleView;
-import objects.BaseTest;
+import base.BaseTest;
 import org.junit.Test;
 
 public class ConsoleTest extends BaseTest {

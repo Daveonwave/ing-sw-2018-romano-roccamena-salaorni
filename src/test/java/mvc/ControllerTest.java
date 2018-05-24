@@ -2,23 +2,22 @@ package mvc;
 
 import mvc.controller.AppController;
 import mvc.stubs.AppViewStub;
-import objects.BaseTest;
-import objects.EmptyView;
+import base.EmptyView;
 import org.junit.Test;
 
 import java.rmi.RemoteException;
 
-public class ControlTest extends BaseTest {
-    //Test sul controllo mvc
+public class ControllerTest extends MVCTest {
+    //Test sul controllore mvc
 
-    private static final String INVALID_ACTION_MESSAGE = "invalid user operation accepted";
-    private static final String FAILED_OPERATION_MESSAGE = "correct user operation failed";
+    private static final String INVALID_OPERATION_MESSAGE = "invalid user operation accepted";
+    private static final String FAILED_OPERATION_MESSAGE = "valid user operation failed";
 
     //Test
     @Test
     public void userControl() {
         //Crea view di test con controllore locale di prova
-        AppController controller = new AppController();
+        AppController controller = createTestController();
         AppViewStub view = new EmptyView(controller);
 
         //Dati partecipanti
@@ -46,7 +45,7 @@ public class ControlTest extends BaseTest {
         //Logut a caso
         try {
             controller.logout("ciao");
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
 
@@ -60,12 +59,12 @@ public class ControlTest extends BaseTest {
         //Login con stessi nomi
         try {
             controller.login(name1, view);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
         try {
             controller.login(name2, view);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
 
@@ -97,32 +96,31 @@ public class ControlTest extends BaseTest {
         //Logout e login malformati
         try {
             controller.login(null, view);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
         try {
             controller.login("", null);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
         try {
             controller.login(null, null);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
         try {
             controller.logout(null);
-            testAssertError(INVALID_ACTION_MESSAGE);
+            testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
     }
 
     public static void main(String[] args) throws RemoteException {
         //Crea un test
-        ControlTest test = new ControlTest();
+        ControllerTest test = new ControllerTest();
 
         //Lancia i test
         test.userControl();
-
     }
 }

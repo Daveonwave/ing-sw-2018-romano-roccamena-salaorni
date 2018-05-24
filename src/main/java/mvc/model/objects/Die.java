@@ -1,5 +1,7 @@
 package mvc.model.objects;
 
+import util.RandomHandler;
+
 import java.awt.Color;
 import java.util.Random;
 
@@ -8,13 +10,11 @@ public class Die {
 
     private Color color;
     private int shade;
-    private Random random;
 
     //Costruttori
     public Die(Color color, int shade) {
         this.color = color;
         this.shade = shade;
-        this.random = new Random();
     }
     public Die(Color color) {
         this(color, 0);
@@ -62,7 +62,7 @@ public class Die {
 
     //Operazioni su dado
     public void roll() {
-        this.shade = random.nextInt(6) + 1;
+        this.shade = RandomHandler.retrieveRandom().nextInt(6) + 1;
     }
     public void invertShade() {
         switch (shade) {

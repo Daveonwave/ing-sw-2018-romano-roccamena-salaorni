@@ -157,7 +157,7 @@ public class Window {
     }
 
     //Ottiene tutte le celle ortogonalmente adiacenti
-    public Cell[] getAdjacentCells(Cell cell) {
+    public List<Cell> getAdjacentCells(Cell cell) {
         List<Cell> cells = new ArrayList<Cell>();
 
         Cell up = getUpCell(cell);
@@ -174,7 +174,7 @@ public class Window {
         if (right != null)
             cells.add(right);
 
-        return (Cell[]) cells.toArray();
+        return cells;
     }
 
     //Ottiene celle diagonalmente adiacenti ad una data
@@ -263,7 +263,8 @@ public class Window {
     }
 
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
-        Cell[] adjacentCells = getAdjacentCells(cell);
+        List<Cell> adjacentCells = getAdjacentCells(cell);
+
         for (Cell c : adjacentCells) {
             Die placedDie = c.getDie();
 
