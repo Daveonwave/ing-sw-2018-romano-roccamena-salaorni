@@ -226,6 +226,40 @@ public class Window {
         return cells;
     }
 
+    //Ottieni diagonale armonica (alto sx - basso dx)
+    public List<Cell> getHarmoniousDiagonal(Cell cell){
+        List<Cell> result = new ArrayList<Cell>();
+
+        result.add(cell);
+
+        for(int i = 0; i < 4; i++) {
+            if (!getDownRightCell(cell).isSouthBorder() && !getDownRightCell(cell).isEastBorder()) {
+                cell = getDownRightCell(cell);
+                result.add(cell);
+            }
+            else
+                break;
+        }
+        return result;
+    }
+
+    //Ottieni diagonale disarmonica (alto dx - basso sx)
+    public List<Cell> getDisharmoniousDiagonal(Cell cell){
+        List<Cell> result = new ArrayList<Cell>();
+
+        result.add(cell);
+
+        for(int i = 0; i < 4; i++) {
+            if (!getDownLeftCell(cell).isSouthBorder() && !getDownLeftCell(cell).isEastBorder()) {
+                cell = getDownLeftCell(cell);
+                result.add(cell);
+            }
+            else
+                break;
+        }
+        return result;
+    }
+
     //Ottiene celle per colore
     public List<Cell> getSameColorCells(DieColor color){
         List<Cell> result = new ArrayList<Cell>();

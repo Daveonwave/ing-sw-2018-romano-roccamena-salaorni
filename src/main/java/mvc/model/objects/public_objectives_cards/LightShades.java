@@ -7,6 +7,7 @@ import mvc.model.objects.Window;
 import java.util.List;
 
 public class LightShades extends PublicObjectiveCard {
+
     public LightShades() {
         super("sfumature chiare", "set di 1 & 2 ovunque");
     }
