@@ -236,7 +236,7 @@ public class MultiPlayerTest extends MVCTest {
 
 
 
-    //Procedure di test
+    //Test su proprietà del modello partita
     public void testTurnHandler(Match match, Player turnPlayer, int round, boolean started, boolean ended, boolean roundFirst, boolean roundLast, boolean firstWave) {
         if (match.getTurnHandler().isStarted()!=started)
             testAssertError(INVALID_STATE_MESSAGE);
@@ -257,6 +257,34 @@ public class MultiPlayerTest extends MVCTest {
         testTurnHandler(match, turnPlayer, round, true, false, roundFirst,roundLast, firstWave);
     }
 
+    public void testMatchStartWindows(Match match) {
+        for (Player player : match.getPlayers()) {
+            if (player.getStartWindows().size()!=GameConstants.WINDOWS_FOR_PLAYER)
+                testAssertError(INVALID_STATE_MESSAGE);
+        }
+    }
+
+    public void testMatchDice(Match match, int bagCount, int poolCount) {
+        if (match.getMatchDice().getDiceBag().size()!=bagCount)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (match.getMatchDice().getDraftPool().size()!=poolCount)
+            testAssertError(INVALID_STATE_MESSAGE);
+    }
+
+    public void testMatchCards(Match match) {
+        if (match.getPublicObjectiveCards().size()!=GameConstants.MP_PUBLIC_OBJECTIVES_COUNT)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (match.getToolCards().size()!=GameConstants.MP_TOOL_CARDS_COUNT)
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        for (Player player : match.getPlayers()) {
+            if (player.getPrivateObjectiveCards().size()!=GameConstants.MP_PRIVATE_OBJECTIVES_COUNT)
+                testAssertError(INVALID_STATE_MESSAGE);
+        }
+
+    }
+
+    //Test sulle azioni dei giocatori
     public void testPlaceDie(Match match, Player player, Cell cell, Die die, int poolSize) {
         if (match.getMatchDice().getDraftPool().size()!=poolSize)
             testAssertError(INVALID_STATE_MESSAGE);
@@ -280,35 +308,22 @@ public class MultiPlayerTest extends MVCTest {
         //Creazione partita
         Match match = createTwoPlayerMatch();
 
-        //Controlla correttezza partita creata
-        if (match.getPlayers().size() != 2)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getMatchDice().getDiceBag().size() != 85)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getMatchDice().getDraftPool().size() != 5)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getPublicObjectiveCards().size()!=GameConstants.MP_PUBLIC_OBJECTIVES_COUNT)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getToolCards().size()!=GameConstants.MP_TOOL_CARDS_COUNT)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getMatchState()!=MatchState.STARTED)
-            testAssertError(INVALID_STATE_MESSAGE);
-
-        //Controlla correttezza giocatori creati
         Player player1 = retrievePlayer(match, 0);
         Player player2 = retrievePlayer(match, 1);
 
+        //Controlla correttezza partita creata
+        if (match.getMatchState()!=MatchState.STARTED)
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        testMatchDice(match, 85, 5);
+        testMatchCards(match);
+        testMatchStartWindows(match);
+
+        if (match.getPlayers().size() != 2)
+            testAssertError(INVALID_STATE_MESSAGE);
         if (!player1.getUser().sameUser(user1))
             testAssertError(INVALID_STATE_MESSAGE);
         if (!player2.getUser().sameUser(user2))
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (player1.getPrivateObjectiveCards().size()!=1)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (player1.getPrivateObjectiveCards().size()!=1)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (player1.getStartWindows().size() != 4)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (player2.getStartWindows().size() != 4)
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Azioni non concesse a partita non iniziata
@@ -332,27 +347,22 @@ public class MultiPlayerTest extends MVCTest {
         invalidBeginMatch(match);
 
         //Scelta finestre corretta
-        validChooseWindow(match, player1, retrieveStartWindow(player1, 0));
-        validChooseWindow(match, player2, retrieveStartWindow(player2, 0));
+        Window choosen1 = retrieveStartWindow(player1, 0);
+        Window choosen2 = retrieveStartWindow(player2, 0);
+
+        validChooseWindow(match, player1, choosen1);
+        validChooseWindow(match, player2, choosen2);
 
         //Controllo correttezza stato
-        if (!player1.getWindow().sameWindow(player1.getStartWindows().get(0)))
+        if (match.getMatchState()!=MatchState.PLAY_ROUND)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!player2.getWindow().sameWindow(player2.getStartWindows().get(0)))
+        if (!player1.getWindow().sameWindow(choosen1))
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!player2.getWindow().sameWindow(choosen2))
             testAssertError(INVALID_STATE_MESSAGE);
         if (player1.getFavorTokens()!=player1.getWindow().getDifficulty())
             testAssertError(INVALID_STATE_MESSAGE);
         if (player2.getFavorTokens()!=player2.getWindow().getDifficulty())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getTurnHandler().isFirstTurn())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getTurnHandler().isFirstTurn())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getTurnHandler().isFirstTurnWave())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getTurnHandler().isEnded())
             testAssertError(INVALID_STATE_MESSAGE);
     }
     @Test
@@ -589,11 +599,24 @@ public class MultiPlayerTest extends MVCTest {
         if (match.getMatchState()!=MatchState.PLAY_ROUND)
             testAssertError(INVALID_STATE_MESSAGE);
 
-        //Controlla tracciato
+        //Controllo prima di fine round
+        if (match.getMatchDice().getDiceBag().size()!=80)
+            testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(1).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
 
+        //------------------------------------ CORRETTO FINO ----------------------------------------//
+
+        testAssertWaitingUpdate("roundtrack");
+
+        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 3)));
+            testAssertError(INVALID_STATE_MESSAGE);
+
         //--------------------------------------- ROUND 2 -------------------------------------------//
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
     }
 
 

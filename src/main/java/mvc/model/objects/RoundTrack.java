@@ -50,6 +50,28 @@ public class RoundTrack {
         return true;
     }
 
+    //Verifica che i dadi siano contenuti
+    public boolean containsDice(int round, List<Die> dice) {
+        for (Die d1 : diceStack.get(round-1)) {
+            for (Die d2 : dice) {
+                if (d1 != null && d2 != null)
+                    if (d1.sameDie(d2))
+                        return true;
+            }
+        }
+
+        return false;
+    }
+    public boolean containsDie(int round, Die die) {
+        for (Die d1 : diceStack.get(round-1)) {
+            if (die != null && d1 != null)
+                if (die.sameDie(d1))
+                    return true;
+        }
+
+        return false;
+    }
+
     //Ottiene i dadi di un round del tracciato
     public List<Die> retrieveDice(int round) {
         return diceStack.get(round-1);
