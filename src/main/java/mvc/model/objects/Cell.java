@@ -107,6 +107,10 @@ public class Cell {
         return column==GameConstants.WINDOW_COLUMNS_COUNT-1;
     }
 
+    public boolean isInBorder() {
+        return isNorthBorder() || isSouthBorder() || isWestBorder() || isEastBorder();
+    }
+
     //Verifica restrizioni di cella
     public boolean noCellRestriction(Die die, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) {
         if (cellRestriction instanceof ColorRestriction) {

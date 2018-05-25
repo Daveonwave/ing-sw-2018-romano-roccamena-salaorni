@@ -4,7 +4,6 @@ import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.enums.DieColor;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -207,7 +206,7 @@ public class Window {
     }
 
     //Ottiene tutte le celle ortogonalmente adiacenti
-    public List<Cell> getAdjacentCells(Cell cell) {
+    public List<Cell> getOrthogonalCells(Cell cell) {
         List<Cell> cells = new ArrayList<Cell>();
 
         Cell up = getUpCell(cell);
@@ -227,7 +226,7 @@ public class Window {
         return cells;
     }
 
-    //Ottiene celle ortogonalmente adiacenti ad una data
+    //Ottiene celle diagonalmente adiacenti ad una data
     public Cell getUpLeftCell(Cell cell) {
         if(cell.isNorthBorder() || cell.isWestBorder()){
             return null;
@@ -342,7 +341,7 @@ public class Window {
         return true;
     }
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
-        List<Cell> adjacentCells = getAdjacentCells(cell);
+        List<Cell> adjacentCells = getOrthogonalCells(cell);
 
         for (Cell c : adjacentCells) {
             Die placedDie = c.getDie();
@@ -355,6 +354,17 @@ public class Window {
 
         return true;
     }
+    public boolean noIsolatedRestriction(Cell cell, Die die) {
+        List<Cell> adjacentCells = getOrthogonalCells(cell);
+        adjacentCells.addAll(getDiagonalsCells(cell));
+
+        for (Cell c : adjacentCells) {
+            if (c.getDie()!=null)
+                return true;
+        }
+
+        return false;
+    }
 
     public boolean noWindowRestriction(Cell cell, Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells) {
         if (ignoreStartPlace && ignoreAdjacentCells)
@@ -366,7 +376,10 @@ public class Window {
         if (ignoreStartPlace)
             return noAdjacentCellsRestriction(cell, die);
 
-        return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);
+        if (cell.isInBorder())
+            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);
+        else
+            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
     }
     public boolean noWindowRestriction(Cell cell, Die die) {
         return noWindowRestriction(cell, die, false, false);

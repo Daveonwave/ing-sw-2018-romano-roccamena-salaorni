@@ -1,18 +1,26 @@
 package mvc.model.objects;
 
+import mvc.exceptions.MatchException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TurnHandler {
     //Gestore dell'ordine dei giocatori di round e turni
 
     private final int playersCount;
+
     private int firstPlayerIndex;
     private int turnPlayerIndex;
+
     private int round;
+
+    private int currentTurnIndex;
+    private List<Integer> roundTurnsIndices;
 
     private boolean roundFirstTurn;
     private boolean roundLastTurn;
 
-    private boolean changeTurnWave;
     private boolean firstTurnWave;
 
     //Costruttori
@@ -21,13 +29,13 @@ public class TurnHandler {
         this.firstPlayerIndex = firstPlayerIndex;
         this.turnPlayerIndex = firstPlayerIndex;
         this.round = 0;
+        this.roundTurnsIndices = new ArrayList<Integer>();
         this.roundLastTurn = false;
-        this.roundFirstTurn = true;
-        this.changeTurnWave = false;
-        this.firstTurnWave = true;
+        this.roundFirstTurn = false;
+        this.firstTurnWave = false;
     }
 
-    //Getter e osservatori
+    //Getter
     public int getPlayersCount() {
         return playersCount;
     }
@@ -63,9 +71,6 @@ public class TurnHandler {
         return round > GameConstants.ROUNDS_COUNT;
     }
 
-    public boolean isTurnWaveChanging() {
-        return changeTurnWave;
-    }
     public boolean isFirstTurnWave() {
         return firstTurnWave;
     }
@@ -83,38 +88,6 @@ public class TurnHandler {
         else
             return playerIndex + 1;
     }
-    private int prevPlayerIndex(int playerIndex) {
-        if (firstTurnWave) {
-            return leftIndexShift(playerIndex);
-        }
-        else {
-            if (playerIndex == prevPlayerIndex(playerIndex)) {
-                return playerIndex;
-            } else {
-                return rightIndexShift(playerIndex);
-            }
-        }
-    }
-    private int nextPlayerIndex(int playerIndex) {
-        if (firstTurnWave) {
-            if (changeTurnWave) {
-                firstTurnWave = false;
-                changeTurnWave = false;
-                return leftIndexShift(playerIndex);
-            } else {
-                if (playerIndex == prevPlayerIndex(playerIndex)) {
-                    changeTurnWave = true;
-                    return playerIndex;
-                }
-                else {
-                    return rightIndexShift(playerIndex);
-                }
-            }
-        }
-        else {
-            return leftIndexShift(playerIndex);
-        }
-    }
 
     //Round successivo
     private void nextRound() {
@@ -129,30 +102,55 @@ public class TurnHandler {
 
         //Se non è il primo round calcola il nuovo primo giocatore
         if (round != 1)
-            firstPlayerIndex = nextPlayerIndex(firstPlayerIndex);
+            firstPlayerIndex = rightIndexShift(firstPlayerIndex);
+
+        //Crea ordine di gioco del nuovo round
+        int current = firstPlayerIndex;
+
+        roundTurnsIndices.clear();
+        for (int i=0; i<playersCount; i++) {
+            roundTurnsIndices.add(current);
+
+            if (i!=playersCount-1)
+                current = rightIndexShift(current);
+        }
+        for (int i=0; i<playersCount; i++) {
+            roundTurnsIndices.add(current);
+
+            current = leftIndexShift(current);
+        }
 
         //Il giocatore corrente è il primo
+        currentTurnIndex = 0;
         turnPlayerIndex = firstPlayerIndex;
     }
-
     //Inizia calcolo dei 10 round e relativi turni
     public void startRounds() {
+        this.roundLastTurn = false;
+        this.roundFirstTurn = true;
+        this.firstTurnWave = true;
         nextRound();
     }
     //Turno successivo
-    public void nextTurn() {
+    public void nextTurn() throws MatchException {
+        //Controllo partita non finita
+        if (isEnded())
+            throw new MatchException("la partita è finita");
+
         //Imposta segnali
-        if (roundFirstTurn)
-            roundFirstTurn = false;
-
-        //Assegna il giocatore successivo
-        turnPlayerIndex = nextPlayerIndex(turnPlayerIndex);
-
-        //Imposta segnale di ultimo turno del round
-        roundLastTurn = turnPlayerIndex == firstPlayerIndex && !roundFirstTurn;
+        roundFirstTurn = false;
 
         //Se è l'ultimo passa al prossimo round
-        if (roundLastTurn)
+        if (roundLastTurn) {
             nextRound();
+        } else {
+            //Assegna il giocatore successivo
+            currentTurnIndex += 1;
+            turnPlayerIndex = roundTurnsIndices.get(currentTurnIndex);
+
+            //Imposta segnali
+            roundLastTurn = currentTurnIndex == roundTurnsIndices.size()-1;
+            firstTurnWave = currentTurnIndex <=roundTurnsIndices.size()/2-1;
+        }
     }
 }
