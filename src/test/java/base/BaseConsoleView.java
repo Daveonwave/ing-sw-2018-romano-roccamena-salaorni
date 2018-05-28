@@ -1,5 +1,6 @@
 package base;
 
+import mvc.controller.AppController;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -10,7 +11,7 @@ public class BaseConsoleView extends AppView {
     //View applicazione come print base della console
 
     //Costruttori
-    public BaseConsoleView(AppControllerStub appController) {
+    public BaseConsoleView(AppController appController) {
         super(appController);
     }
 

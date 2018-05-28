@@ -1,5 +1,6 @@
 package base;
 
+import mvc.controller.AppController;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -10,7 +11,7 @@ public class EmptyView extends AppView {
     //View applicazione vuota
 
     //Costruttori
-    public EmptyView(AppControllerStub appController) {
+    public EmptyView(AppController appController) {
         super(appController);
     }
 

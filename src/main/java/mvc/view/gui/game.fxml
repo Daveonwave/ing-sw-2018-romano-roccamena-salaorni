@@ -21,7 +21,6 @@
       <Button fx:id="publicObjective1" layoutX="612.0" layoutY="442.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="114.0" />
       <Button fx:id="publicObjective2" layoutX="740.0" layoutY="442.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="114.0" />
       <Button fx:id="publicObjective3" layoutX="870.0" layoutY="442.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="114.0" />
-      <Button fx:id="privateObjective" layoutX="425.0" layoutY="49.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="114.0" />
       <Pane fx:id="pane2" layoutX="7.0" layoutY="7.0" prefHeight="747.0" prefWidth="364.0">
          <children>
             <Button fx:id="observe" layoutX="31.0" mnemonicParsing="false" onAction="#observe" prefHeight="59.0" prefWidth="150.0" text="Osserva altri giocatori" />
@@ -86,7 +85,7 @@
             <ImageView fx:id="p3_44" fitHeight="19.0" fitWidth="20.0" layoutX="292.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p3_45" fitHeight="19.0" fitWidth="20.0" layoutX="323.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p4_11" fitHeight="19.0" fitWidth="20.0" layoutX="112.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_12" fitHeight="19.0" fitWidth="20.0" layoutX="148.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_12" fitHeight="19.0" fitWidth="20.0" layoutX="144.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p4_13" fitHeight="19.0" fitWidth="20.0" layoutX="169.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p4_14" fitHeight="19.0" fitWidth="20.0" layoutX="200.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p4_15" fitHeight="19.0" fitWidth="20.0" layoutX="228.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true" />
@@ -109,6 +108,7 @@
       </Pane>
       <Button fx:id="d1" layoutX="628.0" layoutY="22.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
       <Button fx:id="d3" layoutX="767.0" layoutY="22.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
+      <Button fx:id="privateObjective" layoutX="425.0" layoutY="49.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="114.0" />
       <Button fx:id="d2" layoutX="696.0" layoutY="22.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
       <Button fx:id="d4" layoutX="840.0" layoutY="22.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
       <Button fx:id="d5" layoutX="628.0" layoutY="89.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
@@ -116,7 +116,6 @@
       <Button fx:id="d7" layoutX="767.0" layoutY="89.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
       <Button fx:id="d8" layoutX="840.0" layoutY="89.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
       <Button fx:id="d9" layoutX="909.0" layoutY="56.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="60.0" />
-      <Button layoutX="720.0" layoutY="152.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="94.0" text="Tira dadi" />
       <TextArea layoutX="613.0" layoutY="629.0" prefHeight="131.0" prefWidth="376.0" />
       <Button fx:id="p1_11" layoutX="400.0" layoutY="573.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="26.0" styleClass="transparent" stylesheets="@style.css" />
       <Button fx:id="p1_12" layoutX="437.0" layoutY="573.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="26.0" styleClass="transparent" stylesheets="@style.css" />
@@ -138,5 +137,18 @@
       <Button fx:id="p1_43" layoutX="473.0" layoutY="684.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="26.0" styleClass="transparent" stylesheets="@style.css" />
       <Button fx:id="p1_44" layoutX="510.0" layoutY="684.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="26.0" styleClass="transparent" stylesheets="@style.css" />
       <Button fx:id="p1_45" layoutX="548.0" layoutY="684.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="26.0" styleClass="transparent" stylesheets="@style.css" />
+      <AnchorPane fx:id="windowChoice" prefHeight="778.0" prefWidth="1000.0">
+         <children>
+            <Button layoutX="672.0" layoutY="494.0" mnemonicParsing="false" prefHeight="131.0" prefWidth="226.0" />
+            <Button layoutX="202.0" layoutY="489.0" mnemonicParsing="false" prefHeight="140.0" prefWidth="254.0" />
+            <Button layoutX="657.0" layoutY="164.0" mnemonicParsing="false" prefHeight="131.0" prefWidth="234.0" />
+            <Button layoutX="202.0" layoutY="164.0" mnemonicParsing="false" prefHeight="131.0" prefWidth="246.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="start" prefHeight="778.0" prefWidth="1000.0">
+         <children>
+            <Button layoutX="442.0" layoutY="329.0" mnemonicParsing="false" onAction="#loadGame" prefHeight="59.0" prefWidth="150.0" text="INIZIA PARTITA" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -40,6 +40,7 @@
                           <include>**/*.fxml</include>
                           <include>**/*.jpg</include>
                           <include>**/*.css</include>
+                      <include>**/*.png</include>
                   </includes>
               </resource>
           </resources>

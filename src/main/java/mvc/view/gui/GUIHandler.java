@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mvc.controller.AppController;
+import mvc.model.objects.Cell;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -36,9 +38,13 @@ GUIHandler extends Application {
     @FXML
     Button d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
+    Button window1,window2,window3,window4;
+    @FXML
     Text text;
     @FXML
     Pane pane, pane2;
+    @FXML
+    AnchorPane start,windowChoice;
     @FXML
     ImageView w1,w2,w3,w4;
     @FXML
@@ -124,18 +130,178 @@ GUIHandler extends Application {
         this.connected = true;
     }
 
+    //associazioni tra bottoni e view corrispondenti
+    public ImageView associateWindow(int index){
+        switch (index){
+            case 1: return w1;
+            case 2: return w2;
+            case 3: return w3;
+            case 4: return w4;
+        }
+        return null;
+    }
+    public Button associateWindowButton(int index){
+        switch (index){
+            case 1: return window1;
+            case 2: return window2;
+            case 3: return window3;
+            case 4: return window4;
+        }
+        return null;
+    }
+    public Button associateToolCard(int index){
+        switch (index){
+            case 1: return toolCard1;
+            case 2: return  toolCard2;
+            case 3: return toolCard3;
+        }
+        return null;
+    }
+    public ImageView associateContainer(int index){return null;}
+    public CellView[][] associateCells(Cell[][] cell, int index){
+        CellView[][] cells = new CellView[4][5];
+        switch (index){
+            case 1: for (int i = 0; i<4; i++) {
+                for (int j = 0; j < 5; j++) {
+                    cells[i][j].setCell(cell[i][j]);
+                    cells[i][j].setImageView(null);
+                }
+            }
+                cells[0][0].setButton(p1_11);
+                cells[0][1].setButton(p1_12);
+                cells[0][2].setButton(p1_13);
+                cells[0][3].setButton(p1_14);
+                cells[0][4].setButton(p1_15);
+
+                cells[1][0].setButton(p1_21);
+                cells[1][1].setButton(p1_22);
+                cells[1][2].setButton(p1_23);
+                cells[1][3].setButton(p1_24);
+                cells[1][4].setButton(p1_25);
+
+                cells[2][0].setButton(p1_31);
+                cells[2][1].setButton(p1_32);
+                cells[2][2].setButton(p1_33);
+                cells[2][3].setButton(p1_34);
+                cells[2][4].setButton(p1_35);
+
+                cells[3][0].setButton(p1_41);
+                cells[3][1].setButton(p1_42);
+                cells[3][2].setButton(p1_43);
+                cells[3][3].setButton(p1_44);
+                cells[3][4].setButton(p1_45);
+                break;
+            case 2: for (int i = 0; i<4; i++) {
+                for (int j = 0; j < 5; j++) {
+                    cells[i][j].setCell(cell[i][j]);
+                    cells[i][j].setButton(null);
+                }
+            }
+                cells[0][0].setImageView(p2_11);
+                cells[0][1].setImageView(p2_12);
+                cells[0][2].setImageView(p2_13);
+                cells[0][3].setImageView(p2_14);
+                cells[0][4].setImageView(p2_15);
+
+                cells[1][0].setImageView(p2_21);
+                cells[1][1].setImageView(p2_22);
+                cells[1][2].setImageView(p2_23);
+                cells[1][3].setImageView(p2_24);
+                cells[1][4].setImageView(p2_25);
+
+                cells[2][0].setImageView(p2_31);
+                cells[2][1].setImageView(p2_32);
+                cells[2][2].setImageView(p2_33);
+                cells[2][3].setImageView(p2_34);
+                cells[2][4].setImageView(p2_35);
+
+                cells[3][0].setImageView(p2_41);
+                cells[3][1].setImageView(p2_42);
+                cells[3][2].setImageView(p2_43);
+                cells[3][3].setImageView(p2_44);
+                cells[3][4].setImageView(p2_45);
+                break;
+
+            case 3: for (int i = 0; i<4; i++) {
+                for (int j = 0; j < 5; j++) {
+                    cells[i][j].setCell(cell[i][j]);
+                    cells[i][j].setButton(null);
+                }
+            }
+                cells[0][0].setImageView(p3_11);
+                cells[0][1].setImageView(p3_12);
+                cells[0][2].setImageView(p3_13);
+                cells[0][3].setImageView(p3_14);
+                cells[0][4].setImageView(p3_15);
+
+                cells[1][0].setImageView(p3_21);
+                cells[1][1].setImageView(p3_22);
+                cells[1][2].setImageView(p3_23);
+                cells[1][3].setImageView(p3_24);
+                cells[1][4].setImageView(p3_25);
+
+                cells[2][0].setImageView(p3_31);
+                cells[2][1].setImageView(p3_32);
+                cells[2][2].setImageView(p3_33);
+                cells[2][3].setImageView(p3_34);
+                cells[2][4].setImageView(p3_35);
+
+                cells[3][0].setImageView(p3_41);
+                cells[3][1].setImageView(p3_42);
+                cells[3][2].setImageView(p3_43);
+                cells[3][3].setImageView(p3_44);
+                cells[3][4].setImageView(p3_45);
+                break;
+
+            case 4: for (int i = 0; i<4; i++) {
+                for (int j = 0; j < 5; j++) {
+                    cells[i][j].setCell(cell[i][j]);
+                    cells[i][j].setButton(null);
+                }
+            }
+                cells[0][0].setImageView(p4_11);
+                cells[0][1].setImageView(p4_12);
+                cells[0][2].setImageView(p4_13);
+                cells[0][3].setImageView(p4_14);
+                cells[0][4].setImageView(p4_15);
+
+                cells[1][0].setImageView(p4_21);
+                cells[1][1].setImageView(p4_22);
+                cells[1][2].setImageView(p4_23);
+                cells[1][3].setImageView(p4_24);
+                cells[1][4].setImageView(p4_25);
+
+                cells[2][0].setImageView(p4_31);
+                cells[2][1].setImageView(p4_32);
+                cells[2][2].setImageView(p4_33);
+                cells[2][3].setImageView(p4_34);
+                cells[2][4].setImageView(p4_35);
+
+                cells[3][0].setImageView(p4_41);
+                cells[3][1].setImageView(p4_42);
+                cells[3][2].setImageView(p4_43);
+                cells[3][3].setImageView(p4_44);
+                cells[3][4].setImageView(p4_45);
+                break;
+            }
+        return cells;
+    }
+
     //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
         multi.setVisible(false);
         single.setVisible(false);
-        this.guiView.getAppController().joinMatch(guiView.getUserToken());
         guiView.getAppController().joinMatch(guiView.getUserToken());
         queue = true;
         text.setText("In attesa di altri giocatori...");
     }
-    //Inizia gico
+    //Inizia gioco
     public void startGame() throws IOException{
         changeScene("game.fxml",this.stage);
+    }
+
+    public void getWindow(ActionEvent actionEvent){
+
     }
     //Osservazione
     public void observe(ActionEvent actionEvent){

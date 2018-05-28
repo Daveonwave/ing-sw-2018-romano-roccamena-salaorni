@@ -1,30 +1,32 @@
 package mvc.view.gui;
 
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import mvc.model.objects.Window;
 
-public class WindowView {
+public class WindowView extends ObjectView{
 
     private Window window;
-    private String imagePath;
+    private CellView[][] cells;
 
-    public WindowView(Window window, String imagePath) {
+    //costruttori
+    public WindowView(Button button, ImageView imageView, Window window, CellView[][] cells) {
+        super(button, imageView);
         this.window = window;
-        this.imagePath = imagePath;
+        this.cells = cells;
     }
 
+    //setter/getter
     public Window getWindow() {
         return window;
-    }
-
-    public String getImagePath() {
-        return imagePath;
     }
 
     public void setWindow(Window window) {
         this.window = window;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public Image imagePath() {
+        return null;
     }
 }

@@ -1,40 +1,31 @@
 package mvc.view.gui;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import mvc.model.objects.Card;
 
-public class CardView {
+public class CardView extends ObjectView{
     //View gui di una carta
 
     private Card card;
-    private String imagePath;
-    private Button button;
 
     //Costruttori
-    public CardView(Card card, String imagePath, Button button) {
+    public CardView(Button button, ImageView imageView, Card card) {
+        super(button, imageView);
         this.card = card;
-        this.imagePath = imagePath;
-        this.button = button;
     }
 
     //Setter/Getter
-    public void setCard(Card card) {
-        this.card = card;
-    }
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-    public void setButton(Button button) {
-        this.button = button;
-    }
-
     public Card getCard() {
         return card;
     }
-    public String getImagePath() {
-        return imagePath;
+
+    public void setCard(Card card) {
+        this.card = card;
     }
-    public Button getButton() {
-        return button;
+
+    public Image imagePath() {
+        return null;
     }
 }
