@@ -13,10 +13,8 @@ public class TaglierinaCircolare extends ToolCard {
 
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+    private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Player player = match.getTurnPlayer();
         Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
 
         //Controlla giocatore non ha gia piazzato questo turno
@@ -32,5 +30,13 @@ public class TaglierinaCircolare extends ToolCard {
 
         //Aggiorna effetti
         player.getToolCardEffect().setChoosenDie(roundTrackDie);
+    }
+
+    //Usa carta strumento
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getTurnPlayer(), input);
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getPlayer(), input);
     }
 }

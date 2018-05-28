@@ -12,14 +12,22 @@ public class PennelloPerEglomise extends ToolCard {
 
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+    private void cardEffect(Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Player player = match.getTurnPlayer();
-        Cell origin = match.getTurnPlayer().getWindow().retrieveCell(input.getOriginCell1());
-        Cell destination = match.getTurnPlayer().getWindow().retrieveCell(input.getDestinationCell2());
+        Cell origin = player.getWindow().retrieveCell(input.getOriginCell1());
+        Cell destination = player.getWindow().retrieveCell(input.getDestinationCell2());
 
         //Esegue il movimento
         player.getWindow().moveDie(origin, destination, false, false, false, true);
+
+    }
+
+
+    //Usa carta strumento
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match.getTurnPlayer(), input);
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match.getPlayer(), input);
     }
 }

@@ -3,7 +3,6 @@ package mvc.model.objects.toolcards;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
 
-import java.awt.Color;
 import java.rmi.RemoteException;
 
 public class Lathekin extends ToolCard {
@@ -13,10 +12,8 @@ public class Lathekin extends ToolCard {
         super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", GameConstants.YELLOW);
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+    private void cardEffect(Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Player player = match.getTurnPlayer();
         Window window = player.getWindow();
         Cell origin1 = player.getWindow().retrieveCell(input.getOriginCell1());
         Cell origin2 = player.getWindow().retrieveCell(input.getOriginCell2());
@@ -31,5 +28,13 @@ public class Lathekin extends ToolCard {
             window.moveDie(destination1, origin1);
             throw e;
         }
+    }
+
+    //Usa carta strumento
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match.getTurnPlayer(), input);
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match.getPlayer(), input);
     }
 }

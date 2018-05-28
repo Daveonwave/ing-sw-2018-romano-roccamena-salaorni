@@ -13,11 +13,7 @@ public class Martelletto extends ToolCard {
 
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
-        //Ottiene dati
-        Player player = match.getTurnPlayer();
-
+    private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Controlla se l'utilizzo è possibile
         if (match.getTurnHandler().isFirstTurnWave() || !player.getTurnDiePlaced())
             throw new MatchException("non puoi usare questa carta ora");
@@ -25,5 +21,13 @@ public class Martelletto extends ToolCard {
         //Rilancia i dadi della riserva
         for (Die die : match.getMatchDice().getDraftPool())
             die.roll();
+    }
+
+    //Usa carta strumento
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getTurnPlayer(), input);
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getPlayer(), input);
     }
 }

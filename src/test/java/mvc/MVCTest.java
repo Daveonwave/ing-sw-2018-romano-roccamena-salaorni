@@ -61,6 +61,6 @@ public class MVCTest extends BaseTest {
         return new Window(null, 5);
     }
     public ToolCardInput createInvalidToolCardInput1() {
-        return new ToolCardInput(null, null, null, null, 0, createInvalidDie1(), null, 1, true);
+        return new ToolCardInput(null, null, null, null, 0, null, createInvalidDie1(), createInvalidDie1(), 1, true);
     }
 }

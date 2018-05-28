@@ -1,14 +1,10 @@
 package mvc.view;
 
 import mvc.controller.AppController;
-import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 import mvc.model.objects.*;
 
-import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
 public abstract class AppView implements AppViewStub {
     //View astratta dell'applicazione
@@ -62,12 +58,12 @@ public abstract class AppView implements AppViewStub {
     public abstract void respondAck(String message) throws RemoteException;
 
     //Osservazione partita
-    public abstract void onMatchStart(String tokenMatch, Match match) throws RemoteException;
-    public abstract void onChooseWindows(String tokenMatch, Match match) throws RemoteException;
-    public abstract void onTurnStart(String tokenMatch, Match match) throws RemoteException;
-    public abstract void onTurnEnd(String tokenMatch, Match match) throws RemoteException;
-    public abstract void onPlaceDie(String tokenMatch, Match match, Cell cell, Die die) throws RemoteException;
-    public abstract void onUseTool(String tokenMatch, Match match, ToolCard toolCard) throws RemoteException;
-    public abstract void onGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException;
-    public abstract void onMatchEnd(String tokenMatch, Match match) throws RemoteException;
+    public abstract void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    public abstract void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    public abstract void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    public abstract void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    public abstract void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException;
+    public abstract void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException;
+    public abstract void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException;
+    public abstract void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
 }

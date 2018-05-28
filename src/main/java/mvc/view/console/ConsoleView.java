@@ -2,7 +2,6 @@ package mvc.view.console;
 
 import mvc.controller.AppController;
 import mvc.model.objects.*;
-import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 import mvc.view.console.menu.ConsoleMenu;
 import mvc.view.console.menu.MainMenu;
@@ -161,28 +160,28 @@ public class ConsoleView extends AppView {
     }
 
     //Osservazione partita
-    public synchronized void onMatchStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public synchronized void onChooseWindows(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public synchronized void onTurnStart(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public synchronized void onTurnEnd(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public synchronized void onPlaceDie(String tokenMatch, Match match, Cell cell, Die die) throws RemoteException {
+    public synchronized void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
 
     }
-    public synchronized void onUseTool(String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
+    public synchronized void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
 
     }
-    public synchronized void onGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException {
+    public synchronized void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 
     }
-    public synchronized void onMatchEnd(String tokenMatch, Match match) throws RemoteException {
+    public synchronized void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
 }

@@ -5,7 +5,7 @@ import mvc.model.objects.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface MatchController extends Remote{
+public interface MultiPlayerController extends Remote{
     //Controllore remoto partita
 
     void joinMatch(String tokenUser) throws RemoteException;

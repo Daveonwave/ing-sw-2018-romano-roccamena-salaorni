@@ -202,7 +202,7 @@ public class MatchCreator {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Factory partite multiplayer e singleplayer
-    public static Match createMultiPlayer(List<User> users, long seed) {
+    public static MultiPlayerMatch createMultiPlayer(List<User> users, long seed) {
         //Verifica condizione sulla casualità
         boolean seeded = seed > 0;
 
@@ -238,15 +238,15 @@ public class MatchCreator {
         MatchDice matchDice = new MatchDice(users.size(),diceBag, draftPool);
 
         //Crea partita
-        Match match = new Match(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
+        MultiPlayerMatch match = new MultiPlayerMatch(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
 
         return match;
     }
-    public static Match createMultiPlayer(List<User> users) {
+    public static MultiPlayerMatch createMultiPlayer(List<User> users) {
         return createMultiPlayer(users, -1);
     }
 
-    public static Match createSinglePlayer(User user, int difficultyLevelSP) {
+    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP) {
         //Crea giocatori, finestre iniziali e le carte
         MatchCreator matchCreator = new MatchCreator(true);
         List<Window> extractedWindows = matchCreator.createWindows(1);
@@ -265,7 +265,7 @@ public class MatchCreator {
         MatchDice matchDice = new MatchDice(1, diceBag, draftPool);
 
         //Crea partita
-        Match match = new Match(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
+        SinglePlayerMatch match = new SinglePlayerMatch(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
         return match;
     }
 

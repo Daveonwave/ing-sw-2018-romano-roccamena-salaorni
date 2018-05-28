@@ -1,11 +1,7 @@
 package mvc.model.objects.toolcards;
 
-import mvc.model.objects.GameConstants;
-import mvc.model.objects.Match;
-import mvc.model.objects.ToolCard;
-import mvc.model.objects.ToolCardInput;
+import mvc.model.objects.*;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 
 public class TenagliaRotelle extends ToolCard {
@@ -17,6 +13,9 @@ public class TenagliaRotelle extends ToolCard {
     }
 
     //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+
     }
 }
