@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mvc.controller.AppController;
 import mvc.model.objects.Cell;
+import mvc.model.objects.Match;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -24,6 +25,7 @@ GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;
+    private Match match;
     private boolean connected = false;
     private boolean queue = false;
     private boolean ready = false;
@@ -39,6 +41,8 @@ GUIHandler extends Application {
     Button d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
     Button window1,window2,window3,window4;
+    @FXML
+    ImageView container1,container2,container3,container4;
     @FXML
     Text text;
     @FXML
@@ -130,7 +134,7 @@ GUIHandler extends Application {
         this.connected = true;
     }
 
-    //associazioni tra bottoni e view corrispondenti
+    //associazioni tra bottoni e classi view corrispondenti
     public ImageView associateWindow(int index){
         switch (index){
             case 1: return w1;
@@ -157,7 +161,6 @@ GUIHandler extends Application {
         }
         return null;
     }
-    public ImageView associateContainer(int index){return null;}
     public CellView[][] associateCells(Cell[][] cell, int index){
         CellView[][] cells = new CellView[4][5];
         switch (index){
@@ -286,6 +289,15 @@ GUIHandler extends Application {
             }
         return cells;
     }
+    public ImageView associateContainer(int index){
+        switch (index){
+            case 1: return container1;
+            case 2: return container2;
+            case 3: return container3;
+            case 4: return container4;
+        }
+        return null;
+    }
 
     //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
@@ -296,8 +308,23 @@ GUIHandler extends Application {
         text.setText("In attesa di altri giocatori...");
     }
     //Inizia gioco
-    public void startGame() throws IOException{
+    public void startGame(Match match) throws IOException{
         changeScene("game.fxml",this.stage);
+        this.match = match;
+    }
+
+    public void loadGame(ActionEvent actionEvent){
+        start.setVisible(false);
+        d1.setVisible(false);
+        d2.setVisible(false);
+        d3.setVisible(false);
+        d4.setVisible(false);
+        d5.setVisible(false);
+        d6.setVisible(false);
+        d7.setVisible(false);
+        d8.setVisible(false);
+        d9.setVisible(false);
+        guiView.createGame(this.match);
     }
 
     public void getWindow(ActionEvent actionEvent){

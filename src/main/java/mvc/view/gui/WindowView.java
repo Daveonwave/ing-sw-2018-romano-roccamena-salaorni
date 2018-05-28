@@ -9,12 +9,14 @@ public class WindowView extends ObjectView{
 
     private Window window;
     private CellView[][] cells;
+    private ImageView container;
 
     //costruttori
-    public WindowView(Button button, ImageView imageView, Window window, CellView[][] cells) {
+    public WindowView(Button button, ImageView imageView, Window window, CellView[][] cells, ImageView container) {
         super(button, imageView);
         this.window = window;
         this.cells = cells;
+        this.container = container;
     }
 
     //setter/getter
@@ -22,8 +24,24 @@ public class WindowView extends ObjectView{
         return window;
     }
 
+    public CellView[][] getCells() {
+        return cells;
+    }
+
+    public ImageView getContainer() {
+        return container;
+    }
+
     public void setWindow(Window window) {
         this.window = window;
+    }
+
+    public void setCells(CellView[][] cells) {
+        this.cells = cells;
+    }
+
+    public void setContainer(ImageView container) {
+        this.container = container;
     }
 
     public Image imagePath() {

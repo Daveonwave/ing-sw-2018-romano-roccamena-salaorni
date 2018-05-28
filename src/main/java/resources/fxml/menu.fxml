@@ -13,7 +13,7 @@
     <children>
         <ImageView fitHeight="800.0" fitWidth="983.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../resources/images/menu.jpg" />
+                <Image url="@../images/menu.jpg" />
             </image>
         </ImageView>
         <Text fx:id="text" layoutX="322.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserire il nome Utente" wrappingWidth="378.13671875">

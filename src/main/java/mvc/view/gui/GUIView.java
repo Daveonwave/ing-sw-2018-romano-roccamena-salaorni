@@ -103,10 +103,22 @@ public class GUIView extends AppView {
         }
     }
 
-    public void getWindows() throws RemoteException{
+    public void startWindows() throws RemoteException{
         List<WindowView> windows = new ArrayList<>(4);
         for(int i = 0; i<4; i++) {
-            windows.add(i, new WindowView(guiHandler.associateWindowButton(i+1),new ImageView(), this.getAppController().getModel().retrieveUser(this.getUserToken()).getPlayers().get(0).getStartWindows().get(i),null));
+            windows.add(i, new WindowView(guiHandler.associateWindowButton(i+1),new ImageView(), this.getAppController().getModel().retrieveUser(this.getUserToken()).getPlayers().get(0).getStartWindows().get(i),null,null));
+        }
+    }
+    public void createGame(Match match){
+        int window = 2;
+        for (Player player: match.getPlayers()){
+            if (!player.getUser().getAppView().equals(this)){
+                opponents.add(new OpponentView(new WindowView(null,guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window),guiHandler.associateContainer(window)),player));
+                window += 1;
+            }
+        }
+        for (ToolCard toolCard: match.getToolCards()){
+            this.toolCards.add(new CardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),new ImageView(),toolCard));
         }
     }
 
@@ -120,25 +132,16 @@ public class GUIView extends AppView {
 
     //Osservazione partita
     public void onMatchStart(String tokenMatch, Match match) throws RemoteException {
-        int window = 2;
-        for (Player player: match.getPlayers()){
-            if (!player.getUser().getAppView().equals(this)){
-                opponents.add(new OpponentView(new WindowView(null,guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window)),player));
-                window += 1;
-            }
-        }
-        for (ToolCard toolCard: match.getToolCards()){
-            this.toolCards.add(new CardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),new ImageView(),toolCard));
+        this.getGuiHandler().setReady(true);
+        try {
+            this.getGuiHandler().startGame(match);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
     public void onChooseWindows(String tokenMatch, Match match) throws RemoteException {
-        this.getGuiHandler().setReady(true);
-        try {
-            this.getGuiHandler().startGame();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
     public void onTurnStart(String tokenMatch, Match match) throws RemoteException {
 
