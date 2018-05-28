@@ -12,10 +12,8 @@ public class TaglierinaManuale extends ToolCard {
         super("taglierina manuale", "muovi fino a due dadi, dello stesso colore di un solo dado del tracciato dei round, rispettando tutte le restrizioni", GameConstants.BLUE);
     }
 
-    //Usa carta strumento
-    public void useToolCard(Match match, ToolCardInput input) throws RemoteException {
+    private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Player player = match.getTurnPlayer();
         Window window = player.getWindow();
         Die die = input.getRoundTrackDie();
         Cell origin1 = player.getWindow().retrieveCell(input.getOriginCell1());
@@ -37,5 +35,13 @@ public class TaglierinaManuale extends ToolCard {
             window.moveDie(destination1, origin1);
             throw e;
         }
+    }
+
+    //Usa carta strumento
+    public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getTurnPlayer(), input);
+    }
+    public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
+        cardEffect(match, match.getPlayer(), input);
     }
 }

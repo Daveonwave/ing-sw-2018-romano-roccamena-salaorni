@@ -116,7 +116,7 @@ public class AppController implements AppControllerStub {
             partecipantUsers.add(model.retrieveUser(partecipantToken));
 
         //Crea nuova partita
-        Match match = MatchCreator.createMultiPlayer(partecipantUsers);
+        MultiPlayerMatch match = MatchCreator.createMultiPlayer(partecipantUsers);
         MatchModel matchModel = new MatchModel(match);
 
         //Registra gli utenti come osservatori della partita
@@ -170,7 +170,7 @@ public class AppController implements AppControllerStub {
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
-        Match match = matchModel.getMatch();
+        MultiPlayerMatch match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
@@ -194,7 +194,7 @@ public class AppController implements AppControllerStub {
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
-        Match match = matchModel.getMatch();
+        MultiPlayerMatch match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
@@ -216,7 +216,7 @@ public class AppController implements AppControllerStub {
     public synchronized void useToolCard(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
-        Match match = matchModel.getMatch();
+        MultiPlayerMatch match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
@@ -237,7 +237,7 @@ public class AppController implements AppControllerStub {
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
-        Match match = matchModel.getMatch();
+        MultiPlayerMatch match = matchModel.getMatch();
         User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 

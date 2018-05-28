@@ -52,25 +52,22 @@ public class ColorDiagonals extends PublicObjectiveCard {
 
         //Confronta le prime due celle
         for(int i = 1; i < diagonal.size(); i++) {
-            if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor()) && i == 1) {
+            if(diagonal.get(i).getDie() != null && diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor()) && i == 1) {
                 points = points + 2;
             }
 
             if (i + 1 == diagonal.size())
                 break; //Esce all'ultima cella
             else {
-                if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor())) {
+                if(diagonal.get(i).getDie() != null && diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor())) {
                     if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i + 1).getDie().getColor())){
                         points++;
                     }
-                    else
-                        break;
                 }
                 else {
                     if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i + 1).getDie().getColor())){
                         points = points + 2;
                     }
-                    else break;
                 }
             }
         }

@@ -109,7 +109,9 @@ public class GUIView extends AppView {
             windows.add(i, new WindowView(guiHandler.associateWindowButton(i+1),new ImageView(), this.getAppController().getModel().retrieveUser(this.getUserToken()).getPlayers().get(0).getStartWindows().get(i),null,null));
         }
     }
-    public void createGame(Match match){
+
+    public void createGame(MultiPlayerMatch match){
+
         int window = 2;
         for (Player player: match.getPlayers()){
             if (!player.getUser().getAppView().equals(this)){
@@ -126,12 +128,14 @@ public class GUIView extends AppView {
     public void respondError(String message) throws RemoteException {
         this.output = message;
     }
+
     public void respondAck(String message) throws RemoteException {
        this.output = message;
     }
 
     //Osservazione partita
-    public void onMatchStart(String tokenMatch, Match match) throws RemoteException {
+    public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
         this.getGuiHandler().setReady(true);
         try {
             this.getGuiHandler().startGame(match);
@@ -140,25 +144,25 @@ public class GUIView extends AppView {
         }
 
     }
-    public void onChooseWindows(String tokenMatch, Match match) throws RemoteException {
+    public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onTurnStart(String tokenMatch, Match match) throws RemoteException {
+    public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onTurnEnd(String tokenMatch, Match match) throws RemoteException {
+    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onPlaceDie(String tokenMatch, Match match, Cell cell, Die die) throws RemoteException {
+    public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
 
     }
-    public void onUseTool(String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
+    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
 
     }
-    public void onGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException {
+    public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 
     }
-    public void onMatchEnd(String tokenMatch, Match match) throws RemoteException {
+    public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
 

@@ -9,9 +9,14 @@
         <module name="SagradaProject" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
 
       <module name="SagradaProject" target="9" />
 
   </component>
 </project>
 
+=======
+  </component>
+</project>
+>>>>>>> dfb187fc234b2bbf75f44bb996afe66afec25e75

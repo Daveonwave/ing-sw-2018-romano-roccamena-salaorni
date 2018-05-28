@@ -2,7 +2,6 @@ package base;
 
 import mvc.controller.AppController;
 import mvc.model.objects.*;
-import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 
 import java.rmi.RemoteException;
@@ -32,28 +31,28 @@ public class EmptyView extends AppView {
     }
 
     //Osservazione partita
-    public void onMatchStart(String tokenMatch, Match match) throws RemoteException {
+    public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onChooseWindows(String tokenMatch, Match match) throws RemoteException {
+    public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onTurnStart(String tokenMatch, Match match) throws RemoteException {
+    public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onTurnEnd(String tokenMatch, Match match) throws RemoteException {
+    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public void onPlaceDie(String tokenMatch, Match match, Cell cell, Die die) throws RemoteException {
+    public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
 
     }
-    public void onUseTool(String tokenMatch, Match match, ToolCard toolCard) throws RemoteException {
+    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
 
     }
-    public void onGetPoints(String tokenMatch, Match match, Player player, PlayerPoints points) throws RemoteException {
+    public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 
     }
-    public void onMatchEnd(String tokenMatch, Match match) throws RemoteException {
+    public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
 }

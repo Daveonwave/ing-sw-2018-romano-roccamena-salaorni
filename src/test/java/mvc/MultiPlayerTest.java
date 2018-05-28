@@ -16,33 +16,33 @@ public class MultiPlayerTest extends MVCTest {
 
 
     //Creazione partite di test
-    private Match createTwoPlayerMatch() {
+    private MultiPlayerMatch createTwoPlayerMatch() {
         return MatchCreator.createMultiPlayer(createTwoUsersList());
     }
-    private Match createThreePlayerMatch() {
+    private MultiPlayerMatch createThreePlayerMatch() {
         return MatchCreator.createMultiPlayer(createThreeUsersList());
     }
-    private Match createFourPlayerMatch() {
+    private MultiPlayerMatch createFourPlayerMatch() {
         return MatchCreator.createMultiPlayer(createFourUsersList());
     }
 
-    private Match createTwoPlayerMatch1() {
+    private MultiPlayerMatch createTwoPlayerMatch1() {
         return MatchCreator.createMultiPlayer(createTwoUsersList(), 10);
     }
-    private Match createThreePlayerMatch1() {
+    private MultiPlayerMatch createThreePlayerMatch1() {
         return MatchCreator.createMultiPlayer(createThreeUsersList(), 10);
     }
-    private Match createFourPlayerMatch1() {
+    private MultiPlayerMatch createFourPlayerMatch1() {
         return MatchCreator.createMultiPlayer(createFourUsersList(), 10);
     }
 
-    private Match createTwoPlayerMatch2() {
+    private MultiPlayerMatch createTwoPlayerMatch2() {
         return MatchCreator.createMultiPlayer(createTwoUsersList(), 100);
     }
-    private Match createThreePlayerMatch2() {
+    private MultiPlayerMatch createThreePlayerMatch2() {
         return MatchCreator.createMultiPlayer(createThreeUsersList(), 100);
     }
-    private Match createFourPlayerMatch2() {
+    private MultiPlayerMatch createFourPlayerMatch2() {
         return MatchCreator.createMultiPlayer(createFourUsersList(), 100);
     }
 
@@ -93,10 +93,10 @@ public class MultiPlayerTest extends MVCTest {
         return null;
     }
 
-    public Player retrievePlayer(Match match, int index) {
+    public Player retrievePlayer(MultiPlayerMatch match, int index) {
         return validRetrievePlayer(match, match.getPlayers().get(index));
     }
-    public Player validRetrievePlayer(Match match, Player player) {
+    public Player validRetrievePlayer(MultiPlayerMatch match, Player player) {
         try {
             return match.retrievePlayer(player);
         } catch (RemoteException e) {
@@ -105,7 +105,7 @@ public class MultiPlayerTest extends MVCTest {
 
         return null;
     }
-    public Player invalidRetrievePlayer(Match match, Player player) {
+    public Player invalidRetrievePlayer(MultiPlayerMatch match, Player player) {
         try {
             match.retrievePlayer(player);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -115,10 +115,10 @@ public class MultiPlayerTest extends MVCTest {
         return null;
     }
 
-    public ToolCard retrieveToolCard(Match match, int index) {
+    public ToolCard retrieveToolCard(MultiPlayerMatch match, int index) {
         return validRetrieveToolCard(match, match.getToolCards().get(index));
     }
-    public ToolCard validRetrieveToolCard(Match match, ToolCard toolCard) {
+    public ToolCard validRetrieveToolCard(MultiPlayerMatch match, ToolCard toolCard) {
         try {
             return match.retrieveToolCard(toolCard);
         } catch (RemoteException e) {
@@ -127,7 +127,7 @@ public class MultiPlayerTest extends MVCTest {
 
         return null;
     }
-    public ToolCard invalidRetrieveToolCard(Match match, ToolCard toolCard) {
+    public ToolCard invalidRetrieveToolCard(MultiPlayerMatch match, ToolCard toolCard) {
         try {
             match.retrieveToolCard(toolCard);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -137,10 +137,10 @@ public class MultiPlayerTest extends MVCTest {
         return null;
     }
 
-    public Die retrieveDieFromDraftPool(Match match, int index) {
+    public Die retrieveDieFromDraftPool(MultiPlayerMatch match, int index) {
         return validRetrieveDieFromDraftPool(match, match.getMatchDice().getDraftPool().get(index));
     }
-    public Die validRetrieveDieFromDraftPool(Match match, Die die) {
+    public Die validRetrieveDieFromDraftPool(MultiPlayerMatch match, Die die) {
         try {
             return match.getMatchDice().retrieveDieFromDraftPool(die);
         } catch (RemoteException e) {
@@ -149,7 +149,7 @@ public class MultiPlayerTest extends MVCTest {
 
         return null;
     }
-    public Die invalidRetrieveDieFromDraftPool(Match match, Die die) {
+    public Die invalidRetrieveDieFromDraftPool(MultiPlayerMatch match, Die die) {
         try {
             match.getMatchDice().retrieveDieFromDraftPool(die);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -159,14 +159,14 @@ public class MultiPlayerTest extends MVCTest {
         return null;
     }
 
-    public void validBeginMatch(Match match) {
+    public void validBeginMatch(MultiPlayerMatch match) {
         try {
             match.beginMatch();
         } catch (RemoteException e) {
             testAssertError(FAILED_OPERATION_MESSAGE);
         }
     }
-    public void invalidBeginMatch(Match match) {
+    public void invalidBeginMatch(MultiPlayerMatch match) {
         try {
             match.beginMatch();
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -174,14 +174,14 @@ public class MultiPlayerTest extends MVCTest {
         }
     }
 
-    public void validChooseWindow(Match match, Player player, Window window) {
+    public void validChooseWindow(MultiPlayerMatch match, Player player, Window window) {
         try {
             match.chooseWindow(player, window);
         } catch (RemoteException e) {
             testAssertError(FAILED_OPERATION_MESSAGE);
         }
     }
-    public void invalidChooseWindow(Match match, Player player, Window window) {
+    public void invalidChooseWindow(MultiPlayerMatch match, Player player, Window window) {
         try {
             match.chooseWindow(player, window);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -189,14 +189,14 @@ public class MultiPlayerTest extends MVCTest {
         }
     }
 
-    public void validPlaceDie(Match match, Player player, Cell cell, Die die) {
+    public void validPlaceDie(MultiPlayerMatch match, Player player, Cell cell, Die die) {
         try {
             match.placeDie(player, cell, die);
         } catch (RemoteException e) {
             testAssertError(FAILED_OPERATION_MESSAGE);
         }
     }
-    public void invalidPlaceDie(Match match, Player player, Cell cell, Die die) {
+    public void invalidPlaceDie(MultiPlayerMatch match, Player player, Cell cell, Die die) {
         try {
             match.placeDie(player, cell, die);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -204,14 +204,14 @@ public class MultiPlayerTest extends MVCTest {
         }
     }
 
-    public void invalidUseToolCard(Match match, Player player, ToolCardInput toolCardInput, ToolCard toolCard) {
+    public void invalidUseToolCard(MultiPlayerMatch match, Player player, ToolCardInput toolCardInput, ToolCard toolCard) {
         try {
             match.useToolCard(player, toolCardInput, toolCard);
             testAssertError(INVALID_OPERATION_MESSAGE);
         } catch (RemoteException e) {
         }
     }
-    public void validUseToolCard(Match match, Player player, ToolCardInput toolCardInput, ToolCard toolCard) {
+    public void validUseToolCard(MultiPlayerMatch match, Player player, ToolCardInput toolCardInput, ToolCard toolCard) {
         try {
             match.useToolCard(player, toolCardInput, toolCard);
         } catch (RemoteException e) {
@@ -219,14 +219,14 @@ public class MultiPlayerTest extends MVCTest {
         }
     }
 
-    public void validEndTurn(Match match, Player player) {
+    public void validEndTurn(MultiPlayerMatch match, Player player) {
         try {
             match.endTurn(player);
         } catch (RemoteException e) {
             testAssertError(FAILED_OPERATION_MESSAGE);
         }
     }
-    public void invalidEndTurn(Match match, Player player) {
+    public void invalidEndTurn(MultiPlayerMatch match, Player player) {
         try {
             match.endTurn(player);
             testAssertError(INVALID_OPERATION_MESSAGE);
@@ -237,7 +237,7 @@ public class MultiPlayerTest extends MVCTest {
 
 
     //Test su proprietà del modello partita
-    public void testTurnHandler(Match match, Player turnPlayer, int round, boolean started, boolean ended, boolean roundFirst, boolean roundLast, boolean firstWave) {
+    public void testTurnHandler(MultiPlayerMatch match, Player turnPlayer, int round, boolean started, boolean ended, boolean roundFirst, boolean roundLast, boolean firstWave) {
         if (match.getTurnHandler().isStarted()!=started)
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getTurnHandler().isEnded()!=ended)
@@ -253,25 +253,25 @@ public class MultiPlayerTest extends MVCTest {
         if (!match.getTurnPlayer().samePlayer(turnPlayer))
             testAssertError(INVALID_STATE_MESSAGE);
     }
-    public void testTurnHandler(Match match, Player turnPlayer, int round, boolean roundFirst, boolean roundLast, boolean firstWave) {
+    public void testTurnHandler(MultiPlayerMatch match, Player turnPlayer, int round, boolean roundFirst, boolean roundLast, boolean firstWave) {
         testTurnHandler(match, turnPlayer, round, true, false, roundFirst,roundLast, firstWave);
     }
 
-    public void testMatchStartWindows(Match match) {
+    public void testMatchStartWindows(MultiPlayerMatch match) {
         for (Player player : match.getPlayers()) {
             if (player.getStartWindows().size()!=GameConstants.WINDOWS_FOR_PLAYER)
                 testAssertError(INVALID_STATE_MESSAGE);
         }
     }
 
-    public void testMatchDice(Match match, int bagCount, int poolCount) {
+    public void testMatchDice(MultiPlayerMatch match, int bagCount, int poolCount) {
         if (match.getMatchDice().getDiceBag().size()!=bagCount)
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getMatchDice().getDraftPool().size()!=poolCount)
             testAssertError(INVALID_STATE_MESSAGE);
     }
 
-    public void testMatchCards(Match match) {
+    public void testMatchCards(MultiPlayerMatch match) {
         if (match.getPublicObjectiveCards().size()!=GameConstants.MP_PUBLIC_OBJECTIVES_COUNT)
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getToolCards().size()!=GameConstants.MP_TOOL_CARDS_COUNT)
@@ -285,7 +285,7 @@ public class MultiPlayerTest extends MVCTest {
     }
 
     //Test sulle azioni dei giocatori
-    public void testPlaceDie(Match match, Player player, Cell cell, Die die, int poolSize) {
+    public void testPlaceDie(MultiPlayerMatch match, Player player, Cell cell, Die die, int poolSize) {
         if (match.getMatchDice().getDraftPool().size()!=poolSize)
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getMatchDice().containsDieInPool(die))
@@ -306,7 +306,7 @@ public class MultiPlayerTest extends MVCTest {
     @Test
     public void randomTwoPlayerStart() {
         //Creazione partita
-        Match match = createTwoPlayerMatch();
+        MultiPlayerMatch match = createTwoPlayerMatch();
 
         Player player1 = retrievePlayer(match, 0);
         Player player2 = retrievePlayer(match, 1);
@@ -368,7 +368,7 @@ public class MultiPlayerTest extends MVCTest {
     @Test
     public void randomFourPlayerTurnsFlow() {
         //Creazione partita
-        Match match = createFourPlayerMatch();
+        MultiPlayerMatch match = createFourPlayerMatch();
 
         Player player1 = retrievePlayer(match, 0);
         Player player2 = retrievePlayer(match, 1);
@@ -483,7 +483,7 @@ public class MultiPlayerTest extends MVCTest {
     @Test
     public void fixedTwoPlayer1() {
         //Creazione partita
-        Match match = createTwoPlayerMatch1();
+        MultiPlayerMatch match = createTwoPlayerMatch1();
 
         Player player1 = retrievePlayer(match, 0);
         Player player2 = retrievePlayer(match, 1);

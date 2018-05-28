@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import mvc.controller.AppController;
 import mvc.model.objects.Cell;
 import mvc.model.objects.Match;
+import mvc.model.objects.MultiPlayerMatch;
 
 import java.io.*;
 import java.rmi.RemoteException;
@@ -25,7 +26,7 @@ GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;
-    private Match match;
+    private MultiPlayerMatch match;
     private boolean connected = false;
     private boolean queue = false;
     private boolean ready = false;
@@ -308,7 +309,7 @@ GUIHandler extends Application {
         text.setText("In attesa di altri giocatori...");
     }
     //Inizia gioco
-    public void startGame(Match match) throws IOException{
+    public void startGame(MultiPlayerMatch match) throws IOException{
         changeScene("game.fxml",this.stage);
         this.match = match;
     }

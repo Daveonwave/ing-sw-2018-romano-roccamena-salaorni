@@ -9,6 +9,7 @@ public class ToolCardInput {
     private int roundTrackRound;
     private Die roundTrackDie;
 
+    private Die payDie;
     private Die choosenDie;
 
     private int choosenShade;
@@ -16,25 +17,26 @@ public class ToolCardInput {
     private boolean increaseShade;
 
     //Costruttori
-    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie, Die choosenDie, int choosenShade, boolean increaseShade) {
+    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie, Die payDie, Die choosenDie, int choosenShade, boolean increaseShade) {
         this.originCell1 = originCell1;
         this.originCell2 = originCell2;
         this.destinationCell1 = destinationCell1;
         this.destinationCell2 = destinationCell2;
         this.roundTrackRound = roundTrackRound;
         this.roundTrackDie = roundTrackDie;
+        this.payDie = payDie;
         this.choosenDie = choosenDie;
         this.choosenShade = choosenShade;
         this.increaseShade = increaseShade;
     }
     public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2) {
-        this(originCell1, originCell2, destinationCell1, destinationCell2, 0, null, null, 0, true);
+        this(originCell1, originCell2, destinationCell1, destinationCell2, 0, null, null, null, 0, true);
     }
     public ToolCardInput(int roundTrackRound, Die roundTrackDie, Die choosenDie) {
-        this(null, null, null, null, roundTrackRound, roundTrackDie, choosenDie, 0, true);
+        this(null, null, null, null, roundTrackRound, roundTrackDie, null, choosenDie, 0, true);
     }
     public ToolCardInput(Die choosenDie) {
-        this(null, null, null, null, 0, null, choosenDie, 0, true);
+        this(null, null, null, null, 0, null, null, choosenDie, 0, true);
     }
 
     //Setter//Getter
@@ -55,6 +57,9 @@ public class ToolCardInput {
     }
     public void setRoundTrackDie(Die roundTrackDie) {
         this.roundTrackDie = roundTrackDie;
+    }
+    public void setPayDie(Die payDie) {
+        this.payDie = payDie;
     }
     public void setChoosenDie(Die choosenDie) {
         this.choosenDie = choosenDie;
@@ -83,6 +88,9 @@ public class ToolCardInput {
     }
     public Die getRoundTrackDie() {
         return roundTrackDie;
+    }
+    public Die getPayDie() {
+        return payDie;
     }
     public Die getChoosenDie() {
         return choosenDie;
