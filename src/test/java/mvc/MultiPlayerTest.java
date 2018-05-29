@@ -434,8 +434,6 @@ public class MultiPlayerTest extends MVCTest {
     //Test fissi
     @Test
     public void fixedTwoPlayer1() {
-        //TODO: update cambio stato da ultima modifica
-
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch1();
 
@@ -464,13 +462,13 @@ public class MultiPlayerTest extends MVCTest {
 
         //Azioni non valide
         invalidEndTurn(match, player2); // NO SUO TURNO
-        invalidPlaceDie(match, player1, retrieveCell(window1, 2, 1), retrieveDieFromDraftPool(match, 1)); // RESTRIZIONE INIZIALE
+        invalidPlaceDie(match, player1, retrieveCell(window1, 2, 1), retrieveDieFromDraftPool(match, 2)); // RESTRIZIONE INIZIALE
         invalidPlaceDie(match, player1, retrieveCell(window1, 2, 0), retrieveDieFromDraftPool(match, 0)); // RESTRIZIONE CELLA
         invalidUseToolCard(match, player1, new ToolCardInput(createInvalidDie1()), retrieveToolCard(match, 1)); // DADO INVENTATO
 
         //Piazzamento corretto 6G in 0,2
         cell = retrieveCell(window1, 0, 2);
-        die = retrieveDieFromDraftPool(match, 1);
+        die = retrieveDieFromDraftPool(match, 2);
 
         validPlaceDie(match, player1, cell, die);
         testPlaceDie(match, player1, cell, die, 4);
@@ -478,19 +476,8 @@ public class MultiPlayerTest extends MVCTest {
         //Dado gia piazzato
         invalidPlaceDie(match, player1, retrieveCell(window1, 0, 3), retrieveDieFromDraftPool(match, 2));
 
-        //Controllo turni
-        if (!match.getTurnHandler().isStarted())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getTurnHandler().isFirstTurnWave())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getTurnHandler().isLastTurn())
-            testAssertError(INVALID_STATE_MESSAGE);
-
         //Finisce turno
         validEndTurn(match, player1);
-
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
 
         /////////////////
         //GIOCA PLAYER2//
@@ -513,19 +500,16 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player2);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         /////////////////
         //GIOCA PLAYER2//
         /////////////////
 
         //Azioni non valide
-        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 2), retrieveDieFromDraftPool(match, 2)); // RESTRIZIONE CELLA ISOLATA
+        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 2), retrieveDieFromDraftPool(match, 1)); // RESTRIZIONE CELLA ISOLATA
 
-        //Piazzamento corretto dado 6R in 3,2
+        //Piazzamento corretto dado 5R in 3,2
         cell = retrieveCell(window2, 3, 2);
-        die = retrieveDieFromDraftPool(match, 1);
+        die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player2, cell, die);
         testPlaceDie(match, player2, cell, die, 2);
@@ -533,16 +517,13 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player2);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         /////////////////
         //GIOCA PLAYER1//
         /////////////////
 
         //Piazzamento corretto dado 4P in 1,1
         cell = retrieveCell(window1, 1, 1);
-        die = retrieveDieFromDraftPool(match, 0);
+        die = retrieveDieFromDraftPool(match, 1);
 
         validPlaceDie(match, player1, cell, die);
         testPlaceDie(match, player1, cell, die, 1);
@@ -550,15 +531,12 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player1);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         //Controllo prima di fine round
         if (match.getMatchDice().getDiceBag().size()!=80)
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(1).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 3)))
+        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 2)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 2 -------------------------------------------//
@@ -577,9 +555,12 @@ public class MultiPlayerTest extends MVCTest {
 
         //Lancia i test
         test.randomTwoPlayerStart();
+        System.out.println("random two players start passed");
         test.randomFourPlayerTurnsFlow();
+        System.out.println("random four players turns flow passed");
 
         test.fixedTwoPlayer1();
+        System.out.println("fixed two players passed");
     }
 }
 

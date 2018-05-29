@@ -143,5 +143,6 @@ public class ControllerTest extends MVCTest {
 
         //Lancia i test
         test.userControl();
+        System.out.println("user control passed");
     }
 }
