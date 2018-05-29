@@ -6,6 +6,12 @@ public class LaunchSettings {
     private boolean runWithGUI; // se false usa CLI
     private boolean runWithRMI; // se false usa socket
 
+    //Costruttori
+    public LaunchSettings(boolean runWithGUI, boolean runWithRMI) {
+        this.runWithGUI = runWithGUI;
+        this.runWithRMI = runWithRMI;
+    }
+
     // Setter/getter
     public boolean isRunWithGUI() {
         return runWithGUI;
