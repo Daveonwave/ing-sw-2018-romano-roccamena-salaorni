@@ -166,7 +166,21 @@ public class AppController implements AppControllerStub {
         userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");
     }
     public synchronized void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException {
-        //?Serve
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
+        MultiPlayerMatch match = matchModel.getMatch();
+        User user = model.retrieveUser(tokenUser);
+        Player player = model.retrievePlayer(tokenUser, tokenMatch);
+
+        //Abbandona la partita
+        try {
+            match.leaveMatch(player);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
+            return;
+        }
+
+        //TODO: update struttura
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model

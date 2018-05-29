@@ -18,6 +18,7 @@ public class Player implements Serializable{
     private int favorTokens;
     private ToolCardEffect toolCardEffect;
     private boolean turnDiePlaced;
+    private boolean active;
 
     //Costruttori
     //MultiPlayer -> un solo obiettivo privato
@@ -32,6 +33,8 @@ public class Player implements Serializable{
         this.favorTokens = favorTokens;
         this.toolCardEffect = new ToolCardEffect();
         this.turnDiePlaced = false;
+
+        this.active = true;
     }
     //SinglePlayer -> due obiettivi privati
     public Player(User user, Window window, List<Window> startWindows, List<PrivateObjectiveCard> privateObjectiveCards, int favorTokens) {
@@ -68,6 +71,9 @@ public class Player implements Serializable{
     public void setTurnDiePlaced(boolean turnDiePlaced) {
         this.turnDiePlaced = turnDiePlaced;
     }
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public User getUser() {
         return user;
@@ -89,6 +95,9 @@ public class Player implements Serializable{
     }
     public boolean getTurnDiePlaced() {
         return turnDiePlaced;
+    }
+    public boolean isActive() {
+        return active;
     }
 
     //Verifica uguaglianze

@@ -256,6 +256,33 @@ public class MultiPlayerTest extends MVCTest {
     public void testTurnHandler(MultiPlayerMatch match, Player turnPlayer, int round, boolean roundFirst, boolean roundLast, boolean firstWave) {
         testTurnHandler(match, turnPlayer, round, true, false, roundFirst,roundLast, firstWave);
     }
+    public void testFourPlayersRound(MultiPlayerMatch match, int round, Player player1, Player player2, Player player3, Player player4) {
+        //Primo
+        testTurnHandler(match, player1,  round,true, false, true);
+        validEndTurn(match, player1);
+        //Secondo
+        testTurnHandler(match, player2, round, false, false, true);
+        validEndTurn(match, player2);
+        //Terzo
+        testTurnHandler(match, player3, round, false, false, true);
+        validEndTurn(match, player3);
+        //Quarto
+        testTurnHandler(match, player4, round, false, false, true);
+        validEndTurn(match, player4);
+
+        //Quarto
+        testTurnHandler(match, player4, round, false, false, false);
+        validEndTurn(match, player4);
+        //Terzo
+        testTurnHandler(match, player3, round, false, false, false);
+        validEndTurn(match, player3);
+        //Secondo
+        testTurnHandler(match, player2, round, false, false, false);
+        validEndTurn(match, player2);
+        //Primo
+        testTurnHandler(match, player1, round, false, true, false);
+        validEndTurn(match, player1);
+    }
 
     public void testMatchStartWindows(MultiPlayerMatch match) {
         for (Player player : match.getPlayers()) {
@@ -385,103 +412,30 @@ public class MultiPlayerTest extends MVCTest {
         validChooseWindow(match, player3, retrieveStartWindow(player3, 0));
         validChooseWindow(match, player4, retrieveStartWindow(player4, 0));
 
-        //////////
-        //ROUND1//
-        //////////
+        //Testa sviluppo round e turni
+        if (!match.getTurnHandler().isStarted())
+            testAssertError(INVALID_STATE_MESSAGE);
 
-        //Player1
-        testTurnHandler(match, player1,  1,true, false, true);
-        validEndTurn(match, player1);
-        //Player2
-        testTurnHandler(match, player2, 1, false, false, true);
-        validEndTurn(match, player2);
-        //Player3
-        testTurnHandler(match, player3, 1, false, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 1, false, false, true);
-        validEndTurn(match, player4);
+        testFourPlayersRound(match, 1, player1, player2, player3, player4);
+        testFourPlayersRound(match, 2, player2, player3, player4, player1);
+        testFourPlayersRound(match, 3, player3, player4, player1, player2);
+        testFourPlayersRound(match, 4, player4, player1, player2, player3);
+        testFourPlayersRound(match, 5, player1, player2, player3, player4);
+        testFourPlayersRound(match, 6, player2, player3, player4, player1);
+        testFourPlayersRound(match, 7, player3, player4, player1, player2);
+        testFourPlayersRound(match, 8, player4, player1, player2, player3);
+        testFourPlayersRound(match, 9, player1, player2, player3, player4);
+        testFourPlayersRound(match, 10, player2, player3, player4, player1);
 
-        //Player4
-        testTurnHandler(match, player4, 1, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 1, false, false, false);
-        validEndTurn(match, player3);
-        //Player2
-        testTurnHandler(match, player2, 1, false, false, false);
-        validEndTurn(match, player2);
-        //Player1
-        testTurnHandler(match, player1, 1, false, true, false);
-        validEndTurn(match, player1);
-
-        //////////
-        //ROUND2//
-        //////////
-
-        //Player2
-        testTurnHandler(match, player2,  2,true, false, true);
-        validEndTurn(match, player2);
-        //Player3
-        testTurnHandler(match, player3, 2, false, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 2, false, false, true);
-        validEndTurn(match, player4);
-        //Player1
-        testTurnHandler(match, player1, 2, false, false, true);
-        validEndTurn(match, player1);
-
-        //Player1
-        testTurnHandler(match, player1, 2, false, false, false);
-        validEndTurn(match, player1);
-        //Player4
-        testTurnHandler(match, player4, 2, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 2, false, false, false);
-        validEndTurn(match, player3);
-        //Player2
-        testTurnHandler(match, player2, 2, false, true, false);
-        validEndTurn(match, player2);
-
-        //////////
-        //ROUND3//
-        //////////
-
-        //Player3
-        testTurnHandler(match, player3,  3,true, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 3, false, false, true);
-        validEndTurn(match, player4);
-        //Player1
-        testTurnHandler(match, player1, 3, false, false, true);
-        validEndTurn(match, player1);
-        //Player2
-        testTurnHandler(match, player2, 3, false, false, true);
-        validEndTurn(match, player2);
-
-        //Player2
-        testTurnHandler(match, player2, 3, false, false, false);
-        validEndTurn(match, player2);
-        //Player1
-        testTurnHandler(match, player1, 3, false, false, false);
-        validEndTurn(match, player1);
-        //Player4
-        testTurnHandler(match, player4, 3, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 3, false, true, false);
-        validEndTurn(match, player3);
-
-        //TODO: in fase di sviluppo
-        //testAssertWaitingUpdate("4-10 turns");
+        if (!match.getTurnHandler().isEnded())
+            testAssertError(INVALID_STATE_MESSAGE);
     }
 
     //Test fissi
     @Test
     public void fixedTwoPlayer1() {
+        //TODO: update cambio stato da ultima modifica
+
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch1();
 
@@ -604,12 +558,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(1).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-
-        //------------------------------------ CORRETTO FINO ----------------------------------------//
-
-        testAssertWaitingUpdate("roundtrack");
-
-        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 3)));
+        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 3)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 2 -------------------------------------------//
@@ -628,6 +577,8 @@ public class MultiPlayerTest extends MVCTest {
 
         //Lancia i test
         test.randomTwoPlayerStart();
+        test.randomFourPlayerTurnsFlow();
+
         test.fixedTwoPlayer1();
     }
 }

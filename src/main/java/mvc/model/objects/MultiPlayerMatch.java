@@ -30,7 +30,7 @@ public class MultiPlayerMatch extends Match {
     }
 
     //Ottiene giocatore
-    public synchronized Player retrievePlayer(Player player) throws RemoteException {
+    public Player retrievePlayer(Player player) throws RemoteException {
         //Controlla correttezza
         if (player==null)
             throw new MatchException("giocatore non valido");
@@ -50,7 +50,7 @@ public class MultiPlayerMatch extends Match {
         return result;
     }
     //Ottiene carta strumento
-    public synchronized ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
+    public ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
         //Controlla correttezza
         if (toolCard==null)
             throw new MatchException("carta non valida");
@@ -104,6 +104,17 @@ public class MultiPlayerMatch extends Match {
     }
 
 
+    //Mossa di abbandono di una partita
+    public void leaveMatch(Player player) throws MatchException {
+        //Controllo stato corretto della partita
+        if (!turnHandler.isStarted() || turnHandler.isEnded())
+            throw new MatchException("non puoi abbandonare ora");
+
+        //Abbandona la partita
+        player.setActive(false);
+
+        //TODO: update struttura
+    }
     //Mossa di scelta di una finestra
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
@@ -206,6 +217,9 @@ public class MultiPlayerMatch extends Match {
                 matchDice.extractDraftPoolFromBag();
             }
         } else {
+            //Calcola un nuovo turno
+            turnHandler.nextTurn();
+
             //Aggiorna stato prossimo
             matchState = MatchState.ENDED;
         }

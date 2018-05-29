@@ -104,6 +104,9 @@ public class SinglePlayerMatch extends Match {
                 matchDice.extractDraftPoolFromBag();
             }
         } else {
+            //Calcola un nuovo turno
+            turnHandler.nextTurn();
+
             //Aggiorna stato prossimo
             matchState = MatchState.ENDED;
         }
