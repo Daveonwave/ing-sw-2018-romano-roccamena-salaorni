@@ -1,7 +1,12 @@
 package mvc.stubs;
 
-import java.io.Serializable;
+import mvc.model.AppModel;
 
-public interface AppControllerStub extends UserController, MultiPlayerController,Serializable {
+import java.io.Serializable;
+import java.rmi.RemoteException;
+
+public interface AppControllerStub extends UserController, MultiPlayerController, Serializable{
     //Interfaccia del controllore dell'applicazione
+
+    AppModel getModel() throws RemoteException;
 }

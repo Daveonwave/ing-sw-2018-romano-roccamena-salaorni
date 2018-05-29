@@ -1,6 +1,6 @@
 package mvc.view;
 
-import mvc.controller.AppController;
+import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 import mvc.model.objects.*;
 
@@ -9,13 +9,13 @@ import java.rmi.RemoteException;
 public abstract class AppView implements AppViewStub {
     //View astratta dell'applicazione
 
-    private AppController appController;
+    private AppControllerStub appController;
     private String userToken;
     private String userName;
     private boolean logged;
 
     //Costruttori
-    public AppView(AppController appController) {
+    public AppView(AppControllerStub appController) {
         this.appController = appController;
         this.userToken = "";
         this.userName = "";
@@ -23,7 +23,7 @@ public abstract class AppView implements AppViewStub {
     }
 
     //Setter/Getter
-    public void setAppController(AppController appController) {
+    public void setAppController(AppControllerStub appController) {
         this.appController = appController;
     }
     public void setUserToken(String userToken) {
@@ -36,7 +36,7 @@ public abstract class AppView implements AppViewStub {
         this.logged = logged;
     }
 
-    public AppController getAppController() {
+    public AppControllerStub getAppController() {
         return appController;
     }
     public String getUserToken() {

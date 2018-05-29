@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.ImageView;
-import mvc.controller.AppController;
 import mvc.model.objects.*;
+import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 
 public class GUIView extends AppView {
@@ -23,7 +23,7 @@ public class GUIView extends AppView {
     private List<OpponentView> opponents;
 
     //Costruttori
-    public GUIView(AppController appController) {
+    public GUIView(AppControllerStub appController) {
         super(appController);
     }
 

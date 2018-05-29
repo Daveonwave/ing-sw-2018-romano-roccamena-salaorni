@@ -1,7 +1,7 @@
-package base;
+package mvc.view.others;
 
-import mvc.controller.AppController;
 import mvc.model.objects.*;
+import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 
 import java.rmi.RemoteException;
@@ -10,7 +10,7 @@ public class EmptyView extends AppView {
     //View applicazione vuota
 
     //Costruttori
-    public EmptyView(AppController appController) {
+    public EmptyView(AppControllerStub appController) {
         super(appController);
     }
 
