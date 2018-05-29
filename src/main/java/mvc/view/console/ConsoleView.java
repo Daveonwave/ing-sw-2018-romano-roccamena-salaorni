@@ -1,7 +1,7 @@
 package mvc.view.console;
 
-import mvc.controller.AppController;
 import mvc.model.objects.*;
+import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 import mvc.view.console.menu.ConsoleMenu;
 import mvc.view.console.menu.MainMenu;
@@ -26,7 +26,7 @@ public class ConsoleView extends AppView {
     public final int WIDTH = 50;
 
     //Costruttori
-    public ConsoleView(AppController appController) throws RemoteException {
+    public ConsoleView(AppControllerStub appController) throws RemoteException {
         super(appController);
         this.mainMenu = new MainMenu(WIDTH, this);
         this.matchToken = "";

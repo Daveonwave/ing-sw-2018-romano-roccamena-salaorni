@@ -3,7 +3,7 @@ package mvc;
 import mvc.controller.AppController;
 import mvc.model.objects.*;
 import base.BaseTest;
-import base.EmptyView;
+import mvc.view.others.EmptyView;
 
 import java.util.ArrayList;
 import java.util.List;

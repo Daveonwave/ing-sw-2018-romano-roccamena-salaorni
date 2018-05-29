@@ -1,7 +1,7 @@
-package base;
+package mvc.view.others;
 
-import mvc.controller.AppController;
 import mvc.model.objects.*;
+import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 
 import java.rmi.RemoteException;
@@ -9,25 +9,38 @@ import java.rmi.RemoteException;
 public class BaseConsoleView extends AppView {
     //View applicazione come print base della console
 
+
     //Costruttori
-    public BaseConsoleView(AppController appController) {
+    public BaseConsoleView(AppControllerStub appController) {
         super(appController);
     }
 
     //Utente
     public String login(String name) throws RemoteException {
-        return null;
+        setUserToken(getAppController().login(name, this));
+        setUserName(name);
+        setLogged(true);
+
+        System.out.println("logged in as " + name);
+
+        return getUserToken();
     }
     public void logout() throws RemoteException {
+        getAppController().logout(getUserToken());
 
+        setUserToken("");
+        setUserName("");
+        setLogged(false);
+
+        System.out.println("logged out");
     }
 
     //Risposte controllore
     public void respondError(String message) throws RemoteException {
-
+        System.out.println("[ERROR] " + message);
     }
     public void respondAck(String message) throws RemoteException {
-
+        System.out.println("[INFO] " + message);
     }
 
     //Osservazione partita

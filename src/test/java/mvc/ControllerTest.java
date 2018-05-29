@@ -2,7 +2,7 @@ package mvc;
 
 import mvc.controller.AppController;
 import mvc.stubs.AppViewStub;
-import base.EmptyView;
+import mvc.view.others.EmptyView;
 import org.junit.Test;
 
 import java.rmi.RemoteException;

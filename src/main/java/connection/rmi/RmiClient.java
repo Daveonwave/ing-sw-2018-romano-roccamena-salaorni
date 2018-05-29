@@ -1,5 +1,6 @@
 package connection.rmi;
 
+import connection.ServerInfo;
 import mvc.stubs.AppControllerStub;
 
 import java.rmi.NotBoundException;
@@ -14,7 +15,10 @@ public class RmiClient {
 
     //Lancia client RMI
     public void runRmiClient() throws RemoteException, NotBoundException {
-        Registry registry = LocateRegistry.getRegistry();
+        System.setProperty("java.security.policy", "client.policy");
+        System.setSecurityManager(new SecurityManager());
+
+        Registry registry = LocateRegistry.getRegistry(ServerInfo.SERVER_ADDRESS, ServerInfo.PORT);
 
         System.out.println("RMI registry bindings: ");
         String[] e = registry.list();
@@ -23,7 +27,7 @@ public class RmiClient {
             System.out.println(e[i]);
         }
 
-        String remoteObjectName = "app_controller";
+        String remoteObjectName = ServerInfo.REMOTE_OBJECT_NAME;
         this.controller = (AppControllerStub) registry.lookup(remoteObjectName);
     }
 

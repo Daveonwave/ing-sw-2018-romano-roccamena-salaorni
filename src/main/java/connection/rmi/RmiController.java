@@ -10,6 +10,6 @@ public class RmiController extends AppController {
 
     //Costruttori
     public RmiController() throws RemoteException {
-        UnicastRemoteObject.exportObject(this, 8080);
+        UnicastRemoteObject.exportObject(this, 0);
     }
 }
