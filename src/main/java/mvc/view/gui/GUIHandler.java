@@ -20,6 +20,8 @@ import mvc.model.objects.MultiPlayerMatch;
 
 import java.io.*;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class
 GUIHandler extends Application {
@@ -37,23 +39,19 @@ GUIHandler extends Application {
     @FXML
     TextField input;
     @FXML
-    Button rmi, socket, multi,single, annulla, privateObjective, publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, observe;
+    Button rmi, socket, multi,single, annulla, observe;
     @FXML
-    Button d1,d2,d3,d4,d5,d6,d7,d8,d9;
+    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, privateObjective;
     @FXML
-    Button window1,window2,window3,window4;
-    @FXML
-    ImageView container1,container2,container3,container4;
+    ImageView d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
     Text text;
     @FXML
     Pane pane, pane2;
     @FXML
-    AnchorPane start,windowChoice;
-    @FXML
     ImageView w1,w2,w3,w4;
     @FXML
-    Button p1_11,p1_12,p1_13,p1_14,p1_15,p1_21,p1_22,p1_23,p1_24,p1_25,p1_31,p1_32,p1_33,p1_34,p1_35,p1_41,p1_42,p1_43,p1_44,p1_45;
+    ImageView p1_11,p1_12,p1_13,p1_14,p1_15,p1_21,p1_22,p1_23,p1_24,p1_25,p1_31,p1_32,p1_33,p1_34,p1_35,p1_41,p1_42,p1_43,p1_44,p1_45;
     @FXML
     ImageView p2_11,p2_12,p2_13,p2_14,p2_15,p2_21,p2_22,p2_23,p2_24,p2_25,p2_31,p2_32,p2_33,p2_34,p2_35,p2_41,p2_42,p2_43,p2_44,p2_45;
     @FXML
@@ -97,9 +95,9 @@ GUIHandler extends Application {
     //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException{
         guiView = new GUIView(new AppController());
-        changeScene("menu.fxml",primaryStage);
-        guiView.setGuiHandler(this);
         this.stage = primaryStage;
+        changeScene("menu.fxml");
+        guiView.setGuiHandler(this);
     }
 
     //Gestori bottoni
@@ -145,16 +143,7 @@ GUIHandler extends Application {
         }
         return null;
     }
-    public Button associateWindowButton(int index){
-        switch (index){
-            case 1: return window1;
-            case 2: return window2;
-            case 3: return window3;
-            case 4: return window4;
-        }
-        return null;
-    }
-    public Button associateToolCard(int index){
+    public ImageView associateToolCard(int index){
         switch (index){
             case 1: return toolCard1;
             case 2: return  toolCard2;
@@ -168,37 +157,35 @@ GUIHandler extends Application {
             case 1: for (int i = 0; i<4; i++) {
                 for (int j = 0; j < 5; j++) {
                     cells[i][j].setCell(cell[i][j]);
-                    cells[i][j].setImageView(null);
                 }
             }
-                cells[0][0].setButton(p1_11);
-                cells[0][1].setButton(p1_12);
-                cells[0][2].setButton(p1_13);
-                cells[0][3].setButton(p1_14);
-                cells[0][4].setButton(p1_15);
+                cells[0][0].setImageView(p1_11);
+                cells[0][1].setImageView(p1_12);
+                cells[0][2].setImageView(p1_13);
+                cells[0][3].setImageView(p1_14);
+                cells[0][4].setImageView(p1_15);
 
-                cells[1][0].setButton(p1_21);
-                cells[1][1].setButton(p1_22);
-                cells[1][2].setButton(p1_23);
-                cells[1][3].setButton(p1_24);
-                cells[1][4].setButton(p1_25);
+                cells[1][0].setImageView(p1_21);
+                cells[1][1].setImageView(p1_22);
+                cells[1][2].setImageView(p1_23);
+                cells[1][3].setImageView(p1_24);
+                cells[1][4].setImageView(p1_25);
 
-                cells[2][0].setButton(p1_31);
-                cells[2][1].setButton(p1_32);
-                cells[2][2].setButton(p1_33);
-                cells[2][3].setButton(p1_34);
-                cells[2][4].setButton(p1_35);
+                cells[2][0].setImageView(p1_31);
+                cells[2][1].setImageView(p1_32);
+                cells[2][2].setImageView(p1_33);
+                cells[2][3].setImageView(p1_34);
+                cells[2][4].setImageView(p1_35);
 
-                cells[3][0].setButton(p1_41);
-                cells[3][1].setButton(p1_42);
-                cells[3][2].setButton(p1_43);
-                cells[3][3].setButton(p1_44);
-                cells[3][4].setButton(p1_45);
+                cells[3][0].setImageView(p1_41);
+                cells[3][1].setImageView(p1_42);
+                cells[3][2].setImageView(p1_43);
+                cells[3][3].setImageView(p1_44);
+                cells[3][4].setImageView(p1_45);
                 break;
             case 2: for (int i = 0; i<4; i++) {
                 for (int j = 0; j < 5; j++) {
                     cells[i][j].setCell(cell[i][j]);
-                    cells[i][j].setButton(null);
                 }
             }
                 cells[0][0].setImageView(p2_11);
@@ -229,7 +216,6 @@ GUIHandler extends Application {
             case 3: for (int i = 0; i<4; i++) {
                 for (int j = 0; j < 5; j++) {
                     cells[i][j].setCell(cell[i][j]);
-                    cells[i][j].setButton(null);
                 }
             }
                 cells[0][0].setImageView(p3_11);
@@ -260,7 +246,6 @@ GUIHandler extends Application {
             case 4: for (int i = 0; i<4; i++) {
                 for (int j = 0; j < 5; j++) {
                     cells[i][j].setCell(cell[i][j]);
-                    cells[i][j].setButton(null);
                 }
             }
                 cells[0][0].setImageView(p4_11);
@@ -290,12 +275,25 @@ GUIHandler extends Application {
             }
         return cells;
     }
-    public ImageView associateContainer(int index){
+    public ImageView associateDice(int index){
         switch (index){
-            case 1: return container1;
-            case 2: return container2;
-            case 3: return container3;
-            case 4: return container4;
+            case 1: return d1;
+            case 2: return d2;
+            case 3: return d3;
+            case 4: return d4;
+            case 5: return d5;
+            case 6: return d6;
+            case 7: return d7;
+            case 8: return d8;
+            case 9: return d9;
+        }
+        return null;
+    }
+    public ImageView associatePublicObjective(int index){
+        switch (index){
+            case 1: return publicObjective1;
+            case 2: return publicObjective2;
+            case 3: return publicObjective3;
         }
         return null;
     }
@@ -310,12 +308,33 @@ GUIHandler extends Application {
     }
     //Inizia gioco
     public void startGame(MultiPlayerMatch match) throws IOException{
-        changeScene("game.fxml",this.stage);
         this.match = match;
+        FXMLLoader loader = new FXMLLoader();
+        AnchorPane root = loader.load(getClass().getResource("game.fxml"));
+        AnchorPane anchorPane1 = new AnchorPane();
+        anchorPane1.setPrefSize(1000,799);
+        List<WindowView> windows = new ArrayList<>(4);
+        for(int i=0; i<4; i++){
+            windows.add(new WindowView(new ImageView(), this.getGuiView().getAppController().getModel().retrieveUser(this.getGuiView().getUserToken()).getPlayers().get(0).getStartWindows().get(i),null));
+        }
+        setImageView(windows.get(0).getImageView(),338,174,103,158);
+        setImageView(windows.get(1).getImageView(),338,174,565,158);
+        setImageView(windows.get(2).getImageView(),338,174,99,455);
+        setImageView(windows.get(3).getImageView(),338,174,588,455);
+        for(WindowView windowView: windows){
+            windowView.getImageView().setOnMouseClicked(event -> {
+                this.guiView.createGame(match);
+            });
+            anchorPane1.getChildren().add(windowView.getImageView());
+        }
+        root.getChildren().add(anchorPane1);
+        Scene scene = new Scene(root);
+        this.stage.setScene(scene);
+        this.stage.setResizable(false);
+        this.stage.show();
     }
 
     public void loadGame(ActionEvent actionEvent){
-        start.setVisible(false);
         d1.setVisible(false);
         d2.setVisible(false);
         d3.setVisible(false);
@@ -337,7 +356,7 @@ GUIHandler extends Application {
     }
 
     //Cambia scena nella gui caricandola da un nuovo file FXML
-    public void changeScene(String fxml, Stage stage) throws IOException{
+    public void changeScene(String fxml) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
         Scene scene = new Scene(root);
@@ -345,6 +364,12 @@ GUIHandler extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+    public void setImageView(ImageView imageView, int w, int h, int x, int y){
+        imageView.setFitWidth(w);
+        imageView.setFitHeight(h);
+        imageView.setX(x);
+        imageView.setY(y);
     }
 
     public static void main(String[] args) throws RemoteException{

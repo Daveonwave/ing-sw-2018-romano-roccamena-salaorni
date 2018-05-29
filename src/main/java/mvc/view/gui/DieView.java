@@ -11,8 +11,8 @@ public class DieView extends ObjectView{
     private Die die;
 
     //Costruttori
-    public DieView(Button button, ImageView imageView, Die die) {
-        super(button, imageView);
+    public DieView(ImageView imageView, Die die) {
+        super(imageView);
         this.die = die;
     }
 

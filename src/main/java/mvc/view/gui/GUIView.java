@@ -103,25 +103,32 @@ public class GUIView extends AppView {
         }
     }
 
-    public void startWindows() throws RemoteException{
-        List<WindowView> windows = new ArrayList<>(4);
-        for(int i = 0; i<4; i++) {
-            windows.add(i, new WindowView(guiHandler.associateWindowButton(i+1),new ImageView(), this.getAppController().getModel().retrieveUser(this.getUserToken()).getPlayers().get(0).getStartWindows().get(i),null,null));
-        }
-    }
-
     public void createGame(MultiPlayerMatch match){
-
         int window = 2;
         for (Player player: match.getPlayers()){
             if (!player.getUser().getAppView().equals(this)){
-                opponents.add(new OpponentView(new WindowView(null,guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window),guiHandler.associateContainer(window)),player));
+                opponents.add(new OpponentView(new WindowView(guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window)),player));
                 window += 1;
+            }
+            else{
+                this.privateObjective.setCard(player.getPrivateObjectiveCards().get(0));
+                this.window.setWindow(player.getWindow());
+                this.window.setCells(guiHandler.associateCells(player.getWindow().getCells(),1));
             }
         }
         for (ToolCard toolCard: match.getToolCards()){
-            this.toolCards.add(new CardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),new ImageView(),toolCard));
+            this.toolCards.add(new CardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),toolCard));
         }
+        for (Die die : match.getMatchDice().getDraftPool()){
+            this.dice.add(new DieView(guiHandler.associateDice(match.getMatchDice().getDraftPool().indexOf(die)),die));
+        }
+        for(DieView die: this.dice){
+            die.getImageView().setVisible(true);
+        }
+        for(PublicObjectiveCard card: match.getPublicObjectiveCards()){
+            this.publicObjective.add(new CardView(guiHandler.associatePublicObjective(match.getPublicObjectiveCards().indexOf(card)),card));
+        }
+
     }
 
     //Risposta al controllore
@@ -135,7 +142,6 @@ public class GUIView extends AppView {
 
     //Osservazione partita
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
         this.getGuiHandler().setReady(true);
         try {
             this.getGuiHandler().startGame(match);
