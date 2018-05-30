@@ -569,7 +569,7 @@ public class MultiPlayerTest extends MVCTest {
         //Azioni non valide
         invalidPlaceDie(match, player1, retrieveCell(window2, 2, 3), retrieveDieFromDraftPool(match, 0)); // RESTRIZIONE CELLA ISOLATA
 
-        //Utilizza tampone diamantato
+        //Utilizza tampone diamantato                                                   // TAMPONE DIAMANTATO
         die = retrieveDieFromDraftPool(match, 0);
         toolCard = retrieveToolCard(match,1);
         input = new ToolCardInput(die);
@@ -669,11 +669,10 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER2//
         /////////////////
 
-        //Utilizza diluente per pasta calda
+        //Utilizza diluente per pasta salda                                                 // DILUENTE PER PASTA SALDA
         die = retrieveDieFromDraftPool(match, 2);
         toolCard = retrieveToolCard(match,2);
-        input = new ToolCardInput(die);
-        input.setChoosenShade(4);
+        input = new ToolCardInput(die, 4);
 
         validUseToolCard(match, player2, input, toolCard);
         testUseToolCard(player2, toolCard, 4, 1);
@@ -721,6 +720,110 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 4 -------------------------------------------//
+    }
+    @Test
+    public void fixedToolCard2() {
+        //Creazione partita
+        MultiPlayerMatch match = createTwoPlayerMatch2();
+
+        Player player1 = retrievePlayer(match, 0);
+        Player player2 = retrievePlayer(match, 1);
+
+        //Inizio partita
+        validBeginMatch(match);
+        validChooseWindow(match, player1, retrieveStartWindow(player1, 1));
+        validChooseWindow(match, player2, retrieveStartWindow(player2, 1));
+
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Utilizza pinza sgrossatrice                                               //PINZA SGROSSATRICE
+        die = retrieveDieFromDraftPool(match, 0);
+        toolCard = retrieveToolCard(match,0);
+        input = new ToolCardInput(die, true);
+
+        validUseToolCard(match, player1, input, toolCard);
+        testUseToolCard(player1, toolCard, 4, 1);
+
+        if (!die.sameDie(new Die(GameConstants.YELLOW, 5)))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Finisce turno
+        validEndTurn(match, player1);
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Utilizza tenaglia rotelle prima di aver scelto il primo dado                    // TENAGLIA ROTELLE
+        toolCard = retrieveToolCard(match,2);
+        input = new ToolCardInput();
+
+        invalidUseToolCard(match, player2, input, toolCard);
+
+        //Piazzamento corretto 5B in 0,0
+        cell = retrieveCell(window2, 0, 0);
+        die = retrieveDieFromDraftPool(match, 3);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 4);
+
+        //Utilizza tenaglia rotelle
+        validUseToolCard(match, player2, input, toolCard);
+
+        //Piazzamento corretto 6G in 0,1
+        cell = retrieveCell(window2, 0, 1);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 3);
+
+        //Prova ripiazzamento ulteriore
+        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 0), retrieveDieFromDraftPool(match, 0));
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        //Controlla salto turno
+        if (!match.getTurnPlayer().samePlayer(player1))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Utilizza pennello per pasta salda                                           //PENNELLO PER PASTA SALDA
+        die = retrieveDieFromDraftPool(match, 2);
+        toolCard = retrieveToolCard(match,1);
+        input = new ToolCardInput(die);
+
+        validUseToolCard(match, player1, input, toolCard);
+        testUseToolCard(player1, toolCard, 3, 1);
+
+        if (!die.getColor().equals(GameConstants.PURPLE))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Prova piazzamento altro dado
+        invalidPlaceDie(match, player1, retrieveCell(window1, 1, 0), retrieveDieFromDraftPool(match, 0));
+
+        //Piazzamento corretto 5P in 1, 0
+        cell = retrieveCell(window1, 1, 0);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 2);
+
+        //Finisce turno
+        validEndTurn(match, player1);
     }
 
 

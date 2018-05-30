@@ -150,8 +150,9 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        if (player.getTurnDiePlaced())
-            throw new MatchException("hai gia piazzato un dado");
+        if (!player.getToolCardEffect().getReplaceDie())
+            if (player.getTurnDiePlaced())
+                throw new MatchException("hai gia piazzato un dado");
 
         if (player.getToolCardEffect().getChoosenDie() != null)
             if (!player.getToolCardEffect().getChoosenDie().sameDie(die))
@@ -163,7 +164,11 @@ public class MultiPlayerMatch extends Match {
         matchDice.getDraftPool().remove(die);
 
         //Aggiorna segnali
-        player.setTurnDiePlaced(true);
+        if (!player.getToolCardEffect().getReplaceDie())
+            player.setTurnDiePlaced(true);
+        else
+            player.getToolCardEffect().setReplaceDie(false);
+
         player.getToolCardEffect().setChoosenDie(null);
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
@@ -176,7 +181,7 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        boolean firstUse = player.getFavorTokens() == player.getWindow().getDifficulty();
+        boolean firstUse = toolCard.getFavorTokens() == 0;
         if (firstUse)
             if (player.getFavorTokens() < 1)
                 throw new MatchException("punti favore insufficenti");
@@ -211,7 +216,13 @@ public class MultiPlayerMatch extends Match {
             //Calcola un nuovo turno
             turnHandler.nextTurn();
 
-            //Il player potrà piazzare un nuovo dado
+            //Controlla se giocatore deve saltare turno
+            if (getTurnPlayer().getToolCardEffect().getSkipTurn()) {
+                turnHandler.nextTurn();
+                getTurnPlayer().getToolCardEffect().setSkipTurn(false);
+            }
+
+            //Il giocatore potrà piazzare un nuovo dado
             getTurnPlayer().setTurnDiePlaced(false);
 
             //Se nuovo round sposta draft pool sulla round track e crea nuova draft pool

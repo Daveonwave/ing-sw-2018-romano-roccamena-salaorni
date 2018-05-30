@@ -14,7 +14,7 @@ public class ToolsCreator {
 
         //Crea ogni carta strumento
         cards.add(new AlesatorePerLaminaDiRame());
-        cards.add(new DiluentePerPastaCalda());
+        cards.add(new DiluentePerPastaSalda());
         cards.add(new Lathekin());
         cards.add(new Martelletto());
         cards.add(new PennelloPerEglomise());

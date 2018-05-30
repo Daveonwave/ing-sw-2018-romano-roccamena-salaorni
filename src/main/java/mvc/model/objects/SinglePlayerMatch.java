@@ -60,7 +60,11 @@ public class SinglePlayerMatch extends Match {
         matchDice.getDraftPool().remove(die);
 
         //Aggiorna segnali
-        player.setTurnDiePlaced(true);
+        if (!player.getToolCardEffect().getReplaceDie())
+            player.setTurnDiePlaced(true);
+        else
+            player.getToolCardEffect().setReplaceDie(false);
+
         player.getToolCardEffect().setChoosenDie(null);
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
@@ -94,6 +98,12 @@ public class SinglePlayerMatch extends Match {
         if (!turnHandler.isLastTurn()) {
             //Calcola un nuovo turno
             turnHandler.nextTurn();
+
+            //Controlla se giocatore deve saltare turno
+            if (getPlayer().getToolCardEffect().getSkipTurn()) {
+                turnHandler.nextTurn();
+                getPlayer().getToolCardEffect().setSkipTurn(false);
+            }
 
             //Il player potrà piazzare un nuovo dado
             player.setTurnDiePlaced(false);

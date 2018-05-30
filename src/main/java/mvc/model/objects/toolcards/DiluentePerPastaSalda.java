@@ -4,11 +4,11 @@ import mvc.model.objects.*;
 
 import java.rmi.RemoteException;
 
-public class DiluentePerPastaCalda extends ToolCard {
+public class DiluentePerPastaSalda extends ToolCard {
 
     //Costruttori
-    public DiluentePerPastaCalda() {
-        super("diluente per pasta calda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", GameConstants.PURPLE);
+    public DiluentePerPastaSalda() {
+        super("diluente per pasta salda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", GameConstants.PURPLE);
     }
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {

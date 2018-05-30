@@ -13,6 +13,7 @@ public class ToolCardEffect {
         this.choosenDie = choosenDie;
         this.skipTurn = skipTurn;
         this.replaceDie = replaceDie;
+        this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
     }
     public ToolCardEffect() {
         this(null, false, false, false);

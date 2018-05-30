@@ -62,7 +62,9 @@ public class Die {
 
     //Operazioni su dado
     public void roll() {
-        this.shade = RandomHandler.retrieveRandom().nextInt(6) + 1;
+        int newShade = RandomHandler.retrieveRandom().nextInt(6) + 1;
+
+        this.shade = newShade;
     }
     public void invertShade() {
         switch (shade) {
