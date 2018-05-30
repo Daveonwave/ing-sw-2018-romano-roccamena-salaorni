@@ -21,6 +21,6 @@ public class RmiTest {
         AppControllerStub controller =  client.getController();
         AppViewStub view = new BaseConsoleView(controller);
 
-        view.login("machino");
+        view.login("dave il supremo");
     }
 }
