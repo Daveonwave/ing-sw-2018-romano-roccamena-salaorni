@@ -176,7 +176,7 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        boolean firstUse = player.getFavorTokens() == 0;
+        boolean firstUse = player.getFavorTokens() == player.getWindow().getDifficulty();
         if (firstUse)
             if (player.getFavorTokens() < 1)
                 throw new MatchException("punti favore insufficenti");
@@ -188,10 +188,13 @@ public class MultiPlayerMatch extends Match {
         toolCard.useToolCard(this, input);
 
         //Il giocatore paga i favor tokens
-        if (firstUse)
-            player.setFavorTokens(player.getFavorTokens()-1);
-        else
-            player.setFavorTokens(player.getFavorTokens()-2);
+        if (firstUse) {
+            player.setFavorTokens(player.getFavorTokens() - 1);
+            toolCard.setFavorTokens(toolCard.getFavorTokens() + 1);
+        } else {
+            player.setFavorTokens(player.getFavorTokens() - 2);
+            toolCard.setFavorTokens(toolCard.getFavorTokens() + 2);
+        }
 
     }
     //Mossa di fine del turno

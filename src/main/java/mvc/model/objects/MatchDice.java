@@ -136,11 +136,12 @@ public class MatchDice {
 
     //Estrae un dado dal sacco di dadi
     public Die extractDieFromBag() {
-        int index = RandomHandler.retrieveRandom().nextInt(draftPool.size());
+        int index = RandomHandler.retrieveRandom().nextInt(diceBag.size());
 
-        draftPool.remove(index);
+        Die result = diceBag.get(index);
+        diceBag.remove(index);
 
-        return draftPool.get(index);
+        return result;
     }
     //Estrae nuova draft pool dal sacco di dadi
     public void extractDraftPoolFromBag() {

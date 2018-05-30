@@ -135,6 +135,9 @@ public class Cell {
 
     //Movimenti dadi fra celle
     public void placeDie(Die die, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
+        //Verifica che non ci sia un dado gia piazzato
+        if (this.die!=null)
+            throw new MatchException("la cella è gia occupata");
         //Verifica restrizioni di cella
         if (!noCellRestriction(die, ignoreColorRestriction, ignoreShadeRestriction))
             throw new MatchException("restrizione di cella non rispettata");

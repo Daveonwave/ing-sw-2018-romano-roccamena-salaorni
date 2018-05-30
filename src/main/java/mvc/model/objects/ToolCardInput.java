@@ -38,6 +38,9 @@ public class ToolCardInput {
     public ToolCardInput(Die choosenDie) {
         this(null, null, null, null, 0, null, null, choosenDie, 0, true);
     }
+    public ToolCardInput() {
+        this(null, null, null, null, 0, null, null, null, 0, true);
+    }
 
     //Setter//Getter
     public void setOriginCell1(Cell originCell1) {
