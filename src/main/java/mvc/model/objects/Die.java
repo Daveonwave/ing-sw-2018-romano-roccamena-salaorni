@@ -3,9 +3,10 @@ package mvc.model.objects;
 import util.RandomHandler;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Die {
+public class Die implements Serializable {
     //Dado del gioco
 
     private Color color;

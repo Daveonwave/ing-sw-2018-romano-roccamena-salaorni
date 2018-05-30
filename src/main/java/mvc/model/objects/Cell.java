@@ -4,9 +4,10 @@ package mvc.model.objects;
 import mvc.exceptions.MatchException;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class Cell {
+public class Cell implements Serializable {
     //Cella di una finestra
 
     private Die die;

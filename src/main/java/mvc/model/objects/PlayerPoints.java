@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public class PlayerPoints {
+import java.io.Serializable;
+
+public class PlayerPoints implements Serializable {
     //Punti di un giocatore
 
     private int privateObjectivePoints;

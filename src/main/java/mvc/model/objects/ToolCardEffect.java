@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public class ToolCardEffect {
+import java.io.Serializable;
+
+public class ToolCardEffect implements Serializable {
     //Effetto di una carta strumento su un giocatore
 
     private Die choosenDie;

@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public class ToolCardInput {
+import java.io.Serializable;
+
+public class ToolCardInput implements Serializable {
     //Input utilizzo di carte strumento
 
     private Cell originCell1, originCell2;

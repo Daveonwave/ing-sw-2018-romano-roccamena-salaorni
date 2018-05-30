@@ -6,8 +6,8 @@ public class ExitHandler extends MenuInputHandler {
     //Gestore uscita applicazione
 
     //Costruttori
-    public ExitHandler(ConsoleView parentGame, ConsoleMenu parentMenu) {
-        super(parentGame, parentMenu);
+    public ExitHandler(ConsoleView parentView, ConsoleMenu parentMenu) {
+        super(parentView, parentMenu);
     }
 
     //Gestione input

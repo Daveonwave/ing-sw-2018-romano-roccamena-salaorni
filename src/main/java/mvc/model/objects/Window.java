@@ -4,11 +4,12 @@ import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.enums.DieColor;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Window {
+public class Window implements Serializable {
     //Finestra di un giocatore
 
     private Cell[][] cells;

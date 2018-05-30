@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import mvc.model.objects.Card;
 
 public class CardView extends ObjectView{
-    //View gui di una carta
+    //Veduta di una carta
 
     private Card card;
 

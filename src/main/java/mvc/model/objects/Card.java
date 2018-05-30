@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
     //Carta generica
 
     private String name;

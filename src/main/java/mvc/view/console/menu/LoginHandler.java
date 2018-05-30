@@ -9,8 +9,8 @@ public class LoginHandler extends MenuInputHandler {
     //Gestore logout
 
     //Costruttori
-    public LoginHandler(ConsoleView parentGame, ConsoleMenu parentMenu) {
-        super(parentGame, parentMenu);
+    public LoginHandler(ConsoleView parentView, ConsoleMenu parentMenu) {
+        super(parentView, parentMenu);
     }
 
     //Gestione input

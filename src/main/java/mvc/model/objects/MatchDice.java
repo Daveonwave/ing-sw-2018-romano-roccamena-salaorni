@@ -5,11 +5,12 @@ import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
 import util.RandomHandler;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.Random;
 
-public class MatchDice {
+public class MatchDice implements Serializable {
     //Dadi di una partita
 
     private int playersCount;

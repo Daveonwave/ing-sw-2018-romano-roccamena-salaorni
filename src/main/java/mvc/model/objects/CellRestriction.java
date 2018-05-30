@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public abstract class CellRestriction {
+import java.io.Serializable;
+
+public abstract class CellRestriction implements Serializable {
     //Restrizione di una cella di una finestra
 
     //Verifica uguaglianze

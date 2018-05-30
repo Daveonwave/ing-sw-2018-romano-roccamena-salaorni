@@ -3,7 +3,7 @@ package mvc.model.objects;
 import java.awt.*;
 import java.rmi.RemoteException;
 
-public abstract class ToolCard extends ColorCard{
+public abstract class ToolCard extends ColorCard {
     //Carta strumento
 
     private int favorTokens;

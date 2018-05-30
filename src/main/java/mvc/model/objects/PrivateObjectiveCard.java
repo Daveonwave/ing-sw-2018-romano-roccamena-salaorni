@@ -1,6 +1,5 @@
 package mvc.model.objects;
 
-
 public abstract class PrivateObjectiveCard extends ColorCard {
     //Carta obiettivo privato
 

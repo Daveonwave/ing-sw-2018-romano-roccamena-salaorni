@@ -2,10 +2,11 @@ package mvc.model.objects;
 
 import mvc.exceptions.MatchException;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public abstract class Match {
+public abstract class Match implements Serializable {
     //Partita base
 
     protected MatchState matchState;

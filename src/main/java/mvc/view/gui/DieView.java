@@ -5,8 +5,8 @@ import javafx.scene.image.ImageView;
 import mvc.model.objects.Die;
 import javafx.scene.control.Button;
 
-public class DieView extends ObjectView{
-    //View gui dado
+public class DieView extends ObjectView {
+    //Veduta di un dado
 
     private Die die;
 
@@ -20,6 +20,7 @@ public class DieView extends ObjectView{
     public void setDie(Die die) {
         this.die = die;
     }
+
     public Die getDie() {
         return die;
     }

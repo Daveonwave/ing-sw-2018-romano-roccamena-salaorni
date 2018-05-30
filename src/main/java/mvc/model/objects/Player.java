@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
     //Giocatore di una partita
 
     private User user;

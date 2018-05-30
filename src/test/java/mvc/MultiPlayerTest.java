@@ -438,6 +438,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
     }
 
+
     //Test fissi
     @Test
     public void fixedTwoPlayer1() {

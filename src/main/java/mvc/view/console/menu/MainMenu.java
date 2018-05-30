@@ -9,14 +9,14 @@ public class MainMenu extends ConsoleMenu {
     //Menu principale della view console
 
     //Costruttori
-    public MainMenu(int width, ConsoleView parentGame) {
-        super(width, parentGame);
+    public MainMenu(int width, ConsoleView parentView) {
+        super(width, parentView);
 
-        getMenuInputHandlers().put("1", new LoginHandler(parentGame, this));
-        getMenuInputHandlers().put("2", new LogoutHandler(parentGame, this));
-        getMenuInputHandlers().put("3", null);
-        getMenuInputHandlers().put("4", new MultiPlayerHandler(parentGame, this));
-        getMenuInputHandlers().put("5", new ExitHandler(parentGame, this));
+        getMenuInputHandlers().put("1", new LoginHandler(parentView, this));
+        getMenuInputHandlers().put("2", new LogoutHandler(parentView, this));
+        getMenuInputHandlers().put("3", new SinglePlayerHandler(parentView, this));
+        getMenuInputHandlers().put("4", new MultiPlayerHandler(parentView, this));
+        getMenuInputHandlers().put("5", new ExitHandler(parentView, this));
     }
 
     //Print vari

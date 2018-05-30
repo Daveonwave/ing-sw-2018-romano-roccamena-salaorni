@@ -6,12 +6,13 @@ import javafx.scene.image.ImageView;
 import mvc.model.objects.Window;
 
 public class WindowView extends ObjectView{
+    //Veduta finestra
 
     private Window window;
     private CellView[][] cells;
     private ImageView container;
 
-    //costruttori
+    //Costruttori
     public WindowView(Button button, ImageView imageView, Window window, CellView[][] cells, ImageView container) {
         super(button, imageView);
         this.window = window;
@@ -19,15 +20,13 @@ public class WindowView extends ObjectView{
         this.container = container;
     }
 
-    //setter/getter
+    //Setter/Getter
     public Window getWindow() {
         return window;
     }
-
     public CellView[][] getCells() {
         return cells;
     }
-
     public ImageView getContainer() {
         return container;
     }
@@ -35,11 +34,9 @@ public class WindowView extends ObjectView{
     public void setWindow(Window window) {
         this.window = window;
     }
-
     public void setCells(CellView[][] cells) {
         this.cells = cells;
     }
-
     public void setContainer(ImageView container) {
         this.container = container;
     }
