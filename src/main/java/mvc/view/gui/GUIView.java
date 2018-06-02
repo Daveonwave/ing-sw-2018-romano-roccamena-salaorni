@@ -111,9 +111,8 @@ public class GUIView extends AppView {
                 window += 1;
             }
             else{
+                this.window = new WindowView(new ImageView(),player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),1));
                 this.privateObjective.setCard(player.getPrivateObjectiveCards().get(0));
-                this.window.setWindow(player.getWindow());
-                this.window.setCells(guiHandler.associateCells(player.getWindow().getCells(),1));
             }
         }
         for (ToolCard toolCard: match.getToolCards()){

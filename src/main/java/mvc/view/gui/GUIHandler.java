@@ -2,6 +2,7 @@ package mvc.view.gui;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -323,7 +324,7 @@ GUIHandler extends Application {
         setImageView(windows.get(3).getImageView(),338,174,588,455);
         for(WindowView windowView: windows){
             windowView.getImageView().setOnMouseClicked(event -> {
-                this.guiView.createGame(match);
+                loadGame();
             });
             anchorPane1.getChildren().add(windowView.getImageView());
         }
@@ -334,7 +335,7 @@ GUIHandler extends Application {
         this.stage.show();
     }
 
-    public void loadGame(ActionEvent actionEvent){
+    public void loadGame(){
         d1.setVisible(false);
         d2.setVisible(false);
         d3.setVisible(false);

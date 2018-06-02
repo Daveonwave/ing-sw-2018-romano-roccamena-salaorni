@@ -103,7 +103,12 @@ public class CardView extends ObjectView{
             case "taglierina manuale":
                 path = "taglierinamanuale.png";
                 break;
-                
+            case "tampone diamantato":
+                path = "tamponediamantato.png";
+                break;
+            case "tenaglia a rotelle":
+                path = "tenagliaarotelle.png";
+                break;
 
         }
         return new Image(getClass().getResourceAsStream(path));
