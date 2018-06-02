@@ -12,20 +12,51 @@ import java.util.concurrent.Executors;
 public class SocketServer implements Closeable {
     //Server Socket
 
+    private static SocketServer singletonServer;
     private int port;
     private ServerSocket serverSocket;
     private ExecutorService threadPool;
     private boolean isReady;
 
-    //Costruttori
-    public SocketServer() {
+    //Costruttori - Singleton
+    private SocketServer() {
         this.port = ServerInfo.SOCKET_PORT;
         threadPool = Executors.newCachedThreadPool();
         this.isReady = false;
     }
 
+    //Setter/Getter
+    public void setReady(boolean ready) {
+        isReady = ready;
+    }
+    public void setPort(int port) {
+        this.port = port;
+    }
+    public void setServerSocket(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
+
+    public boolean isReady() {
+        return isReady;
+    }
+    public int getPort() {
+        return port;
+    }
+    public ServerSocket getServerSocket() {
+        return serverSocket;
+    }
+
+    //Restituisce il singleton del server
+    public static SocketServer getIstance() {
+
+        if(singletonServer == null ){
+            singletonServer = new SocketServer();
+        }
+        return singletonServer;
+    }
+
     //Crea il server
-    public void init() throws IOException{
+    public void init() throws IOException {
         serverSocket = new ServerSocket(port);
         this.isReady = true;
         System.out.println(">>> Server socket in ascolto sulla porta: " + port + "...");
@@ -39,6 +70,11 @@ public class SocketServer implements Closeable {
         return accepted;
     }
 
+        //Chiude la connessione del server
+    public void close() throws IOException {
+        serverSocket.close();
+    }
+
     //Inizializza e fa funzionare il server
     public void runSocketServer() throws IOException{
         this.init();
@@ -46,7 +82,11 @@ public class SocketServer implements Closeable {
         while(isReady) {
             try{
                 final Socket socket = acceptConnection();
-                threadPool.submit(new ServerHandler(socket));
+                ServerHandler serverHandler = new ServerHandler(socket);
+
+                threadPool.submit(serverHandler);
+                serverHandler.run();
+
             } catch (IOException e){
                 e.printStackTrace();
                 break;
@@ -55,8 +95,4 @@ public class SocketServer implements Closeable {
         threadPool.shutdown();
     }
 
-    //Chiude la connessione del server
-    public void close() throws IOException {
-        serverSocket.close();
-    }
 }

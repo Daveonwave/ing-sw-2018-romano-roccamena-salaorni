@@ -1,6 +1,7 @@
 package connection;
 
 import connection.rmi.RmiServer;
+import connection.sockets.ServerHandler;
 import connection.sockets.SocketServer;
 
 import java.io.IOException;
@@ -13,18 +14,16 @@ public class Server {
     //Lancia il server RMI o socket dell'applicazione
     public void launchServer() throws AlreadyBoundException {
         RmiServer rmiServer = new RmiServer();
-        SocketServer socketServer = new SocketServer();
 
         try {
             rmiServer.runRmiServer();
-        }
-        catch (RemoteException e){
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
-        try{
-            socketServer.runSocketServer();
-        } catch(IOException e){
+        try {
+            SocketServer.getIstance().runSocketServer();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

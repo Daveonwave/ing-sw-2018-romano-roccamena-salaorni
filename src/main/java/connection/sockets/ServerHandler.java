@@ -1,19 +1,21 @@
 package connection.sockets;
 
+import mvc.model.objects.*;
+import mvc.stubs.AppControllerStub;
+import mvc.stubs.AppViewStub;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.RemoteException;
 
-public class ServerHandler implements Runnable {
+public class ServerHandler implements Runnable, AppViewStub {
     //Gestore dei client nel server
 
-    private SocketServer server;
     private Socket socket;
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
-
-    private final static String EXIT = "exit";
 
     //Costruttori
     public ServerHandler(Socket socket) {
@@ -23,18 +25,11 @@ public class ServerHandler implements Runnable {
     public void run() {
 
         try {
-            server.runSocketServer();
 
             inputStream = new ObjectInputStream(socket.getInputStream());
             outputStream = new ObjectOutputStream(socket.getOutputStream());
 
-
-            while(!receiveObject().equals(EXIT)){
-
-                //receiveObject();
-                //sendObject();
-
-            }
+            this.handleRequest();
 
         } catch(IOException e){
             e.printStackTrace();
@@ -51,40 +46,80 @@ public class ServerHandler implements Runnable {
                 e.printStackTrace();
             }
             try{
-                server.close();
+                SocketServer.getIstance().close();
             } catch (IOException e){
                 e.printStackTrace();
             }
         }
     }
 
-    //Serializza e manda l'oggetto
-    public Object sendObject() {
-        Object obj = null;
+    public void handleRequest(){
 
-        try {
-            outputStream.writeObject(obj);
-            outputStream.flush();
-            System.out.println("oggetto scritto!");
-
-        } catch(IOException e){
-            e.printStackTrace();
-        }
-        return obj;
     }
 
-    //Riceve e deserializza l'oggetto
-    public Object receiveObject() {
-        Object obj = null;
 
-        try {
-            obj = inputStream.readObject();
-            System.out.println("oggetto letto!");
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
-        }
-        return obj;
+    @Override
+    public AppControllerStub getAppController() {
+        return null;
+    }
+
+    @Override
+    public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+
+    @Override
+    public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+
+    @Override
+    public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+
+    @Override
+    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+
+    @Override
+    public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
+
+    }
+
+    @Override
+    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
+
+    }
+
+    @Override
+    public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
+
+    }
+
+    @Override
+    public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+
+    @Override
+    public String login(String name) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public void logout() throws RemoteException {
+
+    }
+
+    @Override
+    public void respondError(String message) throws RemoteException {
+
+    }
+
+    @Override
+    public void respondAck(String message) throws RemoteException {
+
     }
 }
