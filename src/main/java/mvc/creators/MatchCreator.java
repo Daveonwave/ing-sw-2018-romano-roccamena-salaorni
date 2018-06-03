@@ -180,8 +180,8 @@ public class MatchCreator {
         }
         else {
             for(int i = 0; i < 2 * numberOfPlayers + 1; i++){
-                result.add(dieBag.get(i));
-                dieBag.remove(i);
+                result.add(dieBag.get(0));
+                dieBag.remove(0);
             }
         }
 

@@ -2,10 +2,11 @@ package mvc.model.objects;
 
 import mvc.exceptions.MatchException;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
-public class RoundTrack {
+public class RoundTrack implements Serializable {
     //Tracciato dei round di una partita
 
     List<List<Die>> diceStack;

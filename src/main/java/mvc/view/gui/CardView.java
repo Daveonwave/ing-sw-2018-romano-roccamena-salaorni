@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView;
 import mvc.model.objects.Card;
 
 public class CardView extends ObjectView{
-    //View gui di una carta
+    //Veduta di una carta
 
     private Card card;
 
@@ -29,85 +29,85 @@ public class CardView extends ObjectView{
         String path = "";
         switch (card.getName()){
             case "sfumature blu":
-                path = "sfumatureblu.png";
+                path = "sfumatureblu.PNG";
                 break;
             case "sfumature gialle":
-                path = "sfumaturegialle.png";
+                path = "sfumaturegialle.PNG";
                 break;
             case "sfumature viola":
-                path = "sfumatureviola.png";
+                path = "sfumatureviola.PNG";
                 break;
             case "sfumature verdi":
-                path = "sfumatureverdi.png";
+                path = "sfumatureverdi.PNG";
                 break;
             case "sfumature rosse":
-                path = "sfumaturerosse.png";
+                path = "sfumaturerosse.PNG";
                 break;
             case "diagonali colorate":
-                path = "diagonalicolorate.png";
+                path = "diagonalicolorate.PNG";
                 break;
             case "colori diversi - colonna":
-                path = "coloridiversi-colonna.png";
+                path = "coloridiversi-colonna.PNG";
                 break;
             case "colori diversi - riga":
-                path = "coloridiversi-riga.png";
+                path = "coloridiversi-riga.PNG";
                 break;
             case "sfumature diverse - colonna":
-                path = "sfumaturediverse-colonna.png";
+                path = "sfumaturediverse-colonna.PNG";
                 break;
             case "sfumature diverse - riga":
-                path = "sfumaturediverse-riga.png";
+                path = "sfumaturediverse-riga.PNG";
                 break;
             case "sfumature diverse":
-                path = "sfumaturediverse.png";
+                path = "sfumaturediverse.PNG";
                 break;
             case "sfumature chiare":
-                path = "sfumaturechiare.png";
+                path = "sfumaturechiare.PNG";
                 break;
             case "sfumature medie":
-                path = "sfumaturemedie.png";
+                path = "sfumaturemedie.PNG";
                 break;
             case "sfumature scure":
-                path = "sfumaturescure.png";
+                path = "sfumaturescure.PNG";
                 break;
             case "varietà di colore":
-                path = "varietadicolore.png";
+                path = "varietadicolore.PNG";
                 break;
             case "alesatore per lamina di rame":
-                path = "alesatoreperlaminadirame.png";
+                path = "alesatoreperlaminadirame.PNG";
                 break;
             case "diluente per pasta calda":
-                path = "diluenteperpastacalda.png";
+                path = "diluenteperpastacalda.PNG";
                 break;
             case "lathekin":
-                path = "lathekin.png";
+                path = "lathekin.PNG";
                 break;
             case "martelletto":
-                path = "martelletto.png";
+                path = "martelletto.PNG";
                 break;
             case "pennello per eglomise":
-                path = "pennellopereglomise.png";
+                path = "pennellopereglomise.PNG";
                 break;
             case "pennello per pasta calda":
-                path = "pennelloperpastacalda.png";
+                path = "pennelloperpastacalda.PNG";
                 break;
             case "pinza sgrossatrice":
-                path = "pinzasgrossatrice.png";
+                path = "pinzasgrossatrice.PNG";
                 break;
             case "riga di sughero":
-                path = "rigadisughero.png";
+                path = "rigadisughero.PNG";
                 break;
             case "taglierina cirolare":
-                path = "taglierinacircolare.png";
+                path = "taglierinacircolare.PNG";
                 break;
             case "taglierina manuale":
-                path = "taglierinamanuale.png";
+                path = "taglierinamanuale.PNG";
                 break;
             case "tampone diamantato":
-                path = "tamponediamantato.png";
+                path = "tamponediamantato.PNG";
                 break;
             case "tenaglia a rotelle":
-                path = "tenagliaarotelle.png";
+                path = "tenagliaarotelle.PNG";
                 break;
 
         }

@@ -18,8 +18,14 @@ public class OpponentView {
     public WindowView getWindow() {
         return window;
     }
+    public Player getPlayer() {
+        return player;
+    }
 
     public void setWindow(WindowView window) {
         this.window = window;
+    }
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }

@@ -30,7 +30,7 @@ public class MultiPlayerMatch extends Match {
     }
 
     //Ottiene giocatore
-    public synchronized Player retrievePlayer(Player player) throws RemoteException {
+    public Player retrievePlayer(Player player) throws RemoteException {
         //Controlla correttezza
         if (player==null)
             throw new MatchException("giocatore non valido");
@@ -50,7 +50,7 @@ public class MultiPlayerMatch extends Match {
         return result;
     }
     //Ottiene carta strumento
-    public synchronized ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
+    public ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
         //Controlla correttezza
         if (toolCard==null)
             throw new MatchException("carta non valida");
@@ -104,6 +104,17 @@ public class MultiPlayerMatch extends Match {
     }
 
 
+    //Mossa di abbandono di una partita
+    public void leaveMatch(Player player) throws MatchException {
+        //Controllo stato corretto della partita
+        if (!turnHandler.isStarted() || turnHandler.isEnded())
+            throw new MatchException("non puoi abbandonare ora");
+
+        //Abbandona la partita
+        player.setActive(false);
+
+        //TODO: update struttura
+    }
     //Mossa di scelta di una finestra
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
@@ -139,8 +150,9 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        if (player.getTurnDiePlaced())
-            throw new MatchException("hai gia piazzato un dado");
+        if (!player.getToolCardEffect().getReplaceDie())
+            if (player.getTurnDiePlaced())
+                throw new MatchException("hai gia piazzato un dado");
 
         if (player.getToolCardEffect().getChoosenDie() != null)
             if (!player.getToolCardEffect().getChoosenDie().sameDie(die))
@@ -152,7 +164,11 @@ public class MultiPlayerMatch extends Match {
         matchDice.getDraftPool().remove(die);
 
         //Aggiorna segnali
-        player.setTurnDiePlaced(true);
+        if (!player.getToolCardEffect().getReplaceDie())
+            player.setTurnDiePlaced(true);
+        else
+            player.getToolCardEffect().setReplaceDie(false);
+
         player.getToolCardEffect().setChoosenDie(null);
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
@@ -165,7 +181,7 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        boolean firstUse = player.getFavorTokens() == 0;
+        boolean firstUse = toolCard.getFavorTokens() == 0;
         if (firstUse)
             if (player.getFavorTokens() < 1)
                 throw new MatchException("punti favore insufficenti");
@@ -177,10 +193,13 @@ public class MultiPlayerMatch extends Match {
         toolCard.useToolCard(this, input);
 
         //Il giocatore paga i favor tokens
-        if (firstUse)
-            player.setFavorTokens(player.getFavorTokens()-1);
-        else
-            player.setFavorTokens(player.getFavorTokens()-2);
+        if (firstUse) {
+            player.setFavorTokens(player.getFavorTokens() - 1);
+            toolCard.setFavorTokens(toolCard.getFavorTokens() + 1);
+        } else {
+            player.setFavorTokens(player.getFavorTokens() - 2);
+            toolCard.setFavorTokens(toolCard.getFavorTokens() + 2);
+        }
 
     }
     //Mossa di fine del turno
@@ -197,7 +216,13 @@ public class MultiPlayerMatch extends Match {
             //Calcola un nuovo turno
             turnHandler.nextTurn();
 
-            //Il player potrà piazzare un nuovo dado
+            //Controlla se giocatore deve saltare turno
+            if (getTurnPlayer().getToolCardEffect().getSkipTurn()) {
+                turnHandler.nextTurn();
+                getTurnPlayer().getToolCardEffect().setSkipTurn(false);
+            }
+
+            //Il giocatore potrà piazzare un nuovo dado
             getTurnPlayer().setTurnDiePlaced(false);
 
             //Se nuovo round sposta draft pool sulla round track e crea nuova draft pool
@@ -206,6 +231,9 @@ public class MultiPlayerMatch extends Match {
                 matchDice.extractDraftPoolFromBag();
             }
         } else {
+            //Calcola un nuovo turno
+            turnHandler.nextTurn();
+
             //Aggiorna stato prossimo
             matchState = MatchState.ENDED;
         }

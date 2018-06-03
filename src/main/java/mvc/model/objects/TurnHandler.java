@@ -3,7 +3,9 @@ package mvc.model.objects;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.GameConstants;
 
-public abstract class TurnHandler {
+import java.io.Serializable;
+
+public abstract class TurnHandler implements Serializable {
     //Gestore base di turni di partite
 
     protected int round;

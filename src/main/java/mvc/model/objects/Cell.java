@@ -4,9 +4,10 @@ package mvc.model.objects;
 import mvc.exceptions.MatchException;
 
 import java.awt.*;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class Cell {
+public class Cell implements Serializable {
     //Cella di una finestra
 
     private Die die;
@@ -135,6 +136,9 @@ public class Cell {
 
     //Movimenti dadi fra celle
     public void placeDie(Die die, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
+        //Verifica che non ci sia un dado gia piazzato
+        if (this.die!=null)
+            throw new MatchException("la cella è gia occupata");
         //Verifica restrizioni di cella
         if (!noCellRestriction(die, ignoreColorRestriction, ignoreShadeRestriction))
             throw new MatchException("restrizione di cella non rispettata");

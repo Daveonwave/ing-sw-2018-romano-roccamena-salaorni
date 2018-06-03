@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="716.0" prefWidth="1000.0" style="-fx-background-color: blue;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.gui.GUIHandler">
+<AnchorPane prefHeight="806.0" prefWidth="1270.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.gui.GUIHandler">
    <children>
-      <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="355.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="312.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/windows/fractaldrops.PNG" />
          </image></ImageView>
       <Pane fx:id="pane2" layoutX="7.0" layoutY="7.0" prefHeight="792.0" prefWidth="299.0">
          <children>
             <Button fx:id="observe" layoutX="31.0" mnemonicParsing="false" onAction="#observe" prefHeight="59.0" prefWidth="150.0" text="Osserva altri giocatori" />
-            <ImageView fx:id="w4" fitHeight="193.0" fitWidth="243.0" layoutX="28.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="w4" fitHeight="193.0" fitWidth="243.0" layoutX="28.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/windows/auroraemagnificus.PNG" />
                </image></ImageView>
@@ -68,64 +68,119 @@
             <ImageView fx:id="p3_43" fitHeight="49.0" fitWidth="45.0" layoutX="128.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p3_44" fitHeight="49.0" fitWidth="52.0" layoutX="171.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="p3_45" fitHeight="49.0" fitWidth="45.0" layoutX="226.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_11" fitHeight="42.0" fitWidth="45.0" layoutX="28.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_12" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_13" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_14" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_15" fitHeight="42.0" fitWidth="45.0" layoutX="226.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_21" fitHeight="42.0" fitWidth="45.0" layoutX="28.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_22" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="609.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_23" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_24" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="609.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_25" fitHeight="42.0" fitWidth="45.0" layoutX="226.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_31" fitHeight="42.0" fitWidth="45.0" layoutX="27.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_32" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_33" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_34" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_35" fitHeight="42.0" fitWidth="45.0" layoutX="228.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_41" fitHeight="49.0" fitWidth="45.0" layoutX="28.0" layoutY="704.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_42" fitHeight="49.0" fitWidth="45.0" layoutX="77.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_43" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="711.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_44" fitHeight="49.0" fitWidth="45.0" layoutX="178.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="p4_45" fitHeight="42.0" fitWidth="45.0" layoutX="228.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_11" fitHeight="42.0" fitWidth="45.0" layoutX="28.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_12" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_13" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_14" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_15" fitHeight="42.0" fitWidth="45.0" layoutX="226.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_21" fitHeight="42.0" fitWidth="45.0" layoutX="28.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_22" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_23" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_24" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="612.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_25" fitHeight="42.0" fitWidth="45.0" layoutX="226.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_31" fitHeight="42.0" fitWidth="45.0" layoutX="27.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_32" fitHeight="42.0" fitWidth="45.0" layoutX="77.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_33" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_34" fitHeight="42.0" fitWidth="45.0" layoutX="179.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_35" fitHeight="42.0" fitWidth="45.0" layoutX="228.0" layoutY="666.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_41" fitHeight="49.0" fitWidth="45.0" layoutX="28.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_42" fitHeight="49.0" fitWidth="45.0" layoutX="77.0" layoutY="710.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_43" fitHeight="42.0" fitWidth="45.0" layoutX="128.0" layoutY="714.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_44" fitHeight="49.0" fitWidth="45.0" layoutX="178.0" layoutY="710.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="p4_45" fitHeight="42.0" fitWidth="45.0" layoutX="228.0" layoutY="710.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <TextArea layoutX="306.0" layoutY="690.0" prefHeight="94.0" prefWidth="652.0" />
-      <ImageView fx:id="toolCard1" fitHeight="193.0" fitWidth="150.0" layoutX="362.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="toolCard2" fitHeight="207.0" fitWidth="143.0" layoutX="572.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="toolCard3" fitHeight="207.0" fitWidth="143.0" layoutX="802.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective1" fitHeight="183.0" fitWidth="143.0" layoutX="536.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d6" fitHeight="59.0" fitWidth="60.0" layoutX="741.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d5" fitHeight="59.0" fitWidth="60.0" layoutX="674.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d7" fitHeight="59.0" fitWidth="60.0" layoutX="813.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d8" fitHeight="59.0" fitWidth="60.0" layoutX="886.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d9" fitHeight="59.0" fitWidth="60.0" layoutX="674.0" layoutY="568.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d4" fitHeight="59.0" fitWidth="60.0" layoutX="886.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d3" fitHeight="59.0" fitWidth="60.0" layoutX="813.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d2" fitHeight="59.0" fitWidth="60.0" layoutX="742.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="d1" fitHeight="59.0" fitWidth="60.0" layoutX="674.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_11" fitHeight="49.0" fitWidth="52.0" layoutX="354.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="privateObjective" fitHeight="183.0" fitWidth="143.0" layoutX="342.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective2" fitHeight="183.0" fitWidth="143.0" layoutX="700.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective3" fitHeight="183.0" fitWidth="143.0" layoutX="845.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_12" fitHeight="49.0" fitWidth="52.0" layoutX="412.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_13" fitHeight="49.0" fitWidth="52.0" layoutX="474.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_14" fitHeight="49.0" fitWidth="52.0" layoutX="536.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_15" fitHeight="49.0" fitWidth="52.0" layoutX="588.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_21" fitHeight="49.0" fitWidth="52.0" layoutX="354.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_22" fitHeight="49.0" fitWidth="52.0" layoutX="414.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_23" fitHeight="49.0" fitWidth="52.0" layoutX="474.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_24" fitHeight="49.0" fitWidth="52.0" layoutX="536.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_25" fitHeight="49.0" fitWidth="52.0" layoutX="588.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_31" fitHeight="49.0" fitWidth="52.0" layoutX="354.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_33" fitHeight="49.0" fitWidth="52.0" layoutX="474.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_32" fitHeight="49.0" fitWidth="52.0" layoutX="414.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_34" fitHeight="49.0" fitWidth="52.0" layoutX="536.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_35" fitHeight="49.0" fitWidth="52.0" layoutX="592.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_41" fitHeight="49.0" fitWidth="52.0" layoutX="354.0" layoutY="584.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_42" fitHeight="49.0" fitWidth="52.0" layoutX="414.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_43" fitHeight="49.0" fitWidth="52.0" layoutX="474.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_44" fitHeight="49.0" fitWidth="52.0" layoutX="526.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="p1_45" fitHeight="49.0" fitWidth="52.0" layoutX="592.0" layoutY="593.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea layoutX="306.0" layoutY="700.0" prefHeight="92.0" prefWidth="420.0" />
+      <ImageView fx:id="toolCard1" fitHeight="207.0" fitWidth="150.0" layoutX="934.0" layoutY="464.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tools/diluenteperpastacalda.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="toolCard2" fitHeight="207.0" fitWidth="148.0" layoutX="932.0" layoutY="242.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tools/taglierinacircolare.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="toolCard3" fitHeight="207.0" fitWidth="143.0" layoutX="932.0" layoutY="22.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/tools/pennelloperpastacalda.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="publicObjective1" fitHeight="207.0" fitWidth="163.0" layoutX="1100.0" layoutY="465.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objective/sfumaturediverse-colonna.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="d6" fitHeight="49.0" fitWidth="49.0" layoutX="400.0" layoutY="164.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/blue5.png" />
+         </image></ImageView>
+      <ImageView fx:id="d5" fitHeight="49.0" fitWidth="52.0" layoutX="321.0" layoutY="99.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/green4.png" />
+         </image></ImageView>
+      <ImageView fx:id="d7" fitHeight="49.0" fitWidth="49.0" layoutX="473.0" layoutY="164.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/yellow4.png" />
+         </image></ImageView>
+      <ImageView fx:id="d8" fitHeight="49.0" fitWidth="49.0" layoutX="473.0" layoutY="99.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/purple6.png" />
+         </image></ImageView>
+      <ImageView fx:id="d9" fitHeight="49.0" fitWidth="49.0" layoutX="324.0" layoutY="164.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/yellow5.png" />
+         </image></ImageView>
+      <ImageView fx:id="d4" fitHeight="49.0" fitWidth="49.0" layoutX="473.0" layoutY="32.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/red6.png" />
+         </image></ImageView>
+      <ImageView fx:id="d3" fitHeight="49.0" fitWidth="49.0" layoutX="400.0" layoutY="32.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/blue3.png" />
+         </image></ImageView>
+      <ImageView fx:id="d2" fitHeight="49.0" fitWidth="49.0" layoutX="400.0" layoutY="99.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/purple2.png" />
+         </image></ImageView>
+      <ImageView fx:id="d1" fitHeight="49.0" fitWidth="52.0" layoutX="321.0" layoutY="32.0" onMouseClicked="#selectDie" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dice/green1.png" />
+         </image></ImageView>
+      <ImageView fx:id="p1_11" fitHeight="49.0" fitWidth="52.0" layoutX="311.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="privateObjective" fitHeight="183.0" fitWidth="150.0" layoutX="312.0" layoutY="242.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objective/sfumaturerosse.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="publicObjective2" fitHeight="207.0" fitWidth="150.0" layoutX="1101.0" layoutY="242.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objective/sfumaturediverse.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="publicObjective3" fitHeight="200.0" fitWidth="143.0" layoutX="1104.0" layoutY="22.0" onMouseEntered="#zoom" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objective/diagonalicolorate.PNG" />
+         </image></ImageView>
+      <ImageView fx:id="p1_12" fitHeight="49.0" fitWidth="52.0" layoutX="369.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_13" fitHeight="49.0" fitWidth="52.0" layoutX="431.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_14" fitHeight="49.0" fitWidth="52.0" layoutX="493.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_15" fitHeight="49.0" fitWidth="52.0" layoutX="545.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_21" fitHeight="49.0" fitWidth="52.0" layoutX="311.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_22" fitHeight="49.0" fitWidth="52.0" layoutX="371.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_23" fitHeight="49.0" fitWidth="52.0" layoutX="431.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_24" fitHeight="49.0" fitWidth="52.0" layoutX="493.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_25" fitHeight="49.0" fitWidth="52.0" layoutX="545.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_31" fitHeight="49.0" fitWidth="52.0" layoutX="311.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_33" fitHeight="49.0" fitWidth="52.0" layoutX="431.0" layoutY="573.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_32" fitHeight="49.0" fitWidth="52.0" layoutX="371.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_34" fitHeight="49.0" fitWidth="52.0" layoutX="493.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_35" fitHeight="49.0" fitWidth="52.0" layoutX="549.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_41" fitHeight="49.0" fitWidth="52.0" layoutX="311.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_42" fitHeight="49.0" fitWidth="52.0" layoutX="371.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_43" fitHeight="49.0" fitWidth="52.0" layoutX="431.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_44" fitHeight="49.0" fitWidth="52.0" layoutX="483.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="p1_45" fitHeight="49.0" fitWidth="52.0" layoutX="549.0" layoutY="631.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="zoom" fitHeight="387.0" fitWidth="267.0" layoutX="642.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/objective/sfumaturediverse.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="92.0" fitWidth="509.0" layoutX="749.0" layoutY="689.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="roundDice" layoutX="635.0" layoutY="467.0" prefHeight="200.0" prefWidth="273.0" />
    </children>
 </AnchorPane>

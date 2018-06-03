@@ -4,20 +4,23 @@ import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.enums.DieColor;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Window {
+public class Window implements Serializable {
     //Finestra di un giocatore
 
     private Cell[][] cells;
     private int difficulty;
+    private String name;
 
     //Costruttori
-    public Window(Cell[][] cells, int difficulty) {
+    public Window(Cell[][] cells, int difficulty, String name) {
         this.cells = cells;
         this.difficulty = difficulty;
+        this.name = name;
     }
 
     //Setter/Getter
@@ -27,12 +30,18 @@ public class Window {
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Cell[][] getCells() {
         return cells;
     }
     public int getDifficulty() {
         return difficulty;
+    }
+    public String getName() {
+        return name;
     }
 
     //Verifica uguaglianze

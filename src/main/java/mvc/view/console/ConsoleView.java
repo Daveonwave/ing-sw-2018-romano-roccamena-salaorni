@@ -7,6 +7,7 @@ import mvc.view.console.menu.ConsoleMenu;
 import mvc.view.console.menu.MainMenu;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,6 +119,7 @@ public class ConsoleView extends AppView {
         for (String message : errorMessages)
             Console.printlnCentered(message, WIDTH, " ");
     }
+
     public String askInput(String text) throws IOException {
         Console.setColor(ConsoleColors.GREEN);
         Console.printlnCentered(text, WIDTH, " ");

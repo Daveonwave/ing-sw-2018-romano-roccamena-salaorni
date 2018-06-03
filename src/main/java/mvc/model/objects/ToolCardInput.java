@@ -1,6 +1,8 @@
 package mvc.model.objects;
 
-public class ToolCardInput {
+import java.io.Serializable;
+
+public class ToolCardInput implements Serializable {
     //Input utilizzo di carte strumento
 
     private Cell originCell1, originCell2;
@@ -29,14 +31,37 @@ public class ToolCardInput {
         this.choosenShade = choosenShade;
         this.increaseShade = increaseShade;
     }
+    //Lathekin
     public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2) {
         this(originCell1, originCell2, destinationCell1, destinationCell2, 0, null, null, null, 0, true);
     }
+    //Alesatore per lamina di rame, Pennello per eglomise
+    public ToolCardInput(Cell originCell1, Cell destinationCell1) {
+        this(originCell1, null, destinationCell1, null);
+    }
+    //Taglierina circolare
     public ToolCardInput(int roundTrackRound, Die roundTrackDie, Die choosenDie) {
         this(null, null, null, null, roundTrackRound, roundTrackDie, null, choosenDie, 0, true);
     }
+    //Taglierina manuale
+    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie) {
+        this(originCell1, originCell2, destinationCell1, destinationCell2, roundTrackRound, roundTrackDie, null, null, 0, true);
+    }
+    //Pennello per pasta salda, Tampone diamantato
     public ToolCardInput(Die choosenDie) {
         this(null, null, null, null, 0, null, null, choosenDie, 0, true);
+    }
+    //Diluente per pasta salda
+    public ToolCardInput(Die choosenDie, int choosenShade) {
+        this(null, null, null, null, 0, null, null, choosenDie, choosenShade, true);
+    }
+    //Pinza sgrossatrice
+    public ToolCardInput(Die choosenDie, boolean increaseShade) {
+        this(null, null, null, null, 0, null, null, choosenDie, 0, increaseShade);
+    }
+    //Tenaglia a rotelle, Martelletto, Riga di sughero
+    public ToolCardInput() {
+        this(null, null, null, null, 0, null, null, null, 0, true);
     }
 
     //Setter//Getter

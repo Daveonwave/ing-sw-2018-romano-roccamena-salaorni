@@ -2,7 +2,9 @@ package mvc.view.console.menu;
 
 import mvc.view.console.ConsoleView;
 
-public abstract class MenuInputHandler {
+import java.io.Serializable;
+
+public abstract class MenuInputHandler implements Serializable {
     //Input di un menu
 
     private ConsoleView consoleView;

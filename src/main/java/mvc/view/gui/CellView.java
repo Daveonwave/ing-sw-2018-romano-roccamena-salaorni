@@ -7,7 +7,7 @@ import mvc.model.objects.Cell;
 
 
 public class CellView{
-    //View gui cella
+    //Veduta di una cella
 
     private Cell cell;
     private ImageView imageView;

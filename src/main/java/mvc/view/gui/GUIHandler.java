@@ -30,6 +30,7 @@ GUIHandler extends Application {
 
     private static GUIView guiView;
     private MultiPlayerMatch match;
+    private String tokenMatch;
     private boolean connected = false;
     private boolean queue = false;
     private boolean ready = false;
@@ -42,13 +43,13 @@ GUIHandler extends Application {
     @FXML
     Button rmi, socket, multi,single, annulla, observe;
     @FXML
-    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, privateObjective;
+    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, privateObjective, zoom;
     @FXML
     ImageView d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
     Text text;
     @FXML
-    Pane pane, pane2;
+    Pane pane, pane2, roundDice;
     @FXML
     ImageView w1,w2,w3,w4;
     @FXML
@@ -308,8 +309,9 @@ GUIHandler extends Application {
         text.setText("In attesa di altri giocatori...");
     }
     //Inizia gioco
-    public void startGame(MultiPlayerMatch match) throws IOException{
+    public void startGame(MultiPlayerMatch match, String tokenMatch) throws IOException{
         this.match = match;
+        this.tokenMatch = tokenMatch;
         FXMLLoader loader = new FXMLLoader();
         AnchorPane root = loader.load(getClass().getResource("game.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
@@ -324,7 +326,11 @@ GUIHandler extends Application {
         setImageView(windows.get(3).getImageView(),338,174,588,455);
         for(WindowView windowView: windows){
             windowView.getImageView().setOnMouseClicked(event -> {
-                loadGame();
+                try {
+                    this.guiView.getAppController().chooseWindow(this.guiView.getUserToken(),tokenMatch,windowView.getWindow());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             });
             anchorPane1.getChildren().add(windowView.getImageView());
         }
@@ -335,25 +341,53 @@ GUIHandler extends Application {
         this.stage.show();
     }
 
-    public void loadGame(){
-        d1.setVisible(false);
-        d2.setVisible(false);
-        d3.setVisible(false);
-        d4.setVisible(false);
-        d5.setVisible(false);
-        d6.setVisible(false);
-        d7.setVisible(false);
-        d8.setVisible(false);
-        d9.setVisible(false);
-        guiView.createGame(this.match);
+    //gioco
+    public void selectDie(ActionEvent actionEvent){
+        if (actionEvent.getSource().equals(d1)) this.guiView.setSelectedDie(this.guiView.getDice().get(0));
+        if (actionEvent.getSource().equals(d2)) this.guiView.setSelectedDie(this.guiView.getDice().get(1));
+        if (actionEvent.getSource().equals(d3)) this.guiView.setSelectedDie(this.guiView.getDice().get(2));
+        if (actionEvent.getSource().equals(d4)) this.guiView.setSelectedDie(this.guiView.getDice().get(3));
+        if (actionEvent.getSource().equals(d5)) this.guiView.setSelectedDie(this.guiView.getDice().get(4));
+        if (actionEvent.getSource().equals(d6)) this.guiView.setSelectedDie(this.guiView.getDice().get(5));
+        if (actionEvent.getSource().equals(d7)) this.guiView.setSelectedDie(this.guiView.getDice().get(6));
+        if (actionEvent.getSource().equals(d8)) this.guiView.setSelectedDie(this.guiView.getDice().get(7));
+        if (actionEvent.getSource().equals(d9)) this.guiView.setSelectedDie(this.guiView.getDice().get(8));
+    }
+    public void placeDie(ActionEvent actionEvent) throws RemoteException{
+        if (actionEvent.getSource().equals(p1_11)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[0][0].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_12)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[0][1].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_13)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[0][2].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_14)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[0][3].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_15)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[0][4].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_21)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[1][0].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_22)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[1][1].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_23)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[1][2].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_24)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[1][3].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_25)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[1][4].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_31)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[2][0].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_32)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[2][1].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_33)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[2][2].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_34)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[2][3].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_35)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[2][4].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_41)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[3][0].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_42)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[3][1].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_43)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[3][2].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_44)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[3][3].getCell(),this.guiView.getSelectedDie().getDie());
+        if (actionEvent.getSource().equals(p1_45)) this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getWindow().getCells()[3][4].getCell(),this.guiView.getSelectedDie().getDie());
     }
 
-    public void getWindow(ActionEvent actionEvent){
-
-    }
     //Osservazione
     public void observe(ActionEvent actionEvent){
         observe.setVisible(!hide);
+    }
+    public void zoom(ActionEvent actionEvent){
+        if(actionEvent.getSource().equals(toolCard1)) zoom.setImage(toolCard1.getImage());
+        if(actionEvent.getSource().equals(toolCard2)) zoom.setImage(toolCard2.getImage());
+        if(actionEvent.getSource().equals(toolCard3)) zoom.setImage(toolCard3.getImage());
+        if(actionEvent.getSource().equals(publicObjective1)) zoom.setImage(publicObjective1.getImage());
+        if(actionEvent.getSource().equals(publicObjective2)) zoom.setImage(publicObjective2.getImage());
+        if(actionEvent.getSource().equals(publicObjective3)) zoom.setImage(publicObjective3.getImage());
+        if(actionEvent.getSource().equals(privateObjective)) zoom.setImage(privateObjective.getImage());
     }
 
     //Cambia scena nella gui caricandola da un nuovo file FXML

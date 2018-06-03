@@ -3,10 +3,11 @@ package mvc.view.console.menu;
 import mvc.exceptions.AppViewException;
 import mvc.view.console.ConsoleView;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class ConsoleMenu {
+public abstract class ConsoleMenu implements Serializable {
     //Menu della view console
 
     private int width;

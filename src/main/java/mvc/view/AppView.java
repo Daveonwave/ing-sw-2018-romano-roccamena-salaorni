@@ -4,9 +4,10 @@ import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 import mvc.model.objects.*;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public abstract class AppView implements AppViewStub {
+public abstract class AppView implements AppViewStub, Serializable {
     //View astratta dell'applicazione
 
     private AppControllerStub appController;

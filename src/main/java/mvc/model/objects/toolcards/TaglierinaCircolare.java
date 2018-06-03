@@ -19,7 +19,7 @@ public class TaglierinaCircolare extends ToolCard {
 
         //Controlla giocatore non ha gia piazzato questo turno
         if (player.getTurnDiePlaced())
-            throw new MatchException("hai gia piazzato un dado");
+            throw new MatchException("hai gia piazzato un dado questo turno");
 
         //Esegue effetto carta
         Die roundTrackDie = match.getRoundTrack().retrieveDie(input.getRoundTrackRound(), input.getRoundTrackDie());

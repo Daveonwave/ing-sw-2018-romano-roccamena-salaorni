@@ -27,7 +27,7 @@ public class PennelloPerPastaSalda extends ToolCard {
         //Controlla se il dado è piazzabile
         if (player.getWindow().getValidCells(die).size() == 0) {
             player.setTurnDiePlaced(true);
-            throw new MatchException("dado riposto in riserva");
+            throw new MatchException("non puoi piu piazzare il dado");
         }
 
         //Aggiorna effetti

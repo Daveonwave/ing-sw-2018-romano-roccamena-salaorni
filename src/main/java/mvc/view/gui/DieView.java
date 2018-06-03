@@ -6,8 +6,10 @@ import mvc.model.objects.Die;
 import javafx.scene.control.Button;
 import mvc.model.objects.GameConstants;
 
-public class DieView extends ObjectView{
-    //View gui dado
+import java.util.List;
+
+public class DieView extends ObjectView {
+    //Veduta di un dado
 
     private Die die;
 
@@ -21,6 +23,7 @@ public class DieView extends ObjectView{
     public void setDie(Die die) {
         this.die = die;
     }
+
     public Die getDie() {
         return die;
     }
@@ -78,5 +81,6 @@ public class DieView extends ObjectView{
             }
             return new Image(getClass().getResourceAsStream(path));
         }
+
 }
 

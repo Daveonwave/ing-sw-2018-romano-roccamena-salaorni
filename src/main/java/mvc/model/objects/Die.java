@@ -3,9 +3,10 @@ package mvc.model.objects;
 import util.RandomHandler;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.Random;
 
-public class Die {
+public class Die implements Serializable {
     //Dado del gioco
 
     private Color color;
@@ -62,7 +63,9 @@ public class Die {
 
     //Operazioni su dado
     public void roll() {
-        this.shade = RandomHandler.retrieveRandom().nextInt(6) + 1;
+        int newShade = RandomHandler.retrieveRandom().nextInt(6) + 1;
+
+        this.shade = newShade;
     }
     public void invertShade() {
         switch (shade) {

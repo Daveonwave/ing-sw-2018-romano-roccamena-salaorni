@@ -2,6 +2,7 @@ package mvc;
 
 import mvc.creators.MatchCreator;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.Tool;
 import org.junit.Test;
 
 import java.rmi.RemoteException;
@@ -256,6 +257,33 @@ public class MultiPlayerTest extends MVCTest {
     public void testTurnHandler(MultiPlayerMatch match, Player turnPlayer, int round, boolean roundFirst, boolean roundLast, boolean firstWave) {
         testTurnHandler(match, turnPlayer, round, true, false, roundFirst,roundLast, firstWave);
     }
+    public void testFourPlayersRound(MultiPlayerMatch match, int round, Player player1, Player player2, Player player3, Player player4) {
+        //Primo
+        testTurnHandler(match, player1,  round,true, false, true);
+        validEndTurn(match, player1);
+        //Secondo
+        testTurnHandler(match, player2, round, false, false, true);
+        validEndTurn(match, player2);
+        //Terzo
+        testTurnHandler(match, player3, round, false, false, true);
+        validEndTurn(match, player3);
+        //Quarto
+        testTurnHandler(match, player4, round, false, false, true);
+        validEndTurn(match, player4);
+
+        //Quarto
+        testTurnHandler(match, player4, round, false, false, false);
+        validEndTurn(match, player4);
+        //Terzo
+        testTurnHandler(match, player3, round, false, false, false);
+        validEndTurn(match, player3);
+        //Secondo
+        testTurnHandler(match, player2, round, false, false, false);
+        validEndTurn(match, player2);
+        //Primo
+        testTurnHandler(match, player1, round, false, true, false);
+        validEndTurn(match, player1);
+    }
 
     public void testMatchStartWindows(MultiPlayerMatch match) {
         for (Player player : match.getPlayers()) {
@@ -285,6 +313,12 @@ public class MultiPlayerTest extends MVCTest {
     }
 
     //Test sulle azioni dei giocatori
+    public void testUseToolCard(Player player, ToolCard toolCard, int playerTokens, int cardTokens) {
+        if (player.getFavorTokens()!=playerTokens)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (toolCard.getFavorTokens()!=cardTokens)
+            testAssertError(INVALID_STATE_MESSAGE);
+    }
     public void testPlaceDie(MultiPlayerMatch match, Player player, Cell cell, Die die, int poolSize) {
         if (match.getMatchDice().getDraftPool().size()!=poolSize)
             testAssertError(INVALID_STATE_MESSAGE);
@@ -385,99 +419,25 @@ public class MultiPlayerTest extends MVCTest {
         validChooseWindow(match, player3, retrieveStartWindow(player3, 0));
         validChooseWindow(match, player4, retrieveStartWindow(player4, 0));
 
-        //////////
-        //ROUND1//
-        //////////
+        //Testa sviluppo round e turni
+        if (!match.getTurnHandler().isStarted())
+            testAssertError(INVALID_STATE_MESSAGE);
 
-        //Player1
-        testTurnHandler(match, player1,  1,true, false, true);
-        validEndTurn(match, player1);
-        //Player2
-        testTurnHandler(match, player2, 1, false, false, true);
-        validEndTurn(match, player2);
-        //Player3
-        testTurnHandler(match, player3, 1, false, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 1, false, false, true);
-        validEndTurn(match, player4);
+        testFourPlayersRound(match, 1, player1, player2, player3, player4);
+        testFourPlayersRound(match, 2, player2, player3, player4, player1);
+        testFourPlayersRound(match, 3, player3, player4, player1, player2);
+        testFourPlayersRound(match, 4, player4, player1, player2, player3);
+        testFourPlayersRound(match, 5, player1, player2, player3, player4);
+        testFourPlayersRound(match, 6, player2, player3, player4, player1);
+        testFourPlayersRound(match, 7, player3, player4, player1, player2);
+        testFourPlayersRound(match, 8, player4, player1, player2, player3);
+        testFourPlayersRound(match, 9, player1, player2, player3, player4);
+        testFourPlayersRound(match, 10, player2, player3, player4, player1);
 
-        //Player4
-        testTurnHandler(match, player4, 1, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 1, false, false, false);
-        validEndTurn(match, player3);
-        //Player2
-        testTurnHandler(match, player2, 1, false, false, false);
-        validEndTurn(match, player2);
-        //Player1
-        testTurnHandler(match, player1, 1, false, true, false);
-        validEndTurn(match, player1);
-
-        //////////
-        //ROUND2//
-        //////////
-
-        //Player2
-        testTurnHandler(match, player2,  2,true, false, true);
-        validEndTurn(match, player2);
-        //Player3
-        testTurnHandler(match, player3, 2, false, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 2, false, false, true);
-        validEndTurn(match, player4);
-        //Player1
-        testTurnHandler(match, player1, 2, false, false, true);
-        validEndTurn(match, player1);
-
-        //Player1
-        testTurnHandler(match, player1, 2, false, false, false);
-        validEndTurn(match, player1);
-        //Player4
-        testTurnHandler(match, player4, 2, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 2, false, false, false);
-        validEndTurn(match, player3);
-        //Player2
-        testTurnHandler(match, player2, 2, false, true, false);
-        validEndTurn(match, player2);
-
-        //////////
-        //ROUND3//
-        //////////
-
-        //Player3
-        testTurnHandler(match, player3,  3,true, false, true);
-        validEndTurn(match, player3);
-        //Player4
-        testTurnHandler(match, player4, 3, false, false, true);
-        validEndTurn(match, player4);
-        //Player1
-        testTurnHandler(match, player1, 3, false, false, true);
-        validEndTurn(match, player1);
-        //Player2
-        testTurnHandler(match, player2, 3, false, false, true);
-        validEndTurn(match, player2);
-
-        //Player2
-        testTurnHandler(match, player2, 3, false, false, false);
-        validEndTurn(match, player2);
-        //Player1
-        testTurnHandler(match, player1, 3, false, false, false);
-        validEndTurn(match, player1);
-        //Player4
-        testTurnHandler(match, player4, 3, false, false, false);
-        validEndTurn(match, player4);
-        //Player3
-        testTurnHandler(match, player3, 3, false, true, false);
-        validEndTurn(match, player3);
-
-        //TODO: in fase di sviluppo
-        //testAssertWaitingUpdate("4-10 turns");
+        if (!match.getTurnHandler().isEnded())
+            testAssertError(INVALID_STATE_MESSAGE);
     }
+
 
     //Test fissi
     @Test
@@ -498,8 +458,8 @@ public class MultiPlayerTest extends MVCTest {
 
         Cell cell;
         Die die;
-
-        MatchDice matchDice = match.getMatchDice();
+        ToolCard toolCard;
+        ToolCardInput input;
 
 
         //--------------------------------------- ROUND 1 -------------------------------------------//
@@ -510,13 +470,13 @@ public class MultiPlayerTest extends MVCTest {
 
         //Azioni non valide
         invalidEndTurn(match, player2); // NO SUO TURNO
-        invalidPlaceDie(match, player1, retrieveCell(window1, 2, 1), retrieveDieFromDraftPool(match, 1)); // RESTRIZIONE INIZIALE
+        invalidPlaceDie(match, player1, retrieveCell(window1, 2, 1), retrieveDieFromDraftPool(match, 2)); // RESTRIZIONE INIZIALE
         invalidPlaceDie(match, player1, retrieveCell(window1, 2, 0), retrieveDieFromDraftPool(match, 0)); // RESTRIZIONE CELLA
         invalidUseToolCard(match, player1, new ToolCardInput(createInvalidDie1()), retrieveToolCard(match, 1)); // DADO INVENTATO
 
         //Piazzamento corretto 6G in 0,2
         cell = retrieveCell(window1, 0, 2);
-        die = retrieveDieFromDraftPool(match, 1);
+        die = retrieveDieFromDraftPool(match, 2);
 
         validPlaceDie(match, player1, cell, die);
         testPlaceDie(match, player1, cell, die, 4);
@@ -524,19 +484,8 @@ public class MultiPlayerTest extends MVCTest {
         //Dado gia piazzato
         invalidPlaceDie(match, player1, retrieveCell(window1, 0, 3), retrieveDieFromDraftPool(match, 2));
 
-        //Controllo turni
-        if (!match.getTurnHandler().isStarted())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getTurnHandler().isFirstTurnWave())
-            testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getTurnHandler().isLastTurn())
-            testAssertError(INVALID_STATE_MESSAGE);
-
         //Finisce turno
         validEndTurn(match, player1);
-
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
 
         /////////////////
         //GIOCA PLAYER2//
@@ -559,19 +508,16 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player2);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         /////////////////
         //GIOCA PLAYER2//
         /////////////////
 
         //Azioni non valide
-        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 2), retrieveDieFromDraftPool(match, 2)); // RESTRIZIONE CELLA ISOLATA
+        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 2), retrieveDieFromDraftPool(match, 1)); // RESTRIZIONE CELLA ISOLATA
 
-        //Piazzamento corretto dado 6R in 3,2
+        //Piazzamento corretto dado 5R in 3,2
         cell = retrieveCell(window2, 3, 2);
-        die = retrieveDieFromDraftPool(match, 1);
+        die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player2, cell, die);
         testPlaceDie(match, player2, cell, die, 2);
@@ -579,15 +525,185 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player2);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         /////////////////
         //GIOCA PLAYER1//
         /////////////////
 
         //Piazzamento corretto dado 4P in 1,1
         cell = retrieveCell(window1, 1, 1);
+        die = retrieveDieFromDraftPool(match, 1);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 1);
+
+        //Finisce turno
+        validEndTurn(match, player1);
+
+        //Controllo prima di fine round
+        if (match.getMatchDice().getDiceBag().size()!=80)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (match.getRoundTrack().retrieveDice(1).size()!=1)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 2)))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //--------------------------------------- ROUND 2 -------------------------------------------//
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Piazzamento corretto dado 6R in 1,4
+        cell = retrieveCell(window2, 1, 4);
+        die = retrieveDieFromDraftPool(match, 1);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 4);
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Azioni non valide
+        invalidPlaceDie(match, player1, retrieveCell(window2, 2, 3), retrieveDieFromDraftPool(match, 0)); // RESTRIZIONE CELLA ISOLATA
+
+        //Utilizza tampone diamantato                                                   // TAMPONE DIAMANTATO
+        die = retrieveDieFromDraftPool(match, 0);
+        toolCard = retrieveToolCard(match,1);
+        input = new ToolCardInput(die);
+
+        validUseToolCard(match, player1, input, toolCard);
+        testUseToolCard(player1, toolCard, 4, 1);
+
+        //Controllo effetti carta
+        if (die.getShade()!=4)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!player1.getToolCardEffect().getChoosenDie().sameDie(die))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Piazzamento dado diverso
+        invalidPlaceDie(match, player1, retrieveCell(window2, 0, 0), retrieveDieFromDraftPool(match, 1));
+
+        //Piazzamento corretto nuovo dado 4Y in 0,4
+        cell = retrieveCell(window1, 0, 4);
+        die = retrieveDieFromDraftPool(match, 0);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 3);
+
+        //Finisce turno
+        validEndTurn(match, player1);
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Piazzamento corretto dado 2G in 3,4
+        cell = retrieveCell(window1, 3, 4);
+        die = retrieveDieFromDraftPool(match, 0);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 2);
+
+        //Finisce turno
+        validEndTurn(match, player1);
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Piazzamento corretto dado 3P in 2,3
+        cell = retrieveCell(window2, 2, 3);
+        die = retrieveDieFromDraftPool(match, 1);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 1);
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        //Controllo prima di fine round
+        if (match.getMatchDice().getDiceBag().size()!=75)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (match.getRoundTrack().retrieveDice(2).size()!=1)
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!match.getRoundTrack().containsDie(2, new Die(GameConstants.BLUE, 3)))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //--------------------------------------- ROUND 3 -------------------------------------------//
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Piazzamento non valido
+        invalidPlaceDie(match, player1, retrieveCell(window1, 0, 2), retrieveDieFromDraftPool(match, 2)); // CELLA OCCUPATA
+
+        //Piazzamento corretto 3B in 0,0
+        cell = retrieveCell(window1, 0, 0);
+        die = retrieveDieFromDraftPool(match, 3);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 4);
+
+        //Finisce turno
+        validEndTurn(match, player1);
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Piazzamento corretto 1P in 3,0
+        cell = retrieveCell(window2, 3, 0);
+        die = retrieveDieFromDraftPool(match, 3);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 3);
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Utilizza diluente per pasta salda                                                 // DILUENTE PER PASTA SALDA
+        die = retrieveDieFromDraftPool(match, 2);
+        toolCard = retrieveToolCard(match,2);
+        input = new ToolCardInput(die, 4);
+
+        validUseToolCard(match, player2, input, toolCard);
+        testUseToolCard(player2, toolCard, 4, 1);
+
+        //Controlla effetto su dado
+        if (!match.getMatchDice().containsDieInPool(new Die(GameConstants.RED, 4)))
+            testAssertError(INVALID_STATE_MESSAGE);
+        if (!player2.getToolCardEffect().getChoosenDie().sameDie(new Die(GameConstants.RED, 4)))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Piazzamento non corretti
+        invalidPlaceDie(match, player2, retrieveCell(window2, 3, 4), retrieveDieFromDraftPool(match, 0)); // DADO DIVERSO
+        invalidPlaceDie(match, player2, retrieveCell(window2, 3, 1), retrieveDieFromDraftPool(match, 2)); // COLORE UGUALE ADIACENTE
+
+        //Piazzamento corretto 4R in 0,3
+        cell = retrieveCell(window2, 0, 3);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 2);
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Piazzamento corretto 3Y in 2,3
+        cell = retrieveCell(window1, 2, 3);
         die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player1, cell, die);
@@ -596,27 +712,119 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player1);
 
-        if (match.getMatchState()!=MatchState.PLAY_ROUND)
-            testAssertError(INVALID_STATE_MESSAGE);
-
         //Controllo prima di fine round
-        if (match.getMatchDice().getDiceBag().size()!=80)
+        if (match.getMatchDice().getDiceBag().size()!=70)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getRoundTrack().retrieveDice(1).size()!=1)
+        if (match.getRoundTrack().retrieveDice(3).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-
-        //------------------------------------ CORRETTO FINO ----------------------------------------//
-
-        testAssertWaitingUpdate("roundtrack");
-
-        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 3)));
+        if (!match.getRoundTrack().containsDie(3, new Die(GameConstants.RED, 3)))
             testAssertError(INVALID_STATE_MESSAGE);
 
-        //--------------------------------------- ROUND 2 -------------------------------------------//
+        //--------------------------------------- ROUND 4 -------------------------------------------//
+    }
+    @Test
+    public void fixedToolCard2() {
+        //Creazione partita
+        MultiPlayerMatch match = createTwoPlayerMatch2();
+
+        Player player1 = retrievePlayer(match, 0);
+        Player player2 = retrievePlayer(match, 1);
+
+        //Inizio partita
+        validBeginMatch(match);
+        validChooseWindow(match, player1, retrieveStartWindow(player1, 1));
+        validChooseWindow(match, player2, retrieveStartWindow(player2, 1));
+
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Utilizza pinza sgrossatrice                                               //PINZA SGROSSATRICE
+        die = retrieveDieFromDraftPool(match, 0);
+        toolCard = retrieveToolCard(match,0);
+        input = new ToolCardInput(die, true);
+
+        validUseToolCard(match, player1, input, toolCard);
+        testUseToolCard(player1, toolCard, 4, 1);
+
+        if (!die.sameDie(new Die(GameConstants.YELLOW, 5)))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Finisce turno
+        validEndTurn(match, player1);
 
         /////////////////
         //GIOCA PLAYER2//
         /////////////////
+
+        //Utilizza tenaglia rotelle prima di aver scelto il primo dado                    // TENAGLIA ROTELLE
+        toolCard = retrieveToolCard(match,2);
+        input = new ToolCardInput();
+
+        invalidUseToolCard(match, player2, input, toolCard);
+
+        //Piazzamento corretto 5B in 0,0
+        cell = retrieveCell(window2, 0, 0);
+        die = retrieveDieFromDraftPool(match, 3);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 4);
+
+        //Utilizza tenaglia rotelle
+        validUseToolCard(match, player2, input, toolCard);
+
+        //Piazzamento corretto 6G in 0,1
+        cell = retrieveCell(window2, 0, 1);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 3);
+
+        //Prova ripiazzamento ulteriore
+        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 0), retrieveDieFromDraftPool(match, 0));
+
+        //Finisce turno
+        validEndTurn(match, player2);
+
+        //Controlla salto turno
+        if (!match.getTurnPlayer().samePlayer(player1))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        /////////////////
+        //GIOCA PLAYER1//
+        /////////////////
+
+        //Utilizza pennello per pasta salda                                           //PENNELLO PER PASTA SALDA
+        die = retrieveDieFromDraftPool(match, 2);
+        toolCard = retrieveToolCard(match,1);
+        input = new ToolCardInput(die);
+
+        validUseToolCard(match, player1, input, toolCard);
+        testUseToolCard(player1, toolCard, 3, 1);
+
+        if (!die.getColor().equals(GameConstants.PURPLE))
+            testAssertError(INVALID_STATE_MESSAGE);
+
+        //Prova piazzamento altro dado
+        invalidPlaceDie(match, player1, retrieveCell(window1, 1, 0), retrieveDieFromDraftPool(match, 0));
+
+        //Piazzamento corretto 5P in 1, 0
+        cell = retrieveCell(window1, 1, 0);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 2);
+
+        //Finisce turno
+        validEndTurn(match, player1);
     }
 
 
@@ -628,7 +836,12 @@ public class MultiPlayerTest extends MVCTest {
 
         //Lancia i test
         test.randomTwoPlayerStart();
+        System.out.println("random two players start passed");
+        test.randomFourPlayerTurnsFlow();
+        System.out.println("random four players turns flow passed");
+
         test.fixedTwoPlayer1();
+        System.out.println("fixed two players passed");
     }
 }
 

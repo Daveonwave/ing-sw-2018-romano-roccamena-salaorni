@@ -9,8 +9,8 @@ public class MultiPlayerHandler extends MenuInputHandler {
     //Gestore partita multiplayer
 
     //Costruttori
-    public MultiPlayerHandler(ConsoleView parentGame, ConsoleMenu parentMenu) {
-        super(parentGame, parentMenu);
+    public MultiPlayerHandler(ConsoleView parentView, ConsoleMenu parentMenu) {
+        super(parentView, parentMenu);
     }
 
     //Gestione input
