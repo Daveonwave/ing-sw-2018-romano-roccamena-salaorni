@@ -9,7 +9,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class RmiClient {
-    //Client tramite RMI
+    //Client RMI
 
     private AppControllerStub  controller;
 
@@ -18,7 +18,7 @@ public class RmiClient {
         System.setProperty("java.security.policy", "client.policy");
         System.setSecurityManager(new SecurityManager());
 
-        Registry registry = LocateRegistry.getRegistry(ServerInfo.SERVER_ADDRESS, ServerInfo.PORT);
+        Registry registry = LocateRegistry.getRegistry(ServerInfo.SERVER_ADDRESS, ServerInfo.RMI_PORT);
 
         System.out.println("RMI registry bindings: ");
         String[] e = registry.list();

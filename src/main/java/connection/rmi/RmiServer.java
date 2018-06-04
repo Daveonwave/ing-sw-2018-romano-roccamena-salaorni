@@ -21,7 +21,7 @@ public class RmiServer {
         AppControllerStub appController = new RmiController();
 
         System.out.println("Bindando l'implementazione server al registro...");
-        Registry registry = LocateRegistry.getRegistry(ServerInfo.PORT);
+        Registry registry = LocateRegistry.getRegistry(ServerInfo.RMI_PORT);
         registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
 
         System.out.println("Aspettando invocazioni dal client...");
