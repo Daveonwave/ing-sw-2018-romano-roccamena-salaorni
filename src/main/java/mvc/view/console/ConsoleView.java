@@ -5,9 +5,9 @@ import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
 import mvc.view.console.menu.ConsoleMenu;
 import mvc.view.console.menu.MainMenu;
+import mvc.view.console.printer.ObjectPrinter;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,10 @@ public class ConsoleView extends AppView {
 
     private MainMenu mainMenu;
 
-    private String matchToken;
+    private ObjectPrinter objectPrinter;
+
+    private String multiPlayerToken;
+    private SinglePlayerMatch singlePlayerMatch;
 
     private List<String> ackMessages;
     private List<String> errorMessages;
@@ -30,7 +33,9 @@ public class ConsoleView extends AppView {
     public ConsoleView(AppControllerStub appController) throws RemoteException {
         super(appController);
         this.mainMenu = new MainMenu(WIDTH, this);
-        this.matchToken = "";
+        this.objectPrinter = new ObjectPrinter(this);
+        this.multiPlayerToken = "";
+        this.singlePlayerMatch = null;
         this.ackMessages = new ArrayList<String>();
         this.errorMessages = new ArrayList<String>();
         this.waitingMultiplayer = false;
@@ -40,7 +45,22 @@ public class ConsoleView extends AppView {
     public boolean getWaitingMultiplayer() {
         return waitingMultiplayer;
     }
+    public String getMultiPlayerToken() {
+        return multiPlayerToken;
+    }
+    public SinglePlayerMatch getSinglePlayerMatch() {
+        return singlePlayerMatch;
+    }
+    public ObjectPrinter getObjectPrinter() {
+        return objectPrinter;
+    }
 
+    public void setMultiPlayerToken(String multiPlayerToken) {
+        this.multiPlayerToken = multiPlayerToken;
+    }
+    public void setSinglePlayerMatch(SinglePlayerMatch singlePlayerMatch) {
+        this.singlePlayerMatch = singlePlayerMatch;
+    }
     public void setWaitingMultiplayer(boolean waitingMultiplayer) {
         this.waitingMultiplayer = waitingMultiplayer;
     }
@@ -75,10 +95,6 @@ public class ConsoleView extends AppView {
             printAck();
             printError();
 
-            //Pulisce ack/error
-            ackMessages.clear();
-            errorMessages.clear();
-
             Console.newLine();
 
             //Lettura input scelta
@@ -92,6 +108,7 @@ public class ConsoleView extends AppView {
 
         return input;
     }
+
     public String showMainMenu() throws IOException {
         return showMenu(mainMenu);
     }
@@ -102,22 +119,31 @@ public class ConsoleView extends AppView {
         mainMenu.handleInput(input);
     }
 
-    //Metodi input output gico
+    //Metodi di print input output dell'applicazione
     public void printInfo(String text) {
         Console.setColor(ConsoleColors.GREEN);
         Console.printlnCentered(text, WIDTH, " ");
     }
+    public void printInvalid(String text) {
+        Console.setColor(ConsoleColors.PURPLE_BOLD);
+        Console.printlnCentered(text, WIDTH, " ");
+    }
+
     public void printAck() {
         Console.setColor(ConsoleColors.GREEN);
 
         for (String message : ackMessages)
             Console.printlnCentered(message, WIDTH, " ");
+
+        ackMessages.clear();
     }
     public void printError() {
         Console.setColor(ConsoleColors.PURPLE_BOLD);
 
         for (String message : errorMessages)
             Console.printlnCentered(message, WIDTH, " ");
+
+        errorMessages.clear();
     }
 
     public String askInput(String text) throws IOException {
@@ -135,7 +161,7 @@ public class ConsoleView extends AppView {
         errorMessages.add(message);
     }
 
-    //Risposte al constrollore
+    //Risposte al controllore
     public void respondAck(String message) {
         signalAck(message);
     }

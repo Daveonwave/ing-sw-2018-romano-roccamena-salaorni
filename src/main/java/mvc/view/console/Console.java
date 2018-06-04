@@ -34,7 +34,7 @@ public final class Console {
 
     //Lettura
     public static String readLine() throws IOException {
-        return in.readLine();
+       return in.readLine();
     }
 
     //Scrittura
