@@ -173,9 +173,11 @@ public class GUIView extends AppView {
     //Risposta al controllore
     public void respondError(String message) throws RemoteException {
         this.output = message;
+        this.guiHandler.console.setText(message);
     }
     public void respondAck(String message) throws RemoteException {
        this.output = message;
+       this.guiHandler.console.setText(message);
     }
 
     //Osservazione partita
@@ -246,6 +248,15 @@ public class GUIView extends AppView {
                 if(cell.getCell().getDie()!= null){
                     cell.getImageView().setImage(new DieView(null, cell.getCell().getDie()).getImageView().getImage());
                 }
+            }
+
+        }
+
+        if(match.getTurnPlayer().getUser().getAppView().equals(this)){
+            this.setSelectedToolCard(null);
+            if(this.guiHandler.noSelectionToolCards().contains(toolCard.getName())){
+                this.getSelectedDie().setDie(input.getChoosenDie());
+                this.guiHandler.setToPlace(true);
             }
 
         }

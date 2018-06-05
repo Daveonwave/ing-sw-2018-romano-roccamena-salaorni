@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -40,6 +41,8 @@ GUIHandler extends Application {
     //Componenti gui
     @FXML
     TextField input;
+    @FXML
+    TextArea console;
     @FXML
     Button rmi, socket, multi,single, annulla, observe;
     @FXML
@@ -428,6 +431,15 @@ GUIHandler extends Application {
         toolCards.add("tenaglia a rotelle");
         return toolCards;
     }
+    public List<String> toPlaceToolCard(){
+        List<String> toolCards = new ArrayList<>();
+        toolCards.add("pinza sgrossatrice");
+        toolCards.add("pennello per pasta salda");
+        toolCards.add("riga di sughero");
+        toolCards.add("tampone diamantato");
+        toolCards.add("diluente per pasta salda");
+        return toolCards;
+    }
 
 
     //Attesa
@@ -445,7 +457,7 @@ GUIHandler extends Application {
         FXMLLoader loader = new FXMLLoader();
         AnchorPane root = loader.load(getClass().getResource("game.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
-        anchorPane1.setPrefSize(1000,799);
+        anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);
         for(int i=0; i<4; i++){
             windows.add(new WindowView(new ImageView(), this.getGuiView().getAppController().getModel().retrieveUser(this.getGuiView().getUserToken()).getPlayers().get(0).getStartWindows().get(i),null));
@@ -497,9 +509,11 @@ GUIHandler extends Application {
 
     //gioco
     public void dieMove(ActionEvent actionEvent) throws RemoteException{
-
         if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
             return;
+        }
+        if(this.toPlace){
+            console.setText("devi prima posizionare il dado già selezionato");
         }
         DieView selectedDie = retrieveDie(actionEvent.getSource());
 
@@ -511,6 +525,7 @@ GUIHandler extends Application {
                      //TODO: implementare carte con scelta
                         if(name.equals("taglierina circolare")){
                             this.guiView.getInput().setChoosenDie(selectedDie.getDie());
+                            this.console.setText("scegli un dado del tracciato dei round");
                             return;
                         }
                     }else{
@@ -518,16 +533,20 @@ GUIHandler extends Application {
                         this.guiView.getAppController().useToolCard(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getInput(),this.guiView.getSelectedToolCard().getToolCard());
                     }
                 }else{
+                    this.console.setText("dado non valido per questa tool card");
                     return;
                 }
             }else{
                 this.guiView.setSelectedDie(selectedDie);
+                this.console.setText("hai selezionato il dado"+ this.guiView.getSelectedDie().getDie().getShade() + "" + this.guiView.getSelectedDie().getDie().getColor().toString());
             }
         }else{
             if(this.isToPlace()){
                 return;
             }else {
+                this.console.setText("hai deselezionato il dado"+ this.guiView.getSelectedDie().getDie().getShade() + "" + this.guiView.getSelectedDie().getDie().getColor().toString());
                 this.guiView.setSelectedDie(null);
+
                 return;
             }
         }
@@ -539,6 +558,7 @@ GUIHandler extends Application {
         CellView selectedCell = retrieveCell(actionEvent);
         if(selectedCell.getCell().getDie()==null){
             if(this.guiView.getSelectedDie() != null){
+                this.setToPlace(false);
                 this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(),this.guiView.getSelectedDie().getDie());
                 return;
             }else{
@@ -560,6 +580,7 @@ GUIHandler extends Application {
                 String name = this.guiView.getSelectedToolCard().getToolCard().getName();
                 if(WindowToolCards().contains(name)){
                     this.guiView.getInput().setChoosenDie(selectedCell.getCell().getDie());
+                    this.guiView.getInput().setOriginCell1(selectedCell.getCell());
                     return;
                 }
             }else{
@@ -567,11 +588,12 @@ GUIHandler extends Application {
             }
         }
     }
-    public void ToolCardMove(ActionEvent actionEvent) throws RemoteException{
+    public void toolCardMove(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
             return;
         }
         if(this.isToPlace()){
+            console.setText("devi prima posizionare il dado già selezionato");
             return;
         }
         ToolCardView selectedToolCard = retrieveToolCard(actionEvent.getSource());
@@ -582,14 +604,18 @@ GUIHandler extends Application {
             String name = this.guiView.getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
                 this.guiView.getAppController().useToolCard(this.guiView.getUserToken(),this.tokenMatch, this.guiView.getInput(),this.guiView.getSelectedToolCard().getToolCard());
+            }else{
+                console.setText("hai selezionato la carta tool" + this.guiView.getSelectedToolCard().getToolCard().getName());
+                return;
             }
         }else{
+            console.setText("hai deselezionato la carta tool" + this.guiView.getSelectedToolCard().getToolCard().getName());
             this.guiView.setSelectedToolCard(null);
             this.guiView.setInput(null);
         }
 
     }
-    public void RoundDiceMove(ActionEvent actionEvent) throws RemoteException{
+    public void roundDieMove(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
             return;
         }
