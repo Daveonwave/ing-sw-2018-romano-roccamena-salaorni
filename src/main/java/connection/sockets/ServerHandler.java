@@ -64,6 +64,16 @@ public class ServerHandler implements Runnable, AppViewStub {
     }
 
     @Override
+    public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        //TODO: implementazione
+    }
+
+    @Override
+    public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        //TODO: implementazione
+    }
+
+    @Override
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }

@@ -44,6 +44,13 @@ public class BaseConsoleView extends AppView {
     }
 
     //Osservazione partita
+    public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        //TODO: implementazione
+    }
+    public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        //TODO: implementazione
+    }
+
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }

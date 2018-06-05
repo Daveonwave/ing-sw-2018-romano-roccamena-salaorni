@@ -37,6 +37,11 @@ public class ClientHandler implements AppControllerStub {
     }
 
     @Override
+    public void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
+
+    }
+
+    @Override
     public void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
 
     }

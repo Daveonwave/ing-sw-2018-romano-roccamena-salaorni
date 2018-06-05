@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 public interface MultiPlayerObserver extends Remote{
     //Osservatore remoto partita
 
+    void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+
     void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;

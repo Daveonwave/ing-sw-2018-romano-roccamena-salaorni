@@ -15,14 +15,8 @@ public class ClientApp {
     //Client dell'applicazione
 
     public static void main( String[] args ) throws Exception {
-        //Client client = new Client();
+        Client client = new Client();
 
-        //client.launchClient(true);
-
-
-        //Per test CLI da chiamata client.sh
-        ConsoleView consoleGame = new ConsoleView(new AppController());
-
-        consoleGame.show();
+        client.launchClient(true);
     }
 }

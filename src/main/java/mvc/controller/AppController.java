@@ -182,6 +182,9 @@ public class AppController implements AppControllerStub {
 
         //TODO: update struttura
     }
+    public synchronized void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
+        //TODO: implementazione
+    }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);

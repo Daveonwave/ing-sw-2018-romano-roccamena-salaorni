@@ -59,6 +59,9 @@ public abstract class AppView implements AppViewStub, Serializable {
     public abstract void respondAck(String message) throws RemoteException;
 
     //Osservazione partita
+    public abstract void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+    public abstract void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
+
     public abstract void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     public abstract void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     public abstract void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
