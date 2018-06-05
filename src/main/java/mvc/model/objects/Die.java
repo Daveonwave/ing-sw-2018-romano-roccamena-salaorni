@@ -89,4 +89,9 @@ public class Die implements Serializable {
                 break;
         }
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(shade) + StringConverter.getColorString(color);
+    }
 }

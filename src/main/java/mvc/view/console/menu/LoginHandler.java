@@ -15,34 +15,34 @@ public class LoginHandler extends MenuInputHandler {
 
     //Gestione input
     public void onInputHandle() throws Exception {
-        ConsoleView game = getConsoleView();
+        ConsoleView view = getConsoleView();
         ConsoleMenu menu = getParentMenu();
 
         //Controlla che l'utente sia gia loggato
-        if (game.isLogged()){
-            game.signalError("sei gia connesso al server");
+        if (view.isLogged()){
+            view.signalError("sei gia connesso al server");
 
             Console.clearScreen();
 
-            game.show();
+            view.show();
             return;
         }
 
         //Chiede e impost nome utente
-        game.setUserName(game.askInput("qual'e il tuo nome?"));
+        view.setUserName(view.askInput("qual'e il tuo nome?"));
 
         //Richiesta controllore
         try {
-            game.setUserToken(game.login(game.getUserName()));
+            view.setUserToken(view.login(view.getUserName()));
         } catch (AppModelException e) {
-            game.signalError(e.getMessage());
+            view.signalError(e.getMessage());
         } catch (AppControllerException e) {}
 
         //Client loggato
-        game.setLogged(true);
+        view.setLogged(true);
 
         Console.clearScreen();
 
-        game.show();
+        view.show();
     }
 }

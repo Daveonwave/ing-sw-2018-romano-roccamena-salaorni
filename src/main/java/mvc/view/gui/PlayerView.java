@@ -5,12 +5,12 @@ import mvc.model.objects.Player;
 import mvc.model.objects.Window;
 
 
-public class OpponentView {
+public class PlayerView {
 
     private WindowView window;
     private Player player;
 
-    public OpponentView(WindowView window, Player player) {
+    public PlayerView(WindowView window, Player player) {
         this.window = window;
         this.player = player;
     }

@@ -246,9 +246,19 @@ public class MatchCreator {
         return createMultiPlayer(users, -1);
     }
 
-    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP) {
+    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP, long seed) {
+        //Verifica condizione sulla casualità
+        boolean seeded = seed > 0;
+
         //Crea giocatori, finestre iniziali e le carte
         MatchCreator matchCreator = new MatchCreator(true);
+
+        if (seeded)
+            RandomHandler.createRandom(seed);
+        else
+            RandomHandler.createRandom();
+
+        //Crea giocatori, finestre iniziali e le carte
         List<Window> extractedWindows = matchCreator.createWindows(1);
         List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(1);
         List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards();
@@ -268,5 +278,7 @@ public class MatchCreator {
         SinglePlayerMatch match = new SinglePlayerMatch(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
         return match;
     }
-
+    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP) {
+        return createSinglePlayer(user, difficultyLevelSP, -1);
+    }
 }

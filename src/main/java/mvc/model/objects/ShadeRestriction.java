@@ -33,4 +33,9 @@ public class ShadeRestriction extends CellRestriction {
     public boolean canPlaceDie(Die die) {
         return shade == die.getShade();
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(shade);
+    }
 }

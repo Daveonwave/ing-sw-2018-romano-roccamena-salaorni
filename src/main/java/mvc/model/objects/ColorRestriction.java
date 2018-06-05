@@ -35,4 +35,9 @@ public class ColorRestriction extends CellRestriction {
     public boolean canPlaceDie(Die die) {
         return color.equals(die.getColor());
     }
+
+    @Override
+    public String toString() {
+        return StringConverter.getColorString(color);
+    }
 }

@@ -21,4 +21,9 @@ public class NoRestriction extends CellRestriction {
     public boolean canPlaceDie(Die die) {
         return true;
     }
+
+    @Override
+    public String toString() {
+        return " ";
+    }
 }

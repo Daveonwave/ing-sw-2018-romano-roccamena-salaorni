@@ -1,22 +1,18 @@
 package mvc.view.gui;
 
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.Card;
 
-public class CardView extends ObjectView{
-    //Veduta di una carta
+public class ObjectiveCardView extends ObjectView {
 
     private Card card;
 
-    //Costruttori
-    public CardView(ImageView imageView, Card card) {
+    public ObjectiveCardView(ImageView imageView, Card card) {
         super(imageView);
         this.card = card;
     }
 
-    //Setter/Getter
     public Card getCard() {
         return card;
     }
@@ -25,6 +21,8 @@ public class CardView extends ObjectView{
         this.card = card;
     }
 
+
+    @Override
     public Image imagePath() {
         String path = "";
         switch (card.getName()){
@@ -73,43 +71,6 @@ public class CardView extends ObjectView{
             case "varietà di colore":
                 path = "varietadicolore.PNG";
                 break;
-            case "alesatore per lamina di rame":
-                path = "alesatoreperlaminadirame.PNG";
-                break;
-            case "diluente per pasta calda":
-                path = "diluenteperpastacalda.PNG";
-                break;
-            case "lathekin":
-                path = "lathekin.PNG";
-                break;
-            case "martelletto":
-                path = "martelletto.PNG";
-                break;
-            case "pennello per eglomise":
-                path = "pennellopereglomise.PNG";
-                break;
-            case "pennello per pasta calda":
-                path = "pennelloperpastacalda.PNG";
-                break;
-            case "pinza sgrossatrice":
-                path = "pinzasgrossatrice.PNG";
-                break;
-            case "riga di sughero":
-                path = "rigadisughero.PNG";
-                break;
-            case "taglierina cirolare":
-                path = "taglierinacircolare.PNG";
-                break;
-            case "taglierina manuale":
-                path = "taglierinamanuale.PNG";
-                break;
-            case "tampone diamantato":
-                path = "tamponediamantato.PNG";
-                break;
-            case "tenaglia a rotelle":
-                path = "tenagliaarotelle.PNG";
-                break;
-
         }
         return new Image(getClass().getResourceAsStream(path));
     }

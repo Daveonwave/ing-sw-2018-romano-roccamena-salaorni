@@ -28,9 +28,6 @@ public class MultiPlayerHandler extends MenuInputHandler {
             return;
         }
 
-        //Notifica attesa
-        view.printInfo("in attesa di partecipanti...");
-
         //Richiesta controllore
         try {
             getConsoleView().setWaitingMultiplayer(true);
@@ -46,6 +43,9 @@ public class MultiPlayerHandler extends MenuInputHandler {
             view.show();
             return;
         }
+
+        //Notifica attesa
+        view.printInfo("in attesa di partecipanti...");
 
         Console.clearScreen();
     }

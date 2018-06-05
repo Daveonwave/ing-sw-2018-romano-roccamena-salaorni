@@ -15,9 +15,9 @@ public abstract class ConsoleMenu implements Serializable {
     private Map<String, MenuInputHandler> menuInputHandlers;
 
     //Costruttori
-    public ConsoleMenu(int width, ConsoleView parentGame) {
+    public ConsoleMenu(int width, ConsoleView consoleView) {
         this.width = width;
-        this.consoleView = parentGame;
+        this.consoleView = consoleView;
         this.menuInputHandlers = new HashMap<String, MenuInputHandler>();
     }
 

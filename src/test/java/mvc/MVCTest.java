@@ -58,7 +58,7 @@ public class MVCTest extends BaseTest {
         return new Cell(createInvalidDie1(), new NoRestriction(), 2, 2);
     }
     public Window createInvalidWindow1() {
-        return new Window(null, 5);
+        return new Window(null, 5, "");
     }
     public ToolCardInput createInvalidToolCardInput1() {
         return new ToolCardInput(null, null, null, null, 0, null, createInvalidDie1(), createInvalidDie1(), 1, true);

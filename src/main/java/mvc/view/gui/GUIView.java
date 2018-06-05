@@ -2,10 +2,8 @@ package mvc.view.gui;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.image.ImageView;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -15,13 +13,15 @@ public class GUIView extends AppView {
 
     private String output;
     private GUIHandler guiHandler;
-    private List<CardView> toolCards;
-    private List<CardView> publicObjective;
-    private CardView privateObjective;
+    private List<ToolCardView> toolCards;
+    private List<ObjectiveCardView> publicObjective;
+    private ObjectiveCardView privateObjective;
     private List<DieView> dice;
-    private WindowView window;
-    private List<OpponentView> opponents;
+    private List<PlayerView> players;
     private DieView selectedDie;
+    private List<RoundView> rounds;
+    private ToolCardInput input;
+    private ToolCardView selectedToolCard;
 
     //Costruttori
     public GUIView(AppControllerStub appController) {
@@ -30,8 +30,8 @@ public class GUIView extends AppView {
 
     //Setter/Getter
 
-    public List<OpponentView> getOpponents() {
-        return opponents;
+    public List<PlayerView> getPlayers() {
+        return players;
     }
 
     public GUIHandler getGuiHandler() {
@@ -40,20 +40,26 @@ public class GUIView extends AppView {
     public String getOutput() {
         return output;
     }
-    public List<CardView> getToolCards() {
+    public List<ToolCardView> getToolCards() {
         return toolCards;
     }
-    public List<CardView> getPublicObjective() {
+    public List<ObjectiveCardView> getPublicObjective() {
         return publicObjective;
     }
-    public CardView getPrivateObjective() {
+    public ObjectiveCardView getPrivateObjective() {
         return privateObjective;
     }
     public List<DieView> getDice() {
         return dice;
     }
-    public WindowView getWindow() {
-        return window;
+    public List<RoundView> getRounds() {
+        return rounds;
+    }
+    public ToolCardInput getInput() {
+        return input;
+    }
+    public ToolCardView getSelectedToolCard() {
+        return selectedToolCard;
     }
 
     public DieView getSelectedDie() {
@@ -65,26 +71,32 @@ public class GUIView extends AppView {
     public void setGuiHandler(GUIHandler guiHandler) {
         this.guiHandler = guiHandler;
     }
-    public void setToolCards(List<CardView> toolCards) {
+    public void setToolCards(List<ToolCardView> toolCards) {
         this.toolCards = toolCards;
     }
-    public void setPublicObjective(List<CardView> publicObjective) {
+    public void setPublicObjective(List<ObjectiveCardView> publicObjective) {
         this.publicObjective = publicObjective;
     }
-    public void setPrivateObjective(CardView privateObjective) {
+    public void setPrivateObjective(ObjectiveCardView privateObjective) {
         this.privateObjective = privateObjective;
     }
     public void setDice(List<DieView> dice) {
         this.dice = dice;
     }
-    public void setWindow(WindowView window) {
-        this.window = window;
-    }
-    public void setOpponents(List<OpponentView> opponents) {
-        this.opponents = opponents;
+    public void setPlayers(List<PlayerView> players) {
+        this.players = players;
     }
     public void setSelectedDie(DieView selectedDie) {
         this.selectedDie = selectedDie;
+    }
+    public void setRounds(List<RoundView> rounds) {
+        this.rounds = rounds;
+    }
+    public void setInput(ToolCardInput input) {
+        this.input = input;
+    }
+    public void setSelectedToolCard(ToolCardView selectedToolCard) {
+        this.selectedToolCard = selectedToolCard;
     }
 
     //Operazioni su utente
@@ -111,39 +123,31 @@ public class GUIView extends AppView {
     }
 
     public void createGame(MultiPlayerMatch match){
-
-        guiHandler.d1.setVisible(false);
-        guiHandler.d2.setVisible(false);
-        guiHandler.d3.setVisible(false);
-        guiHandler.d4.setVisible(false);
-        guiHandler.d5.setVisible(false);
-        guiHandler.d6.setVisible(false);
-        guiHandler.d7.setVisible(false);
-        guiHandler.d8.setVisible(false);
-        guiHandler.d9.setVisible(false);
-
+       this.guiHandler.initializeGameGui();
         int window = 2;
         for (Player player: match.getPlayers()){
-            if (!player.getUser().getAppView().equals(this)){
-                opponents.add(new OpponentView(new WindowView(guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window)),player));
+                players.add(new PlayerView(new WindowView(guiHandler.associateWindow(window), player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),window)),player));
                 window += 1;
-            }
-            else{
-                this.window = new WindowView(new ImageView(),player.getWindow(),guiHandler.associateCells(player.getWindow().getCells(),1));
-                this.privateObjective.setCard(player.getPrivateObjectiveCards().get(0));
-            }
+                if(player.getUser().getAppView().equals(this)){
+                    this.privateObjective.setCard(player.getPrivateObjectiveCards().get(0));
+                }
         }
+
         for (ToolCard toolCard: match.getToolCards()){
-            this.toolCards.add(new CardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),toolCard));
+            this.toolCards.add(new ToolCardView(guiHandler.associateToolCard(match.getToolCards().indexOf(toolCard)),toolCard));
         }
         for (Die die : match.getMatchDice().getDraftPool()){
             this.dice.add(new DieView(guiHandler.associateDice(match.getMatchDice().getDraftPool().indexOf(die)),die));
+        }
+
+        for (int i = 1; i<11; i++){
+            this.rounds.add(i-1, new RoundView(this.guiHandler.associateRound(i), null, i));
         }
         for(DieView die: this.dice){
             die.getImageView().setVisible(true);
         }
         for(PublicObjectiveCard card: match.getPublicObjectiveCards()){
-            this.publicObjective.add(new CardView(guiHandler.associatePublicObjective(match.getPublicObjectiveCards().indexOf(card)),card));
+            this.publicObjective.add(new ObjectiveCardView(guiHandler.associatePublicObjective(match.getPublicObjectiveCards().indexOf(card)),card));
         }
 
     }
@@ -153,9 +157,15 @@ public class GUIView extends AppView {
         }
         return null;
     }
-    public OpponentView retrieveOpponent(List<OpponentView> opponents, Player player){
-        for (OpponentView opponentView: opponents){
-            if (player.equals(opponentView.getPlayer())) return opponentView;
+    public PlayerView retrievePlayer(List<PlayerView> players, Player player){
+        for (PlayerView playerView : players){
+            if (player.equals(playerView.getPlayer())) return playerView;
+        }
+        return null;
+    }
+    public PlayerView retrieveThisPlayer(){
+        for (PlayerView playerView: players){
+            if(playerView.getPlayer().getUser().getAppView().equals(this)) return playerView;
         }
         return null;
     }
@@ -164,7 +174,6 @@ public class GUIView extends AppView {
     public void respondError(String message) throws RemoteException {
         this.output = message;
     }
-
     public void respondAck(String message) throws RemoteException {
        this.output = message;
     }
@@ -186,26 +195,53 @@ public class GUIView extends AppView {
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         if(match.getTurnHandler().isFirstTurn()){
             createGame(match);
+            return;
+        }
+        if (match.getTurnHandler().isRoundFirstTurn()){
+            for (Die die : match.getMatchDice().getDraftPool()){
+                DieView dieView = this.dice.get(match.getMatchDice().getDraftPool().indexOf(die));
+                dieView.setDie(die);
+                dieView.getImageView().setImage(dieView.imagePath());
+                dieView.getImageView().setVisible(true);
+            }
+
         }
 
     }
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        if (match.getTurnHandler().isRoundLastTurn()){
+            this.rounds.get(match.getTurnHandler().getRound()).getImageView().setVisible(true);
+
+            List<Die> roundtrackDice = match.getRoundTrack().retrieveDice(match.getTurnHandler().getRound()-1);
+            for(Die die: roundtrackDice) {
+                rounds.get(match.getTurnHandler().getRound()-1).getDieViews().add(new DieView(null,die));
+            }
+        }
 
     }
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
         DieView dieView = retrieveDieView(dice,die);
-        if (match.getTurnPlayer().getUser().getAppView().equals(this)){
-            this.window.getCells()[cell.getRow()][cell.getColumn()].setImageView(retrieveDieView(this.dice,die).getImageView());
-        }
-        else{
-            retrieveOpponent(opponents,match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].setImageView(dieView.getImageView());
-
+        retrievePlayer(players,match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getImageView().setImage(dieView.getImageView().getImage());
+        if(match.getTurnPlayer().getUser().getAppView().equals(this)){
+            this.selectedDie = null;
         }
         dieView.getImageView().setVisible(false);
-        dice.remove(dieView);
     }
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
+        for (Die die : match.getMatchDice().getDraftPool()){
+            DieView dieView = this.dice.get(match.getMatchDice().getDraftPool().indexOf(die));
+            dieView.setDie(die);
+            dieView.getImageView().setImage(dieView.imagePath());
+            dieView.getImageView().setVisible(true);
+        }
+        for (CellView[] cells: retrievePlayer(players, match.getTurnPlayer()).getWindow().getCells()){
+            for (CellView cell: cells){
+                if(cell.getCell().getDie()!= null){
+                    cell.getImageView().setImage(new DieView(null, cell.getCell().getDie()).getImageView().getImage());
+                }
+            }
 
+        }
     }
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 
