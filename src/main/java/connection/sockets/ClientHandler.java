@@ -1,24 +1,41 @@
 package connection.sockets;
 
-import mvc.model.AppModel;
+import connection.Client;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
+import mvc.view.AppView;
 
 import java.net.Socket;
 import java.rmi.RemoteException;
 
 public class ClientHandler implements AppControllerStub {
+    //Gestore del client
 
-    Socket socket;
+    private final SocketClient client;
 
-    public ClientHandler(Socket socket) {
-        this.socket = socket;
+    private AppView view;
+
+    //Costruttori
+    public ClientHandler(SocketClient client) {
+        this.client = client;
+    }
+
+
+    public void run(){
+
     }
 
     @Override
-    public AppModel getModel() throws RemoteException {
+    public String login(String name, AppViewStub view) throws RemoteException {
+        this.view = (AppView) view;
+
         return null;
+    }
+
+    @Override
+    public void logout(String tokenUser) throws RemoteException {
+
     }
 
     @Override
@@ -61,13 +78,5 @@ public class ClientHandler implements AppControllerStub {
 
     }
 
-    @Override
-    public String login(String name, AppViewStub view) throws RemoteException {
-        return null;
-    }
 
-    @Override
-    public void logout(String tokenUser) throws RemoteException {
-
-    }
 }

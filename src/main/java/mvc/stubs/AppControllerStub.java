@@ -8,5 +8,4 @@ import java.rmi.RemoteException;
 public interface AppControllerStub extends UserController, MultiPlayerController, Serializable{
     //Interfaccia del controllore dell'applicazione
 
-    AppModel getModel() throws RemoteException;
 }

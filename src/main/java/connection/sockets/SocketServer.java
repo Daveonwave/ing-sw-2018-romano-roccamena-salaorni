@@ -1,5 +1,6 @@
 package connection.sockets;
 
+import connection.Server;
 import connection.ServerInfo;
 
 import java.io.Closeable;
@@ -13,14 +14,12 @@ public class SocketServer implements Closeable {
     //Server Socket
 
     private static SocketServer singletonServer;
-    private int port;
     private ServerSocket serverSocket;
     private ExecutorService threadPool;
     private boolean isReady;
 
     //Costruttori - Singleton
     private SocketServer() {
-        this.port = ServerInfo.SOCKET_PORT;
         threadPool = Executors.newCachedThreadPool();
         this.isReady = false;
     }
@@ -29,9 +28,6 @@ public class SocketServer implements Closeable {
     public void setReady(boolean ready) {
         isReady = ready;
     }
-    public void setPort(int port) {
-        this.port = port;
-    }
     public void setServerSocket(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
@@ -39,16 +35,12 @@ public class SocketServer implements Closeable {
     public boolean isReady() {
         return isReady;
     }
-    public int getPort() {
-        return port;
-    }
     public ServerSocket getServerSocket() {
         return serverSocket;
     }
 
     //Restituisce il singleton del server
     public static SocketServer getIstance() {
-
         if(singletonServer == null ){
             singletonServer = new SocketServer();
         }
@@ -57,22 +49,16 @@ public class SocketServer implements Closeable {
 
     //Crea il server
     public void init() throws IOException {
-        serverSocket = new ServerSocket(port);
+        serverSocket = new ServerSocket(ServerInfo.SOCKET_PORT);
         this.isReady = true;
-        System.out.println(">>> Server socket in ascolto sulla porta: " + port + "...");
+        System.out.println(">>> Server socket in ascolto sulla porta: " + ServerInfo.SOCKET_PORT + "...");
     }
 
     //Apre la connessione con il client
     public Socket acceptConnection() throws IOException{
-
         Socket accepted = serverSocket.accept();
         System.out.println(">>> Aperta connessione con: " + accepted.getRemoteSocketAddress());
         return accepted;
-    }
-
-        //Chiude la connessione del server
-    public void close() throws IOException {
-        serverSocket.close();
     }
 
     //Inizializza e fa funzionare il server
@@ -82,16 +68,18 @@ public class SocketServer implements Closeable {
         while(isReady) {
             try{
                 final Socket socket = acceptConnection();
-                ServerHandler serverHandler = new ServerHandler(socket);
-
-                threadPool.submit(serverHandler);
-                serverHandler.run();
+                threadPool.submit(new ConnectionHandler(socket));
 
             } catch (IOException e){
                 e.printStackTrace();
                 break;
             }
         }
+    }
+
+    //Chiude la connessione del server
+    public void close() throws IOException {
+        serverSocket.close();
         threadPool.shutdown();
     }
 

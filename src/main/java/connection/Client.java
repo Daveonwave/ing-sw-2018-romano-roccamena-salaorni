@@ -1,6 +1,7 @@
 package connection;
 
 import connection.rmi.RmiClient;
+import connection.sockets.ClientHandler;
 import connection.sockets.SocketClient;
 import mvc.stubs.AppControllerStub;
 
@@ -23,7 +24,11 @@ public class Client {
         }
         else {
             SocketClient client = new SocketClient();
-            client.runSocketClient();
+            client.init();
+            ClientHandler handler = new ClientHandler(client);
+            handler.run();
+
+            client.close();
         }
     }
 

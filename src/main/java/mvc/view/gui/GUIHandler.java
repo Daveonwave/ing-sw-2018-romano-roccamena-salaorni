@@ -104,9 +104,6 @@ GUIHandler extends Application implements Serializable{
         return toPlace;
     }
 
-
-
-
     //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException, NotBoundException{
         Client client = new Client();
@@ -117,11 +114,11 @@ GUIHandler extends Application implements Serializable{
     }
 
     //Gestori bottoni
-    public void  login(ActionEvent actionEvent) throws IOException{
+    public void login(ActionEvent actionEvent) throws IOException{
         pane.setVisible(false);
         text.setText(guiView.login(input.getText()) + ".Scegliere il tipo di connessione");
     }
-    public void cancel(ActionEvent actionEvent)throws RemoteException{
+    public void cancel(ActionEvent actionEvent) throws RemoteException{
         if (!connected) {
             pane.setVisible(true);
             text.setText("Inserire il nome utente");
@@ -455,7 +452,7 @@ GUIHandler extends Application implements Serializable{
         this.match = match;
         this.tokenMatch = tokenMatch;
         FXMLLoader loader = new FXMLLoader();
-        AnchorPane root = loader.load(getClass().getResource("game.fxml"));
+        AnchorPane root = loader.load(getClass().getResource("/resources/fxml/game.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
         anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);

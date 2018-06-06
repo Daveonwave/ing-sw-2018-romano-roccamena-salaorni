@@ -1,66 +1,37 @@
 package connection.sockets;
 
+import mvc.controller.AppController;
+import mvc.model.AppModel;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.rmi.RemoteException;
 
-public class ServerHandler implements Runnable, AppViewStub {
-    //Gestore dei client nel server
-
-    private Socket socket;
-    private ObjectInputStream inputStream;
-    private ObjectOutputStream outputStream;
+public class ServerHandler implements AppViewStub {
+    //Gestore del server
+    private ConnectionHandler connectionHandler;
+    private AppController controller;
 
     //Costruttori
-    public ServerHandler(Socket socket) {
-        this.socket = socket;
+    public ServerHandler(ConnectionHandler connectionHandler) {
+        this.connectionHandler = connectionHandler;
+        this.controller = new AppController();
     }
-
-    public void run() {
-
-        try {
-
-            inputStream = new ObjectInputStream(socket.getInputStream());
-            outputStream = new ObjectOutputStream(socket.getOutputStream());
-
-            this.handleRequest();
-
-        } catch(IOException e){
-            e.printStackTrace();
-
-        } finally {
-            try{
-                inputStream.close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-            try{
-                outputStream.close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-            try{
-                SocketServer.getIstance().close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void handleRequest(){
-
-    }
-
 
     @Override
     public AppControllerStub getAppController() {
         return null;
+    }
+
+    @Override
+    public String login(String name) throws RemoteException {
+        return null;
+    }
+
+    @Override
+    public void logout() throws RemoteException {
+
     }
 
     @Override
@@ -113,17 +84,7 @@ public class ServerHandler implements Runnable, AppViewStub {
 
     }
 
-    @Override
-    public String login(String name) throws RemoteException {
-        return null;
-    }
-
-    @Override
-    public void logout() throws RemoteException {
-
-    }
-
-    @Override
+        @Override
     public void respondError(String message) throws RemoteException {
 
     }

@@ -26,4 +26,5 @@ public class RmiServer {
 
         System.out.println("Aspettando invocazioni dal client...");
     }
+
 }
