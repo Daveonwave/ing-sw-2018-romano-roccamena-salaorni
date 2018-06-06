@@ -1,5 +1,6 @@
 package mvc.view.gui;
 
+import connection.Client;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,17 +15,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import mvc.controller.AppController;
 import mvc.model.objects.Cell;
 import mvc.model.objects.MultiPlayerMatch;
+import mvc.model.objects.Player;
 import mvc.model.objects.ToolCardInput;
 
 import java.io.*;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GUIHandler extends Application {
+public class
+GUIHandler extends Application implements Serializable{
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;
@@ -35,7 +38,6 @@ public class GUIHandler extends Application {
     private boolean ready = false;
     private boolean hide = true;
     private boolean toPlace = false;
-    private Stage stage;
 
     //Componenti gui
     @FXML
@@ -68,7 +70,7 @@ public class GUIHandler extends Application {
     ImageView p4_11,p4_12,p4_13,p4_14,p4_15,p4_21,p4_22,p4_23,p4_24,p4_25,p4_31,p4_32,p4_33,p4_34,p4_35,p4_41,p4_42,p4_43,p4_44,p4_45;
 
     //Getter/Setter
-    public static void setGuiView(GUIView guiView) {
+    public static void setViewConnection(GUIView guiView) {
         GUIHandler.guiView = guiView;
     }
     public void setConnected(boolean connected) {
@@ -79,9 +81,6 @@ public class GUIHandler extends Application {
     }
     public void setReady(boolean ready) {
         this.ready = ready;
-    }
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
     public void setToPlace(boolean toPlace) {
         this.toPlace = toPlace;
@@ -99,18 +98,16 @@ public class GUIHandler extends Application {
     public boolean isReady() {
         return ready;
     }
-    public Stage getStage() {
-        return stage;
-    }
     public boolean isToPlace() {
         return toPlace;
     }
 
     //Inizializza la gui con la schermata di login
-    public void start(Stage primaryStage) throws IOException{
-        guiView = new GUIView(new AppController());
-        this.stage = primaryStage;
-        changeScene("menu.fxml");
+    public void start(Stage primaryStage) throws IOException, NotBoundException{
+        Client client = new Client();
+        client.launchClient(true);
+        guiView = new GUIView(client.getController());
+        changeScene("menu.fxml", primaryStage);
         guiView.setGuiHandler(this);
     }
 
@@ -343,7 +340,7 @@ public class GUIHandler extends Application {
 
     //metodi che restituiscono l'oggetto della view in base al bottone selezionato
     public CellView retrieveCell(Object source){
-        WindowView windowView = this.guiView.retrieveThisPlayer().getWindow();
+        WindowView windowView = guiView.retrieveThisPlayer().getWindow();
         if(source.equals(p1_11)) return windowView.getCells()[0][0];
         if(source.equals(p1_12)) return windowView.getCells()[0][1];
         if(source.equals(p1_13)) return windowView.getCells()[0][2];
@@ -367,21 +364,21 @@ public class GUIHandler extends Application {
         return null;
     }
     public DieView retrieveDie(Object source){
-        if(source.equals(d1)) return this.guiView.getDice().get(0);
-        if(source.equals(d2)) return this.guiView.getDice().get(1);
-        if(source.equals(d3)) return this.guiView.getDice().get(2);
-        if(source.equals(d4)) return this.guiView.getDice().get(3);
-        if(source.equals(d5)) return this.guiView.getDice().get(4);
-        if(source.equals(d6)) return this.guiView.getDice().get(5);
-        if(source.equals(d7)) return this.guiView.getDice().get(6);
-        if(source.equals(d8)) return this.guiView.getDice().get(7);
-        if(source.equals(d9)) return this.guiView.getDice().get(8);
+        if(source.equals(d1)) return guiView.getDice().get(0);
+        if(source.equals(d2)) return guiView.getDice().get(1);
+        if(source.equals(d3)) return guiView.getDice().get(2);
+        if(source.equals(d4)) return guiView.getDice().get(3);
+        if(source.equals(d5)) return guiView.getDice().get(4);
+        if(source.equals(d6)) return guiView.getDice().get(5);
+        if(source.equals(d7)) return guiView.getDice().get(6);
+        if(source.equals(d8)) return guiView.getDice().get(7);
+        if(source.equals(d9)) return guiView.getDice().get(8);
         return null;
     }
     public ToolCardView retrieveToolCard(Object source){
-        if(source.equals(toolCard1)) return this.guiView.getToolCards().get(0);
-        if(source.equals(toolCard2)) return this.guiView.getToolCards().get(0);
-        if(source.equals(toolCard3)) return this.guiView.getToolCards().get(0);
+        if(source.equals(toolCard1)) return guiView.getToolCards().get(0);
+        if(source.equals(toolCard2)) return guiView.getToolCards().get(0);
+        if(source.equals(toolCard3)) return guiView.getToolCards().get(0);
         return null;
     }
     public DieView retrieveRoundDie(Object source){
@@ -458,8 +455,13 @@ public class GUIHandler extends Application {
         AnchorPane anchorPane1 = new AnchorPane();
         anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);
-        for(int i=0; i<4; i++){
-            windows.add(new WindowView(new ImageView(), this.getGuiView().getAppController().getModel().retrieveUser(this.getGuiView().getUserToken()).getPlayers().get(0).getStartWindows().get(i),null));
+        for(Player player:match.getPlayers()){
+            if (player.getUser().getAppView().equals(this.guiView)){
+                for( int i = 0; i<4; i++){
+                    windows.add(new WindowView(new ImageView(),player.getStartWindows().get(i),null));
+                }
+                break;
+            }
         }
         setImageView(windows.get(0).getImageView(),338,174,103,158);
         setImageView(windows.get(1).getImageView(),338,174,565,158);
@@ -477,9 +479,11 @@ public class GUIHandler extends Application {
         }
         root.getChildren().add(anchorPane1);
         Scene scene = new Scene(root);
-        this.stage.setScene(scene);
-        this.stage.setResizable(false);
-        this.stage.show();
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+
     }
     public void initializeGameGui(){
         d1.setVisible(false);
@@ -508,7 +512,7 @@ public class GUIHandler extends Application {
 
     //gioco
     public void dieMove(ActionEvent actionEvent) throws RemoteException{
-        if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
+        if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
         if(this.toPlace){
@@ -516,56 +520,56 @@ public class GUIHandler extends Application {
         }
         DieView selectedDie = retrieveDie(actionEvent.getSource());
 
-        if(selectedDie != this.guiView.getSelectedDie()){
-            if(this.guiView.getSelectedToolCard() != null){
-                String name = this.guiView.getSelectedToolCard().getToolCard().getName();
+        if(selectedDie != guiView.getSelectedDie()){
+            if(guiView.getSelectedToolCard() != null){
+                String name = guiView.getSelectedToolCard().getToolCard().getName();
                 if(draftPoolToolCards().contains(name)){
                     if(choiceToolCards().contains(name)){
                      //TODO: implementare carte con scelta
                         if(name.equals("taglierina circolare")){
-                            this.guiView.getInput().setChoosenDie(selectedDie.getDie());
+                            guiView.getInput().setChoosenDie(selectedDie.getDie());
                             this.console.setText("scegli un dado del tracciato dei round");
                             return;
                         }
                     }else{
-                        this.guiView.getInput().setChoosenDie(selectedDie.getDie());
-                        this.guiView.getAppController().useToolCard(this.guiView.getUserToken(),this.tokenMatch,this.guiView.getInput(),this.guiView.getSelectedToolCard().getToolCard());
+                        guiView.getInput().setChoosenDie(selectedDie.getDie());
+                        guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch,guiView.getInput(),guiView.getSelectedToolCard().getToolCard());
                     }
                 }else{
                     this.console.setText("dado non valido per questa tool card");
                     return;
                 }
             }else{
-                this.guiView.setSelectedDie(selectedDie);
-                this.console.setText("hai selezionato il dado"+ this.guiView.getSelectedDie().getDie().getShade() + "" + this.guiView.getSelectedDie().getDie().getColor().toString());
+                guiView.setSelectedDie(selectedDie);
+                this.console.setText("hai selezionato il dado"+ guiView.getSelectedDie().getDie().getShade() + "" + guiView.getSelectedDie().getDie().getColor().toString());
             }
         }else{
             if(this.isToPlace()){
                 return;
             }else {
-                this.console.setText("hai deselezionato il dado"+ this.guiView.getSelectedDie().getDie().getShade() + "" + this.guiView.getSelectedDie().getDie().getColor().toString());
-                this.guiView.setSelectedDie(null);
+                this.console.setText("hai deselezionato il dado"+ guiView.getSelectedDie().getDie().getShade() + "" + guiView.getSelectedDie().getDie().getColor().toString());
+                guiView.setSelectedDie(null);
 
                 return;
             }
         }
     }
     public void cellMove(ActionEvent actionEvent) throws RemoteException{
-        if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
+        if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
         CellView selectedCell = retrieveCell(actionEvent);
         if(selectedCell.getCell().getDie()==null){
-            if(this.guiView.getSelectedDie() != null){
+            if(guiView.getSelectedDie() != null){
                 this.setToPlace(false);
-                this.guiView.getAppController().placeDie(this.guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(),this.guiView.getSelectedDie().getDie());
+                guiView.getAppController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(),guiView.getSelectedDie().getDie());
                 return;
             }else{
-                if(this.guiView.getInput().getChoosenDie()!=null){
-                    String name = this.guiView.getSelectedToolCard().getToolCard().getName();
+                if(guiView.getInput().getChoosenDie()!=null){
+                    String name = guiView.getSelectedToolCard().getToolCard().getName();
                     if(WindowToolCards().contains(name)){
-                        this.guiView.getInput().setDestinationCell1(selectedCell.getCell());
-                        this.guiView.getAppController().useToolCard(this.guiView.getUserToken(), this.tokenMatch, this.guiView.getInput(), this.guiView.getSelectedToolCard().getToolCard());
+                        guiView.getInput().setDestinationCell1(selectedCell.getCell());
+                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, guiView.getInput(), guiView.getSelectedToolCard().getToolCard());
                         return;
                     }else{
                         return;
@@ -575,11 +579,11 @@ public class GUIHandler extends Application {
                 }
             }
         }else {
-            if (this.guiView.getSelectedToolCard() != null){
-                String name = this.guiView.getSelectedToolCard().getToolCard().getName();
+            if (guiView.getSelectedToolCard() != null){
+                String name = guiView.getSelectedToolCard().getToolCard().getName();
                 if(WindowToolCards().contains(name)){
-                    this.guiView.getInput().setChoosenDie(selectedCell.getCell().getDie());
-                    this.guiView.getInput().setOriginCell1(selectedCell.getCell());
+                    guiView.getInput().setChoosenDie(selectedCell.getCell().getDie());
+                    guiView.getInput().setOriginCell1(selectedCell.getCell());
                     return;
                 }
             }else{
@@ -588,7 +592,7 @@ public class GUIHandler extends Application {
         }
     }
     public void toolCardMove(ActionEvent actionEvent) throws RemoteException{
-        if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
+        if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
         if(this.isToPlace()){
@@ -596,33 +600,33 @@ public class GUIHandler extends Application {
             return;
         }
         ToolCardView selectedToolCard = retrieveToolCard(actionEvent.getSource());
-        if(selectedToolCard != this.guiView.getSelectedToolCard()){
-            this.guiView.setSelectedToolCard(selectedToolCard);
-            this.guiView.setSelectedDie(null);
-            this.guiView.setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
-            String name = this.guiView.getSelectedToolCard().getToolCard().getName();
+        if(selectedToolCard != guiView.getSelectedToolCard()){
+            guiView.setSelectedToolCard(selectedToolCard);
+            guiView.setSelectedDie(null);
+            guiView.setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
+            String name = guiView.getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
-                this.guiView.getAppController().useToolCard(this.guiView.getUserToken(),this.tokenMatch, this.guiView.getInput(),this.guiView.getSelectedToolCard().getToolCard());
+                guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch, guiView.getInput(),guiView.getSelectedToolCard().getToolCard());
             }else{
-                console.setText("hai selezionato la carta tool" + this.guiView.getSelectedToolCard().getToolCard().getName());
+                console.setText("hai selezionato la carta tool" + guiView.getSelectedToolCard().getToolCard().getName());
                 return;
             }
         }else{
-            console.setText("hai deselezionato la carta tool" + this.guiView.getSelectedToolCard().getToolCard().getName());
-            this.guiView.setSelectedToolCard(null);
-            this.guiView.setInput(null);
+            console.setText("hai deselezionato la carta tool" + guiView.getSelectedToolCard().getToolCard().getName());
+            guiView.setSelectedToolCard(null);
+            guiView.setInput(null);
         }
 
     }
     public void roundDieMove(ActionEvent actionEvent) throws RemoteException{
-        if(this.match.getTurnPlayer().getUser().getAppView().equals(this.guiView)){
+        if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
         DieView selectedRoundDie = retrieveRoundDie(actionEvent.getSource());
-        if(this.guiView.getSelectedToolCard() != null){
-            String name = this.guiView.getSelectedToolCard().getToolCard().getName();
+        if(guiView.getSelectedToolCard() != null){
+            String name = guiView.getSelectedToolCard().getToolCard().getName();
             if(name.equals("taglierina circolare")) {
-                this.guiView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
+                guiView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
                 return;
             }else{
                 return;
@@ -632,7 +636,7 @@ public class GUIHandler extends Application {
         }
     }
     public void endTurn(ActionEvent actionEvent) throws RemoteException{
-        this.guiView.getAppController().endTurn(this.guiView.getUserToken(),this.tokenMatch);
+        guiView.getAppController().endTurn(guiView.getUserToken(),this.tokenMatch);
     }
 
 
@@ -642,9 +646,9 @@ public class GUIHandler extends Application {
     }
     public void observeRoundDice(int round){
         for(int i=0;i<9; i++){
-            if(this.guiView.getRounds().get(round).getDieViews().get(i)!= null){
+            if(guiView.getRounds().get(round).getDieViews().get(i)!= null){
                 associateRoundDie(i).setVisible(true);
-                associateRoundDie(i).setImage(this.guiView.getRounds().get(round).getDieViews().get(i).imagePath());
+                associateRoundDie(i).setImage(guiView.getRounds().get(round).getDieViews().get(i).imagePath());
             }else{
                 associateRoundDie(i).setVisible(false);
             }
@@ -682,11 +686,10 @@ public class GUIHandler extends Application {
     }
 
     //Cambia scena nella gui caricandola da un nuovo file FXML
-    public void changeScene(String fxml) throws IOException{
+    public void changeScene(String fxml, Stage stage) throws IOException{
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("style.css");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -698,10 +701,7 @@ public class GUIHandler extends Application {
         imageView.setY(y);
     }
 
-    public static void run(String[] args) {
-        launch(args);
-    }
-    public static void main(String[] args) throws RemoteException{
+   public static void main(String[] args){
         launch(args);
     }
 }

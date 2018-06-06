@@ -104,9 +104,9 @@ public class GUIView extends AppView {
         String userToken = "";
 
         try {
-            userToken = getAppController().login(name, this);
+            userToken = getAppController().login(name,this);
         } catch (RemoteException e) {
-            //Gestione errore
+            e.printStackTrace();
         }
 
         setUserToken(userToken);
@@ -173,11 +173,15 @@ public class GUIView extends AppView {
     //Risposta al controllore
     public void respondError(String message) throws RemoteException {
         this.output = message;
-        this.guiHandler.console.setText(message);
+        if(this.guiHandler.console!=null) {
+            this.guiHandler.console.setText(message);
+        }
     }
     public void respondAck(String message) throws RemoteException {
        this.output = message;
-       this.guiHandler.console.setText(message);
+        if(this.guiHandler.console!=null) {
+            this.guiHandler.console.setText(message);
+        }
     }
 
     //Osservazione partita

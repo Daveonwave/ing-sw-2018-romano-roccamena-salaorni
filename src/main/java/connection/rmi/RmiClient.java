@@ -1,6 +1,7 @@
 package connection.rmi;
 
 import connection.ServerInfo;
+import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
 
 import java.rmi.NotBoundException;
@@ -28,7 +29,9 @@ public class RmiClient {
         }
 
         String remoteObjectName = ServerInfo.REMOTE_OBJECT_NAME;
+
         this.controller = (AppControllerStub) registry.lookup(remoteObjectName);
+
     }
 
     //Getter
