@@ -24,8 +24,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class
-GUIHandler extends Application {
+public class GUIHandler extends Application {
     //Gestore della gui dell'applicazione
 
     private static GUIView guiView;
@@ -699,6 +698,9 @@ GUIHandler extends Application {
         imageView.setY(y);
     }
 
+    public static void run(String[] args) {
+        launch(args);
+    }
     public static void main(String[] args) throws RemoteException{
         launch(args);
     }

@@ -108,7 +108,7 @@ public class AppController implements AppControllerStub {
         viewAck(appView, "disconnesso");
     }
 
-    //Inizia partita
+    //Sottometodi di gestione partita
     public synchronized void startMatch() throws RemoteException {
         //Ottiene utenti partecipanti
         List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
@@ -144,6 +144,51 @@ public class AppController implements AppControllerStub {
         matchModel.notifyChooseWindows(tokenMatch);
         matchBroadcastAck(matchModel, "i giocatori stanno scegliendo le finestre");
     }
+    public synchronized void finishTurn(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel, Player player) throws RemoteException {
+        //Esegue la fine del turno
+        try {
+            match.endTurn(player);
+        } catch (MatchException e) {
+            userError(player.getUser(), e.getMessage());
+            return;
+        }
+
+        //Notifica fine turno del giocatore
+        matchModel.notifyTurnEnd(tokenMatch, match);
+        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " finisce il suo turno");
+
+        //Controllo se i round sono finiti
+        if (match.getTurnHandler().isEnded()) {
+            //Per ogni player vengono comunicati i punteggi
+            for (Player p : match.getPlayers()) {
+                PlayerPoints points = match.getPlayerPoints(p);
+                matchModel.notifyGetPoints(tokenMatch, player, points);
+                matchBroadcastAck(matchModel, player.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
+            }
+
+            //Notifica fine partita
+            matchModel.notifyMatchEnd(tokenMatch);
+            matchBroadcastAck(matchModel, "partita conclusa");
+
+            //Elimina giocatore associato a ogni utente
+            for (Player p : match.getPlayers())
+                p.getUser().removePlayer(p);
+
+            //La partita viene eliminata dal model
+            model.destroyMatch(tokenMatch);
+        } else {
+            //Notifica inizio nuovo turno
+            matchModel.notifyTurnStart(tokenMatch, match);
+            matchBroadcastAck(matchModel, "inizio turno del giocatore " + match.getTurnPlayer());
+
+            //Se il giocatore è inattivo passa il turno per inattività
+            if (!match.getTurnPlayer().isActive()) {
+                try {
+                    finishTurn(match, tokenMatch, matchModel, match.getTurnPlayer());
+                } catch (RemoteException e) { }
+            }
+        }
+    }
 
     //Mosse degli utenti sulla partita
     public synchronized void joinMatch(String tokenUser) throws RemoteException {
@@ -151,7 +196,7 @@ public class AppController implements AppControllerStub {
         User user = model.retrieveUser(tokenUser);
         multiPlayerLobby.join(tokenUser);
 
-        //Se sono presenti gli utenti partecipanti necessari
+        //Se sono presenti gli utenti partecipanti necessari inizia partita
         if (multiPlayerLobby.isReady())
             startMatch();
     }
@@ -179,11 +224,21 @@ public class AppController implements AppControllerStub {
             userError(user, e.getMessage());
             return;
         }
-
-        //TODO: update struttura
     }
     public synchronized void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
-        //TODO: implementazione
+        //Ottiene oggetti dal model
+        MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
+        MultiPlayerMatch match = matchModel.getMatch();
+        User user = model.retrieveUser(tokenUser);
+        Player player = model.retrievePlayer(tokenUser, tokenMatch);
+
+        //Abbandona la partita
+        try {
+            match.rejoinMatch(player);
+        } catch (MatchException e) {
+            userError(user, e.getMessage());
+            return;
+        }
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
@@ -256,44 +311,9 @@ public class AppController implements AppControllerStub {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
         MultiPlayerMatch match = matchModel.getMatch();
-        User user = model.retrieveUser(tokenUser);
         Player player = model.retrievePlayer(tokenUser, tokenMatch);
 
         //Esegue la fine del turno
-        try {
-            match.endTurn(player);
-        } catch (MatchException e) {
-            userError(user, e.getMessage());
-            return;
-        }
-
-        //Notifica fine turno del giocatore
-        matchModel.notifyTurnEnd(tokenMatch, match);
-        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " finisce il suo turno");
-
-        //Controllo se i round sono finiti
-        if (match.getTurnHandler().isEnded()) {
-            //Per ogni player vengono comunicati i punteggi
-            for (Player p : match.getPlayers()) {
-                PlayerPoints points = match.getPlayerPoints(p);
-                matchModel.notifyGetPoints(tokenMatch, player, points);
-                matchBroadcastAck(matchModel, player.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
-            }
-
-            //Notifica fine partita
-            matchModel.notifyMatchEnd(tokenMatch);
-            matchBroadcastAck(matchModel, "partita conclusa");
-
-            //Elimina giocatore associato a ogni utente
-            for (Player p : match.getPlayers())
-                p.getUser().removePlayer(p);
-
-            //La partita viene eliminata dal model
-            model.destroyMatch(tokenMatch);
-        } else {
-            //Notifica inizio nuovo turno
-            matchModel.notifyTurnStart(tokenMatch, match);
-            matchBroadcastAck(matchModel, "inizio turno del giocatore " + match.getTurnPlayer());
-        }
+        finishTurn(match, tokenMatch, matchModel, player);
     }
 }

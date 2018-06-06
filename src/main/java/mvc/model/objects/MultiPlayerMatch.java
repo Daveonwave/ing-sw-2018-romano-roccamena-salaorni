@@ -112,8 +112,15 @@ public class MultiPlayerMatch extends Match {
 
         //Abbandona la partita
         player.setActive(false);
+    }
+    //Mossa di ripartecipazione ad una partita
+    public void rejoinMatch(Player player) throws MatchException {
+        //Controllo stato corretto della partita
+        if (!turnHandler.isStarted() || turnHandler.isEnded())
+            throw new MatchException("non puoi ripartecipare alla partita ora");
 
-        //TODO: update struttura
+        //Abbandona la partita
+        player.setActive(true);
     }
     //Mossa di scelta di una finestra
     public void chooseWindow(Player player, Window window) throws RemoteException {

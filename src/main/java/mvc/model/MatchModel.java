@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchModel {
-    //Decoratore a subject model di una partita
+    //Decoratore a subject model di una partita multiplayer
 
     private MultiPlayerMatch match;
     private List<MultiPlayerObserver> matchObserver;
