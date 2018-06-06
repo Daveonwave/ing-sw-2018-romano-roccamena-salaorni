@@ -52,10 +52,16 @@ public abstract class TimedTaskHandler extends TimerTask {
 
     //Operazioni su gestore
     public synchronized void start() {
+        if (working)
+            return;
+
         this.working = true;
         timer.schedule(this, delay);
     }
     public synchronized void stop() {
+        if (!working)
+            return;
+
         timer.cancel();
         this.working = false;
     }

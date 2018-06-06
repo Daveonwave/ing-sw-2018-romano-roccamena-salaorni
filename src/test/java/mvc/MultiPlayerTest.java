@@ -1,8 +1,8 @@
 package mvc;
 
 import mvc.creators.MatchCreator;
+import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
-import mvc.model.objects.enums.Tool;
 import org.junit.Test;
 
 import java.rmi.RemoteException;
@@ -46,6 +46,17 @@ public class MultiPlayerTest extends MVCTest {
     private MultiPlayerMatch createFourPlayerMatch2() {
         return MatchCreator.createMultiPlayer(createFourUsersList(), 100);
     }
+
+    private MultiPlayerMatch createTwoPlayerMatch3() {
+        return MatchCreator.createMultiPlayer(createTwoUsersList(), 1000);
+    }
+    private MultiPlayerMatch createThreePlayerMatch3() {
+        return MatchCreator.createMultiPlayer(createThreeUsersList(), 1000);
+    }
+    private MultiPlayerMatch createFourPlayerMatch3() {
+        return MatchCreator.createMultiPlayer(createFourUsersList(), 1000);
+    }
+
 
 
 
@@ -160,6 +171,39 @@ public class MultiPlayerTest extends MVCTest {
         return null;
     }
 
+
+
+
+    public void validLeaveMatch(MultiPlayerMatch match, Player player) {
+        try {
+            match.leaveMatch(player);
+        } catch (MatchException e) {
+            testAssertError(FAILED_OPERATION_MESSAGE);
+        }
+    }
+    public void invalidLeaveMatch(MultiPlayerMatch match, Player player) {
+        try {
+            match.leaveMatch(player);
+            testAssertError(INVALID_OPERATION_MESSAGE);
+        } catch (MatchException e) {
+        }
+    }
+
+    public void validRejoinMatch(MultiPlayerMatch match, Player player) {
+        try {
+            match.rejoinMatch(player);
+        } catch (MatchException e) {
+            testAssertError(FAILED_OPERATION_MESSAGE);
+        }
+    }
+    public void invalidRejoinMatch(MultiPlayerMatch match, Player player) {
+        try {
+            match.rejoinMatch(player);
+            testAssertError(INVALID_OPERATION_MESSAGE);
+        } catch (MatchException e) {
+        }
+    }
+
     public void validBeginMatch(MultiPlayerMatch match) {
         try {
             match.beginMatch();
@@ -237,7 +281,8 @@ public class MultiPlayerTest extends MVCTest {
 
 
 
-    //Test su proprietà del modello partita
+
+    //Test su proprietà partita multiplayer
     public void testTurnHandler(MultiPlayerMatch match, Player turnPlayer, int round, boolean started, boolean ended, boolean roundFirst, boolean roundLast, boolean firstWave) {
         if (match.getTurnHandler().isStarted()!=started)
             testAssertError(INVALID_STATE_MESSAGE);
@@ -312,7 +357,7 @@ public class MultiPlayerTest extends MVCTest {
 
     }
 
-    //Test sulle azioni dei giocatori
+    //Test sulle azioni dei giocatori su partite multiplayer
     public void testUseToolCard(Player player, ToolCard toolCard, int playerTokens, int cardTokens) {
         if (player.getFavorTokens()!=playerTokens)
             testAssertError(INVALID_STATE_MESSAGE);
@@ -336,6 +381,7 @@ public class MultiPlayerTest extends MVCTest {
 
 
 
+
     //Test randomizzati
     @Test
     public void randomTwoPlayerStart() {
@@ -346,7 +392,7 @@ public class MultiPlayerTest extends MVCTest {
         Player player2 = retrievePlayer(match, 1);
 
         //Controlla correttezza partita creata
-        if (match.getMatchState()!=MatchState.STARTED)
+        if (match.getMatchState()!=MatchState.CREATED)
             testAssertError(INVALID_STATE_MESSAGE);
 
         testMatchDice(match, 85, 5);
@@ -826,6 +872,7 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player1);
     }
+
 
 
 

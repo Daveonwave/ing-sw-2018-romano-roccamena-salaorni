@@ -59,12 +59,17 @@ public class MultiPlayerHandler {
     public synchronized void join(String tokenUser) {
         waitingUsersToken.add(tokenUser);
 
+        //Avvia timer di nessun giocatore se ci sono 2 giocatori
         if (waitingUsersToken.size() == 2)
             noPlayersHandler.start();
 
+        //Controlla se la partita ha inizio
         if (waitingUsersToken.size() == usersCount) {
             ready = true;
+
+            //Termina timer di nessun giocatore
             noPlayersHandler.stop();
+            noPlayersHandler = new NoPlayersHandler(controller, controller.TURN_MAX_TIME);
         }
         else
             ready = false;

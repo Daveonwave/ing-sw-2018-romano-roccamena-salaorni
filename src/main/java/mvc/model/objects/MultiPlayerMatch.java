@@ -118,7 +118,7 @@ public class MultiPlayerMatch extends Match {
     //Mossa di abbandono di una partita
     public void leaveMatch(Player player) throws MatchException {
         //Controllo stato corretto della partita
-        if (!turnHandler.isStarted() || turnHandler.isEnded())
+        if (turnHandler.isEnded() || !player.isActive())
             throw new MatchException("non puoi abbandonare ora");
 
         //Abbandona la partita
@@ -127,7 +127,7 @@ public class MultiPlayerMatch extends Match {
     //Mossa di ripartecipazione ad una partita
     public void rejoinMatch(Player player) throws MatchException {
         //Controllo stato corretto della partita
-        if (!turnHandler.isStarted() || turnHandler.isEnded())
+        if (turnHandler.isEnded() || player.isActive())
             throw new MatchException("non puoi ripartecipare alla partita ora");
 
         //Abbandona la partita

@@ -18,7 +18,7 @@ public abstract class Match implements Serializable {
 
     //Costruttori
     public Match(List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack, TurnHandler turnHandler) {
-        this.matchState = MatchState.STARTED;
+        this.matchState = MatchState.CREATED;
         this.publicObjectiveCards = objectiveCards;
         this.toolCards = toolCards;
         this.matchDice = matchDice;
@@ -68,7 +68,7 @@ public abstract class Match implements Serializable {
     //Inizia partita
     public void beginMatch() throws RemoteException {
         //Controllo stato corretto della partita
-        if (matchState != MatchState.STARTED)
+        if (matchState != MatchState.CREATED)
             throw new MatchException("la partita è gia iniziata");
 
 

@@ -11,6 +11,10 @@ import java.util.List;
 public class MVCTest extends BaseTest {
     //Test su controllo mvc
 
+    private static final String INVALID_OPERATION_MESSAGE = "invalid match operation accepted";
+    private static final String FAILED_OPERATION_MESSAGE = "valid match operation failed";
+    private static final String INVALID_STATE_MESSAGE = "invalid match state encountered";
+
     protected final User user1 = new User("john", new EmptyView(createTestController()));
     protected final User user2 = new User("fred", new EmptyView(createTestController()));
     protected final User user3 = new User("jack", new EmptyView(createTestController()));
