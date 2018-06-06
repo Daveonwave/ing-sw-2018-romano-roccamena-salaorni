@@ -8,11 +8,13 @@ public abstract class TimedTaskHandler extends TimerTask {
     //Gestore di evento temporale
 
     private Timer timer;
+    private boolean working;
     private int delay;
 
     //Costruttori
     public TimedTaskHandler(int delay) {
         this.timer = new Timer();
+        this.working = false;
         this.delay = delay;
     }
 
@@ -31,6 +33,10 @@ public abstract class TimedTaskHandler extends TimerTask {
         return delay;
     }
 
+    public synchronized boolean isWorking() {
+        return working;
+    }
+
     //Task del timer
     public synchronized void run() {
         try {
@@ -46,8 +52,12 @@ public abstract class TimedTaskHandler extends TimerTask {
 
     //Operazioni su gestore
     public synchronized void start() {
+        this.working = true;
         timer.schedule(this, delay);
     }
-    public synchronized void stop() { timer.cancel(); }
+    public synchronized void stop() {
+        timer.cancel();
+        this.working = false;
+    }
 
 }

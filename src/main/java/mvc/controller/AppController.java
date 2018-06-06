@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import mvc.controller.handlers.TimedTurnHandler;
 import mvc.exceptions.AppModelException;
 import mvc.stubs.AppControllerStub;
 import mvc.creators.MatchCreator;
@@ -12,15 +13,16 @@ import mvc.model.objects.*;
 import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
-    //Tempo massimo di attesa del multiplayer
-    public static final int MP_WAIT_TIME = 2 * 1000;
+    //Tempo massimo di attesa per partecipazione multiplayer
+    public static final int JOIN_WAIT_TIME = 2 * 1000;
+    //Tempo massimo per giocare un turno
+    public static final int TURN_MAX_TIME = 10 * 1000;
 
     //Model dell'applicazione
     private transient AppModel model;
@@ -30,7 +32,7 @@ public class AppController implements AppControllerStub {
     //Costruttori
     public AppController() {
         this.model = AppModel.get();
-        this.multiPlayerLobby = new MultiPlayerHandler(this, 4, MP_WAIT_TIME);
+        this.multiPlayerLobby = new MultiPlayerHandler(this, 4, JOIN_WAIT_TIME);
     }
 
     //Setter/Getter
@@ -128,6 +130,9 @@ public class AppController implements AppControllerStub {
         //Registra la nuova partita nel model
         String tokenMatch = model.createMatch(matchModel);
 
+        //Crea nuovo gestore di controllo tempo turni
+        match.setTimedTurnHandler(new TimedTurnHandler(this, TURN_MAX_TIME, match, tokenMatch, matchModel));
+
         //Inizia la parita
         try {
             match.beginMatch();
@@ -152,6 +157,9 @@ public class AppController implements AppControllerStub {
             userError(player.getUser(), e.getMessage());
             return;
         }
+
+        //Termina controllo tempo turno
+        match.getTimedTurnHandler().stop();
 
         //Notifica fine turno del giocatore
         matchModel.notifyTurnEnd(tokenMatch, match);
@@ -181,6 +189,9 @@ public class AppController implements AppControllerStub {
             matchModel.notifyTurnStart(tokenMatch, match);
             matchBroadcastAck(matchModel, "inizio turno del giocatore " + match.getTurnPlayer());
 
+            //Avvia controllo tempo turno
+            match.getTimedTurnHandler().start();
+
             //Se il giocatore è inattivo passa il turno per inattività
             if (!match.getTurnPlayer().isActive()) {
                 try {
@@ -197,8 +208,9 @@ public class AppController implements AppControllerStub {
         multiPlayerLobby.join(tokenUser);
 
         //Se sono presenti gli utenti partecipanti necessari inizia partita
-        if (multiPlayerLobby.isReady())
+        if (multiPlayerLobby.isReady()) {
             startMatch();
+        }
     }
     public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
         //Ottiene gestore partite
@@ -224,6 +236,10 @@ public class AppController implements AppControllerStub {
             userError(user, e.getMessage());
             return;
         }
+
+        //Notifica abbandono giocatore
+        matchModel.notifyPlayerLeave(tokenMatch);
+        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
     }
     public synchronized void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
@@ -239,6 +255,10 @@ public class AppController implements AppControllerStub {
             userError(user, e.getMessage());
             return;
         }
+
+        //Notifica ripartecipazione giocatore
+        matchModel.notifyPlayerRejoin(tokenMatch);
+        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
@@ -262,6 +282,9 @@ public class AppController implements AppControllerStub {
             //Notifica inizio nuovo turno
             matchModel.notifyTurnStart(tokenMatch, match);
             matchBroadcastAck(matchModel, "iniziano i round della partita");
+
+            //Avvia controllo tempo turno
+            match.getTimedTurnHandler().start();
         }
     }
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {

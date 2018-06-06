@@ -3,6 +3,7 @@ package mvc.model;
 import mvc.stubs.MultiPlayerObserver;
 import mvc.model.objects.*;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,15 @@ public class MatchModel {
     }
 
     //Notifica osservatori
+    public synchronized void notifyPlayerLeave(String tokenMatch) throws RemoteException {
+        for (MultiPlayerObserver observer : matchObserver)
+            observer.onPlayerLeave(tokenMatch, match);
+    }
+    public synchronized void notifyPlayerRejoin(String tokenMatch) throws RemoteException {
+        for (MultiPlayerObserver observer : matchObserver)
+            observer.onPlayerRejoin(tokenMatch, match);
+    }
+
     public synchronized void notifyMatchStart(String tokenMatch) throws RemoteException {
         for (MultiPlayerObserver observer : matchObserver)
             observer.onMatchStart(tokenMatch, match);

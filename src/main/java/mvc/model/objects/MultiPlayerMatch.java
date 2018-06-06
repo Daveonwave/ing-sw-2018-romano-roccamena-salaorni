@@ -1,5 +1,6 @@
 package mvc.model.objects;
 
+import mvc.controller.handlers.TimedTurnHandler;
 import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
 
@@ -10,6 +11,7 @@ public class MultiPlayerMatch extends Match {
     //Partita multiplayer del gioco
 
     private List<Player> players;
+    private TimedTurnHandler timedTurnHandler;
 
     //Costruttori
     public MultiPlayerMatch(MultiPlayerMatch match) {
@@ -18,16 +20,25 @@ public class MultiPlayerMatch extends Match {
     public MultiPlayerMatch(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
         super(objectiveCards, toolCards, matchDice, roundTrack, new MultiPlayerTurnHandler(players.size(), 0));
         this.players = players;
+        this.timedTurnHandler = null;
     }
+
 
     //Setter/Getter
     public void setPlayers(List<Player> players) {
         this.players = players;
     }
+    public void setTimedTurnHandler(TimedTurnHandler timedTurnHandler) {
+        this.timedTurnHandler = timedTurnHandler;
+    }
 
     public List<Player> getPlayers() {
         return players;
     }
+    public TimedTurnHandler getTimedTurnHandler() {
+        return timedTurnHandler;
+    }
+
 
     //Ottiene giocatore
     public Player retrievePlayer(Player player) throws RemoteException {

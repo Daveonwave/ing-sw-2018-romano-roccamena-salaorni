@@ -69,6 +69,8 @@ GUIHandler extends Application implements Serializable{
     @FXML
     ImageView p4_11,p4_12,p4_13,p4_14,p4_15,p4_21,p4_22,p4_23,p4_24,p4_25,p4_31,p4_32,p4_33,p4_34,p4_35,p4_41,p4_42,p4_43,p4_44,p4_45;
 
+
+
     //Getter/Setter
     public static void setViewConnection(GUIView guiView) {
         GUIHandler.guiView = guiView;
@@ -101,6 +103,9 @@ GUIHandler extends Application implements Serializable{
     public boolean isToPlace() {
         return toPlace;
     }
+
+
+
 
     //Inizializza la gui con la schermata di login
     public void start(Stage primaryStage) throws IOException, NotBoundException{
@@ -437,7 +442,6 @@ GUIHandler extends Application implements Serializable{
         return toolCards;
     }
 
-
     //Attesa
     public void waitGame(ActionEvent actionEvent) throws RemoteException{
         multi.setVisible(false);
@@ -640,6 +644,8 @@ GUIHandler extends Application implements Serializable{
     }
 
 
+
+
     //Osservazione
     public void observe(ActionEvent actionEvent){
         observe.setVisible(!hide);
@@ -701,7 +707,10 @@ GUIHandler extends Application implements Serializable{
         imageView.setY(y);
     }
 
-   public static void main(String[] args){
+
+
+
+    public static void main(String[] args){
         launch(args);
     }
 }

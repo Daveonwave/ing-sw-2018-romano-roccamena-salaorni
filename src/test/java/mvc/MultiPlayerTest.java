@@ -841,7 +841,12 @@ public class MultiPlayerTest extends MVCTest {
         System.out.println("random four players turns flow passed");
 
         test.fixedTwoPlayer1();
-        System.out.println("fixed two players passed");
+        System.out.println("fixed two players 1 passed");
+        test.fixedTwoPlayer1();
+        System.out.println("fixed tool cards 1 passed");
+
+        //Termina
+        System.exit(0);
     }
 }
 
