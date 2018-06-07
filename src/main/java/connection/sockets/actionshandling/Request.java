@@ -1,12 +1,10 @@
-package connection.sockets;
-
-import mvc.stubs.AppViewStub;
+package connection.sockets.actionshandling;
 
 import java.io.Serializable;
 
 public interface Request extends Serializable {
     //Domanda dal client al server
 
-    Response handle (AppViewStub handler);
+    Response handleAction (RequestHandler handler);
 
 }

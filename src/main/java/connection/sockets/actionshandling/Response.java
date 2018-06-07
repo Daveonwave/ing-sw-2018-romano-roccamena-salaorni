@@ -1,11 +1,9 @@
-package connection.sockets;
-
-import mvc.stubs.AppControllerStub;
+package connection.sockets.actionshandling;
 
 import java.io.Serializable;
 
 public interface Response extends Serializable {
     //Risposta dal server al client
 
-    void handle (AppControllerStub handler);
+    void handleAction (ResponseHandler handler);
 }

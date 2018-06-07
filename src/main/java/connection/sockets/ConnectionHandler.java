@@ -33,9 +33,10 @@ public class ConnectionHandler implements Runnable {
     public void run() {
         try{
             while(isRunning){
-                Response response = IOSupport.receiveFromClient(inputStream).handle(serverHandler);
+                Object response = IOSupport.receive(inputStream);
+
                 if(response != null)
-                    IOSupport.sendToClient(outputStream, response);
+                    IOSupport.send(outputStream, response);
             }
         } catch(Exception e){
             e.printStackTrace();

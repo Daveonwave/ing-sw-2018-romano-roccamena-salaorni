@@ -1,6 +1,7 @@
 package connection.sockets;
 
 import connection.ServerInfo;
+import connection.sockets.actionshandling.Request;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,12 +33,12 @@ public class SocketClient {
     }
 
     //Ottiene risposta del server
-    public Response getResponse(){
-        return IOSupport.receiveFromServer(inputStream);
+    public Object getResponse(){
+        return IOSupport.receive(inputStream);
     }
 
     //Invia richiesta al server
     public void request(Request request){
-        IOSupport.sendToServer(outputStream, request);
+        IOSupport.send(outputStream, request);
     }
 }

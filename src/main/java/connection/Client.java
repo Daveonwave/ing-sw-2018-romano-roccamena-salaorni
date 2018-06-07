@@ -3,6 +3,8 @@ package connection;
 import connection.rmi.RmiClient;
 import connection.sockets.ClientHandler;
 import connection.sockets.SocketClient;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
@@ -16,7 +18,7 @@ public class Client {
     private AppControllerStub controller;
 
     //Lancia il client RMI o socket dell'applicazione
-    public void launchClient(boolean rmiConnectionChoosen) throws RemoteException, NotBoundException, IOException {
+    public void launchClient(boolean rmiConnectionChoosen) throws NotBoundException, IOException {
         if (rmiConnectionChoosen){
 
             this.rmiClient = new RmiClient();
@@ -36,4 +38,6 @@ public class Client {
     public AppControllerStub getController() {
         return rmiClient.getController();
     }
+
+
 }

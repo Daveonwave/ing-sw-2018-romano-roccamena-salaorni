@@ -170,10 +170,7 @@ public class GUIView extends AppView {
         }
     }
     public void respondAck(String message) throws RemoteException {
-<<<<<<< Updated upstream
-        this.output = message;
-=======
->>>>>>> Stashed changes
+
         if(this.guiHandler.console!=null) {
             this.guiHandler.console.setText(message);
         }
