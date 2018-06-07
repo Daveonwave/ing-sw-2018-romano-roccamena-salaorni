@@ -457,7 +457,7 @@ GUIHandler extends Application implements Serializable{
         anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);
         for(Player player:match.getPlayers()){
-            if (player.getUser().getAppView().equals(this.guiView)){
+            if (player.getUser().getAppView().equals(guiView)){
                 for( int i = 0; i<4; i++){
                     windows.add(new WindowView(new ImageView(),player.getStartWindows().get(i),null));
                 }
@@ -471,7 +471,7 @@ GUIHandler extends Application implements Serializable{
         for(WindowView windowView: windows){
             windowView.getImageView().setOnMouseClicked(event -> {
                 try {
-                    this.guiView.getAppController().chooseWindow(this.guiView.getUserToken(),tokenMatch,windowView.getWindow());
+                    guiView.getAppController().chooseWindow(guiView.getUserToken(),tokenMatch,windowView.getWindow());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

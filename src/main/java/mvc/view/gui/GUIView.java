@@ -11,7 +11,6 @@ import mvc.view.AppView;
 public class GUIView extends AppView {
     //View grafica dell'applicazione
 
-    private String output;
     private GUIHandler guiHandler;
     private List<ToolCardView> toolCards;
     private List<ObjectiveCardView> publicObjective;
@@ -37,9 +36,6 @@ public class GUIView extends AppView {
     public GUIHandler getGuiHandler() {
         return guiHandler;
     }
-    public String getOutput() {
-        return output;
-    }
     public List<ToolCardView> getToolCards() {
         return toolCards;
     }
@@ -64,9 +60,6 @@ public class GUIView extends AppView {
 
     public DieView getSelectedDie() {
         return selectedDie;
-    }
-    public void setOutput(String output) {
-        this.output = output;
     }
     public void setGuiHandler(GUIHandler guiHandler) {
         this.guiHandler = guiHandler;
@@ -112,7 +105,7 @@ public class GUIView extends AppView {
         setUserToken(userToken);
         setUserName(name);
 
-        return this.output;
+        return this.getUserToken();
     }
     public void logout() throws RemoteException{
         try {
@@ -172,13 +165,15 @@ public class GUIView extends AppView {
 
     //Risposta al controllore
     public void respondError(String message) throws RemoteException {
-        this.output = message;
         if(this.guiHandler.console!=null) {
             this.guiHandler.console.setText(message);
         }
     }
     public void respondAck(String message) throws RemoteException {
+<<<<<<< Updated upstream
         this.output = message;
+=======
+>>>>>>> Stashed changes
         if(this.guiHandler.console!=null) {
             this.guiHandler.console.setText(message);
         }
@@ -193,8 +188,6 @@ public class GUIView extends AppView {
     }
 
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
-
     }
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         this.getGuiHandler().setReady(true);
