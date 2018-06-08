@@ -51,13 +51,13 @@ public class SocketServer implements Closeable {
     public void init() throws IOException {
         serverSocket = new ServerSocket(ServerInfo.SOCKET_PORT);
         this.isReady = true;
-        System.out.println(">>> Server socket in ascolto sulla porta: " + ServerInfo.SOCKET_PORT + "...");
+        System.out.println("[SOCKET SERVER READY : PORT " + ServerInfo.SOCKET_PORT+ "]");
     }
 
     //Apre la connessione con il client
     public Socket acceptConnection() throws IOException{
         Socket accepted = serverSocket.accept();
-        System.out.println(">>> Aperta connessione con: " + accepted.getRemoteSocketAddress());
+        System.out.println("[SOCKET] Aperta connessione con: " + accepted.getRemoteSocketAddress());
         return accepted;
     }
 

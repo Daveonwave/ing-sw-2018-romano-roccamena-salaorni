@@ -1,6 +1,7 @@
 package gui;
 
 import connection.Client;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
 
@@ -19,28 +21,27 @@ import java.rmi.RemoteException;
 public class GuiApp extends Application implements Serializable {
     //Applicazione gui principale
 
+    public final String FXML_PATH = "fxml/MainMenu.fxml";
+    public final String TITLE = "Sagrada";
 
-    public final static String FXML_PATH = "fxml/MainMenu.fxml";
-    public final static String TITLE = "Sagrada";
+    private GuiView guiView;
 
-    private static GuiView guiView;
+    private boolean connected = false;
+    private boolean rmiConnection = true;
 
-    private static boolean connected = false;
-    private static boolean rmiConnection = true;
-
-    private static Client client = new Client();
+    private Client client = new Client();
 
     //Componenti
     @FXML
-    transient Label userNameLabel, connectionLabel;
+    Label userNameLabel, connectionLabel;
     @FXML
-    transient TextField userNameText;
+    TextField userNameText;
     @FXML
-    transient TextArea serverLogText;
+    TextArea serverLogText;
     @FXML
-    transient RadioButton rmiRadio, socketRadio;
+    RadioButton rmiRadio, socketRadio;
     @FXML
-    transient Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
+    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
 
 
 
@@ -52,6 +53,7 @@ public class GuiApp extends Application implements Serializable {
 
     private AppControllerStub connectRmiController() throws Exception {
         //showInfo("connecting rmi...");
+
         client.launchClient(true);
 
         return client.getController();
@@ -119,12 +121,16 @@ public class GuiApp extends Application implements Serializable {
                 connected = true;
             }
         } catch (Exception e) {
+            connectionLabel.setText("DISCONNESSO");
+
             //Visualizza errore
             showError("Impossibile connettersi al server");
             return;
         }
 
+        //Crea view client
         guiView = new GuiView(controller);
+        guiView.setGuiApp(this);
 
         //Imposta stato componenti
         connectionLabel.setText("CONNESSO");
@@ -152,10 +158,15 @@ public class GuiApp extends Application implements Serializable {
                 connected = false;
             }
         } catch (Exception e) {
+            connectionLabel.setText("CONNESSO");
+
             //Visualizza errore
             showError("Impossibile disconnettersi dal server");
             return;
         }
+
+        //Elimina view client
+        guiView = null;
 
         //Imposta stato componenti
         connectionLabel.setText("DISCONNESSO");
@@ -173,7 +184,6 @@ public class GuiApp extends Application implements Serializable {
         showInfo("Disconnesso dal server");
     }
     public void onLoginClicked(MouseEvent event) {
-        guiView.setGuiApp(this);
         String name = userNameText.getText();
         String token = "";
 
@@ -198,7 +208,6 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(false);
     }
     public void onLogoutClicked(MouseEvent event) {
-        guiView.setGuiApp(this);
         try {
             guiView.logout();
         } catch (RemoteException e) {
@@ -217,8 +226,6 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
     }
     public void onMultiplayerClicked(MouseEvent event) {
-        guiView.setGuiApp(this);
-
         //TODO: implementazione
 
         //Visualizza messaggio
@@ -238,6 +245,7 @@ public class GuiApp extends Application implements Serializable {
             showError("Impossibile disconnettersi dal server");
         }
 
+        //Termina applicazione
         System.exit(0);
     }
 

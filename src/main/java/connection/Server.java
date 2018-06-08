@@ -15,16 +15,21 @@ public class Server {
     public void launchServer() throws AlreadyBoundException {
         RmiServer rmiServer = new RmiServer();
 
+        //Lancia server RMI
         try {
             rmiServer.runRmiServer();
         } catch (RemoteException e) {
             e.printStackTrace();
+            return;
         }
-
+        //Lancia server socket
         try {
             SocketServer.getIstance().runSocketServer();
         } catch (IOException e) {
             e.printStackTrace();
+            return;
         }
+
+        System.out.println("");
     }
 }

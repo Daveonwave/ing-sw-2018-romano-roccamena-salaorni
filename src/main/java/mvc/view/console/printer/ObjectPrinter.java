@@ -6,10 +6,11 @@ import mvc.view.console.ConsoleColors;
 import mvc.view.console.ConsoleView;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObjectPrinter {
+public class ObjectPrinter implements Serializable {
     //Printer base di oggetti del gioco
 
     private ConsoleView consoleView;

@@ -35,7 +35,7 @@ public class ConsoleTest extends BaseTest {
     }
 
     public static void main(String[] args) throws Exception {
-        startLocal();
+        startRemote();
     }
 
 }

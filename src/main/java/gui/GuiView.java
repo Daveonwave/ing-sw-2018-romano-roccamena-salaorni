@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.scene.control.TextArea;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -61,7 +60,7 @@ public class GuiView extends AppView {
         try {
             guiMultiplayer.show(match, tokenMatch);
         } catch (IOException e) {
-            guiApp.showError("Errore inaspettato, l'applicazione si chiuderà");
+            //guiApp.showError("Errore inaspettato, l'applicazione si chiuderà");
             System.exit(0);
         }
     }

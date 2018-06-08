@@ -13,7 +13,7 @@ public class IOSupport {
         try {
             outputStream.writeObject(obj);
             outputStream.flush();
-            System.out.println("riposta serializzata e scritta!");
+            System.out.println("[SOCKET] Riposta serializzata e scritta");
 
         } catch(IOException e){
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class IOSupport {
 
         try {
             obj = inputStream.readObject();
-            System.out.println("richiesta letta e deserializzata!");
+            System.out.println("[SOCKET] Riposta letta e deserializzata");
 
         } catch (IOException ioe) {
             ioe.printStackTrace();

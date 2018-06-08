@@ -14,17 +14,18 @@ public class RmiServer {
 
     //Lancia server RMI
     public void runRmiServer() throws RemoteException, AlreadyBoundException {
+        //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "server.policy");
         System.setSecurityManager(new SecurityManager());
 
-        System.out.println("Costruendo l'implementazione server...");
+        //Crea controller dell'applicazione
         AppControllerStub appController = new RmiController();
 
-        System.out.println("Bindando l'implementazione server al registro...");
-        Registry registry = LocateRegistry.getRegistry(ServerInfo.RMI_PORT);
+        //Crea registro rmi e carica controller
+        Registry registry = LocateRegistry.createRegistry(ServerInfo.RMI_PORT);
         registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
 
-        System.out.println("Aspettando invocazioni dal client...");
+        System.out.println("[RMI SERVER READY : PORT " + ServerInfo.RMI_PORT + "]");
     }
 
 }

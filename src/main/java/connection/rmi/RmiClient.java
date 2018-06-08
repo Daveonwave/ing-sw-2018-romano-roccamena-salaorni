@@ -17,21 +17,15 @@ public class RmiClient implements Serializable {
 
     //Lancia client RMI
     public void runRmiClient() throws RemoteException, NotBoundException {
+        //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "client.policy");
         System.setSecurityManager(new SecurityManager());
 
+        //Ottiene registro rmi server
         Registry registry = LocateRegistry.getRegistry(ServerInfo.SERVER_ADDRESS, ServerInfo.RMI_PORT);
 
-        System.out.println("RMI registry bindings: ");
-        String[] e = registry.list();
-
-        for (int i = 0; i < e.length; i++){
-            System.out.println(e[i]);
-        }
-
-        String remoteObjectName = ServerInfo.REMOTE_OBJECT_NAME;
-
-        this.controller = (AppControllerStub) registry.lookup(remoteObjectName);
+        //Scarica stub controller dal server
+        this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
 
     }
 
