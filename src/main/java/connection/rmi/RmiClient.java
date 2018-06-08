@@ -4,12 +4,13 @@ import connection.ServerInfo;
 import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class RmiClient {
+public class RmiClient implements Serializable {
     //Client RMI
 
     private AppControllerStub  controller;

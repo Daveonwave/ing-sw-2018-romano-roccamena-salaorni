@@ -1,12 +1,14 @@
-package mvc.view.gui;
+package gui.objects;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.Cell;
 
+import java.io.Serializable;
 
-public class CellView{
+
+public class CellView implements Serializable{
     //Veduta di una cella
 
     private Cell cell;
@@ -22,7 +24,6 @@ public class CellView{
     public Cell getCell() {
         return cell;
     }
-
     public ImageView getImageView() {
         return imageView;
     }
@@ -30,7 +31,6 @@ public class CellView{
     public void setCell(Cell cell) {
         this.cell = cell;
     }
-
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
     }

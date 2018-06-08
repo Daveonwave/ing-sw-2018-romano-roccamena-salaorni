@@ -1,4 +1,4 @@
-package mvc.view.gui;
+package gui.objects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,11 +8,13 @@ public class ObjectiveCardView extends ObjectView {
 
     private Card card;
 
+    //Costruttori
     public ObjectiveCardView(ImageView imageView, Card card) {
         super(imageView);
         this.card = card;
     }
 
+    //Getter/Setter
     public Card getCard() {
         return card;
     }
@@ -22,7 +24,7 @@ public class ObjectiveCardView extends ObjectView {
     }
 
 
-    @Override
+    //Ottiene immagine
     public Image imagePath() {
         String path = "";
         switch (card.getName()){

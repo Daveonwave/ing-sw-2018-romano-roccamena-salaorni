@@ -1,65 +1,61 @@
-package mvc.view.gui;
+package gui;
 
-import connection.Client;
-import javafx.application.Application;
+import gui.objects.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import mvc.model.objects.Cell;
-import mvc.model.objects.MultiPlayerMatch;
-import mvc.model.objects.Player;
-import mvc.model.objects.ToolCardInput;
 
-import java.io.*;
-import java.rmi.NotBoundException;
+import mvc.model.objects.*;
+import mvc.stubs.MultiPlayerObserver;
+import mvc.stubs.ViewResponder;
+
+import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class
-GUIHandler extends Application implements Serializable{
-    //Gestore della gui dell'applicazione
+public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Serializable {
+    //Finestra gui di una partita multiplayer
 
-    private static GUIView guiView;
+    public final static String FXML_PATH = "fxml/Match.fxml";
+    public final static String TITLE = "Sagrada Multiplayer";
+
+    private GuiView guiView;
     private MultiPlayerMatch match;
     private String tokenMatch;
-    private boolean connected = false;
-    private boolean queue = false;
-    private boolean ready = false;
+
     private boolean hide = true;
     private boolean toPlace = false;
 
-    //Componenti gui
+    private List<ToolCardView> toolCards;
+    private List<ObjectiveCardView> publicObjective;
+    private ObjectiveCardView privateObjective;
+    private List<DieView> dice;
+    private List<PlayerView> players;
+    private DieView selectedDie;
+    private List<RoundView> rounds;
+    private ToolCardInput input;
+    private ToolCardView selectedToolCard;
+
     @FXML
-    TextField input;
+    Button observe;
     @FXML
     TextArea console;
     @FXML
-    Button rmi, socket, multi,single, annulla, observe;
-    @FXML
-    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, privateObjective, zoom;
-    @FXML
-    ImageView d1,d2,d3,d4,d5,d6,d7,d8,d9;
-    @FXML
-    Text text;
-    @FXML
-    Pane pane, pane2, roundDice;
-    @FXML
-    ImageView round1,round2,round3,round4,round5,round6,round7,round8,round9,round10;
-    @FXML
-    ImageView roundDie1,roundDie2,roundDie3,roundDie4,roundDie5,roundDie6,roundDie7,roundDie8,roundDie9;
+    Pane pane2, roundDice;
     @FXML
     ImageView w1,w2,w3,w4;
+    @FXML
+    ImageView d1,d2,d3,d4,d5,d6,d7,d8,d9;
     @FXML
     ImageView p1_11,p1_12,p1_13,p1_14,p1_15,p1_21,p1_22,p1_23,p1_24,p1_25,p1_31,p1_32,p1_33,p1_34,p1_35,p1_41,p1_42,p1_43,p1_44,p1_45;
     @FXML
@@ -68,85 +64,111 @@ GUIHandler extends Application implements Serializable{
     ImageView p3_11,p3_12,p3_13,p3_14,p3_15,p3_21,p3_22,p3_23,p3_24,p3_25,p3_31,p3_32,p3_33,p3_34,p3_35,p3_41,p3_42,p3_43,p3_44,p3_45;
     @FXML
     ImageView p4_11,p4_12,p4_13,p4_14,p4_15,p4_21,p4_22,p4_23,p4_24,p4_25,p4_31,p4_32,p4_33,p4_34,p4_35,p4_41,p4_42,p4_43,p4_44,p4_45;
+    @FXML
+    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1,toolCard2,toolCard3, privateObjective1, zoom;
+    @FXML
+    ImageView round1,round2,round3,round4,round5,round6,round7,round8,round9,round10;
+    @FXML
+    ImageView roundDie1,roundDie2,roundDie3,roundDie4,roundDie5,roundDie6,roundDie7,roundDie8,roundDie9;
 
-
-
-    //Getter/Setter
-    public static void setViewConnection(GUIView guiView) {
-        GUIHandler.guiView = guiView;
+    //Setter/Getter
+    public MultiPlayerMatch getMatch() {
+        return match;
     }
-    public void setConnected(boolean connected) {
-        this.connected = connected;
+    public String getTokenMatch() {
+        return tokenMatch;
     }
-    public void setQueue(boolean queue) {
-        this.queue = queue;
-    }
-    public void setReady(boolean ready) {
-        this.ready = ready;
-    }
-    public void setToPlace(boolean toPlace) {
-        this.toPlace = toPlace;
-    }
-
-    public static GUIView getGuiView() {
+    public GuiView getGuiView() {
         return guiView;
     }
-    public boolean isConnected() {
-        return connected;
+    public List<ToolCardView> getToolCards() {
+        return toolCards;
     }
-    public boolean isQueue() {
-        return queue;
+    public List<ObjectiveCardView> getPublicObjective() {
+        return publicObjective;
     }
-    public boolean isReady() {
-        return ready;
+    public ObjectiveCardView getPrivateObjective() {
+        return privateObjective;
     }
-    public boolean isToPlace() {
-        return toPlace;
+    public List<DieView> getDice() {
+        return dice;
     }
-
-    //Inizializza la gui con la schermata di login
-    public void start(Stage primaryStage) throws IOException, NotBoundException{
-        Client client = new Client();
-        client.launchClient(true);
-        guiView = new GUIView(client.getController());
-        changeScene("menu.fxml", primaryStage);
-        guiView.setGuiHandler(this);
+    public List<PlayerView> getPlayers() {
+        return players;
     }
-
-    //Gestori bottoni
-    public void login(ActionEvent actionEvent) throws IOException{
-        pane.setVisible(false);
-        text.setText(guiView.login(input.getText()) + ".Scegliere il tipo di connessione");
+    public List<RoundView> getRounds() {
+        return rounds;
     }
-    public void cancel(ActionEvent actionEvent) throws RemoteException{
-        if (!connected) {
-            pane.setVisible(true);
-            text.setText("Inserire il nome utente");
-            guiView.logout();
-        }
-        else{
-            if(!queue) {
-                rmi.setVisible(true);
-                socket.setVisible(true);
-                text.setText("Scegliere il tipo di connessione");
-                connected = false;
-            }
-            else{
-                multi.setVisible(true);
-                single.setVisible(true);
-                guiView.getAppController().cancelJoinMatch(guiView.getUserToken());
-                queue = false;
-            }
-        }
+    public ToolCardInput getInput() {
+        return input;
     }
-    public void connection(ActionEvent actionEvent){
-        rmi.setVisible(false);
-        socket.setVisible(false);
-        text.setText("Scegliere la modalita' di gioco");
-        this.connected = true;
+    public ToolCardView getSelectedToolCard() {
+        return selectedToolCard;
+    }
+    public DieView getSelectedDie() {
+        return selectedDie;
     }
 
-    //associazioni tra bottoni e classi view corrispondenti
+
+    public void setMatch(MultiPlayerMatch match) {
+        this.match = match;
+    }
+    public void setTokenMatch(String tokenMatch) {
+        this.tokenMatch = tokenMatch;
+    }
+    public void setGuiView(GuiView guiView) {
+        this.guiView = guiView;
+    }
+    public void setToolCards(List<ToolCardView> toolCards) {
+        this.toolCards = toolCards;
+    }
+    public void setPublicObjective(List<ObjectiveCardView> publicObjective) {
+        this.publicObjective = publicObjective;
+    }
+    public void setPrivateObjective(ObjectiveCardView privateObjective) {
+        this.privateObjective = privateObjective;
+    }
+    public void setDice(List<DieView> dice) {
+        this.dice = dice;
+    }
+    public void setPlayers(List<PlayerView> players) {
+        this.players = players;
+    }
+    public void setSelectedDie(DieView selectedDie) {
+        this.selectedDie = selectedDie;
+    }
+    public void setRounds(List<RoundView> rounds) {
+        this.rounds = rounds;
+    }
+    public void setInput(ToolCardInput input) {
+        this.input = input;
+    }
+    public void setSelectedToolCard(ToolCardView selectedToolCard) {
+        this.selectedToolCard = selectedToolCard;
+    }
+
+
+
+
+    //Crea e visualizza la finestra
+    public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
+        this.match = match;
+        this.tokenMatch = tokenMatch;
+
+        createMatchGui();
+        //Stage stage = new Stage();
+
+        //Scene scene = new Scene(new StackPane(), 200, 100);
+
+        //stage.setScene(scene);
+        //stage.setResizable(false);
+        //stage.show();
+    }
+
+
+
+
+    //Associazioni tra bottoni e classi view corrispondenti
     public ImageView associateWindow(int index){
         switch (index){
             case 1: return w1;
@@ -285,7 +307,7 @@ GUIHandler extends Application implements Serializable{
                 cells[3][3].setImageView(p4_44);
                 cells[3][4].setImageView(p4_45);
                 break;
-            }
+        }
         return cells;
     }
     public ImageView associateDice(int index){
@@ -340,9 +362,10 @@ GUIHandler extends Application implements Serializable{
         return null;
     }
 
-    //metodi che restituiscono l'oggetto della view in base al bottone selezionato
+    //Restituiscono l'oggetto della view in base al bottone selezionato
     public CellView retrieveCell(Object source){
-        WindowView windowView = guiView.retrieveThisPlayer().getWindow();
+        WindowView windowView = retrieveThisPlayer().getWindow();
+
         if(source.equals(p1_11)) return windowView.getCells()[0][0];
         if(source.equals(p1_12)) return windowView.getCells()[0][1];
         if(source.equals(p1_13)) return windowView.getCells()[0][2];
@@ -363,57 +386,63 @@ GUIHandler extends Application implements Serializable{
         if(source.equals(p1_43)) return windowView.getCells()[3][2];
         if(source.equals(p1_44)) return windowView.getCells()[3][3];
         if(source.equals(p1_45)) return windowView.getCells()[3][4];
+
         return null;
     }
     public DieView retrieveDie(Object source){
-        if(source.equals(d1)) return guiView.getDice().get(0);
-        if(source.equals(d2)) return guiView.getDice().get(1);
-        if(source.equals(d3)) return guiView.getDice().get(2);
-        if(source.equals(d4)) return guiView.getDice().get(3);
-        if(source.equals(d5)) return guiView.getDice().get(4);
-        if(source.equals(d6)) return guiView.getDice().get(5);
-        if(source.equals(d7)) return guiView.getDice().get(6);
-        if(source.equals(d8)) return guiView.getDice().get(7);
-        if(source.equals(d9)) return guiView.getDice().get(8);
+        if(source.equals(d1)) return getDice().get(0);
+        if(source.equals(d2)) return getDice().get(1);
+        if(source.equals(d3)) return getDice().get(2);
+        if(source.equals(d4)) return getDice().get(3);
+        if(source.equals(d5)) return getDice().get(4);
+        if(source.equals(d6)) return getDice().get(5);
+        if(source.equals(d7)) return getDice().get(6);
+        if(source.equals(d8)) return getDice().get(7);
+        if(source.equals(d9)) return getDice().get(8);
+
         return null;
     }
     public ToolCardView retrieveToolCard(Object source){
-        if(source.equals(toolCard1)) return guiView.getToolCards().get(0);
-        if(source.equals(toolCard2)) return guiView.getToolCards().get(0);
-        if(source.equals(toolCard3)) return guiView.getToolCards().get(0);
+        if(source.equals(toolCard1)) return getToolCards().get(0);
+        if(source.equals(toolCard2)) return getToolCards().get(0);
+        if(source.equals(toolCard3)) return getToolCards().get(0);
         return null;
     }
     public DieView retrieveRoundDie(Object source){
-        List<DieView> dice = guiView.getRounds().get(match.getTurnHandler().getRound()-1).getDieViews();
-       if(source.equals(roundDie1)) return dice.get(0);
-       if(source.equals(roundDie2)) return dice.get(1);
-       if(source.equals(roundDie3)) return dice.get(2);
-       if(source.equals(roundDie4)) return dice.get(3);
-       if(source.equals(roundDie5)) return dice.get(4);
-       if(source.equals(roundDie6)) return dice.get(5);
-       if(source.equals(roundDie7)) return dice.get(6);
-       if(source.equals(roundDie8)) return dice.get(7);
-       if(source.equals(roundDie9)) return dice.get(8);
-       return null;
+        List<DieView> dice = getRounds().get(match.getTurnHandler().getRound()-1).getDieViews();
+        if(source.equals(roundDie1)) return dice.get(0);
+        if(source.equals(roundDie2)) return dice.get(1);
+        if(source.equals(roundDie3)) return dice.get(2);
+        if(source.equals(roundDie4)) return dice.get(3);
+        if(source.equals(roundDie5)) return dice.get(4);
+        if(source.equals(roundDie6)) return dice.get(5);
+        if(source.equals(roundDie7)) return dice.get(6);
+        if(source.equals(roundDie8)) return dice.get(7);
+        if(source.equals(roundDie9)) return dice.get(8);
+        return null;
     }
 
-    //metodi che creano liste con le tool card desiderate
-    public List<String> WindowToolCards(){
+    //Ottengono liste di oggetti gioco separati secondo relazione di utilizzo
+    public List<String> windowToolCards(){
+
         List<String> toolCards = new ArrayList<>();
         toolCards.add("pennello per eglomise");
         toolCards.add("alesatore per lamina di rame");
         toolCards.add("lathekin");
         toolCards.add("taglierina manuale");
+
         return toolCards;
     }
     public List<String> draftPoolToolCards(){
         List<String> toolCards = new ArrayList<>();
+
         toolCards.add("pinza sgrossatrice");
         toolCards.add("taglierina circolare");
         toolCards.add("pennello per pasta salda");
         toolCards.add("riga di sughero");
         toolCards.add("tampone diamantato");
         toolCards.add("diluente per pasta salda");
+
         return toolCards;
     }
     public List<String> choiceToolCards(){
@@ -425,37 +454,42 @@ GUIHandler extends Application implements Serializable{
     }
     public List<String> noSelectionToolCards(){
         List<String> toolCards = new ArrayList<>();
+
         toolCards.add("martelletto");
         toolCards.add("tenaglia a rotelle");
+
         return toolCards;
     }
     public List<String> toPlaceToolCard(){
         List<String> toolCards = new ArrayList<>();
+
         toolCards.add("pinza sgrossatrice");
         toolCards.add("pennello per pasta salda");
         toolCards.add("riga di sughero");
         toolCards.add("tampone diamantato");
         toolCards.add("diluente per pasta salda");
+
         return toolCards;
     }
 
-    //Attesa
-    public void waitGame(ActionEvent actionEvent) throws RemoteException{
-        multi.setVisible(false);
-        single.setVisible(false);
-        guiView.getAppController().joinMatch(guiView.getUserToken());
-        queue = true;
-        text.setText("In attesa di altri giocatori...");
+    //Imposta lo stato di un immagine
+    public void setImageView(ImageView imageView, int w, int h, int x, int y){
+        imageView.setFitWidth(w);
+        imageView.setFitHeight(h);
+        imageView.setX(x);
+        imageView.setY(y);
     }
-    //Inizia gioco
-    public void startGame(MultiPlayerMatch match, String tokenMatch) throws IOException{
-        this.match = match;
-        this.tokenMatch = tokenMatch;
+
+    //Crea oggetti gui gioco a inizio partita
+    public void createMatchGui() throws IOException {
+        //Carica fxml
         FXMLLoader loader = new FXMLLoader();
-        AnchorPane root = loader.load(getClass().getResource("/resources/fxml/game.fxml"));
+        AnchorPane root = loader.load(getClass().getResource("/gui/fxml/Match.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
         anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);
+
+        //Crea view finestre
         for(Player player:match.getPlayers()){
             if (player.getUser().getAppView().equals(guiView)){
                 for( int i = 0; i<4; i++){
@@ -464,29 +498,40 @@ GUIHandler extends Application implements Serializable{
                 break;
             }
         }
+
+        //Imposta view finestre
         setImageView(windows.get(0).getImageView(),338,174,103,158);
         setImageView(windows.get(1).getImageView(),338,174,565,158);
         setImageView(windows.get(2).getImageView(),338,174,99,455);
         setImageView(windows.get(3).getImageView(),338,174,588,455);
+
+        //Link evento chooseWindow agli oggetti gui
         for(WindowView windowView: windows){
             windowView.getImageView().setOnMouseClicked(event -> {
                 try {
                     guiView.getAppController().chooseWindow(guiView.getUserToken(),tokenMatch,windowView.getWindow());
                 } catch (RemoteException e) {
+                    //TODO: gestione errori
                     e.printStackTrace();
                 }
             });
             anchorPane1.getChildren().add(windowView.getImageView());
         }
+
+        //Finalizza e mostra finestra
         root.getChildren().add(anchorPane1);
+
         Scene scene = new Scene(root);
+
         Stage stage = new Stage();
+
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
     }
-    public void initializeGameGui(){
+
+    //Inizializza oggetti gui gioco a round iniziati
+    public void initializeMatchRoundsGui(){
         d1.setVisible(false);
         d2.setVisible(false);
         d3.setVisible(false);
@@ -496,9 +541,13 @@ GUIHandler extends Application implements Serializable{
         d7.setVisible(false);
         d8.setVisible(false);
         d9.setVisible(false);
+
         roundDice.setVisible(false);
+
         hide = false;
+
         observe.setVisible(false);
+
         round1.setVisible(false);
         round2.setVisible(false);
         round3.setVisible(false);
@@ -510,8 +559,68 @@ GUIHandler extends Application implements Serializable{
         round9.setVisible(false);
         round10.setVisible(false);
     }
+    //Crea oggetti gui gioco a round iniziati
+    public void createMatchRoundsGui(MultiPlayerMatch match){
+        //Inizializza componenti
+        initializeMatchRoundsGui();
 
-    //gioco
+        int window = 2;
+
+        //Setta componenti view finestre e carte private
+        for (Player player: match.getPlayers()){
+            players.add(new PlayerView(new WindowView(associateWindow(window), player.getWindow(), associateCells(player.getWindow().getCells(),window)),player));
+            window += 1;
+            if(player.getUser().getAppView().equals(this)){
+                this.privateObjective.setCard(player.getPrivateObjectiveCards().get(0));
+            }
+        }
+
+        //Setta componenti view carte strumento e tracciato dadi
+        for (ToolCard toolCard: match.getToolCards()){
+            this.toolCards.add(new ToolCardView(associateToolCard(match.getToolCards().indexOf(toolCard)),toolCard));
+        }
+        for (Die die : match.getMatchDice().getDraftPool()){
+            this.dice.add(new DieView(associateDice(match.getMatchDice().getDraftPool().indexOf(die)),die));
+        }
+        for (int i = 1; i<11; i++){
+            this.rounds.add(i-1, new RoundView(associateRound(i), null, i));
+        }
+
+        //Setta componenti view riserva dadi e carte obiettivo pubbliche
+        for(DieView die: this.dice){
+            die.getImageView().setVisible(true);
+        }
+        for(PublicObjectiveCard card: match.getPublicObjectiveCards()){
+            this.publicObjective.add(new ObjectiveCardView(associatePublicObjective(match.getPublicObjectiveCards().indexOf(card)),card));
+        }
+
+    }
+
+    //Ottiene oggetti di gioco
+    public DieView retrieveDieView(List<DieView> dice, Die die){
+        for(DieView dieView: dice){
+            if (die.equals(dieView.getDie())) return dieView;
+        }
+        return null;
+    }
+    public PlayerView retrievePlayer(List<PlayerView> players, Player player){
+        for (PlayerView playerView : players){
+            if (player.equals(playerView.getPlayer())) return playerView;
+        }
+        return null;
+    }
+    public PlayerView retrieveThisPlayer(){
+        for (PlayerView playerView: players){
+            if(playerView.getPlayer().getUser().getAppView().equals(this)) return playerView;
+        }
+
+        return null;
+    }
+
+
+
+
+    //Eventi componenti gui di mosse della partita
     public void dieMove(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
@@ -519,37 +628,38 @@ GUIHandler extends Application implements Serializable{
         if(this.toPlace){
             console.setText("devi prima posizionare il dado già selezionato");
         }
+
         DieView selectedDie = retrieveDie(actionEvent.getSource());
 
-        if(selectedDie != guiView.getSelectedDie()){
-            if(guiView.getSelectedToolCard() != null){
-                String name = guiView.getSelectedToolCard().getToolCard().getName();
+        if(selectedDie != getSelectedDie()){
+            if(getSelectedToolCard() != null){
+                String name = getSelectedToolCard().getToolCard().getName();
                 if(draftPoolToolCards().contains(name)){
                     if(choiceToolCards().contains(name)){
-                     //TODO: implementare carte con scelta
+                        //TODO: implementare carte con scelta
                         if(name.equals("taglierina circolare")){
-                            guiView.getInput().setChoosenDie(selectedDie.getDie());
+                            getInput().setChoosenDie(selectedDie.getDie());
                             this.console.setText("scegli un dado del tracciato dei round");
                             return;
                         }
                     }else{
-                        guiView.getInput().setChoosenDie(selectedDie.getDie());
-                        guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch,guiView.getInput(),guiView.getSelectedToolCard().getToolCard());
+                        getInput().setChoosenDie(selectedDie.getDie());
+                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
                     }
                 }else{
                     this.console.setText("dado non valido per questa tool card");
                     return;
                 }
             }else{
-                guiView.setSelectedDie(selectedDie);
-                this.console.setText("hai selezionato il dado"+ guiView.getSelectedDie().getDie().getShade() + "" + guiView.getSelectedDie().getDie().getColor().toString());
+                setSelectedDie(selectedDie);
+                this.console.setText("hai selezionato il dado"+ getSelectedDie().getDie().getShade() + "" + getSelectedDie().getDie().getColor().toString());
             }
         }else{
-            if(this.isToPlace()){
+            if(toPlace){
                 return;
             }else {
-                this.console.setText("hai deselezionato il dado"+ guiView.getSelectedDie().getDie().getShade() + "" + guiView.getSelectedDie().getDie().getColor().toString());
-                guiView.setSelectedDie(null);
+                this.console.setText("hai deselezionato il dado"+ getSelectedDie().getDie().getShade() + "" + getSelectedDie().getDie().getColor().toString());
+                setSelectedDie(null);
 
                 return;
             }
@@ -559,18 +669,20 @@ GUIHandler extends Application implements Serializable{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
+
         CellView selectedCell = retrieveCell(actionEvent);
+
         if(selectedCell.getCell().getDie()==null){
-            if(guiView.getSelectedDie() != null){
-                this.setToPlace(false);
-                guiView.getAppController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(),guiView.getSelectedDie().getDie());
+            if(getSelectedDie() != null){
+                toPlace = false;
+                guiView.getAppController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(), getSelectedDie().getDie());
                 return;
-            }else{
-                if(guiView.getInput().getChoosenDie()!=null){
-                    String name = guiView.getSelectedToolCard().getToolCard().getName();
-                    if(WindowToolCards().contains(name)){
-                        guiView.getInput().setDestinationCell1(selectedCell.getCell());
-                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, guiView.getInput(), guiView.getSelectedToolCard().getToolCard());
+            } else {
+                if(getInput().getChoosenDie()!=null){
+                    String name = getSelectedToolCard().getToolCard().getName();
+                    if(windowToolCards().contains(name)){
+                        getInput().setDestinationCell1(selectedCell.getCell());
+                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
                         return;
                     }else{
                         return;
@@ -579,15 +691,16 @@ GUIHandler extends Application implements Serializable{
                     return;
                 }
             }
-        }else {
-            if (guiView.getSelectedToolCard() != null){
-                String name = guiView.getSelectedToolCard().getToolCard().getName();
-                if(WindowToolCards().contains(name)){
-                    guiView.getInput().setChoosenDie(selectedCell.getCell().getDie());
-                    guiView.getInput().setOriginCell1(selectedCell.getCell());
+        } else {
+            if (getSelectedToolCard() != null){
+                String name = getSelectedToolCard().getToolCard().getName();
+                if(windowToolCards().contains(name)){
+                    getInput().setChoosenDie(selectedCell.getCell().getDie());
+                    getInput().setOriginCell1(selectedCell.getCell());
+
                     return;
                 }
-            }else{
+            } else {
                 return;
             }
         }
@@ -596,26 +709,28 @@ GUIHandler extends Application implements Serializable{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
-        if(this.isToPlace()){
+        if(toPlace){
             console.setText("devi prima posizionare il dado già selezionato");
             return;
         }
+
         ToolCardView selectedToolCard = retrieveToolCard(actionEvent.getSource());
-        if(selectedToolCard != guiView.getSelectedToolCard()){
-            guiView.setSelectedToolCard(selectedToolCard);
-            guiView.setSelectedDie(null);
-            guiView.setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
-            String name = guiView.getSelectedToolCard().getToolCard().getName();
+
+        if(selectedToolCard != getSelectedToolCard()){
+            setSelectedToolCard(selectedToolCard);
+            setSelectedDie(null);
+            setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
+            String name = getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
-                guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch, guiView.getInput(),guiView.getSelectedToolCard().getToolCard());
+                guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
             }else{
-                console.setText("hai selezionato la carta tool" + guiView.getSelectedToolCard().getToolCard().getName());
+                console.setText("hai selezionato la carta tool" + getSelectedToolCard().getToolCard().getName());
                 return;
             }
         }else{
-            console.setText("hai deselezionato la carta tool" + guiView.getSelectedToolCard().getToolCard().getName());
-            guiView.setSelectedToolCard(null);
-            guiView.setInput(null);
+            console.setText("hai deselezionato la carta tool" + getSelectedToolCard().getToolCard().getName());
+            setSelectedToolCard(null);
+            setInput(null);
         }
 
     }
@@ -623,11 +738,12 @@ GUIHandler extends Application implements Serializable{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
+
         DieView selectedRoundDie = retrieveRoundDie(actionEvent.getSource());
-        if(guiView.getSelectedToolCard() != null){
-            String name = guiView.getSelectedToolCard().getToolCard().getName();
+        if(getSelectedToolCard() != null){
+            String name = getSelectedToolCard().getToolCard().getName();
             if(name.equals("taglierina circolare")) {
-                guiView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
+                getInput().setRoundTrackDie(selectedRoundDie.getDie());
                 return;
             }else{
                 return;
@@ -640,18 +756,15 @@ GUIHandler extends Application implements Serializable{
         guiView.getAppController().endTurn(guiView.getUserToken(),this.tokenMatch);
     }
 
-
-
-
-    //Osservazione
+    //Eventi di altre componenti gui
     public void observe(ActionEvent actionEvent){
         observe.setVisible(!hide);
     }
     public void observeRoundDice(int round){
         for(int i=0;i<9; i++){
-            if(guiView.getRounds().get(round).getDieViews().get(i)!= null){
+            if(getRounds().get(round).getDieViews().get(i)!= null){
                 associateRoundDie(i).setVisible(true);
-                associateRoundDie(i).setImage(guiView.getRounds().get(round).getDieViews().get(i).imagePath());
+                associateRoundDie(i).setImage(getRounds().get(round).getDieViews().get(i).imagePath());
             }else{
                 associateRoundDie(i).setVisible(false);
             }
@@ -665,7 +778,7 @@ GUIHandler extends Application implements Serializable{
         if(actionEvent.getSource().equals(publicObjective1)) zoom.setImage(publicObjective1.getImage());
         if(actionEvent.getSource().equals(publicObjective2)) zoom.setImage(publicObjective2.getImage());
         if(actionEvent.getSource().equals(publicObjective3)) zoom.setImage(publicObjective3.getImage());
-        if(actionEvent.getSource().equals(privateObjective)) zoom.setImage(privateObjective.getImage());
+        if(actionEvent.getSource().equals(privateObjective)) zoom.setImage(privateObjective1.getImage());
     }
     public void zoomOut(ActionEvent actionEvent){
         zoom.setImage(null);
@@ -688,26 +801,47 @@ GUIHandler extends Application implements Serializable{
         roundDice.setVisible(false);
     }
 
-    //Cambia scena nella gui caricandola da un nuovo file FXML
-    public void changeScene(String fxml, Stage stage) throws IOException{
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource(fxml));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+
+
+
+    //Risposte controllore
+    public void respondError(String message) throws RemoteException {
+
     }
-    public void setImageView(ImageView imageView, int w, int h, int x, int y){
-        imageView.setFitWidth(w);
-        imageView.setFitHeight(h);
-        imageView.setX(x);
-        imageView.setY(y);
+    public void respondAck(String message) throws RemoteException {
+
     }
 
+   //Osservazione multiplayer
+    public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
+    }
+    public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
+    }
 
-    public static void main(String[] args){
-        launch(args);
+    public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+    public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+    public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
+    }
+    public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
+
+    }
+    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
+
+    }
+    public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
+
+    }
+    public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
     }
 }

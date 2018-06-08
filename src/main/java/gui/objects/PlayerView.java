@@ -1,20 +1,22 @@
-package mvc.view.gui;
+package gui.objects;
 
-import javafx.scene.image.ImageView;
 import mvc.model.objects.Player;
-import mvc.model.objects.Window;
+
+import java.io.Serializable;
 
 
-public class PlayerView {
+public class PlayerView implements Serializable{
 
     private WindowView window;
     private Player player;
 
+    //Costruttori
     public PlayerView(WindowView window, Player player) {
         this.window = window;
         this.player = player;
     }
 
+    //Getter/Setter
     public WindowView getWindow() {
         return window;
     }

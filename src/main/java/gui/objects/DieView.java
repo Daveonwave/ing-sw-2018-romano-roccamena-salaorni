@@ -1,12 +1,9 @@
-package mvc.view.gui;
+package gui.objects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.Die;
-import javafx.scene.control.Button;
 import mvc.model.objects.GameConstants;
-
-import java.util.List;
 
 public class DieView extends ObjectView {
     //Veduta di un dado
@@ -23,11 +20,11 @@ public class DieView extends ObjectView {
     public void setDie(Die die) {
         this.die = die;
     }
-
     public Die getDie() {
         return die;
     }
 
+    //Ottiene immagine
     public Image imagePath() {
         String path = "";
         switch (this.die.getShade()){

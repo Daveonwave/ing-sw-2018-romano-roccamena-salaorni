@@ -8,10 +8,11 @@ import javafx.stage.Stage;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class Client {
+public class Client implements Serializable {
     //Client dell'applicazione
 
     private RmiClient rmiClient;

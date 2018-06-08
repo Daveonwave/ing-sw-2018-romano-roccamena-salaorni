@@ -1,9 +1,5 @@
 package ingsw2018;
 
-import connection.Client;
-import javafx.stage.Stage;
-
-import mvc.view.gui.GUIHandler;
 
 
 public class ClientApp{

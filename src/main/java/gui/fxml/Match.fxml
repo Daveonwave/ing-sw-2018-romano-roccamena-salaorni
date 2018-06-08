@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="806.0" prefWidth="1270.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.view.gui.GUIHandler">
+<AnchorPane prefHeight="806.0" prefWidth="1270.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayer">
    <children>
       <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="289.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
       <Pane fx:id="pane2" layoutX="7.0" layoutY="77.0" prefHeight="806.0" prefWidth="267.0">
@@ -91,7 +91,7 @@
       <ImageView fx:id="d2" fitHeight="49.0" fitWidth="49.0" layoutX="368.0" layoutY="98.0" onMouseClicked="#dieMove" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d1" fitHeight="49.0" fitWidth="52.0" layoutX="289.0" layoutY="31.0" onMouseClicked="#dieMove" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="p1_11" fitHeight="49.0" fitWidth="52.0" layoutX="288.0" layoutY="452.0" onMouseClicked="#cellMove" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="privateObjective" fitHeight="183.0" fitWidth="150.0" layoutX="289.0" layoutY="242.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="privateObjective1" fitHeight="183.0" fitWidth="150.0" layoutX="289.0" layoutY="242.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="publicObjective2" fitHeight="207.0" fitWidth="150.0" layoutX="1101.0" layoutY="242.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="publicObjective3" fitHeight="200.0" fitWidth="143.0" layoutX="1104.0" layoutY="22.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="p1_12" fitHeight="49.0" fitWidth="52.0" layoutX="346.0" layoutY="452.0" onMouseClicked="#cellMove" pickOnBounds="true" preserveRatio="true" />

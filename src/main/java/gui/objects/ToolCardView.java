@@ -1,4 +1,4 @@
-package mvc.view.gui;
+package gui.objects;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,11 +8,13 @@ public class ToolCardView extends ObjectView{
 
     private ToolCard toolCard;
 
+    //Costruttori
     public ToolCardView(ImageView imageView, ToolCard toolCard) {
         super(imageView);
         this.toolCard = toolCard;
     }
 
+    //Setter/Getter
     public ToolCard getToolCard() {
         return toolCard;
     }
@@ -21,7 +23,7 @@ public class ToolCardView extends ObjectView{
         this.toolCard = toolCard;
     }
 
-    @Override
+    //Ottiene immagine
     public Image imagePath() {
         String path = "";
         switch (toolCard.getName()){
