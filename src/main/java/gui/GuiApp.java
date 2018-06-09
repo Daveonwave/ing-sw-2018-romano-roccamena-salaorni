@@ -33,15 +33,15 @@ public class GuiApp extends Application implements Serializable {
 
     //Componenti
     @FXML
-    Label userNameLabel, connectionLabel;
+    transient Label userNameLabel, connectionLabel;
     @FXML
-    TextField userNameText;
+    transient TextField userNameText;
     @FXML
-    TextArea serverLogText;
+    transient TextArea serverLogText;
     @FXML
-    RadioButton rmiRadio, socketRadio;
+    transient RadioButton rmiRadio, socketRadio;
     @FXML
-    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
+    transient Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
 
 
 
@@ -266,5 +266,10 @@ public class GuiApp extends Application implements Serializable {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle(TITLE);
         changeScene(FXML_PATH, primaryStage);
+    }
+
+    //Lancia applicazione
+    public static void run(String[] args) {
+        launch(args);
     }
 }
