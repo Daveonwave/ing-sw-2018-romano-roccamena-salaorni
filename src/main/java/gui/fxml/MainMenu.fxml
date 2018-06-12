@@ -12,7 +12,7 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
          <children>
-            <Label fx:id="connectionLabel" alignment="CENTER" layoutX="7.0" layoutY="453.0" prefHeight="17.0" prefWidth="386.0" text="DISCONNESSO" textFill="#7cbc97" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="421.0">
+            <Label fx:id="connectionLabel" alignment="CENTER" layoutX="7.0" layoutY="453.0" prefHeight="17.0" prefWidth="386.0" text="DISCONNESSO" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="421.0">
                <font>
                   <Font name="System Bold Italic" size="11.0" />
                </font>

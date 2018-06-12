@@ -15,26 +15,24 @@ public class LogoutHandler extends MenuInputHandler {
 
     //Gestione input
     public void onInputHandle() throws Exception {
-        ConsoleView game = getConsoleView();
+        ConsoleView view = getConsoleView();
         ConsoleMenu menu = getParentMenu();
 
         //Controlla che l'uente sia loggato
-        if (!game.isLogged())
-            game.signalError("non sei connesso al server");
+        if (!view.isLogged())
+            view.signalError("non sei connesso al server");
         else {
             //Richiesta controllore
             try {
-                game.logout();
+                view.logout();
             } catch (AppModelException e) {
-                game.signalError(e.getMessage());
+                view.signalError(e.getMessage());
             } catch (AppControllerException e) {}
-
-            //Client non piu loggato
-            game.setLogged(false);
         }
 
+        //Aggiorna schermo
         Console.clearScreen();
 
-        game.show();
+        view.show();
     }
 }

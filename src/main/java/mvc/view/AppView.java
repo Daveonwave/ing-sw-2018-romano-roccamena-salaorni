@@ -10,22 +10,24 @@ import java.rmi.RemoteException;
 public abstract class AppView implements AppViewStub, Serializable {
     //View astratta dell'applicazione
 
-    private AppControllerStub appController;
+    private AppControllerStub controller;
+
     private String userToken;
     private String userName;
+
     private boolean logged;
 
     //Costruttori
-    public AppView(AppControllerStub appController) {
-        this.appController = appController;
+    public AppView(AppControllerStub controller) {
+        this.controller = controller;
         this.userToken = "";
         this.userName = "";
         this.logged = false;
     }
 
     //Setter/Getter
-    public void setAppController(AppControllerStub appController) {
-        this.appController = appController;
+    public void setController(AppControllerStub controller) {
+        this.controller = controller;
     }
     public void setUserToken(String userToken) {
         this.userToken = userToken;
@@ -37,8 +39,8 @@ public abstract class AppView implements AppViewStub, Serializable {
         this.logged = logged;
     }
 
-    public AppControllerStub getAppController() {
-        return appController;
+    public AppControllerStub getController() {
+        return controller;
     }
     public String getUserToken() {
         return userToken;
@@ -51,14 +53,28 @@ public abstract class AppView implements AppViewStub, Serializable {
     }
 
     //Operazioni su utente
-    public abstract String login(String name) throws RemoteException;
-    public abstract void logout() throws RemoteException;
+    public String login(String name) throws RemoteException {
+        String token = controller.login(name, this);
 
-    //Risposta scritta controllore
+        userToken = token;
+        userName = name;
+        this.logged = true;
+
+        return token;
+    }
+    public void logout() throws RemoteException {
+        controller.logout(userToken);
+
+        userToken = "";
+        userName = "";
+        this.logged = false;
+    }
+
+    //Risposte controllore
     public abstract void respondError(String message) throws RemoteException;
     public abstract void respondAck(String message) throws RemoteException;
 
-    //Osservazione partita
+    //Osservazione multiplayer
     public abstract void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     public abstract void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
 

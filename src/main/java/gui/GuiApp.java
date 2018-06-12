@@ -129,7 +129,17 @@ public class GuiApp extends Application implements Serializable {
         }
 
         //Crea view client
-        guiView = new GuiView(controller);
+        try {
+            guiView = new GuiView(controller, rmiConnection);
+        } catch (RemoteException e) {
+            connectionLabel.setText("DISCONNESSO");
+
+            //Visualizza errore
+            showError("Errore imprevisto");
+            e.printStackTrace();
+            return;
+        }
+
         guiView.setGuiApp(this);
 
         //Imposta stato componenti
@@ -185,21 +195,16 @@ public class GuiApp extends Application implements Serializable {
     }
     public void onLoginClicked(MouseEvent event) {
         String name = userNameText.getText();
-        String token = "";
 
         try {
-            token = guiView.login(name);
+            guiView.login(name);
         } catch (RemoteException e) {
-            e.printStackTrace();
             showError(e.getMessage());
             return;
         }
 
-        guiView.setUserName(name);
-        guiView.setUserToken(token);
-
         //Imposta stato componenti
-        connectionLabel.setText(token);
+        connectionLabel.setText(guiView.getUserToken());
 
         disconnectButton.setDisable(true);
         userNameText.setDisable(true);
@@ -217,7 +222,6 @@ public class GuiApp extends Application implements Serializable {
 
         //Imposta stato componenti
         connectionLabel.setText("CONNESSO");
-        userNameText.setText("");
 
         disconnectButton.setDisable(false);
         userNameText.setDisable(false);

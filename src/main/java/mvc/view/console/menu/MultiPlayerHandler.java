@@ -32,7 +32,7 @@ public class MultiPlayerHandler extends MenuInputHandler {
         try {
             getConsoleView().setWaitingMultiplayer(true);
 
-            view.getAppController().joinMatch(view.getUserToken());
+            view.getController().joinMatch(view.getUserToken());
         } catch (AppModelException e) {
             view.signalError(e.getMessage());
             Console.clearScreen();

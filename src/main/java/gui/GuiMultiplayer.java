@@ -10,7 +10,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import mvc.model.objects.*;
@@ -509,7 +508,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
         for(WindowView windowView: windows){
             windowView.getImageView().setOnMouseClicked(event -> {
                 try {
-                    guiView.getAppController().chooseWindow(guiView.getUserToken(),tokenMatch,windowView.getWindow());
+                    guiView.getController().chooseWindow(guiView.getUserToken(),tokenMatch,windowView.getWindow());
                 } catch (RemoteException e) {
                     //TODO: gestione errori
                     e.printStackTrace();
@@ -644,7 +643,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
                         }
                     }else{
                         getInput().setChoosenDie(selectedDie.getDie());
-                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
                     }
                 }else{
                     this.console.setText("dado non valido per questa tool card");
@@ -675,14 +674,14 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
         if(selectedCell.getCell().getDie()==null){
             if(getSelectedDie() != null){
                 toPlace = false;
-                guiView.getAppController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(), getSelectedDie().getDie());
+                guiView.getController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(), getSelectedDie().getDie());
                 return;
             } else {
                 if(getInput().getChoosenDie()!=null){
                     String name = getSelectedToolCard().getToolCard().getName();
                     if(windowToolCards().contains(name)){
                         getInput().setDestinationCell1(selectedCell.getCell());
-                        guiView.getAppController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
                         return;
                     }else{
                         return;
@@ -722,7 +721,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
             setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
             String name = getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
-                guiView.getAppController().useToolCard(guiView.getUserToken(),this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                guiView.getController().useToolCard(guiView.getUserToken(),this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
             }else{
                 console.setText("hai selezionato la carta tool" + getSelectedToolCard().getToolCard().getName());
                 return;
@@ -753,7 +752,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
         }
     }
     public void endTurn(ActionEvent actionEvent) throws RemoteException{
-        guiView.getAppController().endTurn(guiView.getUserToken(),this.tokenMatch);
+        guiView.getController().endTurn(guiView.getUserToken(),this.tokenMatch);
     }
 
     //Eventi di altre componenti gui

@@ -6,6 +6,7 @@ import mvc.view.AppView;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,10 +17,13 @@ public class GuiView extends AppView {
     private Map<String, GuiMultiplayer> multiplayerMap;
 
     //Costruttori
-    public GuiView(AppControllerStub appController) {
+    public GuiView(AppControllerStub appController, boolean rmiConnection) throws RemoteException {
         super(appController);
         this.guiApp = null;
         this.multiplayerMap = new HashMap<String, GuiMultiplayer>();
+
+        if (rmiConnection)
+            UnicastRemoteObject.exportObject(this, 0);
     }
 
     //Setter
@@ -27,12 +31,8 @@ public class GuiView extends AppView {
         this.guiApp = guiApp;
     }
 
-    //Operazioni utente
-    public synchronized String login(String name) throws RemoteException {
-        return getAppController().login(name, this);
-    }
-    public synchronized void logout() throws RemoteException {
-        getAppController().logout(getUserToken());
+    public GuiApp getGuiApp() {
+        return this.guiApp;
     }
 
     //Risposte controllore

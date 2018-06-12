@@ -15,14 +15,6 @@ public class EmptyView extends AppView {
         super(appController);
     }
 
-    //Utente
-    public String login(String name) throws RemoteException {
-        return null;
-    }
-    public void logout() throws RemoteException {
-
-    }
-
     //Risposte controllore
     public void respondError(String message) throws RemoteException {
 
@@ -33,34 +25,24 @@ public class EmptyView extends AppView {
 
     //Osservazione partita
     public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //TODO: implementazione
     }
     public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //TODO: implementazione
     }
 
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
-
     }
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
-
     }
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
-
     }
     public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
 }

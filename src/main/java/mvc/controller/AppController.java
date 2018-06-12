@@ -89,7 +89,7 @@ public class AppController implements AppControllerStub {
                 throw new AppControllerException("utente sconosciuto");
         }
 
-        viewAck(appView, "connesso come " + name);
+        viewAck(appView, "loggato come " + name);
 
         return token;
     }
@@ -107,10 +107,10 @@ public class AppController implements AppControllerStub {
                 throw new AppControllerException("utente sconosciuto");
         }
 
-        viewAck(appView, "disconnesso");
+        viewAck(appView, "logout effettuato");
     }
 
-    //Sottometodi di gestione partita
+    //Sottometodi di gestione multiplayer
     public synchronized void startMatch() throws RemoteException {
         //Ottiene utenti partecipanti
         List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
@@ -202,27 +202,7 @@ public class AppController implements AppControllerStub {
         }
     }
 
-    //Mosse degli utenti sulla partita
-    public synchronized void joinMatch(String tokenUser) throws RemoteException {
-        //Ottiente gestore partite e partecipa all'attesa
-        User user = model.retrieveUser(tokenUser);
-        multiPlayerLobby.join(tokenUser);
-
-        //Se sono presenti gli utenti partecipanti necessari inizia partita
-        if (multiPlayerLobby.isReady()) {
-            startMatch();
-        }
-    }
-    public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
-        //Ottiene gestore partite
-        User user = model.retrieveUser(tokenUser);
-
-        //L'utente lascia l'attesa
-        multiPlayerLobby.leave(tokenUser);
-
-        //Notifica l'utente dell'uscita
-        userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");
-    }
+    //Operazioni su multiplayer
     public synchronized void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -260,6 +240,27 @@ public class AppController implements AppControllerStub {
         //Notifica ripartecipazione giocatore
         matchModel.notifyPlayerRejoin(tokenMatch);
         matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
+    }
+
+    public synchronized void joinMatch(String tokenUser) throws RemoteException {
+        //Ottiente gestore partite e partecipa all'attesa
+        User user = model.retrieveUser(tokenUser);
+        multiPlayerLobby.join(tokenUser);
+
+        //Se sono presenti gli utenti partecipanti necessari inizia partita
+        if (multiPlayerLobby.isReady()) {
+            startMatch();
+        }
+    }
+    public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
+        //Ottiene gestore partite
+        User user = model.retrieveUser(tokenUser);
+
+        //L'utente lascia l'attesa
+        multiPlayerLobby.leave(tokenUser);
+
+        //Notifica l'utente dell'uscita
+        userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");
     }
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model

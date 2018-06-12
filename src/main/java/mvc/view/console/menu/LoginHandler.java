@@ -29,18 +29,16 @@ public class LoginHandler extends MenuInputHandler {
         }
 
         //Chiede e impost nome utente
-        view.setUserName(view.askInput("qual'e il tuo nome?"));
+        String name = view.askInput("qual'e il tuo nome?");
 
         //Richiesta controllore
         try {
-            view.setUserToken(view.login(view.getUserName()));
+            view.login(name);
         } catch (AppModelException e) {
             view.signalError(e.getMessage());
         } catch (AppControllerException e) {}
 
-        //Client loggato
-        view.setLogged(true);
-
+        //Aggiorna schermo
         Console.clearScreen();
 
         view.show();

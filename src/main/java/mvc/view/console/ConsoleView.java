@@ -179,45 +179,27 @@ public class ConsoleView extends AppView {
         }
     }
 
-    //Operazioni su utente
-    public String login(String name) throws RemoteException {
-        return getAppController().login(getUserName(), this);
-    }
-    public void logout() throws RemoteException {
-        getAppController().logout(getUserToken());
-    }
-
-    //Osservazione partita
+    //Osservazione multiplayer
     public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //TODO: implementazione
     }
     public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //TODO: implementazione
     }
 
     public synchronized void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public synchronized void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public synchronized void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
     public synchronized void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
-
     }
     public synchronized void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
-
     }
     public synchronized void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
-
     }
     public synchronized void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
     }
 }
 
