@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import mvc.controller.AppController;
+import mvc.exceptions.AppControllerException;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
@@ -91,13 +92,7 @@ public class GuiApp extends Application implements Serializable {
         GuiMessage.showError(TITLE, message);
     }
 
-    //Risposte controllore
-    public void respondError(String message) throws RemoteException {
-        serverLogText.setText(serverLogText.getText() + "\n[ERROR] " + message);
-    }
-    public void respondAck(String message) throws RemoteException {
-        serverLogText.setText(serverLogText.getText() + "\n[INFO] " + message);
-    }
+
 
 
     //Eventi componenti gui
@@ -122,7 +117,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("DISCONNESSO");
 
             //Visualizza errore
-            showError("Impossibile connettersi al server");
+            showError("impossibile connettersi al server");
             return;
         }
 
@@ -169,7 +164,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("CONNESSO");
 
             //Visualizza errore
-            showError("Impossibile disconnettersi dal server");
+            showError("impossibile disconnettersi dal server");
             return;
         }
 
@@ -195,10 +190,15 @@ public class GuiApp extends Application implements Serializable {
         String name = userNameText.getText();
 
         try {
+            //Esegue il login
             guiView.login(name);
+
+            //Segnala errori
         } catch (RemoteException e) {
             showError(e.getMessage());
             return;
+        } catch (Exception e) {
+            showError("impossibile eseguire il login");
         }
 
         //Imposta stato componenti
@@ -213,9 +213,13 @@ public class GuiApp extends Application implements Serializable {
     public void onLogoutClicked(MouseEvent event) {
         try {
             guiView.logout();
+
+            //Segnala errori
         } catch (RemoteException e) {
             showError(e.getMessage());
             return;
+        } catch (Exception e) {
+            showError("impossibile eseguire il logout");
         }
 
         //Imposta stato componenti
@@ -228,10 +232,17 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
     }
     public void onMultiplayerClicked(MouseEvent event) {
-        //TODO: implementazione
+        //Esegue la partecipazione ad una nuova partita
+        try {
+            guiView.joinMatch();
 
-        //Visualizza messaggio
-        showError("In attesa dello sviluppo");
+            //Segnala errori
+        } catch (RemoteException e) {
+            showError(e.getMessage());
+            return;
+        } catch (Exception e) {
+            showError("impossibile partecipare ad una partita");
+        }
     }
     public void onExitClicked(MouseEvent event) {
         //Chiude connessione
@@ -244,7 +255,7 @@ public class GuiApp extends Application implements Serializable {
             }
         } catch (Exception e) {
             //Visualizza errore
-            showError("Impossibile disconnettersi dal server");
+            showError("impossibile disconnettersi dal server");
         }
 
         //Termina applicazione

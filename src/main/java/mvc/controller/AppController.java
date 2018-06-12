@@ -20,7 +20,7 @@ public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
     //Tempo massimo di attesa per partecipazione multiplayer
-    public static final int JOIN_WAIT_TIME = 100 * 1000;
+    public static final int JOIN_WAIT_TIME = 2 * 1000;
     //Tempo massimo per giocare un turno
     public static final int TURN_MAX_TIME = 100 * 1000;
 

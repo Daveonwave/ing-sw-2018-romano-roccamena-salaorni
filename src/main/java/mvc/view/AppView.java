@@ -74,6 +74,14 @@ public abstract class AppView implements AppViewStub, Serializable {
     public abstract void respondError(String message) throws RemoteException;
     public abstract void respondAck(String message) throws RemoteException;
 
+    //Operazioni multiplayer
+    public synchronized void joinMatch() throws RemoteException {
+        controller.joinMatch(userToken);
+    }
+    public synchronized void cancelJoinMatch() throws RemoteException {
+        controller.cancelJoinMatch(userToken);
+    }
+
     //Osservazione multiplayer
     public abstract void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException;
     public abstract void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException;

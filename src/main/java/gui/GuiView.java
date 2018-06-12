@@ -14,33 +14,41 @@ public class GuiView extends AppView {
     //View gui dell'applicazione
 
     private GuiApp guiApp;
-    private Map<String, GuiMultiplayer> multiplayerMap;
+    private Map<String, GuiMultiplayerApp> multiplayerApps;
 
     //Costruttori
     public GuiView(AppControllerStub appController, boolean rmiConnection) throws RemoteException {
         super(appController);
         this.guiApp = null;
-        this.multiplayerMap = new HashMap<String, GuiMultiplayer>();
+        this.multiplayerApps = new HashMap<String, GuiMultiplayerApp>();
 
         if (rmiConnection)
             UnicastRemoteObject.exportObject(this, 0);
     }
 
-    //Setter
+    //Setter/Getter
     public void setGuiApp(GuiApp guiApp) {
         this.guiApp = guiApp;
     }
+    public void setMultiplayerApps(Map<String, GuiMultiplayerApp> multiplayerApps) {
+        this.multiplayerApps = multiplayerApps;
+    }
+
 
     public GuiApp getGuiApp() {
         return this.guiApp;
     }
+    public Map<String, GuiMultiplayerApp> getMultiplayerApps() {
+        return this.multiplayerApps;
+
+    }
 
     //Risposte controllore
     public synchronized void respondError(String message) throws RemoteException {
-        guiApp.respondError(message);
+        guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
     }
     public synchronized void respondAck(String message) throws RemoteException {
-        guiApp.respondAck(message);
+        guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
     }
 
     //Osservazione multiplayer
@@ -52,17 +60,23 @@ public class GuiView extends AppView {
     }
 
     public synchronized void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //Crea nuova gui ultiplayer
-        GuiMultiplayer guiMultiplayer = new GuiMultiplayer();
-        multiplayerMap.put(tokenMatch, guiMultiplayer);
+        //Crea nuova gui multiplayer e view associata
+        GuiMultiplayerApp guiMultiplayerApp = new GuiMultiplayerApp();
 
-        //Avvia altra finestra
+        multiplayerApps.put(tokenMatch, guiMultiplayerApp);
+
+        //Mostra nuova finestra
         try {
-            guiMultiplayer.show(match, tokenMatch);
+            guiMultiplayerApp.show(match, tokenMatch);
         } catch (IOException e) {
-            //guiApp.showError("Errore inaspettato, l'applicazione si chiuderà");
+            //Segnala errore
+            guiApp.showError("Impossibile mostrare una nuova partita");
+
             System.exit(0);
         }
+
+        //Chiama evento della nuova finestra
+        guiMultiplayerApp.onMatchStart(tokenMatch, match);
     }
     public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 

@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import mvc.model.objects.*;
-import mvc.stubs.MultiPlayerObserver;
+import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;
 
 import java.io.IOException;
@@ -22,13 +22,14 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Serializable {
+public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Serializable {
     //Finestra gui di una partita multiplayer
 
     public final static String FXML_PATH = "fxml/Match.fxml";
     public final static String TITLE = "Sagrada Multiplayer";
 
     private GuiView guiView;
+
     private MultiPlayerMatch match;
     private String tokenMatch;
 
@@ -69,6 +70,10 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
     ImageView round1,round2,round3,round4,round5,round6,round7,round8,round9,round10;
     @FXML
     ImageView roundDie1,roundDie2,roundDie3,roundDie4,roundDie5,roundDie6,roundDie7,roundDie8,roundDie9;
+
+
+
+
 
     //Setter/Getter
     public MultiPlayerMatch getMatch() {
@@ -149,12 +154,21 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
 
 
 
+
     //Crea e visualizza la finestra
     public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
         this.match = match;
         this.tokenMatch = tokenMatch;
 
-        createMatchGui();
+        guiView.getGuiApp().showInfo("Una nuova partita verrà mostrata a breve! (si spera)");
+
+
+
+
+        //createMatchGui();
+
+
+
         //Stage stage = new Stage();
 
         //Scene scene = new Scene(new StackPane(), 200, 100);
@@ -163,6 +177,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
         //stage.setResizable(false);
         //stage.show();
     }
+
 
 
 
@@ -615,6 +630,7 @@ public class GuiMultiplayer implements ViewResponder, MultiPlayerObserver, Seria
 
         return null;
     }
+
 
 
 
