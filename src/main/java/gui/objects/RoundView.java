@@ -2,9 +2,10 @@ package gui.objects;
 
 import javafx.scene.image.ImageView;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RoundView {
+public class RoundView implements Serializable{
 
     private ImageView imageView;
     private List<DieView> dieViews;

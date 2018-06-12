@@ -33,15 +33,15 @@ public class GuiApp extends Application implements Serializable {
 
     //Componenti
     @FXML
-    transient Label userNameLabel, connectionLabel;
+    Label userNameLabel, connectionLabel;
     @FXML
-    transient TextField userNameText;
+    TextField userNameText;
     @FXML
-    transient TextArea serverLogText;
+    TextArea serverLogText;
     @FXML
-    transient RadioButton rmiRadio, socketRadio;
+    RadioButton rmiRadio, socketRadio;
     @FXML
-    transient Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
+    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
 
 
 
@@ -98,8 +98,6 @@ public class GuiApp extends Application implements Serializable {
     public void respondAck(String message) throws RemoteException {
         serverLogText.setText(serverLogText.getText() + "\n[INFO] " + message);
     }
-
-
 
 
     //Eventi componenti gui
