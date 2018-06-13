@@ -1,7 +1,6 @@
 package connection;
 
 import connection.rmi.RmiServer;
-import connection.sockets.ServerHandler;
 import connection.sockets.SocketServer;
 
 import java.io.IOException;

@@ -180,6 +180,7 @@ public class ConsoleView extends AppView {
     }
 
     //Osservazione multiplayer
+
     public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
     }
     public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {

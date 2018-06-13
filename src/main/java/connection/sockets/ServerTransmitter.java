@@ -1,42 +1,58 @@
 package connection.sockets;
 
+
+import connection.sockets.communication.handlers.ClientRequestHandler;
+import connection.sockets.communication.rensponses.client.ClientResponse;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class ConnectionHandler implements Runnable {
-    //Gestito da un thread separato
+public class ServerTransmitter implements Runnable {
+    //Gestore della comunicazione del server con i client
 
     private Socket socket;
+
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
+
+    private ClientRequestHandler clientRequestHandler;
+
     private boolean isRunning;
-    private final ServerHandler serverHandler;
 
 
     //Costruttori
-    public ConnectionHandler(Socket socket) throws IOException {
+    public ServerTransmitter(Socket socket, ClientRequestHandler clientRequestHandler) throws IOException {
         this.socket = socket;
         this.inputStream = new ObjectInputStream(socket.getInputStream());
         this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-        this.serverHandler = new ServerHandler(this);
+        this.clientRequestHandler = clientRequestHandler;
     }
 
     //Setter/Getter
+    public void setClientRequestHandler(ClientRequestHandler clientRequestHandler) {
+        this.clientRequestHandler = clientRequestHandler;
+    }
     public void setRunning() {
         isRunning = true;
     }
 
+    public ClientRequestHandler getRequestHandler(ClientRequestHandler clientRequestHandler) {
+        return this.clientRequestHandler;    }
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    //Gestisce la comunicazione da view a server a lato server
     @Override
-    //Fa funzionare la comunicazione
     public void run() {
         try{
             while(isRunning){
-                Object response = IOSupport.receive(inputStream);
+                ClientResponse clientResponse = IOSupport.receiveFromClient(inputStream).handleAction(clientRequestHandler);
 
-                if(response != null)
-                    IOSupport.send(outputStream, response);
+                if(clientResponse != null)
+                    IOSupport.sendToClient(outputStream, clientResponse);
             }
         } catch(Exception e){
             e.printStackTrace();

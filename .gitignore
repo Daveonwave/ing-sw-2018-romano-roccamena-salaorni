@@ -9,6 +9,7 @@
 #   Aggiunte esclusioni   #
 ###########################
 .idea
+.idea/compiler.xml
 target
 out
 SagradaProject.iml

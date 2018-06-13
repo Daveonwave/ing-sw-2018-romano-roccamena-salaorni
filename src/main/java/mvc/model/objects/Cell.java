@@ -7,7 +7,7 @@ import java.awt.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class Cell implements Serializable {
+public class    Cell implements Serializable {
     //Cella di una finestra
 
     private Die die;

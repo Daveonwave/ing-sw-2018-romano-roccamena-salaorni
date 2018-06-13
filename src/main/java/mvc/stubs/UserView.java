@@ -6,6 +6,6 @@ import java.rmi.RemoteException;
 public interface UserView extends Remote {
     //View utente
 
-    String login(String name) throws RemoteException;
+    String login(String userToken) throws RemoteException;
     void logout() throws RemoteException;
 }

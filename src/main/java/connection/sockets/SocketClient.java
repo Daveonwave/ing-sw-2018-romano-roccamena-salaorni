@@ -1,7 +1,8 @@
 package connection.sockets;
 
 import connection.ServerInfo;
-import connection.sockets.actionshandling.Request;
+import connection.sockets.communication.requests.client.ClientRequest;
+import connection.sockets.communication.rensponses.client.ClientResponse;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,33 +13,43 @@ public class SocketClient {
     //Client Socket
 
     private Socket socket;
-    private ObjectInputStream inputStream;
-    private ObjectOutputStream outputStream;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
+
+    private ViewProxy viewProxy;
 
     //Costruttori
     public SocketClient(){}
 
+    //Setter/Getter
+    public ObjectInputStream getIn() {
+        return in;
+    }
+    public ObjectOutputStream getOut() {
+        return out;
+    }
+
     //Inizializza il client
     public void init() throws IOException{
         socket = new Socket(ServerInfo.SERVER_ADDRESS, ServerInfo.SOCKET_PORT);
-        inputStream = new ObjectInputStream(socket.getInputStream());
-        outputStream = new ObjectOutputStream(socket.getOutputStream());
+        in = new ObjectInputStream(socket.getInputStream());
+        out = new ObjectOutputStream(socket.getOutputStream());
     }
 
     //Chiude il client
     public void close() throws IOException {
-        inputStream.close();
-        outputStream.close();
+        in.close();
+        out.close();
         socket.close();
     }
 
     //Ottiene risposta del server
-    public Object getResponse(){
-        return IOSupport.receive(inputStream);
+    public ClientResponse getResponse(){
+        return IOSupport.receiveFromServer(in);
     }
 
     //Invia richiesta al server
-    public void request(Request request){
-        IOSupport.send(outputStream, request);
+    public void request(ClientRequest clientRequest){
+        IOSupport.sendToServer(out, clientRequest);
     }
 }

@@ -1,7 +1,10 @@
 package connection.sockets;
 
-import connection.Server;
 import connection.ServerInfo;
+import connection.sockets.communication.ServerActionHandler;
+import connection.sockets.communication.handlers.ClientRequestHandler;
+import mvc.controller.AppController;
+import mvc.stubs.AppControllerStub;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -14,12 +17,18 @@ public class SocketServer implements Closeable {
     //Server Socket
 
     private static SocketServer singletonServer;
+
+    private ClientRequestHandler clientRequestHandler;
+
     private ServerSocket serverSocket;
     private ExecutorService threadPool;
+
     private boolean isReady;
 
     //Costruttori - Singleton
     private SocketServer() {
+        this.clientRequestHandler = null;
+        this.serverSocket = null;
         threadPool = Executors.newCachedThreadPool();
         this.isReady = false;
     }
@@ -44,6 +53,7 @@ public class SocketServer implements Closeable {
         if(singletonServer == null ){
             singletonServer = new SocketServer();
         }
+
         return singletonServer;
     }
 
@@ -65,10 +75,19 @@ public class SocketServer implements Closeable {
     public void runSocketServer() throws IOException{
         this.init();
 
+        AppControllerStub controller = new AppController();
+
         while(isReady) {
             try{
                 final Socket socket = acceptConnection();
-                threadPool.submit(new ConnectionHandler(socket));
+
+                ServerTransmitter serverTransmitter = new ServerTransmitter(socket, null);
+                ViewProxy viewProxy = new ViewProxy(serverTransmitter);
+                clientRequestHandler = new ServerActionHandler(viewProxy, controller);
+                serverTransmitter.setClientRequestHandler(clientRequestHandler);
+
+
+                threadPool.submit(serverTransmitter);
 
             } catch (IOException e){
                 e.printStackTrace();
