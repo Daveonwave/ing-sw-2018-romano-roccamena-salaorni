@@ -162,10 +162,10 @@ public class ConsoleView extends AppView {
     }
 
     //Risposte al controllore
-    public void respondAck(String message) {
+    public void respondAck(String message, String tokenMatch) {
         signalAck(message);
     }
-    public void respondError(String message) {
+    public void respondError(String message, String tokenMatch) {
         signalError(message);
 
         //Gestione attesa multiplayer

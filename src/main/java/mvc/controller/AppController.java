@@ -51,21 +51,21 @@ public class AppController implements AppControllerStub {
     }
 
     //Ack ed error su utenti di un mvc.match o singolarmente
-    public synchronized void matchBroadcastAck(MatchModel matchModel, String message) throws RemoteException {
+    public synchronized void matchBroadcastAck(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
-            player.getUser().getAppView().respondAck(message);
+            player.getUser().getAppView().respondAck(message, tokenMatch);
     }
-    public synchronized void matchBroadcastError(MatchModel matchModel, String message) throws RemoteException {
+    public synchronized void matchBroadcastError(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
-            player.getUser().getAppView().respondError(message);
+            player.getUser().getAppView().respondError(message, tokenMatch);
 
         throw new AppControllerException(message);
     }
     public synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
-        appView.respondAck(message);
+        appView.respondAck(message, null);
     }
     public synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
-        appView.respondError(message);
+        appView.respondError(message, null);
         throw new AppControllerException(message);
     }
     public synchronized void userAck(User user, String message) throws RemoteException {
@@ -137,17 +137,17 @@ public class AppController implements AppControllerStub {
         try {
             match.beginMatch();
         } catch (MatchException e) {
-            matchBroadcastError(matchModel, e.getMessage());
+            matchBroadcastError(tokenMatch, matchModel, e.getMessage());
             return;
         }
 
         //Notifica inizio della partita
         matchModel.notifyMatchStart(tokenMatch);
-        matchBroadcastAck(matchModel, "partita iniziata");
+        matchBroadcastAck(tokenMatch, matchModel, "partita iniziata");
 
         //Notifica inizio fase di scelta delle finestre
         matchModel.notifyChooseWindows(tokenMatch);
-        matchBroadcastAck(matchModel, "i giocatori stanno scegliendo le finestre");
+        matchBroadcastAck(tokenMatch, matchModel, "i giocatori stanno scegliendo le finestre");
     }
     public synchronized void finishTurn(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel, Player player) throws RemoteException {
         //Esegue la fine del turno
@@ -164,7 +164,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica fine turno del giocatore
         matchModel.notifyTurnEnd(tokenMatch, match);
-        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " finisce il suo turno");
+        matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " finisce il suo turno");
 
         //Controllo se i round sono finiti
         if (match.getTurnHandler().isEnded()) {
@@ -172,12 +172,12 @@ public class AppController implements AppControllerStub {
             for (Player p : match.getPlayers()) {
                 PlayerPoints points = match.getPlayerPoints(p);
                 matchModel.notifyGetPoints(tokenMatch, player, points);
-                matchBroadcastAck(matchModel, player.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
+                matchBroadcastAck(tokenMatch, matchModel, player.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
             }
 
             //Notifica fine partita
             matchModel.notifyMatchEnd(tokenMatch);
-            matchBroadcastAck(matchModel, "partita conclusa");
+            matchBroadcastAck(tokenMatch, matchModel, "partita conclusa");
 
             //Elimina giocatore associato a ogni utente
             for (Player p : match.getPlayers())
@@ -188,7 +188,7 @@ public class AppController implements AppControllerStub {
         } else {
             //Notifica inizio nuovo turno
             matchModel.notifyTurnStart(tokenMatch, match);
-            matchBroadcastAck(matchModel, "inizio turno del giocatore " + match.getTurnPlayer());
+            matchBroadcastAck(tokenMatch, matchModel, "inizio turno del giocatore " + match.getTurnPlayer());
 
             //Avvia controllo tempo turno
             match.getTimedTurnHandler().start();
@@ -220,7 +220,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica abbandono giocatore
         matchModel.notifyPlayerLeave(tokenMatch);
-        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
+        matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
     }
     public synchronized void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
@@ -239,7 +239,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica ripartecipazione giocatore
         matchModel.notifyPlayerRejoin(tokenMatch);
-        matchBroadcastAck(matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
+        matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
     }
 
     public synchronized void joinMatch(String tokenUser) throws RemoteException {
@@ -283,7 +283,7 @@ public class AppController implements AppControllerStub {
         if (match.getTurnHandler().isStarted()) {
             //Notifica inizio nuovo turno
             matchModel.notifyTurnStart(tokenMatch, match);
-            matchBroadcastAck(matchModel, "iniziano i round della partita");
+            matchBroadcastAck(tokenMatch, matchModel, "iniziano i round della partita");
 
             //Avvia controllo tempo turno
             match.getTimedTurnHandler().start();
@@ -309,7 +309,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica il piazzamento del dado
         matchModel.notifyPlaceDie(tokenMatch, cell, die);
-        matchBroadcastAck(matchModel, "il giocatore " + user.getName() + " ha piazzato un dado");
+        matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + user.getName() + " ha piazzato un dado");
     }
     public synchronized void useToolCard(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         //Ottiene oggetti dal model
@@ -330,7 +330,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica l'utilizzo della carta strumento
         matchModel.notifyUseTool(tokenMatch, toolCard);
-        matchBroadcastAck(matchModel, "il giocatore " + user.getName() + " ha usato la carta strumento " + toolCard.getName());
+        matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + user.getName() + " ha usato la carta strumento " + toolCard.getName());
     }
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model

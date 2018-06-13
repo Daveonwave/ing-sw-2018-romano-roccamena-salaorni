@@ -71,8 +71,8 @@ public abstract class AppView implements AppViewStub, Serializable {
     }
 
     //Risposte controllore
-    public abstract void respondError(String message) throws RemoteException;
-    public abstract void respondAck(String message) throws RemoteException;
+    public abstract void respondError(String message, String tokenMatch) throws RemoteException;
+    public abstract void respondAck(String message, String tokenMatch) throws RemoteException;
 
     //Operazioni multiplayer
     public synchronized void joinMatch() throws RemoteException {

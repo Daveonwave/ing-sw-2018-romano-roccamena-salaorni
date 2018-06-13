@@ -157,7 +157,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
     //Crea e visualizza la finestra
     public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
-        createMatchGui();
+        GuiMessage.showInfo("inizio partita ricevuto");
+
+        //createMatchGui();
     }
 
 
@@ -802,11 +804,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
 
     //Risposte controllore
-    public void respondError(String message) throws RemoteException {
-
+    public void respondError(String message, String tokenMatch) throws RemoteException {
+        GuiMessage.showInfo("RESPOND ERROR TEMPORANEA\n" + message);
     }
-    public void respondAck(String message) throws RemoteException {
-
+    public void respondAck(String message, String tokenMatch) throws RemoteException {
+        GuiMessage.showInfo("RESPOND VIEW TEMPORANEA\n" + message);
     }
 
    //Osservazione multiplayer

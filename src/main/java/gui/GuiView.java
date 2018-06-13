@@ -45,11 +45,61 @@ public class GuiView extends AppView {
     }
 
     //Risposte controllore
-    public synchronized void respondError(String message) throws RemoteException {
-        guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
+    public synchronized void respondError(String message, String tokenMatch) throws RemoteException {
+        if (tokenMatch == null) {
+            guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
+        } else {
+            GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
+
+            if (guiMultiplayerApp == null) {
+                //Segnala errore
+                GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
+                return;
+            }
+
+            //Inoltra la risposta alla gui corrispondente
+            Platform.runLater(new Runnable() {
+
+                //Esecuzione nel thread javafx
+                public void run() {
+                    try {
+                        guiMultiplayerApp.respondAck(message, tokenMatch);
+                    } catch (IOException e) {
+                        //Segnala errore
+                        e.printStackTrace();
+                        GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    }
+                }
+            });
+        }
     }
-    public synchronized void respondAck(String message) throws RemoteException {
-        guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
+    public synchronized void respondAck(String message, String tokenMatch) throws RemoteException {
+        if (tokenMatch == null) {
+            guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
+        } else {
+            GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
+
+            if (guiMultiplayerApp == null) {
+                //Segnala errore
+                GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
+                return;
+            }
+
+            //Inoltra la risposta alla gui corrispondente
+            Platform.runLater(new Runnable() {
+
+                //Esecuzione nel thread javafx
+                public void run() {
+                    try {
+                        guiMultiplayerApp.respondError(message, tokenMatch);
+                    } catch (IOException e) {
+                        //Segnala errore
+                        e.printStackTrace();
+                        GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    }
+                }
+            });
+        }
     }
 
     //Osservazione multiplayer
@@ -77,9 +127,7 @@ public class GuiView extends AppView {
                 } catch (IOException e) {
                     //Segnala errore
                     e.printStackTrace();
-                    GuiMessage.showError("Impossibile mostrare una nuova partita");
-
-                    System.exit(0);
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
                 }
             }
         });

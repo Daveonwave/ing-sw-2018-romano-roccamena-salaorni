@@ -15,10 +15,10 @@ public class BaseConsoleView extends AppView {
     }
 
     //Risposte controllore
-    public void respondError(String message) throws RemoteException {
+    public void respondError(String message, String tokenMatch) throws RemoteException {
         System.out.println("[ERROR] " + message);
     }
-    public void respondAck(String message) throws RemoteException {
+    public void respondAck(String message, String tokenMatch) throws RemoteException {
         System.out.println("[INFO] " + message);
     }
 
