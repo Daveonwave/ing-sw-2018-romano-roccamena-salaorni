@@ -45,8 +45,16 @@ public class GuiView extends AppView {
     }
 
     //Risposte controllore
-    public synchronized void respondError(String message, String tokenMatch) throws RemoteException {
+    public void respondError(String message, String tokenMatch) throws RemoteException {
         if (tokenMatch == null) {
+            if (guiApp.getWaitingMultiplayer()) {
+                //Imposta stato componenti
+                guiApp.setWaitingMultiplayer(false);
+
+                guiApp.multiplayerButton.setDisable(false);
+                guiApp.cancelButton.setDisable(true);
+            }
+
             guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
         } else {
             GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
@@ -73,7 +81,7 @@ public class GuiView extends AppView {
             });
         }
     }
-    public synchronized void respondAck(String message, String tokenMatch) throws RemoteException {
+    public void respondAck(String message, String tokenMatch) throws RemoteException {
         if (tokenMatch == null) {
             guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
         } else {
