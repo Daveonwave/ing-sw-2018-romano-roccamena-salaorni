@@ -521,7 +521,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         //Finalizza e mostra finestra
         root.getChildren().add(anchorPane1);
-        
+
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());

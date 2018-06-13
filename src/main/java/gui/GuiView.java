@@ -123,7 +123,7 @@ public class GuiView extends AppView {
             //Esecuzione nel thread javafx
             public void run() {
                 try {
-                    guiMultiplayerApp.show(match, tokenMatch);
+                    guiMultiplayerApp.onMatchStart(tokenMatch, match);
                 } catch (IOException e) {
                     //Segnala errore
                     e.printStackTrace();
@@ -132,8 +132,6 @@ public class GuiView extends AppView {
             }
         });
 
-        //Chiama evento della nuova finestra
-        guiMultiplayerApp.onMatchStart(tokenMatch, match);
     }
     public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         getMultiplayerApps().get(tokenMatch).onChooseWindows(tokenMatch,match);
