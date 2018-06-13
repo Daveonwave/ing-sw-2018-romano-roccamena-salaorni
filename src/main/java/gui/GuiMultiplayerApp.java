@@ -636,7 +636,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
 
     //Eventi componenti gui di mosse della partita
-    public void dieMove(ActionEvent actionEvent) throws RemoteException{
+    public void onDieClick(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -680,7 +680,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
-    public void cellMove(ActionEvent actionEvent) throws RemoteException{
+    public void onCellClick(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -720,7 +720,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
-    public void toolCardMove(ActionEvent actionEvent) throws RemoteException{
+    public void onToolCardClick(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -749,7 +749,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
-    public void roundDieMove(ActionEvent actionEvent) throws RemoteException{
+    public void onRoundDieClick(ActionEvent actionEvent) throws RemoteException{
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }

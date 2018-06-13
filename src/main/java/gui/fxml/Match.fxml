@@ -6,10 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
+<<<<<<< Updated upstream
 <AnchorPane prefHeight="806.0" prefWidth="1270.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayerApp">
+=======
+<AnchorPane prefHeight="802.0" prefWidth="1270.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayer">
+>>>>>>> Stashed changes
    <children>
       <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="289.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="pane2" layoutX="7.0" layoutY="77.0" prefHeight="806.0" prefWidth="267.0">
+      <Pane fx:id="pane2" layoutY="77.0" prefHeight="719.0" prefWidth="274.0" style="-fx-background-color: brown;">
          <children>
             <ImageView fx:id="w4" fitHeight="193.0" fitWidth="243.0" layoutX="13.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="w3" fitHeight="193.0" fitWidth="247.0" layoutX="14.0" layoutY="321.0" pickOnBounds="true" preserveRatio="true" />
