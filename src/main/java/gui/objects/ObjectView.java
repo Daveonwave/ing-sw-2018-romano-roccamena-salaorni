@@ -14,7 +14,6 @@ public abstract class ObjectView implements Serializable{
     //Costruttori
     public ObjectView( ImageView imageView) {
         this.imageView = imageView;
-        this.imageView.setImage(imagePath());
 
     }
 

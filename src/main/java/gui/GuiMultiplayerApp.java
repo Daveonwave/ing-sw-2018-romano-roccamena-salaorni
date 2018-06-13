@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import mvc.model.objects.*;
+import mvc.stubs.AppViewStub;
 import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;
 
@@ -158,12 +159,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     //Crea e visualizza la finestra
     public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
         GuiMessage.showInfo("inizio partita ricevuto");
-
-        //createMatchGui();
+        this.match = match;
+        this.tokenMatch = tokenMatch;
+        createMatchGui();
     }
-
-
-
 
 
     //Associazioni tra bottoni e classi view corrispondenti
@@ -482,14 +481,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void createMatchGui() throws IOException {
         //Carica fxml
         FXMLLoader loader = new FXMLLoader();
-        AnchorPane root = loader.load(getClass().getResource("/gui/fxml/Match.fxml"));
+        AnchorPane root = loader.load(getClass().getResource("fxml/Match.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
         anchorPane1.setPrefSize(1270,806);
         List<WindowView> windows = new ArrayList<>(4);
 
         //Crea view finestre
-        for(Player player:match.getPlayers()){
-            if (player.getUser().getAppView().equals(guiView)){
+        for(Player player:this.match.getPlayers()){
+            String name = player.getUser().getName();
+            if (name.equals(guiView.getUserName())){
                 for( int i = 0; i<4; i++){
                     windows.add(new WindowView(new ImageView(),player.getStartWindows().get(i),null));
                 }
@@ -609,18 +609,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
     public PlayerView retrieveThisPlayer(){
         for (PlayerView playerView: players){
-            if(playerView.getPlayer().getUser().getAppView().equals(this)) return playerView;
+            if(playerView.getPlayer().getUser().getName().equals(this.guiView.getUserName())) return playerView;
         }
 
         return null;
     }
 
 
-
-
-
     //Eventi componenti gui di mosse della partita
-    public void onDieClick(ActionEvent actionEvent) throws RemoteException{
+    public void onDieClick(ActionEvent actionEvent){
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -643,7 +640,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         }
                     }else{
                         getInput().setChoosenDie(selectedDie.getDie());
-                        guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        try {
+                            guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else{
                     this.console.setText("dado non valido per questa tool card");
@@ -655,6 +656,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }else{
             if(toPlace){
+                this.console.setText("non puoi deselezionare questo dado perchè deve essere piazzato");
                 return;
             }else {
                 this.console.setText("hai deselezionato il dado"+ getSelectedDie().getDie().getShade() + "" + getSelectedDie().getDie().getColor().toString());
@@ -664,7 +666,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
-    public void onCellClick(ActionEvent actionEvent) throws RemoteException{
+    public void onCellClick(ActionEvent actionEvent){
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -674,14 +676,22 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(selectedCell.getCell().getDie()==null){
             if(getSelectedDie() != null){
                 toPlace = false;
-                guiView.getController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(), getSelectedDie().getDie());
+                try {
+                    guiView.getController().placeDie(guiView.getUserToken(),this.tokenMatch,selectedCell.getCell(), getSelectedDie().getDie());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 return;
             } else {
                 if(getInput().getChoosenDie()!=null){
                     String name = getSelectedToolCard().getToolCard().getName();
                     if(windowToolCards().contains(name)){
                         getInput().setDestinationCell1(selectedCell.getCell());
-                        guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        try {
+                            guiView.getController().useToolCard(guiView.getUserToken(), this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         return;
                     }else{
                         return;
@@ -704,7 +714,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
-    public void onToolCardClick(ActionEvent actionEvent) throws RemoteException{
+    public void onToolCardClick(ActionEvent actionEvent){
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -721,7 +731,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             setInput(new ToolCardInput(null, null, null,null,match.getTurnHandler().getRound(),null,null,null,0,false));
             String name = getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
-                guiView.getController().useToolCard(guiView.getUserToken(),this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                try {
+                    guiView.getController().useToolCard(guiView.getUserToken(),this.tokenMatch, getInput(), getSelectedToolCard().getToolCard());
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }else{
                 console.setText("hai selezionato la carta tool" + getSelectedToolCard().getToolCard().getName());
                 return;
@@ -733,7 +747,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
-    public void onRoundDieClick(ActionEvent actionEvent) throws RemoteException{
+    public void onRoundDieClick(ActionEvent actionEvent){
         if(this.match.getTurnPlayer().getUser().getAppView().equals(guiView)){
             return;
         }
@@ -771,13 +785,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
     }
     public void zoomIn(ActionEvent actionEvent){
-        if(actionEvent.getSource().equals(toolCard1)) zoom.setImage(toolCard1.getImage());
-        if(actionEvent.getSource().equals(toolCard2)) zoom.setImage(toolCard2.getImage());
-        if(actionEvent.getSource().equals(toolCard3)) zoom.setImage(toolCard3.getImage());
-        if(actionEvent.getSource().equals(publicObjective1)) zoom.setImage(publicObjective1.getImage());
-        if(actionEvent.getSource().equals(publicObjective2)) zoom.setImage(publicObjective2.getImage());
-        if(actionEvent.getSource().equals(publicObjective3)) zoom.setImage(publicObjective3.getImage());
-        if(actionEvent.getSource().equals(privateObjective)) zoom.setImage(privateObjective1.getImage());
+        Object source = actionEvent.getSource();
+        if(source.equals(toolCard1)) zoom.setImage(toolCard1.getImage());
+        if(source.equals(toolCard2)) zoom.setImage(toolCard2.getImage());
+        if(source.equals(toolCard3)) zoom.setImage(toolCard3.getImage());
+        if(source.equals(publicObjective1)) zoom.setImage(publicObjective1.getImage());
+        if(source.equals(publicObjective2)) zoom.setImage(publicObjective2.getImage());
+        if(source.equals(publicObjective3)) zoom.setImage(publicObjective3.getImage());
+        if(source.equals(privateObjective)) zoom.setImage(privateObjective1.getImage());
     }
     public void zoomOut(ActionEvent actionEvent){
         zoom.setImage(null);
@@ -801,8 +816,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
 
-
-
     //Risposte controllore
     public void respondError(String message, String tokenMatch) throws RemoteException {
         GuiMessage.showInfo("RESPOND ERROR TEMPORANEA\n" + message);
@@ -820,21 +833,75 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        try {
+            show(match, tokenMatch);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        if(match.getTurnHandler().isFirstTurn()){
+            createMatchRoundsGui(match);
+            return;
+        }
+        if (match.getTurnHandler().isRoundFirstTurn()){
+            for (Die die : match.getMatchDice().getDraftPool()){
+                DieView dieView = this.dice.get(match.getMatchDice().getDraftPool().indexOf(die));
+                dieView.setDie(die);
+                dieView.getImageView().setImage(dieView.imagePath());
+                dieView.getImageView().setVisible(true);
+            }
+
+        }
 
     }
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        if (match.getTurnHandler().isRoundLastTurn()){
+            this.rounds.get(match.getTurnHandler().getRound()).getImageView().setVisible(true);
+
+            List<Die> roundtrackDice = match.getRoundTrack().retrieveDice(match.getTurnHandler().getRound()-1);
+            for(Die die: roundtrackDice) {
+                rounds.get(match.getTurnHandler().getRound()-1).getDieViews().add(new DieView(null,die));
+            }
+        }
 
     }
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
+        DieView dieView = retrieveDieView(dice,die);
+        retrievePlayer(players,match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getImageView().setImage(dieView.getImageView().getImage());
+        if(match.getTurnPlayer().getUser().getAppView().equals(this)){
+            this.selectedDie = null;
+        }
+        dieView.getImageView().setVisible(false);
 
     }
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
+        for (Die die : match.getMatchDice().getDraftPool()){
+            DieView dieView = this.dice.get(match.getMatchDice().getDraftPool().indexOf(die));
+            dieView.setDie(die);
+            dieView.getImageView().setImage(dieView.imagePath());
+            dieView.getImageView().setVisible(true);
+        }
+        for (CellView[] cells: retrievePlayer(players, match.getTurnPlayer()).getWindow().getCells()){
+            for (CellView cell: cells){
+                if(cell.getCell().getDie()!= null){
+                    cell.getImageView().setImage(new DieView(null, cell.getCell().getDie()).getImageView().getImage());
+                }
+            }
+        }
+
+        if(match.getTurnPlayer().getUser().getAppView().equals(this)){
+            this.setSelectedToolCard(null);
+            if(noSelectionToolCards().contains(toolCard.getName())){
+                this.getSelectedDie().setDie(input.getChoosenDie());
+                toPlace = true;
+            }
+
+        }
 
     }
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {

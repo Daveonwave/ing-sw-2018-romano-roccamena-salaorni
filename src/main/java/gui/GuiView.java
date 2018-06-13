@@ -136,19 +136,23 @@ public class GuiView extends AppView {
         guiMultiplayerApp.onMatchStart(tokenMatch, match);
     }
     public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
+        getMultiplayerApps().get(tokenMatch).onChooseWindows(tokenMatch,match);
     }
     public synchronized void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        getMultiplayerApps().get(tokenMatch).onTurnStart(tokenMatch,match);
 
     }
     public synchronized void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        this.getMultiplayerApps().get(tokenMatch).onTurnEnd(tokenMatch,match);
+
 
     }
     public synchronized void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
+        this.getMultiplayerApps().get(tokenMatch).onPlaceDie(tokenMatch,match,cell,die);
 
     }
     public synchronized void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
-
+        getMultiplayerApps().get(tokenMatch).onUseTool(tokenMatch,match,toolCard);
     }
     public synchronized void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 

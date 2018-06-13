@@ -15,6 +15,7 @@ public class WindowView extends ObjectView{
         super(imageView);
         this.window = window;
         this.cells = cells;
+        this.getImageView().setImage(imagePath());
     }
 
     //Setter/Getter
@@ -62,49 +63,49 @@ public class WindowView extends ObjectView{
                 path = "auroraemagnificus.PNG";
                 break;
             case "battlo":
-                path = "battlo.PNG";
+                path ="battlo.PNG";
                 break;
             case "comitas":
-                path = "comitas.PNG";
+                path ="comitas.PNG";
                 break;
             case "firelight":
-                path = "firelight.PNG";
+                path ="firelight.PNG";
                 break;
             case "firmitas":
-                path = "firmitas.PNG";
+                path ="firmitas.PNG";
                 break;
             case "fulgor del cielo":
-                path = "fulgordelcielo.PNG";
+                path ="fulgordelcielo.PNG";
                 break;
             case "gravitas":
-                path = "gravitas.PNG";
+                path ="gravitas.PNG";
                 break;
             case  "industria":
-                path = "industria.PNG";
+                path ="industria.PNG";
                 break;
             case "lux astram":
-                path = "luxastram.PNG";
+                path ="luxastram.PNG";
                 break;
             case "ripple of light":
-                path = "ripplesoflight.PNG";
+                path ="ripplesoflight.PNG";
                 break;
             case "shadow thief":
-                path = "shadowthief.PNG";
+                path ="shadowthief.PNG";
                 break;
             case "virtus":
-                path = "virtus.PNG";
+                path ="virtus.PNG";
                 break;
             case "symphony of light":
-                path = "symphonyoflight.PNG";
+                path ="symphonyoflight.PNG";
                 break;
             case "water of lgiht":
-                path = "wateroflife.PNG";
+                path ="wateroflife.PNG";
                 break;
             case "lux mundi":
-                path = "luxmundi.PNG";
+                path ="luxmundi.PNG";
                 break;
             case "suns glory":
-                path = "sunsglory.PNG";
+                path ="sunsglory.PNG";
                 break;
         }
         return new Image(getClass().getResourceAsStream(path));

@@ -12,6 +12,7 @@ public class ToolCardView extends ObjectView{
     public ToolCardView(ImageView imageView, ToolCard toolCard) {
         super(imageView);
         this.toolCard = toolCard;
+        this.getImageView().setImage(imagePath());
     }
 
     //Setter/Getter

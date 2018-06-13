@@ -14,6 +14,7 @@ public class DieView extends ObjectView {
     public DieView(ImageView imageView, Die die) {
         super(imageView);
         this.die = die;
+        this.getImageView().setImage(imagePath());
     }
 
     //Setter/Getter
