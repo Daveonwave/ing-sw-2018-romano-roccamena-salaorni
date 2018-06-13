@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.application.Platform;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -13,8 +14,8 @@ import java.util.Map;
 public class GuiView extends AppView {
     //View gui dell'applicazione
 
-    private GuiApp guiApp;
-    private Map<String, GuiMultiplayerApp> multiplayerApps;
+    private transient GuiApp guiApp;
+    private transient Map<String, GuiMultiplayerApp> multiplayerApps;
 
     //Costruttori
     public GuiView(AppControllerStub appController, boolean rmiConnection) throws RemoteException {
@@ -62,18 +63,26 @@ public class GuiView extends AppView {
     public synchronized void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         //Crea nuova gui multiplayer e view associata
         GuiMultiplayerApp guiMultiplayerApp = new GuiMultiplayerApp();
+        guiMultiplayerApp.setGuiView(this);
 
         multiplayerApps.put(tokenMatch, guiMultiplayerApp);
 
         //Mostra nuova finestra
-        try {
-            guiMultiplayerApp.show(match, tokenMatch);
-        } catch (IOException e) {
-            //Segnala errore
-            guiApp.showError("Impossibile mostrare una nuova partita");
+        Platform.runLater(new Runnable() {
 
-            System.exit(0);
-        }
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    guiMultiplayerApp.show(match, tokenMatch);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("Impossibile mostrare una nuova partita");
+
+                    System.exit(0);
+                }
+            }
+        });
 
         //Chiama evento della nuova finestra
         guiMultiplayerApp.onMatchStart(tokenMatch, match);

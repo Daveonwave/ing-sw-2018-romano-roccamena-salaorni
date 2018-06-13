@@ -1,6 +1,5 @@
 package util;
 
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +41,7 @@ public abstract class TimedTaskHandler extends TimerTask {
         try {
             onTimedTask();
         } catch (Exception e) {
+            e.printStackTrace();
             onTimedTaskException(e);
         }
     }

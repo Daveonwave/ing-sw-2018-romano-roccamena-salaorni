@@ -4,7 +4,7 @@ import mvc.controller.handlers.TimedTurnHandler;
 import mvc.exceptions.AppModelException;
 import mvc.stubs.AppControllerStub;
 import mvc.creators.MatchCreator;
-import mvc.controller.handlers.MultiPlayerHandler;
+import mvc.controller.handlers.MultiplayerHandler;
 import mvc.exceptions.AppControllerException;
 import mvc.exceptions.MatchException;
 import mvc.model.AppModel;
@@ -27,26 +27,26 @@ public class AppController implements AppControllerStub {
     //Model dell'applicazione
     private transient AppModel model;
     //Gestore partite multiplayer
-    private transient MultiPlayerHandler multiPlayerLobby;
+    private transient MultiplayerHandler multiPlayerLobby;
 
     //Costruttori
     public AppController() {
         this.model = AppModel.get();
-        this.multiPlayerLobby = new MultiPlayerHandler(this, 4, JOIN_WAIT_TIME);
+        this.multiPlayerLobby = new MultiplayerHandler(this, 4, JOIN_WAIT_TIME);
     }
 
     //Setter/Getter
     public void setModel(AppModel model){
         this.model = model;
     }
-    public void setMultiPlayerLobby(MultiPlayerHandler multiPlayerLobby) {
+    public void setMultiPlayerLobby(MultiplayerHandler multiPlayerLobby) {
         this.multiPlayerLobby = multiPlayerLobby;
     }
 
     public AppModel getModel() {
         return model;
     }
-    public MultiPlayerHandler getMultiPlayerLobby() {
+    public MultiplayerHandler getMultiPlayerLobby() {
         return multiPlayerLobby;
     }
 
@@ -84,9 +84,9 @@ public class AppController implements AppControllerStub {
             token =  model.createUser(name, appView);
         } catch (AppModelException e) {
             if (appView != null)
-                viewError(appView, "utente sconosciuto");
+                viewError(appView, "nome utente non valido");
             else
-                throw new AppControllerException("utente sconosciuto");
+                throw new AppControllerException("nome utente non valido");
         }
 
         viewAck(appView, "loggato come " + name);

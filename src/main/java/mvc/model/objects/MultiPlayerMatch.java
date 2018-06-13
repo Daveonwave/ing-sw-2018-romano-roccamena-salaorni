@@ -11,7 +11,7 @@ public class MultiPlayerMatch extends Match {
     //Partita multiplayer del gioco
 
     private List<Player> players;
-    private TimedTurnHandler timedTurnHandler;
+    private transient TimedTurnHandler timedTurnHandler;
 
     //Costruttori
     public MultiPlayerMatch(MultiPlayerMatch match) {

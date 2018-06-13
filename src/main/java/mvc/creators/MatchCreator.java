@@ -202,6 +202,10 @@ public class MatchCreator {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Factory partite multiplayer e singleplayer
+    private static List<Window> selectWindows(List<Window> windows, int fromIndex, int toIndex) {
+        List<Window> sub = windows.subList(fromIndex, toIndex);
+        return new ArrayList<Window>(sub);
+    }
     public static MultiPlayerMatch createMultiPlayer(List<User> users, long seed) {
         //Verifica condizione sulla casualità
         boolean seeded = seed > 0;
@@ -222,7 +226,7 @@ public class MatchCreator {
 
         //Crea i giocatori e li assegna agli utenti, assegna finestra e carte obiettivo private
         for(int i = 0; i < users.size(); i++){
-            List<Window> startWindows = extractedWindows.subList(i * GameConstants.WINDOWS_FOR_PLAYER, i * GameConstants.WINDOWS_FOR_PLAYER + 4);
+            List<Window> startWindows = selectWindows(extractedWindows, i * GameConstants.WINDOWS_FOR_PLAYER, i * GameConstants.WINDOWS_FOR_PLAYER + 4);
             PrivateObjectiveCard privateObjectiveCard = extractedPrivateObjectiveCards.get(i);
 
             Player player = new Player(users.get(i), null, startWindows ,privateObjectiveCard, 0);

@@ -157,25 +157,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
     //Crea e visualizza la finestra
     public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
-        this.match = match;
-        this.tokenMatch = tokenMatch;
-
-        guiView.getGuiApp().showInfo("Una nuova partita verrà mostrata a breve! (si spera)");
-
-
-
-
-        //createMatchGui();
-
-
-
-        //Stage stage = new Stage();
-
-        //Scene scene = new Scene(new StackPane(), 200, 100);
-
-        //stage.setScene(scene);
-        //stage.setResizable(false);
-        //stage.show();
+        createMatchGui();
     }
 
 

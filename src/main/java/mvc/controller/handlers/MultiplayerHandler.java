@@ -4,7 +4,7 @@ import mvc.controller.AppController;
 
 import java.util.*;
 
-public class MultiPlayerHandler {
+public class MultiplayerHandler {
     //Gestore servizio multigiocatore
 
     private AppController controller;
@@ -16,7 +16,7 @@ public class MultiPlayerHandler {
     private NoPlayersHandler noPlayersHandler;
 
     //Costruttori
-    public MultiPlayerHandler(AppController controller, int usersCount, int mpDelay) {
+    public MultiplayerHandler(AppController controller, int usersCount, int mpDelay) {
         this.ready = false;
         this.usersCount = usersCount;
         this.waitingUsersToken = new ArrayList<String>();

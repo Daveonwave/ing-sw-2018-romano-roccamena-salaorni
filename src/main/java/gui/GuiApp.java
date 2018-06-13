@@ -84,17 +84,6 @@ public class GuiApp extends Application implements Serializable {
 
 
 
-    //Funzioni gui di comunicazione con utente
-    public void showInfo(String message) {
-        GuiMessage.showInfo(TITLE, message);
-    }
-    public void showError(String message) {
-        GuiMessage.showError(TITLE, message);
-    }
-
-
-
-
     //Eventi componenti gui
     public void onConnectClicked(MouseEvent event) {
         AppControllerStub controller = null;
@@ -117,7 +106,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("DISCONNESSO");
 
             //Visualizza errore
-            showError("impossibile connettersi al server");
+            GuiMessage.showError("impossibile connettersi al server");
             return;
         }
 
@@ -128,8 +117,8 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("DISCONNESSO");
 
             //Visualizza errore
-            showError("Errore imprevisto");
             e.printStackTrace();
+            GuiMessage.showError("errore imprevisto");
             return;
         }
 
@@ -145,7 +134,7 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(false);
 
         //Visualizza messaggio
-        showInfo("Connesso al server");
+        GuiMessage.showInfo("connesso al server");
     }
     public void onDisconnectClicked(MouseEvent event) {
         connectionLabel.setText("DISCONNETTENDO...");
@@ -164,7 +153,8 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("CONNESSO");
 
             //Visualizza errore
-            showError("impossibile disconnettersi dal server");
+            e.printStackTrace();
+            GuiMessage.showError("impossibile disconnettersi dal server");
             return;
         }
 
@@ -184,7 +174,7 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
 
         //Visualizza messaggio
-        showInfo("Disconnesso dal server");
+        GuiMessage.showInfo("disconnesso dal server");
     }
     public void onLoginClicked(MouseEvent event) {
         String name = userNameText.getText();
@@ -194,11 +184,11 @@ public class GuiApp extends Application implements Serializable {
             guiView.login(name);
 
             //Segnala errori
-        } catch (RemoteException e) {
-            showError(e.getMessage());
+        } catch (AppControllerException e) {
+            GuiMessage.showError(e.getMessage());
             return;
-        } catch (Exception e) {
-            showError("impossibile eseguire il login");
+        } catch (RemoteException f) {
+            GuiMessage.showError("impossibile eseguire il login");
         }
 
         //Imposta stato componenti
@@ -215,11 +205,11 @@ public class GuiApp extends Application implements Serializable {
             guiView.logout();
 
             //Segnala errori
-        } catch (RemoteException e) {
-            showError(e.getMessage());
+        } catch (AppControllerException e) {
+            GuiMessage.showError(e.getMessage());
             return;
-        } catch (Exception e) {
-            showError("impossibile eseguire il logout");
+        } catch (RemoteException f) {
+            GuiMessage.showError("impossibile eseguire il logout");
         }
 
         //Imposta stato componenti
@@ -237,11 +227,11 @@ public class GuiApp extends Application implements Serializable {
             guiView.joinMatch();
 
             //Segnala errori
-        } catch (RemoteException e) {
-            showError(e.getMessage());
+        } catch (AppControllerException e) {
+            GuiMessage.showError(e.getMessage());
             return;
-        } catch (Exception e) {
-            showError("impossibile partecipare ad una partita");
+        } catch (RemoteException f) {
+            GuiMessage.showError("impossibile partecipare ad una partita");
         }
     }
     public void onExitClicked(MouseEvent event) {
@@ -255,12 +245,13 @@ public class GuiApp extends Application implements Serializable {
             }
         } catch (Exception e) {
             //Visualizza errore
-            showError("impossibile disconnettersi dal server");
+            GuiMessage.showError("impossibile disconnettersi dal server");
         }
 
         //Termina applicazione
         System.exit(0);
     }
+
 
 
 
