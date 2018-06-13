@@ -1,8 +1,9 @@
 package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
+import connection.sockets.communication.rensponses.ExceptionResponse;
 
-public class ChooseWindowResponse implements ClientResponse {
+public class ChooseWindowResponse extends ExceptionResponse implements ClientResponse {
 
     @Override
     public void handleAction(ClientResponseHandler handler) {

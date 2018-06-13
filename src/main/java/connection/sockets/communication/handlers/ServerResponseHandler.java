@@ -8,10 +8,11 @@ public interface ServerResponseHandler {
     //Risposte a richieste osservazione multiplayer
     void handleAction(OnPlayerLeaveResponse response);
     void handleAction(OnPlayerRejoinResponse response);
+
     void handleAction(OnMatchStartResponse response);
+    void handleAction(OnChooseWindowResponse response);
     void handleAction(OnTurnStartResponse response);
     void handleAction(OnTurnEndResponse response);
-    void handleAction(OnChooseWindowResponse response);
     void handleAction(OnPlaceDieResponse response);
     void handleAction(OnUseToolCardResponse response);
     void handleAction(OnGetPointsResponse response);

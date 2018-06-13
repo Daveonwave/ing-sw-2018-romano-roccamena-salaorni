@@ -3,6 +3,8 @@ package connection.sockets.communication.requests.client;
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 
+import java.rmi.RemoteException;
+
 public class RejoinMatchRequest implements ClientRequest {
 
     private final String tokenUser;
@@ -14,8 +16,16 @@ public class RejoinMatchRequest implements ClientRequest {
         this.tokenMatch = tokenMatch;
     }
 
+    //Getter
+    public String getTokenUser() {
+        return tokenUser;
+    }
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+
     @Override
-    public ClientResponse handleAction(ClientRequestHandler handler) {
+    public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }
 }

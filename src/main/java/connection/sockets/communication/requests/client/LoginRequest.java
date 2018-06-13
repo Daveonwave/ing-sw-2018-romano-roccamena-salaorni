@@ -4,6 +4,8 @@ import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import mvc.stubs.AppViewStub;
 
+import java.rmi.RemoteException;
+
 public class LoginRequest implements ClientRequest {
 
     private final String name;
@@ -22,7 +24,7 @@ public class LoginRequest implements ClientRequest {
     }
 
     @Override
-    public ClientResponse handleAction(ClientRequestHandler handler) {
+    public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }
 }

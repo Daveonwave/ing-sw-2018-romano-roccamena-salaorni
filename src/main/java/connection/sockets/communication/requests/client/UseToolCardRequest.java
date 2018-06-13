@@ -5,6 +5,8 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 import mvc.model.objects.ToolCard;
 import mvc.model.objects.ToolCardInput;
 
+import java.rmi.RemoteException;
+
 public class UseToolCardRequest implements ClientRequest {
 
     private final String tokenUser;
@@ -20,8 +22,22 @@ public class UseToolCardRequest implements ClientRequest {
         this.toolCard = toolCard;
     }
 
+    //Getter
+    public String getTokenUser() {
+        return tokenUser;
+    }
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public ToolCardInput getInput() {
+        return input;
+    }
+    public ToolCard getToolCard() {
+        return toolCard;
+    }
+
     @Override
-    public ClientResponse handleAction(ClientRequestHandler handler) {
+    public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }
 }

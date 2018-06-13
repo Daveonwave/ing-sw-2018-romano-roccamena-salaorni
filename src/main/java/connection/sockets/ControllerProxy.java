@@ -2,6 +2,7 @@ package connection.sockets;
 
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.ClientActionHandler;
+import connection.sockets.communication.rensponses.client.LoginResponse;
 import connection.sockets.communication.requests.client.JoinMatchRequest;
 import connection.sockets.communication.requests.client.LoginRequest;
 import connection.sockets.communication.requests.client.LogoutRequest;
@@ -16,13 +17,13 @@ public class ControllerProxy implements AppControllerStub {
     //Proxy del controller utilizzato lato client
 
     private final SocketClient client;
-    private ClientActionHandler responseActionHandler;
+    private ClientActionHandler clientActionHandler;
     private AppView view;
 
     //Costruttori
     public ControllerProxy(SocketClient client) {
         this.client = client;
-        this.responseActionHandler = new ClientActionHandler();
+        this.clientActionHandler = new ClientActionHandler();
     }
 
     //Setter/Getter
@@ -38,7 +39,7 @@ public class ControllerProxy implements AppControllerStub {
     public String login(String name, AppViewStub view) throws RemoteException {
         this.view = (AppView) view;
         client.request(new LoginRequest(name, null));
-        return null;
+        return clientActionHandler.handleAction((LoginResponse) client.getResponse());
     }
     public void logout(String tokenUser) throws RemoteException {
 

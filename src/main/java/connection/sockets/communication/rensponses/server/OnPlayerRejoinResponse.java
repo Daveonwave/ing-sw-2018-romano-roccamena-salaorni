@@ -1,11 +1,12 @@
 package connection.sockets.communication.rensponses.server;
 
 import connection.sockets.communication.handlers.ServerResponseHandler;
+import connection.sockets.communication.rensponses.ExceptionResponse;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.handlers.ClientResponseHandler;
 import mvc.model.objects.MultiPlayerMatch;
 
-public class OnPlayerRejoinResponse implements ServerResponse {
+public class OnPlayerRejoinResponse extends ExceptionResponse implements ServerResponse {
 
     private final String tokenMatch;
     private final MultiPlayerMatch match;

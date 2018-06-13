@@ -45,11 +45,11 @@ public class SocketClient {
 
     //Ottiene risposta del server
     public ClientResponse getResponse(){
-        return IOSupport.receiveFromServer(in);
+        return IOSupport.responseFromServer(in);
     }
 
     //Invia richiesta al server
-    public void request(ClientRequest clientRequest){
-        IOSupport.sendToServer(out, clientRequest);
+    public void request(ClientRequest request){
+        IOSupport.requestToServer(out, request);
     }
 }

@@ -9,14 +9,20 @@ import connection.sockets.communication.requests.server.*;
 public class ClientActionHandler implements ClientResponseHandler, ServerRequestHandler {
     //Gestore delle richieste che arrivano al client e delle risposte dal server
 
+
+    //////////////////////////////
+    ///// GESTIONE RICHIESTE /////
+    //////////////////////////////
+
     //Richieste osservazione multiplayer
-    public ServerResponse handleAction(OnMatchStartRequest request) {
-        return null;
-    }
     public ServerResponse handleAction(OnPlayerLeaveRequest request) {
         return null;
     }
     public ServerResponse handleAction(OnPlayerRejoinRequest request) {
+        return null;
+    }
+
+    public ServerResponse handleAction(OnMatchStartRequest request) {
         return null;
     }
     public ServerResponse handleAction(OnTurnStartRequest request) {
@@ -40,6 +46,8 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     public ServerResponse handleAction(OnMatchEndRequest request) {
         return null;
     }
+
+    //Richieste del controller
     public ServerResponse handleAction(RespondErrorRequest request) {
         return null;
     }
@@ -48,14 +56,18 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     }
 
 
+    /////////////////////////////
+    ///// GESTIONE RISPOSTE /////
+    /////////////////////////////
+
     //Risposte alle richieste operazione utente
-    public String handleAction(LoginClientResponse response) {
+    public String handleAction(LoginResponse response) {
         return response.getTokenUser();
     }
-    public void handleAction(LogoutClientResponse response) {
+    public void handleAction(LogoutResponse response) {
     }
 
-    //Risposte a richieste su operazioni multiplayer
+    //Risposte ad attività multiplayer
     public void handleAction(JoinMatchResponse joinMatchResponse) {
 
     }
@@ -68,6 +80,8 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     public void handleAction(CancelJoinMatchResponse cancelJoinMatchResponse) {
 
     }
+
+    //Risposte  a comandi multiplayer
     public void handleAction(ChooseWindowResponse chooseWindowResponse) {
 
     }

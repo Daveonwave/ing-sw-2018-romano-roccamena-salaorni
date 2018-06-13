@@ -4,6 +4,8 @@ import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import mvc.model.objects.Window;
 
+import java.rmi.RemoteException;
+
 public class ChooseWindowRequest implements ClientRequest {
 
     private final String tokenUser;
@@ -17,7 +19,18 @@ public class ChooseWindowRequest implements ClientRequest {
         this.window = window;
     }
 
+    //Getter
+    public String getTokenUser() {
+        return tokenUser;
+    }
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public Window getWindow() {
+        return window;
+    }
+
     @Override
-    public ClientResponse handleAction(ClientRequestHandler handler) { return handler.handleAction(this);}
+    public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException { return handler.handleAction(this);}
 
 }

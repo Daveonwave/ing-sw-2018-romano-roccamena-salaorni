@@ -1,8 +1,9 @@
 package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
+import connection.sockets.communication.rensponses.ExceptionResponse;
 
-public class CancelJoinMatchResponse implements ClientResponse {
+public class CancelJoinMatchResponse extends ExceptionResponse implements ClientResponse {
 
     @Override
     public void handleAction(ClientResponseHandler handler) {

@@ -8,17 +8,19 @@ import java.rmi.RemoteException;
 public interface ClientRequestHandler {
     //Gestore di richieste lato client
 
-    //Richieste operazioni utente
-    ClientResponse handleAction(LoginRequest request);
-    ClientResponse handleAction(LogoutRequest request);
+    //Richiesta operazioni utente
+    ClientResponse handleAction(LoginRequest request) throws RemoteException;
+    ClientResponse handleAction(LogoutRequest request) throws RemoteException;
 
-    //Richieste operazioni multiplayer
-    ClientResponse handleAction(JoinMatchRequest request);
-    ClientResponse handleAction(CancelJoinMatchRequest request);
-    ClientResponse handleAction(LeaveMatchRequest request);
-    ClientResponse handleAction(RejoinMatchRequest request);
-    ClientResponse handleAction(ChooseWindowRequest request);
-    ClientResponse handleAction(PlaceDieRequest request);
-    ClientResponse handleAction(UseToolCardRequest request);
-    ClientResponse handleAction(EndTurnRequest request);
+    //Richiesta attività multiplayer
+    ClientResponse handleAction(JoinMatchRequest request) throws RemoteException;
+    ClientResponse handleAction(RejoinMatchRequest request) throws RemoteException;
+    ClientResponse handleAction(LeaveMatchRequest request) throws RemoteException;
+    ClientResponse handleAction(CancelJoinMatchRequest request) throws RemoteException;
+
+    //Richiesta comandi multiplayer
+    ClientResponse handleAction(ChooseWindowRequest request) throws RemoteException;
+    ClientResponse handleAction(PlaceDieRequest request) throws RemoteException;
+    ClientResponse handleAction(UseToolCardRequest request) throws RemoteException;
+    ClientResponse handleAction(EndTurnRequest request) throws RemoteException;
 }

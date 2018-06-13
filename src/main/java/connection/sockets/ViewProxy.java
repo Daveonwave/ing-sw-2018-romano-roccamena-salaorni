@@ -24,6 +24,13 @@ public class ViewProxy implements AppViewStub {
         return null;
     }
 
+    public String login(String userToken) throws RemoteException {
+        return null;
+    }
+    public void logout() throws RemoteException {
+
+    }
+
     public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
@@ -54,26 +61,10 @@ public class ViewProxy implements AppViewStub {
     public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
-    public String login(String userToken) throws RemoteException {
-        return null;
-    }
-    public void logout() throws RemoteException {
 
-    }
-    public void respondError(String message) throws RemoteException {
-
-    }
-    public void respondAck(String message) throws RemoteException {
-
-    }
-
-
-    @Override
     public void respondError(String message, String tokenMatch) throws RemoteException {
 
     }
-
-    @Override
     public void respondAck(String message, String tokenMatch) throws RemoteException {
 
     }

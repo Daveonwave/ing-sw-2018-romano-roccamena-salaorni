@@ -3,6 +3,8 @@ package connection.sockets;
 
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
+import connection.sockets.communication.rensponses.server.ServerResponse;
+import connection.sockets.communication.requests.server.ServerRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,8 +16,8 @@ public class ServerTransmitter implements Runnable {
 
     private Socket socket;
 
-    private ObjectInputStream inputStream;
-    private ObjectOutputStream outputStream;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
 
     private ClientRequestHandler clientRequestHandler;
 
@@ -25,8 +27,8 @@ public class ServerTransmitter implements Runnable {
     //Costruttori
     public ServerTransmitter(Socket socket, ClientRequestHandler clientRequestHandler) throws IOException {
         this.socket = socket;
-        this.inputStream = new ObjectInputStream(socket.getInputStream());
-        this.outputStream = new ObjectOutputStream(socket.getOutputStream());
+        this.in = new ObjectInputStream(socket.getInputStream());
+        this.out = new ObjectOutputStream(socket.getOutputStream());
         this.clientRequestHandler = clientRequestHandler;
     }
 
@@ -45,14 +47,13 @@ public class ServerTransmitter implements Runnable {
     }
 
     //Gestisce la comunicazione da view a server a lato server
-    @Override
     public void run() {
         try{
             while(isRunning){
-                ClientResponse clientResponse = IOSupport.receiveFromClient(inputStream).handleAction(clientRequestHandler);
+                ClientResponse clientResponse = IOSupport.requestFromClient(in).handleAction(clientRequestHandler);
 
                 if(clientResponse != null)
-                    IOSupport.sendToClient(outputStream, clientResponse);
+                    IOSupport.responseToClient(out, clientResponse);
             }
         } catch(Exception e){
             e.printStackTrace();
@@ -64,17 +65,17 @@ public class ServerTransmitter implements Runnable {
     private void close(){
         isRunning = false;
 
-        if (inputStream != null) {
+        if (in != null) {
             try {
-                inputStream.close();
+                in.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if (outputStream != null) {
+        if (out != null) {
             try {
-                outputStream.close();
+                out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -87,4 +88,12 @@ public class ServerTransmitter implements Runnable {
         }
     }
 
+    //Riceve risposta ad una richiesta
+    public ServerResponse getResponse(){
+        return IOSupport.responseFromClient(in);
+    }
+
+    public void request(ServerRequest request){
+        IOSupport.requestToClient(out, request);
+    }
 }

@@ -5,6 +5,8 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 import mvc.model.objects.Cell;
 import mvc.model.objects.Die;
 
+import java.rmi.RemoteException;
+
 public class PlaceDieRequest implements ClientRequest {
 
     private final String tokenUser;
@@ -20,8 +22,22 @@ public class PlaceDieRequest implements ClientRequest {
         this.die = die;
     }
 
+    //Getter
+    public String getTokenUser() {
+        return tokenUser;
+    }
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public Cell getCell() {
+        return cell;
+    }
+    public Die getDie() {
+        return die;
+    }
+
     @Override
-    public ClientResponse handleAction(ClientRequestHandler handler) {
+    public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }
 }

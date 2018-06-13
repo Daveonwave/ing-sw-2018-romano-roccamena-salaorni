@@ -1,8 +1,9 @@
 package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
+import connection.sockets.communication.rensponses.ExceptionResponse;
 
-public class EndTurnResponse implements ClientResponse {
+public class EndTurnResponse extends ExceptionResponse implements ClientResponse {
 
     @Override
     public void handleAction(ClientResponseHandler handler) {

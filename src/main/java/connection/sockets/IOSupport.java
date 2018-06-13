@@ -1,7 +1,9 @@
 package connection.sockets;
 
+import connection.sockets.communication.rensponses.server.ServerResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
 import connection.sockets.communication.rensponses.client.ClientResponse;
+import connection.sockets.communication.requests.server.ServerRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,26 +12,50 @@ import java.io.ObjectOutputStream;
 public class IOSupport {
     //Classe utile per mandare e ricevere oggetti - nome da cambiare
 
-    //Serializza e manda l'oggetto al server
-    public static void sendToServer(ObjectOutputStream outputStream, ClientRequest clientRequest) {
+    //Invio richiesta al server
+    public static void requestToServer(ObjectOutputStream outputStream, ClientRequest request) {
 
         try {
-            outputStream.writeObject(clientRequest);
+            outputStream.writeObject(request);
             outputStream.flush();
-            System.out.println("richiesta serializzata e scritta!");
+            System.out.println("[SOCKET] Invio richiesta al server");
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    //Invio richiesta al client
+    public static void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
+
+        try {
+            outputStream.writeObject(request);
+            outputStream.flush();
+            System.out.println("[SOCKET] Invio richiesta al client");
 
         } catch(IOException e){
             e.printStackTrace();
         }
     }
 
-    //Serializza e manda l'oggetto al client
-    public static void sendToClient(ObjectOutputStream outputStream, ClientResponse clientResponse) {
+    //Invio risposta al server
+    public static void responseToServer(ObjectOutputStream outputStream, ServerResponse response) {
 
         try {
-            outputStream.writeObject(clientResponse);
+            outputStream.writeObject(response);
             outputStream.flush();
-            System.out.println("[SOCKET] Riposta serializzata e scritta");
+            System.out.println("[SOCKET] Invio risposta al server");
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    //Invio risposta al client
+    public static void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
+
+        try {
+            outputStream.writeObject(response);
+            outputStream.flush();
+            System.out.println("[SOCKET] Invio risposta al client");
 
         } catch(IOException e){
             e.printStackTrace();
@@ -37,35 +63,66 @@ public class IOSupport {
     }
 
 
-    //Riceve dal server e deserializza l'oggetto
-    public static ClientResponse receiveFromServer(ObjectInputStream inputStream) {
-        ClientResponse clientResponse = null;
+    //Ricezione richiesta del server
+    public static ServerRequest requestFromServer(ObjectInputStream inputStream) {
+        ServerRequest request = null;
 
         try {
-            clientResponse = (ClientResponse) inputStream.readObject();
-            System.out.println("risposta letta e deserializzata!");
+            request = (ServerRequest) inputStream.readObject();
+            System.out.println("[SOCKET] Ricezione richiesta del server");
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe){
             cnfe.printStackTrace();
         }
-        return clientResponse;
+        return request;
     }
-
-    //Riceve dal client e deserializza l'oggetto
-    public static ClientRequest receiveFromClient(ObjectInputStream inputStream) {
-        ClientRequest clientRequest = null;
+    //Ricezione richiesta del client
+    public static ClientRequest requestFromClient(ObjectInputStream inputStream) {
+        ClientRequest request = null;
 
         try {
-            clientRequest = (ClientRequest) inputStream.readObject();
-            System.out.println("richiesta letta e deserializzata!");
+            request = (ClientRequest) inputStream.readObject();
+            System.out.println("[SOCKET] Ricezione richiesta del client");
 
         } catch (IOException ioe) {
             ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe){
             cnfe.printStackTrace();
         }
-        return clientRequest;
+        return request;
     }
+
+    //Ricezione risposta al client
+    public static ClientResponse responseFromServer(ObjectInputStream inputStream) {
+        ClientResponse response = null;
+
+        try {
+            response = (ClientResponse) inputStream.readObject();
+            System.out.println("[SOCKET] Ricezione risposta dal server");
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException cnfe){
+            cnfe.printStackTrace();
+        }
+        return response;
+    }
+    //Ricezione risposta al server
+    public static ServerResponse responseFromClient(ObjectInputStream inputStream) {
+        ServerResponse response = null;
+
+        try {
+            response = (ServerResponse) inputStream.readObject();
+            System.out.println("[SOCKET] Ricezione risposta dal client");
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException cnfe){
+            cnfe.printStackTrace();
+        }
+        return response;
+    }
+
 }

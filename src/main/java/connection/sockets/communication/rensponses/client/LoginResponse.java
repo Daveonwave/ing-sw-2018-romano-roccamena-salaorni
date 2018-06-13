@@ -1,13 +1,14 @@
 package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
+import connection.sockets.communication.rensponses.ExceptionResponse;
 
-public class LoginClientResponse implements ClientResponse {
+public class LoginResponse extends ExceptionResponse implements ClientResponse {
 
     private final String tokenUser;
 
     //Costruttori
-    public LoginClientResponse(String userToken) {
+    public LoginResponse(String userToken) {
         this.tokenUser = userToken;
     }
 

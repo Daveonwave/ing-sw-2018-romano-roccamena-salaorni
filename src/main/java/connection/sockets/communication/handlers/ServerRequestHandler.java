@@ -9,14 +9,15 @@ import java.rmi.RemoteException;
 public interface ServerRequestHandler {
     //Gestore di richiesta lato server
 
-       //Richieste osservazione multiplayer
-    ServerResponse handleAction(OnMatchStartRequest request);
+    //Richieste osservazione multiplayer
     ServerResponse handleAction(OnPlayerLeaveRequest request);
     ServerResponse handleAction(OnPlayerRejoinRequest request);
+
+    ServerResponse handleAction(OnMatchStartRequest request);
+    ServerResponse handleAction(OnChooseWindowRequest request);
     ServerResponse handleAction(OnTurnStartRequest request);
     ServerResponse handleAction(OnTurnEndRequest request);
     ServerResponse handleAction(OnPlaceDieRequest request);
-    ServerResponse handleAction(OnChooseWindowRequest request);
     ServerResponse handleAction(OnUseToolCardRequest request);
     ServerResponse handleAction(OnGetPointsRequest request);
     ServerResponse handleAction(OnMatchEndRequest request);
