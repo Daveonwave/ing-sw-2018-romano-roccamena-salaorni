@@ -27,54 +27,54 @@ public class DieView extends ObjectView {
 
     //Ottiene immagine
     public Image imagePath() {
-        String path = "";
+        String path = "images/dice/";
         switch (this.die.getShade()){
             case 1:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow1.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue1.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple1.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green1.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red1.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow1.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue1.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple1.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green1.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red1.png";
                 break;
 
             case 2:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow2.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue2.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple2.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green2.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red2.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow2.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue2.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple2.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green2.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red2.png";
                 break;
 
             case 3:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow3.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue3.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple3.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green3.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red3.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow3.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue3.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple3.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green3.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red3.png";
                 break;
 
             case 4:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow4.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue4.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple4.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green4.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red4.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow4.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue4.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple4.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green4.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red4.png";
                 break;
 
             case 5:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow5.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue5.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple5.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green5.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red5.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow5.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue5.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple5.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green5.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red5.png";
                 break;
 
             case 6:
-                if(die.getColor().equals(GameConstants.YELLOW)) path = "yellow6.png";
-                if(die.getColor().equals(GameConstants.BLUE)) path = "blue6.png";
-                if(die.getColor().equals(GameConstants.PURPLE)) path = "purple6.png";
-                if(die.getColor().equals(GameConstants.GREEN)) path = "green6.png";
-                if(die.getColor().equals(GameConstants.RED)) path = "red6.png";
+                if(die.getColor().equals(GameConstants.YELLOW)) path += "yellow6.png";
+                if(die.getColor().equals(GameConstants.BLUE)) path += "blue6.png";
+                if(die.getColor().equals(GameConstants.PURPLE)) path += "purple6.png";
+                if(die.getColor().equals(GameConstants.GREEN)) path += "green6.png";
+                if(die.getColor().equals(GameConstants.RED)) path += "red6.png";
                 break;
             }
             return new Image(getClass().getResourceAsStream(path));

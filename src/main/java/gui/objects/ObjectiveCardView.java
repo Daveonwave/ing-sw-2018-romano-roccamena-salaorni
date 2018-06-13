@@ -12,6 +12,7 @@ public class ObjectiveCardView extends ObjectView {
     public ObjectiveCardView(ImageView imageView, Card card) {
         super(imageView);
         this.card = card;
+        this.getImageView().setImage(imagePath());
     }
 
     //Getter/Setter
@@ -26,52 +27,52 @@ public class ObjectiveCardView extends ObjectView {
 
     //Ottiene immagine
     public Image imagePath() {
-        String path = "";
+        String path = "images/objective/";
         switch (card.getName()){
             case "sfumature blu":
-                path = "sfumatureblu.PNG";
+                path += "sfumatureblu.PNG";
                 break;
             case "sfumature gialle":
-                path = "sfumaturegialle.PNG";
+                path += "sfumaturegialle.PNG";
                 break;
             case "sfumature viola":
-                path = "sfumatureviola.PNG";
+                path += "sfumatureviola.PNG";
                 break;
             case "sfumature verdi":
-                path = "sfumatureverdi.PNG";
+                path += "sfumatureverdi.PNG";
                 break;
             case "sfumature rosse":
-                path = "sfumaturerosse.PNG";
+                path += "sfumaturerosse.PNG";
                 break;
             case "diagonali colorate":
-                path = "diagonalicolorate.PNG";
+                path += "diagonalicolorate.PNG";
                 break;
             case "colori diversi - colonna":
-                path = "coloridiversi-colonna.PNG";
+                path += "coloridiversi-colonna.PNG";
                 break;
             case "colori diversi - riga":
-                path = "coloridiversi-riga.PNG";
+                path += "coloridiversi-riga.PNG";
                 break;
             case "sfumature diverse - colonna":
-                path = "sfumaturediverse-colonna.PNG";
+                path += "sfumaturediverse-colonna.PNG";
                 break;
             case "sfumature diverse - riga":
-                path = "sfumaturediverse-riga.PNG";
+                path += "sfumaturediverse-riga.PNG";
                 break;
             case "sfumature diverse":
-                path = "sfumaturediverse.PNG";
+                path += "sfumaturediverse.PNG";
                 break;
             case "sfumature chiare":
-                path = "sfumaturechiare.PNG";
+                path += "sfumaturechiare.PNG";
                 break;
             case "sfumature medie":
-                path = "sfumaturemedie.PNG";
+                path += "sfumaturemedie.PNG";
                 break;
             case "sfumature scure":
-                path = "sfumaturescure.PNG";
+                path += "sfumaturescure.PNG";
                 break;
             case "varietà di colore":
-                path = "varietadicolore.PNG";
+                path += "varietadicolore.PNG";
                 break;
         }
         return new Image(getClass().getResourceAsStream(path));

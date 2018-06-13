@@ -52,6 +52,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     @FXML
     TextArea console;
     @FXML
+    AnchorPane matchAnchorPane;
+    @FXML
     Pane pane2, roundDice;
     @FXML
     ImageView w1,w2,w3,w4;
@@ -484,6 +486,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         AnchorPane root = loader.load(getClass().getResource("fxml/Match.fxml"));
         AnchorPane anchorPane1 = new AnchorPane();
         anchorPane1.setPrefSize(1270,806);
+        anchorPane1.getStyleClass().add("green");
         List<WindowView> windows = new ArrayList<>(4);
 
         //Crea view finestre
@@ -498,10 +501,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
         //Imposta view finestre
-        setImageView(windows.get(0).getImageView(),338,174,103,158);
-        setImageView(windows.get(1).getImageView(),338,174,565,158);
-        setImageView(windows.get(2).getImageView(),338,174,99,455);
-        setImageView(windows.get(3).getImageView(),338,174,588,455);
+        setImageView(windows.get(0).getImageView(),299,231,103,158);
+        setImageView(windows.get(1).getImageView(),299,231,565,158);
+        setImageView(windows.get(2).getImageView(),299,231,99,455);
+        setImageView(windows.get(3).getImageView(),299,231,588,455);
 
         //Link evento chooseWindow agli oggetti gui
         for(WindowView windowView: windows){
@@ -518,8 +521,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         //Finalizza e mostra finestra
         root.getChildren().add(anchorPane1);
+        
 
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
 
         Stage stage = new Stage();
 
