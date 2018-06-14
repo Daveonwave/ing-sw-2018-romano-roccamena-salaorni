@@ -27,6 +27,7 @@ public class GuiApp extends Application implements Serializable {
 
     private GuiView guiView;
 
+    private boolean waitingMultiplayer = false;
     private boolean connected = false;
     private boolean rmiConnection = true;
 
@@ -42,7 +43,18 @@ public class GuiApp extends Application implements Serializable {
     @FXML
     RadioButton rmiRadio, socketRadio;
     @FXML
-    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, exitButton;
+    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, cancelButton, exitButton;
+
+
+
+    //Getter
+    public void setWaitingMultiplayer(boolean waitingMultiplayer) {
+        this.waitingMultiplayer = waitingMultiplayer;
+    }
+
+    public boolean getWaitingMultiplayer() {
+        return waitingMultiplayer;
+    }
 
 
 
@@ -189,6 +201,7 @@ public class GuiApp extends Application implements Serializable {
             return;
         } catch (RemoteException f) {
             GuiMessage.showError("impossibile eseguire il login");
+            return;
         }
 
         //Imposta stato componenti
@@ -210,6 +223,7 @@ public class GuiApp extends Application implements Serializable {
             return;
         } catch (RemoteException f) {
             GuiMessage.showError("impossibile eseguire il logout");
+            return;
         }
 
         //Imposta stato componenti
@@ -232,7 +246,34 @@ public class GuiApp extends Application implements Serializable {
             return;
         } catch (RemoteException f) {
             GuiMessage.showError("impossibile partecipare ad una partita");
+            return;
         }
+
+        waitingMultiplayer = true;
+
+        //Imposta stato componenti
+        multiplayerButton.setDisable(true);
+        cancelButton.setDisable(false);
+    }
+    public void onCancelClicked(MouseEvent event) {
+        //Esegue la cancellazione alla partecipazione di un multiplayer
+        try {
+            guiView.cancelJoinMatch();
+
+            //Segnala errori
+        } catch (AppControllerException e) {
+            GuiMessage.showError(e.getMessage());
+            return;
+        } catch (RemoteException f) {
+            GuiMessage.showError("impossibile annullare la partecipazione");
+            return;
+        }
+
+        waitingMultiplayer = false;
+
+        //Imposta stato componenti
+        multiplayerButton.setDisable(false);
+        cancelButton.setDisable(true);
     }
     public void onExitClicked(MouseEvent event) {
         //Chiude connessione

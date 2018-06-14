@@ -25,6 +25,10 @@ public class MultiplayerHandler {
     }
 
     //Setter/Getter
+    public void setNoPlayersHandler(NoPlayersHandler noPlayersHandler) {
+        this.noPlayersHandler = noPlayersHandler;
+    }
+
     public AppController getController() {
         return controller;
     }

@@ -52,7 +52,7 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="multiplayerButton" disable="true" layoutX="50.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#onMultiplayerClicked" prefHeight="26.0" prefWidth="309.0" text="MULTIPLAYER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="310.0">
+            <Button fx:id="multiplayerButton" disable="true" layoutX="50.0" layoutY="310.0" mnemonicParsing="false" onMouseClicked="#onMultiplayerClicked" prefHeight="26.0" prefWidth="210.0" text="MULTIPLAYER" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="138.0" AnchorPane.topAnchor="310.0">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
@@ -67,6 +67,11 @@
                </font>
             </Button>
             <Button fx:id="disconnectButton" disable="true" layoutX="50.0" layoutY="147.0" mnemonicParsing="false" onMouseClicked="#onDisconnectClicked" prefHeight="25.0" prefWidth="309.0" text="DISCONNETTI" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="147.0">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelButton" disable="true" layoutX="269.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#onCancelClicked" prefHeight="25.0" prefWidth="91.0" text="ANNULLA" AnchorPane.leftAnchor="269.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="311.0">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
