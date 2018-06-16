@@ -2,7 +2,6 @@ package connection.sockets;
 
 import connection.ServerInfo;
 import connection.sockets.communication.ServerActionHandler;
-import connection.sockets.communication.handlers.ClientRequestHandler;
 import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
 
@@ -18,7 +17,7 @@ public class SocketServer implements Closeable {
 
     private static SocketServer singletonServer;
 
-    private ClientRequestHandler clientRequestHandler;
+    private ServerActionHandler serverActionHandler;
 
     private ServerSocket serverSocket;
     private ExecutorService threadPool;
@@ -27,7 +26,7 @@ public class SocketServer implements Closeable {
 
     //Costruttori - Singleton
     private SocketServer() {
-        this.clientRequestHandler = null;
+        this.serverActionHandler = null;
         this.serverSocket = null;
         threadPool = Executors.newCachedThreadPool();
         this.isReady = false;
@@ -83,8 +82,9 @@ public class SocketServer implements Closeable {
 
                 ServerTransmitter serverTransmitter = new ServerTransmitter(socket, null);
                 ViewProxy viewProxy = new ViewProxy(serverTransmitter);
-                clientRequestHandler = new ServerActionHandler(viewProxy, controller);
-                serverTransmitter.setClientRequestHandler(clientRequestHandler);
+                serverActionHandler = new ServerActionHandler(viewProxy, controller);
+                viewProxy.setServerResponseHandler(serverActionHandler);
+                serverTransmitter.setClientRequestHandler(serverActionHandler);
 
 
                 threadPool.submit(serverTransmitter);

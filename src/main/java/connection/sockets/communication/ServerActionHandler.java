@@ -6,7 +6,6 @@ import connection.sockets.communication.handlers.ServerResponseHandler;
 import connection.sockets.communication.rensponses.client.*;
 import connection.sockets.communication.rensponses.server.*;
 import connection.sockets.communication.requests.client.*;
-import mvc.exceptions.AppControllerException;
 import mvc.stubs.AppControllerStub;
 
 import java.rmi.RemoteException;
