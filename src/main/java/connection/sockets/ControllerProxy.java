@@ -21,9 +21,10 @@ public class ControllerProxy implements AppControllerStub {
     private AppView view;
 
     //Costruttori
-    public ControllerProxy(SocketClient client) {
+    public ControllerProxy(SocketClient client, AppView view) {
         this.client = client;
-        this.clientActionHandler = new ClientActionHandler();
+        this.clientActionHandler = new ClientActionHandler(view);
+        this.view = view;
     }
 
     //Setter/Getter
@@ -31,10 +32,6 @@ public class ControllerProxy implements AppControllerStub {
         return client;
     }
 
-    //Chiamato dal client per farla partire
-    public void run(){
-
-    }
 
     public String login(String name, AppViewStub view) throws RemoteException {
         this.view = (AppView) view;

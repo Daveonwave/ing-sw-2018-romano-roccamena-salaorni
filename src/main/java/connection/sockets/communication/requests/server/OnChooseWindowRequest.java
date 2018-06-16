@@ -15,6 +15,13 @@ public class OnChooseWindowRequest implements ServerRequest {
         this.match = match;
     }
 
+    //Getter
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
 
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);

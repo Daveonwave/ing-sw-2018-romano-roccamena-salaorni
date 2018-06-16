@@ -1,12 +1,13 @@
 package connection.sockets.communication.handlers;
 
 import connection.sockets.communication.rensponses.client.*;
+import mvc.exceptions.AppControllerException;
 
 public interface ClientResponseHandler {
     //Gestore di risposte lato client
 
     //Risposta a richieste su utente
-    String handleAction(LoginResponse response);
+    String handleAction(LoginResponse response) throws AppControllerException;
     void handleAction(LogoutResponse response);
 
     //Risposta ad attività  multiplayer

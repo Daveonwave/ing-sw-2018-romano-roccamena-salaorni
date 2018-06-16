@@ -9,18 +9,6 @@ import mvc.model.objects.ToolCard;
 
 public class OnUseToolCardResponse extends ExceptionResponse implements ServerResponse {
 
-    private final String tokenMatch;
-    private final MultiPlayerMatch match;
-    private final ToolCard toolCard;
-
-    //Costruttori
-    public OnUseToolCardResponse(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) {
-        this.match = match;
-        this.tokenMatch = tokenMatch;
-        this.toolCard = toolCard;
-    }
-
-
     public void handleAction(ServerResponseHandler handler) {
         handler.handleAction(this);
     }

@@ -31,7 +31,7 @@ public class GuiApp extends Application implements Serializable {
     private boolean connected = false;
     private boolean rmiConnection = true;
 
-    private Client client = new Client();
+    private Client client = new Client(guiView);
 
     //Componenti
     @FXML
@@ -73,6 +73,8 @@ public class GuiApp extends Application implements Serializable {
     }
     private AppControllerStub connectSocketController() throws Exception {
         //showInfo("connecting socket...");
+
+        client.launchClient(false);
 
         return connectLocalController();
     }

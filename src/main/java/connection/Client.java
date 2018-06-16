@@ -3,7 +3,9 @@ package connection;
 import connection.rmi.RmiClient;
 import connection.sockets.ControllerProxy;
 import connection.sockets.SocketClient;
+import gui.GuiApp;
 import mvc.stubs.AppControllerStub;
+import mvc.view.AppView;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,7 +15,13 @@ public class Client implements Serializable {
     //Client dell'applicazione
 
     private RmiClient rmiClient;
-    private AppControllerStub controller;
+    private SocketClient socketClient;
+    private AppView view;
+
+    //Costruttori
+    public Client(AppView view) {
+        this.view = view;
+    }
 
     //Lancia il client RMI o socket dell'applicazione
     public void launchClient(boolean rmiConnectionChoosen) throws NotBoundException, IOException {
@@ -23,12 +31,8 @@ public class Client implements Serializable {
             this.rmiClient.runRmiClient();
         }
         else {
-            SocketClient client = new SocketClient();
-            client.init();
-            ControllerProxy handler = new ControllerProxy(client);
-            handler.run();
-
-            client.close();
+            this.socketClient = new SocketClient(view);
+            socketClient.init();
         }
     }
 

@@ -18,6 +18,16 @@ public class OnUseToolCardRequest implements ServerRequest {
         this.toolCard = toolCard;
     }
 
+    //Getter
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
+    public ToolCard getToolCard() {
+        return toolCard;
+    }
 
     @Override
     public ServerResponse handleAction(ServerRequestHandler handler) {

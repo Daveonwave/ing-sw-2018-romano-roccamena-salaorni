@@ -21,6 +21,20 @@ public class OnGetPointsRequest implements ServerRequest {
         this.points = points;
     }
 
+    //Getter
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
+    public Player getPlayer() {
+        return player;
+    }
+    public PlayerPoints getPoints() {
+        return points;
+    }
+
     @Override
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);

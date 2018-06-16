@@ -3,6 +3,10 @@ package mvc.model.objects;
 import java.awt.*;
 import java.rmi.RemoteException;
 
+/**
+ * Abstract toolcard
+ * @use toolcard father card
+ */
 public abstract class ToolCard extends ColorCard {
     //Carta strumento
 

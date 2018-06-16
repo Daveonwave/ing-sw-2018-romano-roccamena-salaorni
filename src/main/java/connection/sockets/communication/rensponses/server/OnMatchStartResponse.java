@@ -9,16 +9,6 @@ import mvc.model.objects.MultiPlayerMatch;
 
 public class OnMatchStartResponse extends ExceptionResponse implements ServerResponse {
 
-    private final String tokenMatch;
-    private final MultiPlayerMatch match;
-
-    //Costruttori
-    public OnMatchStartResponse(String tokenMatch, MultiPlayerMatch match) {
-        this.tokenMatch = tokenMatch;
-        this.match = match;
-    }
-
-
     public void handleAction(ServerResponseHandler handler) {
         handler.handleAction(this);
 

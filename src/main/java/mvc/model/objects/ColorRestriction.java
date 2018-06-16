@@ -13,7 +13,7 @@ public class ColorRestriction extends CellRestriction {
     }
 
     //Setter/Getter
-    public void setDieColor(Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

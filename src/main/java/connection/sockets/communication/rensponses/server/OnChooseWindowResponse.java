@@ -8,15 +8,6 @@ import mvc.model.objects.MultiPlayerMatch;
 
 public class OnChooseWindowResponse extends ExceptionResponse implements ServerResponse {
 
-    private final String tokenMatch;
-    private final MultiPlayerMatch match;
-
-    //Costruttori
-    public OnChooseWindowResponse(String tokenMatch, MultiPlayerMatch match) {
-        this.tokenMatch = tokenMatch;
-        this.match = match;
-    }
-
     public void handleAction(ServerResponseHandler handler) {
         handler.handleAction(this);;
     }

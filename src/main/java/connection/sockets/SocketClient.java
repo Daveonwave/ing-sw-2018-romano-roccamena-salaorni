@@ -3,6 +3,7 @@ package connection.sockets;
 import connection.ServerInfo;
 import connection.sockets.communication.requests.client.ClientRequest;
 import connection.sockets.communication.rensponses.client.ClientResponse;
+import mvc.view.AppView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,10 +17,13 @@ public class SocketClient {
     private ObjectInputStream in;
     private ObjectOutputStream out;
 
-    private ViewProxy viewProxy;
+    private ControllerProxy controllerProxy;
+    private AppView view;
 
     //Costruttori
-    public SocketClient(){}
+    public SocketClient(AppView view){
+        this.view = view;
+    }
 
     //Setter/Getter
     public ObjectInputStream getIn() {
@@ -34,6 +38,7 @@ public class SocketClient {
         socket = new Socket(ServerInfo.SERVER_ADDRESS, ServerInfo.SOCKET_PORT);
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
+        controllerProxy = new ControllerProxy(this, this.view);
     }
 
     //Chiude il client

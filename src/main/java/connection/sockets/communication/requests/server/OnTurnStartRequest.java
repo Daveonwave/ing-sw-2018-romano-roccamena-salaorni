@@ -15,6 +15,14 @@ public class OnTurnStartRequest implements ServerRequest {
         this.match = match;
     }
 
+    //Getter
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
+
     @Override
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);

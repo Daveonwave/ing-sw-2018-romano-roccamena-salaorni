@@ -29,26 +29,26 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
     //////////////////////////////
 
     //Richieste operazioni utente
-    public ClientResponse handleAction(LoginRequest request) throws RemoteException {
+    public ClientResponse handleAction(LoginRequest request) {
        ClientResponse response;
 
        try{
            String token = controller.login(request.getName(), viewProxy);
            response = new LoginResponse(token);
            ((LoginResponse) response).setException(false);
-       } catch (AppControllerException e){
+       } catch (RemoteException e){
            response = new LoginResponse(null);
            ((LoginResponse) response).setException(true);
        }
        return response;
     }
-    public ClientResponse handleAction(LogoutRequest request) throws RemoteException {
+    public ClientResponse handleAction(LogoutRequest request) {
         ClientResponse response = new LogoutResponse();
 
         try{
             controller.logout(request.getTokenUser());
             ((LogoutResponse) response).setException(false);
-        } catch (AppControllerException e){
+        } catch (RemoteException e){
             ((LogoutResponse) response).setException(true);
         }
 
@@ -56,49 +56,49 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
     }
 
     //Richieste attività multiplayer
-    public ClientResponse handleAction(JoinMatchRequest request) throws RemoteException {
+    public ClientResponse handleAction(JoinMatchRequest request) {
         ClientResponse response = new JoinMatchResponse();
 
         try{
             controller.joinMatch(request.getTokenUser());
             ((JoinMatchResponse) response).setException(false);
-        } catch (AppControllerException e){
+        } catch (RemoteException e){
             ((JoinMatchResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(CancelJoinMatchRequest request) throws RemoteException {
+    public ClientResponse handleAction(CancelJoinMatchRequest request) {
         ClientResponse response = new CancelJoinMatchResponse();
 
         try{
             controller.cancelJoinMatch(request.getTokenUser());
             ((CancelJoinMatchResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((CancelJoinMatchResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(LeaveMatchRequest request) throws RemoteException {
+    public ClientResponse handleAction(LeaveMatchRequest request) {
         ClientResponse response = new LeaveMatchResponse();
 
         try{
             controller.leaveMatch(request.getTokenUser(), request.getTokenMatch());
             ((LeaveMatchResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((LeaveMatchResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(RejoinMatchRequest request) throws RemoteException {
+    public ClientResponse handleAction(RejoinMatchRequest request) {
         ClientResponse response = new RejoinMatchResponse();
 
         try{
             controller.rejoinMatch(request.getTokenUser(), request.getTokenMatch());
             ((RejoinMatchResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((RejoinMatchResponse) response).setException(true);
         }
 
@@ -106,49 +106,49 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
     }
 
     //Richiesta comandi multiplayer
-    public ClientResponse handleAction(ChooseWindowRequest request) throws RemoteException {
+    public ClientResponse handleAction(ChooseWindowRequest request) {
         ClientResponse response = new ChooseWindowResponse();
 
         try{
             controller.chooseWindow(request.getTokenUser(), request.getTokenMatch(), request.getWindow());
             ((ChooseWindowResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((ChooseWindowResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(PlaceDieRequest request) throws RemoteException {
+    public ClientResponse handleAction(PlaceDieRequest request) {
         ClientResponse response =  new PlaceDieResponse();
 
         try{
             controller.placeDie(request.getTokenUser(), request.getTokenMatch(), request.getCell(), request.getDie());
             ((PlaceDieResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((PlaceDieResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(UseToolCardRequest request) throws RemoteException {
+    public ClientResponse handleAction(UseToolCardRequest request) {
         ClientResponse response = new UseToolCardResponse();
 
         try{
             controller.useToolCard(request.getTokenUser(), request.getTokenMatch(), request.getInput(), request.getToolCard());
             ((UseToolCardResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((UseToolCardResponse) response).setException(true);
         }
 
         return response;
     }
-    public ClientResponse handleAction(EndTurnRequest request) throws RemoteException {
+    public ClientResponse handleAction(EndTurnRequest request) {
         ClientResponse response = new EndTurnResponse();
 
         try{
             controller.endTurn(request.getUserToken(), request.getUserMatch());
             ((EndTurnResponse) response).setException(false);
-        } catch(AppControllerException e){
+        } catch(RemoteException e){
             ((EndTurnResponse) response).setException(true);
         }
 

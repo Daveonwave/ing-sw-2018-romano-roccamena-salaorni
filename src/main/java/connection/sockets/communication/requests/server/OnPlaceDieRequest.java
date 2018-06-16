@@ -21,6 +21,20 @@ public class OnPlaceDieRequest implements ServerRequest{
         this.die = die;
     }
 
+    //Getter
+    public String getTokenMatch() {
+        return tokenMatch;
+    }
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
+    public Cell getCell() {
+        return cell;
+    }
+    public Die getDie() {
+        return die;
+    }
+
     @Override
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);
