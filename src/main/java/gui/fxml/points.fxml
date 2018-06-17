@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="402.0" prefWidth="578.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PointsWindowController">
+   <children>
+      <Label layoutX="25.0" layoutY="22.0" prefHeight="46.0" prefWidth="121.0" text="PARTITA FINITA" />
+      <Label layoutX="25.0" layoutY="300.0" prefHeight="46.0" prefWidth="121.0" text="totale punteggio:" />
+      <Label layoutX="25.0" layoutY="167.0" prefHeight="39.0" prefWidth="114.0" text="obiettivi pubblici" />
+      <Label layoutX="25.0" layoutY="114.0" prefHeight="46.0" prefWidth="114.0" text="obiettivo privato" />
+      <Label layoutX="25.0" layoutY="206.0" prefHeight="46.0" prefWidth="121.0" text="celle non riempite" />
+      <Label layoutX="25.0" layoutY="253.0" prefHeight="46.0" prefWidth="121.0" text="favor tokens" />
+      <Label fx:id="player1" layoutX="158.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label fx:id="player2" layoutX="268.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label fx:id="player3" layoutX="362.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label fx:id="player4" layoutX="469.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label fx:id="winner" layoutX="306.0" layoutY="25.0" prefHeight="39.0" prefWidth="182.0" />
+      <Button layoutX="137.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#calculateScores" prefHeight="39.0" prefWidth="122.0" text="calcola punteggio" />
+      <Label fx:id="player1PrivateObjective" layoutX="158.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player2PrivateObjective" layoutX="273.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player3PrivateObjective" layoutX="364.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player4PrivateObjective" layoutX="469.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player1PublicObjective" layoutX="158.0" layoutY="173.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player2PublicObjective" layoutX="273.0" layoutY="173.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player3PublicObjective" layoutX="364.0" layoutY="173.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player4PublicObjective" layoutX="469.0" layoutY="173.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player1OpenSpaces" layoutX="158.0" layoutY="215.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player2OpenSpaces" layoutX="273.0" layoutY="215.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player3OpenSpaces" layoutX="364.0" layoutY="215.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player4OpenSpaces" layoutX="469.0" layoutY="215.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player1FavorTokens" layoutX="158.0" layoutY="262.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player2FavorTokens" layoutX="273.0" layoutY="262.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player3FavorTokens" layoutX="364.0" layoutY="262.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player4FavorTokens" layoutX="469.0" layoutY="262.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player1TotalPoints" layoutX="158.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player2TotalPoints" layoutX="273.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player3TotalPoints" layoutX="364.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
+      <Label fx:id="player4TotalPoints" layoutX="469.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
+      <Button layoutX="233.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#endGame" prefHeight="39.0" prefWidth="140.0" text="Termina Partita" />
+   </children>
+</AnchorPane>

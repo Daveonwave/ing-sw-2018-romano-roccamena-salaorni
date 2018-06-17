@@ -26,46 +26,6 @@ public class ToolCardView extends ObjectView{
 
     //Ottiene immagine
     public Image imagePath() {
-        String path = "images/tools/";
-        switch (toolCard.getName()){
-            case "alesatore per lamina di rame":
-                path += "alesatoreperlaminadirame.PNG";
-                break;
-            case "diluente per pasta calda":
-                path += "diluenteperpastacalda.PNG";
-                break;
-            case "lathekin":
-                path += "lathekin.PNG";
-                break;
-            case "martelletto":
-                path += "martelletto.PNG";
-                break;
-            case "pennello per eglomise":
-                path += "pennellopereglomise.PNG";
-                break;
-            case "pennello per pasta calda":
-                path += "pennelloperpastacalda.PNG";
-                break;
-            case "pinza sgrossatrice":
-                path += "pinzasgrossatrice.PNG";
-                break;
-            case "riga di sughero":
-                path += "rigadisughero.PNG";
-                break;
-            case "taglierina cirolare":
-                path += "taglierinacircolare.PNG";
-                break;
-            case "taglierina manuale":
-                path += "taglierinamanuale.PNG";
-                break;
-            case "tampone diamantato":
-                path += "tamponediamantato.PNG";
-                break;
-            case "tenaglia a rotelle":
-                path += "tenagliaarotelle.PNG";
-                break;
-        }
-
-        return new Image(getClass().getResourceAsStream(path));
+        return new Image(getClass().getResourceAsStream("images/tools/"+ toolCard.getName() + ".png"));
     }
 }

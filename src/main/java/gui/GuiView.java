@@ -142,23 +142,88 @@ public class GuiView extends AppView {
 
     }
     public synchronized void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        getMultiplayerApps().get(tokenMatch).onChooseWindows(tokenMatch,match);
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onChooseWindows(tokenMatch,match);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
+
     }
     public synchronized void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        getMultiplayerApps().get(tokenMatch).onTurnStart(tokenMatch,match);
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onTurnStart(tokenMatch,match);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
+
 
     }
     public synchronized void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        this.getMultiplayerApps().get(tokenMatch).onTurnEnd(tokenMatch,match);
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onTurnEnd(tokenMatch,match);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
+
 
 
     }
     public synchronized void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
-        this.getMultiplayerApps().get(tokenMatch).onPlaceDie(tokenMatch,match,cell,die);
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onPlaceDie(tokenMatch,match,cell,die);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
+
 
     }
     public synchronized void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
-        getMultiplayerApps().get(tokenMatch).onUseTool(tokenMatch,match,toolCard);
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onUseTool(tokenMatch,match,toolCard);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
+
     }
     public synchronized void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
 

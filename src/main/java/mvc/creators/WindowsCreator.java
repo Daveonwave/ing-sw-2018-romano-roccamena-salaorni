@@ -506,7 +506,7 @@ public class WindowsCreator {
                     windows.get(i).setCells(cells);
                     break;
                 case 17:
-                    windows.get(i).setName("ripple of light");
+                    windows.get(i).setName("ripples of light");
                     windows.get(i).setDifficulty(5);
 
                     //Creazione celle finestra
@@ -618,7 +618,7 @@ public class WindowsCreator {
                     windows.get(i).setCells(cells);
                     break;
                 case 21:
-                    windows.get(i).setName("water of light");
+                    windows.get(i).setName("water of life");
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra
@@ -674,7 +674,7 @@ public class WindowsCreator {
                     windows.get(i).setCells(cells);
                     break;
                 case 23:
-                    windows.get(i).setName("suns glory");
+                    windows.get(i).setName("sun's glory");
                     windows.get(i).setDifficulty(6);
 
                     //Creazione celle finestra
