@@ -845,7 +845,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     button.setLayoutY(34);
                     button.setOnMouseClicked(event -> {
                         if (Integer.parseInt(textField.getText()) > 0 && Integer.parseInt(textField.getText()) < 3) {
-                            twoMoves = true;
+                            if(Integer.parseInt(textField.getText()) == 2) {
+                                twoMoves = true;
+                            }
                             console.setText("selezionare i dadi da spostare");
                             choice = false;
                             matchAnchorPane.getChildren().remove(pane);
@@ -929,7 +931,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
         int i = matchView.getRounds().get(round-1).getDieViews().size();
         while(i<10){
-            associateRoundDie(i).setImage(null);
             associateRoundDie(i).setVisible(false);
             i++;
         }
