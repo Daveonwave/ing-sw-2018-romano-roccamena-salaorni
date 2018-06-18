@@ -16,7 +16,16 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     private AppView view;
 
     //Costruttori
-    public ClientActionHandler(AppView view) {
+    public ClientActionHandler() {
+        view = null;
+    }
+
+    //Setter/Getter
+    public AppView getView() {
+        return view;
+    }
+
+    public void setView(AppView view) {
         this.view = view;
     }
 

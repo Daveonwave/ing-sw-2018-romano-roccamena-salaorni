@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ServerTransmitter implements Runnable {
-    //Gestore della comunicazione del server con i client
+    //Gestore dello smistamento delle richieste del client
 
     private Socket socket;
 
@@ -36,8 +36,8 @@ public class ServerTransmitter implements Runnable {
     public void setClientRequestHandler(ClientRequestHandler clientRequestHandler) {
         this.clientRequestHandler = clientRequestHandler;
     }
-    public void setRunning() {
-        isRunning = true;
+    public void setRunning(boolean bool) {
+        isRunning = bool;
     }
 
     public ClientRequestHandler getRequestHandler(ClientRequestHandler clientRequestHandler) {
@@ -61,9 +61,13 @@ public class ServerTransmitter implements Runnable {
         close();
     }
 
+    //Stop comunicazione
+    public void stop(){
+        setRunning(false);
+    }
+
     //Chiude la comunicazione
     private void close(){
-        isRunning = false;
 
         if (in != null) {
             try {

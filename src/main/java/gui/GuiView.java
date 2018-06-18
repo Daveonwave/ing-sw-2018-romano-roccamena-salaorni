@@ -35,7 +35,6 @@ public class GuiView extends AppView {
         this.multiplayerApps = multiplayerApps;
     }
 
-
     public GuiApp getGuiApp() {
         return this.guiApp;
     }

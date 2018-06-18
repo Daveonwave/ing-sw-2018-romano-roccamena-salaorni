@@ -1,6 +1,7 @@
 package connection.sockets;
 
 import connection.ServerInfo;
+import connection.sockets.communication.ClientActionHandler;
 import connection.sockets.communication.requests.client.ClientRequest;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import mvc.view.AppView;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 public class SocketClient {
     //Client Socket
@@ -18,19 +20,21 @@ public class SocketClient {
     private ObjectOutputStream out;
 
     private ControllerProxy controllerProxy;
-    private AppView view;
+    private ClientActionHandler clientActionHandler;
+    private List<AppView> view;
 
     //Costruttori
-    public SocketClient(AppView view){
-        this.view = view;
-    }
+    public SocketClient(){}
 
-    //Setter/Getter
+    //Getter
     public ObjectInputStream getIn() {
         return in;
     }
     public ObjectOutputStream getOut() {
         return out;
+    }
+    public ClientActionHandler getClientActionHandler() {
+        return clientActionHandler;
     }
 
     //Inizializza il client
@@ -38,7 +42,8 @@ public class SocketClient {
         socket = new Socket(ServerInfo.SERVER_ADDRESS, ServerInfo.SOCKET_PORT);
         in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
-        controllerProxy = new ControllerProxy(this, this.view);
+        clientActionHandler = new ClientActionHandler();
+        controllerProxy = new ControllerProxy(this, clientActionHandler);
     }
 
     //Chiude il client

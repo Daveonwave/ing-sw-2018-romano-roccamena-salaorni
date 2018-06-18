@@ -16,12 +16,9 @@ public class Client implements Serializable {
 
     private RmiClient rmiClient;
     private SocketClient socketClient;
-    private AppView view;
 
     //Costruttori
-    public Client(AppView view) {
-        this.view = view;
-    }
+    public Client() {}
 
     //Lancia il client RMI o socket dell'applicazione
     public void launchClient(boolean rmiConnectionChoosen) throws NotBoundException, IOException {
@@ -31,7 +28,7 @@ public class Client implements Serializable {
             this.rmiClient.runRmiClient();
         }
         else {
-            this.socketClient = new SocketClient(view);
+            this.socketClient = new SocketClient();
             socketClient.init();
         }
     }
@@ -40,6 +37,7 @@ public class Client implements Serializable {
     public AppControllerStub getController() {
         return rmiClient.getController();
     }
-
-
+    public SocketClient getSocketClient() {
+        return socketClient;
+    }
 }

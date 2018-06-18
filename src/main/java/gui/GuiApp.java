@@ -31,7 +31,7 @@ public class GuiApp extends Application implements Serializable {
     private boolean connected = false;
     private boolean rmiConnection = true;
 
-    private Client client = new Client(guiView);
+    private Client client = new Client();
 
     //Componenti
     @FXML
@@ -127,6 +127,9 @@ public class GuiApp extends Application implements Serializable {
         //Crea view client
         try {
             guiView = new GuiView(controller, rmiConnection);
+            if(!rmiConnection){
+                client.getSocketClient().getClientActionHandler().setView(guiView);
+            }
         } catch (RemoteException e) {
             connectionLabel.setText("DISCONNESSO");
 

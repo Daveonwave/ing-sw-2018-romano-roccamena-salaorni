@@ -84,8 +84,9 @@ public class SocketServer implements Closeable {
                 ViewProxy viewProxy = new ViewProxy(serverTransmitter);
                 serverActionHandler = new ServerActionHandler(viewProxy, controller);
                 viewProxy.setServerResponseHandler(serverActionHandler);
-                serverTransmitter.setClientRequestHandler(serverActionHandler);
 
+                serverTransmitter.setClientRequestHandler(serverActionHandler);
+                serverTransmitter.setRunning(true);
 
                 threadPool.submit(serverTransmitter);
 
