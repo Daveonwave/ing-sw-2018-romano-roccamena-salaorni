@@ -3,7 +3,6 @@ package connection.sockets;
 import connection.sockets.communication.handlers.ServerResponseHandler;
 import connection.sockets.communication.rensponses.server.*;
 import connection.sockets.communication.requests.server.*;
-import mvc.controller.AppController;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;

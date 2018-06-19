@@ -1,7 +1,5 @@
 package connection.sockets;
 
-import connection.sockets.IOSupport;
-import connection.sockets.SocketClient;
 import connection.sockets.communication.handlers.ServerRequestHandler;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 

@@ -1,6 +1,6 @@
 package mvc.model.objects;
 
-public class ShadeRestriction extends CellRestriction {
+public class ShadeRestriction implements CellRestriction {
     //Restrizione di shade
 
     private int shade;

@@ -1,10 +1,7 @@
 package connection.sockets.communication.handlers;
 
-import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 import connection.sockets.communication.requests.server.*;
-
-import java.rmi.RemoteException;
 
 public interface ServerRequestHandler {
     //Gestore di richiesta lato server

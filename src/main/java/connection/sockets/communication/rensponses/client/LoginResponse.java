@@ -2,7 +2,8 @@ package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
 import connection.sockets.communication.rensponses.ExceptionResponse;
-import mvc.exceptions.AppControllerException;
+
+import java.rmi.RemoteException;
 
 public class LoginResponse extends ExceptionResponse implements ClientResponse {
 
@@ -17,5 +18,5 @@ public class LoginResponse extends ExceptionResponse implements ClientResponse {
     public String getTokenUser(){return this.tokenUser;}
 
     @Override
-    public void handleAction(ClientResponseHandler handler) throws AppControllerException {handler.handleAction(this);}
+    public void handleAction(ClientResponseHandler handler) throws RemoteException {handler.handleAction(this);}
 }

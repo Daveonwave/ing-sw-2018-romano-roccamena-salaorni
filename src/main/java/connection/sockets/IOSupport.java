@@ -1,8 +1,8 @@
 package connection.sockets;
 
+import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
-import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.requests.server.ServerRequest;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class IOSupport {
     //Classe utile per mandare e ricevere oggetti - nome da cambiare
 
     //Invio richiesta al server
-    public static void requestToServer(ObjectOutputStream outputStream, ClientRequest request) {
+    public synchronized static void requestToServer(ObjectOutputStream outputStream, ClientRequest request) {
 
         try {
             outputStream.writeObject(request);
@@ -25,7 +25,7 @@ public class IOSupport {
         }
     }
     //Invio richiesta al client
-    public static void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
+    public synchronized static void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
 
         try {
             outputStream.writeObject(request);
@@ -38,7 +38,7 @@ public class IOSupport {
     }
 
     //Invio risposta al server
-    public static void responseToServer(ObjectOutputStream outputStream, ServerResponse response) {
+    public synchronized static void responseToServer(ObjectOutputStream outputStream, ServerResponse response) {
 
         try {
             outputStream.writeObject(response);
@@ -50,7 +50,7 @@ public class IOSupport {
         }
     }
     //Invio risposta al client
-    public static void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
+    public synchronized static void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
 
         try {
             outputStream.writeObject(response);
@@ -64,7 +64,7 @@ public class IOSupport {
 
 
     //Ricezione richiesta del server
-    public static ServerRequest requestFromServer(ObjectInputStream inputStream) {
+    public synchronized static ServerRequest requestFromServer(ObjectInputStream inputStream) {
         ServerRequest request = null;
 
         try {
@@ -79,7 +79,7 @@ public class IOSupport {
         return request;
     }
     //Ricezione richiesta del client
-    public static ClientRequest requestFromClient(ObjectInputStream inputStream) {
+    public synchronized static ClientRequest requestFromClient(ObjectInputStream inputStream) {
         ClientRequest request = null;
 
         try {
@@ -95,7 +95,7 @@ public class IOSupport {
     }
 
     //Ricezione risposta al client
-    public static ClientResponse responseFromServer(ObjectInputStream inputStream) {
+    public synchronized static ClientResponse responseFromServer(ObjectInputStream inputStream) {
         ClientResponse response = null;
 
         try {
@@ -110,7 +110,7 @@ public class IOSupport {
         return response;
     }
     //Ricezione risposta al server
-    public static ServerResponse responseFromClient(ObjectInputStream inputStream) {
+    public synchronized static ServerResponse responseFromClient(ObjectInputStream inputStream) {
         ServerResponse response = null;
 
         try {

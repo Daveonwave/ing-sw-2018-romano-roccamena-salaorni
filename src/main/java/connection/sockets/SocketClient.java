@@ -2,8 +2,8 @@ package connection.sockets;
 
 import connection.ServerInfo;
 import connection.sockets.communication.ClientActionHandler;
-import connection.sockets.communication.requests.client.ClientRequest;
 import connection.sockets.communication.rensponses.client.ClientResponse;
+import connection.sockets.communication.requests.client.ClientRequest;
 import mvc.view.AppView;
 
 import java.io.IOException;
@@ -40,8 +40,9 @@ public class SocketClient {
     //Inizializza il client
     public void init() throws IOException{
         socket = new Socket(ServerInfo.SERVER_ADDRESS, ServerInfo.SOCKET_PORT);
-        in = new ObjectInputStream(socket.getInputStream());
         out = new ObjectOutputStream(socket.getOutputStream());
+        in = new ObjectInputStream(socket.getInputStream());
+
         clientActionHandler = new ClientActionHandler();
         controllerProxy = new ControllerProxy(this, clientActionHandler);
     }

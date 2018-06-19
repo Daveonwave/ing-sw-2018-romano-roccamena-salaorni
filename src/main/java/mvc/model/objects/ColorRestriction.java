@@ -2,7 +2,7 @@ package mvc.model.objects;
 
 import java.awt.*;
 
-public class ColorRestriction extends CellRestriction {
+public class ColorRestriction implements CellRestriction {
     //Restrizione di colore
 
     private Color color;

@@ -64,7 +64,7 @@ public class SocketServer implements Closeable {
     }
 
     //Apre la connessione con il client
-    public Socket acceptConnection() throws IOException{
+    private Socket acceptConnection() throws IOException{
         Socket accepted = serverSocket.accept();
         System.out.println("[SOCKET] Aperta connessione con: " + accepted.getRemoteSocketAddress());
         return accepted;

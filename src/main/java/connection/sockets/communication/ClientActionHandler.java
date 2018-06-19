@@ -5,7 +5,6 @@ import connection.sockets.communication.handlers.ServerRequestHandler;
 import connection.sockets.communication.rensponses.client.*;
 import connection.sockets.communication.rensponses.server.*;
 import connection.sockets.communication.requests.server.*;
-import mvc.exceptions.AppControllerException;
 import mvc.view.AppView;
 
 import java.rmi.RemoteException;
@@ -39,9 +38,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onPlayerLeave(request.getTokenMatch(), request.getMatch());
-            ((OnPlayerLeaveResponse) response).setException(false);
+            ((OnPlayerLeaveResponse) response).setExceptionFlag(false);
         } catch (RemoteException e) {
-            ((OnPlayerLeaveResponse) response).setException(true);
+            ((OnPlayerLeaveResponse) response).setExceptionFlag(true);
+            ((OnPlayerLeaveResponse) response).setException(e);
         }
 
         return  response;
@@ -51,9 +51,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onPlayerRejoin(request.getTokenMatch(), request.getMatch());
-            ((OnPlayerRejoinResponse) response).setException(false);
+            ((OnPlayerRejoinResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnPlayerRejoinResponse) response).setException(true);
+            ((OnPlayerRejoinResponse) response).setExceptionFlag(true);
+            ((OnPlayerRejoinResponse) response).setException(e);
         }
 
         return response;
@@ -64,9 +65,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onMatchStart(request.getTokenMatch(), request.getMatch());
-            ((OnMatchStartResponse) response).setException(false);
+            ((OnMatchStartResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnMatchStartResponse) response).setException(true);
+            ((OnMatchStartResponse) response).setExceptionFlag(true);
+            ((OnMatchStartResponse) response).setException(e);
         }
 
         return response;
@@ -76,9 +78,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onTurnStart(request.getTokenMatch(), request.getMatch());
-            ((OnTurnStartResponse) response).setException(false);
+            ((OnTurnStartResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnTurnStartResponse) response).setException(true);
+            ((OnTurnStartResponse) response).setExceptionFlag(true);
+            ((OnTurnStartResponse) response).setException(e);
         }
 
         return response;
@@ -88,9 +91,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onTurnEnd(request.getTokenMatch(), request.getMatch());
-            ((OnTurnEndResponse) response).setException(false);
+            ((OnTurnEndResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnTurnEndResponse) response).setException(true);
+            ((OnTurnEndResponse) response).setExceptionFlag(true);
+            ((OnTurnEndResponse) response).setException(e);
         }
 
         return response;
@@ -100,9 +104,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onPlaceDie(request.getTokenMatch(), request.getMatch(), request.getCell(),request.getDie());
-            ((OnPlaceDieResponse) response).setException(false);
+            ((OnPlaceDieResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnPlaceDieResponse) response).setException(true);
+            ((OnPlaceDieResponse) response).setExceptionFlag(true);
+            ((OnPlaceDieResponse) response).setException(e);
         }
 
         return response;
@@ -112,9 +117,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onChooseWindows(request.getTokenMatch(), request.getMatch());
-            ((OnChooseWindowResponse) response).setException(false);
+            ((OnChooseWindowResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnChooseWindowResponse) response).setException(true);
+            ((OnChooseWindowResponse) response).setExceptionFlag(true);
+            ((OnChooseWindowResponse) response).setException(e);
         }
 
         return response;
@@ -124,9 +130,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onUseTool(request.getTokenMatch(), request.getMatch(), request.getToolCard());
-            ((OnUseToolCardResponse) response).setException(false);
+            ((OnUseToolCardResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnUseToolCardResponse) response).setException(true);
+            ((OnUseToolCardResponse) response).setExceptionFlag(true);
+            ((OnUseToolCardResponse) response).setException(e);
         }
 
         return response;
@@ -136,9 +143,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onGetPoints(request.getTokenMatch(),request.getMatch(), request.getPlayer(), request.getPoints());
-            ((OnGetPointsResponse) response).setException(false);
+            ((OnGetPointsResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnGetPointsResponse) response).setException(true);
+            ((OnGetPointsResponse) response).setExceptionFlag(true);
+            ((OnGetPointsResponse) response).setException(e);
         }
 
         return response;
@@ -148,9 +156,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.onMatchEnd(request.getTokenMatch(),request.getMatch());
-            ((OnMatchEndResponse) response).setException(false);
+            ((OnMatchEndResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((OnMatchEndResponse) response).setException(true);
+            ((OnMatchEndResponse) response).setExceptionFlag(true);
+            ((OnMatchEndResponse) response).setException(e);
         }
 
         return response;
@@ -162,9 +171,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.respondError(request.getMessage(), request.getTokenMatch());
-            ((RespondErrorResponse) response).setException(false);
+            ((RespondErrorResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((RespondErrorResponse) response).setException(true);
+            ((RespondErrorResponse) response).setExceptionFlag(true);
+            ((RespondErrorResponse) response).setException(e);
         }
 
         return response;
@@ -174,9 +184,10 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         try{
             view.respondAck(request.getMessage(), request.getTokenMatch());
-            ((RespondAckResponse) response).setException(false);
+            ((RespondAckResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
-            ((RespondAckResponse) response).setException(true);
+            ((RespondAckResponse) response).setExceptionFlag(true);
+            ((RespondAckResponse) response).setException(e);
         }
 
         return response;
@@ -188,45 +199,70 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     /////////////////////////////
 
     //Risposte alle richieste operazione utente
-    public String handleAction(LoginResponse response) {
+    public String handleAction(LoginResponse response) throws RemoteException {
 
         if(response.isException()) {
-            //throw new AppControllerException("Richiesta fallita");
-            return null;
+            throw response.getException();
         }
         return response.getTokenUser();
     }
-    public void handleAction(LogoutResponse response) {
-       //if(response.isException())
-            //throw new AppControllerException("Richiesta fallita!");
+    public void handleAction(LogoutResponse response) throws RemoteException {
+
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
 
     //Risposte ad attività multiplayer
-    public void handleAction(JoinMatchResponse joinMatchResponse) {
+    public void handleAction(JoinMatchResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(RejoinMatchResponse rejoinMatchResponse) {
+    public void handleAction(RejoinMatchResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(LeaveMatchResponse leaveMatchResponse) {
+    public void handleAction(LeaveMatchResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(CancelJoinMatchResponse cancelJoinMatchResponse) {
+    public void handleAction(CancelJoinMatchResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
 
     //Risposte  a comandi multiplayer
-    public void handleAction(ChooseWindowResponse chooseWindowResponse) {
+    public void handleAction(ChooseWindowResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(PlaceDieResponse placeDieResponse) {
+    public void handleAction(PlaceDieResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(EndTurnResponse endTurnResponse) {
+    public void handleAction(EndTurnResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
-    public void handleAction(UseToolCardResponse useToolCardResponse) {
+    public void handleAction(UseToolCardResponse response) throws RemoteException {
 
+        if(response.isException()) {
+            throw response.getException();
+        }
     }
 
 }

@@ -1,12 +1,11 @@
 package connection.sockets;
 
-import connection.sockets.communication.rensponses.client.*;
 import connection.sockets.communication.ClientActionHandler;
+import connection.sockets.communication.rensponses.client.*;
 import connection.sockets.communication.requests.client.*;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
-import mvc.view.AppView;
 
 import java.rmi.RemoteException;
 
