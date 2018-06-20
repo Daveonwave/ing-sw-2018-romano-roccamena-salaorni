@@ -2,9 +2,8 @@ package mvc.model.objects;
 
 import util.RandomHandler;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.Serializable;
-import java.util.Random;
 
 public class Die implements Serializable {
     //Dado del gioco

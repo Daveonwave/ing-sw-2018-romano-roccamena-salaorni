@@ -8,7 +8,6 @@ import util.RandomHandler;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Random;
 
 public class MatchDice implements Serializable {
     //Dadi di una partita

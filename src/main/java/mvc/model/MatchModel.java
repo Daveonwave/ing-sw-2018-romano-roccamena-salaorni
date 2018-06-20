@@ -1,9 +1,8 @@
 package mvc.model;
 
-import mvc.stubs.MultiplayerObserver;
 import mvc.model.objects.*;
+import mvc.stubs.MultiplayerObserver;
 
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;

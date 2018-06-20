@@ -1,10 +1,7 @@
 package mvc.creators;
 
 import mvc.model.objects.*;
-import mvc.model.objects.Window;
 
-import java.awt.*;
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.List;
 

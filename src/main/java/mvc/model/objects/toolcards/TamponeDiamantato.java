@@ -1,6 +1,5 @@
 package mvc.model.objects.toolcards;
 
-import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
 
 import java.rmi.RemoteException;

@@ -1,7 +1,6 @@
 package mvc.model.objects.public_objectives_cards;
 
 import mvc.model.objects.Cell;
-import mvc.model.objects.ColorRestriction;
 import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
 import mvc.model.objects.enums.DieColor;

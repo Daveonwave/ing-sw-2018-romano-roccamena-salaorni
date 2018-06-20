@@ -1,6 +1,8 @@
 package mvc.view.console;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public final class Console {
     //Funzioni base di visualizzazione console

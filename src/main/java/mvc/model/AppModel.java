@@ -1,11 +1,11 @@
 package mvc.model;
 
 import mvc.exceptions.AppModelException;
-import mvc.model.objects.*;
+import mvc.model.objects.Player;
+import mvc.model.objects.User;
 import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
-import java.util.*;
 
 public class AppModel {
     //Model dell'applicazione

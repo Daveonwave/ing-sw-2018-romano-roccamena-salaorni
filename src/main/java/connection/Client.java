@@ -1,11 +1,8 @@
 package connection;
 
 import connection.rmi.RmiClient;
-import connection.sockets.ControllerProxy;
 import connection.sockets.SocketClient;
-import gui.GuiApp;
 import mvc.stubs.AppControllerStub;
-import mvc.view.AppView;
 
 import java.io.IOException;
 import java.io.Serializable;

@@ -1,7 +1,6 @@
 package mvc.model.objects;
 
 import mvc.exceptions.MatchException;
-import mvc.model.objects.GameConstants;
 
 import java.io.Serializable;
 

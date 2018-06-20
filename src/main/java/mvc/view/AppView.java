@@ -1,8 +1,8 @@
 package mvc.view;
 
+import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
-import mvc.model.objects.*;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;

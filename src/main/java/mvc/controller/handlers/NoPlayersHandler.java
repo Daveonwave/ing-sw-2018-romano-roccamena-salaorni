@@ -3,7 +3,6 @@ package mvc.controller.handlers;
 import mvc.controller.AppController;
 import mvc.controller.TimedSubcontroller;
 import mvc.model.objects.User;
-import mvc.stubs.AppControllerStub;
 
 public class NoPlayersHandler extends TimedSubcontroller {
     //Gestore evento di nessun giocatore disponibile per una partita multiplayer

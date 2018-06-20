@@ -16,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import mvc.model.objects.*;
 import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;

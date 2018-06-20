@@ -1,7 +1,5 @@
 package mvc.model.objects.enums;
 
-import mvc.model.objects.PublicObjectiveCard;
-
 public enum PublicObjective {
     //Obiettivi pubblici per le fineste
 

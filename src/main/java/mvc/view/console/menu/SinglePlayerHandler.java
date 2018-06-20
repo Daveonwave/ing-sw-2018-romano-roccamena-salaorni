@@ -1,10 +1,6 @@
 package mvc.view.console.menu;
 
 import mvc.creators.MatchCreator;
-import mvc.exceptions.AppControllerException;
-import mvc.exceptions.AppModelException;
-import mvc.exceptions.AppViewException;
-import mvc.model.objects.Player;
 import mvc.model.objects.SinglePlayerMatch;
 import mvc.model.objects.User;
 import mvc.model.objects.Window;

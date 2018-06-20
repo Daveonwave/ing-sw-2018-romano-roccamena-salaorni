@@ -2,14 +2,10 @@ package resources.writers;
 
 import com.google.gson.Gson;
 import mvc.creators.ToolsCreator;
-import mvc.model.objects.Window;
-import resources.ResourceRetriever;
-import util.FileHandler;
 import mvc.model.objects.ToolCard;
-import mvc.model.objects.toolcards.*;
 import resources.ResourceFileInfo;
+import util.FileHandler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToolsWriter {

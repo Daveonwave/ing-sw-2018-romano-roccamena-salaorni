@@ -3,7 +3,6 @@ package mvc.model.objects;
 
 import mvc.exceptions.MatchException;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 

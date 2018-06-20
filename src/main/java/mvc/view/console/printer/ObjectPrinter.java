@@ -1,14 +1,13 @@
 package mvc.view.console.printer;
 
 import mvc.model.objects.*;
+import mvc.model.objects.Window;
 import mvc.view.console.Console;
 import mvc.view.console.ConsoleColors;
 import mvc.view.console.ConsoleView;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ObjectPrinter implements Serializable {
     //Printer base di oggetti del gioco

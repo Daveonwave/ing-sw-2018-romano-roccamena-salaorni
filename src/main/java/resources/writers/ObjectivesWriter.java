@@ -5,7 +5,6 @@ import mvc.creators.ObjectivesCreator;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
 import resources.ResourceFileInfo;
-import resources.ResourceRetriever;
 import util.FileHandler;
 
 import java.util.List;

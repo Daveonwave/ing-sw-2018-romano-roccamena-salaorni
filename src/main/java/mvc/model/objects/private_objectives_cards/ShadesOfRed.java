@@ -4,8 +4,6 @@ import mvc.model.objects.GameConstants;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
 
-import java.awt.*;
-
 public class ShadesOfRed extends PrivateObjectiveCard {
     public ShadesOfRed() {
         super("sfumature rosse", "somma dei valori di tutti i dadi rossi", GameConstants.RED);

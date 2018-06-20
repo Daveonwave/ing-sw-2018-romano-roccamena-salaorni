@@ -4,8 +4,6 @@ import mvc.model.objects.GameConstants;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
 
-import java.awt.*;
-
 public class ShadesOfPurple extends PrivateObjectiveCard {
     public ShadesOfPurple() {
         super("sfumature viola", "somma dei valori di utti i dadi viola. ", GameConstants.PURPLE);

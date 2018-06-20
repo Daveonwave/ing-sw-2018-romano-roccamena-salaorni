@@ -1,11 +1,12 @@
 package mvc.creators;
 
 import mvc.model.objects.*;
-import mvc.model.objects.Window;
 import resources.ResourceRetriever;
 import util.RandomHandler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MatchCreator {
     //Creatore di componenti del gioco

@@ -2,10 +2,9 @@ package resources.writers;
 
 import com.google.gson.Gson;
 import mvc.creators.WindowsCreator;
-import util.FileHandler;
 import mvc.model.objects.Window;
 import resources.ResourceFileInfo;
-import resources.ResourceRetriever;
+import util.FileHandler;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package mvc.model.objects;
 
-import java.awt.Color;
+import java.awt.*;
 
 public final class GameConstants {
     //Costanti del gioco

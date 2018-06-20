@@ -2,6 +2,7 @@ package mvc.model;
 
 
 import mvc.exceptions.AppModelException;
+
 import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.UUID;

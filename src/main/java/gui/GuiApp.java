@@ -1,7 +1,6 @@
 package gui;
 
 import connection.Client;
-
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import mvc.controller.AppController;
 import mvc.exceptions.AppControllerException;
 import mvc.stubs.AppControllerStub;

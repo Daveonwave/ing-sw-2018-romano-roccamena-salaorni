@@ -1,6 +1,5 @@
 package connection.rmi;
 
-import connection.ServerInfo;
 import mvc.controller.AppController;
 
 import java.rmi.RemoteException;
