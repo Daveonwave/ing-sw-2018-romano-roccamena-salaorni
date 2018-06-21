@@ -31,8 +31,6 @@ public class FXWindowChoiceMenu {
     ImageView fourthChoiceWindow;
     @FXML
     ImageView extractedPrivateObjective;
-    @FXML
-    Text windowsText;
 
 
     public ImageView associateWindows(int index) {
