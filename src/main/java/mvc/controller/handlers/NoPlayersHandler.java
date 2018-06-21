@@ -29,8 +29,8 @@ public class NoPlayersHandler extends TimedSubcontroller {
         } else
             controller.startMatch();
 
-        //Crea nuovo timer
-        lobby.setNoPlayersHandler(new NoPlayersHandler(controller, controller.TURN_MAX_TIME));
+        //Resetta timer di nessun giocatore del controllore
+        controller.resetNoPlayerHandler();
     }
     public synchronized void onTimedTaskException(Exception e) {
         //Non fa nulla

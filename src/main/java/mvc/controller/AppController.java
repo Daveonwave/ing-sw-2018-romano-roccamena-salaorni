@@ -1,6 +1,7 @@
 package mvc.controller;
 
 import mvc.controller.handlers.MultiplayerHandler;
+import mvc.controller.handlers.NoPlayersHandler;
 import mvc.controller.handlers.TimedTurnHandler;
 import mvc.creators.MatchCreator;
 import mvc.exceptions.AppControllerException;
@@ -48,6 +49,11 @@ public class AppController implements AppControllerStub {
     }
     public MultiplayerHandler getMultiPlayerLobby() {
         return multiPlayerLobby;
+    }
+
+    //Ricrea un timer di nessun giocatore dentro la lobby multiplayer
+    public void resetNoPlayerHandler() {
+        multiPlayerLobby.setNoPlayersHandler(new NoPlayersHandler(this, JOIN_WAIT_TIME));
     }
 
     //Ack ed error su utenti di un mvc.match o singolarmente
@@ -117,6 +123,9 @@ public class AppController implements AppControllerStub {
         List<User> partecipantUsers = new ArrayList<User>();
         for (String partecipantToken : partecipantTokens)
             partecipantUsers.add(model.retrieveUser(partecipantToken));
+
+        //Ricostruisce timer di nessun giocatore
+        resetNoPlayerHandler();
 
         //Crea nuova partita
         MatchModel matchModel = new MatchModel(MatchCreator.createMultiPlayer(partecipantUsers));

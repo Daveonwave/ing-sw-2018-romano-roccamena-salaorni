@@ -118,6 +118,10 @@ public class GuiView extends AppView {
     }
 
     public synchronized void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        //Riabilita la finestra principale ad un nuovo multiplayer
+        guiApp.multiplayerButton.setDisable(false);
+        guiApp.cancelButton.setDisable(true);
+
         //Crea nuova gui multiplayer e view associata
         GuiMultiplayerApp guiMultiplayerApp = new GuiMultiplayerApp();
         guiMultiplayerApp.setGuiView(this);
