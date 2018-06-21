@@ -8,6 +8,9 @@
     -fx-background-size: cover;
     -fx-opacity: 0.7;
 }
+.matchbackground{
+    -fx-background-image: url("background.jpg");
+}
 
 .windowtochoose{
     -fx-opacity: 1;

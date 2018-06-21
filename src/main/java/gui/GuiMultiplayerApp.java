@@ -79,6 +79,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public MatchView getMatchView() {
         return matchView;
     }
+    public static GuiView getGuiView() {
+        return guiView;
+    }
+    public static MultiPlayerMatch getMultiPlayerMatch() {
+        return multiPlayerMatch;
+    }
+    public static String getMultiTokenMatch() {
+        return multiTokenMatch;
+    }
+    public PointsWindowController getPointsWindow() {
+        return pointsWindow;
+    }
+
     public void setMatchView(MatchView matchView) {
         this.matchView = matchView;
     }
@@ -86,12 +99,23 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         GuiMultiplayerApp.multiPlayerMatch = multiPlayerMatch;
     }
 
+    public static void setGuiView(GuiView guiView) {
+        GuiMultiplayerApp.guiView = guiView;
+    }
+
+    public static void setMultiTokenMatch(String multiTokenMatch) {
+        GuiMultiplayerApp.multiTokenMatch = multiTokenMatch;
+    }
+
+    public void setPointsWindow(PointsWindowController pointsWindow) {
+        this.pointsWindow = pointsWindow;
+    }
 
     //Crea e visualizza la finestra
     public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
         multiPlayerMatch = match;
         multiTokenMatch = tokenMatch;
-        createMatchGui();
+        createWindowChoiceGui();
     }
 
 
@@ -106,19 +130,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return w3;
             case 4:
                 return w4;
-        }
-        return null;
-    }
-    public ImageView associateWindows(int index) {
-        switch (index) {
-            case 1:
-                return window1;
-            case 2:
-                return window2;
-            case 3:
-                return window3;
-            case 4:
-                return window4;
         }
         return null;
     }
@@ -382,13 +393,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return null;
     }
-    public WindowView retrieveWindows(Object source) {
-        if (source.equals(window1)) return matchView.getWindows().get(0);
-        if (source.equals(window2)) return matchView.getWindows().get(1);
-        if (source.equals(window3)) return matchView.getWindows().get(2);
-        if (source.equals(window4)) return matchView.getWindows().get(3);
-        return null;
-    }
     public DieView retrieveDie(Object source) {
         if (source.equals(d1)) return matchView.getDice().get(0);
         if (source.equals(d2)) return matchView.getDice().get(1);
@@ -466,15 +470,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
 
     //Crea oggetti gui gioco a inizio partita
-    public void createMatchGui() throws IOException {
+    public void createWindowChoiceGui() throws IOException {
         //Carica fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
-        loader.setController(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/WindowChoiceMenu.fxml"));
         Parent root = loader.load();
-
+        FXWindowChoiceMenu choiceMenu = loader.getController();
+        choiceMenu.initializeMenu(multiPlayerMatch, this);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -484,8 +487,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void initializeMatchRoundsGui(MultiPlayerMatch match) {
         initializeDice();
         roundDice.setVisible(false);
-        pane2.setVisible(false);
-        console.setDisable(true);
         round1.setVisible(false);
         round2.setVisible(false);
         round3.setVisible(false);
@@ -498,14 +499,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         round10.setVisible(false);
 
         roundTrack.setImage(new Image(getClass().getResourceAsStream("objects/images/roundtrack.PNG")));
-        background.setImage(new Image(getClass().getResourceAsStream("objects/images/background.jpg")));
+        console.setText("partita iniziata. Turno di "+ match.getTurnPlayer().getUser().getName());
         int window = 2;
         //Setta componenti view finestre e carte private
+        matchView = new MatchView(new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),null,null);
         for (Player player : match.getPlayers()) {
             if (player.getUser().getName().equals(guiView.getUserName())) {
                 matchView.getPlayers().add(new PlayerView(new WindowView(associateWindow(1), player.getWindow(), associateCells(player.getWindow().getCells(), 1)), player));
                 matchView.setPrivateObjective(new ObjectiveCardView(privateObjective1, player.getPrivateObjectiveCards().get(0)));
-                favorTokens.setText(player.getFavorTokens());
+                favorTokens.setText("" + player.getFavorTokens());
             } else {
                 matchView.getPlayers().add(new PlayerView(new WindowView(associateWindow(window), player.getWindow(), associateCells(player.getWindow().getCells(), window)), player));
                 associateNameLabel(window).setText(player.getUser().getName());
@@ -546,22 +548,24 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Crea oggetti gui gioco a round iniziati
-    public void createMatchRoundsGui(MultiPlayerMatch match) {
+    public void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
         //Inizializza componenti
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
+
         Parent root = loader.load();
+
         GuiMultiplayerApp guiController = loader.getController();
+        guiController.setMultiPlayerMatch(match);
         guiView.getMultiplayerApps().replace(multiTokenMatch, guiController);
         guiController.initializeMatchRoundsGui(match);
 
         Stage matchStage = new Stage();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
-        matchStage.setScene(new Scene(root));
+        matchStage.setScene(scene);
         matchStage.setResizable(false);
         matchStage.show();
     }
-
 
     //Eventi componenti gui di mosse della partita
     public void onDieClick(MouseEvent actionEvent) {
@@ -705,7 +709,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(selectedToolCard != matchView.getSelectedToolCard()){
             matchView.setSelectedToolCard(selectedToolCard);
             matchView.getSelectedToolCard().getImageView().getStyleClass().add("selected");
-            matchView.setSelectedDie(null);
+            if(matchView.getSelectedDie() != null) {
+                matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+                matchView.setSelectedDie(null);
+            }
             matchView.setInput(new ToolCardInput(null, null, null,null, multiPlayerMatch.getTurnHandler().getRound(),null,null,null,0,false));
             String name = matchView.getSelectedToolCard().getToolCard().getName();
             if(noSelectionToolCards().contains(name)){
@@ -721,13 +728,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(427);
-                    pane.setLayoutY(231);
+                    pane.setLayoutX(451);
+                    pane.setLayoutY(207);
                     Button increase = new Button("+");
                     increase.setPrefSize(52,45);
                     pane.getChildren().add(increase);
                     increase.setLayoutX(24);
                     increase.setLayoutY(23);
+                    console.setText("decidi se aumentare o diminuire il valore del dado");
                     increase.setOnMouseClicked(event -> {
                         console.setText("seleziona il dado di cui aumentare il valore");
                         pane.setVisible(false);
@@ -752,8 +760,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(427);
-                    pane.setLayoutY(231);
+                    pane.setLayoutX(451);
+                    pane.setLayoutY(207);
                     TextField textField = new TextField();
                     textField.setPrefSize(108,38);
                     pane.getChildren().add(textField);
@@ -764,6 +772,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     pane.getChildren().add(button);
                     button.setLayoutX(135);
                     button.setLayoutY(34);
+                    console.setText("scegli che valore dare al dado ripescato");
                     button.setOnMouseClicked(event -> {
                         if(Integer.parseInt(textField.getText())>0 && Integer.parseInt(textField.getText())<7){
                             matchView.getInput().setChoosenShade(Integer.parseInt(textField.getText()));
@@ -781,8 +790,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(427);
-                    pane.setLayoutY(231);
+                    pane.setLayoutX(451);
+                    pane.setLayoutY(207);
                     TextField textField = new TextField();
                     textField.setPrefSize(108, 38);
                     pane.getChildren().add(textField);
@@ -793,6 +802,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     pane.getChildren().add(button);
                     button.setLayoutX(135);
                     button.setLayoutY(34);
+                    console.setText("scegli quanti spostamenti vuoi fare( 1 o 2)");
                     button.setOnMouseClicked(event -> {
                         if (Integer.parseInt(textField.getText()) > 0 && Integer.parseInt(textField.getText()) < 3) {
                             if(Integer.parseInt(textField.getText()) == 2) {
@@ -846,29 +856,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Eventi di altre componenti gui
-    public void observeWindows(MouseEvent mouseEvent){
-        matchView = new MatchView(new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),null,null, new ArrayList<>());
-        guiView.getMultiplayerApps().replace(multiTokenMatch, this);
-        startAnchorPane.setVisible(false);
-        for(Player player : multiPlayerMatch.getPlayers()){
-            String name = player.getUser().getName();
-            if (name.equals(guiView.getUserName())){
-                for( int i = 0; i<4; i++){
-                    matchView.getWindows().add(new WindowView(associateWindows(i+1),player.getStartWindows().get(i),null));
-                }
-                break;
-            }
-        }
-    }
-    public void chooseWindow(MouseEvent mouseEvent){
-        try {
-            guiView.getController().chooseWindow(guiView.getUserToken(), multiTokenMatch,retrieveWindows(mouseEvent.getSource()).getWindow());
-        } catch (RemoteException e) {
-            //TODO: gestione errori
-            e.printStackTrace();
-        }
-        windowsText.setText("Hai selezionato la tua finestra.In attesa degli altri giocatori...");
-    }
     public void observeRoundDice(int round){
         roundView = round;
         for(DieView dieView : matchView.getRounds().get(round-1).getDieViews()){
@@ -948,7 +935,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         multiPlayerMatch = match;
         if(match.getTurnHandler().isFirstTurn()){
-            createMatchRoundsGui(match);
+            try {
+                createMatchRoundsGui(match);
+            }catch (IOException e){
+                e.printStackTrace();
+            }
             return;
         }
         if (match.getTurnHandler().isRoundFirstTurn() && !match.getTurnHandler().isFirstTurn()){
@@ -966,18 +957,20 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 matchView.getRounds().get(match.getTurnHandler().getRound()-2).getDieViews().add(new DieView(null,die));
             }
         }
-
-    }
-    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         if(match.getTurnHandler().isLastTurn()){
             pointsWindow = new PointsWindowController();
         }
+
+    }
+    public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+
     }
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
         DieView dieView = matchView.retrieveDieView(die);
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getCell().setDie(dieView.getDie());
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getImageView().setImage(dieView.getImageView().getImage());
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
+             matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
              matchView.setSelectedDie(null);
         }
         initializeDice();
@@ -996,6 +989,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 for(DieView dieView : matchView.getDice()){
                     if(dieView.getDie() == matchView.getInput().getChoosenDie()){
                         matchView.setSelectedDie(dieView);
+                        matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
                         toPlace = true;
                     }
 
@@ -1009,6 +1003,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     favorTokens.setText("" + favorTokensNumber);
                 }
             }
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
             matchView.setSelectedToolCard(null);
             matchView.setInput(null);
             twoMoves = false;

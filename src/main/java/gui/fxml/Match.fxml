@@ -8,18 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane fx:id="matchAnchorPane" prefHeight="695.0" prefWidth="1238.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayerApp">
+<AnchorPane fx:id="matchAnchorPane" prefHeight="695.0" prefWidth="1238.0" style="-fx-background-color: black;" styleClass="matchbackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayerApp">
 
    <children>
-      <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="291.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../objects/images/windows/firelight.png" />
-         </image></ImageView>
-      <ImageView fx:id="background" fitHeight="701.0" fitWidth="1238.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../objects/images/background.jpg" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="w1" fitHeight="231.0" fitWidth="299.0" layoutX="291.0" layoutY="388.0" pickOnBounds="true" preserveRatio="true" />
       <Pane fx:id="pane2" layoutY="7.0" prefHeight="688.0" prefWidth="280.0">
          <children>
             <ImageView fx:id="w4" fitHeight="193.0" fitWidth="243.0" layoutX="16.0" layoutY="471.0" pickOnBounds="true" preserveRatio="true" />
