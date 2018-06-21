@@ -605,6 +605,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 }
 
             } else {
+                if(matchView.getSelectedDie() != null){
+                    matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+                }
                 matchView.setSelectedDie(selectedDie);
                 matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
                 this.console.setText("hai selezionato il dado " + matchView.getSelectedDie().getDie().getShade() + " " + matchView.getSelectedDie().getDie().getColor().toString());
@@ -652,12 +655,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                             if(name.equals("lathekin") || twoMoves) {
                                 if(matchView.getInput().getDestinationCell1() == null) {
                                     matchView.getInput().setDestinationCell1(selectedCell.getCell());
+                                    matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("salected");
                                     console.setText("prima cella di destinazione selezionata");
                                     return;
                                 }else{
+                                    matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("salected");
                                     matchView.getInput().setDestinationCell2(selectedCell.getCell());
                                 }
                             }else{
+                                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("salected");
                                 matchView.getInput().setDestinationCell1(selectedCell.getCell());
                             }
                             try {
@@ -677,11 +683,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     if(name.equals("lathekin") || twoMoves) {
                         if(matchView.getInput().getOriginCell1() != null) {
                             matchView.getInput().setOriginCell2(selectedCell.getCell());
+                            selectedCell.getImageView().getStyleClass().add("selected");
                             console.setText("seconda cella di partenza selezionata");
                             return;
                         }
                     }
                     matchView.getInput().setOriginCell1(selectedCell.getCell());
+                    selectedCell.getImageView().getStyleClass().add("selected");
                     console.setText("prima cella di partenza selezionata");
                 }
             } else {
@@ -707,6 +715,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         ToolCardView selectedToolCard = retrieveToolCard(actionEvent.getSource());
 
         if(selectedToolCard != matchView.getSelectedToolCard()){
+            if(matchView.getSelectedToolCard() != null){
+                matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            }
             matchView.setSelectedToolCard(selectedToolCard);
             matchView.getSelectedToolCard().getImageView().getStyleClass().add("selected");
             if(matchView.getSelectedDie() != null) {
@@ -816,7 +827,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         }
                     });
                 }
-
                 console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
                 return;
             }
@@ -864,7 +874,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
            associateRoundDie(index).setVisible(true);
         }
         int i = matchView.getRounds().get(round-1).getDieViews().size();
-        while(i<10){
+        while(i<9){
             associateRoundDie(i).setVisible(false);
             i++;
         }
@@ -994,14 +1004,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     }
 
                 }
-                int favorTokensNumber = Integer.parseInt(favorTokens.getText());
-                if(toolCard.getFavorTokens() == 0){
-                    favorTokensNumber -= 1;
-                    favorTokens.setText("" + favorTokensNumber) ;
-                }else{
-                    favorTokensNumber -= 2;
-                    favorTokens.setText("" + favorTokensNumber);
-                }
+                favorTokens.setText("" + match.getTurnPlayer().getFavorTokens());
             }
             matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
             matchView.setSelectedToolCard(null);
