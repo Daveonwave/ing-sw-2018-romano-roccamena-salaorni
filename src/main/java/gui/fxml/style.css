@@ -10,9 +10,11 @@
 }
 
 .windowtochoose{
-    -fx-opacity: 1;
+	-fx-effect: dropshadow(three-pass-box, rgba(47,79,146,0.7), 10, -10, -10, 10);
 }
+
 
 .textwindowchoice{
     -fx-font-size: 50 px;
+	-fx-text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

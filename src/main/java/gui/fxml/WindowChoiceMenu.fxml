@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" styleClass="windowchoicebackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXWindowChoiceMenu">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXWindowChoiceMenu">
    <children>
-      <ImageView fx:id="secondChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="852.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-         <image>
-            <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="fourthChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="798.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
-         <image>
-            <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="firstChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="384.0" layoutY="59.0" onMouseClicked="#onWindowClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="50.0">
-         <image>
-            <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="extractedPrivateObjective" fitHeight="350.0" fitWidth="250.0" layoutX="44.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="1076.6806335449219" AnchorPane.topAnchor="175.0">
-         <image>
-            <Image url="@../objects/images/objective/sfumature%20blu.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="thirdChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="478.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="500.0">
-         <image>
-            <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textwindowchoice" text="Scegli la tua finestra" textAlignment="CENTER" wrappingWidth="300.0" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane prefHeight="650.0" prefWidth="1300.0" styleClass="windowchoicebackground" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" stylesheets="@style.css">
+         <children>
+            <ImageView fx:id="secondChoiceWindow" fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="fourthChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="798.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="firstChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="384.0" layoutY="59.0" onMouseClicked="#onWindowClicked" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="extractedPrivateObjective" fitHeight="350.0" fitWidth="250.0" layoutX="44.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="1076.6806335449219" AnchorPane.topAnchor="175.0">
+               <image>
+                  <Image url="@../objects/images/objective/sfumature%20blu.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="thirdChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="478.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="500.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="textwindowchoice" stylesheets="@style.css" text="Scegli la tua finestra" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
