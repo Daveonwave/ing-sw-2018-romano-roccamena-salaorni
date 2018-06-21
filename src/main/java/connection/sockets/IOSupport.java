@@ -62,7 +62,6 @@ public class IOSupport {
         }
     }
 
-
     //Ricezione richiesta del server
     public synchronized static ServerRequest requestFromServer(ObjectInputStream inputStream) {
         ServerRequest request = null;

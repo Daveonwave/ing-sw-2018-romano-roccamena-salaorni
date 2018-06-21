@@ -41,7 +41,6 @@ public abstract class TimedTaskHandler extends TimerTask {
         try {
             onTimedTask();
         } catch (Exception e) {
-            e.printStackTrace();
             onTimedTaskException(e);
         }
     }
