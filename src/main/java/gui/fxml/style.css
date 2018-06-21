@@ -8,6 +8,9 @@
     -fx-background-size: cover;
     -fx-opacity: 0.7;
 }
+.matchbackground{
+    -fx-background-image: url("background.jpg");
+}
 
 .windowtochoose{
 	-fx-effect: dropshadow(three-pass-box, rgba(47,79,146,0.7), 10, -10, -10, 10);
@@ -15,6 +18,6 @@
 
 
 .textwindowchoice{
-    -fx-font-size: 50 px;
-	-fx-text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    -fx-font-size: 40 px;
+
 }

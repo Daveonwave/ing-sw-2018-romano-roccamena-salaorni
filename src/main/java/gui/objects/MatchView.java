@@ -17,9 +17,9 @@ public class MatchView {
     private List<RoundView> rounds;
     private ToolCardInput input;
     private ToolCardView selectedToolCard;
-    private List<WindowView> windows;
 
-    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, ObjectiveCardView privateObjective, List<DieView> dice, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input, ToolCardView selectedToolCard, List<WindowView> windows) {
+
+    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, ObjectiveCardView privateObjective, List<DieView> dice, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input, ToolCardView selectedToolCard) {
         this.toolCards = toolCards;
         this.publicObjective = publicObjective;
         this.privateObjective = privateObjective;
@@ -29,7 +29,6 @@ public class MatchView {
         this.rounds = rounds;
         this.input = input;
         this.selectedToolCard = selectedToolCard;
-        this.windows = windows;
     }
 
     public List<ToolCardView> getToolCards() {
@@ -59,9 +58,6 @@ public class MatchView {
     public ToolCardView getSelectedToolCard() {
         return selectedToolCard;
     }
-    public List<WindowView> getWindows() {
-        return windows;
-    }
 
     public void setToolCards(List<ToolCardView> toolCards) {
         this.toolCards = toolCards;
@@ -89,9 +85,6 @@ public class MatchView {
     }
     public void setSelectedToolCard(ToolCardView selectedToolCard) {
         this.selectedToolCard = selectedToolCard;
-    }
-    public void setWindows(List<WindowView> windows) {
-        this.windows = windows;
     }
 
 

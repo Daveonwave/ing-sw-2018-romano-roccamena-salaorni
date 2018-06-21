@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXWindowChoiceMenu">
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="1300.0" styleClass="windowchoicebackground" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" stylesheets="@style.css">
          <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textwindowchoice" text="Scegli la tua finestra..." wrappingWidth="300.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
             <ImageView fx:id="secondChoiceWindow" fitHeight="250.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <image>
                   <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
@@ -35,7 +41,6 @@
                   <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
                </image>
             </ImageView>
-            <Label styleClass="textwindowchoice" stylesheets="@style.css" text="Scegli la tua finestra" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>
    </children>
