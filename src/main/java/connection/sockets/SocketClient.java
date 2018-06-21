@@ -21,7 +21,6 @@ public class SocketClient {
 
     private ControllerProxy controllerProxy;
     private ClientActionHandler clientActionHandler;
-    private List<AppView> view;
 
     //Costruttori
     public SocketClient(){}
@@ -35,6 +34,9 @@ public class SocketClient {
     }
     public ClientActionHandler getClientActionHandler() {
         return clientActionHandler;
+    }
+    public ControllerProxy getController(){
+        return controllerProxy;
     }
 
     //Inizializza il client

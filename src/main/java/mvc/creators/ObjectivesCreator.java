@@ -2,8 +2,8 @@ package mvc.creators;
 
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
-import mvc.model.objects.private_objectives_cards.*;
-import mvc.model.objects.public_objectives_cards.*;
+import mvc.model.objects.privateobjectivescards.*;
+import mvc.model.objects.publicobjectivescards.*;
 
 import java.util.ArrayList;
 import java.util.List;

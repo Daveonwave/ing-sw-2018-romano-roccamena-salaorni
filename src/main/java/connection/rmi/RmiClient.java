@@ -9,12 +9,18 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * RMI client
+ */
 public class RmiClient implements Serializable {
-    //Client RMI
 
     private AppControllerStub  controller;
 
-    //Lancia client RMI
+    /**
+     * Launches client, setting policy, server address and port
+     * @throws RemoteException
+     * @throws NotBoundException
+     */
     public void runRmiClient() throws RemoteException, NotBoundException {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "client.policy");

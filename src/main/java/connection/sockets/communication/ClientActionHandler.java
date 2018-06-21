@@ -9,12 +9,16 @@ import mvc.view.AppView;
 
 import java.rmi.RemoteException;
 
+/**
+ * Client side handler. It handles server requests and client responses
+ */
 public class ClientActionHandler implements ClientResponseHandler, ServerRequestHandler {
-    //Gestore delle richieste che arrivano al client e delle risposte dal server
 
     private AppView view;
 
-    //Costruttori
+    /**
+     * ClientActionHandler constructor
+     */
     public ClientActionHandler() {
         view = null;
     }
@@ -33,6 +37,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     //////////////////////////////
 
     //Richieste osservazione multiplayer
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnPlayerLeaveMatchRequest
+     * @return OnPlayerLeaveMatchResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnPlayerLeaveRequest request) {
         ServerResponse response = new OnPlayerLeaveResponse();
 
@@ -46,6 +58,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return  response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnPlayerLeaveRejoinRequest
+     * @return OnPlayerLeaveRejoinResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnPlayerRejoinRequest request) {
         ServerResponse response = new OnPlayerRejoinResponse();
 
@@ -60,6 +80,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
 
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnMatchStartRequest
+     * @return OnMatchStartResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnMatchStartRequest request) {
         ServerResponse response = new OnMatchStartResponse();
 
@@ -73,6 +101,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnTurnStartRequest
+     * @return OnTurnStartResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnTurnStartRequest request) {
         ServerResponse response = new OnTurnStartResponse();
 
@@ -86,6 +122,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnTurnEndRequest
+     * @return OnTurnEndResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnTurnEndRequest request) {
         ServerResponse response = new OnTurnEndResponse();
 
@@ -99,6 +143,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnPLaceDieRequest
+     * @return OnPlaceDieResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnPlaceDieRequest request) {
         ServerResponse response = new OnPlaceDieResponse();
 
@@ -112,6 +164,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnChooseWindowRequest
+     * @return OnChooseWindowResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnChooseWindowRequest request) {
         ServerResponse response = new OnChooseWindowResponse();
 
@@ -125,6 +185,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnUseToolCardRequest
+     * @return OnUseToolCardResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnUseToolCardRequest request) {
         ServerResponse response = new OnUseToolCardResponse();
 
@@ -138,6 +206,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnGetPointsRequest
+     * @return OnGetPointsResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnGetPointsRequest request) {
         ServerResponse response = new OnGetPointsResponse();
 
@@ -151,6 +227,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request OnMatchEndRequest
+     * @return OnMatchEndResponse
+     * Server observation method
+     */
     public ServerResponse handleAction(OnMatchEndRequest request) {
         ServerResponse response = new OnMatchEndResponse();
 
@@ -166,6 +250,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     }
 
     //Richieste del controller
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request RespondErrorRequest
+     * @return RespondErrorResponse
+     * Controller requests (ack/error)
+     */
     public ServerResponse handleAction(RespondErrorRequest request) {
         ServerResponse response = new RespondErrorResponse();
 
@@ -179,6 +271,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
         return response;
     }
+    /**
+     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
+     * response exceptionFlag true and wraps the exception inside the response.
+     * @param request RespondAckRequest
+     * @return RespondAckResponse
+     * Controller requests (ack/error)
+     */
     public ServerResponse handleAction(RespondAckRequest request) {
         ServerResponse response = new RespondAckResponse();
 

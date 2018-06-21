@@ -67,14 +67,14 @@ public class GuiApp extends Application implements Serializable {
 
         client.launchClient(true);
 
-        return client.getController();
+        return client.getRmiController();
     }
     private AppControllerStub connectSocketController() throws Exception {
         //showInfo("connecting socket...");
 
         client.launchClient(false);
 
-        return connectLocalController();
+        return client.getSocketController();
     }
 
     //Chiude la connessione al server
@@ -92,7 +92,6 @@ public class GuiApp extends Application implements Serializable {
 
         guiView = null;
     }
-
 
 
 
@@ -295,8 +294,6 @@ public class GuiApp extends Application implements Serializable {
         //Termina applicazione
         System.exit(0);
     }
-
-
 
 
     //Cambia scena nella gui caricandola da un nuovo file FXML

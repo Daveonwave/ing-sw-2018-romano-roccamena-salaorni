@@ -1,3 +1,18 @@
 .selected {
     -fx-opacity: 0.5;
 }
+
+.windowchoicebackground{
+    -fx-background-image: url("background-window-choice.jpg");
+    -fx-background-position: center;
+    -fx-background-size: cover;
+    -fx-opacity: 0.7;
+}
+
+.windowtochoose{
+    -fx-opacity: 1;
+}
+
+.textwindowchoice{
+    -fx-font-size: 50 px;
+}

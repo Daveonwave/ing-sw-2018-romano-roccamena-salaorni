@@ -11,8 +11,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ *  Receiver of the client requests and responsibile of their sorting
+ */
 public class ServerTransmitter implements Runnable {
-    //Gestore dello smistamento delle richieste del client
 
     private Socket socket;
 
@@ -23,8 +25,13 @@ public class ServerTransmitter implements Runnable {
 
     private boolean isRunning;
 
-
-    //Costruttori
+    /**
+     * Class constructor
+     *
+     * @param socket communication gate
+     * @param clientRequestHandler handler of the client request
+     * @throws IOException
+     */
     public ServerTransmitter(Socket socket, ClientRequestHandler clientRequestHandler) throws IOException {
         this.socket = socket;
         this.in = new ObjectInputStream(socket.getInputStream());
@@ -46,7 +53,17 @@ public class ServerTransmitter implements Runnable {
         return isRunning;
     }
 
-    //Gestisce la comunicazione da view a server a lato server
+    /**
+     * Stops run() method.
+     */
+    public void stop(){
+        setRunning(false);
+    }
+
+    /**
+     * Handles the comunication between client and server. It is always listening for some request from the client
+     * and, when it receives one, send it to the clientRequestHandle to obtain a response (excption or not).
+     */
     public void run() {
         try{
             while(isRunning){
@@ -61,12 +78,9 @@ public class ServerTransmitter implements Runnable {
         close();
     }
 
-    //Stop comunicazione
-    public void stop(){
-        setRunning(false);
-    }
-
-    //Chiude la comunicazione
+    /**
+     * Closes communication with client
+     */
     private void close(){
 
         if (in != null) {
@@ -92,11 +106,18 @@ public class ServerTransmitter implements Runnable {
         }
     }
 
-    //Riceve risposta ad una richiesta
+    /**
+     * Receives a response to a request
+     * @return response
+     */
     public ServerResponse getResponse(){
         return IOSupport.responseFromClient(in);
     }
 
+    /**
+     * Make a request
+     * @param request send request to be write on the outStream
+     */
     public void request(ServerRequest request){
         IOSupport.requestToClient(out, request);
     }

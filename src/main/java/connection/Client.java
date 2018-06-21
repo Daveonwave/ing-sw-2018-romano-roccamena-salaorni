@@ -31,8 +31,11 @@ public class Client implements Serializable {
     }
 
     //Getter
-    public AppControllerStub getController() {
+    public AppControllerStub getRmiController() {
         return rmiClient.getController();
+    }
+    public AppControllerStub getSocketController(){
+        return socketClient.getController();
     }
     public SocketClient getSocketClient() {
         return socketClient;

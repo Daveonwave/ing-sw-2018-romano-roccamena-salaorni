@@ -9,10 +9,16 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+/**
+ * RMI server
+ */
 public class RmiServer {
-    //Server RMI
 
-    //Lancia server RMI
+    /**
+     * Lauches RMI server, setting policy and listening port. The it makes the bind of RMI controller.
+     * @throws RemoteException
+     * @throws AlreadyBoundException
+     */
     public void runRmiServer() throws RemoteException, AlreadyBoundException {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "server.policy");
