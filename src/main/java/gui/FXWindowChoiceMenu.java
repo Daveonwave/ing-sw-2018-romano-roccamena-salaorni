@@ -22,7 +22,15 @@ public class FXWindowChoiceMenu {
     private GuiMultiplayerApp guiMultiplayerApp;
 
     @FXML
-    ImageView firstChoiceWindow, secondChoiceWindow, thirdChoiceWindow, fourthChoiceWindow, extractedPrivateObjective;
+    ImageView firstChoiceWindow;
+    @FXML
+    ImageView secondChoiceWindow;
+    @FXML
+    ImageView thirdChoiceWindow;
+    @FXML
+    ImageView fourthChoiceWindow;
+    @FXML
+    ImageView extractedPrivateObjective;
     @FXML
     Text windowsText;
 
@@ -40,6 +48,7 @@ public class FXWindowChoiceMenu {
         }
         return null;
     }
+
     public WindowView retrieveWindows(Object source) {
         if (source.equals(firstChoiceWindow)) return windows.get(0);
         if (source.equals(secondChoiceWindow)) return windows.get(1);
@@ -47,13 +56,17 @@ public class FXWindowChoiceMenu {
         if (source.equals(fourthChoiceWindow)) return windows.get(3);
         return null;
     }
+
     public void initializeMenu(MultiPlayerMatch match, GuiMultiplayerApp guiMultiplayerApp){
         this.guiMultiplayerApp = guiMultiplayerApp;
+
         for(Player player : match.getPlayers()){
             String name = player.getUser().getName();
+
             if (name.equals(guiMultiplayerApp.getGuiView().getUserName())){
                 windows = new ArrayList<>();
                 privateObjective = new ObjectiveCardView(extractedPrivateObjective,player.getPrivateObjectiveCards().get(0));
+
                 for( int i = 0; i<4; i++){
                     windows.add(new WindowView(associateWindows(i+1),player.getStartWindows().get(i),null));
                 }
@@ -62,6 +75,7 @@ public class FXWindowChoiceMenu {
 
         }
     }
+
     public void chooseWindow(MouseEvent mouseEvent){
         try {
             guiMultiplayerApp.getGuiView().getController().chooseWindow(guiMultiplayerApp.getGuiView().getUserToken(), guiMultiplayerApp.getMultiTokenMatch(),retrieveWindows(mouseEvent.getSource()).getWindow());

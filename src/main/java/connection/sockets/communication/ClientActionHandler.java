@@ -299,6 +299,14 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     /////////////////////////////
 
     //Risposte alle richieste operazione utente
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response LoginResponse
+     * @return String (userToken)
+     * @throws RemoteException
+     * Responses to request of user operation
+     */
     public String handleAction(LoginResponse response) throws RemoteException {
 
         if(response.isException()) {
@@ -306,6 +314,13 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         }
         return response.getTokenUser();
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response LogoutResponse
+     * * @throws RemoteException
+     * Responses to request of user operation
+     */
     public void handleAction(LogoutResponse response) throws RemoteException {
 
         if(response.isException()) {
@@ -314,24 +329,52 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     }
 
     //Risposte ad attività multiplayer
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response JoinMatchResponse
+     * * @throws RemoteException
+     * Responses to request of user activity
+     */
     public void handleAction(JoinMatchResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response RejoinMatchResponse
+     * * @throws RemoteException
+     * Responses to request of user activity
+     */
     public void handleAction(RejoinMatchResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response LeaveMatchResponse
+     * * @throws RemoteException
+     * Responses to request of user activity
+     */
     public void handleAction(LeaveMatchResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response CancelJoinMatchResponse
+     * * @throws RemoteException
+     * Responses to request of user activity
+     */
     public void handleAction(CancelJoinMatchResponse response) throws RemoteException {
 
         if(response.isException()) {
@@ -340,24 +383,52 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     }
 
     //Risposte  a comandi multiplayer
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response ChooseWindowResponse
+     * * @throws RemoteException
+     * Responses to request of user command
+     */
     public void handleAction(ChooseWindowResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response PlaceDieResponse
+     * * @throws RemoteException
+     * Responses to request of user command
+     */
     public void handleAction(PlaceDieResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response EndTurnResponse
+     * * @throws RemoteException
+     * Responses to request of user command
+     */
     public void handleAction(EndTurnResponse response) throws RemoteException {
 
         if(response.isException()) {
             throw response.getException();
         }
     }
+    /**
+     * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
+     * if it is, throws the wrapped exception
+     * @param response UseToolCardResponse
+     * * @throws RemoteException
+     * Responses to request of user command
+     */
     public void handleAction(UseToolCardResponse response) throws RemoteException {
 
         if(response.isException()) {
