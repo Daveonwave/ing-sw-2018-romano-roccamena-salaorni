@@ -33,17 +33,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public final static String FXML_PATH = "fxml/Match.fxml";
     public final static String TITLE = "Sagrada Multiplayer";
 
-    private static GuiView guiView;
-    private  static MultiPlayerMatch multiPlayerMatch;
-    private static String multiTokenMatch;
+    private GuiView guiView;
+    private MultiPlayerMatch multiPlayerMatch;
+    private String multiTokenMatch;
     private PointsWindowController pointsWindow;
+    private MatchView matchView;
+    private Stage stage;
 
     private boolean toPlace = false;
     private boolean twoMoves = false;
     private int roundView = 0;
     private boolean choice = false;
 
-    private MatchView matchView;
+
 
     @FXML
     TextArea console;
@@ -78,13 +80,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public MatchView getMatchView() {
         return matchView;
     }
-    public static GuiView getGuiView() {
+    public GuiView getGuiView() {
         return guiView;
     }
-    public static MultiPlayerMatch getMultiPlayerMatch() {
+    public MultiPlayerMatch getMultiPlayerMatch() {
         return multiPlayerMatch;
     }
-    public static String getMultiTokenMatch() {
+    public String getMultiTokenMatch() {
         return multiTokenMatch;
     }
     public PointsWindowController getPointsWindow() {
@@ -94,31 +96,22 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void setMatchView(MatchView matchView) {
         this.matchView = matchView;
     }
-    public static void setMultiPlayerMatch(MultiPlayerMatch multiPlayerMatch) {
-        GuiMultiplayerApp.multiPlayerMatch = multiPlayerMatch;
+    public void setGuiView(GuiView guiView) {
+        this.guiView = guiView;
     }
-
-    public static void setGuiView(GuiView guiView) {
-        GuiMultiplayerApp.guiView = guiView;
+    public void setMultiPlayerMatch(MultiPlayerMatch multiPlayerMatch) {
+        this.multiPlayerMatch = multiPlayerMatch;
     }
-
-    public static void setMultiTokenMatch(String multiTokenMatch) {
-        GuiMultiplayerApp.multiTokenMatch = multiTokenMatch;
+    public void setMultiTokenMatch(String multiTokenMatch) {
+        this.multiTokenMatch = multiTokenMatch;
     }
-
     public void setPointsWindow(PointsWindowController pointsWindow) {
         this.pointsWindow = pointsWindow;
     }
 
-    //Crea e visualizza la finestra
-    public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
-        multiPlayerMatch = match;
-        multiTokenMatch = tokenMatch;
-        createWindowChoiceGui();
-    }
-
 
     //Associazioni tra bottoni e classi view corrispondenti
+
     public ImageView associateWindow(int index) {
         switch (index) {
             case 1:
@@ -271,7 +264,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
         return cells;
     }
-    public ImageView associateDice(int index) {
+    private ImageView associateDice(int index) {
         switch (index) {
             case 1:
                 return d1;
@@ -291,10 +284,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return d8;
             case 9:
                 return d9;
+            default:
+                return null;
         }
-        return null;
+
     }
-    public ImageView associatePublicObjective(int index) {
+    private ImageView associatePublicObjective(int index) {
         switch (index) {
             case 1:
                 return publicObjective1;
@@ -302,10 +297,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return publicObjective2;
             case 3:
                 return publicObjective3;
+            default:
+                return null;
         }
-        return null;
+
     }
-    public ImageView associateRound(int index) {
+    private ImageView associateRound(int index) {
         switch (index) {
             case 1:
                 return round1;
@@ -327,10 +324,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return round9;
             case 10:
                 return round10;
+            default:
+                return null;
         }
-        return null;
     }
-    public ImageView associateRoundDie(int index) {
+    private ImageView associateRoundDie(int index) {
         switch (index) {
             case 0:
                 return roundDie1;
@@ -350,10 +348,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return roundDie8;
             case 8:
                 return roundDie9;
+            default:
+                return null;
         }
-        return null;
+
     }
-    public Label associateNameLabel(int index) {
+    private Label associateNameLabel(int index) {
         switch (index) {
             case 2:
                 return player2Name;
@@ -361,8 +361,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return player3Name;
             case 4:
                 return player4Name;
+            default:
+                return null;
         }
-        return null;
+
     }
 
     //Restituiscono l'oggetto della view in base al bottone selezionato
@@ -467,6 +469,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         return toolCards;
     }
 
+    //Crea e visualizza la finestra
+    public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
+        multiPlayerMatch = match;
+        multiTokenMatch = tokenMatch;
+        createWindowChoiceGui();
+    }
+
 
     //Crea oggetti gui gioco a inizio partita
     public void createWindowChoiceGui() throws IOException {
@@ -474,9 +483,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/WindowChoiceMenu.fxml"));
         Parent root = loader.load();
         FXWindowChoiceMenu choiceMenu = loader.getController();
+        choiceMenu.setGuiMultiplayerApp(this);
         choiceMenu.initializeMenu(multiPlayerMatch);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+        this.stage = stage;
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -486,6 +497,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void initializeMatchRoundsGui(MultiPlayerMatch match) {
         initializeDice();
         roundDice.setVisible(false);
+        console.setEditable(false);
         round1.setVisible(false);
         round2.setVisible(false);
         round3.setVisible(false);
@@ -550,20 +562,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
         //Inizializza componenti
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
-
         Parent root = loader.load();
-
         GuiMultiplayerApp guiController = loader.getController();
         guiController.setMultiPlayerMatch(match);
+        guiController.setGuiView(this.guiView);
+        guiController.setMultiTokenMatch(this.multiTokenMatch);
         guiView.getMultiplayerApps().replace(multiTokenMatch, guiController);
         guiController.initializeMatchRoundsGui(match);
 
-        Stage matchStage = new Stage();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
-        matchStage.setScene(scene);
-        matchStage.setResizable(false);
-        matchStage.show();
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 
     //Eventi componenti gui di mosse della partita
@@ -1070,8 +1081,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             pointsWindowController.setMatch(match);
             pointsWindowController.calculateScores();
             matchAnchorPane.getChildren().add(root);
-            root.setLayoutX(333);
-            root.setLayoutY(194);
+            root.setLayoutX(346);
+            root.setLayoutY(143);
         }catch (Exception e){
             e.printStackTrace();
         }

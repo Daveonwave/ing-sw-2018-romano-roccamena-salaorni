@@ -2,13 +2,13 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 import mvc.model.objects.PlayerPoints;
 
-import java.awt.*;
 import java.util.Map;
 
 public class PointsWindowController {
@@ -17,19 +17,59 @@ public class PointsWindowController {
     private MultiPlayerMatch match;
 
     @FXML
-    Label player1, player2, player3, player4, winner;
+    Label player1;
+    @FXML
+    Label player2;
+    @FXML
+    Label player3;
+    @FXML
+    Label player4;
+    @FXML
+    Label winner;
 
     @FXML
-    Label player1PrivateObjective, player1PublicObjective, player1OpenSpaces, player1FavorTokens, player1TotalPoints;
+    Label player1PrivateObjective;
+    @FXML
+    Label player1PublicObjective;
+    @FXML
+    Label player1OpenSpaces;
+    @FXML
+    Label player1FavorTokens;
+    @FXML
+    Label player1TotalPoints;
 
     @FXML
-    Label player2PrivateObjective, player2PublicObjective, player2OpenSpaces, player2FavorTokens, player2TotalPoints;
+    Label player2PrivateObjective;
+    @FXML
+    Label player2PublicObjective;
+    @FXML
+    Label player2OpenSpaces;
+    @FXML
+    Label player2FavorTokens;
+    @FXML
+    Label player2TotalPoints;
 
     @FXML
-    Label player3PrivateObjective, player3PublicObjective, player3OpenSpaces, player3FavorTokens, player3TotalPoints;
+    Label player3PrivateObjective;
+    @FXML
+    Label player3PublicObjective;
+    @FXML
+    Label player3OpenSpaces;
+    @FXML
+    Label player3FavorTokens;
+    @FXML
+    Label player3TotalPoints;
 
     @FXML
-    Label player4PrivateObjective, player4PublicObjective, player4OpenSpaces, player4FavorTokens, player4TotalPoints;
+    Label player4PrivateObjective;
+    @FXML
+    Label player4PublicObjective;
+    @FXML
+    Label player4OpenSpaces;
+    @FXML
+    Label player4FavorTokens;
+    @FXML
+    Label player4TotalPoints;
 
     public PointsWindowController(Map<String, PlayerPoints> points, MultiPlayerMatch match) {
         this.points = points;

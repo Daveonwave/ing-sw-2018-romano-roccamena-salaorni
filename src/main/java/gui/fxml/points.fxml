@@ -4,18 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="402.0" prefWidth="578.0" styleClass="windowchoicebackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PointsWindowController">
+<AnchorPane prefHeight="402.0" prefWidth="578.0" styleClass="windowchoicebackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PointsWindowController">
    <children>
-      <Label layoutX="25.0" layoutY="22.0" prefHeight="46.0" prefWidth="121.0" stylesheets="@style.css" text="PARTITA FINITA" />
-      <Label layoutX="25.0" layoutY="300.0" prefHeight="46.0" prefWidth="121.0" text="totale punteggio:" />
-      <Label layoutX="25.0" layoutY="167.0" prefHeight="39.0" prefWidth="114.0" text="obiettivi pubblici" />
-      <Label layoutX="25.0" layoutY="114.0" prefHeight="46.0" prefWidth="114.0" text="obiettivo privato" />
-      <Label layoutX="25.0" layoutY="206.0" prefHeight="46.0" prefWidth="121.0" text="celle non riempite" />
-      <Label layoutX="25.0" layoutY="253.0" prefHeight="46.0" prefWidth="121.0" text="favor tokens" />
-      <Label fx:id="player1" layoutX="158.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
-      <Label fx:id="player2" layoutX="268.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label layoutX="25.0" layoutY="22.0" prefHeight="46.0" prefWidth="121.0" stylesheets="@style.css" text="PARTITA FINITA" textFill="#fcfafa" />
+      <Label layoutX="25.0" layoutY="300.0" prefHeight="46.0" prefWidth="121.0" text="totale punteggio:" textFill="#f8f6f6" />
+      <Label layoutX="25.0" layoutY="167.0" prefHeight="39.0" prefWidth="114.0" text="obiettivi pubblici" textFill="#fcfafa" />
+      <Label layoutX="25.0" layoutY="114.0" prefHeight="46.0" prefWidth="114.0" text="obiettivo privato" textFill="#f8f8f8" />
+      <Label layoutX="25.0" layoutY="206.0" prefHeight="46.0" prefWidth="121.0" text="celle non riempite" textFill="#fcfcfc" />
+      <Label layoutX="25.0" layoutY="253.0" prefHeight="46.0" prefWidth="121.0" text="favor tokens" textFill="#fcfafa" />
+      <Label fx:id="player1" layoutX="158.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" textFill="#fcf8f8" />
+      <Label fx:id="player2" layoutX="268.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" textFill="#f5f4f4" />
       <Label fx:id="player3" layoutX="362.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
-      <Label fx:id="player4" layoutX="469.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" />
+      <Label fx:id="player4" layoutX="469.0" layoutY="76.0" prefHeight="39.0" prefWidth="94.0" textFill="#fffbfb" />
       <Label fx:id="winner" layoutX="215.0" layoutY="25.0" prefHeight="39.0" prefWidth="257.0" />
       <Label fx:id="player1PrivateObjective" layoutX="158.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
       <Label fx:id="player2PrivateObjective" layoutX="273.0" layoutY="129.0" prefHeight="28.0" prefWidth="66.0" />
@@ -37,6 +37,6 @@
       <Label fx:id="player2TotalPoints" layoutX="273.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
       <Label fx:id="player3TotalPoints" layoutX="364.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
       <Label fx:id="player4TotalPoints" layoutX="469.0" layoutY="309.0" prefHeight="28.0" prefWidth="66.0" />
-      <Button layoutX="233.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#endGame" prefHeight="39.0" prefWidth="140.0" text="Termina Partita" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="219.0" />
+      <Button layoutX="233.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#endGame" prefHeight="39.0" prefWidth="133.0" text="Termina Partita" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="226.0" />
    </children>
 </AnchorPane>
