@@ -5,6 +5,9 @@ import util.RandomHandler;
 
 import java.io.Serializable;
 
+/**
+ * Die object of the game
+ */
 public class Die implements Serializable {
     //Dado del gioco
 
@@ -37,6 +40,11 @@ public class Die implements Serializable {
     }
 
     //Verifica uguaglianze
+    /**
+     * Assert color equality of two dice
+     * @param die Die instance
+     * @return
+     */
     public boolean sameColor(Die die) {
         if (die == null)
             return false;
@@ -50,22 +58,41 @@ public class Die implements Serializable {
 
         return  otherDie.equals(color);
     }
+
+    /**
+     * Assert shade equality of two dice
+     * @param die Die instance
+     * @return
+     */
     public boolean sameShade(Die die) {
         if (die == null)
             return false;
 
         return  die.getShade() == shade;
     }
+
+    /**
+     * Assert dice equality
+     * @param die Die instance
+     * @return
+     */
     public boolean sameDie(Die die) {
         return  sameColor(die) && sameShade(die);
     }
 
     //Operazioni su dado
+    /**
+     * Roll the die, randomizing its shade between 0 and 1
+     */
     public void roll() {
         int newShade = RandomHandler.retrieveRandom().nextInt(6) + 1;
 
         this.shade = newShade;
     }
+
+    /**
+     * Invert the shade of the die, as if you flip die face
+     */
     public void invertShade() {
         switch (shade) {
             case 1:

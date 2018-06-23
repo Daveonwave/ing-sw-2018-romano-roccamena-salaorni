@@ -24,10 +24,14 @@ public class NoPlayersHandler extends TimedSubcontroller {
             User user = null;
             user = controller.getModel().retrieveUser(userToken);
 
+            //Pulisce la lista di attesa della lobby
+            lobby.clear();
+
             //Comunica fine attesa partita
             controller.userError(user, "nessun giocatore disponibile");
-        } else
+        } else {
             controller.startMatch();
+        }
 
         //Resetta timer di nessun giocatore del controllore
         controller.resetNoPlayerHandler();

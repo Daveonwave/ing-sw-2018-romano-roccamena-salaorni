@@ -1,5 +1,8 @@
 package mvc.model.objects;
 
+/**
+ * Game constants
+ */
 public final class GameConstants {
     //Costanti del gioco
 

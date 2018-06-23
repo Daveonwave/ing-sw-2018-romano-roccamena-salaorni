@@ -2,6 +2,9 @@ package mvc.model.objects;
 
 import mvc.model.objects.enums.DieColor;
 
+/**
+ * Color restriction of a cell
+ */
 public class ColorRestriction implements CellRestriction {
     //Restrizione di colore
 
@@ -22,6 +25,11 @@ public class ColorRestriction implements CellRestriction {
     }
 
     //Verifica uguaglianza
+    /**
+     * Assert equality of restrictions within two cells
+     * @param cellRestriction Cell restriction instance
+     * @return
+     */
     public boolean sameCellRestriction(CellRestriction cellRestriction) {
         if (!(cellRestriction instanceof ColorRestriction))
             return false;
@@ -32,6 +40,11 @@ public class ColorRestriction implements CellRestriction {
     }
 
     //Verifica che un dado rispetti la restrizione
+    /**
+     * Assert if a die is compatible with the restriction
+     * @param die Die instance
+     * @return
+     */
     public boolean canPlaceDie(Die die) {
         return color.equals(die.getColor());
     }

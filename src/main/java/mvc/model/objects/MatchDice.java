@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * Representation of a game's match dice set
+ */
 public class MatchDice implements Serializable {
     //Dadi di una partita
 
@@ -45,9 +48,20 @@ public class MatchDice implements Serializable {
     }
 
     //Verifica uguaglianze
+
+    /**
+     * Assert if two match dice refers to matches with same players count
+     * @param matchDice Match dice instance
+     * @return
+     */
     public boolean samePlayersCount(MatchDice matchDice) {
         return matchDice.getPlayersCount() == playersCount;
     }
+    /**
+     * Assert equality of object's dice bags
+     * @param matchDice Match dice instance
+     * @return
+     */
     public boolean sameDiceBag(MatchDice matchDice) {
         if (matchDice == null)
             return false;
@@ -66,6 +80,11 @@ public class MatchDice implements Serializable {
 
         return true;
     }
+    /**
+     * Assert equality of object's draft pools
+     * @param matchDice Match dice instance
+     * @return
+     */
     public boolean sameDraftPool(MatchDice matchDice) {
         if (matchDice == null)
             return false;
@@ -84,11 +103,21 @@ public class MatchDice implements Serializable {
 
         return true;
     }
+    /**
+     * Assert equality of two match dice
+     * @param matchDice Match dice instance
+     * @return
+     */
     public boolean sameMatchDice(MatchDice matchDice) {
         return samePlayersCount(matchDice) && sameDiceBag(matchDice) && sameDraftPool(matchDice);
     }
 
     //Verifica che il dado sia contenuto
+    /**
+     * Assert if die bag contains a die
+     * @param die Die instance
+     * @return
+     */
     public boolean containsDieInBag(Die die) {
         for (Die d : diceBag) {
             if (d==null ^ die==null)
@@ -102,6 +131,12 @@ public class MatchDice implements Serializable {
 
         return false;
     }
+
+    /**
+     * Assert if draft pool contains a die
+     * @param die
+     * @return
+     */
     public boolean containsDieInPool(Die die) {
         for (Die d : draftPool) {
             if (d==null ^ die==null)
@@ -117,6 +152,12 @@ public class MatchDice implements Serializable {
     }
 
     //Ottiene dado da riserva dadi
+    /**
+     * Obtain a draft pool's die using another equal die instance
+     * @param die
+     * @return
+     * @throws RemoteException MatchException if invalid die requested
+     */
     public Die retrieveDieFromDraftPool(Die die) throws RemoteException {
         if (die==null)
             throw new MatchException("dado non valido");
@@ -135,6 +176,10 @@ public class MatchDice implements Serializable {
     }
 
     //Estrae un dado dal sacco di dadi
+    /**
+     * Extract one die from the bag
+     * @return
+     */
     public Die extractDieFromBag() {
         int index = RandomHandler.retrieveRandom().nextInt(diceBag.size());
 
@@ -144,6 +189,9 @@ public class MatchDice implements Serializable {
         return result;
     }
     //Estrae nuova draft pool dal sacco di dadi
+    /**
+     * Extract draft pool's dice from the bag
+     */
     public void extractDraftPoolFromBag() {
         boolean singlePlayer = this.playersCount == 1;
 
@@ -153,6 +201,9 @@ public class MatchDice implements Serializable {
     }
 
     //Toglie dalla draft pool tutti i dadi
+    /**
+     * Removes all dice in the draft pool
+     */
     public void clearDraftPool() {
         this.draftPool.clear();
     }

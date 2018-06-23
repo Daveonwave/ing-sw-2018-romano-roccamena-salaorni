@@ -2,6 +2,9 @@ package mvc.model.objects;
 
 import mvc.model.objects.enums.DieColor;
 
+/**
+ * Colored card extension of a game card
+ */
 public class ColorCard extends Card {
     //Carta colorata
 

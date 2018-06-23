@@ -2,6 +2,9 @@ package mvc.model.objects;
 
 import java.io.Serializable;
 
+/**
+ * Generic card object of the game
+ */
 public class Card implements Serializable {
     //Carta generica
 
@@ -30,6 +33,12 @@ public class Card implements Serializable {
     }
 
     //Verifica uguaglianze
+
+    /**
+     * Assert equality of two cards
+     * @param card card instance to test
+     * @return
+     */
     public boolean sameCard(Card card) {
         if (card == null)
             return false;

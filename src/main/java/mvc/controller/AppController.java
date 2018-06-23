@@ -124,9 +124,6 @@ public class AppController implements AppControllerStub {
         for (String partecipantToken : partecipantTokens)
             partecipantUsers.add(model.retrieveUser(partecipantToken));
 
-        //Ricostruisce timer di nessun giocatore
-        resetNoPlayerHandler();
-
         //Crea nuova partita
         MatchModel matchModel = new MatchModel(MatchCreator.createMultiPlayer(partecipantUsers));
         MultiPlayerMatch match = matchModel.getMatch();
@@ -258,6 +255,10 @@ public class AppController implements AppControllerStub {
 
         //Se sono presenti gli utenti partecipanti necessari inizia partita
         if (multiPlayerLobby.isReady()) {
+            //Ricostruisce timer di nessun giocatore
+            resetNoPlayerHandler();
+
+            //Inizia partita
             startMatch();
         }
     }

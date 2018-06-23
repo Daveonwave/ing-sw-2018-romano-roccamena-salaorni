@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * Generic match object of the game
+ */
 public abstract class Match implements Serializable {
     //Partita base
 
@@ -66,6 +69,10 @@ public abstract class Match implements Serializable {
     }
 
     //Inizia partita
+    /**
+     * Begin the match object
+     * @throws RemoteException MatchException if match has already started
+     */
     public void beginMatch() throws RemoteException {
         //Controllo stato corretto della partita
         if (matchState != MatchState.CREATED)
