@@ -14,8 +14,10 @@ public class ShadesOfRed extends PrivateObjectiveCard {
         int points = 0;
         for (int i = 0; i < 4; i++){
             for(int j= 0; j < 5; j++){
-                if(window.getCells()[i][j].getDie().getColor().equals(this.getColor())){
-                    points += window.getCells()[i][j].getDie().getShade();
+                if(window.getCells()[i][j].getDie() != null) {
+                    if (window.getCells()[i][j].getDie().getColor().equals(GameConstants.RED)) {
+                        points += window.getCells()[i][j].getDie().getShade();
+                    }
                 }
             }
         }

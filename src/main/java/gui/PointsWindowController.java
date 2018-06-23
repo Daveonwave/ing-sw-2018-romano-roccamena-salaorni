@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class PointsWindowController {
 
-    private static Map<String, PlayerPoints> points;
-    private static MultiPlayerMatch match;
+    private Map<String, PlayerPoints> points;
+    private MultiPlayerMatch match;
 
     @FXML
     Label player1, player2, player3, player4, winner;
@@ -31,12 +31,27 @@ public class PointsWindowController {
     @FXML
     Label player4PrivateObjective, player4PublicObjective, player4OpenSpaces, player4FavorTokens, player4TotalPoints;
 
-    public void associatePoints(String playerName, PlayerPoints playerPoints){
-        points.put(playerName, playerPoints);
+    public PointsWindowController(Map<String, PlayerPoints> points, MultiPlayerMatch match) {
+        this.points = points;
+        this.match = match;
     }
-    public void associateMatch(MultiPlayerMatch multiPlayerMatch){
-        match = multiPlayerMatch;
+
+    public Map<String, PlayerPoints> getPoints() {
+        return points;
     }
+
+    public MultiPlayerMatch getMatch() {
+        return match;
+    }
+
+    public void setPoints(Map<String, PlayerPoints> points) {
+        this.points = points;
+    }
+
+    public void setMatch(MultiPlayerMatch match) {
+        this.match = match;
+    }
+
 
     public Label associatePlayer(int index){
         switch (index){
@@ -97,7 +112,7 @@ public class PointsWindowController {
         return null;
     }
 
-    public void calculateScores(MouseEvent mouseEvent) {
+    public void calculateScores() {
         String winnerName = "";
         int winnerPoints = 0;
         for(Player player : match.getPlayers()){

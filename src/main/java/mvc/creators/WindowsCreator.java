@@ -167,26 +167,26 @@ public class WindowsCreator {
                     windows.get(i).setDifficulty(4);
 
                     //Creazione celle finestra
-                    cells[0][0] = new Cell(null, new ColorRestriction(GameConstants.BLUE), 0, 0);
-                    cells[0][1] = new Cell(null, new ShadeRestriction(6), 0, 1);
-                    cells[0][2] = new Cell(null, new NoRestriction(), 0, 2);
+                    cells[0][0] = new Cell(null, new NoRestriction(), 0, 0);
+                    cells[0][1] = new Cell(null, new NoRestriction(), 0, 1);
+                    cells[0][2] = new Cell(null, new ColorRestriction(GameConstants.GREEN), 0, 2);
                     cells[0][3] = new Cell(null, new NoRestriction(), 0, 3);
-                    cells[0][4] = new Cell(null, new ColorRestriction(GameConstants.YELLOW), 0, 4);
-                    cells[1][0] = new Cell(null, new NoRestriction(), 1, 0);
-                    cells[1][1] = new Cell(null, new ShadeRestriction(3), 1, 1);
-                    cells[1][2] = new Cell(null, new ColorRestriction(GameConstants.BLUE), 1, 2);
-                    cells[1][3] = new Cell(null, new NoRestriction(), 1, 3);
-                    cells[1][4] = new Cell(null, new NoRestriction(), 1, 4);
+                    cells[0][4] = new Cell(null, new NoRestriction(), 0, 4);
+                    cells[1][0] = new Cell(null, new ShadeRestriction(2), 1, 0);
+                    cells[1][1] = new Cell(null, new ColorRestriction(GameConstants.YELLOW), 1, 1);
+                    cells[1][2] = new Cell(null, new ShadeRestriction(5), 1, 2);
+                    cells[1][3] = new Cell(null, new ColorRestriction(GameConstants.BLUE), 1, 3);
+                    cells[1][4] = new Cell(null, new ShadeRestriction(1), 1, 4);
                     cells[2][0] = new Cell(null, new NoRestriction(), 2, 0);
-                    cells[2][1] = new Cell(null, new ShadeRestriction(5), 2, 1);
-                    cells[2][2] = new Cell(null, new ShadeRestriction(6), 2, 2);
-                    cells[2][3] = new Cell(null, new ShadeRestriction(2), 2, 3);
+                    cells[2][1] = new Cell(null, new ColorRestriction(GameConstants.RED), 2, 1);
+                    cells[2][2] = new Cell(null, new ShadeRestriction(3), 2, 2);
+                    cells[2][3] = new Cell(null, new ColorRestriction(GameConstants.PURPLE), 2, 3);
                     cells[2][4] = new Cell(null, new NoRestriction(), 2, 4);
-                    cells[3][0] = new Cell(null, new NoRestriction(), 3, 0);
-                    cells[3][1] = new Cell(null, new ShadeRestriction(4), 3, 1);
-                    cells[3][2] = new Cell(null, new NoRestriction(), 3, 2);
-                    cells[3][3] = new Cell(null, new ShadeRestriction(1), 3, 3);
-                    cells[3][4] = new Cell(null, new ColorRestriction(GameConstants.GREEN), 3, 4);
+                    cells[3][0] = new Cell(null, new ShadeRestriction(1), 3, 0);
+                    cells[3][1] = new Cell(null, new NoRestriction(), 3, 1);
+                    cells[3][2] = new Cell(null, new ShadeRestriction(6), 3, 2);
+                    cells[3][3] = new Cell(null, new NoRestriction(), 3, 3);
+                    cells[3][4] = new Cell(null, new ShadeRestriction(4), 3, 4);
 
                     windows.get(i).setCells(cells);
                     break;
@@ -609,7 +609,7 @@ public class WindowsCreator {
                     cells[3][0] = new Cell(null, new NoRestriction(), 3, 0);
                     cells[3][1] = new Cell(null, new ShadeRestriction(3), 3, 1);
                     cells[3][2] = new Cell(null, new NoRestriction(), 3, 2);
-                    cells[3][3] = new Cell(null, new ShadeRestriction(4), 3, 3);
+                    cells[3][3] = new Cell(null, new ShadeRestriction(5), 3, 3);
                     cells[3][4] = new Cell(null, new NoRestriction(), 3, 4);
 
                     windows.get(i).setCells(cells);
