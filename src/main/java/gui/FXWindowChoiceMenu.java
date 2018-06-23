@@ -4,9 +4,9 @@ import gui.objects.ObjectiveCardView;
 import gui.objects.WindowView;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
@@ -17,53 +17,71 @@ import java.util.List;
 
 public class FXWindowChoiceMenu {
 
-    private List<WindowView> windows;
-    private ObjectiveCardView privateObjective;
-    private GuiMultiplayerApp guiMultiplayerApp;
+
+    List<WindowView> windows;
 
     @FXML
-    ImageView firstChoiceWindow;
+    ImageView choiceWindow1;
     @FXML
-    ImageView secondChoiceWindow;
+    ImageView choiceWindow2;
     @FXML
-    ImageView thirdChoiceWindow;
+    ImageView choiceWindow3;
     @FXML
-    ImageView fourthChoiceWindow;
+    ImageView choiceWindow4;
     @FXML
     ImageView extractedPrivateObjective;
+    @FXML
+    ImageView windowDifficulty1;
+    @FXML
+    ImageView windowDifficulty2;
+    @FXML
+    ImageView windowDifficulty3;
+    @FXML
+    ImageView windowDifficulty4;
+
+    @FXML
+    Label windowName1;
+    @FXML
+    Label windowName2;
+    @FXML
+    Label windowName3;
+    @FXML
+    Label windowName4;
+
+
 
 
     public ImageView associateWindows(int index) {
         switch (index) {
             case 1:
-                return firstChoiceWindow;
+                return choiceWindow1;
             case 2:
-                return secondChoiceWindow;
+                return choiceWindow2;
             case 3:
-                return thirdChoiceWindow;
+                return choiceWindow3;
             case 4:
-                return fourthChoiceWindow;
+                return choiceWindow4;
         }
         return null;
     }
 
     public WindowView retrieveWindows(Object source) {
-        if (source.equals(firstChoiceWindow)) return windows.get(0);
-        if (source.equals(secondChoiceWindow)) return windows.get(1);
-        if (source.equals(thirdChoiceWindow)) return windows.get(2);
-        if (source.equals(fourthChoiceWindow)) return windows.get(3);
+        if (source.equals(choiceWindow1)) return windows.get(0);
+        if (source.equals(choiceWindow2)) return windows.get(1);
+        if (source.equals(choiceWindow3)) return windows.get(2);
+        if (source.equals(choiceWindow4)) return windows.get(3);
         return null;
     }
 
-    public void initializeMenu(MultiPlayerMatch match, GuiMultiplayerApp guiMultiplayerApp){
-        this.guiMultiplayerApp = guiMultiplayerApp;
+    public void initializeMenu(MultiPlayerMatch match){
+
 
         for(Player player : match.getPlayers()){
             String name = player.getUser().getName();
 
-            if (name.equals(guiMultiplayerApp.getGuiView().getUserName())){
+            if (name.equals(GuiMultiplayerApp.getGuiView().getUserName())){
                 windows = new ArrayList<>();
-                privateObjective = new ObjectiveCardView(extractedPrivateObjective,player.getPrivateObjectiveCards().get(0));
+                new ObjectiveCardView(extractedPrivateObjective, player.getPrivateObjectiveCards().get(0));
 
                 for( int i = 0; i<4; i++){
                     windows.add(new WindowView(associateWindows(i+1),player.getStartWindows().get(i),null));
@@ -76,7 +94,7 @@ public class FXWindowChoiceMenu {
 
     public void chooseWindow(MouseEvent mouseEvent){
         try {
-            guiMultiplayerApp.getGuiView().getController().chooseWindow(guiMultiplayerApp.getGuiView().getUserToken(), guiMultiplayerApp.getMultiTokenMatch(),retrieveWindows(mouseEvent.getSource()).getWindow());
+            GuiMultiplayerApp.getGuiView().getController().chooseWindow(GuiMultiplayerApp.getGuiView().getUserToken(), GuiMultiplayerApp.getMultiTokenMatch(),retrieveWindows(mouseEvent.getSource()).getWindow());
         } catch (RemoteException e) {
             e.printStackTrace();
         }

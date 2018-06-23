@@ -1,6 +1,7 @@
 package mvc.model.objects.toolcards;
 
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -8,7 +9,7 @@ public class TamponeDiamantato extends ToolCard{
 
     //Costruttori
     public TamponeDiamantato() {
-        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", GameConstants.GREEN);
+        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", DieColor.GREEN);
 
     }
 

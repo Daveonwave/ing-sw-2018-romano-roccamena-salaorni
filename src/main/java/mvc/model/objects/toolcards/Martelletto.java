@@ -2,6 +2,7 @@ package mvc.model.objects.toolcards;
 
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +10,7 @@ public class Martelletto extends ToolCard {
 
     //Costruttori
     public Martelletto() {
-        super("martelletto", "tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", GameConstants.BLUE);
+        super("martelletto", "tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", DieColor.BLUE);
 
     }
 

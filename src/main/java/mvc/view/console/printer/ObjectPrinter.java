@@ -1,7 +1,10 @@
 package mvc.view.console.printer;
 
-import mvc.model.objects.*;
+import mvc.model.objects.Cell;
+import mvc.model.objects.CellRestriction;
+import mvc.model.objects.Die;
 import mvc.model.objects.Window;
+import mvc.model.objects.enums.DieColor;
 import mvc.view.console.Console;
 import mvc.view.console.ConsoleColors;
 import mvc.view.console.ConsoleView;
@@ -30,19 +33,19 @@ public class ObjectPrinter implements Serializable {
 
     //Setta il colore della print da colore
     public void consoleSetColor(Color color) {
-        if (color.equals(GameConstants.PURPLE)) {
+        if (color.equals(DieColor.PURPLE)) {
             Console.setColor(ConsoleColors.PURPLE);
         }
-        else if (color.equals(GameConstants.RED)) {
+        else if (color.equals(DieColor.RED)) {
             Console.setColor(ConsoleColors.RED);
         }
-        else if (color.equals(GameConstants.BLUE)) {
+        else if (color.equals(DieColor.BLUE)) {
             Console.setColor(ConsoleColors.BLUE);
         }
-        else if (color.equals(GameConstants.YELLOW)) {
+        else if (color.equals(DieColor.YELLOW)) {
             Console.setColor(ConsoleColors.YELLOW);
         }
-        else if (color.equals(GameConstants.GREEN)) {
+        else if (color.equals(DieColor.GREEN)) {
             Console.setColor(ConsoleColors.GREEN);
         }
         else {

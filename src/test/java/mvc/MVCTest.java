@@ -3,6 +3,7 @@ package mvc;
 import mvc.controller.AppController;
 import mvc.model.objects.*;
 import base.BaseTest;
+import mvc.model.objects.enums.DieColor;
 import mvc.view.others.EmptyView;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class MVCTest extends BaseTest {
 
     //Crea altri oggetti
     public Die createInvalidDie1() {
-        return new Die(GameConstants.YELLOW, 1);
+        return new Die(DieColor.YELLOW, 1);
     }
     public Cell createInvalidCell1() {
         return new Cell(createInvalidDie1(), new NoRestriction(), 2, 2);

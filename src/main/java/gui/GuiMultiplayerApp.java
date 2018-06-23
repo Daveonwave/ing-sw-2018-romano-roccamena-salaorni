@@ -26,7 +26,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Serializable {
 
@@ -475,7 +474,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/WindowChoiceMenu.fxml"));
         Parent root = loader.load();
         FXWindowChoiceMenu choiceMenu = loader.getController();
-        choiceMenu.initializeMenu(multiPlayerMatch, this);
+        choiceMenu.initializeMenu(multiPlayerMatch);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);

@@ -1,23 +1,24 @@
 package mvc.model.objects;
-import java.awt.*;
+
+import mvc.model.objects.enums.DieColor;
 
 public class ColorCard extends Card {
     //Carta colorata
 
-    private Color color;
+    private DieColor color;
 
     //Costruttori
-    public ColorCard(String name, String description, Color color) {
+    public ColorCard(String name, String description, DieColor color) {
         super(name, description);
         this.color = color;
     }
 
     //Setter/Getter
-    public Color getColor() {
+    public DieColor getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(DieColor color) {
         this.color = color;
     }
 }

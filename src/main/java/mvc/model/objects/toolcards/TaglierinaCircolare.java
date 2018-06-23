@@ -2,6 +2,7 @@ package mvc.model.objects.toolcards;
 
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +10,7 @@ public class TaglierinaCircolare extends ToolCard {
 
     //Costruttori
     public TaglierinaCircolare() {
-        super("taglierina circolare", "dopo aver scelto un dado, scambia quel dado con uno nel tracciato dei round", GameConstants.GREEN);
+        super("taglierina circolare", "dopo aver scelto un dado, scambia quel dado con uno nel tracciato dei round", DieColor.GREEN);
 
     }
 

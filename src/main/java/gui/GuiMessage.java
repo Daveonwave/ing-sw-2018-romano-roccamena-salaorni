@@ -5,8 +5,6 @@ import javafx.scene.control.Alert;
 public final class GuiMessage {
     //Funzioni gui di comunicazione con utente
 
-    public final static String TITLE = "Sagrada";
-
     public static void showInfo(String title, String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -29,9 +27,9 @@ public final class GuiMessage {
     }
 
     public static void showInfo(String message) {
-        GuiMessage.showInfo(TITLE, message);
+        GuiMessage.showInfo(FXGuiConstant.TITLE, message);
     }
     public static void showError(String message) {
-        GuiMessage.showError(TITLE, message);
+        GuiMessage.showError(FXGuiConstant.TITLE, message);
     }
 }

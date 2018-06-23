@@ -1,6 +1,7 @@
 package mvc.model.objects.toolcards;
 
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -8,7 +9,7 @@ public class AlesatorePerLaminaDiRame extends ToolCard{
 
     //Costruttori
     public AlesatorePerLaminaDiRame() {
-        super("alesatore per lamina di rame", "muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", GameConstants.RED);
+        super("alesatore per lamina di rame", "muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", DieColor.RED);
     }
 
     private void cardEffect(Player player, ToolCardInput input) throws RemoteException {

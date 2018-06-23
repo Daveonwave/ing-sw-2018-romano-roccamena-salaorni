@@ -8,6 +8,7 @@ import mvc.model.objects.ToolCard;
 import mvc.model.objects.Window;
 import util.FileHandler;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ResourceRetriever {
     public ResourceRetriever() {}
 
     //Lettura da file oggetti partita
-    public List<PrivateObjectiveCard> retrievePrivateObjectiveCards(){
+    public List<PrivateObjectiveCard> retrievePrivateObjectiveCards() throws IOException {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
 
@@ -31,7 +32,7 @@ public class ResourceRetriever {
         return result;
 
     }
-    public List<PublicObjectiveCard> retrievePublicObjectiveCards(){
+    public List<PublicObjectiveCard> retrievePublicObjectiveCards() throws IOException {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
 
@@ -43,7 +44,7 @@ public class ResourceRetriever {
         return result;
 
     }
-    public List<ToolCard> retrieveToolCards(){
+    public List<ToolCard> retrieveToolCards() throws IOException {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
 
@@ -56,7 +57,7 @@ public class ResourceRetriever {
 
     }
 
-    public List<Window> retrieveWindows(){
+    public List<Window> retrieveWindows() throws IOException {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
         String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME);

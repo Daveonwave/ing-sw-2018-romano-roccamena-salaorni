@@ -1,6 +1,7 @@
 package mvc.creators;
 
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 import resources.ResourceRetriever;
 import util.RandomHandler;
 
@@ -152,11 +153,11 @@ public class MatchCreator {
         List<Die> diceBag = new ArrayList<Die>();
 
         for (int i = 1; i <= GameConstants.SINGLE_COLOR_DICE_COUNT; i++) {
-            diceBag.add(new Die(GameConstants.YELLOW));
-            diceBag.add(new Die(GameConstants.RED));
-            diceBag.add(new Die(GameConstants.GREEN));
-            diceBag.add(new Die(GameConstants.BLUE));
-            diceBag.add(new Die(GameConstants.PURPLE));
+            diceBag.add(new Die(DieColor.YELLOW));
+            diceBag.add(new Die(DieColor.RED));
+            diceBag.add(new Die(DieColor.GREEN));
+            diceBag.add(new Die(DieColor.BLUE));
+            diceBag.add(new Die(DieColor.PURPLE));
 
         }
         if (shuffle)
@@ -193,7 +194,7 @@ public class MatchCreator {
     public RoundTrack createRoundTrack(){
        List<List<Die>> diceStack = new ArrayList<List<Die>>();
 
-       for (int i=0; i<GameConstants.ROUNDS_COUNT; i++)
+       for (int i = 0; i<GameConstants.ROUNDS_COUNT; i++)
            diceStack.add(new ArrayList<Die>());
 
        RoundTrack result = new RoundTrack(diceStack);

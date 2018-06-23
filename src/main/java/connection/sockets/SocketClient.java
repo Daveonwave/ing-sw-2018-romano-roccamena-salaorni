@@ -4,13 +4,11 @@ import connection.ServerInfo;
 import connection.sockets.communication.ClientActionHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
-import mvc.view.AppView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.List;
 
 public class SocketClient {
     //Client Socket
@@ -21,9 +19,6 @@ public class SocketClient {
 
     private ControllerProxy controllerProxy;
     private ClientActionHandler clientActionHandler;
-
-    //Costruttori
-    public SocketClient(){}
 
     //Getter
     public ObjectInputStream getIn() {

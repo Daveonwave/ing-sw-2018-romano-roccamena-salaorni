@@ -3,6 +3,7 @@ package mvc;
 import mvc.creators.MatchCreator;
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 import org.junit.Test;
 
 import java.rmi.RemoteException;
@@ -345,13 +346,13 @@ public class MultiPlayerTest extends MVCTest {
     }
 
     public void testMatchCards(MultiPlayerMatch match) {
-        if (match.getPublicObjectiveCards().size()!=GameConstants.MP_PUBLIC_OBJECTIVES_COUNT)
+        if (match.getPublicObjectiveCards().size()!= GameConstants.MP_PUBLIC_OBJECTIVES_COUNT)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (match.getToolCards().size()!=GameConstants.MP_TOOL_CARDS_COUNT)
+        if (match.getToolCards().size()!= GameConstants.MP_TOOL_CARDS_COUNT)
             testAssertError(INVALID_STATE_MESSAGE);
 
         for (Player player : match.getPlayers()) {
-            if (player.getPrivateObjectiveCards().size()!=GameConstants.MP_PRIVATE_OBJECTIVES_COUNT)
+            if (player.getPrivateObjectiveCards().size()!= GameConstants.MP_PRIVATE_OBJECTIVES_COUNT)
                 testAssertError(INVALID_STATE_MESSAGE);
         }
 
@@ -590,7 +591,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(1).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getRoundTrack().containsDie(1, new Die(GameConstants.BLUE, 2)))
+        if (!match.getRoundTrack().containsDie(1, new Die(DieColor.BLUE, 2)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 2 -------------------------------------------//
@@ -676,7 +677,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(2).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getRoundTrack().containsDie(2, new Die(GameConstants.BLUE, 3)))
+        if (!match.getRoundTrack().containsDie(2, new Die(DieColor.BLUE, 3)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 3 -------------------------------------------//
@@ -725,9 +726,9 @@ public class MultiPlayerTest extends MVCTest {
         testUseToolCard(player2, toolCard, 4, 1);
 
         //Controlla effetto su dado
-        if (!match.getMatchDice().containsDieInPool(new Die(GameConstants.RED, 4)))
+        if (!match.getMatchDice().containsDieInPool(new Die(DieColor.RED, 4)))
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!player2.getToolCardEffect().getChoosenDie().sameDie(new Die(GameConstants.RED, 4)))
+        if (!player2.getToolCardEffect().getChoosenDie().sameDie(new Die(DieColor.RED, 4)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Piazzamento non corretti
@@ -763,7 +764,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(3).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getRoundTrack().containsDie(3, new Die(GameConstants.RED, 3)))
+        if (!match.getRoundTrack().containsDie(3, new Die(DieColor.RED, 3)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 4 -------------------------------------------//
@@ -801,7 +802,7 @@ public class MultiPlayerTest extends MVCTest {
         validUseToolCard(match, player1, input, toolCard);
         testUseToolCard(player1, toolCard, 4, 1);
 
-        if (!die.sameDie(new Die(GameConstants.YELLOW, 5)))
+        if (!die.sameDie(new Die(DieColor.YELLOW, 5)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Finisce turno
@@ -856,7 +857,7 @@ public class MultiPlayerTest extends MVCTest {
         validUseToolCard(match, player1, input, toolCard);
         testUseToolCard(player1, toolCard, 3, 1);
 
-        if (!die.getColor().equals(GameConstants.PURPLE))
+        if (!die.getColor().equals(DieColor.PURPLE))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Prova piazzamento altro dado

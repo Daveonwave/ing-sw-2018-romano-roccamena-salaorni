@@ -6,12 +6,13 @@ import mvc.model.objects.Window;
 import resources.ResourceFileInfo;
 import util.FileHandler;
 
+import java.io.IOException;
 import java.util.List;
 
 public class WindowsWriter {
     //Creatore di risorse di finestre
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
             //Crea finestre
             List<Window> windows = WindowsCreator.createWindows();
 

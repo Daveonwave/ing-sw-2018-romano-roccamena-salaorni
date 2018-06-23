@@ -6,12 +6,13 @@ import mvc.model.objects.ToolCard;
 import resources.ResourceFileInfo;
 import util.FileHandler;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ToolsWriter {
     //Creatore di carte strumento
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Crea finestre
         List<ToolCard> cards = ToolsCreator.createToolCards();
 

@@ -1,5 +1,8 @@
 package connection;
 
+/**
+ * Useful connection constants
+ */
 public final class ServerInfo {
 
     public final static String SERVER_ADDRESS = "localhost";

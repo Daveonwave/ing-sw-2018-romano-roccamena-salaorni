@@ -1,25 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXWindowChoiceMenu">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FXWindowChoiceMenu">
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="1300.0" styleClass="windowchoicebackground" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" stylesheets="@style.css">
          <children>
+            <StackPane layoutX="484.0" layoutY="30.0" styleClass="windowtokens" stylesheets="@style.css" AnchorPane.bottomAnchor="601.0" AnchorPane.leftAnchor="484.5" AnchorPane.rightAnchor="500.4" AnchorPane.topAnchor="30.0">
+               <children>
+                  <ImageView fx:id="windowDifficulty1" fitHeight="30.0" fitWidth="315.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../objects/images/favor%20tokens/favor%20tokens%206.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="windowName1" prefHeight="18.0" prefWidth="209.0" style="-fx-text-fill: white;" styleClass="windowname" stylesheets="@style.css" text="windowName" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="10.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textwindowchoice" text="Scegli la tua finestra..." wrappingWidth="300.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="50.0">
                <effect>
                   <DropShadow />
                </effect>
             </Text>
-            <ImageView fx:id="secondChoiceWindow" fitHeight="250.0" fitWidth="500.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
-            <ImageView fx:id="fourthChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="798.0" layoutY="376.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-            <ImageView fx:id="firstChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="384.0" layoutY="59.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="50.0" />
-            <ImageView fx:id="extractedPrivateObjective" fitHeight="350.0" fitWidth="250.0" layoutX="44.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="1076.6806335449219" AnchorPane.topAnchor="175.0" />
-            <ImageView fx:id="thirdChoiceWindow" fitHeight="250.0" fitWidth="500.0" layoutX="478.0" layoutY="302.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="500.0" />
+            <ImageView fx:id="choiceWindow2" fitHeight="250.0" fitWidth="500.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurora%20sagradis.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="choiceWindow4" fitHeight="250.0" fitWidth="500.0" layoutX="798.0" layoutY="376.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurora%20sagradis.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="choiceWindow1" fitHeight="250.0" layoutX="384.0" layoutY="59.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="50.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurora%20sagradis.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="extractedPrivateObjective" fitHeight="350.0" fitWidth="250.0" layoutX="44.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="1076.6806335449219" AnchorPane.topAnchor="175.0">
+               <image>
+                  <Image url="@../objects/images/objective/sfumature%20blu.png" />
+               </image>
+            </ImageView>
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
+            <ImageView fx:id="choiceWindow3" fitHeight="250.0" fitWidth="500.0" layoutX="478.0" layoutY="302.0" onMouseClicked="#chooseWindow" pickOnBounds="true" preserveRatio="true" styleClass="windowtochoose" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="500.0">
+               <image>
+                  <Image url="@../objects/images/windows/aurorae%20magnificus.png" />
+               </image>
+            </ImageView>
+            <StackPane layoutX="476.0" layoutY="331.0" prefHeight="22.0" prefWidth="318.0" styleClass="windowtokens" stylesheets="@style.css" AnchorPane.bottomAnchor="298.5" AnchorPane.leftAnchor="476.0" AnchorPane.rightAnchor="494.0">
+               <children>
+                  <ImageView fx:id="windowDifficulty3" fitHeight="30.0" fitWidth="318.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../objects/images/favor%20tokens/favor%20tokens%206.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="windowName3" prefHeight="18.0" prefWidth="209.0" style="-fx-text-fill: white;" styleClass="windowname" stylesheets="@style.css" text="windowName" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="15.0" top="1.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane layoutX="933.0" layoutY="31.0" styleClass="windowtokens" stylesheets="@style.css" AnchorPane.rightAnchor="50.0">
+               <children>
+                  <ImageView fx:id="windowDifficulty2" fitHeight="30.0" fitWidth="315.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../objects/images/favor%20tokens/favor%20tokens%206.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="windowName2" prefHeight="18.0" prefWidth="209.0" style="-fx-text-fill: white;" styleClass="windowname" stylesheets="@style.css" text="windowName" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="10.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane layoutX="935.0" layoutY="330.0" styleClass="windowtokens" stylesheets="@style.css" AnchorPane.bottomAnchor="298.5" AnchorPane.rightAnchor="50.0">
+               <children>
+                  <ImageView fx:id="windowDifficulty4" fitHeight="30.0" fitWidth="315.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../objects/images/favor%20tokens/favor%20tokens%206.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="windowName4" prefHeight="18.0" prefWidth="209.0" style="-fx-text-fill: white;" styleClass="windowname" stylesheets="@style.css" text="windowName" StackPane.alignment="TOP_LEFT">
+                     <StackPane.margin>
+                        <Insets left="10.0" top="1.0" />
+                     </StackPane.margin>
+                  </Label>
+               </children>
+            </StackPane>
          </children>
       </AnchorPane>
    </children>

@@ -47,7 +47,7 @@ public class ServerTransmitter implements Runnable {
         isRunning = bool;
     }
 
-    public ClientRequestHandler getRequestHandler(ClientRequestHandler clientRequestHandler) {
+    public ClientRequestHandler getRequestHandler() {
         return this.clientRequestHandler;    }
     public boolean isRunning() {
         return isRunning;

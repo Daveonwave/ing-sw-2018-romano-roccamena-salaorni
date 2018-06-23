@@ -1,12 +1,12 @@
 package mvc.model.objects.privateobjectivescards;
 
-import mvc.model.objects.GameConstants;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
+import mvc.model.objects.enums.DieColor;
 
 public class ShadesOfGreen extends PrivateObjectiveCard {
     public ShadesOfGreen() {
-        super("sfumature verdi", "somma dei valori di tutti i dadi verdi.", GameConstants.GREEN);
+        super("sfumature verdi", "somma dei valori di tutti i dadi verdi.", DieColor.GREEN);
     }
 
     @Override
@@ -15,7 +15,7 @@ public class ShadesOfGreen extends PrivateObjectiveCard {
         for (int i = 0; i < 4; i++){
             for(int j= 0; j < 5; j++){
                 if(window.getCells()[i][j].getDie() != null) {
-                    if (window.getCells()[i][j].getDie().getColor().equals(GameConstants.GREEN)) {
+                    if (window.getCells()[i][j].getDie().getColor().equals(DieColor.GREEN)) {
                         points += window.getCells()[i][j].getDie().getShade();
                     }
                 }

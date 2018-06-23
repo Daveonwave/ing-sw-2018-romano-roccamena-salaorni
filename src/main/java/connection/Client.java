@@ -5,21 +5,29 @@ import connection.sockets.SocketClient;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 
-public class Client implements Serializable {
-    //Client dell'applicazione
+/**
+ * Client Launcher
+ */
+public class Client {
 
     private RmiClient rmiClient;
     private SocketClient socketClient;
 
-    //Costruttori
-    public Client() {}
+    //Getter
+    public SocketClient getSocketClient() {
+        return socketClient;
+    }
 
-    //Lancia il client RMI o socket dell'applicazione
-    public void launchClient(boolean rmiConnectionChoosen) throws NotBoundException, IOException {
-        if (rmiConnectionChoosen){
+    /**
+     * Depending on the value of rmiConnectionChosen, launches the Rmi or socket client.
+     * @param rsiConnectionChosen if true it means that has been chosen a Rmi connection, socket if false.
+     * @throws NotBoundException
+     * @throws IOException
+     */
+    public void launchClient(boolean rsiConnectionChosen) throws NotBoundException, IOException {
+        if (rsiConnectionChosen){
 
             this.rmiClient = new RmiClient();
             this.rmiClient.runRmiClient();
@@ -30,14 +38,19 @@ public class Client implements Serializable {
         }
     }
 
-    //Getter
+    /**
+     * Gets the controller of the Rmi connection, because AppView needs it.
+     * @return AppControllerStub
+     */
     public AppControllerStub getRmiController() {
         return rmiClient.getController();
     }
+    /**
+     * Gets the controller of the socket connection, because AppView needs it.
+     * @return AppControllerStub
+     */
     public AppControllerStub getSocketController(){
         return socketClient.getController();
     }
-    public SocketClient getSocketClient() {
-        return socketClient;
-    }
+
 }

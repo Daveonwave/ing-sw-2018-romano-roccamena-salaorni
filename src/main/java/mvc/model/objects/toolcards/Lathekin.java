@@ -2,6 +2,7 @@ package mvc.model.objects.toolcards;
 
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +10,7 @@ public class Lathekin extends ToolCard {
 
     //Costruttori
     public Lathekin() {
-        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", GameConstants.YELLOW);
+        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", DieColor.YELLOW);
     }
 
     private void cardEffect(Player player, ToolCardInput input) throws RemoteException {

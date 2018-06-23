@@ -1,6 +1,7 @@
 package mvc.model.objects.toolcards;
 
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -8,7 +9,7 @@ public class DiluentePerPastaSalda extends ToolCard {
 
     //Costruttori
     public DiluentePerPastaSalda() {
-        super("diluente per pasta salda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", GameConstants.PURPLE);
+        super("diluente per pasta salda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", DieColor.PURPLE);
     }
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {

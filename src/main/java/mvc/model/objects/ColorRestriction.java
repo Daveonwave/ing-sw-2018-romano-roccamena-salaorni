@@ -1,23 +1,23 @@
 package mvc.model.objects;
 
-import java.awt.*;
+import mvc.model.objects.enums.DieColor;
 
 public class ColorRestriction implements CellRestriction {
     //Restrizione di colore
 
-    private Color color;
+    private DieColor color;
 
     //Costruttori
-    public ColorRestriction(Color color) {
+    public ColorRestriction(DieColor color) {
         this.color = color;
     }
 
     //Setter/Getter
-    public void setColor(Color color) {
+    public void setColor(DieColor color) {
         this.color = color;
     }
 
-    public Color getColor() {
+    public DieColor getColor() {
         return this.color;
     }
 

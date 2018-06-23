@@ -9,19 +9,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import mvc.controller.AppController;
 import mvc.exceptions.AppControllerException;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 public class GuiApp extends Application implements Serializable {
     //Applicazione gui principale
-
-    public final String FXML_PATH = "fxml/MainMenu.fxml";
-    public final String TITLE = "Sagrada";
 
     private GuiView guiView;
 
@@ -29,19 +26,35 @@ public class GuiApp extends Application implements Serializable {
     private boolean connected = false;
     private boolean rmiConnection = true;
 
-    private Client client = new Client();
+    private transient Client client = new Client();
 
     //Componenti
     @FXML
-    Label userNameLabel, connectionLabel;
+    Label userNameLabel;
+    @FXML
+    Label connectionLabel;
     @FXML
     TextField userNameText;
     @FXML
     TextArea serverLogText;
     @FXML
-    RadioButton rmiRadio, socketRadio;
+    RadioButton rmiRadio;
     @FXML
-    Button connectButton, disconnectButton, loginButton, logoutButton, multiplayerButton, cancelButton, exitButton;
+    RadioButton socketRadio;
+    @FXML
+    Button connectButton;
+    @FXML
+    Button disconnectButton;
+    @FXML
+    Button loginButton;
+    @FXML
+    Button logoutButton;
+    @FXML
+    Button multiplayerButton;
+    @FXML
+    Button cancelButton;
+    @FXML
+    Button exitButton;
 
 
 
@@ -55,25 +68,12 @@ public class GuiApp extends Application implements Serializable {
     }
 
 
-
-
-    //Ottiene connessione al server e restituisce controller corrispondente
-    private AppControllerStub connectLocalController() {
-        return new AppController();
-    }
-
-    private AppControllerStub connectRmiController() throws Exception {
-        //showInfo("connecting rmi...");
-
+    private AppControllerStub connectRmiController() throws IOException, NotBoundException {
         client.launchClient(true);
-
         return client.getRmiController();
     }
-    private AppControllerStub connectSocketController() throws Exception {
-        //showInfo("connecting socket...");
-
+    private AppControllerStub connectSocketController() throws IOException, NotBoundException {
         client.launchClient(false);
-
         return client.getSocketController();
     }
 
@@ -114,7 +114,7 @@ public class GuiApp extends Application implements Serializable {
                 connected = true;
             }
         } catch (Exception e) {
-            connectionLabel.setText("DISCONNESSO");
+            connectionLabel.setText(FXGuiConstant.DISCONNECTED);
 
             //Visualizza errore
             GuiMessage.showError("impossibile connettersi al server");
@@ -128,7 +128,7 @@ public class GuiApp extends Application implements Serializable {
                 client.getSocketClient().getClientActionHandler().setView(guiView);
             }
         } catch (RemoteException e) {
-            connectionLabel.setText("DISCONNESSO");
+            connectionLabel.setText(FXGuiConstant.DISCONNECTED);
 
             //Visualizza errore
             e.printStackTrace();
@@ -139,7 +139,7 @@ public class GuiApp extends Application implements Serializable {
         guiView.setGuiApp(this);
 
         //Imposta stato componenti
-        connectionLabel.setText("CONNESSO");
+        connectionLabel.setText(FXGuiConstant.CONNECTED);
         userNameText.setDisable(false);
 
         connectButton.setDisable(true);
@@ -229,7 +229,7 @@ public class GuiApp extends Application implements Serializable {
         }
 
         //Imposta stato componenti
-        connectionLabel.setText("CONNESSO");
+        connectionLabel.setText(FXGuiConstant.CONNECTED);
 
         disconnectButton.setDisable(false);
         userNameText.setDisable(false);
@@ -309,8 +309,8 @@ public class GuiApp extends Application implements Serializable {
     }
     //Avvio applicazione
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle(TITLE);
-        changeScene(FXML_PATH, primaryStage);
+        primaryStage.setTitle(FXGuiConstant.TITLE);
+        changeScene(FXGuiConstant.FXML_PATH, primaryStage);
     }
 
     //Lancia applicazione

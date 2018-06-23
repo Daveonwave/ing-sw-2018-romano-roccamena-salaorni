@@ -1,6 +1,5 @@
 package mvc.view;
 
-import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 

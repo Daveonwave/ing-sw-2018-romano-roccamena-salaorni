@@ -2,6 +2,7 @@ package mvc.model.objects.toolcards;
 
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +10,7 @@ public class TenagliaRotelle extends ToolCard {
 
     //Costruttori
     public TenagliaRotelle() {
-        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", GameConstants.RED);
+        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", DieColor.RED);
     }
 
     private void cardEffect(Match match, Player player) throws RemoteException {

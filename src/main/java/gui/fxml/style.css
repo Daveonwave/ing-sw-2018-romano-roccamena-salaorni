@@ -14,8 +14,8 @@
 
 .windowtochoose{
 	-fx-effect: dropshadow(three-pass-box, rgba(47,79,146,0.7), 10, -10, -10, 10);
+	-fx-font-weight: bold;	
 }
-
 
 .textwindowchoice{
     -fx-font-size: 40 px;

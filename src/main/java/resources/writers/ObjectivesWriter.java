@@ -7,11 +7,12 @@ import mvc.model.objects.PublicObjectiveCard;
 import resources.ResourceFileInfo;
 import util.FileHandler;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ObjectivesWriter {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //Crea finestre
         List<PrivateObjectiveCard> privates = ObjectivesCreator.createPrivateObjectiveCards();
         List<PublicObjectiveCard> publics = ObjectivesCreator.createPublicObjectiveCards();

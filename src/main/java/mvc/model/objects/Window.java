@@ -2,7 +2,6 @@ package mvc.model.objects;
 
 import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
-import mvc.model.objects.enums.DieColor;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -54,8 +53,8 @@ public class Window implements Serializable {
         if (otherCells == null)
             return false;
 
-        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 if (cells[row][col]==null^otherCells[row][col]==null)
                     return false;
 
@@ -75,8 +74,8 @@ public class Window implements Serializable {
         if (otherCells == null)
             return false;
 
-        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 if (cells[row][col]==null^otherCells[row][col]==null)
                     return false;
 
@@ -114,8 +113,8 @@ public class Window implements Serializable {
 
     //Verifica che dado o cella sia contenuto
     public boolean containsDie(Die die) {
-        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 Cell cell = cells[row][col];
 
                 if (cell==null)
@@ -134,8 +133,8 @@ public class Window implements Serializable {
         return false;
     }
     public boolean containsCellStructure(Cell cell) {
-        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 Cell c = cells[row][col];
 
                 if (c==null)
@@ -149,8 +148,8 @@ public class Window implements Serializable {
         return false;
     }
     public boolean containsCell(Cell cell) {
-        for (int row=0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col=0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
+        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
+            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 Cell c = cells[row][col];
 
                 if (c==null)
@@ -216,7 +215,7 @@ public class Window implements Serializable {
 
     //Ottiene tutte le celle ortogonalmente adiacenti
     public List<Cell> getOrthogonalCells(Cell cell) {
-        List<Cell> cells = new ArrayList<Cell>();
+        List<Cell> cellList = new ArrayList<Cell>();
 
         Cell up = getUpCell(cell);
         Cell down = getDownCell(cell);
@@ -224,15 +223,15 @@ public class Window implements Serializable {
         Cell right = getRightCell(cell);
 
         if (up != null)
-            cells.add(up);
+            cellList.add(up);
         if (down != null)
-            cells.add(down);
+            cellList.add(down);
         if (left != null)
-            cells.add(left);
+            cellList.add(left);
         if (right != null)
-            cells.add(right);
+            cellList.add(right);
 
-        return cells;
+        return cellList;
     }
 
     //Ottiene celle diagonalmente adiacenti ad una data
@@ -265,7 +264,7 @@ public class Window implements Serializable {
 
     //Ottiene tutte le celle diagonalmente adiacenti
     public List<Cell> getDiagonalsCells(Cell cell){
-        List<Cell> cells = new ArrayList<Cell>();
+        List<Cell> cellList = new ArrayList<Cell>();
 
         Cell upLeft = getUpLeftCell(cell);
         Cell upRight = getUpRightCell(cell);
@@ -273,15 +272,15 @@ public class Window implements Serializable {
         Cell downRight = getDownRightCell(cell);
 
         if(upLeft != null)
-            cells.add(upLeft);
+            cellList.add(upLeft);
         if(upRight != null)
-            cells.add(upRight);
+            cellList.add(upRight);
         if(downLeft != null)
-            cells.add(downLeft);
+            cellList.add(downLeft);
         if(downRight != null)
-            cells.add(downRight);
+            cellList.add(downRight);
 
-        return cells;
+        return cellList;
     }
 
     //Ottieni diagonali armoniche e disarmoniche
@@ -317,7 +316,7 @@ public class Window implements Serializable {
     }
 
     //Ottiene celle per caratteristica
-    public List<Cell> getSameColorCells(DieColor color){
+    public List<Cell> getSameColorCells(mvc.model.objects.enums.DieColor color){
         List<Cell> result = new ArrayList<Cell>();
 
         for(Cell[] cc : cells){

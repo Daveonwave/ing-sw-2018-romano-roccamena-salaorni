@@ -1,26 +1,26 @@
 package mvc.model.objects;
 
-import java.awt.*;
+import mvc.model.objects.enums.DieColor;
 
 public final class StringConverter {
     //Convertitore di oggetti in stringa
 
-    public static String getColorString(Color color) {
+    public static String getColorString(mvc.model.objects.enums.DieColor color) {
         String out = "";
 
-        if (color.equals(GameConstants.PURPLE)) {
+        if (color.equals(DieColor.PURPLE)) {
             out = "P";
         }
-        else if (color.equals(GameConstants.RED)) {
+        else if (color.equals(DieColor.RED)) {
             out = "R";
         }
-        else if (color.equals(GameConstants.BLUE)) {
+        else if (color.equals(DieColor.BLUE)) {
             out = "B";
         }
-        else if (color.equals(GameConstants.YELLOW)) {
+        else if (color.equals(DieColor.YELLOW)) {
             out = "Y";
         }
-        else if (color.equals(GameConstants.GREEN)) {
+        else if (color.equals(DieColor.GREEN)) {
             out = "G";
         }
         else {

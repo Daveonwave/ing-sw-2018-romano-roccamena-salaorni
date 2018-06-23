@@ -10,14 +10,14 @@ import mvc.view.AppView;
 import java.rmi.RemoteException;
 
 /**
- * Client side handler. It handles server requests and client responses
+ * Client side handler. It handles server requests and client responses.
  */
 public class ClientActionHandler implements ClientResponseHandler, ServerRequestHandler {
 
     private AppView view;
 
     /**
-     * ClientActionHandler constructor
+     * ClientActionHandler constructor. Attribute view is set null because it is assigned later.
      */
     public ClientActionHandler() {
         view = null;
@@ -301,11 +301,11 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     //Risposte alle richieste operazione utente
     /**
      * Handles the response received from controllerProxy, then checks if there is the exceptionFlag set true and,
-     * if it is, throws the wrapped exception
+     * if it is, throws the wrapped exception.
      * @param response LoginResponse
      * @return String (userToken)
      * @throws RemoteException
-     * Responses to request of user operation
+     * Responses to request of user operation.
      */
     public String handleAction(LoginResponse response) throws RemoteException {
 

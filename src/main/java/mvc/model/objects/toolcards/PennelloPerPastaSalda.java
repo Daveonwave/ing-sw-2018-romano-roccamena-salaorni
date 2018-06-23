@@ -2,6 +2,7 @@ package mvc.model.objects.toolcards;
 
 import mvc.exceptions.MatchException;
 import mvc.model.objects.*;
+import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
@@ -9,7 +10,7 @@ public class PennelloPerPastaSalda extends ToolCard {
 
     //Costruttori
     public PennelloPerPastaSalda() {
-        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", GameConstants.PURPLE);
+        super("pennello per pasta salda", "dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", DieColor.PURPLE);
 
     }
 

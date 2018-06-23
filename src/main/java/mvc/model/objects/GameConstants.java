@@ -1,7 +1,5 @@
 package mvc.model.objects;
 
-import java.awt.*;
-
 public final class GameConstants {
     //Costanti del gioco
 
@@ -19,12 +17,6 @@ public final class GameConstants {
 
     public static final int WINDOW_ROWS_COUNT = 4;
     public static final int WINDOW_COLUMNS_COUNT = 5;
-
-    public static final Color YELLOW = Color.YELLOW;
-    public static final Color RED = Color.RED;
-    public static final Color GREEN = Color.GREEN;
-    public static final Color BLUE = Color.BLUE;
-    public static final Color PURPLE = new Color(148, 0, 211);
 
     public static final int ROUNDS_COUNT = 10;
 }

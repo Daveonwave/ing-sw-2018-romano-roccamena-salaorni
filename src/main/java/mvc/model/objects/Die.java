@@ -1,35 +1,35 @@
 package mvc.model.objects;
 
+import mvc.model.objects.enums.DieColor;
 import util.RandomHandler;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class Die implements Serializable {
     //Dado del gioco
 
-    private Color color;
+    private DieColor color;
     private int shade;
 
     //Costruttori
-    public Die(Color color, int shade) {
+    public Die(DieColor color, int shade) {
         this.color = color;
         this.shade = shade;
     }
-    public Die(Color color) {
+    public Die(DieColor color) {
         this(color, 0);
         roll();
     }
 
     //Setter/Getter
-    public void setColor(Color color) {
+    public void setColor(DieColor color) {
         this.color = color;
     }
     public void setShade(int shade) {
         this.shade = shade;
     }
 
-    public Color getColor() {
+    public DieColor getColor() {
         return color;
     }
     public int getShade() {
@@ -41,7 +41,7 @@ public class Die implements Serializable {
         if (die == null)
             return false;
 
-        Color otherDie = die.getColor();
+        DieColor otherDie = die.getColor();
 
         if (color == null && otherDie == null)
             return true;

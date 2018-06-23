@@ -7,10 +7,15 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * Server launcher in the double modality: RMI and SOCKET.
+ */
 public class Server {
-    //Server dell'applicazione
 
-    //Lancia il server RMI o socket dell'applicazione
+    /**
+     * Launches Rmi server and socket server.
+     * @throws AlreadyBoundException
+     */
     public void launchServer() throws AlreadyBoundException {
         RmiServer rmiServer = new RmiServer();
 
@@ -28,7 +33,5 @@ public class Server {
             e.printStackTrace();
             return;
         }
-
-        System.out.println("");
     }
 }

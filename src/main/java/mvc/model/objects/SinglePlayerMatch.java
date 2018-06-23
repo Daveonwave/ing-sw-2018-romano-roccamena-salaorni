@@ -50,8 +50,8 @@ public class SinglePlayerMatch extends Match {
         if (player.getTurnDiePlaced())
             throw new MatchException("hai gia piazzato un dado");
 
-        if (player.getToolCardEffect().getChoosenDie() != null)
-            if (!player.getToolCardEffect().getChoosenDie().sameDie(die))
+        if (player.getToolCardEffect().getChoosenDie() != null &&
+                !player.getToolCardEffect().getChoosenDie().sameDie(die))
                 throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
