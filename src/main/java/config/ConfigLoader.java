@@ -1,8 +1,7 @@
 package config;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.security.InvalidParameterException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -16,7 +15,14 @@ public final class ConfigLoader {
     public final static String COMMENTS_START = "//";
     public final static String PARAM_SEPARATOR = "=";
 
-    public static Map<String, String> loadParams(String path) throws FileNotFoundException, IllegalArgumentException {
+    /**
+     *
+     * @param path Config file path
+     * @return
+     * @throws IOException If file can't be acessed properly
+     * @throws IllegalArgumentException If config file is invalid
+     */
+    public static Map<String, String> loadParams(String path) throws IOException, IllegalArgumentException {
         Map<String, String> output = new HashMap<String, String>();
 
         //Apre stream di input
@@ -45,6 +51,10 @@ public final class ConfigLoader {
                 output.put(name, value);
             }
         }
+
+        //Chiude stream ingresso
+        scanner.close();
+        inStream.close();
 
         return output;
     }
