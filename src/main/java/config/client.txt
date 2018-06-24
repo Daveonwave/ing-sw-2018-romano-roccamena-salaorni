@@ -1,0 +1,10 @@
+//CONFIGURAZIONE CLIENT
+
+//Indirizzo IP server
+server address=localhost
+
+//Porta RMI server
+rmi port=1099
+
+//Porta socket server
+socket port = 12345

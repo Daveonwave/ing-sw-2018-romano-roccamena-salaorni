@@ -1,0 +1,13 @@
+//CONFIGURAZIONE SERVER
+
+//Tempo di attesa partecipazione multiplayer
+join wait time=2000
+
+//Tempo massimo per completare un turno
+turn max time=30000
+
+//Porta di ascolto RMI
+rmi port=1099
+
+//Porta di ascolto socket
+socket port = 12345
