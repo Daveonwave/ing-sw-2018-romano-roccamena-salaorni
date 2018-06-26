@@ -11,7 +11,7 @@ public class ColorDiagonals extends PublicObjectiveCard {
 
     //Costruttori
     public ColorDiagonals() {
-        super("diagonali colorate", "numero di dadi" +
+        super("Diagonali colorate", "Numero di dadi" +
                 " dello stesso colore diagonalmente adiacenti");
     }
 

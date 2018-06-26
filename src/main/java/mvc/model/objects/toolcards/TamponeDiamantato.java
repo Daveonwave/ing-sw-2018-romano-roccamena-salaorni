@@ -9,7 +9,7 @@ public class TamponeDiamantato extends ToolCard{
 
     //Costruttori
     public TamponeDiamantato() {
-        super("tampone diamantato", "dopo aver scelto un dado giralo sulla faccia opposta", DieColor.GREEN);
+        super("Tampone Diamantato", "Dopo aver scelto un dado giralo sulla faccia opposta", DieColor.GREEN);
 
     }
 

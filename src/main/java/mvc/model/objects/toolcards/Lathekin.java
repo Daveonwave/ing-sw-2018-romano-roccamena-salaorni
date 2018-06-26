@@ -10,7 +10,7 @@ public class Lathekin extends ToolCard {
 
     //Costruttori
     public Lathekin() {
-        super("lathekin", "muovi esattamente due dadi rispettando tutte le restrizioni", DieColor.YELLOW);
+        super("Lathekin", "Muovi esattamente due dadi rispettando tutte le restrizioni", DieColor.YELLOW);
     }
 
     private void cardEffect(Player player, ToolCardInput input) throws RemoteException {

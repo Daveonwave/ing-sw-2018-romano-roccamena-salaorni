@@ -5,6 +5,7 @@ import mvc.model.objects.enums.DieColor;
 import resources.ResourceRetriever;
 import util.RandomHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MatchCreator {
         this.singlePlayer = singlePlayer;
     }
 
-    //Creazione carte
+    //Creazione carte obiettivo pubblico
     public List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
@@ -60,6 +61,8 @@ public class MatchCreator {
     public List<PublicObjectiveCard> createPublicObjectiveCards() {
         return createPublicObjectiveCards(true);
     }
+
+    //Creazione carte obiettivo privato
     public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
@@ -93,6 +96,8 @@ public class MatchCreator {
     public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers) {
         return createPrivateObjectiveCards(numberOfPlayers, true);
     }
+
+    //Creazione carte strumento
     public List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<ToolCard> result = new ArrayList<ToolCard>();

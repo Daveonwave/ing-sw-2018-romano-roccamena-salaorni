@@ -10,7 +10,7 @@ public class TaglierinaManuale extends ToolCard {
 
     //Costruttori
     public TaglierinaManuale() {
-        super("taglierina manuale", "muovi fino a due dadi, dello stesso colore di un solo dado del tracciato dei round, rispettando tutte le restrizioni", DieColor.BLUE);
+        super("Taglierina Manuale", "Muovi fino a due dadi, dello stesso colore di un solo dado del tracciato dei round, rispettando tutte le restrizioni", DieColor.BLUE);
     }
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {

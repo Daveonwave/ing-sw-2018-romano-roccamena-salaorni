@@ -10,7 +10,7 @@ public class TenagliaRotelle extends ToolCard {
 
     //Costruttori
     public TenagliaRotelle() {
-        super("tenaglia a rotelle", "dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", DieColor.RED);
+        super("Tenaglia a Rotelle", "Dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", DieColor.RED);
     }
 
     private void cardEffect(Match match, Player player) throws RemoteException {
