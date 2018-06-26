@@ -15,7 +15,6 @@ import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +33,10 @@ public class AppController implements AppControllerStub {
 
 
     //Costruttori
+    /**
+     * Create new application controller with specified timer configuration
+     * @param timerConfig
+     */
     public AppController(TimerConfig timerConfig) {
         this.model = AppModel.get();
         this.timerConfig = timerConfig;
@@ -87,13 +90,12 @@ public class AppController implements AppControllerStub {
      * @param tokenMatch Token of the match
      * @param matchModel Model of the match
      * @param message Message of the ack
-     * @throws RemoteException
+     * @throws RemoteException Connection error occured
      */
     public synchronized void matchBroadcastAck(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message, tokenMatch);
     }
-
     /**
      * Sends an error to users playing a match
      * @param tokenMatch Token of the match
@@ -111,26 +113,30 @@ public class AppController implements AppControllerStub {
      * Sends an ack to a single user view
      * @param appView Application view of the user
      * @param message Message of the ack
-     * @throws RemoteException
+     * @throws RemoteException Connection error occured
      */
     public synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
         appView.respondAck(message, null);
     }
+    /**
+     * Sends an error to a single user view
+     * @param appView Application view of the user
+     * @param message Message of the error
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
         appView.respondError(message, null);
         throw new AppControllerException(message);
     }
-
     /**
      * Sends an ack to a single user
      * @param user User to send ack
      * @param message Message of the ack
-     * @throws RemoteException
+     * @throws RemoteException Connection error occured
      */
     public synchronized void userAck(User user, String message) throws RemoteException {
         viewAck(user.getAppView(), message);
     }
-
     /**
      * Sends an error to a single user
      * @param user User to send error
@@ -143,13 +149,12 @@ public class AppController implements AppControllerStub {
 
 
     //Operazioni su utente
-
     /**
      * Request login for new user
      * @param name New user's name
      * @param appView User's application view
      * @return Token of the registered user
-     * @throws RemoteException
+     * @throws RemoteException AppControllerException as a callback error signal
      */
     public synchronized String login(String name, AppViewStub appView) throws RemoteException {
         String token = "";
@@ -168,11 +173,10 @@ public class AppController implements AppControllerStub {
 
         return token;
     }
-
     /**
-     * Request new logout forlogged user
+     * Request logout for logged user
      * @param tokenUser User's token
-     * @throws RemoteException
+     * @throws RemoteException AppControllerException as a callback error signal
      */
     public synchronized void logout(String tokenUser) throws RemoteException {
         AppViewStub appView = null;
@@ -192,6 +196,10 @@ public class AppController implements AppControllerStub {
     }
 
     //Sottometodi di gestione multiplayer
+    /**
+     * Create new multiplayer match from waiting users
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void startMatch() throws RemoteException {
         //Ottiene utenti partecipanti
         List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
@@ -230,6 +238,14 @@ public class AppController implements AppControllerStub {
         matchModel.notifyChooseWindows(tokenMatch);
         matchBroadcastAck(tokenMatch, matchModel, "i giocatori stanno scegliendo le finestre");
     }
+    /**
+     * Finish the turn of a given player of an online multiplayer match
+     * @param match Match instance
+     * @param tokenMatch Token of the match
+     * @param matchModel Model of the match
+     * @param player Player instance
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void finishTurn(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel, Player player) throws RemoteException {
         //Esegue la fine del turno
         try {
@@ -284,6 +300,12 @@ public class AppController implements AppControllerStub {
     }
 
     //Operazioni su multiplayer
+    /**
+     * Free a logged user from waiting an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -303,6 +325,12 @@ public class AppController implements AppControllerStub {
         matchModel.notifyPlayerLeave(tokenMatch);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
     }
+    /**
+     * Set a logged player to be active again on an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -322,7 +350,11 @@ public class AppController implements AppControllerStub {
         matchModel.notifyPlayerRejoin(tokenMatch);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
     }
-
+    /**
+     * Request the partecipation of a logged player to a new multiplayer match
+     * @param tokenUser User's token
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void joinMatch(String tokenUser) throws RemoteException {
         //Ottiente gestore partite e partecipa all'attesa
         User user = model.retrieveUser(tokenUser);
@@ -334,6 +366,12 @@ public class AppController implements AppControllerStub {
             startMatch();
         }
     }
+
+    /**
+     * Cancel the partecipation request of a logged player to a new multiplayer match
+     * @param tokenUser User's token
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void cancelJoinMatch(String tokenUser) throws RemoteException {
         //Ottiene gestore partite
         User user = model.retrieveUser(tokenUser);
@@ -344,6 +382,14 @@ public class AppController implements AppControllerStub {
         //Notifica l'utente dell'uscita
         userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");
     }
+
+    /**
+     * Request the choose window action of a logged user on an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @param window Window instance
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -371,6 +417,14 @@ public class AppController implements AppControllerStub {
             match.getTimedTurnHandler().start();
         }
     }
+    /**
+     * Request the place die action of a logged user on an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @param cell Cell instance
+     * @param die Die intance
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -393,6 +447,14 @@ public class AppController implements AppControllerStub {
         matchModel.notifyPlaceDie(tokenMatch, cell, die);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + user.getName() + " ha piazzato un dado");
     }
+    /**
+     * Request the tool card action of a logged user on an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @param input Card input instance
+     * @param toolCard Card instance
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void useToolCard(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
@@ -414,6 +476,12 @@ public class AppController implements AppControllerStub {
         matchModel.notifyUseTool(tokenMatch, toolCard);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + user.getName() + " ha usato la carta strumento " + toolCard.getName());
     }
+    /**
+     * Request the end turn action of a logged user on an online multiplayer match
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         //Ottiene oggetti dal model
         MatchModel matchModel = model.retrieveMatchModel(tokenMatch);
