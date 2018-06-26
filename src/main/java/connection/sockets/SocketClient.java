@@ -20,6 +20,7 @@ public class SocketClient {
     private ObjectOutputStream out;
 
     private ControllerProxy controllerProxy;
+    private ClientTransmitter clientTransmitter;
     private ClientActionHandler clientActionHandler;
 
     //Getter
@@ -29,11 +30,14 @@ public class SocketClient {
     public ObjectOutputStream getOut() {
         return out;
     }
-    public ClientActionHandler getClientActionHandler() {
-        return clientActionHandler;
-    }
     public ControllerProxy getController(){
         return controllerProxy;
+    }
+    public ClientTransmitter getClientTransmitter() {
+        return clientTransmitter;
+    }
+    public ClientActionHandler getClientActionHandler() {
+        return clientActionHandler;
     }
 
     //Inizializza il client
@@ -43,7 +47,11 @@ public class SocketClient {
         in = new ObjectInputStream(socket.getInputStream());
 
         clientActionHandler = new ClientActionHandler();
+        clientTransmitter = new ClientTransmitter(this, clientActionHandler);
         controllerProxy = new ControllerProxy(this, clientActionHandler);
+
+        clientTransmitter.setRunning(true);
+        new Thread(clientTransmitter);
     }
 
     //Chiude il client
@@ -51,6 +59,7 @@ public class SocketClient {
         in.close();
         out.close();
         socket.close();
+        clientTransmitter.setRunning(false);
     }
 
     //Ottiene risposta del server
@@ -62,4 +71,6 @@ public class SocketClient {
     public void request(ClientRequest request){
         IOSupport.requestToServer(out, request);
     }
+
+
 }

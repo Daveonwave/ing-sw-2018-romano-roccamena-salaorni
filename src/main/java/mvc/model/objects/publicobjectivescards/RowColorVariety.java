@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RowColorVariety extends PublicObjectiveCard {
     public RowColorVariety() {
-        super("colori diversi - riga", "righe senza colori ripetuti");
+        super("Colori diversi - riga", "Righe senza colori ripetuti");
     }
 
     @Override

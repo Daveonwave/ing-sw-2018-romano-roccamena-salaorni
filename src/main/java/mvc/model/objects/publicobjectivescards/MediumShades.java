@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MediumShades extends PublicObjectiveCard {
     public MediumShades() {
-        super("sfumature medie", "set di 3 & 4 ovunque");
+        super("Sfumature medie", "Set di 3 & 4 ovunque");
     }
 
     @Override

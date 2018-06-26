@@ -42,7 +42,7 @@ public class AppModel {
     //Utente
     public synchronized String createUser(String name, AppViewStub appView) throws RemoteException {
         //Controllo correttezza
-        if (name == null || appView == null)
+        if (name == null || name.equals("") ||appView == null)
             throw new AppModelException("parametri non validi");
 
         if (names.values().contains(name))

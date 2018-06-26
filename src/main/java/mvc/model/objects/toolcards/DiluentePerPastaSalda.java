@@ -9,7 +9,7 @@ public class DiluentePerPastaSalda extends ToolCard {
 
     //Costruttori
     public DiluentePerPastaSalda() {
-        super("diluente per pasta salda", "dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", DieColor.PURPLE);
+        super("Diluente per Pasta Salda", "Dopo aver scelto un dado, riponilo del sacco di dadi ed estrai un altro dado; scegli il valore del nuovo dado e piazzalo rispettando tutte le restrizioni", DieColor.PURPLE);
     }
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {

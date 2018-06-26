@@ -10,7 +10,7 @@ public class TaglierinaCircolare extends ToolCard {
 
     //Costruttori
     public TaglierinaCircolare() {
-        super("taglierina circolare", "dopo aver scelto un dado, scambia quel dado con uno nel tracciato dei round", DieColor.GREEN);
+        super("Taglierina Circolare", "Dopo aver scelto un dado, scambia quel dado con uno nel tracciato dei round", DieColor.GREEN);
 
     }
 

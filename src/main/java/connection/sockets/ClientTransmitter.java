@@ -5,7 +5,7 @@ import connection.sockets.communication.rensponses.server.ServerResponse;
 
 import java.io.IOException;
 
-public class ClientTransmitter {
+public class ClientTransmitter implements Runnable {
     //Gestore dello smistamento delle richieste del server
 
     private ServerRequestHandler serverRequestHandler;
@@ -13,7 +13,7 @@ public class ClientTransmitter {
     private boolean isRunning;
 
     //Costruttori
-    public ClientTransmitter(ServerRequestHandler serverRequestHandler, SocketClient client) {
+    public ClientTransmitter(SocketClient client, ServerRequestHandler serverRequestHandler) {
         this.serverRequestHandler = serverRequestHandler;
         this.client = client;
     }
@@ -36,12 +36,6 @@ public class ClientTransmitter {
                     IOSupport.responseToServer(client.getOut(), response);
             }
         } catch(Exception e){
-            e.printStackTrace();
-        }
-
-        try {
-            client.close();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

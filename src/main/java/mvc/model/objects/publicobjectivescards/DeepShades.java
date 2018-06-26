@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DeepShades extends PublicObjectiveCard {
     public DeepShades() {
-        super("sfumature scure", "set di 5 & 6 ovunque");
+        super("Sfumature scure", "Set di 5 & 6 ovunque");
     }
 
     @Override

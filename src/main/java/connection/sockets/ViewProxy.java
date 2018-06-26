@@ -86,11 +86,11 @@ public class ViewProxy implements AppViewStub {
 
     //Metodi di acknowledgement o error
     public void respondError(String message, String tokenMatch) throws RemoteException {
-        serverTransmitter.request(new RespondAckRequest(message, tokenMatch));
+        serverTransmitter.request(new RespondErrorRequest(message, tokenMatch));
         serverResponseHandler.handleAction((RespondErrorResponse) serverTransmitter.getResponse());
     }
     public void respondAck(String message, String tokenMatch) throws RemoteException {
-        serverTransmitter.request(new RespondErrorRequest(message, tokenMatch));
+        serverTransmitter.request(new RespondAckRequest(message, tokenMatch));
         serverResponseHandler.handleAction((RespondAckResponse) serverTransmitter.getResponse());
     }
 }

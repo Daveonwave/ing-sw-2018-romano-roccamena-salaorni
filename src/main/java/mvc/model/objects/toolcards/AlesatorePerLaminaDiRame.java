@@ -9,7 +9,7 @@ public class AlesatorePerLaminaDiRame extends ToolCard{
 
     //Costruttori
     public AlesatorePerLaminaDiRame() {
-        super("alesatore per lamina di rame", "muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", DieColor.RED);
+        super("Alesatore per Lamina di Rame", "Muovi un qualunque tuo dado piazzato ignorando le restrizione di valore, rispettando tutte le altre restrizioni", DieColor.RED);
     }
 
     private void cardEffect(Player player, ToolCardInput input) throws RemoteException {

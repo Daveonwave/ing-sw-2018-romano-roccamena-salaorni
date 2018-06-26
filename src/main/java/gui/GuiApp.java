@@ -117,7 +117,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText(FXGuiConstant.DISCONNECTED);
 
             //Visualizza errore
-            GuiMessage.showError("impossibile connettersi al server");
+            GuiMessage.showError("Impossibile connettersi al server");
             return;
         }
 
@@ -132,7 +132,7 @@ public class GuiApp extends Application implements Serializable {
 
             //Visualizza errore
             e.printStackTrace();
-            GuiMessage.showError("errore imprevisto");
+            GuiMessage.showError("Errore imprevisto");
             return;
         }
 
@@ -148,7 +148,7 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(false);
 
         //Visualizza messaggio
-        GuiMessage.showInfo("connesso al server");
+        GuiMessage.showInfo("Connesso al server");
     }
     public void onDisconnectClicked(MouseEvent event) {
         connectionLabel.setText("DISCONNETTENDO...");
@@ -168,7 +168,7 @@ public class GuiApp extends Application implements Serializable {
 
             //Visualizza errore
             e.printStackTrace();
-            GuiMessage.showError("impossibile disconnettersi dal server");
+            GuiMessage.showError("Impossibile disconnettersi dal server");
             return;
         }
 
@@ -188,7 +188,7 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
 
         //Visualizza messaggio
-        GuiMessage.showInfo("disconnesso dal server");
+        GuiMessage.showInfo("Disconnesso dal server");
     }
     public void onLoginClicked(MouseEvent event) {
         String name = userNameText.getText();
@@ -202,7 +202,7 @@ public class GuiApp extends Application implements Serializable {
             GuiMessage.showError(e.getMessage());
             return;
         } catch (RemoteException f) {
-            GuiMessage.showError("impossibile eseguire il login");
+            GuiMessage.showError("Impossibile eseguire il login");
             return;
         }
 
@@ -224,7 +224,7 @@ public class GuiApp extends Application implements Serializable {
             GuiMessage.showError(e.getMessage());
             return;
         } catch (RemoteException f) {
-            GuiMessage.showError("impossibile eseguire il logout");
+            GuiMessage.showError("Impossibile eseguire il logout");
             return;
         }
 
@@ -247,7 +247,7 @@ public class GuiApp extends Application implements Serializable {
             GuiMessage.showError(e.getMessage());
             return;
         } catch (RemoteException f) {
-            GuiMessage.showError("impossibile partecipare ad una partita");
+            GuiMessage.showError("Impossibile partecipare ad una partita");
             return;
         }
 
@@ -267,7 +267,7 @@ public class GuiApp extends Application implements Serializable {
             GuiMessage.showError(e.getMessage());
             return;
         } catch (RemoteException f) {
-            GuiMessage.showError("impossibile annullare la partecipazione");
+            GuiMessage.showError("Impossibile annullare la partecipazione");
             return;
         }
 
@@ -288,7 +288,7 @@ public class GuiApp extends Application implements Serializable {
             }
         } catch (Exception e) {
             //Visualizza errore
-            GuiMessage.showError("impossibile disconnettersi dal server");
+            GuiMessage.showError("Impossibile disconnettersi dal server");
         }
 
         //Termina applicazione
