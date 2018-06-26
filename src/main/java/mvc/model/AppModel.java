@@ -7,6 +7,9 @@ import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
 
+/**
+ * Server-side application model
+ */
 public class AppModel {
     //Model dell'applicazione
 

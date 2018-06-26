@@ -6,6 +6,9 @@ import mvc.stubs.AppViewStub;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
+/**
+ * Client-side application view
+ */
 public abstract class AppView implements AppViewStub, Serializable {
     //View astratta dell'applicazione
 

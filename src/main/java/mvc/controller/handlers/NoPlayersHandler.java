@@ -2,6 +2,7 @@ package mvc.controller.handlers;
 
 import mvc.controller.AppController;
 import mvc.controller.TimedSubcontroller;
+import mvc.exceptions.AppControllerException;
 import mvc.model.objects.User;
 
 public class NoPlayersHandler extends TimedSubcontroller {
@@ -28,9 +29,13 @@ public class NoPlayersHandler extends TimedSubcontroller {
             lobby.clear();
 
             //Comunica fine attesa partita
-            controller.userError(user, "nessun giocatore disponibile");
+            try {
+                controller.userError(user, "nessun giocatore disponibile");
+            } catch (AppControllerException e) { }
         } else {
-            controller.startMatch();
+            if (lobby.getWaitingUsersToken().size() != 0) {
+                controller.startMatch();
+            }
         }
 
         //Resetta timer di nessun giocatore del controllore

@@ -4,6 +4,7 @@ import gui.GuiApp;
 
 /**
  * Client application main
+ *
  */
 public class ClientApp{
     //Client dell'applicazione

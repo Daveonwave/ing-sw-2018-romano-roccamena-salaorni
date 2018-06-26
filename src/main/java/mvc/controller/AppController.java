@@ -64,25 +64,55 @@ public class AppController implements AppControllerStub {
 
 
     //Resetta i timer
-    public void resetNoPlayerHandler() {
+    /**
+     * Reset no player handler
+     */
+    public synchronized void resetNoPlayerHandler() {
         multiPlayerLobby.setNoPlayersHandler(new NoPlayersHandler(this, timerConfig.getJoinWaitTime()));
     }
-    public void resetTimedTurnHandler(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel) {
+    /**
+     * Reset timed turn handler
+     * @param match Match modified by timer
+     * @param tokenMatch Token of match
+     * @param matchModel Model of match
+     */
+    public synchronized void resetTimedTurnHandler(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel) {
         match.setTimedTurnHandler(new TimedTurnHandler(this, timerConfig.getTurnMaxTime(), match, tokenMatch, matchModel));
     }
 
 
-    //Ack ed error su utenti di un mvc.match o singolarmente
+    //Ack ed error su utenti di un match o singolarmente
+    /**
+     * Sends an ack to users playing a match
+     * @param tokenMatch Token of the match
+     * @param matchModel Model of the match
+     * @param message Message of the ack
+     * @throws RemoteException
+     */
     public synchronized void matchBroadcastAck(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondAck(message, tokenMatch);
     }
+
+    /**
+     * Sends an error to users playing a match
+     * @param tokenMatch Token of the match
+     * @param matchModel Model of the match
+     * @param message Message of the error
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void matchBroadcastError(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
         for (Player player : matchModel.getMatch().getPlayers())
             player.getUser().getAppView().respondError(message, tokenMatch);
 
         throw new AppControllerException(message);
     }
+    /**
+     * Sends an ack to a single user view
+     * @param appView Application view of the user
+     * @param message Message of the ack
+     * @throws RemoteException
+     */
     public synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
         appView.respondAck(message, null);
     }
@@ -90,15 +120,37 @@ public class AppController implements AppControllerStub {
         appView.respondError(message, null);
         throw new AppControllerException(message);
     }
+
+    /**
+     * Sends an ack to a single user
+     * @param user User to send ack
+     * @param message Message of the ack
+     * @throws RemoteException
+     */
     public synchronized void userAck(User user, String message) throws RemoteException {
         viewAck(user.getAppView(), message);
     }
+
+    /**
+     * Sends an error to a single user
+     * @param user User to send error
+     * @param message Message of the error
+     * @throws RemoteException AppControllerException as a callback error signal
+     */
     public synchronized void userError(User user, String message) throws RemoteException {
         viewError(user.getAppView(), message);
     }
 
 
     //Operazioni su utente
+
+    /**
+     * Request login for new user
+     * @param name New user's name
+     * @param appView User's application view
+     * @return Token of the registered user
+     * @throws RemoteException
+     */
     public synchronized String login(String name, AppViewStub appView) throws RemoteException {
         String token = "";
 
@@ -116,6 +168,12 @@ public class AppController implements AppControllerStub {
 
         return token;
     }
+
+    /**
+     * Request new logout forlogged user
+     * @param tokenUser User's token
+     * @throws RemoteException
+     */
     public synchronized void logout(String tokenUser) throws RemoteException {
         AppViewStub appView = null;
 
@@ -272,9 +330,6 @@ public class AppController implements AppControllerStub {
 
         //Se sono presenti gli utenti partecipanti necessari inizia partita
         if (multiPlayerLobby.isReady()) {
-            //Ricostruisce timer di nessun giocatore
-            resetNoPlayerHandler();
-
             //Inizia partita
             startMatch();
         }
