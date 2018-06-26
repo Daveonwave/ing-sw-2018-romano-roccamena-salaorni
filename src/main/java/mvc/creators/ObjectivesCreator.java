@@ -8,9 +8,16 @@ import mvc.model.objects.publicobjectivescards.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creator of model's objectives card
+ */
 public class ObjectivesCreator {
     //Creatore carte obiettivo del gioco
 
+    /**
+     * Create all private objective cards
+     * @return
+     */
     public static List<PrivateObjectiveCard> createPrivateObjectiveCards() {
         List<PrivateObjectiveCard> cards = new ArrayList<PrivateObjectiveCard>();
 
@@ -23,6 +30,10 @@ public class ObjectivesCreator {
 
         return cards;
     }
+    /**
+     * Create all public objective cards
+     * @return
+     */
     public static List<PublicObjectiveCard> createPublicObjectiveCards() {
         List<PublicObjectiveCard> cards = new ArrayList<PublicObjectiveCard>();
 

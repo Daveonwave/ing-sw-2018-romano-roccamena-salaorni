@@ -12,6 +12,11 @@ public class Card implements Serializable {
     private String description;
 
     //Costruttori
+    /**
+     * Create new card
+     * @param name Name of the card
+     * @param description Description of the card
+     */
     public Card(String name, String description) {
         this.name = name;
         this.description = description;
@@ -33,7 +38,6 @@ public class Card implements Serializable {
     }
 
     //Verifica uguaglianze
-
     /**
      * Assert equality of two cards
      * @param card card instance to test

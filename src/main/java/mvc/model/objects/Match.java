@@ -20,6 +20,14 @@ public abstract class Match implements Serializable {
     protected RoundTrack roundTrack;
 
     //Costruttori
+    /**
+     * Create new match
+     * @param objectiveCards Objective cards of the match
+     * @param toolCards Tool cards of the match
+     * @param matchDice Dice of the match
+     * @param roundTrack Round track of the match
+     * @param turnHandler Turn handler of the match
+     */
     public Match(List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack, TurnHandler turnHandler) {
         this.matchState = MatchState.CREATED;
         this.publicObjectiveCards = objectiveCards;

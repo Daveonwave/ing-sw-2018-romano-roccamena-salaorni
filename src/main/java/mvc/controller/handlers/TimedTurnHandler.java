@@ -5,6 +5,9 @@ import mvc.controller.TimedSubcontroller;
 import mvc.model.MatchModel;
 import mvc.model.objects.MultiPlayerMatch;
 
+/**
+ * Timed match turn feature handler
+ */
 public class TimedTurnHandler extends TimedSubcontroller {
     //Gestore evento scadenza tempo per giocare un turno
 
@@ -13,6 +16,15 @@ public class TimedTurnHandler extends TimedSubcontroller {
     private MatchModel matchModel;
 
     //Costruttori
+
+    /**
+     * Create new handler
+     * @param controller Parent controller
+     * @param delay Delay of timer
+     * @param match Parent match
+     * @param tokenMatch Token of parent match
+     * @param matchModel Model of parent match
+     */
     public TimedTurnHandler(AppController controller, int delay, MultiPlayerMatch match, String tokenMatch, MatchModel matchModel) {
         super(controller, delay);
         this.match = match;
@@ -42,10 +54,18 @@ public class TimedTurnHandler extends TimedSubcontroller {
     }
 
     //Eventi task
+    /**
+     * Execute parent controller's end turn routine
+     * @throws Exception Internal exception
+     */
     public synchronized void onTimedTask() throws Exception {
         //Termina turno
         getController().finishTurn(match, tokenMatch, matchModel, match.getTurnPlayer());
     }
+    /**
+     * No exception handling are used
+     * @param e Exception raised
+     */
     public synchronized void onTimedTaskException(Exception e) {
         //Non fa nulla
     }

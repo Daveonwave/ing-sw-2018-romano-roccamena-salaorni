@@ -24,6 +24,9 @@ public class AppModel {
     public final TokenMap<MatchModel> matches;
 
     //Costruttori
+    /**
+     * Create new application model instance
+     */
     private AppModel() {
         this.names = new TokenMap<String>();
         this.users = new TokenMap<User>();
@@ -31,6 +34,11 @@ public class AppModel {
     }
 
     //Getter singleton
+
+    /**
+     * Retrieve application model instance
+     * @return
+     */
     public synchronized static AppModel get() {
         if (instance == null) {
             instance = new AppModel();

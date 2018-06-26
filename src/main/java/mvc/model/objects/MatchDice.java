@@ -48,7 +48,6 @@ public class MatchDice implements Serializable {
     }
 
     //Verifica uguaglianze
-
     /**
      * Assert if two match dice refers to matches with same players count
      * @param matchDice Match dice instance
@@ -131,7 +130,6 @@ public class MatchDice implements Serializable {
 
         return false;
     }
-
     /**
      * Assert if draft pool contains a die
      * @param die
@@ -174,7 +172,7 @@ public class MatchDice implements Serializable {
 
         return result;
     }
-
+    
     //Estrae un dado dal sacco di dadi
     /**
      * Extract one die from the bag

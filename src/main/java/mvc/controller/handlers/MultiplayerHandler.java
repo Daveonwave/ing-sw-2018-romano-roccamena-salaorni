@@ -5,6 +5,9 @@ import mvc.controller.AppController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Variabile size multiplayer lobby handler of the application controller
+ */
 public class MultiplayerHandler {
     //Gestore servizio multigiocatore
 
@@ -17,12 +20,18 @@ public class MultiplayerHandler {
     private NoPlayersHandler noPlayersHandler;
 
     //Costruttori
-    public MultiplayerHandler(AppController controller, int usersCount, int mpDelay) {
+    /**
+     * Create new handler
+     * @param controller Parent controller
+     * @param usersCount Size of the lobby
+     * @param delay Delay of timer
+     */
+    public MultiplayerHandler(AppController controller, int usersCount, int delay) {
         this.ready = false;
         this.usersCount = usersCount;
         this.waitingUsersToken = new ArrayList<String>();
         this.controller = controller;
-        this.noPlayersHandler = new NoPlayersHandler(controller, mpDelay);
+        this.noPlayersHandler = new NoPlayersHandler(controller, delay);
     }
 
     //Setter/Getter
@@ -44,12 +53,20 @@ public class MultiplayerHandler {
     }
 
     //Elimina tutti gli utenti dall'attesa
+    /**
+     * Free waiting users list
+     */
     public synchronized void clear() {
         waitingUsersToken.clear();
         ready = false;
     }
 
     //Ottiene i token degli utenti, eliminandoli dall'attesa
+
+    /**
+     * Obtains tokens of waiting users
+     * @return
+     */
     public synchronized List<String> retrieveWaitingUsersToken() {
         List<String> copyUsers = new ArrayList<String>();
         for (String token : waitingUsersToken)
@@ -61,6 +78,10 @@ public class MultiplayerHandler {
     }
 
     //Registra un'utente in attesa
+    /**
+     * Register a logged user as a partecipant of the new multiplayer matcch
+     * @param tokenUser User's token
+     */
     public synchronized void join(String tokenUser) {
         waitingUsersToken.add(tokenUser);
 
@@ -81,6 +102,10 @@ public class MultiplayerHandler {
             ready = false;
     }
     //Elimina un'utente dall'attesa
+    /**
+     * Unregister a logged user as a partecipant of the new multiplayer matcch
+     * @param tokenUser User's token
+     */
     public synchronized void leave(String tokenUser) {
         waitingUsersToken.remove(tokenUser);
     }

@@ -9,12 +9,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Creator of model's match instances
+ */
 public class MatchCreator {
     //Creatore di componenti del gioco
 
     private boolean singlePlayer;
 
     //Costruttori
+    /**
+     * Create new match creator
+     * @param singlePlayer If match to create is single player
+     */
     public MatchCreator(boolean singlePlayer) {
         this.singlePlayer = singlePlayer;
     }
@@ -204,10 +211,23 @@ public class MatchCreator {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Factory partite multiplayer e singleplayer
+    /**
+     * Let subList method of List to be converted into serializable obect
+     * @param windows Windows instances
+     * @param fromIndex Start index of sub
+     * @param toIndex End index of sub
+     * @return
+     */
     private static List<Window> selectWindows(List<Window> windows, int fromIndex, int toIndex) {
         List<Window> sub = windows.subList(fromIndex, toIndex);
         return new ArrayList<Window>(sub);
     }
+    /**
+     * Create new multiplayer match instance
+     * @param users Partecipant users
+     * @param seed Seed of the match
+     * @return
+     */
     public static MultiPlayerMatch createMultiPlayer(List<User> users, long seed) {
         //Verifica condizione sulla casualità
         boolean seeded = seed > 0;
@@ -248,6 +268,11 @@ public class MatchCreator {
 
         return match;
     }
+    /**
+     * Create new multiplayer match instance with default seed computation
+     * @param users Partecipant users
+     * @return
+     */
     public static MultiPlayerMatch createMultiPlayer(List<User> users) {
         return createMultiPlayer(users, -1);
     }

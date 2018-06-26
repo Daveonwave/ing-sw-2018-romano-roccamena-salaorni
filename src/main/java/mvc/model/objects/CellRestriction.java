@@ -9,7 +9,6 @@ public interface CellRestriction extends Serializable {
     //Restrizione di una cella di una finestra
 
     //Verifica uguaglianze
-
     /**
      * Assert equality f two restrictions
      * @param cellRestriction Cell restriction instance
@@ -18,7 +17,6 @@ public interface CellRestriction extends Serializable {
     boolean sameCellRestriction(CellRestriction cellRestriction);
 
     //Verifica che un dado rispetti la restrizione
-
     /**
      * Assert if a die is compatible with the restriction
      * @param die Die instance

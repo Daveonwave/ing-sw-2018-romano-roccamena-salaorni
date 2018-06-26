@@ -6,9 +6,16 @@ import mvc.model.objects.enums.DieColor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Create model's windows
+ */
 public class WindowsCreator {
     //Creatore di finestre di gioco
 
+    /**
+     * Create all model's windows
+     * @return
+     */
     public static List<Window> createWindows() {
         List<Window> windows = new ArrayList<Window>(24);
 

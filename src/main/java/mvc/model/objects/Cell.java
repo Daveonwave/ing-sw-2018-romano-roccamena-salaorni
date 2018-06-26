@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 /**
  * Cell of a game window
  */
-public class    Cell implements Serializable {
+public class Cell implements Serializable {
     //Cella di una finestra
 
     private Die die;
@@ -17,6 +17,13 @@ public class    Cell implements Serializable {
     private int column;
 
     //Costruttori
+    /**
+     * Create new cell
+     * @param die Die placed inside the cell
+     * @param cellRestriction Cell's restriction
+     * @param row Row index of the window
+     * @param column Column index of the row
+     */
     public Cell(Die die, CellRestriction cellRestriction, int row, int column) {
         this.die = die;
         this.cellRestriction = cellRestriction;
@@ -24,6 +31,10 @@ public class    Cell implements Serializable {
         this.column = column;
 
     }
+    /**
+     * Create new cell from other cell
+     * @param cell Cell instance
+     */
     public Cell(Cell cell) {
         this(cell.getDie(), cell.getCellRestriction(), cell.getRow(), cell.getColumn());
     }
@@ -121,7 +132,6 @@ public class    Cell implements Serializable {
     }
 
     //Indicano se la cella è in posizioni di bordo dela finestra
-
     /**
      * Assert if the cell is located in windows's north border
      * @return
@@ -183,7 +193,6 @@ public class    Cell implements Serializable {
                 return true;
         }
     }
-
     /**
      * Assert if the cell has some cell restriction, without ignoring any of them
      * @param die Die instance
@@ -194,7 +203,6 @@ public class    Cell implements Serializable {
     }
 
     //Movimenti dadi fra celle
-
     /**
      * Place a die inside the cell
      * @param die Die instance
@@ -213,7 +221,6 @@ public class    Cell implements Serializable {
         //Esegue piazzamento
         this.die = die;
     }
-
     /**
      * Place a die inside the cell without ignoring any restriction
      * @param die Die instance
@@ -222,7 +229,6 @@ public class    Cell implements Serializable {
     public void placeDie(Die die) throws RemoteException {
         placeDie(die, false, false);
     }
-
     /**
      * Move die placed inside the cell into another cell
      * @param destination Destination cell
@@ -239,7 +245,6 @@ public class    Cell implements Serializable {
         destination.placeDie(die, ignoreColorRestriction, ignoreShadeRestriction);
         this.die = null;
     }
-
     /**
      * Move die placed inside the cell into another cell without ignoring any restriction
      * @param destination Destination cell
@@ -248,7 +253,6 @@ public class    Cell implements Serializable {
     public void moveDie(Cell destination) throws RemoteException {
         moveDie(destination, false, false);
     }
-
     /**
      * Swap dice placed whithin two cells
      * @param cell Cell instance
@@ -268,7 +272,6 @@ public class    Cell implements Serializable {
             throw e;
         }
     }
-
     /**
      * Swap dice placed within two cells without ignoring any restriction
      * @param cell Cell instance

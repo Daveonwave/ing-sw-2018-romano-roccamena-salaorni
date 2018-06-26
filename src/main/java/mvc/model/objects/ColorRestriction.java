@@ -11,6 +11,10 @@ public class ColorRestriction implements CellRestriction {
     private DieColor color;
 
     //Costruttori
+    /**
+     * Create new color restriction
+     * @param color Color of the restriction
+     */
     public ColorRestriction(DieColor color) {
         this.color = color;
     }

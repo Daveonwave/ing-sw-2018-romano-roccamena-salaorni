@@ -6,9 +6,16 @@ import mvc.model.objects.toolcards.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Creator of model's tool cards
+ */
 public class ToolsCreator {
     //Creatore carte strumento gioco
 
+    /**
+     * Create all tool cards
+     * @return
+     */
     public static List<ToolCard> createToolCards() {
         List<ToolCard> cards = new ArrayList<ToolCard>();
 

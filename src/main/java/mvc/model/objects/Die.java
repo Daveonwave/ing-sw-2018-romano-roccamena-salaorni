@@ -15,10 +15,19 @@ public class Die implements Serializable {
     private int shade;
 
     //Costruttori
+    /**
+     * Create new die
+     * @param color Color of the die
+     * @param shade Shade of the die
+     */
     public Die(DieColor color, int shade) {
         this.color = color;
         this.shade = shade;
     }
+    /**
+     * Create new die, rolling it
+     * @param color Color of the die
+     */
     public Die(DieColor color) {
         this(color, 0);
         roll();
