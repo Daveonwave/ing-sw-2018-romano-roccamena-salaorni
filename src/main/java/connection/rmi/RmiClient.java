@@ -1,5 +1,7 @@
 package connection.rmi;
 
+import config.AddressConfig;
+import config.PortsConfig;
 import connection.ServerInfo;
 import mvc.stubs.AppControllerStub;
 
@@ -17,17 +19,17 @@ public class RmiClient implements Serializable {
     private AppControllerStub  controller;
 
     /**
-     * Launches client, setting policy, server address and port
+     * Launches client, sets policy, server address and port
      * @throws RemoteException
      * @throws NotBoundException
      */
-    public void runRmiClient() throws RemoteException, NotBoundException {
+    public void runRmiClient(AddressConfig addressConfig, PortsConfig portsConfig) throws RemoteException, NotBoundException {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "client.policy");
         System.setSecurityManager(new SecurityManager());
 
         //Ottiene registro rmi server
-        Registry registry = LocateRegistry.getRegistry(ServerInfo.SERVER_ADDRESS, ServerInfo.RMI_PORT);
+        Registry registry = LocateRegistry.getRegistry(addressConfig.getAddress(), portsConfig.getRmiPort());
 
         //Scarica stub controller dal server
         this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);

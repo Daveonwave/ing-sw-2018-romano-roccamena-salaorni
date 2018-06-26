@@ -1,6 +1,8 @@
 package connection.rmi;
 
 
+import config.PortsConfig;
+import config.TimerConfig;
 import connection.ServerInfo;
 import mvc.stubs.AppControllerStub;
 
@@ -19,19 +21,19 @@ public class RmiServer {
      * @throws RemoteException
      * @throws AlreadyBoundException
      */
-    public void runRmiServer() throws RemoteException, AlreadyBoundException {
+    public void runRmiServer(TimerConfig timerConfig, PortsConfig portsConfig) throws RemoteException, AlreadyBoundException {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "server.policy");
         System.setSecurityManager(new SecurityManager());
 
         //Crea controller dell'applicazione
-        AppControllerStub appController = new RmiController();
+        AppControllerStub appController = new RmiController(timerConfig);
 
         //Crea registro rmi e carica controller
-        Registry registry = LocateRegistry.createRegistry(ServerInfo.RMI_PORT);
+        Registry registry = LocateRegistry.createRegistry(portsConfig.getRmiPort());
         registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
 
-        System.out.println("[RMI SERVER READY : PORT " + ServerInfo.RMI_PORT + "]");
+        System.out.println("[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
     }
 
 }

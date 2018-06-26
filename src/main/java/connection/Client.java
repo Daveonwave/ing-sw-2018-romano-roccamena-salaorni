@@ -1,17 +1,20 @@
 package connection;
 
+import config.AddressConfig;
+import config.ConfigLoader;
+import config.PortsConfig;
 import connection.rmi.RmiClient;
 import connection.sockets.SocketClient;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;
 import java.rmi.NotBoundException;
+import java.util.Map;
 
 /**
- * Client Launcher
+ * Client launcher
  */
 public class Client {
-
     private RmiClient rmiClient;
     private SocketClient socketClient;
 
@@ -22,19 +25,35 @@ public class Client {
 
     /**
      * Depending on the value of rmiConnectionChosen, launches the Rmi or socket client.
-     * @param rsiConnectionChosen if true it means that has been chosen a Rmi connection, socket if false.
+     * @param rmiConnectionChosen if true it means that has been chosen a Rmi connection, socket if false.
      * @throws NotBoundException
      * @throws IOException
      */
-    public void launchClient(boolean rsiConnectionChosen) throws NotBoundException, IOException {
-        if (rsiConnectionChosen){
+    public void launchClient(boolean rmiConnectionChosen) throws NotBoundException, IOException {
+        //Carica configurazioni
+        Map<String, String> loadedConfig;
+        AddressConfig addressConfig;
+        PortsConfig portsConfig;
 
+        try {
+            loadedConfig = ConfigLoader.loadServerConfig();
+
+            addressConfig = new AddressConfig(loadedConfig.get("server address"));
+            portsConfig = new PortsConfig(Integer.parseInt(loadedConfig.get("rmi port")), Integer.parseInt(loadedConfig.get("socket port")));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+
+        //Lancia il client
+        if (rmiConnectionChosen){
             this.rmiClient = new RmiClient();
-            this.rmiClient.runRmiClient();
+            this.rmiClient.runRmiClient(addressConfig, portsConfig);
         }
         else {
             this.socketClient = new SocketClient();
-            socketClient.init();
+            socketClient.init(addressConfig, portsConfig);
         }
     }
 

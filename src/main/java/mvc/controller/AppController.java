@@ -1,5 +1,6 @@
 package mvc.controller;
 
+import config.TimerConfig;
 import mvc.controller.handlers.MultiplayerHandler;
 import mvc.controller.handlers.NoPlayersHandler;
 import mvc.controller.handlers.TimedTurnHandler;
@@ -14,31 +15,38 @@ import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 
 import java.rmi.RemoteException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Server-side application controller
+ */
 public class AppController implements AppControllerStub {
     //Controllore dell'applicazione
 
-    //Tempo massimo di attesa per partecipazione multiplayer
-    public static final int JOIN_WAIT_TIME = 2 * 1000;
-    //Tempo massimo per giocare un turno
-    public static final int TURN_MAX_TIME = 100 * 1000;
-
     //Model dell'applicazione
     private transient AppModel model;
+    //Configurazioni timer
+    private transient TimerConfig timerConfig;
     //Gestore partite multiplayer
     private transient MultiplayerHandler multiPlayerLobby;
 
+
     //Costruttori
-    public AppController() {
+    public AppController(TimerConfig timerConfig) {
         this.model = AppModel.get();
-        this.multiPlayerLobby = new MultiplayerHandler(this, 4, JOIN_WAIT_TIME);
+        this.timerConfig = timerConfig;
+        this.multiPlayerLobby = new MultiplayerHandler(this, 4, timerConfig.getJoinWaitTime());
     }
+
 
     //Setter/Getter
     public void setModel(AppModel model){
         this.model = model;
+    }
+    public void setTimerConfig(TimerConfig timerConfig) {
+        this.timerConfig = timerConfig;
     }
     public void setMultiPlayerLobby(MultiplayerHandler multiPlayerLobby) {
         this.multiPlayerLobby = multiPlayerLobby;
@@ -47,14 +55,22 @@ public class AppController implements AppControllerStub {
     public AppModel getModel() {
         return model;
     }
+    public TimerConfig getTimerConfig() {
+        return timerConfig;
+    }
     public MultiplayerHandler getMultiPlayerLobby() {
         return multiPlayerLobby;
     }
 
-    //Ricrea un timer di nessun giocatore dentro la lobby multiplayer
+
+    //Resetta i timer
     public void resetNoPlayerHandler() {
-        multiPlayerLobby.setNoPlayersHandler(new NoPlayersHandler(this, JOIN_WAIT_TIME));
+        multiPlayerLobby.setNoPlayersHandler(new NoPlayersHandler(this, timerConfig.getJoinWaitTime()));
     }
+    public void resetTimedTurnHandler(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel) {
+        match.setTimedTurnHandler(new TimedTurnHandler(this, timerConfig.getTurnMaxTime(), match, tokenMatch, matchModel));
+    }
+
 
     //Ack ed error su utenti di un mvc.match o singolarmente
     public synchronized void matchBroadcastAck(String tokenMatch, MatchModel matchModel, String message) throws RemoteException {
@@ -80,6 +96,7 @@ public class AppController implements AppControllerStub {
     public synchronized void userError(User user, String message) throws RemoteException {
         viewError(user.getAppView(), message);
     }
+
 
     //Operazioni su utente
     public synchronized String login(String name, AppViewStub appView) throws RemoteException {
@@ -137,7 +154,7 @@ public class AppController implements AppControllerStub {
         String tokenMatch = model.createMatch(matchModel);
 
         //Crea nuovo gestore di controllo tempo turni
-        match.setTimedTurnHandler(new TimedTurnHandler(this, TURN_MAX_TIME, match, tokenMatch, matchModel));
+        resetTimedTurnHandler(match, tokenMatch, matchModel);
 
         //Inizia la parita
         try {
@@ -166,7 +183,7 @@ public class AppController implements AppControllerStub {
 
         //Termina controllo tempo turno
         match.getTimedTurnHandler().stop();
-        match.setTimedTurnHandler(new TimedTurnHandler(this, TURN_MAX_TIME, match, tokenMatch, matchModel));
+        resetTimedTurnHandler(match, tokenMatch, matchModel);
 
         //Notifica fine turno del giocatore
         matchModel.notifyTurnEnd(tokenMatch, match);

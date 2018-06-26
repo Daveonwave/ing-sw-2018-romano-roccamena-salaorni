@@ -1,6 +1,7 @@
 package connection.sockets;
 
-import connection.ServerInfo;
+import config.PortsConfig;
+import config.TimerConfig;
 import connection.sockets.communication.ServerActionHandler;
 import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
@@ -57,10 +58,10 @@ public class SocketServer implements Closeable {
     }
 
     //Crea il server
-    public void init() throws IOException {
-        serverSocket = new ServerSocket(ServerInfo.SOCKET_PORT);
+    public void init(PortsConfig portsConfig) throws IOException {
+        serverSocket = new ServerSocket(portsConfig.getSocketPort());
         this.isReady = true;
-        System.out.println("[SOCKET SERVER READY : PORT " + ServerInfo.SOCKET_PORT+ "]");
+        System.out.println("[SOCKET SERVER READY : PORT " + portsConfig.getSocketPort() + "]");
     }
 
     //Apre la connessione con il client
@@ -71,10 +72,10 @@ public class SocketServer implements Closeable {
     }
 
     //Inizializza e fa funzionare il server
-    public void runSocketServer() throws IOException{
-        this.init();
+    public void runSocketServer(TimerConfig timerConfig, PortsConfig portsConfig) throws IOException{
+        this.init(portsConfig);
 
-        AppControllerStub controller = new AppController();
+        AppControllerStub controller = new AppController(timerConfig);
 
         while(isReady) {
             try{

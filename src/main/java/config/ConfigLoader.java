@@ -1,5 +1,6 @@
 package config;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,22 +8,25 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Load configurations parameters in a specified format from files
+ * Load configuration parameters from files in a specified format
  */
 public final class ConfigLoader {
     //Caricatore di parametri di configurazioni
 
-    public final static String COMMENTS_START = "//";
-    public final static String PARAM_SEPARATOR = "=";
+    public final String COMMENTS_START = "//";
+    public final String PARAM_SEPARATOR = "=";
+
+    public static final String CLIENT_CONFIG_PATH = "src/main/java/config/client.txt";
+    public static final String SERVER_CONFIG_PATH = "src/main/java/config/server.txt";
 
     /**
-     *
+     * Load configuration parameters from file
      * @param path Config file path
-     * @return
+     * @return Map name->value of each parameter
      * @throws IOException If file can't be acessed properly
-     * @throws IllegalArgumentException If config file is invalid
+     * @throws IllegalArgumentException Invalid file format
      */
-    public static Map<String, String> loadParams(String path) throws IOException, IllegalArgumentException {
+    private Map<String, String> loadConfigParams(String path) throws IOException, IllegalArgumentException {
         Map<String, String> output = new HashMap<String, String>();
 
         //Apre stream di input
@@ -57,5 +61,28 @@ public final class ConfigLoader {
         inStream.close();
 
         return output;
+    }
+
+    /**
+     * Load client configuration parameters
+     * @return Map name->value of each parameter
+     * @throws IOException If file can't be acessed properly
+     * @throws IllegalArgumentException Invalid file format
+     */
+    public static Map<String, String> loadClientConfig() throws IOException, IllegalArgumentException {
+        ConfigLoader loader = new ConfigLoader();
+
+        return loader.loadConfigParams(CLIENT_CONFIG_PATH);
+    }
+    /**
+     * Load server configuration parameters
+     * @return Map name->value of each parameter
+     * @throws IOException If file can't be acessed properly
+     * @throws IllegalArgumentException Invalid file format
+     */
+    public static Map<String, String> loadServerConfig() throws IOException, IllegalArgumentException {
+        ConfigLoader loader = new ConfigLoader();
+
+        return loader.loadConfigParams(SERVER_CONFIG_PATH);
     }
 }

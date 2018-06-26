@@ -1,5 +1,7 @@
 package connection.sockets;
 
+import config.AddressConfig;
+import config.PortsConfig;
 import connection.ServerInfo;
 import connection.sockets.communication.ClientActionHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
@@ -35,8 +37,8 @@ public class SocketClient {
     }
 
     //Inizializza il client
-    public void init() throws IOException{
-        socket = new Socket(ServerInfo.SERVER_ADDRESS, ServerInfo.SOCKET_PORT);
+    public void init(AddressConfig addressConfig, PortsConfig portsConfig) throws IOException{
+        socket = new Socket(addressConfig.getAddress(), portsConfig.getSocketPort());
         out = new ObjectOutputStream(socket.getOutputStream());
         in = new ObjectInputStream(socket.getInputStream());
 

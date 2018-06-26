@@ -1,5 +1,6 @@
 package mvc;
 
+import config.TimerConfig;
 import mvc.controller.AppController;
 import mvc.model.objects.*;
 import base.BaseTest;
@@ -23,7 +24,7 @@ public class MVCTest extends BaseTest {
 
     //Crea controller locale di test
     public static AppController createTestController() {
-        return new AppController();
+        return new AppController(new TimerConfig(30000, 30000));
     }
 
     //Crea liste di utenti di test

@@ -1,5 +1,7 @@
 package connection;
 
+import config.AddressConfig;
+import config.PortsConfig;
 import mvc.view.others.BaseConsoleView;
 import connection.rmi.RmiClient;
 import mvc.stubs.AppControllerStub;
@@ -16,7 +18,7 @@ public class RmiTest {
     public void rmiExample() throws RemoteException, NotBoundException {
         RmiClient client = new RmiClient();
 
-        client.runRmiClient();
+        client.runRmiClient(new AddressConfig("localhost"), new PortsConfig(1099, 12345));
 
         AppControllerStub controller =  client.getController();
         AppViewStub view = new BaseConsoleView(controller);

@@ -1,5 +1,6 @@
 package connection.rmi;
 
+import config.TimerConfig;
 import mvc.controller.AppController;
 
 import java.rmi.RemoteException;
@@ -11,12 +12,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class RmiController extends AppController {
     //Implementazione RMI del controller
 
-    /**
-     * RMI controller constructor
-     * @throws RemoteException
-     */
-    public RmiController() throws RemoteException {
-        super();
+    public RmiController(TimerConfig timerConfig) throws RemoteException {
+        super(timerConfig);
 
         UnicastRemoteObject.exportObject(this, 0);
     }

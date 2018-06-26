@@ -4,6 +4,9 @@ import connection.Server;
 
 import java.rmi.AlreadyBoundException;
 
+/**
+ * Server application main
+ */
 public class ServerApp {
     //Server dell'applicazione
 

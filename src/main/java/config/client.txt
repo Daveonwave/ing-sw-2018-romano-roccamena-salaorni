@@ -7,4 +7,4 @@ server address=localhost
 rmi port=1099
 
 //Porta socket server
-socket port = 12345
+socket port=12345

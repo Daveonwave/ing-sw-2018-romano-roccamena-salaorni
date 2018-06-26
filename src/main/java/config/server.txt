@@ -10,4 +10,4 @@ turn max time=30000
 rmi port=1099
 
 //Porta di ascolto socket
-socket port = 12345
+socket port=12345
