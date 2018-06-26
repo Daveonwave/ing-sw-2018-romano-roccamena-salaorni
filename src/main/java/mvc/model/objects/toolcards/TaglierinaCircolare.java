@@ -24,10 +24,11 @@ public class TaglierinaCircolare extends ToolCard {
 
         //Esegue effetto carta
         Die roundTrackDie = match.getRoundTrack().retrieveDie(input.getRoundTrackRound(), input.getRoundTrackDie());
-
         match.getMatchDice().getDraftPool().remove(die);
         match.getMatchDice().getDraftPool().add(roundTrackDie);
-        match.getRoundTrack().retrieveDice(match.getTurnHandler().getRound()).add(die);
+        match.getRoundTrack().retrieveDice(input.getRoundTrackRound()).remove(roundTrackDie);
+        match.getRoundTrack().retrieveDice(input.getRoundTrackRound()).add(die);
+
 
         //Aggiorna effetti
         player.getToolCardEffect().setChoosenDie(roundTrackDie);

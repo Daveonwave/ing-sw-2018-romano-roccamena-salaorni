@@ -18,9 +18,14 @@ public class TaglierinaManuale extends ToolCard {
         Window window = player.getWindow();
         Die die = input.getRoundTrackDie();
         Cell origin1 = player.getWindow().retrieveCell(input.getOriginCell1());
-        Cell origin2 = player.getWindow().retrieveCell(input.getOriginCell2());
+        Cell origin2 = null;
+        Cell destination2 = null;
+        if(input.getOriginCell2() != null) {
+            origin2 = player.getWindow().retrieveCell(input.getOriginCell2());
+            destination2 = player.getWindow().retrieveCell(input.getDestinationCell2());
+        }
         Cell destination1 = player.getWindow().retrieveCell(input.getDestinationCell1());
-        Cell destination2 = player.getWindow().retrieveCell(input.getDestinationCell2());
+
 
         //Controlla correttezza uso
         die = match.getRoundTrack().retrieveDie(input.getRoundTrackRound(), die);
@@ -31,7 +36,9 @@ public class TaglierinaManuale extends ToolCard {
         //Esegue gli scambi
         window.moveDie(origin1, destination1);
         try {
-            window.moveDie(origin2, destination2);
+            if(origin2 != null) {
+                window.moveDie(origin2, destination2);
+            }
         } catch (MatchException e) {
             window.moveDie(destination1, origin1);
             throw e;

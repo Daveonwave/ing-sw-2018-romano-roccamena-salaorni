@@ -165,7 +165,7 @@ public class Window implements Serializable {
 
     //Ottiene una righe o colonne
     public List<Cell> getRowCells(int rowIndex){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
@@ -285,12 +285,12 @@ public class Window implements Serializable {
 
     //Ottieni diagonali armoniche e disarmoniche
     public List<Cell> getHarmoniousDiagonal(Cell cell){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         result.add(cell);
 
-        for(int i = 0; i < 4; i++) {
-            if (!getDownRightCell(cell).isSouthBorder() && !getDownRightCell(cell).isEastBorder()) {
+        for(int i = 0; i < 3; i++) {
+            if (!cell.isSouthBorder() && !cell.isEastBorder()) {
                 cell = getDownRightCell(cell);
                 result.add(cell);
             }
@@ -300,12 +300,12 @@ public class Window implements Serializable {
         return result;
     }
     public List<Cell> getDisharmoniousDiagonal(Cell cell){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         result.add(cell);
 
-        for(int i = 0; i < 4; i++) {
-            if (!getDownLeftCell(cell).isSouthBorder() && !getDownLeftCell(cell).isEastBorder()) {
+        for(int i = 0; i < 3; i++) {
+            if (!cell.isSouthBorder() && !cell.isWestBorder()) {
                 cell = getDownLeftCell(cell);
                 result.add(cell);
             }
@@ -317,23 +317,27 @@ public class Window implements Serializable {
 
     //Ottiene celle per caratteristica
     public List<Cell> getSameColorCells(mvc.model.objects.enums.DieColor color){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
-                if(color.equals(c.getDie().getColor()))
-                    result.add(c);
+                if(c.getDie() != null) {
+                    if (color.equals(c.getDie().getColor()))
+                        result.add(c);
+                }
             }
         }
         return result;
     }
     public List<Cell> getSameShadeCells(int shade){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
-                if(c.getDie().getShade() == shade)
-                    result.add(c);
+                if(c.getDie() != null) {
+                    if (c.getDie().getShade() == shade)
+                        result.add(c);
+                }
             }
         }
         return result;
@@ -379,10 +383,10 @@ public class Window implements Serializable {
             return true;
 
         if (ignoreAdjacentCells)
-            return noStartPlaceRestriction(cell, die);
+            return noAdjacentCellsRestriction(cell, die);
 
         if (ignoreStartPlace)
-            return noAdjacentCellsRestriction(cell, die);
+            return noStartPlaceRestriction(cell, die);
 
         if (cell.isInBorder())
             return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);

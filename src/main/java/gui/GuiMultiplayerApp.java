@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import mvc.exceptions.AppViewException;
 import mvc.model.objects.*;
 import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;
@@ -30,14 +31,13 @@ import java.util.List;
 public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Serializable {
 
     //Finestra gui di una partita multiplayer
-    public final static String FXML_PATH = "fxml/Match.fxml";
-    public final static String TITLE = "Sagrada Multiplayer";
+    public static final String TITLE = "Sagrada Multiplayer";
 
     private GuiView guiView;
     private MultiPlayerMatch multiPlayerMatch;
     private String multiTokenMatch;
-    private PointsWindowController pointsWindow;
-    private MatchView matchView;
+    private transient PointsWindowController pointsWindow;
+    private  transient MatchView matchView;
     private Stage stage;
 
     private boolean toPlace = false;
@@ -46,73 +46,289 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     private boolean choice = false;
 
 
-
     @FXML
     TextArea console;
     @FXML
-    Label player2Name, player3Name, player4Name, favorTokens;
+    Label player2Name;
+    @FXML
+    Label player3Name;
+    @FXML
+    Label player4Name;
+    @FXML
+    Label favorTokens;
+
     @FXML
     AnchorPane matchAnchorPane;
     @FXML
-    Pane pane2, roundDice;
+    Pane pane2;
     @FXML
-    ImageView w1, w2, w3, w4;
+    Pane roundDice;
     @FXML
-    ImageView d1, d2, d3, d4, d5, d6, d7, d8, d9;
+    ImageView w1;
     @FXML
-    ImageView p1_11, p1_12, p1_13, p1_14, p1_15, p1_21, p1_22, p1_23, p1_24, p1_25, p1_31, p1_32, p1_33, p1_34, p1_35, p1_41, p1_42, p1_43, p1_44, p1_45;
+    ImageView w2;
     @FXML
-    ImageView p2_11, p2_12, p2_13, p2_14, p2_15, p2_21, p2_22, p2_23, p2_24, p2_25, p2_31, p2_32, p2_33, p2_34, p2_35, p2_41, p2_42, p2_43, p2_44, p2_45;
+    ImageView w3;
     @FXML
-    ImageView p3_11, p3_12, p3_13, p3_14, p3_15, p3_21, p3_22, p3_23, p3_24, p3_25, p3_31, p3_32, p3_33, p3_34, p3_35, p3_41, p3_42, p3_43, p3_44, p3_45;
+    ImageView w4;
     @FXML
-    ImageView p4_11, p4_12, p4_13, p4_14, p4_15, p4_21, p4_22, p4_23, p4_24, p4_25, p4_31, p4_32, p4_33, p4_34, p4_35, p4_41, p4_42, p4_43, p4_44, p4_45;
+    ImageView d1;
     @FXML
-    ImageView publicObjective1, publicObjective2, publicObjective3, toolCard1, toolCard2, toolCard3, privateObjective1, zoom;
+    ImageView d2;
     @FXML
-    ImageView roundTrack, round1, round2, round3, round4, round5, round6, round7, round8, round9, round10;
+    ImageView d3;
     @FXML
-    ImageView roundDie1, roundDie2, roundDie3, roundDie4, roundDie5, roundDie6, roundDie7, roundDie8, roundDie9;
+    ImageView d4;
+    @FXML
+    ImageView d5;
+    @FXML
+    ImageView d6;
+    @FXML
+    ImageView d7;
+    @FXML
+    ImageView d8;
+    @FXML
+    ImageView d9;
+    @FXML
+    ImageView player1Position11;
+    @FXML
+    ImageView player1Position12;
+    @FXML
+    ImageView player1Position13;
+    @FXML
+    ImageView player1Position14;
+    @FXML
+    ImageView player1Position15;
+    @FXML
+    ImageView player1Position21;
+    @FXML
+    ImageView player1Position22;
+    @FXML
+    ImageView player1Position23;
+    @FXML
+    ImageView player1Position24;
+    @FXML
+    ImageView player1Position25;
+    @FXML
+    ImageView player1Position31;
+    @FXML
+    ImageView player1Position32;
+    @FXML
+    ImageView player1Position33;
+    @FXML
+    ImageView player1Position34;
+    @FXML
+    ImageView player1Position35;
+    @FXML
+    ImageView player1Position41;
+    @FXML
+    ImageView player1Position42;
+    @FXML
+    ImageView player1Position43;
+    @FXML
+    ImageView player1Position44;
+    @FXML
+    ImageView player1Position45;
+    @FXML
+    ImageView player2Position11;
+    @FXML
+    ImageView player2Position12;
+    @FXML
+    ImageView player2Position13;
+    @FXML
+    ImageView player2Position14;
+    @FXML
+    ImageView player2Position15;
+    @FXML
+    ImageView player2Position21;
+    @FXML
+    ImageView player2Position22;
+    @FXML
+    ImageView player2Position23;
+    @FXML
+    ImageView player2Position24;
+    @FXML
+    ImageView player2Position25;
+    @FXML
+    ImageView player2Position31;
+    @FXML
+    ImageView player2Position32;
+    @FXML
+    ImageView player2Position33;
+    @FXML
+    ImageView player2Position34;
+    @FXML
+    ImageView player2Position35;
+    @FXML
+    ImageView player2Position41;
+    @FXML
+    ImageView player2Position42;
+    @FXML
+    ImageView player2Position43;
+    @FXML
+    ImageView player2Position44;
+    @FXML
+    ImageView player2Position45;
+    @FXML
+    ImageView player3Position11;
+    @FXML
+    ImageView player3Position12;
+    @FXML
+    ImageView player3Position13;
+    @FXML
+    ImageView player3Position14;
+    @FXML
+    ImageView player3Position15;
+    @FXML
+    ImageView player3Position21;
+    @FXML
+    ImageView player3Position22;
+    @FXML
+    ImageView player3Position23;
+    @FXML
+    ImageView player3Position24;
+    @FXML
+    ImageView player3Position25;
+    @FXML
+    ImageView player3Position31;
+    @FXML
+    ImageView player3Position32;
+    @FXML
+    ImageView player3Position33;
+    @FXML
+    ImageView player3Position34;
+    @FXML
+    ImageView player3Position35;
+    @FXML
+    ImageView player3Position41;
+    @FXML
+    ImageView player3Position42;
+    @FXML
+    ImageView player3Position43;
+    @FXML
+    ImageView player3Position44;
+    @FXML
+    ImageView player3Position45;
+    @FXML
+    ImageView player4Position11;
+    @FXML
+    ImageView player4Position12;
+    @FXML
+    ImageView player4Position13;
+    @FXML
+    ImageView player4Position14;
+    @FXML
+    ImageView player4Position15;
+    @FXML
+    ImageView player4Position21;
+    @FXML
+    ImageView player4Position22;
+    @FXML
+    ImageView player4Position23;
+    @FXML
+    ImageView player4Position24;
+    @FXML
+    ImageView player4Position25;
+    @FXML
+    ImageView player4Position31;
+    @FXML
+    ImageView player4Position32;
+    @FXML
+    ImageView player4Position33;
+    @FXML
+    ImageView player4Position34;
+    @FXML
+    ImageView player4Position35;
+    @FXML
+    ImageView player4Position41;
+    @FXML
+    ImageView player4Position42;
+    @FXML
+    ImageView player4Position43;
+    @FXML
+    ImageView player4Position44;
+    @FXML
+    ImageView player4Position45;
+    @FXML
+    ImageView publicObjective1;
+    @FXML
+    ImageView publicObjective2;
+    @FXML
+    ImageView publicObjective3;
+    @FXML
+    ImageView toolCard1;
+    @FXML
+    ImageView toolCard2;
+    @FXML
+    ImageView toolCard3;
+    @FXML
+    ImageView privateObjective1;
+    @FXML
+    ImageView zoom;
+    @FXML
+    ImageView roundTrack;
+    @FXML
+    ImageView round1;
+    @FXML
+    ImageView round2;
+    @FXML
+    ImageView round3;
+    @FXML
+    ImageView round4;
+    @FXML
+    ImageView round5;
+    @FXML
+    ImageView round6;
+    @FXML
+    ImageView round7;
+    @FXML
+    ImageView round8;
+    @FXML
+    ImageView round9;
+    @FXML
+    ImageView round10;
+    @FXML
+    ImageView roundDie1;
+    @FXML
+    ImageView roundDie2;
+    @FXML
+    ImageView roundDie3;
+    @FXML
+    ImageView roundDie4;
+    @FXML
+    ImageView roundDie5;
+    @FXML
+    ImageView roundDie6;
+    @FXML
+    ImageView roundDie7;
+    @FXML
+    ImageView roundDie8;
+    @FXML
+    ImageView roundDie9;
 
 
 
     //Setter/Getter
-    public MatchView getMatchView() {
-        return matchView;
-    }
     public GuiView getGuiView() {
         return guiView;
-    }
-    public MultiPlayerMatch getMultiPlayerMatch() {
-        return multiPlayerMatch;
     }
     public String getMultiTokenMatch() {
         return multiTokenMatch;
     }
-    public PointsWindowController getPointsWindow() {
-        return pointsWindow;
-    }
 
-    public void setMatchView(MatchView matchView) {
-        this.matchView = matchView;
-    }
     public void setGuiView(GuiView guiView) {
         this.guiView = guiView;
     }
-    public void setMultiPlayerMatch(MultiPlayerMatch multiPlayerMatch) {
+    private void setMultiPlayerMatch(MultiPlayerMatch multiPlayerMatch) {
         this.multiPlayerMatch = multiPlayerMatch;
     }
-    public void setMultiTokenMatch(String multiTokenMatch) {
+    private void setMultiTokenMatch(String multiTokenMatch) {
         this.multiTokenMatch = multiTokenMatch;
     }
-    public void setPointsWindow(PointsWindowController pointsWindow) {
-        this.pointsWindow = pointsWindow;
-    }
-
 
     //Associazioni tra bottoni e classi view corrispondenti
 
-    public ImageView associateWindow(int index) {
+    private ImageView associateWindow(int index) {
         switch (index) {
             case 1:
                 return w1;
@@ -122,10 +338,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return w3;
             case 4:
                 return w4;
+            default:
+                return null;
         }
-        return null;
+
     }
-    public ImageView associateToolCard(int index) {
+    private ImageView associateToolCard(int index) {
         switch (index) {
             case 1:
                 return toolCard1;
@@ -133,10 +351,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return toolCard2;
             case 3:
                 return toolCard3;
+            default:
+                return null;
         }
-        return null;
+
     }
-    public CellView[][] associateCells(Cell[][] cell, int index) {
+    private CellView[][] associateCells(Cell[][] cell, int index) {
         CellView[][] cells = new CellView[4][5];
         switch (index) {
             case 1:
@@ -145,29 +365,29 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         cells[i][j] = new CellView(cell[i][j], null);
                     }
                 }
-                cells[0][0].setImageView(p1_11);
-                cells[0][1].setImageView(p1_12);
-                cells[0][2].setImageView(p1_13);
-                cells[0][3].setImageView(p1_14);
-                cells[0][4].setImageView(p1_15);
+                cells[0][0].setImageView(player1Position11);
+                cells[0][1].setImageView(player1Position12);
+                cells[0][2].setImageView(player1Position13);
+                cells[0][3].setImageView(player1Position14);
+                cells[0][4].setImageView(player1Position15);
 
-                cells[1][0].setImageView(p1_21);
-                cells[1][1].setImageView(p1_22);
-                cells[1][2].setImageView(p1_23);
-                cells[1][3].setImageView(p1_24);
-                cells[1][4].setImageView(p1_25);
+                cells[1][0].setImageView(player1Position21);
+                cells[1][1].setImageView(player1Position22);
+                cells[1][2].setImageView(player1Position23);
+                cells[1][3].setImageView(player1Position24);
+                cells[1][4].setImageView(player1Position25);
 
-                cells[2][0].setImageView(p1_31);
-                cells[2][1].setImageView(p1_32);
-                cells[2][2].setImageView(p1_33);
-                cells[2][3].setImageView(p1_34);
-                cells[2][4].setImageView(p1_35);
+                cells[2][0].setImageView(player1Position31);
+                cells[2][1].setImageView(player1Position32);
+                cells[2][2].setImageView(player1Position33);
+                cells[2][3].setImageView(player1Position34);
+                cells[2][4].setImageView(player1Position35);
 
-                cells[3][0].setImageView(p1_41);
-                cells[3][1].setImageView(p1_42);
-                cells[3][2].setImageView(p1_43);
-                cells[3][3].setImageView(p1_44);
-                cells[3][4].setImageView(p1_45);
+                cells[3][0].setImageView(player1Position41);
+                cells[3][1].setImageView(player1Position42);
+                cells[3][2].setImageView(player1Position43);
+                cells[3][3].setImageView(player1Position44);
+                cells[3][4].setImageView(player1Position45);
                 break;
             case 2:
                 for (int i = 0; i < 4; i++) {
@@ -175,29 +395,29 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         cells[i][j] = new CellView(cell[i][j], null);
                     }
                 }
-                cells[0][0].setImageView(p2_11);
-                cells[0][1].setImageView(p2_12);
-                cells[0][2].setImageView(p2_13);
-                cells[0][3].setImageView(p2_14);
-                cells[0][4].setImageView(p2_15);
+                cells[0][0].setImageView(player2Position11);
+                cells[0][1].setImageView(player2Position12);
+                cells[0][2].setImageView(player2Position13);
+                cells[0][3].setImageView(player2Position14);
+                cells[0][4].setImageView(player2Position15);
 
-                cells[1][0].setImageView(p2_21);
-                cells[1][1].setImageView(p2_22);
-                cells[1][2].setImageView(p2_23);
-                cells[1][3].setImageView(p2_24);
-                cells[1][4].setImageView(p2_25);
+                cells[1][0].setImageView(player2Position21);
+                cells[1][1].setImageView(player2Position22);
+                cells[1][2].setImageView(player2Position23);
+                cells[1][3].setImageView(player2Position24);
+                cells[1][4].setImageView(player2Position25);
 
-                cells[2][0].setImageView(p2_31);
-                cells[2][1].setImageView(p2_32);
-                cells[2][2].setImageView(p2_33);
-                cells[2][3].setImageView(p2_34);
-                cells[2][4].setImageView(p2_35);
+                cells[2][0].setImageView(player2Position31);
+                cells[2][1].setImageView(player2Position32);
+                cells[2][2].setImageView(player2Position33);
+                cells[2][3].setImageView(player2Position34);
+                cells[2][4].setImageView(player2Position35);
 
-                cells[3][0].setImageView(p2_41);
-                cells[3][1].setImageView(p2_42);
-                cells[3][2].setImageView(p2_43);
-                cells[3][3].setImageView(p2_44);
-                cells[3][4].setImageView(p2_45);
+                cells[3][0].setImageView(player2Position41);
+                cells[3][1].setImageView(player2Position42);
+                cells[3][2].setImageView(player2Position43);
+                cells[3][3].setImageView(player2Position44);
+                cells[3][4].setImageView(player2Position45);
                 break;
 
             case 3:
@@ -206,29 +426,29 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         cells[i][j] = new CellView(cell[i][j], null);
                     }
                 }
-                cells[0][0].setImageView(p3_11);
-                cells[0][1].setImageView(p3_12);
-                cells[0][2].setImageView(p3_13);
-                cells[0][3].setImageView(p3_14);
-                cells[0][4].setImageView(p3_15);
+                cells[0][0].setImageView(player3Position11);
+                cells[0][1].setImageView(player3Position12);
+                cells[0][2].setImageView(player3Position13);
+                cells[0][3].setImageView(player3Position14);
+                cells[0][4].setImageView(player3Position15);
 
-                cells[1][0].setImageView(p3_21);
-                cells[1][1].setImageView(p3_22);
-                cells[1][2].setImageView(p3_23);
-                cells[1][3].setImageView(p3_24);
-                cells[1][4].setImageView(p3_25);
+                cells[1][0].setImageView(player3Position21);
+                cells[1][1].setImageView(player3Position22);
+                cells[1][2].setImageView(player3Position23);
+                cells[1][3].setImageView(player3Position24);
+                cells[1][4].setImageView(player3Position25);
 
-                cells[2][0].setImageView(p3_31);
-                cells[2][1].setImageView(p3_32);
-                cells[2][2].setImageView(p3_33);
-                cells[2][3].setImageView(p3_34);
-                cells[2][4].setImageView(p3_35);
+                cells[2][0].setImageView(player3Position31);
+                cells[2][1].setImageView(player3Position32);
+                cells[2][2].setImageView(player3Position33);
+                cells[2][3].setImageView(player3Position34);
+                cells[2][4].setImageView(player3Position35);
 
-                cells[3][0].setImageView(p3_41);
-                cells[3][1].setImageView(p3_42);
-                cells[3][2].setImageView(p3_43);
-                cells[3][3].setImageView(p3_44);
-                cells[3][4].setImageView(p3_45);
+                cells[3][0].setImageView(player3Position41);
+                cells[3][1].setImageView(player3Position42);
+                cells[3][2].setImageView(player3Position43);
+                cells[3][3].setImageView(player3Position44);
+                cells[3][4].setImageView(player3Position45);
                 break;
 
             case 4:
@@ -237,30 +457,32 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         cells[i][j] = new CellView(cell[i][j], null);
                     }
                 }
-                cells[0][0].setImageView(p4_11);
-                cells[0][1].setImageView(p4_12);
-                cells[0][2].setImageView(p4_13);
-                cells[0][3].setImageView(p4_14);
-                cells[0][4].setImageView(p4_15);
+                cells[0][0].setImageView(player4Position11);
+                cells[0][1].setImageView(player4Position12);
+                cells[0][2].setImageView(player4Position13);
+                cells[0][3].setImageView(player4Position14);
+                cells[0][4].setImageView(player4Position15);
 
-                cells[1][0].setImageView(p4_21);
-                cells[1][1].setImageView(p4_22);
-                cells[1][2].setImageView(p4_23);
-                cells[1][3].setImageView(p4_24);
-                cells[1][4].setImageView(p4_25);
+                cells[1][0].setImageView(player4Position21);
+                cells[1][1].setImageView(player4Position22);
+                cells[1][2].setImageView(player4Position23);
+                cells[1][3].setImageView(player4Position24);
+                cells[1][4].setImageView(player4Position25);
 
-                cells[2][0].setImageView(p4_31);
-                cells[2][1].setImageView(p4_32);
-                cells[2][2].setImageView(p4_33);
-                cells[2][3].setImageView(p4_34);
-                cells[2][4].setImageView(p4_35);
+                cells[2][0].setImageView(player4Position31);
+                cells[2][1].setImageView(player4Position32);
+                cells[2][2].setImageView(player4Position33);
+                cells[2][3].setImageView(player4Position34);
+                cells[2][4].setImageView(player4Position35);
 
-                cells[3][0].setImageView(p4_41);
-                cells[3][1].setImageView(p4_42);
-                cells[3][2].setImageView(p4_43);
-                cells[3][3].setImageView(p4_44);
-                cells[3][4].setImageView(p4_45);
+                cells[3][0].setImageView(player4Position41);
+                cells[3][1].setImageView(player4Position42);
+                cells[3][2].setImageView(player4Position43);
+                cells[3][3].setImageView(player4Position44);
+                cells[3][4].setImageView(player4Position45);
                 break;
+            default:
+                return cells;
         }
         return cells;
     }
@@ -368,33 +590,33 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Restituiscono l'oggetto della view in base al bottone selezionato
-    public CellView retrieveCell(Object source) {
+    private CellView retrieveCell(Object source) {
         WindowView windowView = matchView.retrieveThisPlayer(guiView.getUserName()).getWindow();
 
-        if (source.equals(p1_11)) return windowView.getCells()[0][0];
-        if (source.equals(p1_12)) return windowView.getCells()[0][1];
-        if (source.equals(p1_13)) return windowView.getCells()[0][2];
-        if (source.equals(p1_14)) return windowView.getCells()[0][3];
-        if (source.equals(p1_15)) return windowView.getCells()[0][4];
-        if (source.equals(p1_21)) return windowView.getCells()[1][0];
-        if (source.equals(p1_22)) return windowView.getCells()[1][1];
-        if (source.equals(p1_23)) return windowView.getCells()[1][2];
-        if (source.equals(p1_24)) return windowView.getCells()[1][3];
-        if (source.equals(p1_25)) return windowView.getCells()[1][4];
-        if (source.equals(p1_31)) return windowView.getCells()[2][0];
-        if (source.equals(p1_32)) return windowView.getCells()[2][1];
-        if (source.equals(p1_33)) return windowView.getCells()[2][2];
-        if (source.equals(p1_34)) return windowView.getCells()[2][3];
-        if (source.equals(p1_35)) return windowView.getCells()[2][4];
-        if (source.equals(p1_41)) return windowView.getCells()[3][0];
-        if (source.equals(p1_42)) return windowView.getCells()[3][1];
-        if (source.equals(p1_43)) return windowView.getCells()[3][2];
-        if (source.equals(p1_44)) return windowView.getCells()[3][3];
-        if (source.equals(p1_45)) return windowView.getCells()[3][4];
+        if (source.equals(player1Position11)) return windowView.getCells()[0][0];
+        if (source.equals(player1Position12)) return windowView.getCells()[0][1];
+        if (source.equals(player1Position13)) return windowView.getCells()[0][2];
+        if (source.equals(player1Position14)) return windowView.getCells()[0][3];
+        if (source.equals(player1Position15)) return windowView.getCells()[0][4];
+        if (source.equals(player1Position21)) return windowView.getCells()[1][0];
+        if (source.equals(player1Position22)) return windowView.getCells()[1][1];
+        if (source.equals(player1Position23)) return windowView.getCells()[1][2];
+        if (source.equals(player1Position24)) return windowView.getCells()[1][3];
+        if (source.equals(player1Position25)) return windowView.getCells()[1][4];
+        if (source.equals(player1Position31)) return windowView.getCells()[2][0];
+        if (source.equals(player1Position32)) return windowView.getCells()[2][1];
+        if (source.equals(player1Position33)) return windowView.getCells()[2][2];
+        if (source.equals(player1Position34)) return windowView.getCells()[2][3];
+        if (source.equals(player1Position35)) return windowView.getCells()[2][4];
+        if (source.equals(player1Position41)) return windowView.getCells()[3][0];
+        if (source.equals(player1Position42)) return windowView.getCells()[3][1];
+        if (source.equals(player1Position43)) return windowView.getCells()[3][2];
+        if (source.equals(player1Position44)) return windowView.getCells()[3][3];
+        if (source.equals(player1Position45)) return windowView.getCells()[3][4];
 
         return null;
     }
-    public DieView retrieveDie(Object source) {
+    private DieView retrieveDie(Object source) {
         if (source.equals(d1)) return matchView.getDice().get(0);
         if (source.equals(d2)) return matchView.getDice().get(1);
         if (source.equals(d3)) return matchView.getDice().get(2);
@@ -407,13 +629,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return null;
     }
-    public ToolCardView retrieveToolCard(Object source) {
+    private ToolCardView retrieveToolCard(Object source) {
         if (source.equals(toolCard1)) return matchView.getToolCards().get(0);
         if (source.equals(toolCard2)) return matchView.getToolCards().get(1);
         if (source.equals(toolCard3)) return matchView.getToolCards().get(2);
         return null;
     }
-    public DieView retrieveRoundDie(Object source) {
+    private DieView retrieveRoundDie(Object source) {
         List<DieView> dice = matchView.getRounds().get(roundView-1).getDieViews();
         if (source.equals(roundDie1)) return dice.get(0);
         if (source.equals(roundDie2)) return dice.get(1);
@@ -428,7 +650,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Ottengono liste di oggetti gioco separati secondo relazione di utilizzo
-    public List<String> windowToolCards() {
+    private List<String> windowToolCards() {
 
         List<String> toolCards = new ArrayList<>();
         toolCards.add("pennello per eglomise");
@@ -438,7 +660,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return toolCards;
     }
-    public List<String> draftPoolToolCards() {
+    private List<String> draftPoolToolCards() {
         List<String> toolCards = new ArrayList<>();
 
         toolCards.add("pinza sgrossatrice");
@@ -450,7 +672,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return toolCards;
     }
-    public List<String> noSelectionToolCards() {
+    private List<String> noSelectionToolCards() {
         List<String> toolCards = new ArrayList<>();
 
         toolCards.add("martelletto");
@@ -458,13 +680,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return toolCards;
     }
-    public List<String> toPlaceToolCards() {
+    private List<String> toPlaceToolCards() {
         List<String> toolCards = new ArrayList<>();
 
         toolCards.add("pinza sgrossatrice");
         toolCards.add("riga di sughero");
         toolCards.add("tampone diamantato");
         toolCards.add("diluente per pasta salda");
+        toolCards.add("taglierina circolare");
 
         return toolCards;
     }
@@ -476,9 +699,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         createWindowChoiceGui();
     }
 
-
     //Crea oggetti gui gioco a inizio partita
-    public void createWindowChoiceGui() throws IOException {
+    private void createWindowChoiceGui() throws IOException {
         //Carica fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/WindowChoiceMenu.fxml"));
         Parent root = loader.load();
@@ -546,7 +768,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
-    public void initializeDice(){
+    private void initializeDice(){
         d1.setVisible(false);
         d2.setVisible(false);
         d3.setVisible(false);
@@ -559,7 +781,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Crea oggetti gui gioco a round iniziati
-    public void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
+    private void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
         //Inizializza componenti
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
         Parent root = loader.load();
@@ -577,12 +799,25 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         stage.show();
     }
 
+    private void createPointsGui(MultiPlayerMatch match)throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/points.fxml"));
+        Parent root = loader.load();
+        PointsWindowController pointsWindowController = loader.getController();
+        pointsWindowController.setPoints(pointsWindow.getPoints());
+        pointsWindowController.setMatch(match);
+        pointsWindowController.initializeScores();
+        matchAnchorPane.getChildren().add(root);
+        root.setLayoutX(346);
+        root.setLayoutY(143);
+    }
+
     //Eventi componenti gui di mosse della partita
-    public void onDieClick(MouseEvent actionEvent) {
+    public void onDieClick(MouseEvent actionEvent){
+
         if (!this.multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())) {
             return;
         }
-        if (this.toPlace) {
+        if (toPlace) {
             console.setText("devi prima posizionare il dado già selezionato");
             return;
         }
@@ -599,6 +834,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 if (draftPoolToolCards().contains(name)) {
                     if (name.equals("taglierina circolare")) {
                         matchView.getInput().setChoosenDie(selectedDie.getDie());
+                        selectedDie.getImageView().getStyleClass().add("selected");
                         this.console.setText("scegli un dado del tracciato dei round");
                         return;
                     } else {
@@ -606,7 +842,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         try {
                             guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                         } catch (RemoteException e) {
-                            e.printStackTrace();
+                            console.setText(e.getMessage());
                         }
                     }
                 } else {
@@ -656,7 +892,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 try {
                     guiView.getController().placeDie(guiView.getUserToken(), multiTokenMatch,selectedCell.getCell(), matchView.getSelectedDie().getDie());
                 } catch (RemoteException e) {
-                    e.printStackTrace();
+                    console.setText(e.getMessage());
                 }
                 return;
             } else {
@@ -681,7 +917,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                             try {
                                 guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
                             } catch (RemoteException e) {
-                                e.printStackTrace();
+                                console.setText(e.getMessage());
                             }
 
                         }
@@ -693,12 +929,18 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
                 if(windowToolCards().contains(name)){
                     if(name.equals("lathekin") || twoMoves) {
-                        if(matchView.getInput().getOriginCell1() != null) {
+                        if(matchView.getInput().getDestinationCell1() != null) {
+                            if(matchView.getInput().getOriginCell2() != null){
+                                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                            }
                             matchView.getInput().setOriginCell2(selectedCell.getCell());
                             selectedCell.getImageView().getStyleClass().add("selected");
                             console.setText("seconda cella di partenza selezionata");
                             return;
                         }
+                    }
+                    if(matchView.getInput().getOriginCell1() != null){
+                        matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
                     }
                     matchView.getInput().setOriginCell1(selectedCell.getCell());
                     selectedCell.getImageView().getStyleClass().add("selected");
@@ -731,6 +973,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
             }
             matchView.setSelectedToolCard(selectedToolCard);
+            console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
             matchView.getSelectedToolCard().getImageView().getStyleClass().add("selected");
             if(matchView.getSelectedDie() != null) {
                 matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
@@ -742,7 +985,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 try {
                     guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                 } catch (RemoteException e) {
-                    e.printStackTrace();
+                    console.setText(e.getMessage());
                 }
             }else{
                 if(selectedToolCard.getToolCard().getName().equals("pinza sgrossatrice")){
@@ -839,14 +1082,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         }
                     });
                 }
-                console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
                 return;
             }
         }else{
             console.setText("hai deselezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
             matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
             matchView.setSelectedToolCard(null);
-            matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+            if(matchView.getInput().getOriginCell1() != null) {
+                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+            }
             matchView.setInput(null);
         }
 
@@ -860,11 +1104,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(matchView.getSelectedToolCard() != null){
             String name = matchView.getSelectedToolCard().getToolCard().getName();
             if(name.equals("taglierina circolare")) {
-                matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
-                try {
-                    guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
-                } catch (RemoteException e) {
-                    e.printStackTrace();
+                if(matchView.getInput().getChoosenDie() != null) {
+                    matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove("selected");
+                    matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
+                    try {
+                        guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
+                    } catch (RemoteException e) {
+                        console.setText(e.getMessage());
+                    }
                 }
             }
         }
@@ -884,7 +1131,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         try {
             guiView.getController().endTurn(guiView.getUserToken(), this.multiTokenMatch);
         }catch(RemoteException e){
-            e.printStackTrace();
+            console.setText(e.getMessage());
         }
     }
 
@@ -989,13 +1236,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 matchView.getRounds().get(match.getTurnHandler().getRound()-2).getDieViews().add(new DieView(null,die));
             }
         }
-        if(match.getTurnHandler().isLastTurn()){
-            pointsWindow = new PointsWindowController(new HashMap<>(),match);
-        }
 
     }
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
+        if(match.getTurnHandler().isLastTurn()){
+            pointsWindow = new PointsWindowController();
+            pointsWindow.setPoints(new HashMap<>());
+        }
     }
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
         DieView dieView = matchView.retrieveDieView(die);
@@ -1016,29 +1263,34 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException  {
 
-        if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
-            if(toPlaceToolCards().contains(toolCard.getName())){
-                for(DieView dieView : matchView.getDice()){
-                    if(dieView.getDie() == matchView.getInput().getChoosenDie()){
-                        matchView.setSelectedDie(dieView);
-                        matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
-                        toPlace = true;
-                    }
-
-                }
-                favorTokens.setText("" + match.getTurnPlayer().getFavorTokens());
-            }
-            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
-            matchView.setSelectedToolCard(null);
-            matchView.setInput(null);
-            twoMoves = false;
-        }
-
         for (Die die : match.getMatchDice().getDraftPool()){
             DieView dieView = matchView.getDice().get(match.getMatchDice().getDraftPool().indexOf(die));
             dieView.setDie(die);
             dieView.getImageView().setImage(dieView.imagePath());
             dieView.getImageView().setVisible(true);
+        }
+        if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
+            if(toPlaceToolCards().contains(toolCard.getName())){
+                if(toolCard.getName().equals("diluente per pasta salda") || toolCard.getName().equals("taglierina circolare")){
+                    DieView dieView = matchView.getDice().get(match.getMatchDice().getDraftPool().size()-1);
+                    matchView.setSelectedDie(dieView);
+                    matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                }else {
+                    for (DieView dieView : matchView.getDice()) {
+                        if (dieView.getDie() == matchView.getInput().getChoosenDie()) {
+                            matchView.setSelectedDie(dieView);
+                            matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                            toPlace = true;
+                        }
+
+                    }
+                }
+            }
+            favorTokens.setText("" + match.getTurnPlayer().getFavorTokens());
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            matchView.setSelectedToolCard(null);
+            matchView.setInput(null);
+            twoMoves = false;
         }
         for (Cell[] cells : match.getTurnPlayer().getWindow().getCells()){
             for (Cell cell: cells){
@@ -1070,22 +1322,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
     }
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException{
-        pointsWindow.getPoints().put(tokenMatch, points);
+        pointsWindow.getPoints().put(player.getUser().getName(), points);
     }
     public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/points.fxml"));
         try {
-            AnchorPane root = loader.load();
-            PointsWindowController pointsWindowController = loader.getController();
-            pointsWindowController.setPoints(this.pointsWindow.getPoints());
-            pointsWindowController.setMatch(match);
-            pointsWindowController.calculateScores();
-            matchAnchorPane.getChildren().add(root);
-            root.setLayoutX(346);
-            root.setLayoutY(143);
-        }catch (Exception e){
+            createPointsGui(match);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

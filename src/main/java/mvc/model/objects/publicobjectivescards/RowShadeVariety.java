@@ -15,19 +15,30 @@ public class RowShadeVariety extends PublicObjectiveCard {
     @Override
     public int getPoints(Window window) {
         int points = 0;
+        boolean varietyRow;
         List<Cell> rowCells;
 
         //Ciclo ogni riga
         for(int indexRow = 0; indexRow < GameConstants.WINDOW_ROWS_COUNT; indexRow++){
             rowCells = window.getRowCells(indexRow);
-
+            varietyRow = true;
             //Confronto ogni dado della riga con i successivi
             for(int first = 0; first < GameConstants.WINDOW_COLUMNS_COUNT; first++){
                 for(int i = first + 1; i < GameConstants.WINDOW_COLUMNS_COUNT; i++){
-                    if(rowCells.get(i).getDie().getShade() == rowCells.get(first).getDie().getShade())
+                    if(rowCells.get(i).getDie() == null || rowCells.get(first).getDie() == null){
+                        varietyRow = false;
                         break;
+                    }
+                    if(rowCells.get(i).getDie().getShade() == rowCells.get(first).getDie().getShade()) {
+                        varietyRow = false;
+                        break;
+                    }
                 }
-                points = points + 5;
+                if(!varietyRow)
+                    break;
+            }
+            if(varietyRow){
+                points += 5;
             }
         }
         return points;

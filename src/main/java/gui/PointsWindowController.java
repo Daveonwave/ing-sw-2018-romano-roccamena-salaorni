@@ -9,6 +9,8 @@ import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 import mvc.model.objects.PlayerPoints;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PointsWindowController {
@@ -71,10 +73,7 @@ public class PointsWindowController {
     @FXML
     Label player4TotalPoints;
 
-    public PointsWindowController(Map<String, PlayerPoints> points, MultiPlayerMatch match) {
-        this.points = points;
-        this.match = match;
-    }
+
 
     public Map<String, PlayerPoints> getPoints() {
         return points;
@@ -93,7 +92,7 @@ public class PointsWindowController {
     }
 
 
-    public Label associatePlayer(int index){
+    private Label associatePlayer(int index){
         switch (index){
             case 0: return player1;
             case 1: return player2;
@@ -103,17 +102,17 @@ public class PointsWindowController {
         }
         return null;
     }
-    public Label associatePrivateObjective(int index){
+    private Label associatePrivateObjective(int index){
         switch (index){
             case 0: return player1PrivateObjective;
             case 1: return player2PrivateObjective;
             case 2: return player3PrivateObjective;
             case 3: return player4PrivateObjective;
-
+            default: return null;
         }
-        return null;
+
     }
-    public Label associatePublicObjective(int index){
+    private Label associatePublicObjective(int index){
         switch (index){
             case 0: return player1PublicObjective;
             case 1: return player2PublicObjective;
@@ -123,7 +122,7 @@ public class PointsWindowController {
         }
         return null;
     }
-    public Label associateOpenSpaces(int index){
+    private Label associateOpenSpaces(int index){
         switch (index){
             case 0: return player1OpenSpaces;
             case 1: return player2OpenSpaces;
@@ -132,7 +131,7 @@ public class PointsWindowController {
         }
         return null;
     }
-    public Label associateFavorTokens(int index){
+    private Label associateFavorTokens(int index){
         switch (index){
             case 0: return player1FavorTokens;
             case 1: return player2FavorTokens;
@@ -141,7 +140,7 @@ public class PointsWindowController {
         }
         return null;
     }
-    public Label associateTotalScore(int index){
+    private Label associateTotalScore(int index){
         switch (index){
             case 0: return player1TotalPoints;
             case 1: return player2TotalPoints;
@@ -151,25 +150,37 @@ public class PointsWindowController {
         }
         return null;
     }
-
-    public void calculateScores() {
-        String winnerName = "";
-        int winnerPoints = 0;
+    public void initializeScores() {
+        List<String> winners = new ArrayList<>();
+        int winnerPoints = -21;
         for(Player player : match.getPlayers()){
             int index = match.getPlayers().indexOf(player);
             PlayerPoints playerPoints = points.get(player.getUser().getName());
             associatePlayer(index).setText(player.getUser().getName());
             associatePrivateObjective(index).setText("+ " + playerPoints.getPrivateObjectivePoints());
             associatePublicObjective(index).setText("+ " + playerPoints.getPublicObjectivePoints());
-            associateOpenSpaces(index).setText("- " + playerPoints.getOpenSpacesLostPoints());
+            associateOpenSpaces(index).setText("" + playerPoints.getOpenSpacesLostPoints());
             associateFavorTokens(index).setText("+ " + playerPoints.getFavorTokensPoints());
             associateTotalScore(index).setText("" + playerPoints.getTotalPoints());
+            if(playerPoints.getTotalPoints() == winnerPoints){
+                winners.add(player.getUser().getName());
+            }
             if(playerPoints.getTotalPoints() > winnerPoints){
                 winnerPoints = playerPoints.getTotalPoints();
-                winnerName = player.getUser().getName();
+                winners.clear();
+                winners.add(player.getUser().getName());
+            }
+
+        }
+
+        if(winners.size() == 1){
+            winner.setText("il vincitore è " + winners.get(0));
+        }else{
+            winner.setText("pareggio tra " + winners.get(0));
+            for (int i = 1; i<winners.size() ;i++){
+                winner.setText(winner.getText() + " e " + winners.get(i));
             }
         }
-        winner.setText("il vincitore è: "+ winnerName);
     }
 
     public void endGame(MouseEvent mouseEvent) {

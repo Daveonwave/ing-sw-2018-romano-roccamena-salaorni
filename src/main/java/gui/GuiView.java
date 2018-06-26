@@ -55,6 +55,7 @@ public class GuiView extends AppView {
             }
 
             guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
+
         } else {
             GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
 
@@ -229,9 +230,35 @@ public class GuiView extends AppView {
 
     }
     public synchronized void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onGetPoints(tokenMatch,match,player,points);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
 
     }
     public synchronized void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        Platform.runLater(new Runnable() {
+
+            //Esecuzione nel thread javafx
+            public void run() {
+                try {
+                    getMultiplayerApps().get(tokenMatch).onMatchEnd(tokenMatch,match);
+                } catch (IOException e) {
+                    //Segnala errore
+                    e.printStackTrace();
+                    GuiMessage.showError("impossibile mostrare una nuova partita");
+                }
+            }
+        });
 
     }
 }

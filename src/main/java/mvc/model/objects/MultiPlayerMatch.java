@@ -95,7 +95,15 @@ public class MultiPlayerMatch extends Match {
         for (PublicObjectiveCard card : publicObjectiveCards)
             publicPoints += card.getPoints(player.getWindow());
 
-        //TODO: punti token e persi per celle vuote
+        for(Cell[] cells : player.getWindow().getCells()){
+            for(Cell cell : cells){
+                if(cell.getDie() == null){
+                    openLost -= 1;
+                }
+            }
+        }
+
+        favorsPoints = player.getFavorTokens();
 
         return new PlayerPoints(privatePoints, publicPoints, favorsPoints, openLost);
     }

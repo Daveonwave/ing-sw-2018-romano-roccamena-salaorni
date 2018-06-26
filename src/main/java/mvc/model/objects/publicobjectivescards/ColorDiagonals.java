@@ -3,6 +3,7 @@ package mvc.model.objects.publicobjectivescards;
 import mvc.model.objects.Cell;
 import mvc.model.objects.PublicObjectiveCard;
 import mvc.model.objects.Window;
+import mvc.model.objects.enums.DieColor;
 
 import java.util.List;
 
@@ -48,29 +49,20 @@ public class ColorDiagonals extends PublicObjectiveCard {
     //Controlla i colori uguali tra celle adiacenti
     public int compareColorDiagonals(List<Cell> diagonal){
         int points = 0;
+        int temp = 0;
+        DieColor color = null;
 
-        //Confronta le prime due celle
-        for(int i = 1; i < diagonal.size(); i++) {
-            if(diagonal.get(i).getDie() != null && diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor()) && i == 1) {
-                points = points + 2;
-            }
-
-            if (i + 1 == diagonal.size())
-                break; //Esce all'ultima cella
-            else {
-                if(diagonal.get(i).getDie() != null && diagonal.get(i).getDie().getColor().equals(diagonal.get(i - 1).getDie().getColor())) {
-                    if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i + 1).getDie().getColor())){
-                        points++;
-                    }
-                }
-                else {
-                    if(diagonal.get(i).getDie().getColor().equals(diagonal.get(i + 1).getDie().getColor())){
-                        points = points + 2;
-                    }
+        for (Cell c : diagonal){
+            if(c.getDie() != null){
+                if(c.getDie().getColor().equals(color)){
+                    points += temp+1;
+                    temp = 0;
+                }else{
+                    color = c.getDie().getColor();
+                    temp = 1;
                 }
             }
         }
-
         return points;
     }
 }

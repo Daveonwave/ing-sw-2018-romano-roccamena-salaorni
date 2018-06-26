@@ -252,8 +252,8 @@ public class AppController implements AppControllerStub {
             //Per ogni player vengono comunicati i punteggi
             for (Player p : match.getPlayers()) {
                 PlayerPoints points = match.getPlayerPoints(p);
-                matchModel.notifyGetPoints(tokenMatch, player, points);
-                matchBroadcastAck(tokenMatch, matchModel, player.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
+                matchModel.notifyGetPoints(tokenMatch, p, points);
+                matchBroadcastAck(tokenMatch, matchModel, p.getUser().getName() + " ha totalizzato " + points.getTotalPoints() + " punti");
             }
 
             //Notifica fine partita

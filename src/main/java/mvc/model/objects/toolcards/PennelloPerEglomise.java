@@ -16,10 +16,10 @@ public class PennelloPerEglomise extends ToolCard {
     private void cardEffect(Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
         Cell origin = player.getWindow().retrieveCell(input.getOriginCell1());
-        Cell destination = player.getWindow().retrieveCell(input.getDestinationCell2());
+        Cell destination = player.getWindow().retrieveCell(input.getDestinationCell1());
 
         //Esegue il movimento
-        player.getWindow().moveDie(origin, destination, false, false, false, true);
+        player.getWindow().moveDie(origin, destination, false, false, true, false);
 
     }
 
