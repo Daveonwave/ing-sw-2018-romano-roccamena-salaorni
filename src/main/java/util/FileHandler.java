@@ -2,10 +2,18 @@ package util;
 
 import java.io.*;
 
+/**
+ * Input/output text file handler
+ */
 public class FileHandler {
-    //Gesttore di scrittura e lettura da file
+    //Gestore di scrittura e lettura da file
 
-    //Scrive su file
+    /**
+     * Write text on a file given its path
+     * @param path Path of the file
+     * @param text Text to write
+     * @throws IOException File communicaion error
+     */
     public void fileWrite(String path, String text) throws IOException{
 
         File file = new File(path);
@@ -20,7 +28,12 @@ public class FileHandler {
 
         }
     }
-    //Legge da file
+    /**
+     * Read text from a file given its path
+     * @param path Path of the file
+     * @return
+     * @throws IOException File comunication error
+     */
     public String fileRead(String path) throws IOException{
 
         try(FileReader fileReader = new FileReader(path);
