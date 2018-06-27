@@ -159,7 +159,6 @@ public class MatchView {
         toolCards.add("pinza sgrossatrice");
         toolCards.add("taglierina circolare");
         toolCards.add("pennello per pasta salda");
-        toolCards.add("riga di sughero");
         toolCards.add("tampone diamantato");
         toolCards.add("diluente per pasta salda");
 
@@ -175,6 +174,7 @@ public class MatchView {
 
         toolCards.add("martelletto");
         toolCards.add("tenaglia a rotelle");
+        toolCards.add("riga di sughero");
 
         return toolCards;
     }
@@ -189,8 +189,6 @@ public class MatchView {
         toolCards.add("pinza sgrossatrice");
         toolCards.add("riga di sughero");
         toolCards.add("tampone diamantato");
-        toolCards.add("diluente per pasta salda");
-        toolCards.add("taglierina circolare");
 
         return toolCards;
     }

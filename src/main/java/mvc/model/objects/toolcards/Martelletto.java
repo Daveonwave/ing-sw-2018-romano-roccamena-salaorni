@@ -16,7 +16,7 @@ public class Martelletto extends ToolCard {
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Controlla se l'utilizzo è possibile
-        if (match.getTurnHandler().isFirstTurnWave() || !player.getTurnDiePlaced())
+        if (match.getTurnHandler().isFirstTurnWave() || player.getTurnDiePlaced())
             throw new MatchException("non puoi usare questa carta ora");
 
         //Rilancia i dadi della riserva

@@ -16,10 +16,10 @@ public class TaglierinaManuale extends ToolCard {
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
         Window window = player.getWindow();
-        Die die = input.getRoundTrackDie();
         Cell origin1 = player.getWindow().retrieveCell(input.getOriginCell1());
         Cell origin2 = null;
         Cell destination2 = null;
+        boolean sameColor = false;
         if(input.getOriginCell2() != null) {
             origin2 = player.getWindow().retrieveCell(input.getOriginCell2());
             destination2 = player.getWindow().retrieveCell(input.getDestinationCell2());
@@ -28,10 +28,27 @@ public class TaglierinaManuale extends ToolCard {
 
 
         //Controlla correttezza uso
-        die = match.getRoundTrack().retrieveDie(input.getRoundTrackRound(), die);
+        for(int i = 1; i<match.getTurnHandler().getRound(); i++) {
+           for(Die die: match.getRoundTrack().retrieveDice(i)){
+               if(origin2 == null) {
+                   if (origin1.getDie().sameColor(die)) {
+                       sameColor = true;
+                       break;
+                   }
+               }else{
+                   if(origin1.getDie().sameColor(die) && origin2.getDie().sameColor(die)){
+                       sameColor = true;
+                       break;
+                   }
+               }
+           }
+           if(sameColor){
+               break;
+           }
+        }
+        if(!sameColor)
+            throw new MatchException("il colore non è nel tracciato dei round");
 
-        if (!origin1.getDie().sameColor(die) || !origin2.getDie().sameColor(die))
-            throw new MatchException("colore dadi non corrispondente");
 
         //Esegue gli scambi
         window.moveDie(origin1, destination1);
