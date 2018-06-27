@@ -4,6 +4,9 @@ import mvc.exceptions.MatchException;
 
 import java.io.Serializable;
 
+/**
+ * Match handler of turns and rounds
+ */
 public abstract class TurnHandler implements Serializable {
     //Gestore base di turni di partite
 
@@ -15,6 +18,9 @@ public abstract class TurnHandler implements Serializable {
     protected boolean firstTurnWave;
 
     //Costruttori
+    /**
+     * Create new turn handler
+     */
     public TurnHandler() {
         this.round = 0;
         this.roundLastTurn = false;
@@ -32,35 +38,69 @@ public abstract class TurnHandler implements Serializable {
     }
 
     //Proprietà di round e turni
+    /**
+     * Asserts current turn is round first turn
+     * @return
+     */
     public boolean isRoundFirstTurn() {
         return roundFirstTurn;
     }
+    /**
+     * Asserts current turn is round last turn
+     * @return
+     */
     public boolean isRoundLastTurn() {
         return roundLastTurn;
     }
 
     //Proprietà di round e turni
+    /**
+     * Asserts if current turn is match first turn
+     * @return
+     */
     public boolean isFirstTurn() {
         return round == 1 && roundFirstTurn;
     }
+    /**
+     * Asserts if current turn is match last turn
+     * @return
+     */
     public boolean isLastTurn() {
         return round == GameConstants.ROUNDS_COUNT && roundLastTurn;
     }
 
+    /**
+     * Asserts if match rounds stage has started
+     * @return
+     */
     public boolean isStarted() {
         return round > 0;
     }
+    /**
+     * Asserts if match rounds stage has ended
+     * @return
+     */
     public boolean isEnded() {
         return round > GameConstants.ROUNDS_COUNT;
     }
 
+    /**
+     * Assert if current turn is in round first turn wave
+     * @return
+     */
     public boolean isFirstTurnWave() {
         return firstTurnWave;
     }
 
     //Round successivo
+    /**
+     * Go to next round
+     */
     public abstract void nextRound();
     //Inizia calcolo dei 10 round e relativi turni
+    /**
+     * Start rounds stage
+     */
     public void startRounds() {
         this.roundLastTurn = false;
         this.roundFirstTurn = true;
@@ -68,5 +108,10 @@ public abstract class TurnHandler implements Serializable {
         nextRound();
     }
     //Turno successivo
+
+    /**
+     * Go to next turn
+     * @throws MatchException Invalid action requested
+     */
     public abstract void nextTurn() throws MatchException;
 }
