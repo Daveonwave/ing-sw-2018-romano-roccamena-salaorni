@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Game match window
+ */
 public class Window implements Serializable {
     //Finestra di un giocatore
 
@@ -16,6 +19,13 @@ public class Window implements Serializable {
     private String name;
 
     //Costruttori
+
+    /**
+     * Create new window
+     * @param cells Cells intances
+     * @param difficulty Difficulty level
+     * @param name Name of the window
+     */
     public Window(Cell[][] cells, int difficulty, String name) {
         this.cells = cells;
         this.difficulty = difficulty;
@@ -44,6 +54,11 @@ public class Window implements Serializable {
     }
 
     //Verifica uguaglianze
+    /**
+     * Asserts equality of the structure two windows
+     * @param window Window instance
+     * @return
+     */
     public boolean sameWindowStructure(Window window) {
         if (window == null)
             return false;
@@ -65,6 +80,11 @@ public class Window implements Serializable {
 
         return true;
     }
+    /**
+     * Asserts equality of two windows
+     * @param window Window instance
+     * @return
+     */
     public boolean sameWindow(Window window) {
         if (window == null)
             return false;
@@ -88,6 +108,12 @@ public class Window implements Serializable {
     }
 
     //Ottiene una cella
+    /**
+     * Retrieve window's cell reference from given cell state
+     * @param cell Cell instance
+     * @return
+     * @throws RemoteException AppModelException if invalid cell passed
+     */
     public synchronized Cell retrieveCell(Cell cell) throws RemoteException {
         Cell result = cells[cell.getRow()][cell.getColumn()];
         if (!result.sameCell(cell))
@@ -97,6 +123,10 @@ public class Window implements Serializable {
     }
 
     //Indica se la finestra è vuota
+    /**
+     * Asserts the window has no dice placed
+     * @return
+     */
     public boolean isEmpty() {
         for (Cell[] cc : cells) {
             for (Cell c : cc) {
@@ -112,6 +142,11 @@ public class Window implements Serializable {
     }
 
     //Verifica che dado o cella sia contenuto
+    /**
+     * Assert the window contains a given die
+     * @param die
+     * @return
+     */
     public boolean containsDie(Die die) {
         for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
@@ -132,6 +167,11 @@ public class Window implements Serializable {
 
         return false;
     }
+    /**
+     * Asserts the window contains a given cell structure
+     * @param cell Cell instance
+     * @return
+     */
     public boolean containsCellStructure(Cell cell) {
         for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
@@ -147,6 +187,11 @@ public class Window implements Serializable {
 
         return false;
     }
+    /**
+     * Asserts the window contains a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public boolean containsCell(Cell cell) {
         for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
@@ -163,7 +208,12 @@ public class Window implements Serializable {
         return false;
     }
 
-    //Ottiene una righe o colonne
+    //Ottiene una riga o colonna
+    /**
+     * Get list of cells of a given row of the window
+     * @param rowIndex Row of the window
+     * @return
+     */
     public List<Cell> getRowCells(int rowIndex){
         List<Cell> result = new ArrayList<>();
 
@@ -175,6 +225,11 @@ public class Window implements Serializable {
         }
         return result;
     }
+    /**
+     * Get list of cells of a given column of the window
+     * @param columnIndex Column of the window
+     * @return
+     */
     public List<Cell> getColumnCells(int columnIndex){
         List<Cell> result = new ArrayList<Cell>();
 

@@ -174,11 +174,7 @@ public class AppController implements AppControllerStub {
         return token;
     }
     /**
-<<<<<<< Updated upstream
      * Request logout for logged user
-=======
-     * Request new logout for logged user
->>>>>>> Stashed changes
      * @param tokenUser User's token
      * @throws RemoteException AppControllerException as a callback error signal
      */
