@@ -22,7 +22,7 @@ public class PinzaSgrossatrice extends ToolCard {
         if (player.getTurnDiePlaced())
             throw new MatchException("hai gia piazzato un dado");
 
-        if (die.getShade() == 1 || die.getShade() == 6)
+        if ((die.getShade() == 1 && !input.getIncreaseShade()) || (die.getShade() == 6 && input.getIncreaseShade()))
             throw new MatchException("non puoi usare questa carta per quel dado");
 
         //Esegue effetto
