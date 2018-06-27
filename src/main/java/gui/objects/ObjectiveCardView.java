@@ -25,7 +25,10 @@ public class ObjectiveCardView extends ObjectView {
     }
 
 
-    //Ottiene immagine
+    /**
+     * gets the corresponding image based on the name of the objective card
+     * @return image of the objective card
+     */
     public Image imagePath() {
         return new Image(getClass().getResourceAsStream("images/objective/" + card.getName() + ".png"));
     }

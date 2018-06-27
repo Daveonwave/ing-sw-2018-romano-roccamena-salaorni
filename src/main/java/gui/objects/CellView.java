@@ -8,7 +8,9 @@ import mvc.model.objects.enums.DieColor;
 
 import java.io.Serializable;
 
-
+/**
+ * view of a cell
+ */
 public class CellView implements Serializable{
     //Veduta di una cella
 
@@ -36,7 +38,10 @@ public class CellView implements Serializable{
         this.imageView = imageView;
     }
 
-
+    /**
+     * loads the corresponding image based on the shade and colour of the dice this cell contains
+     * @return corresponding image
+     */
     public Image imagePath() {
         String path = "images/dice/";
         Die die = this.getCell().getDie();

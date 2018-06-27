@@ -24,7 +24,10 @@ public class ToolCardView extends ObjectView{
         this.toolCard = toolCard;
     }
 
-    //Ottiene immagine
+    /**
+     * gets the corresponding image of the tool card based in its name
+     * @return image of this tool card
+     */
     public Image imagePath() {
         return new Image(getClass().getResourceAsStream("images/tools/"+ toolCard.getName() + ".png"));
     }
