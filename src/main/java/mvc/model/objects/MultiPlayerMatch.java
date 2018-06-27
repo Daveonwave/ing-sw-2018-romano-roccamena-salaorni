@@ -313,6 +313,9 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
+        //Se giocatore è legato ad un dado per l'effetto di una carta, viene liberato dal vincolo
+        player.getToolCardEffect().setChoosenDie(null);
+
         //Controllo se ultimo turno
         if (!turnHandler.isLastTurn()) {
             //Calcola un nuovo turno

@@ -438,10 +438,10 @@ public class Window implements Serializable {
             return true;
 
         if (ignoreAdjacentCells)
-            return noAdjacentCellsRestriction(cell, die);
+            return noStartPlaceRestriction(cell, die);
 
         if (ignoreStartPlace)
-            return noStartPlaceRestriction(cell, die);
+            return noAdjacentCellsRestriction(cell, die);
 
         if (cell.isInBorder())
             return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);
@@ -485,8 +485,16 @@ public class Window implements Serializable {
 
     public void moveDie(Cell origin, Cell destination, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
-        if (!noWindowRestriction(destination, origin.getDie(), ignoreStartPlace, ignoreAdjacentCells))
+        Die tempNode = origin.getDie();
+
+        origin.setDie(null);
+
+        if (!noWindowRestriction(destination, origin.getDie(), ignoreStartPlace, ignoreAdjacentCells)) {
+            origin.setDie(tempNode);
+
             throw new MatchException("restrizioni di finestra non rispettate");
+        }
+        origin.setDie(tempNode);
 
         //Esegue movimento
         origin.moveDie(destination, ignoreColorRestriction, ignoreShadeRestriction);

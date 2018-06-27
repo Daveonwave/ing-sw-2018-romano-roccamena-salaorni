@@ -768,6 +768,34 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 4 -------------------------------------------//
+
+        /////////////////
+        //GIOCA PLAYER2//
+        /////////////////
+
+        //Piazzamento corretto 3Y in 0,0
+        cell = retrieveCell(window2, 0, 0);
+        die = retrieveDieFromDraftPool(match, 0);
+
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 4);
+
+        //Utilizza alesatore per lamina di rame                                                // ALESATORE LAMINA RAME
+        toolCard = retrieveToolCard(match,0);
+
+        //Uso invalido 0,0 -> 1,2
+        input = new ToolCardInput(window2.getCells()[0][0], window2.getCells()[1][2]);
+
+        invalidUseToolCard(match, player2, input, toolCard);
+
+        //Uso valido 0,0 -> 0,2
+        input = new ToolCardInput(window2.getCells()[0][0], window2.getCells()[0][2]);
+
+        validUseToolCard(match, player2, input, toolCard);
+        testUseToolCard(player2, toolCard, 3, 1);
+
+        //Finisce turno
+        validEndTurn(match, player2);
     }
     @Test
     public void fixedToolCard2() {
