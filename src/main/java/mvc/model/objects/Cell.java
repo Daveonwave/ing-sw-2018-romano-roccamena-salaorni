@@ -68,7 +68,7 @@ public class Cell implements Serializable {
 
     //Verifica uguaglianze
     /**
-     * Assert equality of two cell's dice
+     * Asserts equality of two cell's dice
      * @param cell cell instance
      * @return
      */
@@ -86,7 +86,7 @@ public class Cell implements Serializable {
         return otherDie.sameDie(die);
     }
     /**
-     * Assert equality of restrictions of two cells
+     * Asserts equality of restrictions of two cells
      * @param cell cell instance
      * @return
      */
@@ -104,7 +104,7 @@ public class Cell implements Serializable {
         return otherRestriction.sameCellRestriction(cellRestriction);
     }
     /**
-     * Assert equality of positions of two cells on their windows
+     * Asserts equality of positions of two cells on their windows
      * @param cell cell instance
      * @return
      */
@@ -115,7 +115,7 @@ public class Cell implements Serializable {
         return row == cell.getRow() && column == cell.getColumn();
     }
     /**
-     * Assert equality of the structure of two cells (restrictions and positions) without testing placed dice
+     * Asserts equality of the structure of two cells (restrictions and positions) without testing placed dice
      * @param cell cell instance
      * @return
      */
@@ -123,7 +123,7 @@ public class Cell implements Serializable {
         return sameRestriction(cell) && samePosition(cell);
     }
     /**
-     * Assert equality of placed dice in two cells
+     * Asserts equality of placed dice in two cells
      * @param cell cell instance
      * @return
      */
@@ -133,35 +133,35 @@ public class Cell implements Serializable {
 
     //Indicano se la cella è in posizioni di bordo dela finestra
     /**
-     * Assert if the cell is located in windows's north border
+     * Asserts if the cell is located in windows's north border
      * @return
      */
     public boolean isNorthBorder() {
         return row==0;
     }
     /**
-     * Assert if the cell is located in windows's south border
+     * Asserts if the cell is located in windows's south border
      * @return
      */
     public boolean isSouthBorder() {
         return row==GameConstants.WINDOW_ROWS_COUNT-1;
     }
     /**
-     * Assert if the cell is located in windows's west border
+     * Asserts if the cell is located in windows's west border
      * @return
      */
     public boolean isWestBorder() {
         return column==0;
     }
     /**
-     * Assert if the cell is located in windows's east border
+     * Asserts if the cell is located in windows's east border
      * @return
      */
     public boolean isEastBorder() {
         return column==GameConstants.WINDOW_COLUMNS_COUNT-1;
     }
     /**
-     * Assert if the cell is located in windows's borders
+     * Asserts if the cell is located in windows's borders
      * @return
      */
     public boolean isInBorder() {
@@ -170,7 +170,7 @@ public class Cell implements Serializable {
 
     //Verifica restrizioni di cella
     /**
-     * Assert if the cell has some cell restriction
+     * Asserts if the cell has some cell restriction
      * @param die Die instance
      * @param ignoreColorRestriction True if ignoring color restriction needed, false otherwise
      * @param ignoreShadeRestriction True if ignoring shade restriction needed, false otherwise
@@ -194,7 +194,7 @@ public class Cell implements Serializable {
         }
     }
     /**
-     * Assert if the cell has some cell restriction, without ignoring any of them
+     * Asserts if the cell has some cell restriction, without ignoring any of them
      * @param die Die instance
      * @return
      */

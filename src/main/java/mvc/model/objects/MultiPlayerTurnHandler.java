@@ -5,6 +5,9 @@ import mvc.exceptions.MatchException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Turn handler of a multiplayer match
+ */
 public class MultiPlayerTurnHandler extends TurnHandler {
     //Gestore dell'ordine dei giocatori di round e turni di partite multiplayer
 
@@ -17,6 +20,11 @@ public class MultiPlayerTurnHandler extends TurnHandler {
     private List<Integer> roundTurnsIndices;
 
     //Costruttori
+    /**
+     * Create new multiplayer turn handler
+     * @param playersCount Match players count
+     * @param firstPlayerIndex Index of first player
+     */
     public MultiPlayerTurnHandler(int playersCount, int firstPlayerIndex) {
         super();
         this.playersCount = playersCount;
@@ -40,12 +48,22 @@ public class MultiPlayerTurnHandler extends TurnHandler {
     }
 
     //Shift indici
+    /**
+     * Obtain left shifted index of a given player index
+     * @param playerIndex Player index
+     * @return
+     */
     private int leftIndexShift(int playerIndex) {
         if (playerIndex == 0)
             return playersCount - 1;
         else
             return playerIndex - 1;
     }
+    /**
+     * Obtain right shifted index of a given player index
+     * @param playerIndex Player index
+     * @return
+     */
     private int rightIndexShift(int playerIndex) {
         if (playerIndex == playersCount - 1)
             return 0;
@@ -54,6 +72,9 @@ public class MultiPlayerTurnHandler extends TurnHandler {
     }
 
     //Round successivo
+    /**
+     * Go to next round
+     */
     public void nextRound() {
         //Aumenta round
         round += 1;
@@ -89,6 +110,10 @@ public class MultiPlayerTurnHandler extends TurnHandler {
         turnPlayerIndex = firstPlayerIndex;
     }
     //Turno successivo
+    /**
+     * Go to next turn
+     * @throws MatchException Invalid action requested
+     */
     public void nextTurn() throws MatchException {
         //Controllo partita non finita
         if (isEnded())

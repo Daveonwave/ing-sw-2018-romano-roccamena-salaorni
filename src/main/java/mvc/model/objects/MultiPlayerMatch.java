@@ -7,6 +7,9 @@ import mvc.exceptions.MatchException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * Multiplayer extension of match entity
+ */
 public class MultiPlayerMatch extends Match {
     //Partita multiplayer del gioco
 
@@ -14,9 +17,22 @@ public class MultiPlayerMatch extends Match {
     private transient TimedTurnHandler timedTurnHandler;
 
     //Costruttori
+
+    /**
+     * Create new match from a given match
+     * @param match Match instance
+     */
     public MultiPlayerMatch(MultiPlayerMatch match) {
         this(match.getPlayers(), match.getPublicObjectiveCards(), match.getToolCards(), match.getMatchDice(), match.getRoundTrack());
     }
+    /**
+     * Create new match
+     * @param players Players intances
+     * @param objectiveCards Objective cards instanced
+     * @param toolCards Tool cards instances
+     * @param matchDice Match dice instance
+     * @param roundTrack Round track ntance
+     */
     public MultiPlayerMatch(List<Player> players, List<PublicObjectiveCard> objectiveCards, List<ToolCard> toolCards, MatchDice matchDice, RoundTrack roundTrack) {
         super(objectiveCards, toolCards, matchDice, roundTrack, new MultiPlayerTurnHandler(players.size(), 0));
         this.players = players;
@@ -41,6 +57,12 @@ public class MultiPlayerMatch extends Match {
 
 
     //Ottiene giocatore
+    /**
+     * Obtain player reference from given player state
+     * @param player Player instance
+     * @return
+     * @throws RemoteException MatchException for invalid argument passed
+     */
     public Player retrievePlayer(Player player) throws RemoteException {
         //Controlla correttezza
         if (player==null)
@@ -61,6 +83,12 @@ public class MultiPlayerMatch extends Match {
         return result;
     }
     //Ottiene carta strumento
+    /**
+     *
+     * @param toolCard
+     * @return
+     * @throws RemoteException
+     */
     public ToolCard retrieveToolCard(ToolCard toolCard) throws RemoteException {
         //Controlla correttezza
         if (toolCard==null)
@@ -110,20 +138,38 @@ public class MultiPlayerMatch extends Match {
 
 
     //Ottiene giocatore che gioca per primo al round corrente
+    /**
+     * Obtain first player of current round
+     * @return
+     */
     public Player getFirstPlayer() {
         return players.get(((MultiPlayerTurnHandler) turnHandler).getFirstPlayerIndex());
     }
     //Ottiene giocatore del turno corrente del round corrente
+    /**
+     * Obtain current turn player of current round
+     * @return
+     */
     public Player getTurnPlayer() {
         return players.get(((MultiPlayerTurnHandler) turnHandler).getTurnPlayerIndex());
     }
     //Ottiene se un giocatore si trova nel suo turno
+    /**
+     * Assert if a given player is current turn player
+     * @param player
+     * @return
+     */
     public boolean isPlayerTurn(Player player) {
         return getTurnPlayer().samePlayer(player);
     }
 
 
     //Mossa di abbandono di una partita
+    /**
+     * Set inactivity of a player to the match
+     * @param player Player instance
+     * @throws MatchException Invalid player passed
+     */
     public void leaveMatch(Player player) throws MatchException {
         //Controllo stato corretto della partita
         if (turnHandler.isEnded() || !player.isActive())
@@ -133,6 +179,11 @@ public class MultiPlayerMatch extends Match {
         player.setActive(false);
     }
     //Mossa di ripartecipazione ad una partita
+    /**
+     * Rebind a player as active relative to the match
+     * @param player Player instance
+     * @throws MatchException MatchException for invalid argument passed or invalid match state for the action
+     */
     public void rejoinMatch(Player player) throws MatchException {
         //Controllo stato corretto della partita
         if (turnHandler.isEnded() || player.isActive())
@@ -142,6 +193,12 @@ public class MultiPlayerMatch extends Match {
         player.setActive(true);
     }
     //Mossa di scelta di una finestra
+    /**
+     * Player choose a window for the match
+     * @param player Player instance
+     * @param window Window instance
+     * @throws RemoteException MatchException for invalid argument passed or invalid match state for the action
+     */
     public void chooseWindow(Player player, Window window) throws RemoteException {
         //Controllo stato corretto della partita e della finestra scelta
         if (matchState != MatchState.CHOOSE_WINDOWS || player.getWindow() != null)
@@ -168,6 +225,13 @@ public class MultiPlayerMatch extends Match {
         }
     }
     //Mossa di piazzamento di un dado in una finestra
+    /**
+     * Player place a die in a cell
+     * @param player Player instance
+     * @param cell Cell instance of player window
+     * @param die Die instance
+     * @throws RemoteException MatchException for invalid argument passed or invalid match state for the action
+     */
     public void placeDie(Player player, Cell cell, Die die) throws RemoteException{
         //Controllo stato corretto partita e parametri
         if (matchState != MatchState.PLAY_ROUND)
@@ -199,6 +263,13 @@ public class MultiPlayerMatch extends Match {
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
     //Mossa di utilizzo di una carta strumento
+    /**
+     * Player uses a tool card with a given input
+     * @param player Player instance
+     * @param input Tool card input instance
+     * @param toolCard Tool card instance
+     * @throws RemoteException MatchException for invalid argument passed or invalid match state for the action
+     */
     public void useToolCard(Player player, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         //Controllo correttezza stato partita e parametri
         if (matchState != MatchState.PLAY_ROUND)
@@ -229,6 +300,11 @@ public class MultiPlayerMatch extends Match {
 
     }
     //Mossa di fine del turno
+    /**
+     * End current player turn and calculate next match state
+     * @param player Player instance
+     * @throws RemoteException MatchException for invalid argument passed or invalid match state for the action
+     */
     public void endTurn(Player player) throws RemoteException {
         //Controllo stato corretto della partita
         if (matchState != MatchState.PLAY_ROUND)

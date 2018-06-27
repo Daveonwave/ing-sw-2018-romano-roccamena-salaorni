@@ -20,6 +20,13 @@ public class MatchDice implements Serializable {
     private List<Die> draftPool;
 
     //Costruttori
+
+    /**
+     * Create new match dice
+     * @param playersCount Match players count
+     * @param diceBag Dice bag instance
+     * @param draftPool Draft pool instance
+     */
     public MatchDice(int playersCount, List<Die> diceBag, List<Die> draftPool) {
         this.playersCount = playersCount;
         this.diceBag = diceBag;
@@ -151,8 +158,8 @@ public class MatchDice implements Serializable {
 
     //Ottiene dado da riserva dadi
     /**
-     * Obtain a draft pool's die using another equal die instance
-     * @param die
+     * Obtain a draft pool's die from given die state
+     * @param die Die instance
      * @return
      * @throws RemoteException MatchException if invalid die requested
      */
