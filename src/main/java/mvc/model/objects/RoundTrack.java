@@ -79,7 +79,7 @@ public class RoundTrack implements Serializable {
     }
     //Ottiene uno dei dadi di un round del tracciato
     public Die retrieveDie(int round, Die die) throws RemoteException {
-        List<Die> dice = retrieveDice(round-1);
+        List<Die> dice = retrieveDice(round);
 
         boolean found = false;
         for (Die d : dice) {
