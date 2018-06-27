@@ -70,6 +70,11 @@ public class FXWindowChoiceMenu {
         return windows;
     }
 
+    /**
+     * gets the corresponding image view for the window to choose
+     * @param index window number
+     * @return image view of the right window
+     */
     private ImageView associateWindows(int index) {
         switch (index) {
             case 1:
@@ -85,6 +90,12 @@ public class FXWindowChoiceMenu {
         }
 
     }
+
+    /**
+     * gets the corresponding label for the window to choose
+     * @param index window number
+     * @return image view of the right window
+     */
     private Label associateWindowName(int index){
         switch (index){
             case 0:
@@ -99,6 +110,12 @@ public class FXWindowChoiceMenu {
                 return null;
         }
     }
+
+    /**
+     * gets the corresponding image view for the difficulty of the window to choose
+     * @param index window number
+     * @return image view of the right difficulty
+     */
     private ImageView associateWindowDifficulty(int index){
         switch (index){
             case 0:
@@ -114,6 +131,11 @@ public class FXWindowChoiceMenu {
         }
     }
 
+    /**
+     * gets the image for the difficulty of the window
+     * @param difficulty difficulty of the window
+     * @return image of the right difficulty
+     */
     private Image applyDifficultyImage(int difficulty){
         String path;
         switch (difficulty){
@@ -135,6 +157,11 @@ public class FXWindowChoiceMenu {
         return new Image(getClass().getResourceAsStream(path));
     }
 
+    /**
+     * based on the clicked window, gets the right window view
+     * @param source source of the click event
+     * @return window view
+     */
     private WindowView retrieveWindows(Object source) {
         if (source.equals(choiceWindow1)) return windows.get(0);
         if (source.equals(choiceWindow2)) return windows.get(1);
@@ -143,7 +170,10 @@ public class FXWindowChoiceMenu {
         return null;
     }
 
-
+    /**
+     * initialize the scene for the starting window choice
+     * @param match match of the model
+     */
     public void initializeMenu(MultiPlayerMatch match){
         for(Player player : match.getPlayers()){
             String name = player.getUser().getName();
@@ -164,6 +194,10 @@ public class FXWindowChoiceMenu {
         }
     }
 
+    /**
+     * calls the controller method to choose a window
+     * @param mouseEvent click event
+     */
     public void chooseWindow(MouseEvent mouseEvent){
         try {
             guiMultiplayerApp.getGuiView().getController().chooseWindow(guiMultiplayerApp.getGuiView().getUserToken(), guiMultiplayerApp.getMultiTokenMatch(),retrieveWindows(mouseEvent.getSource()).getWindow());

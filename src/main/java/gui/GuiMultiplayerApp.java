@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+/**
+ * handler of the gui of a multiplayer match
+ */
 public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Serializable {
 
     //Finestra gui di una partita multiplayer
@@ -39,6 +43,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     private transient PointsWindowController pointsWindow;
     private  transient MatchView matchView;
     private Stage stage;
+    private Pane choicePane;
 
     private boolean toPlace = false;
     private boolean twoMoves = false;
@@ -266,8 +271,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     @FXML
     ImageView zoom;
     @FXML
-    ImageView roundTrack;
-    @FXML
     ImageView round1;
     @FXML
     ImageView round2;
@@ -328,6 +331,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
     //Associazioni tra bottoni e classi view corrispondenti
 
+    /**
+     * gets the corresponding image view for the created windowView
+     * @param index window number
+     * @return
+     */
     private ImageView associateWindow(int index) {
         switch (index) {
             case 1:
@@ -343,6 +351,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * gets the corresponding image view for the created tollCardView
+     * @param index tool card number
+     * @return
+     */
     private ImageView associateToolCard(int index) {
         switch (index) {
             case 1:
@@ -356,6 +370,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * for each cell of the created windowView gets the corresponding image view
+     * @param cell model's window cells
+     * @param index window number
+     * @return
+     */
     private CellView[][] associateCells(Cell[][] cell, int index) {
         CellView[][] cells = new CellView[4][5];
         switch (index) {
@@ -486,6 +507,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
         return cells;
     }
+
+    /**
+     * gets the corresponding image view for the created DieView
+     * @param index die number
+     * @return
+     */
     private ImageView associateDice(int index) {
         switch (index) {
             case 1:
@@ -511,6 +538,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * gets the corresponding image view for the created public objective card
+     * @param index public objective card number
+     * @return
+     */
     private ImageView associatePublicObjective(int index) {
         switch (index) {
             case 1:
@@ -524,6 +557,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * gets the corresponding image view for the created round
+     * @param index round number
+     * @return
+     */
     private ImageView associateRound(int index) {
         switch (index) {
             case 1:
@@ -550,6 +589,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return null;
         }
     }
+
+    /**
+     * gets the corresponding image view for the created round die
+     * @param index round die number
+     * @return
+     */
     private ImageView associateRoundDie(int index) {
         switch (index) {
             case 0:
@@ -575,6 +620,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * gets the corresponding name label for the player created
+     * @param index player number
+     * @return
+     */
     private Label associateNameLabel(int index) {
         switch (index) {
             case 2:
@@ -590,6 +641,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     //Restituiscono l'oggetto della view in base al bottone selezionato
+
+    /**
+     * based on the clicked image view, gets the correponding cell view
+     * @param source image view clicked
+     * @return
+     */
     private CellView retrieveCell(Object source) {
         WindowView windowView = matchView.retrieveThisPlayer(guiView.getUserName()).getWindow();
 
@@ -616,6 +673,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return null;
     }
+
+    /**
+     * based on the clicked image view, gets the corresponding die view
+     * @param source image view clicked
+     * @return
+     */
     private DieView retrieveDie(Object source) {
         if (source.equals(d1)) return matchView.getDice().get(0);
         if (source.equals(d2)) return matchView.getDice().get(1);
@@ -629,12 +692,24 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         return null;
     }
+
+    /**
+     * based on the clicked image view, get the corresponding tool card
+     * @param source tool card clicked
+     * @return
+     */
     private ToolCardView retrieveToolCard(Object source) {
         if (source.equals(toolCard1)) return matchView.getToolCards().get(0);
         if (source.equals(toolCard2)) return matchView.getToolCards().get(1);
         if (source.equals(toolCard3)) return matchView.getToolCards().get(2);
         return null;
     }
+
+    /**
+     * based on the clicked image view, get the corresponding round die
+     * @param source round die clicked
+     * @return
+     */
     private DieView retrieveRoundDie(Object source) {
         List<DieView> dice = matchView.getRounds().get(roundView-1).getDieViews();
         if (source.equals(roundDie1)) return dice.get(0);
@@ -649,73 +724,76 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         return null;
     }
 
-    //Ottengono liste di oggetti gioco separati secondo relazione di utilizzo
-    private List<String> windowToolCards() {
-
-        List<String> toolCards = new ArrayList<>();
-        toolCards.add("pennello per eglomise");
-        toolCards.add("alesatore per lamina di rame");
-        toolCards.add("lathekin");
-        toolCards.add("taglierina manuale");
-
-        return toolCards;
-    }
-    private List<String> draftPoolToolCards() {
-        List<String> toolCards = new ArrayList<>();
-
-        toolCards.add("pinza sgrossatrice");
-        toolCards.add("taglierina circolare");
-        toolCards.add("pennello per pasta salda");
-        toolCards.add("riga di sughero");
-        toolCards.add("tampone diamantato");
-        toolCards.add("diluente per pasta salda");
-
-        return toolCards;
-    }
-    private List<String> noSelectionToolCards() {
-        List<String> toolCards = new ArrayList<>();
-
-        toolCards.add("martelletto");
-        toolCards.add("tenaglia a rotelle");
-
-        return toolCards;
-    }
-    private List<String> toPlaceToolCards() {
-        List<String> toolCards = new ArrayList<>();
-
-        toolCards.add("pinza sgrossatrice");
-        toolCards.add("riga di sughero");
-        toolCards.add("tampone diamantato");
-        toolCards.add("diluente per pasta salda");
-        toolCards.add("taglierina circolare");
-
-        return toolCards;
-    }
-
-    //Crea e visualizza la finestra
-    public void show(MultiPlayerMatch match, String tokenMatch) throws IOException {
+    /**
+     * loads the window choice anchor pane from the fxml file and initializes it
+     * @param match model's match that is saved in this instance of GuiMultiPlayerApp
+     * @param tokenMatch token of the match
+     * @throws IOException
+     */
+    private void createWindowChoiceGui(MultiPlayerMatch match, String tokenMatch) throws IOException {
         multiPlayerMatch = match;
         multiTokenMatch = tokenMatch;
-        createWindowChoiceGui();
-    }
-
-    //Crea oggetti gui gioco a inizio partita
-    private void createWindowChoiceGui() throws IOException {
         //Carica fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/WindowChoiceMenu.fxml"));
         Parent root = loader.load();
         FXWindowChoiceMenu choiceMenu = loader.getController();
         choiceMenu.setGuiMultiplayerApp(this);
-        choiceMenu.initializeMenu(multiPlayerMatch);
+        choiceMenu.initializeMenu(multiPlayerMatch);;
+        this.stage = new Stage();
+        setScene(root);
+    }
+
+    /**
+     * loads the match anchor pane from the fxml file and initializes it
+     * @param match match fo the model, which is saved in this instance of GuiMultiPlayerApp
+     * @throws IOException
+     */
+    private void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
+        //Inizializza componenti
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
+        Parent root = loader.load();
+        GuiMultiplayerApp guiController = loader.getController();
+        guiController.setMultiPlayerMatch(match);
+        guiController.setGuiView(this.guiView);
+        guiController.setMultiTokenMatch(this.multiTokenMatch);
+        guiView.getMultiplayerApps().replace(multiTokenMatch, guiController);
+        guiController.initializeMatchRoundsGui(match);
+        setScene(root);
+    }
+
+    /**
+     * loads the points view window form the fxml file and initializes it
+     * @param match match of the model
+     * @throws IOException
+     */
+    private void createPointsGui(MultiPlayerMatch match)throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/points.fxml"));
+        Parent root = loader.load();
+        PointsWindowController pointsWindowController = loader.getController();
+        pointsWindowController.setPoints(pointsWindow.getPoints());
+        pointsWindowController.setMatch(match);
+        pointsWindowController.initializeScores();
+        matchAnchorPane.getChildren().add(root);
+        root.setLayoutX(346);
+        root.setLayoutY(143);
+    }
+
+    /**
+     * creates a new scene from the fxml parent loaded and shows it in the saved stage
+     * @param root Parent loaded from fxml file
+     */
+    private void setScene(Parent root){
         Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        this.stage = stage;
+        scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
 
-    //Inizializza oggetti gui gioco a round iniziati
+    /**
+     * initializes the match window creating a view object for every model object
+     * @param match match of the model
+     */
     public void initializeMatchRoundsGui(MultiPlayerMatch match) {
         initializeDice();
         roundDice.setVisible(false);
@@ -731,7 +809,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         round9.setVisible(false);
         round10.setVisible(false);
 
-        roundTrack.setImage(new Image(getClass().getResourceAsStream("objects/images/roundtrack.PNG")));
         console.setText("partita iniziata. Turno di "+ match.getTurnPlayer().getUser().getName());
         int window = 2;
         //Setta componenti view finestre e carte private
@@ -768,6 +845,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * set every die view's image view to not visible
+     */
     private void initializeDice(){
         d1.setVisible(false);
         d2.setVisible(false);
@@ -780,39 +861,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         d9.setVisible(false);
     }
 
-    //Crea oggetti gui gioco a round iniziati
-    private void createMatchRoundsGui(MultiPlayerMatch match)throws IOException{
-        //Inizializza componenti
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Match.fxml"));
-        Parent root = loader.load();
-        GuiMultiplayerApp guiController = loader.getController();
-        guiController.setMultiPlayerMatch(match);
-        guiController.setGuiView(this.guiView);
-        guiController.setMultiTokenMatch(this.multiTokenMatch);
-        guiView.getMultiplayerApps().replace(multiTokenMatch, guiController);
-        guiController.initializeMatchRoundsGui(match);
-
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-    }
-
-    private void createPointsGui(MultiPlayerMatch match)throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/points.fxml"));
-        Parent root = loader.load();
-        PointsWindowController pointsWindowController = loader.getController();
-        pointsWindowController.setPoints(pointsWindow.getPoints());
-        pointsWindowController.setMatch(match);
-        pointsWindowController.initializeScores();
-        matchAnchorPane.getChildren().add(root);
-        root.setLayoutX(346);
-        root.setLayoutY(143);
-    }
-
-    //Eventi componenti gui di mosse della partita
-    public void onDieClick(MouseEvent actionEvent){
+    /**
+     * determines the move to make when a die is clicked based on the current situation
+     * @param mouseEvent mouse event
+     */
+    public void onDieClick(MouseEvent mouseEvent){
 
         if (!this.multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())) {
             return;
@@ -826,12 +879,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
 
-        DieView selectedDie = retrieveDie(actionEvent.getSource());
+        DieView selectedDie = retrieveDie(mouseEvent.getSource());
 
         if (selectedDie != matchView.getSelectedDie()) {
             if (matchView.getSelectedToolCard() != null) {
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
-                if (draftPoolToolCards().contains(name)) {
+                if (matchView.draftPoolToolCards().contains(name)) {
                     if (name.equals("taglierina circolare")) {
                         matchView.getInput().setChoosenDie(selectedDie.getDie());
                         selectedDie.getImageView().getStyleClass().add("selected");
@@ -867,7 +920,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
     }
-    public void onCellClick(MouseEvent actionEvent){
+
+    /**
+     * determines the move to make when a cell is clicked based on the current situation
+     * @param mouseEvent mouse event
+     */
+    public void onCellClick(MouseEvent mouseEvent){
         if(!multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
@@ -876,7 +934,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
 
-        CellView selectedCell = retrieveCell(actionEvent.getSource());
+        CellView selectedCell = retrieveCell(mouseEvent.getSource());
 
         if(selectedCell.getCell().getDie()==null){
             if(matchView.getSelectedDie() != null){
@@ -899,19 +957,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 if(matchView.getSelectedToolCard() != null) {
                     if (matchView.getInput().getOriginCell1() != null) {
                         String name = matchView.getSelectedToolCard().getToolCard().getName();
-                        if (windowToolCards().contains(name)) {
+                        if (matchView.windowToolCards().contains(name)) {
                             if(name.equals("lathekin") || twoMoves) {
                                 if(matchView.getInput().getDestinationCell1() == null) {
                                     matchView.getInput().setDestinationCell1(selectedCell.getCell());
-                                    matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
                                     console.setText("prima cella di destinazione selezionata");
                                     return;
                                 }else{
-                                    matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
                                     matchView.getInput().setDestinationCell2(selectedCell.getCell());
                                 }
                             }else{
-                                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
                                 matchView.getInput().setDestinationCell1(selectedCell.getCell());
                             }
                             try {
@@ -927,11 +985,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         } else {
             if (matchView.getSelectedToolCard() != null){
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
-                if(windowToolCards().contains(name)){
+                if(matchView.windowToolCards().contains(name)){
                     if(name.equals("lathekin") || twoMoves) {
                         if(matchView.getInput().getDestinationCell1() != null) {
                             if(matchView.getInput().getOriginCell2() != null){
-                                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
                             }
                             matchView.getInput().setOriginCell2(selectedCell.getCell());
                             selectedCell.getImageView().getStyleClass().add("selected");
@@ -940,7 +998,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         }
                     }
                     if(matchView.getInput().getOriginCell1() != null){
-                        matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                        matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
                     }
                     matchView.getInput().setOriginCell1(selectedCell.getCell());
                     selectedCell.getImageView().getStyleClass().add("selected");
@@ -953,7 +1011,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
-    public void onToolCardClick(MouseEvent actionEvent){
+
+    /**
+     * determines the move to make when a tool card is clicked based on the current situation
+     * @param mouseEvent mouse event
+     */
+    public void onToolCardClick(MouseEvent mouseEvent){
         if(!multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
@@ -966,7 +1029,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
 
-        ToolCardView selectedToolCard = retrieveToolCard(actionEvent.getSource());
+        ToolCardView selectedToolCard = retrieveToolCard(mouseEvent.getSource());
 
         if(selectedToolCard != matchView.getSelectedToolCard()){
             if(matchView.getSelectedToolCard() != null){
@@ -981,7 +1044,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
             matchView.setInput(new ToolCardInput(null, null, null,null, multiPlayerMatch.getTurnHandler().getRound(),null,null,null,0,false));
             String name = matchView.getSelectedToolCard().getToolCard().getName();
-            if(noSelectionToolCards().contains(name)){
+            if(matchView.noSelectionToolCards().contains(name)){
                 try {
                     guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                 } catch (RemoteException e) {
@@ -991,6 +1054,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 if(selectedToolCard.getToolCard().getName().equals("pinza sgrossatrice")){
                     choice = true;
                     Pane pane = new Pane();
+                    this.choicePane = pane;
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
@@ -1023,6 +1087,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 if(selectedToolCard.getToolCard().getName().equals("diluente per pasta salda")){
                     choice = true;
                     Pane pane = new Pane();
+                    this.choicePane = pane;
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
@@ -1053,6 +1118,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 if(selectedToolCard.getToolCard().getName().equals("taglierina manuale")) {
                     choice = true;
                     Pane pane = new Pane();
+                    this.choicePane = pane;
                     pane.setPrefWidth(208);
                     pane.setPrefHeight(91);
                     matchAnchorPane.getChildren().add(pane);
@@ -1082,25 +1148,32 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         }
                     });
                 }
-                return;
             }
         }else{
             console.setText("hai deselezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
             matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
             matchView.setSelectedToolCard(null);
             if(matchView.getInput().getOriginCell1() != null) {
-                matchView.retrievePlayer(multiPlayerMatch.getTurnPlayer()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+            }
+            if(matchView.getInput().getOriginCell2() != null){
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
             }
             matchView.setInput(null);
         }
 
     }
-    public void onRoundDieClick(MouseEvent actionEvent){
+
+    /**
+     * determines the move to make when a round die is clicked based on the current situation
+     * @param mouseEvent mouse event
+     */
+    public void onRoundDieClick(MouseEvent mouseEvent){
         if(!this.multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
 
-        DieView selectedRoundDie = retrieveRoundDie(actionEvent.getSource());
+        DieView selectedRoundDie = retrieveRoundDie(mouseEvent.getSource());
         if(matchView.getSelectedToolCard() != null){
             String name = matchView.getSelectedToolCard().getToolCard().getName();
             if(name.equals("taglierina circolare")) {
@@ -1116,18 +1189,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
     }
+
+    /**
+     * ends the turn when the end turn button is clicked
+     * @param actionEvent action event
+     */
     public void endTurn(ActionEvent actionEvent){
-        toPlace = false;
-        twoMoves = false;
-        choice = false;
-        if(matchView.getSelectedDie() != null) {
-            matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
-            matchView.setSelectedDie(null);
-        }
-        if(matchView.getSelectedToolCard() != null) {
-            matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
-            matchView.setSelectedToolCard(null);
-        }
+
         try {
             guiView.getController().endTurn(guiView.getUserToken(), this.multiTokenMatch);
         }catch(RemoteException e){
@@ -1135,8 +1203,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
     }
 
-    //Eventi di altre componenti gui
-    public void observeRoundDice(int round){
+    /**
+     * based on the round's image view clicked, shows that round's dice
+     * @param round round chosen
+     */
+    private void observeRoundDice(int round){
         roundView = round;
         for(DieView dieView : matchView.getRounds().get(round-1).getDieViews()){
            int index = matchView.getRounds().get(round-1).getDieViews().indexOf(dieView);
@@ -1150,8 +1221,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
-    public void zoomIn(MouseEvent actionEvent){
-        Object source = actionEvent.getSource();
+
+    /**
+     * zooms on the chosen card copying his image to the "zoom" image view
+     * @param mouseEvent on mouse entered event
+     */
+    public void zoomIn(MouseEvent mouseEvent){
+        Object source = mouseEvent.getSource();
         if(source.equals(toolCard1)) zoom.setImage(toolCard1.getImage());
         if(source.equals(toolCard2)) zoom.setImage(toolCard2.getImage());
         if(source.equals(toolCard3)) zoom.setImage(toolCard3.getImage());
@@ -1160,11 +1236,21 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(source.equals(publicObjective3)) zoom.setImage(publicObjective3.getImage());
         if(source.equals(privateObjective1)) zoom.setImage(privateObjective1.getImage());
     }
+
+    /**
+     * zooms out of the chose card romoving his image from the "zoom" image view
+     * @param actionEvent on mouse exited event
+     */
     public void zoomOut(MouseEvent actionEvent){
         zoom.setImage(null);
     }
-    public void roundTrackDice(MouseEvent actionEvent){
-        Object source = actionEvent.getSource();
+
+    /**
+     * gets the corresponding image view for the clicked round
+     * @param mouseEvent click event
+     */
+    public void roundTrackDice(MouseEvent mouseEvent){
+        Object source = mouseEvent.getSource();
         roundDice.setVisible(true);
         if(source.equals(round1)) observeRoundDice(1);
         if(source.equals(round2)) observeRoundDice(2);
@@ -1177,16 +1263,33 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(source.equals(round9)) observeRoundDice(9);
         if(source.equals(round10)) observeRoundDice(10);
     }
-    public void closeRoundDicePanel(MouseEvent actionEvent){
+
+    /**
+     * closes the panel showing round dice
+     * @param mouseEvent click event
+     */
+    public void closeRoundDicePanel(MouseEvent mouseEvent){
         roundDice.setVisible(false);
     }
 
-    //Risposte controllore
+    /**
+     * copies on the text area the error massage received from the controller
+     * @param message message received
+     * @param tokenMatch token of the match
+     * @throws RemoteException
+     */
     public void respondError(String message, String tokenMatch) throws RemoteException {
         if(console != null){
             console.setText(message);
         }
     }
+
+    /**
+     * copies on the text area the message received from the controller
+     * @param message message received
+     * @param tokenMatch token of the match
+     * @throws RemoteException
+     */
     public void respondAck(String message, String tokenMatch) throws RemoteException {
         if(console != null){
             console.setText(message);
@@ -1200,17 +1303,38 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
+
+    /**
+     * calls the methon that creates the window choice scene
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @throws RemoteException
+     */
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         try {
-            show(match, tokenMatch);
+            createWindowChoiceGui(match,tokenMatch);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+
+    /**
+     * notifies that all players have chosen their window but has no real effect on the view
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @throws RemoteException
+     */
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
 
     }
+
+    /**
+     * if it's the first turn calls the method that creates tha match scene. if it's the round's first turn updates the draft pool and shows the ended round's image view
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @throws RemoteException
+     */
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         multiPlayerMatch = match;
         if(match.getTurnHandler().isFirstTurn()){
@@ -1238,12 +1362,56 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
 
     }
+
+    /**
+     * resets every selected view object. if it's the last round creates a new instance of the points window controller
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @throws RemoteException
+     */
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+        if(matchView.getSelectedDie() != null) {
+            matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+            matchView.setSelectedDie(null);
+        }
+        if(matchView.getSelectedToolCard() != null) {
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            matchView.setSelectedToolCard(null);
+        }
+        if(matchView.getInput() != null) {
+            if (matchView.getInput().getChoosenDie() != null) {
+                matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove("selected");
+            }
+            if (matchView.getInput().getOriginCell1() != null) {
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+            }
+            if (matchView.getInput().getOriginCell2() != null) {
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+            }
+            if (choice) {
+                matchAnchorPane.getChildren().remove(choicePane);
+            }
+        }
+        toPlace = false;
+        choice = false;
+        twoMoves = false;
+        matchView.setSelectedDie(null);
+        matchView.setSelectedToolCard(null);
+        matchView.setInput(null);
         if(match.getTurnHandler().isLastTurn()){
             pointsWindow = new PointsWindowController();
             pointsWindow.setPoints(new HashMap<>());
         }
     }
+
+    /**
+     * updates the draft pool and the window of the player that has done the move
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @param cell cell in which the die has benn placed
+     * @param die placed die
+     * @throws RemoteException
+     */
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
         DieView dieView = matchView.retrieveDieView(die);
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getCell().setDie(dieView.getDie());
@@ -1261,8 +1429,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             die1.getImageView().setVisible(true);
         }
     }
-    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException  {
 
+    /**
+     * updates the draft pool, the window of the player that has done the move and also the round track's dice if the tool card is the right one
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @param toolCard tool card used
+     * @throws RemoteException
+     */
+    public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException  {
         for (Die die : match.getMatchDice().getDraftPool()){
             DieView dieView = matchView.getDice().get(match.getMatchDice().getDraftPool().indexOf(die));
             dieView.setDie(die);
@@ -1270,7 +1445,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             dieView.getImageView().setVisible(true);
         }
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
-            if(toPlaceToolCards().contains(toolCard.getName())){
+            if(matchView.toPlaceToolCards().contains(toolCard.getName())){
                 if(toolCard.getName().equals("diluente per pasta salda") || toolCard.getName().equals("taglierina circolare")){
                     DieView dieView = matchView.getDice().get(match.getMatchDice().getDraftPool().size()-1);
                     matchView.setSelectedDie(dieView);
@@ -1321,9 +1496,25 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
 
     }
+
+    /**
+     * gets the player points and saves them in the points window controller for future use
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @param player player associated to the points
+     * @param points player's points
+     * @throws RemoteException
+     */
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException{
         pointsWindow.getPoints().put(player.getUser().getName(), points);
     }
+
+    /**
+     * calls the method that creates the points scene
+     * @param tokenMatch token of the match
+     * @param match match of the model
+     * @throws RemoteException
+     */
     public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         try {
             createPointsGui(match);

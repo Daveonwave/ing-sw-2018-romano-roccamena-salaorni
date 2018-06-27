@@ -32,9 +32,6 @@ public class RoundView implements Serializable{
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
     }
-    public void setDieViews(List<DieView> dieViews) {
-        this.dieViews = dieViews;
-    }
     public void setRound(int round) {
         this.round = round;
     }

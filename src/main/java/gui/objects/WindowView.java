@@ -32,6 +32,11 @@ public class WindowView extends ObjectView{
     public void setCells(CellView[][] cells) {
         this.cells = cells;
     }
+
+    /**
+     * gets the corresponding image of the window based on its name
+     * @return image of this window
+     */
     public Image imagePath() {
         return new Image(getClass().getResourceAsStream("images/windows/" + window.getName() + ".png"));
     }

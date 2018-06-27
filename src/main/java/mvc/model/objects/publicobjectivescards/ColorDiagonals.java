@@ -34,11 +34,17 @@ public class ColorDiagonals extends PublicObjectiveCard {
         }
 
         for(Cell c : firstColumn){
+            if(firstColumn.indexOf(c) == 0){
+                continue;
+            }
             List<Cell> harmoniousDiagonal = window.getHarmoniousDiagonal(c);
             points += compareColorDiagonals(harmoniousDiagonal);
         }
 
         for(Cell c : lastColumn){
+            if(lastColumn.indexOf(c) == 0){
+                continue;
+            }
             List<Cell> disharmoniousDiagonal = window.getDisharmoniousDiagonal(c);
             points += compareColorDiagonals(disharmoniousDiagonal);
         }
@@ -61,6 +67,8 @@ public class ColorDiagonals extends PublicObjectiveCard {
                     color = c.getDie().getColor();
                     temp = 1;
                 }
+            }else {
+                color = null;
             }
         }
         return points;

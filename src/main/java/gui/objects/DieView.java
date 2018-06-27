@@ -27,7 +27,10 @@ public class DieView extends ObjectView {
         return die;
     }
 
-    //Ottiene immagine
+    /**
+     * gets the corresponding image of the die base on its color and shade
+     * @return image of the die
+     */
     public Image imagePath() {
         String path = "images/dice/";
         switch (this.die.getShade()){
