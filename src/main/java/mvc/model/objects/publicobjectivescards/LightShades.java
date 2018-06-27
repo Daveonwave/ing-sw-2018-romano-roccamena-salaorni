@@ -9,7 +9,7 @@ import java.util.List;
 public class LightShades extends PublicObjectiveCard {
 
     public LightShades() {
-        super("Sfumature chiare", "Set di 1 & 2 ovunque");
+        super("sfumature chiare", "Set di 1 & 2 ovunque");
     }
 
     @Override

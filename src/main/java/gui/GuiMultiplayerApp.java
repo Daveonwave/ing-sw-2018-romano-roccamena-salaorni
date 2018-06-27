@@ -889,7 +889,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         matchView.getInput().setChoosenDie(selectedDie.getDie());
                         selectedDie.getImageView().getStyleClass().add("selected");
                         this.console.setText("scegli un dado del tracciato dei round");
-                        return;
                     } else {
                         matchView.getInput().setChoosenDie(selectedDie.getDie());
                         try {
@@ -900,7 +899,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     }
                 } else {
                     console.setText("il dado selezionato non va bene per questa tool card");
-                    return;
                 }
 
             } else {
@@ -1382,11 +1380,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             if (matchView.getInput().getChoosenDie() != null) {
                 matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove("selected");
             }
-            if (matchView.getInput().getOriginCell1() != null) {
-                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
-            }
             if (matchView.getInput().getOriginCell2() != null) {
                 matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+            }else {
+                if (matchView.getInput().getOriginCell1() != null) {
+                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                }
             }
             if (choice) {
                 matchAnchorPane.getChildren().remove(choicePane);

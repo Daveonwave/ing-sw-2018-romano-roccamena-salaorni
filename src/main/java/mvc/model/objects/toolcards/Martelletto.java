@@ -10,7 +10,7 @@ public class Martelletto extends ToolCard {
 
     //Costruttori
     public Martelletto() {
-        super("Martelletto", "Tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", DieColor.BLUE);
+        super("martelletto", "Tira nuovamente i dadi della riserva; puo essere giocata solo al secondo turno di un round prima di estrarre il dado", DieColor.BLUE);
 
     }
 

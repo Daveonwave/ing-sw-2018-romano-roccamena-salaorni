@@ -10,7 +10,7 @@ public class PinzaSgrossatrice extends ToolCard {
 
     //Costruttori
     public PinzaSgrossatrice() {
-        super("Pinza Sgrossatrice", "Dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", DieColor.PURPLE);
+        super("pinza sgrossatrice", "Dopo aver scelto un dado, aumenta o diminuisci il valore del dado scelto di uno", DieColor.PURPLE);
     }
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {

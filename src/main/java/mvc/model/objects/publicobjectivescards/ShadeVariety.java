@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ShadeVariety extends PublicObjectiveCard {
     public ShadeVariety() {
-        super("Sfumature diverse", "Set di dadi di ogni valore ovunque");
+        super("sfumature diverse", "Set di dadi di ogni valore ovunque");
     }
 
     @Override

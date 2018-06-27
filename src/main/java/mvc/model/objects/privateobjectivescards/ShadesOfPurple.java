@@ -6,7 +6,7 @@ import mvc.model.objects.enums.DieColor;
 
 public class ShadesOfPurple extends PrivateObjectiveCard {
     public ShadesOfPurple() {
-        super("Sfumature viola", "Somma dei valori di utti i dadi viola. ", DieColor.PURPLE);
+        super("sfumature viola", "Somma dei valori di utti i dadi viola. ", DieColor.PURPLE);
     }
 
     @Override

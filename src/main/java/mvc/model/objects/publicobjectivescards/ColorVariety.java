@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ColorVariety extends PublicObjectiveCard {
     public ColorVariety() {
-        super("Varietà di colore", "Set di dadi di ogni colore ovunque");
+        super("varietà di colore", "Set di dadi di ogni colore ovunque");
     }
 
     @Override

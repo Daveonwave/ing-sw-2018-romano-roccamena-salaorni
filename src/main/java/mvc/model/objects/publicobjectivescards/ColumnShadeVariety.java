@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ColumnShadeVariety extends PublicObjectiveCard {
     public ColumnShadeVariety() {
-        super("Sfumature diverse - colonna", "Colonne senza sfumature ripetute");
+        super("sfumature diverse - colonna", "Colonne senza sfumature ripetute");
     }
 
     @Override
