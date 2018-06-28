@@ -284,8 +284,8 @@ public class AppController implements AppControllerStub {
             model.destroyMatch(tokenMatch);
         } else {
             //Notifica inizio nuovo turno
-            matchModel.notifyTurnStart(tokenMatch, match);
             matchBroadcastAck(tokenMatch, matchModel, "inizio turno del giocatore " + match.getTurnPlayer().getUser().getName());
+            matchModel.notifyTurnStart(tokenMatch, match);
 
             //Avvia controllo tempo turno
             match.getTimedTurnHandler().start();

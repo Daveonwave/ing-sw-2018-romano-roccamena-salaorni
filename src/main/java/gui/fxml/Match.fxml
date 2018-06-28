@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="matchAnchorPane" prefHeight="695.0" prefWidth="1222.0" style="-fx-background-color: black;" styleClass="matchbackground" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GuiMultiplayerApp">
 
@@ -83,10 +84,19 @@
          </children>
       </Pane>
       <TextArea fx:id="console" layoutX="290.0" layoutY="626.0" prefHeight="69.0" prefWidth="345.0" />
-      <ImageView fx:id="toolCard1" fitHeight="183.0" fitWidth="131.0" layoutX="931.0" layoutY="412.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="toolCard2" fitHeight="183.0" fitWidth="131.0" layoutX="931.0" layoutY="210.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="toolCard3" fitHeight="183.0" fitWidth="131.0" layoutX="931.0" layoutY="15.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective1" fitHeight="183.0" fitWidth="131.0" layoutX="1098.0" layoutY="412.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="toolCard1" fitHeight="183.0" fitWidth="131.0" layoutX="928.0" layoutY="430.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../objects/images/tools/martelletto.png" />
+         </image></ImageView>
+      <ImageView fx:id="toolCard2" fitHeight="183.0" fitWidth="131.0" layoutX="928.0" layoutY="218.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../objects/images/tools/diluente%20per%20pasta%20salda.png" />
+         </image></ImageView>
+      <ImageView fx:id="toolCard3" fitHeight="183.0" fitWidth="131.0" layoutX="928.0" layoutY="7.0" onMouseClicked="#onToolCardClick" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../objects/images/tools/diluente%20per%20pasta%20salda.png" />
+         </image></ImageView>
+      <ImageView fx:id="publicObjective1" fitHeight="183.0" fitWidth="131.0" layoutX="1095.0" layoutY="430.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d8" fitHeight="49.0" fitWidth="49.0" layoutX="444.0" layoutY="82.0" onMouseClicked="#onDieClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d4" fitHeight="49.0" fitWidth="52.0" layoutX="518.0" layoutY="16.0" onMouseClicked="#onDieClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="d9" fitHeight="49.0" fitWidth="49.0" layoutX="518.0" layoutY="82.0" onMouseClicked="#onDieClick" pickOnBounds="true" preserveRatio="true" />
@@ -98,8 +108,8 @@
       <ImageView fx:id="d1" fitHeight="49.0" fitWidth="52.0" layoutX="292.0" layoutY="16.0" onMouseClicked="#onDieClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player1Position11" fitHeight="45.0" fitWidth="45.0" layoutX="295.0" layoutY="393.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="privateObjective1" fitHeight="183.0" fitWidth="150.0" layoutX="290.0" layoutY="161.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective2" fitHeight="183.0" fitWidth="131.0" layoutX="1098.0" layoutY="210.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="publicObjective3" fitHeight="183.0" fitWidth="131.0" layoutX="1098.0" layoutY="15.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="publicObjective2" fitHeight="183.0" fitWidth="131.0" layoutX="1095.0" layoutY="218.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="publicObjective3" fitHeight="183.0" fitWidth="131.0" layoutX="1095.0" layoutY="7.0" onMouseEntered="#zoomIn" onMouseExited="#zoomOut" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player1Position12" fitHeight="45.0" fitWidth="45.0" layoutX="355.0" layoutY="393.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player1Position13" fitHeight="45.0" fitWidth="45.0" layoutX="414.0" layoutY="391.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player1Position14" fitHeight="45.0" fitWidth="45.0" layoutX="474.0" layoutY="393.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
@@ -120,7 +130,7 @@
       <ImageView fx:id="player1Position44" fitHeight="45.0" fitWidth="45.0" layoutX="474.0" layoutY="570.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="player1Position45" fitHeight="45.0" fitWidth="45.0" layoutX="534.0" layoutY="570.0" onMouseClicked="#onCellClick" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="zoom" fitHeight="331.0" fitWidth="243.0" layoutX="668.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="roundDice" layoutX="674.0" layoutY="397.0" prefHeight="231.0" prefWidth="217.0">
+      <Pane fx:id="roundDice" layoutX="700.0" layoutY="397.0" prefHeight="231.0" prefWidth="217.0">
          <children>
             <ImageView fx:id="roundDie8" fitHeight="49.0" fitWidth="49.0" layoutX="86.0" layoutY="144.0" onMouseClicked="#onRoundDieClick" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="roundDie4" fitHeight="49.0" fitWidth="52.0" layoutX="7.0" layoutY="79.0" onMouseClicked="#onRoundDieClick" pickOnBounds="true" preserveRatio="true" />
@@ -131,50 +141,71 @@
             <ImageView fx:id="roundDie2" fitHeight="49.0" fitWidth="49.0" layoutX="86.0" layoutY="12.0" onMouseClicked="#onRoundDieClick" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="roundDie5" fitHeight="49.0" fitWidth="49.0" layoutX="86.0" layoutY="79.0" onMouseClicked="#onRoundDieClick" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="roundDie1" fitHeight="49.0" fitWidth="52.0" layoutX="7.0" layoutY="12.0" onMouseClicked="#onRoundDieClick" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutY="196.0" mnemonicParsing="false" onMouseClicked="#closeRoundDicePanel" prefHeight="14.0" prefWidth="52.0" text="close" />
+            <Button layoutY="196.0" mnemonicParsing="false" onMouseClicked="#closeRoundDicePanel" prefHeight="40.0" prefWidth="73.0" styleClass="shiny-orange" stylesheets="@style.css" text="close" />
          </children></Pane>
-      <ImageView fx:id="round1" fitHeight="57.0" fitWidth="61.0" layoutX="652.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round1" fitHeight="57.0" fitWidth="61.0" layoutX="652.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round1.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round2" fitHeight="57.0" fitWidth="79.0" layoutX="708.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round2" fitHeight="57.0" fitWidth="79.0" layoutX="708.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round2.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round3" fitHeight="57.0" fitWidth="73.0" layoutX="765.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round3" fitHeight="57.0" fitWidth="73.0" layoutX="765.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round3.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round4" fitHeight="57.0" fitWidth="65.0" layoutX="823.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round4" fitHeight="57.0" fitWidth="65.0" layoutX="823.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round4.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round5" fitHeight="57.0" fitWidth="73.0" layoutX="879.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round5" fitHeight="57.0" fitWidth="73.0" layoutX="879.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round5.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round6" fitHeight="57.0" fitWidth="73.0" layoutX="936.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round6" fitHeight="57.0" fitWidth="73.0" layoutX="936.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round6.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round7" fitHeight="57.0" fitWidth="73.0" layoutX="992.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round7" fitHeight="57.0" fitWidth="73.0" layoutX="992.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round7.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round8" fitHeight="57.0" fitWidth="58.0" layoutX="1049.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round8" fitHeight="57.0" fitWidth="58.0" layoutX="1049.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round8.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round9" fitHeight="57.0" fitWidth="73.0" layoutX="1104.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round9" fitHeight="57.0" fitWidth="73.0" layoutX="1104.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round9.PNG" />
          </image></ImageView>
-      <ImageView fx:id="round10" fitHeight="57.0" fitWidth="73.0" layoutX="1162.0" layoutY="626.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="round10" fitHeight="57.0" fitWidth="73.0" layoutX="1160.0" layoutY="638.0" onMouseClicked="#roundTrackDice" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../objects/images/rounds/round10.PNG" />
          </image></ImageView>
-      <Button layoutX="593.0" layoutY="476.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="49.0" prefWidth="73.0" text="End Turn" />
-      <Label layoutX="593.0" layoutY="542.0" prefHeight="30.0" prefWidth="73.0" text="Favor Tokens" textFill="#f8f8f8" />
-      <Label fx:id="favorTokens" layoutX="607.0" layoutY="570.0" prefHeight="30.0" prefWidth="45.0" textAlignment="CENTER" textFill="#f8f6f6" />
+      <Button layoutX="589.0" layoutY="472.0" mnemonicParsing="false" onAction="#endTurn" prefHeight="49.0" prefWidth="105.0" styleClass="shiny-orange" stylesheets="@style.css" text="End Turn" />
+      <Label layoutX="593.0" layoutY="542.0" prefHeight="30.0" prefWidth="97.0" text="Favor Tokens" textFill="#f8f8f8">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="favorTokens" layoutX="630.0" layoutY="570.0" prefHeight="30.0" prefWidth="45.0" text="4" textAlignment="CENTER" textFill="#f8f6f6">
+         <font>
+            <Font name="Copperplate Gothic Bold" size="24.0" />
+         </font></Label>
+      <Label fx:id="costToolCard1" layoutX="922.0" layoutY="609.0" prefHeight="30.0" prefWidth="150.0" text="Costo: 1FavorToken" textFill="#171616">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="costToolCard2" layoutX="922.0" layoutY="397.0" prefHeight="30.0" prefWidth="150.0" text="Costo: 1FavorToken" textFill="#171616">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="costToolCard3" layoutX="922.0" layoutY="184.0" prefHeight="30.0" prefWidth="150.0" text="Costo: 1FavorToken" textFill="#171616">
+         <font>
+            <Font name="Britannic Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
