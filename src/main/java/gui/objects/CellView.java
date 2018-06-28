@@ -1,7 +1,9 @@
 package gui.objects;
 
+import gui.FXGuiConstant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import mvc.exceptions.AppViewException;
 import mvc.model.objects.Cell;
 import mvc.model.objects.Die;
 import mvc.model.objects.enums.DieColor;
@@ -42,7 +44,7 @@ public class CellView implements Serializable{
      * loads the corresponding image based on the shade and colour of the dice this cell contains
      * @return corresponding image
      */
-    public Image imagePath() {
+    public Image imagePath() throws AppViewException{
         String path = "images/dice/";
         Die die = this.getCell().getDie();
         switch (die.getShade()){
@@ -93,6 +95,7 @@ public class CellView implements Serializable{
                 if(die.getColor().equals(DieColor.GREEN)) path += "green6.png";
                 if(die.getColor().equals(DieColor.RED)) path += "red6.png";
                 break;
+            default: throw new AppViewException(FXGuiConstant.IMAGE_EXCEPTION_MESSAGE);
         }
         return new Image(getClass().getResourceAsStream(path));
     }

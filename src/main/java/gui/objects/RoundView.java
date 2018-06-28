@@ -5,6 +5,9 @@ import javafx.scene.image.ImageView;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * view of a round
+ */
 public class RoundView implements Serializable{
 
     private ImageView imageView;

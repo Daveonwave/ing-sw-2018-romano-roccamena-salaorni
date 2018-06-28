@@ -4,6 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.Window;
 
+
+/**
+ * view of a window
+ */
 public class WindowView extends ObjectView{
     //Veduta finestra
 

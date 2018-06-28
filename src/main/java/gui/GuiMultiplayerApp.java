@@ -334,9 +334,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding image view for the created windowView
      * @param index window number
-     * @return
+     * @return window image view
      */
-    private ImageView associateWindow(int index) {
+    private ImageView associateWindow(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return w1;
@@ -347,7 +347,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 4:
                 return w4;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -355,9 +355,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding image view for the created tollCardView
      * @param index tool card number
-     * @return
+     * @return tool card image view
      */
-    private ImageView associateToolCard(int index) {
+    private ImageView associateToolCard(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return toolCard1;
@@ -366,7 +366,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 3:
                 return toolCard3;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -375,9 +375,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * for each cell of the created windowView gets the corresponding image view
      * @param cell model's window cells
      * @param index window number
-     * @return
+     * @return cells view
      */
-    private CellView[][] associateCells(Cell[][] cell, int index) {
+    private CellView[][] associateCells(Cell[][] cell, int index) throws AppViewException{
         CellView[][] cells = new CellView[4][5];
         switch (index) {
             case 1:
@@ -503,7 +503,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 cells[3][4].setImageView(player4Position45);
                 break;
             default:
-                return cells;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
         return cells;
     }
@@ -511,9 +511,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding image view for the created DieView
      * @param index die number
-     * @return
+     * @return die image view
      */
-    private ImageView associateDice(int index) {
+    private ImageView associateDice(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return d1;
@@ -534,7 +534,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 9:
                 return d9;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -542,9 +542,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding image view for the created public objective card
      * @param index public objective card number
-     * @return
+     * @return public objective image view
      */
-    private ImageView associatePublicObjective(int index) {
+    private ImageView associatePublicObjective(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return publicObjective1;
@@ -553,7 +553,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 3:
                 return publicObjective3;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -561,9 +561,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding image view for the created round
      * @param index round number
-     * @return
+     * @return round image view
      */
-    private ImageView associateRound(int index) {
+    private ImageView associateRound(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return round1;
@@ -586,16 +586,16 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 10:
                 return round10;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
     }
 
     /**
      * gets the corresponding image view for the created round die
      * @param index round die number
-     * @return
+     * @return round die image view
      */
-    private ImageView associateRoundDie(int index) {
+    private ImageView associateRoundDie(int index) throws AppViewException {
         switch (index) {
             case 0:
                 return roundDie1;
@@ -616,7 +616,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 8:
                 return roundDie9;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -624,9 +624,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     /**
      * gets the corresponding name label for the player created
      * @param index player number
-     * @return
+     * @return name label
      */
-    private Label associateNameLabel(int index) {
+    private Label associateNameLabel(int index) throws AppViewException{
         switch (index) {
             case 2:
                 return player2Name;
@@ -635,19 +635,17 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             case 4:
                 return player4Name;
             default:
-                return null;
+                throw new AppViewException(FXGuiConstant.LABEL_EXCEPTION_MESSAGE);
         }
 
     }
 
-    //Restituiscono l'oggetto della view in base al bottone selezionato
-
     /**
      * based on the clicked image view, gets the correponding cell view
      * @param source image view clicked
-     * @return
+     * @return cell view
      */
-    private CellView retrieveCell(Object source) {
+    private CellView retrieveCell(Object source) throws AppViewException{
         WindowView windowView = matchView.retrieveThisPlayer(guiView.getUserName()).getWindow();
 
         if (source.equals(player1Position11)) return windowView.getCells()[0][0];
@@ -671,15 +669,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if (source.equals(player1Position44)) return windowView.getCells()[3][3];
         if (source.equals(player1Position45)) return windowView.getCells()[3][4];
 
-        return null;
+        throw new AppViewException(FXGuiConstant.CELL_EXCEPTION_MESSAGE);
     }
 
     /**
      * based on the clicked image view, gets the corresponding die view
      * @param source image view clicked
-     * @return
+     * @return die view
      */
-    private DieView retrieveDie(Object source) {
+    private DieView retrieveDie(Object source) throws AppViewException{
         if (source.equals(d1)) return matchView.getDice().get(0);
         if (source.equals(d2)) return matchView.getDice().get(1);
         if (source.equals(d3)) return matchView.getDice().get(2);
@@ -690,27 +688,27 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if (source.equals(d8)) return matchView.getDice().get(7);
         if (source.equals(d9)) return matchView.getDice().get(8);
 
-        return null;
+        throw new AppViewException(FXGuiConstant.DIE_EXCEPTION_MESSAGE);
     }
 
     /**
      * based on the clicked image view, get the corresponding tool card
      * @param source tool card clicked
-     * @return
+     * @return tool card view
      */
-    private ToolCardView retrieveToolCard(Object source) {
+    private ToolCardView retrieveToolCard(Object source) throws AppViewException{
         if (source.equals(toolCard1)) return matchView.getToolCards().get(0);
         if (source.equals(toolCard2)) return matchView.getToolCards().get(1);
         if (source.equals(toolCard3)) return matchView.getToolCards().get(2);
-        return null;
+        throw new AppViewException(FXGuiConstant.TOOLCARD_EXCEPTION_MESSAGE);
     }
 
     /**
      * based on the clicked image view, get the corresponding round die
      * @param source round die clicked
-     * @return
+     * @return round die view
      */
-    private DieView retrieveRoundDie(Object source) {
+    private DieView retrieveRoundDie(Object source) throws AppViewException{
         List<DieView> dice = matchView.getRounds().get(roundView-1).getDieViews();
         if (source.equals(roundDie1)) return dice.get(0);
         if (source.equals(roundDie2)) return dice.get(1);
@@ -721,7 +719,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if (source.equals(roundDie7)) return dice.get(6);
         if (source.equals(roundDie8)) return dice.get(7);
         if (source.equals(roundDie9)) return dice.get(8);
-        return null;
+        throw new AppViewException(FXGuiConstant.DIE_EXCEPTION_MESSAGE);
     }
 
     /**
@@ -738,7 +736,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         Parent root = loader.load();
         FXWindowChoiceMenu choiceMenu = loader.getController();
         choiceMenu.setGuiMultiplayerApp(this);
-        choiceMenu.initializeMenu(multiPlayerMatch);;
+        choiceMenu.initializeMenu(multiPlayerMatch);
         this.stage = new Stage();
         setScene(root);
     }
@@ -794,7 +792,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * initializes the match window creating a view object for every model object
      * @param match match of the model
      */
-    public void initializeMatchRoundsGui(MultiPlayerMatch match) {
+    private void initializeMatchRoundsGui(MultiPlayerMatch match) throws AppViewException{
         initializeDice();
         roundDice.setVisible(false);
         console.setEditable(false);
@@ -865,7 +863,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * determines the move to make when a die is clicked based on the current situation
      * @param mouseEvent mouse event
      */
-    public void onDieClick(MouseEvent mouseEvent){
+    public void onDieClick(MouseEvent mouseEvent) throws AppViewException{
 
         if (!this.multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())) {
             return;
@@ -875,7 +873,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
         if(choice){
-            console.setText("devi prima compiere una scelta");
+            console.setText(FXGuiConstant.CHOICE_MESSAGE);
             return;
         }
 
@@ -885,12 +883,17 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             if (matchView.getSelectedToolCard() != null) {
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
                 if (matchView.draftPoolToolCards().contains(name)) {
-                    if (name.equals("taglierina circolare")) {
+                    if (name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
                         matchView.getInput().setChoosenDie(selectedDie.getDie());
-                        selectedDie.getImageView().getStyleClass().add("selected");
+                        selectedDie.getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                         this.console.setText("scegli un dado del tracciato dei round");
                     } else {
-                        matchView.getInput().setChoosenDie(selectedDie.getDie());
+                        for(DieView dieView : matchView.getDice()) {
+                            if(dieView.getDie().getColor().equals(selectedDie.getDie().getColor()) && dieView.getDie().getShade() == selectedDie.getDie().getShade()){
+                                matchView.getInput().setChoosenDie(dieView.getDie());
+                                break;
+                            }
+                        }
                         try {
                             guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                         } catch (RemoteException e) {
@@ -903,19 +906,18 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
             } else {
                 if(matchView.getSelectedDie() != null){
-                    matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+                    matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                 }
                 matchView.setSelectedDie(selectedDie);
-                matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                matchView.getSelectedDie().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                 this.console.setText("hai selezionato un dado ");
 
             }
 
         } else {
             this.console.setText("hai deselezionato un dado ");
-            matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+            matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             matchView.setSelectedDie(null);
-            return;
         }
     }
 
@@ -923,12 +925,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * determines the move to make when a cell is clicked based on the current situation
      * @param mouseEvent mouse event
      */
-    public void onCellClick(MouseEvent mouseEvent){
+    public void onCellClick(MouseEvent mouseEvent)throws AppViewException{
         if(!multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
         if(choice){
-            console.setText("devi prima compiere una scelta");
+            console.setText(FXGuiConstant.CHOICE_MESSAGE);
             return;
         }
 
@@ -939,9 +941,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 toPlace = false;
                 for(DieView dieView : matchView.getDice()){
                     if(dieView.getDie().getColor().equals(matchView.getSelectedDie().getDie().getColor()) && dieView.getDie().getShade() == matchView.getSelectedDie().getDie().getShade()){
-                        matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+                        matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                         matchView.setSelectedDie(dieView);
-                        matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                        matchView.getSelectedDie().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                         break;
                     }
                 }
@@ -950,7 +952,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 } catch (RemoteException e) {
                     console.setText(e.getMessage());
                 }
-                return;
             } else {
                 if(matchView.getSelectedToolCard() != null) {
                     if (matchView.getInput().getOriginCell1() != null) {
@@ -959,15 +960,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                             if(name.equals("lathekin") || twoMoves) {
                                 if(matchView.getInput().getDestinationCell1() == null) {
                                     matchView.getInput().setDestinationCell1(selectedCell.getCell());
-                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                                     console.setText("prima cella di destinazione selezionata");
                                     return;
                                 }else{
                                     matchView.getInput().setDestinationCell2(selectedCell.getCell());
-                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                                 }
                             }else{
-                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                                 matchView.getInput().setDestinationCell1(selectedCell.getCell());
                             }
                             try {
@@ -987,19 +988,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     if(name.equals("lathekin") || twoMoves) {
                         if(matchView.getInput().getDestinationCell1() != null) {
                             if(matchView.getInput().getOriginCell2() != null){
-                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                             }
                             matchView.getInput().setOriginCell2(selectedCell.getCell());
-                            selectedCell.getImageView().getStyleClass().add("selected");
+                            selectedCell.getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                             console.setText("seconda cella di partenza selezionata");
                             return;
                         }
                     }
                     if(matchView.getInput().getOriginCell1() != null){
-                        matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                        matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                     }
                     matchView.getInput().setOriginCell1(selectedCell.getCell());
-                    selectedCell.getImageView().getStyleClass().add("selected");
+                    selectedCell.getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                     console.setText("prima cella di partenza selezionata");
                 }
             } else {
@@ -1014,7 +1015,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * determines the move to make when a tool card is clicked based on the current situation
      * @param mouseEvent mouse event
      */
-    public void onToolCardClick(MouseEvent mouseEvent){
+    public void onToolCardClick(MouseEvent mouseEvent) throws AppViewException{
         if(!multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
@@ -1023,7 +1024,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             return;
         }
         if(choice){
-            console.setText("devi prima compiere una scelta");
+            console.setText(FXGuiConstant.CHOICE_MESSAGE);
             return;
         }
 
@@ -1031,13 +1032,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
         if(selectedToolCard != matchView.getSelectedToolCard()){
             if(matchView.getSelectedToolCard() != null){
-                matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+                matchView.getSelectedToolCard().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }
             matchView.setSelectedToolCard(selectedToolCard);
             console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
-            matchView.getSelectedToolCard().getImageView().getStyleClass().add("selected");
+            matchView.getSelectedToolCard().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
             if(matchView.getSelectedDie() != null) {
-                matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+                matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                 matchView.setSelectedDie(null);
             }
             matchView.setInput(new ToolCardInput(null, null, null,null, multiPlayerMatch.getTurnHandler().getRound(),null,null,null,0,false));
@@ -1149,13 +1150,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }else{
             console.setText("hai deselezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
-            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             matchView.setSelectedToolCard(null);
             if(matchView.getInput().getOriginCell1() != null) {
-                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }
             if(matchView.getInput().getOriginCell2() != null){
-                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }
             matchView.setInput(null);
         }
@@ -1166,7 +1167,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * determines the move to make when a round die is clicked based on the current situation
      * @param mouseEvent mouse event
      */
-    public void onRoundDieClick(MouseEvent mouseEvent){
+    public void onRoundDieClick(MouseEvent mouseEvent) throws AppViewException{
         if(!this.multiPlayerMatch.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             return;
         }
@@ -1174,9 +1175,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         DieView selectedRoundDie = retrieveRoundDie(mouseEvent.getSource());
         if(matchView.getSelectedToolCard() != null){
             String name = matchView.getSelectedToolCard().getToolCard().getName();
-            if(name.equals("taglierina circolare")) {
+            if(name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
                 if(matchView.getInput().getChoosenDie() != null) {
-                    matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove("selected");
+                    matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                     matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
                     matchView.getInput().setRoundTrackRound(roundView);
                     try {
@@ -1206,12 +1207,16 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * based on the round's image view clicked, shows that round's dice
      * @param round round chosen
      */
-    private void observeRoundDice(int round){
+    private void observeRoundDice(int round) throws AppViewException{
         roundView = round;
         for(DieView dieView : matchView.getRounds().get(round-1).getDieViews()){
            int index = matchView.getRounds().get(round-1).getDieViews().indexOf(dieView);
-           associateRoundDie(index).setImage(dieView.imagePath());
-           associateRoundDie(index).setVisible(true);
+            try {
+                associateRoundDie(index).setImage(dieView.imagePath());
+            } catch (AppViewException e) {
+                e.printStackTrace();
+            }
+            associateRoundDie(index).setVisible(true);
         }
         int i = matchView.getRounds().get(round-1).getDieViews().size();
         while(i<9){
@@ -1248,7 +1253,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * gets the corresponding image view for the clicked round
      * @param mouseEvent click event
      */
-    public void roundTrackDice(MouseEvent mouseEvent){
+    public void roundTrackDice(MouseEvent mouseEvent) throws AppViewException{
         Object source = mouseEvent.getSource();
         roundDice.setVisible(true);
         if(source.equals(round1)) observeRoundDice(1);
@@ -1370,22 +1375,22 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      */
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
         if(matchView.getSelectedDie() != null) {
-            matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+            matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             matchView.setSelectedDie(null);
         }
         if(matchView.getSelectedToolCard() != null) {
-            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             matchView.setSelectedToolCard(null);
         }
         if(matchView.getInput() != null) {
             if (matchView.getInput().getChoosenDie() != null) {
-                matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove("selected");
+                matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }
             if (matchView.getInput().getOriginCell2() != null) {
-                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove("selected");
+                matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }else {
                 if (matchView.getInput().getOriginCell1() != null) {
-                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove("selected");
+                    matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                 }
             }
             if (choice) {
@@ -1417,7 +1422,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getCell().setDie(dieView.getDie());
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getImageView().setImage(dieView.getImageView().getImage());
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
-             matchView.getSelectedDie().getImageView().getStyleClass().remove("selected");
+             matchView.getSelectedDie().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
              matchView.setSelectedDie(null);
         }
         initializeDice();
@@ -1444,14 +1449,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 for (DieView dieView : matchView.getDice()) {
                     if (dieView.getDie() == matchView.getInput().getChoosenDie()) {
                         matchView.setSelectedDie(dieView);
-                        matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                        matchView.getSelectedDie().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                         toPlace = true;
                     }
 
                 }
             }
             favorTokens.setText("" + match.getTurnPlayer().getFavorTokens());
-            matchView.getSelectedToolCard().getImageView().getStyleClass().remove("selected");
+            matchView.getSelectedToolCard().getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             matchView.setSelectedToolCard(null);
             matchView.setInput(null);
             twoMoves = false;
@@ -1464,10 +1469,10 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             dieView.getImageView().setVisible(true);
         }
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
-            if(toolCard.getName().equals("diluente per pasta salda") || toolCard.getName().equals("taglierina circolare")) {
+            if(toolCard.getName().equals("diluente per pasta salda") || toolCard.getName().equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
                 DieView dieView = matchView.getDice().get(match.getMatchDice().getDraftPool().size() - 1);
                 matchView.setSelectedDie(dieView);
-                matchView.getSelectedDie().getImageView().getStyleClass().add("selected");
+                matchView.getSelectedDie().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                 toPlace = true;
             }
         }
@@ -1485,7 +1490,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
 
-        if(toolCard.getName().equals("taglierina circolare")){
+        if(toolCard.getName().equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)){
             for (RoundView roundView : matchView.getRounds()){
                 if(roundView.getRound() < match.getTurnHandler().getRound()){
                     for (DieView dieView : roundView.getDieViews()){

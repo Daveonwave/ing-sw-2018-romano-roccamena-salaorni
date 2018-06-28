@@ -1,10 +1,15 @@
 package gui.objects;
 
+import gui.FXGuiConstant;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import mvc.exceptions.AppViewException;
 import mvc.model.objects.Die;
 import mvc.model.objects.enums.DieColor;
 
+/**
+ * view of a die
+ */
 public class DieView extends ObjectView {
     //Veduta di un dado
 
@@ -15,7 +20,11 @@ public class DieView extends ObjectView {
         super(imageView);
         this.die = die;
         if(imageView != null) {
-            this.getImageView().setImage(imagePath());
+            try {
+                this.getImageView().setImage(imagePath());
+            } catch (AppViewException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -31,7 +40,7 @@ public class DieView extends ObjectView {
      * gets the corresponding image of the die base on its color and shade
      * @return image of the die
      */
-    public Image imagePath() {
+    public Image imagePath() throws AppViewException{
         String path = "images/dice/";
         switch (this.die.getShade()){
             case 1:
@@ -81,6 +90,7 @@ public class DieView extends ObjectView {
                 if(die.getColor().equals(DieColor.GREEN)) path += "green6.png";
                 if(die.getColor().equals(DieColor.RED)) path += "red6.png";
                 break;
+            default: throw new AppViewException(FXGuiConstant.IMAGE_EXCEPTION_MESSAGE);
             }
             return new Image(getClass().getResourceAsStream(path));
         }

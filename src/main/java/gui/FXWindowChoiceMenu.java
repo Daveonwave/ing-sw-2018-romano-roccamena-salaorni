@@ -3,14 +3,13 @@ package gui;
 import gui.objects.ObjectiveCardView;
 import gui.objects.WindowView;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+import mvc.exceptions.AppViewException;
 import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 import mvc.model.objects.Window;
@@ -19,6 +18,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * controller class for the window choice scene
+ */
 public class FXWindowChoiceMenu {
 
     private GuiMultiplayerApp guiMultiplayerApp;
@@ -63,9 +65,6 @@ public class FXWindowChoiceMenu {
     public void setWindows(List<WindowView> windows) {
         this.windows = windows;
     }
-    public GuiMultiplayerApp getGuiMultiplayerApp() {
-        return guiMultiplayerApp;
-    }
     public List<WindowView> getWindows() {
         return windows;
     }
@@ -75,7 +74,7 @@ public class FXWindowChoiceMenu {
      * @param index window number
      * @return image view of the right window
      */
-    private ImageView associateWindows(int index) {
+    private ImageView associateWindows(int index) throws AppViewException{
         switch (index) {
             case 1:
                 return choiceWindow1;
@@ -85,8 +84,7 @@ public class FXWindowChoiceMenu {
                 return choiceWindow3;
             case 4:
                 return choiceWindow4;
-            default:
-                return null;
+            default: throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
 
     }
@@ -96,7 +94,7 @@ public class FXWindowChoiceMenu {
      * @param index window number
      * @return image view of the right window
      */
-    private Label associateWindowName(int index){
+    private Label associateWindowName(int index) throws AppViewException{
         switch (index){
             case 0:
                 return windowName1;
@@ -106,8 +104,8 @@ public class FXWindowChoiceMenu {
                 return windowName3;
             case 3:
                 return windowName4;
-            default:
-                return null;
+            default: throw new AppViewException(FXGuiConstant.LABEL_EXCEPTION_MESSAGE);
+
         }
     }
 
@@ -116,7 +114,7 @@ public class FXWindowChoiceMenu {
      * @param index window number
      * @return image view of the right difficulty
      */
-    private ImageView associateWindowDifficulty(int index){
+    private ImageView associateWindowDifficulty(int index) throws AppViewException{
         switch (index){
             case 0:
                 return windowDifficulty1;
@@ -126,8 +124,7 @@ public class FXWindowChoiceMenu {
                 return windowDifficulty3;
             case 3:
                 return windowDifficulty4;
-            default:
-                return null;
+            default: throw new AppViewException(FXGuiConstant.IMAGE_VIEW_EXCEPTION_MESSAGE);
         }
     }
 
@@ -136,7 +133,7 @@ public class FXWindowChoiceMenu {
      * @param difficulty difficulty of the window
      * @return image of the right difficulty
      */
-    private Image applyDifficultyImage(int difficulty){
+    private Image applyDifficultyImage(int difficulty) throws AppViewException{
         String path;
         switch (difficulty){
             case 3:
@@ -151,7 +148,7 @@ public class FXWindowChoiceMenu {
             case 6:
                 path = "objects/images/favor tokens/favor tokens 6.png";
                 break;
-            default: return null;
+            default: throw new AppViewException(FXGuiConstant.IMAGE_EXCEPTION_MESSAGE);
         }
 
         return new Image(getClass().getResourceAsStream(path));
@@ -162,19 +159,19 @@ public class FXWindowChoiceMenu {
      * @param source source of the click event
      * @return window view
      */
-    private WindowView retrieveWindows(Object source) {
+    private WindowView retrieveWindows(Object source) throws AppViewException{
         if (source.equals(choiceWindow1)) return windows.get(0);
         if (source.equals(choiceWindow2)) return windows.get(1);
         if (source.equals(choiceWindow3)) return windows.get(2);
         if (source.equals(choiceWindow4)) return windows.get(3);
-        return null;
+        throw new AppViewException(FXGuiConstant.WINDOW_EXCEPTION_MESSAGE);
     }
 
     /**
      * initialize the scene for the starting window choice
      * @param match match of the model
      */
-    public void initializeMenu(MultiPlayerMatch match){
+    public void initializeMenu(MultiPlayerMatch match) throws AppViewException{
         for(Player player : match.getPlayers()){
             String name = player.getUser().getName();
 

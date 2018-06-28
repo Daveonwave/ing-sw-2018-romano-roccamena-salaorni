@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * class that contains all the view objcets that a player uses during a match
+ * class that contains all the view objects that a player uses during a match
  */
 public class MatchView {
 

@@ -4,7 +4,9 @@ import mvc.model.objects.Player;
 
 import java.io.Serializable;
 
-
+/**
+ * view of a player
+ */
 public class PlayerView implements Serializable{
 
     private WindowView window;

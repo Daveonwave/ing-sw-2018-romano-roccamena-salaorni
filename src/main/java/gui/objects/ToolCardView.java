@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.ToolCard;
 
+/**
+ * view of a tool card
+ */
 public class ToolCardView extends ObjectView{
 
     private ToolCard toolCard;

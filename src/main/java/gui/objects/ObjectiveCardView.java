@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mvc.model.objects.Card;
 
+/**
+ * view of an objective card
+ */
 public class ObjectiveCardView extends ObjectView {
 
     private Card card;
