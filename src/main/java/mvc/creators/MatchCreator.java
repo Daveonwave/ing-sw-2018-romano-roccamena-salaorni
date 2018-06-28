@@ -91,8 +91,8 @@ public class MatchCreator {
         }
 
         //TODO: update serializzazione
-        List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
-        //List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
+        //List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
+        List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
 
         while (countExtracted <= count) {
             int index = RandomHandler.retrieveRandom().nextInt(cards.size());
