@@ -16,11 +16,11 @@ public class ChooseWindowRequest extends ClientRequest {
     private final Window window;
 
     /**
-     * Constructor of a specific client request
+     * Constructor of a specific client sendRequest
      * @param tokenUser id of the user
      * @param tokenMatch id of the match
      * @param window window chosen
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public ChooseWindowRequest(String tokenUser, String tokenMatch, Window window, int idAction) {
         super(idAction);
@@ -41,7 +41,7 @@ public class ChooseWindowRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

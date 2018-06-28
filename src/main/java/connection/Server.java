@@ -4,7 +4,7 @@ import config.ConfigLoader;
 import config.PortsConfig;
 import config.TimerConfig;
 import connection.rmi.RmiServer;
-import connection.sockets.SocketServer;
+import connection.sockets.serverside.SocketServer;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;

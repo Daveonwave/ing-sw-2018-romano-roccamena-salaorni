@@ -368,7 +368,7 @@ public class AppController implements AppControllerStub {
     }
 
     /**
-     * Cancel the partecipation request of a logged player to a new multiplayer match
+     * Cancel the partecipation sendRequest of a logged player to a new multiplayer match
      * @param tokenUser User's token
      * @throws RemoteException AppControllerException as a callback error signal
      */

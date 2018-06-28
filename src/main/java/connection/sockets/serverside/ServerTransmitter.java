@@ -1,6 +1,7 @@
-package connection.sockets;
+package connection.sockets.serverside;
 
 
+import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
@@ -29,7 +30,7 @@ public class ServerTransmitter implements Runnable {
      * Class constructor
      *
      * @param socket communication gate
-     * @param clientRequestHandler handler of the client request
+     * @param clientRequestHandler handler of the client sendRequest
      * @throws IOException
      */
     public ServerTransmitter(Socket socket, ClientRequestHandler clientRequestHandler) throws IOException {
@@ -61,7 +62,7 @@ public class ServerTransmitter implements Runnable {
     }
 
     /**
-     * Handles the comunication between client and server. It is always listening for some request from the client
+     * Handles the comunication between client and server. It is always listening for some sendRequest from the client
      * and, when it receives one, send it to the clientRequestHandle to obtain a response (excption or not).
      */
     public void run() {
@@ -107,7 +108,7 @@ public class ServerTransmitter implements Runnable {
     }
 
     /**
-     * Receives a response to a request
+     * Receives a response to a sent request
      * @return response
      */
     public ServerResponse getResponse(){
@@ -115,8 +116,8 @@ public class ServerTransmitter implements Runnable {
     }
 
     /**
-     * Make a request
-     * @param request send request to be write on the outStream
+     * Make a sendRequest
+     * @param request send sendRequest to be write on the outStream
      */
     public void request(ServerRequest request){
         IOSupport.requestToClient(out, request);

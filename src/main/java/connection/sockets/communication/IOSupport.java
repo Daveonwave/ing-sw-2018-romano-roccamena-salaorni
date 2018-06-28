@@ -1,4 +1,4 @@
-package connection.sockets;
+package connection.sockets.communication;
 
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
@@ -131,8 +131,8 @@ public class IOSupport {
         Object response = null;
 
         try {
-            response = (ServerResponse) inputStream.readObject();
-            System.out.println("");
+            response = inputStream.readObject();
+            System.out.println("from server");
 
         } catch (IOException ioe) {
             ioe.printStackTrace();

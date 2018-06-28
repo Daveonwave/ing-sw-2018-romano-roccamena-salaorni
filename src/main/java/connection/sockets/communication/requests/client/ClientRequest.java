@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
- * Generic client request
+ * Generic client sendRequest
  */
 public abstract class ClientRequest implements Serializable {
     //Richiesta del client
@@ -15,7 +15,7 @@ public abstract class ClientRequest implements Serializable {
     private int idAction;
 
     /**
-     * Generic client request constructor
+     * Generic client sendRequest constructor
      * @param idAction
      */
     protected ClientRequest(int idAction) {
@@ -32,7 +32,7 @@ public abstract class ClientRequest implements Serializable {
     }
 
     /**
-     * Handle the request thanks to a specific handler
+     * Handle the sendRequest thanks to a specific handler
      * @param handler ClientRequestHandler in this case
      * @return a response for client
      * @throws RemoteException

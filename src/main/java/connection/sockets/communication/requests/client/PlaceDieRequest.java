@@ -18,12 +18,12 @@ public class PlaceDieRequest extends ClientRequest {
     private final Die die;
 
     /**
-     * Constructor of the specific request
+     * Constructor of the specific sendRequest
      * @param tokenUser id of the user
      * @param tokenMatch id of the match
      * @param cell cell selected
      * @param die die selected
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public PlaceDieRequest(String tokenUser, String tokenMatch, Cell cell, Die die, int idAction) {
         super(idAction);
@@ -48,7 +48,7 @@ public class PlaceDieRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

@@ -4,7 +4,7 @@ import config.AddressConfig;
 import config.ConfigLoader;
 import config.PortsConfig;
 import connection.rmi.RmiClient;
-import connection.sockets.SocketClient;
+import connection.sockets.clientside.SocketClient;
 import mvc.stubs.AppControllerStub;
 
 import java.io.IOException;

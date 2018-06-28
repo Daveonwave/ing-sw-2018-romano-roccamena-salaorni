@@ -1,9 +1,8 @@
-package connection.sockets;
+package connection.sockets.clientside;
 
 import config.AddressConfig;
 import config.PortsConfig;
-import connection.ServerInfo;
-import connection.sockets.communication.ClientActionHandler;
+import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
 
@@ -23,6 +22,8 @@ public class SocketClient {
     private ClientTransmitter clientTransmitter;
     private ClientActionHandler clientActionHandler;
 
+    private ResponseRegistry responseRegistry;
+
     //Getter
     public ObjectInputStream getIn() {
         return in;
@@ -39,6 +40,9 @@ public class SocketClient {
     public ClientActionHandler getClientActionHandler() {
         return clientActionHandler;
     }
+    public ResponseRegistry getResponseRegistry() {
+        return responseRegistry;
+    }
 
     //Inizializza il client
     public void init(AddressConfig addressConfig, PortsConfig portsConfig) throws IOException{
@@ -49,9 +53,11 @@ public class SocketClient {
         clientActionHandler = new ClientActionHandler();
         clientTransmitter = new ClientTransmitter(this, clientActionHandler);
         controllerProxy = new ControllerProxy(this, clientActionHandler);
+        responseRegistry = new ResponseRegistry();
 
         clientTransmitter.setRunning(true);
-        new Thread(clientTransmitter);
+        //clientTransmitter.run();
+        new Thread(clientTransmitter).start();
     }
 
     //Chiude il client
@@ -63,19 +69,19 @@ public class SocketClient {
     }
 
     //Ottiene risposta del server
-    public ClientResponse getResponse(){
-        return IOSupport.responseFromServer(in);
+    public ClientResponse getResponse(int idAction){
+        return responseRegistry.retrieveResponse(idAction);
     }
 
     //Invia richiesta al server
-    public void request(ClientRequest request){
+    public void sendRequest(ClientRequest request){
         IOSupport.requestToServer(out, request);
     }
 
 
     //Map (int, idResponse)
     //Altra classe sincronizzata
-    //Rischieste con id e response con id uguale
+    //Richieste con id e response con id uguale
     //Wait e notify
     //Retrieve response con wait
     //Search and head della map

@@ -18,12 +18,12 @@ public class UseToolCardRequest extends ClientRequest {
     private final ToolCard toolCard;
 
     /**
-     * Constructor of the specific client request
+     * Constructor of the specific client sendRequest
      * @param tokenUser id of the user
      * @param tokenMatch id of the match
      * @param input input of the tool card
      * @param toolCard selected tool card
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public UseToolCardRequest(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard, int idAction) {
         super(idAction);
@@ -48,7 +48,7 @@ public class UseToolCardRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

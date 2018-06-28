@@ -1,8 +1,7 @@
-package connection.sockets;
+package connection.sockets.serverside;
 
 import config.PortsConfig;
 import config.TimerConfig;
-import connection.sockets.communication.ServerActionHandler;
 import mvc.controller.AppController;
 import mvc.stubs.AppControllerStub;
 

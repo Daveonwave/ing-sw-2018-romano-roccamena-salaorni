@@ -14,10 +14,10 @@ public class LeaveMatchRequest extends ClientRequest {
     private final String tokenMatch;
 
     /**
-     * Constructor of a specific client request
+     * Constructor of a specific client sendRequest
      * @param tokenUser id of the user
      * @param tokenMatch id of the match
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public LeaveMatchRequest(String tokenUser, String tokenMatch, int idAction) {
         super(idAction);
@@ -34,7 +34,7 @@ public class LeaveMatchRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

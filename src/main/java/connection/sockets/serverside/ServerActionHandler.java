@@ -1,6 +1,6 @@
-package connection.sockets.communication;
+package connection.sockets.serverside;
 
-import connection.sockets.ViewProxy;
+import connection.sockets.serverside.ViewProxy;
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.handlers.ServerResponseHandler;
 import connection.sockets.communication.rensponses.client.*;
@@ -35,7 +35,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
 
     //Richieste operazioni utente
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request LoginRequest
@@ -57,7 +57,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
        return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request LogoutRequest
@@ -80,7 +80,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
 
     //Richieste attività multiplayer
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request JoinMatchRequest
@@ -101,7 +101,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request CancelJoinRequest
@@ -122,7 +122,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request LeaveMatchRequest
@@ -143,7 +143,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request RejoinMatchRequest
@@ -166,7 +166,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
 
     //Richiesta comandi multiplayer
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request ChooseWindowRequest
@@ -187,7 +187,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request PlaceDieRequest
@@ -208,7 +208,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request UseToolCardRequest
@@ -229,7 +229,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         return response;
     }
     /**
-     * Handles the request from client calling the controller and forwarding the request. If the request is completed
+     * Handles the sendRequest from client calling the controller and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the client setting the exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request EndTurnRequest

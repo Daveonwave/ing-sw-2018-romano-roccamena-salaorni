@@ -1,4 +1,4 @@
-package connection.sockets.communication;
+package connection.sockets.clientside;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
 import connection.sockets.communication.handlers.ServerRequestHandler;
@@ -38,7 +38,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
     //Richieste osservazione multiplayer
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnPlayerLeaveMatchRequest
@@ -59,7 +59,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return  response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnPlayerLeaveRejoinRequest
@@ -81,7 +81,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
     }
 
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnMatchStartRequest
@@ -102,7 +102,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnTurnStartRequest
@@ -123,7 +123,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnTurnEndRequest
@@ -144,7 +144,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnPLaceDieRequest
@@ -165,7 +165,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnChooseWindowRequest
@@ -186,7 +186,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnUseToolCardRequest
@@ -207,7 +207,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnGetPointsRequest
@@ -228,7 +228,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request OnMatchEndRequest
@@ -251,7 +251,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
 
     //Richieste del controller
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request RespondErrorRequest
@@ -272,7 +272,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         return response;
     }
     /**
-     * Handles the request from server calling the view and forwarding the request. If the request is completed
+     * Handles the sendRequest from server calling the view and forwarding the sendRequest. If the sendRequest is completed
      * correctly, returns the relative response to the server setting exceptionFlag false, otherwise set the
      * response exceptionFlag true and wraps the exception inside the response.
      * @param request RespondAckRequest
@@ -305,7 +305,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * @param response LoginResponse
      * @return String (userToken)
      * @throws RemoteException
-     * Responses to request of user operation.
+     * Responses to sendRequest of user operation.
      */
     public String handleAction(LoginResponse response) throws RemoteException {
 
@@ -319,7 +319,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response LogoutResponse
      * * @throws RemoteException
-     * Responses to request of user operation
+     * Responses to sendRequest of user operation
      */
     public void handleAction(LogoutResponse response) throws RemoteException {
 
@@ -334,7 +334,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response JoinMatchResponse
      * * @throws RemoteException
-     * Responses to request of user activity
+     * Responses to sendRequest of user activity
      */
     public void handleAction(JoinMatchResponse response) throws RemoteException {
 
@@ -347,7 +347,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response RejoinMatchResponse
      * * @throws RemoteException
-     * Responses to request of user activity
+     * Responses to sendRequest of user activity
      */
     public void handleAction(RejoinMatchResponse response) throws RemoteException {
 
@@ -360,7 +360,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response LeaveMatchResponse
      * * @throws RemoteException
-     * Responses to request of user activity
+     * Responses to sendRequest of user activity
      */
     public void handleAction(LeaveMatchResponse response) throws RemoteException {
 
@@ -373,7 +373,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response CancelJoinMatchResponse
      * * @throws RemoteException
-     * Responses to request of user activity
+     * Responses to sendRequest of user activity
      */
     public void handleAction(CancelJoinMatchResponse response) throws RemoteException {
 
@@ -388,7 +388,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response ChooseWindowResponse
      * * @throws RemoteException
-     * Responses to request of user command
+     * Responses to sendRequest of user command
      */
     public void handleAction(ChooseWindowResponse response) throws RemoteException {
 
@@ -401,7 +401,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response PlaceDieResponse
      * * @throws RemoteException
-     * Responses to request of user command
+     * Responses to sendRequest of user command
      */
     public void handleAction(PlaceDieResponse response) throws RemoteException {
 
@@ -414,7 +414,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response EndTurnResponse
      * * @throws RemoteException
-     * Responses to request of user command
+     * Responses to sendRequest of user command
      */
     public void handleAction(EndTurnResponse response) throws RemoteException {
 
@@ -427,7 +427,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      * if it is, throws the wrapped exception
      * @param response UseToolCardResponse
      * * @throws RemoteException
-     * Responses to request of user command
+     * Responses to sendRequest of user command
      */
     public void handleAction(UseToolCardResponse response) throws RemoteException {
 

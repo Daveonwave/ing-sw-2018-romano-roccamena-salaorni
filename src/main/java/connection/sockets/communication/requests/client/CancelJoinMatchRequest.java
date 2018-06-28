@@ -13,9 +13,9 @@ public class CancelJoinMatchRequest extends ClientRequest {
     private final String tokenUser;
 
     /**
-     * Specific client request constructor
+     * Specific client sendRequest constructor
      * @param tokenUser id of the user
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public CancelJoinMatchRequest(String tokenUser, int idAction) {
         super(idAction);
@@ -28,7 +28,7 @@ public class CancelJoinMatchRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

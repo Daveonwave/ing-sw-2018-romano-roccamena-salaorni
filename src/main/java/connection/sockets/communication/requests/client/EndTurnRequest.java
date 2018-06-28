@@ -14,10 +14,10 @@ public class EndTurnRequest extends ClientRequest {
     private final String userMatch;
 
     /**
-     * Costructor of the specific request
+     * Costructor of the specific sendRequest
      * @param userToken id of the user
      * @param userMatch id of the match
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public EndTurnRequest(String userToken, String userMatch, int idAction) {
         super(idAction);
@@ -34,7 +34,7 @@ public class EndTurnRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException

@@ -15,10 +15,10 @@ public class LoginRequest extends ClientRequest {
     private final AppViewStub view;
 
     /**
-     * Constructor of a specific client request
+     * Constructor of a specific client sendRequest
      * @param name name of the user
      * @param view view related with user
-     * @param idAction id of the request
+     * @param idAction id of the sendRequest
      */
     public LoginRequest(String name, AppViewStub view, int idAction) {
         super(idAction);
@@ -33,7 +33,7 @@ public class LoginRequest extends ClientRequest {
     }
 
     /**
-     * Handle a specific client request
+     * Handle a specific client sendRequest
      * @param handler ClientRequestHandler in this case
      * @return the response to client
      * @throws RemoteException
