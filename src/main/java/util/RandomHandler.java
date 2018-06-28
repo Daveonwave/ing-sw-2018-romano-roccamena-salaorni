@@ -14,14 +14,14 @@ public class RandomHandler {
      * Create a Random object given a seed
      * @param seed Seed value
      */
-    public synchronized static void createRandom(long seed) {
+    public static synchronized void createRandom(long seed) {
         random = new Random(seed);
     }
 
     /**
      * Create a Random object given default initialization
      */
-    public synchronized static void createRandom() {
+    public static synchronized void createRandom() {
         random = new Random();
     }
 
@@ -29,7 +29,7 @@ public class RandomHandler {
      * Retrieve Random object created
      * @return
      */
-    public synchronized static Random retrieveRandom() {
+    public static synchronized Random retrieveRandom() {
         return random;
     }
 

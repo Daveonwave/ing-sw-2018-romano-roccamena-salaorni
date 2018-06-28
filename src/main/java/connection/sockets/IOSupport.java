@@ -127,4 +127,18 @@ public class IOSupport {
         return response;
     }
 
+    public static synchronized Object fromServer(ObjectInputStream inputStream){
+        Object response = null;
+
+        try {
+            response = (ServerResponse) inputStream.readObject();
+            System.out.println("");
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException cnfe){
+            cnfe.printStackTrace();
+        }
+        return response;
+    }
 }

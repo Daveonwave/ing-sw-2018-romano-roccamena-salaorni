@@ -7,15 +7,26 @@ import mvc.model.objects.Die;
 
 import java.rmi.RemoteException;
 
-public class PlaceDieRequest implements ClientRequest {
+/**
+ * Request for place die
+ */
+public class PlaceDieRequest extends ClientRequest {
 
     private final String tokenUser;
     private final String tokenMatch;
     private final Cell cell;
     private final Die die;
 
-    //Costruttori
-    public PlaceDieRequest(String tokenUser, String tokenMatch, Cell cell, Die die) {
+    /**
+     * Constructor of the specific request
+     * @param tokenUser id of the user
+     * @param tokenMatch id of the match
+     * @param cell cell selected
+     * @param die die selected
+     * @param idAction id of the request
+     */
+    public PlaceDieRequest(String tokenUser, String tokenMatch, Cell cell, Die die, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
         this.tokenMatch = tokenMatch;
         this.cell = cell;
@@ -36,7 +47,12 @@ public class PlaceDieRequest implements ClientRequest {
         return die;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }

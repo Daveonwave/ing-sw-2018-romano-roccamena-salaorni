@@ -5,9 +5,24 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 
 import java.rmi.RemoteException;
 
-public class EndTurnResponse extends ExceptionResponse implements ClientResponse {
+/**
+ * Response of end turn
+ */
+public class EndTurnResponse extends ClientResponse {
 
-    @Override
+    /**
+     * Specific client response constructor
+     * @param idAction to make the action unambiguous
+     */
+    public EndTurnResponse(int idAction) {
+        super(idAction);
+    }
+
+    /**
+     * Handle this specific kind of response
+     * @param handler ServerActionHandler in this case
+     * @throws RemoteException
+     */
     public void handleAction(ClientResponseHandler handler) throws RemoteException {
         handler.handleAction(this);
     }

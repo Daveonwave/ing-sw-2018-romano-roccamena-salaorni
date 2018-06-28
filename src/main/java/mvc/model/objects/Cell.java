@@ -137,28 +137,28 @@ public class Cell implements Serializable {
      * @return
      */
     public boolean isNorthBorder() {
-        return row==0;
+        return row == 0;
     }
     /**
      * Asserts if the cell is located in windows's south border
      * @return
      */
     public boolean isSouthBorder() {
-        return row==GameConstants.WINDOW_ROWS_COUNT-1;
+        return row == GameConstants.WINDOW_ROWS_COUNT-1;
     }
     /**
      * Asserts if the cell is located in windows's west border
      * @return
      */
     public boolean isWestBorder() {
-        return column==0;
+        return column == 0;
     }
     /**
      * Asserts if the cell is located in windows's east border
      * @return
      */
     public boolean isEastBorder() {
-        return column==GameConstants.WINDOW_COLUMNS_COUNT-1;
+        return column == GameConstants.WINDOW_COLUMNS_COUNT-1;
     }
     /**
      * Asserts if the cell is located in windows's borders
@@ -238,7 +238,7 @@ public class Cell implements Serializable {
      */
     public void moveDie(Cell destination, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
-        if (die==null || destination.getDie()!=null)
+        if (die == null || destination.getDie() != null)
             throw new MatchException("impossibile muovere dado");
 
         //Esegue movimento

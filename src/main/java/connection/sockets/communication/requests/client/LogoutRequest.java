@@ -5,12 +5,20 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 
 import java.rmi.RemoteException;
 
-public class LogoutRequest implements ClientRequest {
+/**
+ * Request of logout
+ */
+public class LogoutRequest extends ClientRequest {
 
     private final String tokenUser;
 
-    //Costruttori
-    public LogoutRequest(String tokenUser) {
+    /**
+     * Constructor of a specific client request
+     * @param tokenUser id of the user
+     * @param idAction id of the request
+     */
+    public LogoutRequest(String tokenUser, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
     }
 
@@ -19,7 +27,12 @@ public class LogoutRequest implements ClientRequest {
         return tokenUser;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }

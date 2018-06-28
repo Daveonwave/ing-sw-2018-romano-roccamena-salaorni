@@ -73,4 +73,11 @@ public class SocketClient {
     }
 
 
+    //Map (int, idResponse)
+    //Altra classe sincronizzata
+    //Rischieste con id e response con id uguale
+    //Wait e notify
+    //Retrieve response con wait
+    //Search and head della map
+
 }

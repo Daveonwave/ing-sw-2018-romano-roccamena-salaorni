@@ -7,15 +7,26 @@ import mvc.model.objects.ToolCardInput;
 
 import java.rmi.RemoteException;
 
-public class UseToolCardRequest implements ClientRequest {
+/**
+ * Request for the usege of a tool card
+ */
+public class UseToolCardRequest extends ClientRequest {
 
     private final String tokenUser;
     private final String tokenMatch;
     private final ToolCardInput input;
     private final ToolCard toolCard;
 
-    //Costruttori
-    public UseToolCardRequest(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) {
+    /**
+     * Constructor of the specific client request
+     * @param tokenUser id of the user
+     * @param tokenMatch id of the match
+     * @param input input of the tool card
+     * @param toolCard selected tool card
+     * @param idAction id of the request
+     */
+    public UseToolCardRequest(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
         this.tokenMatch = tokenMatch;
         this.input = input;
@@ -36,7 +47,12 @@ public class UseToolCardRequest implements ClientRequest {
         return toolCard;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }

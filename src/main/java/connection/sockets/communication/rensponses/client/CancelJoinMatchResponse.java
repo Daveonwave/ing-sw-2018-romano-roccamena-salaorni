@@ -5,10 +5,25 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 
 import java.rmi.RemoteException;
 
-public class CancelJoinMatchResponse extends ExceptionResponse implements ClientResponse {
+/**
+ * Response of cancel while joining match
+ */
+public class CancelJoinMatchResponse extends ClientResponse {
 
-    @Override
-    public void handleAction(ClientResponseHandler handler) throws RemoteException {
+    /**
+     * Specific client response constructor
+     * @param idAction to make the action unambiguous
+     */
+    public CancelJoinMatchResponse(int idAction) {
+        super(idAction);
+    }
+
+    /**
+     * Handle the specific response
+     * @param handler ServerActionHandler in this case
+     * @throws RemoteException
+     */
+     public void handleAction(ClientResponseHandler handler) throws RemoteException {
         handler.handleAction(this);
     }
 }

@@ -6,14 +6,24 @@ import mvc.model.objects.Window;
 
 import java.rmi.RemoteException;
 
-public class ChooseWindowRequest implements ClientRequest {
+/**
+ * Request during the choice of windows
+ */
+public class ChooseWindowRequest extends ClientRequest {
 
     private final String tokenUser;
     private final String tokenMatch;
     private final Window window;
 
-    //Costruttori
-    public ChooseWindowRequest(String tokenUser, String tokenMatch, Window window) {
+    /**
+     * Constructor of a specific client request
+     * @param tokenUser id of the user
+     * @param tokenMatch id of the match
+     * @param window window chosen
+     * @param idAction id of the request
+     */
+    public ChooseWindowRequest(String tokenUser, String tokenMatch, Window window, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
         this.tokenMatch = tokenMatch;
         this.window = window;
@@ -30,7 +40,12 @@ public class ChooseWindowRequest implements ClientRequest {
         return window;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException { return handler.handleAction(this);}
 
 }

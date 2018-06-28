@@ -5,12 +5,20 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 
 import java.rmi.RemoteException;
 
-public class CancelJoinMatchRequest implements ClientRequest {
+/**
+ * Request of cancel during join match
+ */
+public class CancelJoinMatchRequest extends ClientRequest {
 
     private final String tokenUser;
 
-    //Costruttori
-    public CancelJoinMatchRequest(String tokenUser) {
+    /**
+     * Specific client request constructor
+     * @param tokenUser id of the user
+     * @param idAction id of the request
+     */
+    public CancelJoinMatchRequest(String tokenUser, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
     }
 
@@ -19,7 +27,12 @@ public class CancelJoinMatchRequest implements ClientRequest {
         return tokenUser;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }

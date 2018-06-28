@@ -3,6 +3,7 @@ package mvc.view;
 import mvc.stubs.AppControllerStub;
 import mvc.stubs.AppViewStub;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
@@ -73,7 +74,7 @@ public abstract class AppView implements AppViewStub, Serializable {
     }
 
     //Operazioni multiplayer
-    public synchronized void joinMatch() throws RemoteException {
+    public synchronized void joinMatch() throws IOException {
         controller.joinMatch(userToken);
     }
     public synchronized void cancelJoinMatch() throws RemoteException {

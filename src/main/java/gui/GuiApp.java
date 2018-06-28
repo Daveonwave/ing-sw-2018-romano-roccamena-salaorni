@@ -237,7 +237,7 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(true);
         multiplayerButton.setDisable(true);
     }
-    public void onMultiplayerClicked(MouseEvent event) {
+    public void onMultiplayerClicked(MouseEvent event) throws IOException {
         //Esegue la partecipazione ad una nuova partita
         try {
             guiView.joinMatch();

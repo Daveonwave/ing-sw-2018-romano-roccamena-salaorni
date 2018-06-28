@@ -28,7 +28,12 @@ public class MatchCreator {
     }
 
     //Creazione carte obiettivo pubblico
-    public List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
+    /**
+     * Create public objective cards
+     * @param shuffle decide to shuffle or not
+     * @return the list of extracted cards
+     */
+    private List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
         int countExtracted = 1;
@@ -58,12 +63,22 @@ public class MatchCreator {
 
         return result;
     }
-    public List<PublicObjectiveCard> createPublicObjectiveCards() {
+    /**
+     * Support method to create public objective cards
+     * @return list of extracted cards
+     */
+    private List<PublicObjectiveCard> createPublicObjectiveCards() {
         return createPublicObjectiveCards(true);
     }
 
     //Creazione carte obiettivo privato
-    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle) {
+    /**
+     * Create private objective cards
+     * @param numberOfPlayers players count
+     * @param shuffle shuffle or not
+     * @return list of extracted cards
+     */
+    private List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle){
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
         int countExtracted = 1;
@@ -76,8 +91,8 @@ public class MatchCreator {
         }
 
         //TODO: update serializzazione
-        //List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
-        List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
+        List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
+        //List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
 
         while (countExtracted <= count) {
             int index = RandomHandler.retrieveRandom().nextInt(cards.size());
@@ -93,12 +108,23 @@ public class MatchCreator {
 
         return result;
     }
-    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers) {
+    /**
+     * Support method to create private objective cards
+     * @param numberOfPlayers players count
+     * @return
+     */
+    private List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers){
         return createPrivateObjectiveCards(numberOfPlayers, true);
     }
 
     //Creazione carte strumento
-    public List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
+    /**
+     * Create tool cards
+     * @param difficultyLevelSP level of difficulty decided in the single player mode
+     * @param shuffle shuffle or not
+     * @return list of extracted cards
+     */
+    private List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<ToolCard> result = new ArrayList<ToolCard>();
         int countExtracted = 1;
@@ -128,12 +154,23 @@ public class MatchCreator {
 
         return result;
     }
-    public List<ToolCard> createTools(int difficultyLevelSP) {
+    /**
+     * Support method to create tool cards
+     * @param difficultyLevelSP difficulty level of single player
+     * @return list of extracted cards
+     */
+    private List<ToolCard> createTools(int difficultyLevelSP) {
         return createTools(difficultyLevelSP, true);
     }
 
     //Creazione finestre
-    public List<Window> createWindows(int numberOfPlayers, boolean shuffle) {
+    /**
+     * Create the windows among which choose
+     * @param numberOfPlayers players count
+     * @param shuffle shuffle or not
+     * @return list of extracted windows
+     */
+    private List<Window> createWindows(int numberOfPlayers, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<Window> result = new ArrayList<Window>();
         int countExtracted = 1;
@@ -156,12 +193,22 @@ public class MatchCreator {
 
         return result;
     }
-    public List<Window> createWindows(int numberOfPlayers) {
+    /**
+     * Support method to create initial windows
+     * @param numberOfPlayers players count
+     * @return list of extracted windows
+     */
+    private List<Window> createWindows(int numberOfPlayers) {
         return createWindows(numberOfPlayers, true);
     }
 
     //Creazione sacco di dadi
-    public List<Die> createDiceBag(boolean shuffle) {
+    /**
+     * Create the dice bag with 90 dice
+     * @param shuffle shuffle or not
+     * @return list of dice
+     */
+    private List<Die> createDiceBag(boolean shuffle) {
         List<Die> diceBag = new ArrayList<Die>();
 
         for (int i = 1; i <= GameConstants.SINGLE_COLOR_DICE_COUNT; i++) {
@@ -177,11 +224,21 @@ public class MatchCreator {
 
         return diceBag;
     }
-    public List<Die> createDiceBag() {
+    /**
+     * Support method to create dice bag
+     * @return
+     */
+    private List<Die> createDiceBag() {
         return createDiceBag(true);
     }
 
     //Creazione riserva dadi
+    /**
+     * Create draft pool
+     * @param dieBag dice among which extract draft pool
+     * @param numberOfPlayers player count
+     * @return list of dice
+     */
     public List<Die> createDraftPool(List<Die> dieBag, int numberOfPlayers){
         List<Die> result = new ArrayList<Die>();
 
@@ -203,7 +260,11 @@ public class MatchCreator {
     }
 
     //Creazione tracciato round
-    public RoundTrack createRoundTrack(){
+    /**
+     * Create round track
+     * @return object round track
+     */
+    private RoundTrack createRoundTrack(){
        List<List<Die>> diceStack = new ArrayList<List<Die>>();
 
        for (int i = 0; i<GameConstants.ROUNDS_COUNT; i++)
@@ -311,10 +372,9 @@ public class MatchCreator {
         MatchDice matchDice = new MatchDice(1, diceBag, draftPool);
 
         //Crea partita
-        SinglePlayerMatch match = new SinglePlayerMatch(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
-        return match;
+        return new SinglePlayerMatch(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
     }
-    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP) {
+    public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP){
         return createSinglePlayer(user, difficultyLevelSP, -1);
     }
 }

@@ -5,7 +5,7 @@ import mvc.model.objects.enums.DieColor;
 /**
  * Color restriction of a cell
  */
-public class ColorRestriction implements CellRestriction {
+public class    ColorRestriction implements CellRestriction {
     //Restrizione di colore
 
     private DieColor color;

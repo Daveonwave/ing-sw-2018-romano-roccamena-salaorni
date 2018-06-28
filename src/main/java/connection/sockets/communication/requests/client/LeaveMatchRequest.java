@@ -5,13 +5,22 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 
 import java.rmi.RemoteException;
 
-public class LeaveMatchRequest implements ClientRequest {
+/**
+ * Request of leave match
+ */
+public class LeaveMatchRequest extends ClientRequest {
 
     private final String tokenUser;
     private final String tokenMatch;
 
-    //Costruttori
-    public LeaveMatchRequest(String tokenUser, String tokenMatch) {
+    /**
+     * Constructor of a specific client request
+     * @param tokenUser id of the user
+     * @param tokenMatch id of the match
+     * @param idAction id of the request
+     */
+    public LeaveMatchRequest(String tokenUser, String tokenMatch, int idAction) {
+        super(idAction);
         this.tokenUser = tokenUser;
         this.tokenMatch = tokenMatch;
     }
@@ -24,7 +33,12 @@ public class LeaveMatchRequest implements ClientRequest {
         return tokenMatch;
     }
 
-    @Override
+    /**
+     * Handle a specific client request
+     * @param handler ClientRequestHandler in this case
+     * @return the response to client
+     * @throws RemoteException
+     */
     public ClientResponse handleAction(ClientRequestHandler handler) throws RemoteException {
         return handler.handleAction(this);
     }
