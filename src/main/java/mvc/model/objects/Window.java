@@ -19,7 +19,6 @@ public class Window implements Serializable {
     private String name;
 
     //Costruttori
-
     /**
      * Create new window
      * @param cells Cells intances
@@ -480,7 +479,7 @@ public class Window implements Serializable {
         cell.placeDie(die, ignoreColorRestriction, ignoreShadeRestriction);
     }
     public void placeDie(Cell cell, Die die) throws RemoteException {
-        placeDie(cell, die, false, false, false, false);
+        placeDie(cell, die, !isEmpty(), false, false, false);
     }
 
     public void moveDie(Cell origin, Cell destination, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
