@@ -278,6 +278,9 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
+        if (player.getTurnToolCardUsed())
+            throw new MatchException("hai gia usato una carta strumento");
+
         boolean firstUse = toolCard.getFavorTokens() == 0;
         if (firstUse)
             if (player.getFavorTokens() < 1)
@@ -298,6 +301,8 @@ public class MultiPlayerMatch extends Match {
             toolCard.setFavorTokens(toolCard.getFavorTokens() + 2);
         }
 
+        //Il giocatore non puo piu usare carte questo turno
+        player.setTurnToolCardUsed(true);
     }
     //Mossa di fine del turno
     /**
@@ -315,6 +320,9 @@ public class MultiPlayerMatch extends Match {
 
         //Se giocatore è legato ad un dado per l'effetto di una carta, viene liberato dal vincolo
         player.getToolCardEffect().setChoosenDie(null);
+
+        //Il giocatore potra utilizzare di nuovo carte in turni successivi
+        player.setTurnToolCardUsed(false);
 
         //Controllo se ultimo turno
         if (!turnHandler.isLastTurn()) {

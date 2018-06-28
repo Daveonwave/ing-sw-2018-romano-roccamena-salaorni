@@ -18,6 +18,7 @@ public class Player implements Serializable {
     private int favorTokens;
     private ToolCardEffect toolCardEffect;
     private boolean turnDiePlaced;
+    private boolean turnToolCardUsed;
     private boolean active;
 
     //Costruttori
@@ -32,7 +33,9 @@ public class Player implements Serializable {
 
         this.favorTokens = favorTokens;
         this.toolCardEffect = new ToolCardEffect();
+
         this.turnDiePlaced = false;
+        this.turnToolCardUsed = false;
 
         this.active = true;
     }
@@ -46,7 +49,9 @@ public class Player implements Serializable {
 
         this.favorTokens = favorTokens;
         this.toolCardEffect = new ToolCardEffect();
+
         this.turnDiePlaced = false;
+        this.turnToolCardUsed = false;
     }
 
     //Setter/Getter
@@ -70,6 +75,9 @@ public class Player implements Serializable {
     }
     public void setTurnDiePlaced(boolean turnDiePlaced) {
         this.turnDiePlaced = turnDiePlaced;
+    }
+    public void setTurnToolCardUsed(boolean turnToolCardUsed) {
+        this.turnToolCardUsed = turnToolCardUsed;
     }
     public void setActive(boolean active) {
         this.active = active;
@@ -95,6 +103,9 @@ public class Player implements Serializable {
     }
     public boolean getTurnDiePlaced() {
         return turnDiePlaced;
+    }
+    public boolean getTurnToolCardUsed() {
+        return turnToolCardUsed;
     }
     public boolean isActive() {
         return active;
