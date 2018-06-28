@@ -26,7 +26,7 @@ public class ColorDiagonals extends PublicObjectiveCard {
 
         for (Cell c : firstRow) {
             List<Cell> harmoniusDiagonal = window.getHarmoniousDiagonal(c);
-            points = compareColorDiagonals(harmoniusDiagonal);
+            points += compareColorDiagonals(harmoniusDiagonal);
 
             List<Cell> disharmoniusDiagonal = window.getDisharmoniousDiagonal(c);
             points += compareColorDiagonals(disharmoniusDiagonal);
