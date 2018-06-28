@@ -399,12 +399,7 @@ public class Window implements Serializable {
 
     //Verifica restrizioni di finestra
     public boolean noStartPlaceRestriction(Cell cell, Die die) {
-        if (isEmpty()) {
-            if (!cell.isNorthBorder()&&!cell.isSouthBorder()&&!cell.isWestBorder()&&!cell.isEastBorder())
-                return false;
-        }
-
-        return true;
+        return cell.isInBorder();
     }
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
         List<Cell> adjacentCells = getOrthogonalCells(cell);
@@ -442,10 +437,10 @@ public class Window implements Serializable {
         if (ignoreStartPlace)
             return noAdjacentCellsRestriction(cell, die);
 
-        if (cell.isInBorder())
-            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);
+        if (isEmpty())
+            return noStartPlaceRestriction(cell, die);
         else
-            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
+            return noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
     }
     public boolean noWindowRestriction(Cell cell, Die die) {
         return noWindowRestriction(cell, die, false, false);
@@ -479,7 +474,7 @@ public class Window implements Serializable {
         cell.placeDie(die, ignoreColorRestriction, ignoreShadeRestriction);
     }
     public void placeDie(Cell cell, Die die) throws RemoteException {
-        placeDie(cell, die, !isEmpty(), false, false, false);
+        placeDie(cell, die, false, false, false, false);
     }
 
     public void moveDie(Cell origin, Cell destination, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
