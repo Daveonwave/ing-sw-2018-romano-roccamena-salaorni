@@ -30,9 +30,6 @@ public class PennelloPerPastaSalda extends ToolCard {
             player.setTurnDiePlaced(true);
             throw new MatchException("non puoi piu piazzare il dado");
         }
-
-        //Aggiorna effetti
-        player.getToolCardEffect().setChoosenDie(die);
     }
 
     //Usa carta strumento

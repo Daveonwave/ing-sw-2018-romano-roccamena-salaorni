@@ -42,7 +42,7 @@ public class NoPlayersHandler extends TimedSubcontroller {
 
             //Comunica fine attesa partita
             try {
-                controller.userError(user, "nessun giocatore disponibile");
+                controller.userError(null,user, "nessun giocatore disponibile");
             } catch (AppControllerException e) { }
         } else {
             if (lobby.getWaitingUsersToken().size() != 0) {

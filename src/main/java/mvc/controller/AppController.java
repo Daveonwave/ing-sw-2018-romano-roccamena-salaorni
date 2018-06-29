@@ -115,8 +115,8 @@ public class AppController implements AppControllerStub {
      * @param message Message of the ack
      * @throws RemoteException Connection error occured
      */
-    public synchronized void viewAck(AppViewStub appView, String message) throws RemoteException {
-        appView.respondAck(message, null);
+    public synchronized void viewAck(String tokenMatch, AppViewStub appView, String message) throws RemoteException {
+        appView.respondAck(message, tokenMatch);
     }
     /**
      * Sends an error to a single user view
@@ -124,8 +124,8 @@ public class AppController implements AppControllerStub {
      * @param message Message of the error
      * @throws RemoteException AppControllerException as a callback error signal
      */
-    public synchronized void viewError(AppViewStub appView, String message) throws RemoteException {
-        appView.respondError(message, null);
+    public synchronized void viewError(String tokenMatch, AppViewStub appView, String message) throws RemoteException {
+        appView.respondError(message, tokenMatch);
         throw new AppControllerException(message);
     }
     /**
@@ -134,8 +134,8 @@ public class AppController implements AppControllerStub {
      * @param message Message of the ack
      * @throws RemoteException Connection error occured
      */
-    public synchronized void userAck(User user, String message) throws RemoteException {
-        viewAck(user.getAppView(), message);
+    public synchronized void userAck(String tokenMatch, User user, String message) throws RemoteException {
+        viewAck(tokenMatch ,user.getAppView(), message);
     }
     /**
      * Sends an error to a single user
@@ -143,8 +143,8 @@ public class AppController implements AppControllerStub {
      * @param message Message of the error
      * @throws RemoteException AppControllerException as a callback error signal
      */
-    public synchronized void userError(User user, String message) throws RemoteException {
-        viewError(user.getAppView(), message);
+    public synchronized void userError(String tokenMatch, User user, String message) throws RemoteException {
+        viewError(tokenMatch, user.getAppView(), message);
     }
 
 
@@ -164,12 +164,12 @@ public class AppController implements AppControllerStub {
             token =  model.createUser(name, appView);
         } catch (AppModelException e) {
             if (appView != null)
-                viewError(appView, "nome utente non valido");
+                viewError(null,appView, "nome utente non valido");
             else
                 throw new AppControllerException("nome utente non valido");
         }
 
-        viewAck(appView, "loggato come " + name);
+        viewAck(null,appView, "loggato come " + name);
 
         return token;
     }
@@ -187,12 +187,12 @@ public class AppController implements AppControllerStub {
             model.destroyUser(tokenUser);
         } catch (AppModelException e) {
             if (appView != null)
-                viewError(appView, "utente sconosciuto");
+                viewError(null,appView, "utente sconosciuto");
             else
                 throw new AppControllerException("utente sconosciuto");
         }
 
-        viewAck(appView, "logout effettuato");
+        viewAck(null,appView, "logout effettuato");
     }
 
     //Sottometodi di gestione multiplayer
@@ -251,7 +251,7 @@ public class AppController implements AppControllerStub {
         try {
             match.endTurn(player);
         } catch (MatchException e) {
-            userError(player.getUser(), e.getMessage());
+            userError(tokenMatch,player.getUser(), e.getMessage());
             return;
         }
 
@@ -317,7 +317,7 @@ public class AppController implements AppControllerStub {
         try {
             match.leaveMatch(player);
         } catch (MatchException e) {
-            userError(user, e.getMessage());
+            userError(tokenMatch, user, e.getMessage());
             return;
         }
 
@@ -342,7 +342,7 @@ public class AppController implements AppControllerStub {
         try {
             match.rejoinMatch(player);
         } catch (MatchException e) {
-            userError(user, e.getMessage());
+            userError(tokenMatch, user, e.getMessage());
             return;
         }
 
@@ -380,7 +380,7 @@ public class AppController implements AppControllerStub {
         multiPlayerLobby.leave(tokenUser);
 
         //Notifica l'utente dell'uscita
-        userAck(model.retrieveUser(tokenUser), "iscrizione partita cancellata");
+        userAck(null, model.retrieveUser(tokenUser), "iscrizione partita cancellata");
     }
 
     /**
@@ -403,7 +403,7 @@ public class AppController implements AppControllerStub {
         try {
             match.chooseWindow(player, window);
         } catch (MatchException e) {
-            userError(user, e.getMessage());
+            userError(tokenMatch,user, e.getMessage());
             return;
         }
 
@@ -439,7 +439,7 @@ public class AppController implements AppControllerStub {
         try {
             match.placeDie(player, cell, die);
         } catch (MatchException e) {
-            userError(user, e.getMessage());
+            userError(tokenMatch,user, e.getMessage());
             return;
         }
 
@@ -468,7 +468,7 @@ public class AppController implements AppControllerStub {
         try {
             match.useToolCard(player, input, toolCard);
         } catch (MatchException e) {
-            userError(user, e.getMessage());
+            userError(tokenMatch,user, e.getMessage());
             return;
         }
 
