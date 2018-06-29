@@ -198,7 +198,7 @@ public class ControllerTest extends MVCTest {
 
     //Test su utenti
     @Test
-    public void userControl() {
+    public synchronized void userControl() {
         //Crea view di test con controllore locale di prova
         this.controller = createTestController();
         AppViewStub view = new EmptyView(controller);

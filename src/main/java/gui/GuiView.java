@@ -99,7 +99,7 @@ public class GuiView extends AppView {
                 //Esecuzione nel thread javafx
                 public void run() {
                     try {
-                        guiMultiplayerApp.respondError(message, tokenMatch);
+                        guiMultiplayerApp.respondAck(message, tokenMatch);
                     } catch (IOException e) {
                         //Segnala errore
                         e.printStackTrace();

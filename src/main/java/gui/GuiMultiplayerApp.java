@@ -920,7 +920,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                         try {
                             guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                         } catch (RemoteException e) {
-                            console.setText(e.getMessage());
+                            e.printStackTrace();
                         }
                     }
                 } else {
@@ -973,7 +973,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 try {
                     guiView.getController().placeDie(guiView.getUserToken(), multiTokenMatch,selectedCell.getCell(), matchView.getSelectedDie().getDie());
                 } catch (RemoteException e) {
-                    console.setText(e.getMessage());
+                    e.printStackTrace();
                 }
             } else {
                 if(matchView.getSelectedToolCard() != null) {
@@ -997,7 +997,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                             try {
                                 guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
                             } catch (RemoteException e) {
-                                console.setText(e.getMessage());
+                                e.printStackTrace();
                             }
 
                         }
@@ -1070,7 +1070,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 try {
                     guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                 } catch (RemoteException e) {
-                    console.setText(e.getMessage());
+                    e.printStackTrace();
                 }
             }else{
                 if(selectedToolCard.getToolCard().getName().equals("pinza sgrossatrice")){
@@ -1206,7 +1206,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     try {
                         guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
                     } catch (RemoteException e) {
-                        console.setText(e.getMessage());
+                        e.printStackTrace();
                     }
                 }
             }
@@ -1222,7 +1222,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         try {
             guiView.getController().endTurn(guiView.getUserToken(), this.multiTokenMatch);
         }catch(RemoteException e){
-            console.setText(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -1307,7 +1307,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      */
     public void respondError(String message, String tokenMatch) throws RemoteException {
         if(console != null){
-            console.setText(message);
+            console.setText("[ERRORE]" + message);
         }
     }
 
@@ -1332,7 +1332,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     /**
-     * calls the methon that creates the window choice scene
+     * calls the method that creates the window choice scene
      * @param tokenMatch token of the match
      * @param match match of the model
      * @throws RemoteException
