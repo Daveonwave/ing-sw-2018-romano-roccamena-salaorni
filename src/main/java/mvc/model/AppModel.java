@@ -34,7 +34,6 @@ public class AppModel {
     }
 
     //Getter singleton
-
     /**
      * Retrieve application model instance
      * @return
@@ -45,6 +44,16 @@ public class AppModel {
         }
 
         return instance;
+    }
+
+    //Reset
+    /**
+     * Reset application model state
+     */
+    public synchronized void resetAppModel() {
+        names.clear();
+        users.clear();
+        matches.clear();
     }
 
     //Utente
@@ -135,5 +144,4 @@ public class AppModel {
 
         return player;
     }
-
 }
