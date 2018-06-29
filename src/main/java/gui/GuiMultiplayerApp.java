@@ -60,7 +60,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     Label player4Name;
     @FXML
     Label favorTokens;
-
+    @FXML
+    Label costToolCard1;
+    @FXML
+    Label costToolCard2;
+    @FXML
+    Label costToolCard3;
     @FXML
     AnchorPane matchAnchorPane;
     @FXML
@@ -633,6 +638,25 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 return player3Name;
             case 4:
                 return player4Name;
+            default:
+                throw new AppViewException(FXGuiConstant.LABEL_EXCEPTION_MESSAGE);
+        }
+
+    }
+
+    /**
+     * gets the corresponding cost label for the tool card in order to be changed when a tool card is used
+     * @param index tool card number
+     * @return corresponding label
+     */
+    private Label associateCostLabel(int index) throws AppViewException{
+        switch (index) {
+            case 0:
+                return costToolCard1;
+            case 1:
+                return costToolCard2;
+            case 2:
+                return costToolCard3;
             default:
                 throw new AppViewException(FXGuiConstant.LABEL_EXCEPTION_MESSAGE);
         }
@@ -1363,6 +1387,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 matchView.getRounds().get(match.getTurnHandler().getRound()-2).getDieViews().add(new DieView(null,die));
             }
         }
+        if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
+            console.setText(console.getText() + "\n Hai 90 secondi per finire il tuo turno");
+        }
 
     }
 
@@ -1499,6 +1526,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
             }
             roundDice.setVisible(false);
+        }
+        for(ToolCardView toolCardView : matchView.getToolCards()){
+            if(toolCardView.getToolCard().getName().equals(toolCard.getName())){
+                associateCostLabel(matchView.getToolCards().indexOf(toolCardView)).setText("Costo: 2FavorToken");
+            }
         }
 
 

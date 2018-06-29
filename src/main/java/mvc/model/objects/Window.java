@@ -19,7 +19,6 @@ public class Window implements Serializable {
     private String name;
 
     //Costruttori
-
     /**
      * Create new window
      * @param cells Cells intances
@@ -400,12 +399,7 @@ public class Window implements Serializable {
 
     //Verifica restrizioni di finestra
     public boolean noStartPlaceRestriction(Cell cell, Die die) {
-        if (isEmpty()) {
-            if (!cell.isNorthBorder()&&!cell.isSouthBorder()&&!cell.isWestBorder()&&!cell.isEastBorder())
-                return false;
-        }
-
-        return true;
+        return cell.isInBorder();
     }
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
         List<Cell> adjacentCells = getOrthogonalCells(cell);
@@ -443,10 +437,10 @@ public class Window implements Serializable {
         if (ignoreStartPlace)
             return noAdjacentCellsRestriction(cell, die);
 
-        if (cell.isInBorder())
-            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die);
+        if (isEmpty())
+            return noStartPlaceRestriction(cell, die);
         else
-            return noStartPlaceRestriction(cell, die) && noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
+            return noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
     }
     public boolean noWindowRestriction(Cell cell, Die die) {
         return noWindowRestriction(cell, die, false, false);

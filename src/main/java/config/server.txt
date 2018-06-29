@@ -4,7 +4,7 @@
 join wait time=2000
 
 //Tempo massimo per completare un turno
-turn max time=30000
+turn max time=90000
 
 //Porta di ascolto RMI
 rmi port=1099
