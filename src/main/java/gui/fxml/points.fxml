@@ -9,7 +9,7 @@
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="622.0" styleClass="pointsbackground" stylesheets="@style.css" />
       <Button layoutX="223.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#endGame" prefHeight="39.0" prefWidth="185.0" styleClass="shiny-orange" stylesheets="@style.css" text="Termina Partita" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="204.0" />
-      <Label fx:id="winner1" layoutX="307.0" layoutY="22.0" prefHeight="60.0" prefWidth="315.0" text="pareggio tra massimiliano e lorenzo" textFill="#fffefe">
+      <Label fx:id="winner" layoutX="307.0" layoutY="22.0" prefHeight="60.0" prefWidth="315.0" text="pareggio tra massimiliano e lorenzo" textFill="#fffefe">
          <font>
             <Font size="18.0" />
          </font>
@@ -39,52 +39,52 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="player1PrivateObjective1" layoutX="189.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5efef">
+      <Label fx:id="player1PrivateObjective" layoutX="189.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5efef">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player2PrivateObjective1" layoutX="304.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f8f8f8">
+      <Label fx:id="player2PrivateObjective" layoutX="304.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f8f8f8">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player1PublicObjective1" layoutX="189.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fcf7f7">
+      <Label fx:id="player1PublicObjective" layoutX="189.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fcf7f7">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player2PublicObjective1" layoutX="304.0" layoutY="182.0" prefHeight="35.0" prefWidth="55.0" text="8" textFill="#fcf6f6">
+      <Label fx:id="player2PublicObjective" layoutX="304.0" layoutY="182.0" prefHeight="35.0" prefWidth="55.0" text="8" textFill="#fcf6f6">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player1OpenSpaces1" layoutX="189.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f8f7f7">
+      <Label fx:id="player1OpenSpaces" layoutX="189.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f8f7f7">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player2OpenSpaces1" layoutX="304.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fffdfd">
+      <Label fx:id="player2OpenSpaces" layoutX="304.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fffdfd">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player1FavorTokens1" layoutX="189.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f2f2">
+      <Label fx:id="player1FavorTokens" layoutX="189.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f2f2">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player2FavorTokens1" layoutX="304.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f3f3">
+      <Label fx:id="player2FavorTokens" layoutX="304.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f3f3">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player1TotalPoints1" layoutX="189.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fffdfd">
+      <Label fx:id="player1TotalPoints" layoutX="189.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#fffdfd">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player2TotalPoints1" layoutX="304.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f4f4">
+      <Label fx:id="player2TotalPoints" layoutX="304.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" text="8" textFill="#f5f4f4">
          <font>
             <Font size="24.0" />
          </font>
@@ -94,72 +94,72 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="player311" layoutX="427.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" textFill="#f8f6f6">
+      <Label fx:id="player3" layoutX="427.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" textFill="#f8f6f6">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player411" layoutX="538.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" textFill="#fffbfb">
+      <Label fx:id="player4" layoutX="538.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" textFill="#fffbfb">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player3PrivateObjective11" layoutX="429.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" textFill="#f5f4f4">
+      <Label fx:id="player3PrivateObjective" layoutX="429.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" textFill="#f5f4f4">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player4PrivateObjective11" layoutX="538.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f5f5">
+      <Label fx:id="player4PrivateObjective" layoutX="538.0" layoutY="138.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f5f5">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player3PublicObjective11" layoutX="429.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" textFill="#f2eeee">
+      <Label fx:id="player3PublicObjective" layoutX="429.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" textFill="#f2eeee">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player4PublicObjective11" layoutX="538.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" textFill="#fcf8f8">
+      <Label fx:id="player4PublicObjective" layoutX="538.0" layoutY="182.0" prefHeight="28.0" prefWidth="66.0" textFill="#fcf8f8">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player3OpenSpaces11" layoutX="429.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" textFill="#fcfafa">
+      <Label fx:id="player3OpenSpaces" layoutX="429.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" textFill="#fcfafa">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player4OpenSpaces11" layoutX="538.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f6f6">
+      <Label fx:id="player4OpenSpaces" layoutX="538.0" layoutY="224.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f6f6">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player3FavorTokens11" layoutX="429.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f4f4">
+      <Label fx:id="player3FavorTokens" layoutX="429.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f4f4">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player4FavorTokens11" layoutX="538.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" textFill="#fffdfd">
+      <Label fx:id="player4FavorTokens" layoutX="538.0" layoutY="271.0" prefHeight="28.0" prefWidth="66.0" textFill="#fffdfd">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player3TotalPoints11" layoutX="429.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" textFill="#f5f3f3">
+      <Label fx:id="player3TotalPoints" layoutX="429.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" textFill="#f5f3f3">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player4TotalPoints11" layoutX="538.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f7f7">
+      <Label fx:id="player4TotalPoints" layoutX="538.0" layoutY="318.0" prefHeight="28.0" prefWidth="66.0" textFill="#f8f7f7">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player111" layoutX="182.0" layoutY="99.0" prefHeight="39.0" prefWidth="133.0" text="lorenzo" textFill="#f2f2ef">
+      <Label fx:id="player1" layoutX="182.0" layoutY="99.0" prefHeight="39.0" prefWidth="133.0" text="lorenzo" textFill="#f2f2ef">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="player211" layoutX="292.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" text="lorenzo" textFill="#f5f4f4">
+      <Label fx:id="player2" layoutX="292.0" layoutY="99.0" prefHeight="39.0" prefWidth="94.0" text="lorenzo" textFill="#f5f4f4">
          <font>
             <Font size="24.0" />
          </font>
