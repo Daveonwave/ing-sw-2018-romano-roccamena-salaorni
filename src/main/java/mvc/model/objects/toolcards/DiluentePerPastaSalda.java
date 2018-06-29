@@ -22,7 +22,7 @@ public class DiluentePerPastaSalda extends ToolCard {
 
         //Estrae nuovo dado, seleziona valore scelto e viene impostato come dado scelto
         die = match.getMatchDice().extractDieFromBag();
-        die.setShade(input.getChoosenShade());
+        die.setShade(input.getChosenShade());
         match.getMatchDice().getDraftPool().add(die);
 
         //Aggiorna effetti

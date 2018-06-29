@@ -1128,7 +1128,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     console.setText("scegli che valore dare al dado ripescato");
                     button.setOnMouseClicked(event -> {
                         if(Integer.parseInt(textField.getText())>0 && Integer.parseInt(textField.getText())<7){
-                            matchView.getInput().setChoosenShade(Integer.parseInt(textField.getText()));
+                            matchView.getInput().setChosenShade(Integer.parseInt(textField.getText()));
                             console.setText("selezionare il dado da ripescare");
                             choice = false;
                             matchAnchorPane.getChildren().remove(pane);

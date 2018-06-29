@@ -28,6 +28,19 @@ public abstract class ToolCard extends ColorCard {
     }
 
     //Usa carta strumento
+
+    /**
+     * Use tool card in a multiplayer match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public abstract void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException;
+    /**
+     * Use tool card in a singleplayer match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public abstract void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException;
 }

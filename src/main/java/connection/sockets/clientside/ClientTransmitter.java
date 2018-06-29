@@ -29,14 +29,18 @@ public class ClientTransmitter implements Runnable {
     public void run() {
          try {
              while (isRunning){
-                 if(IOSupport.fromServer(client.getIn()) instanceof ServerRequest) {
-                    ServerResponse response =((ServerRequest) IOSupport.fromServer(client.getIn())).handleAction(clientActionHandler);
+                 if(client.getIn().available() != 0) {
 
-                    if (response != null)
-                        IOSupport.responseToServer(client.getOut(), response);
-                 } else{
-                     ClientResponse response = (ClientResponse) IOSupport.fromServer(client.getIn());
-                     responseRegistry.insert(response);
+                     if (IOSupport.fromServer(client.getIn()) instanceof ServerRequest) {
+                         ServerResponse response = ((ServerRequest) IOSupport.fromServer(client.getIn())).handleAction(clientActionHandler);
+
+                         if (response != null)
+                             IOSupport.responseToServer(client.getOut(), response);
+
+                     } else {
+                         ClientResponse response = (ClientResponse) IOSupport.fromServer(client.getIn());
+                         responseRegistry.insert(response);
+                     }
                  }
              }
          } catch (Exception e) {

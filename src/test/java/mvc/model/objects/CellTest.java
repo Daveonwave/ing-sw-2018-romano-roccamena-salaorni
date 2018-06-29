@@ -16,12 +16,12 @@ public class CellTest {
     @Test
     public void sameDieTest(){
         Cell cellNull = null;
-        assertEquals(false, cell.sameCell(cellNull));
+        assertFalse(cell.sameCell(cellNull));
 
         cellNull = new Cell(null, null, 3, 1);
         cellNull.setDie(new Die(DieColor.BLUE, 2));
         cellNull.setCellRestriction(null);
-        assertEquals(false, cell.sameCell(cellNull));
+        assertFalse(cell.sameCell(cellNull));
 
         Cell cellDiff = new Cell(new Die(DieColor.YELLOW, 3), new ShadeRestriction(3), 2, 3);
         assertNotEquals(cell, cell.sameCell(cellDiff));
@@ -54,17 +54,17 @@ public class CellTest {
         assertNotEquals(true, cell.isInBorder());
 
         Cell borderCell = new Cell(null, null, 0, 0);
-        assertEquals(true, borderCell.isWestBorder());
-        assertEquals(true, borderCell.isNorthBorder());
-        assertEquals(true, borderCell.isInBorder());
+        assertTrue(borderCell.isWestBorder());
+        assertTrue(borderCell.isNorthBorder());
+        assertTrue(borderCell.isInBorder());
     }
 
     //Test nessuna restrizione di cell
     @Test
     public void noCellRestrictionTest(){
-        assertEquals(true, cell.noCellRestriction(new Die(DieColor.BLUE, 1), false, false));
-        assertEquals(true, cell.noCellRestriction(new Die(DieColor.BLUE, 1), false, true));
-        assertEquals(true, cell.noCellRestriction(new Die(DieColor.BLUE, 1), true, false));
+        assertTrue(cell.noCellRestriction(new Die(DieColor.BLUE, 1), false, false));
+        assertTrue(cell.noCellRestriction(new Die(DieColor.BLUE, 1), false, true));
+        assertTrue(cell.noCellRestriction(new Die(DieColor.BLUE, 1), true, false));
     }
 
     //Test di piazzamento

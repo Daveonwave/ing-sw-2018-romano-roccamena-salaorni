@@ -2,6 +2,9 @@ package mvc.model.objects;
 
 import java.io.Serializable;
 
+/**
+ * Effect of tool cards
+ */
 public class ToolCardEffect implements Serializable {
     //Effetto di una carta strumento su un giocatore
 
@@ -10,13 +13,22 @@ public class ToolCardEffect implements Serializable {
     private boolean replaceDie;
     private boolean ignoreAdjacentCellsRestriction;
 
-    //Costruttori
+    /**
+     * Constructor of a specific effect
+     * @param chosenDie selected die
+     * @param skipTurn flag for some effects
+     * @param replaceDie flag for some effects
+     * @param ignoreAdjacentCellsRestriction flag for some effects
+     */
     public ToolCardEffect(Die chosenDie, boolean skipTurn, boolean replaceDie, boolean ignoreAdjacentCellsRestriction) {
         this.chosenDie = chosenDie;
         this.skipTurn = skipTurn;
         this.replaceDie = replaceDie;
         this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
     }
+    /**
+     * Generic Constructor
+     */
     public ToolCardEffect() {
         this(null, false, false, false);
     }
