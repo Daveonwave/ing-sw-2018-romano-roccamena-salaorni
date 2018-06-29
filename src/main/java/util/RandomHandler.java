@@ -27,7 +27,7 @@ public class RandomHandler {
 
     /**
      * Retrieve Random object created
-     * @return
+     * @return random object
      */
     public static synchronized Random retrieveRandom() {
         return random;

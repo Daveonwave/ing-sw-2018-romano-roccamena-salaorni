@@ -29,8 +29,9 @@ public class ClientTransmitter implements Runnable {
     public void run() {
          try {
              while (isRunning){
-                 if(client.getIn().available() != 0) {
-
+                 if(client.getIn().available() == 0) {
+                     this.wait(5000);
+                 } else{
                      if (IOSupport.fromServer(client.getIn()) instanceof ServerRequest) {
                          ServerResponse response = ((ServerRequest) IOSupport.fromServer(client.getIn())).handleAction(clientActionHandler);
 
