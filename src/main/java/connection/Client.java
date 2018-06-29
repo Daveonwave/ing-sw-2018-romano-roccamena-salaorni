@@ -10,6 +10,9 @@ import mvc.stubs.AppControllerStub;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * Client launcher
@@ -17,6 +20,8 @@ import java.util.Map;
 public class Client {
     private RmiClient rmiClient;
     private SocketClient socketClient;
+
+    private static final Logger LOGGER = Logger.getLogger(Client.class.getName());
 
     //Getter
     public SocketClient getSocketClient() {
@@ -42,7 +47,7 @@ public class Client {
             portsConfig = new PortsConfig(Integer.parseInt(loadedConfig.get("rmi port")), Integer.parseInt(loadedConfig.get("socket port")));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERRORE]: lauch connection settings failed");
             return;
         }
 

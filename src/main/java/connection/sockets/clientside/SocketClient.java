@@ -56,7 +56,6 @@ public class SocketClient {
         responseRegistry = new ResponseRegistry();
 
         clientTransmitter.setRunning(true);
-        //clientTransmitter.run();
         new Thread(clientTransmitter).start();
     }
 

@@ -14,9 +14,8 @@ import java.rmi.RemoteException;
 public class ControllerProxy implements AppControllerStub {
     //Proxy del controller utilizzato lato client
 
-    private final SocketClient client;
-    private ClientActionHandler clientActionHandler;
-    private static int idRequestCounter;
+    private final transient SocketClient client;
+    private transient ClientActionHandler clientActionHandler;
 
     /**
      * Class Constructor
@@ -26,7 +25,6 @@ public class ControllerProxy implements AppControllerStub {
     public ControllerProxy(SocketClient client, ClientActionHandler clientActionHandler) {
         this.client = client;
         this.clientActionHandler = clientActionHandler;
-        idRequestCounter = 0;
     }
 
     //Setter/Getter
@@ -39,8 +37,9 @@ public class ControllerProxy implements AppControllerStub {
      * Id generator to map all the requests and the relative response
      * @return a new unique id
      */
-    private int getAndUpdateIdCounter(){
-        idRequestCounter++;
+    private static int getAndUpdateIdCounter(){
+        int idRequestCounter = 0;
+        idRequestCounter ++;
         return idRequestCounter - 1;
     }
 

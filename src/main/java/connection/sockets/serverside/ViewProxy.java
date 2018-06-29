@@ -16,8 +16,8 @@ import java.rmi.RemoteException;
 public class ViewProxy implements AppViewStub {
     //Proxy della view utilizzato lato server
 
-    private ServerTransmitter serverTransmitter;
-    private ServerResponseHandler serverResponseHandler;
+    private transient ServerTransmitter serverTransmitter;
+    private transient ServerResponseHandler serverResponseHandler;
 
     /**
      * Class constructor

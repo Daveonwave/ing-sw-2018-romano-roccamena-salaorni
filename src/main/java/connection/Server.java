@@ -10,11 +10,15 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Server launcher in the double modality: RMI and SOCKET.
  */
 public class Server {
+
+    private static final Logger LOGGER = Logger.getLogger(Server.class.getName());
 
     /**
      * Launches Rmi server and socket server.
@@ -35,7 +39,7 @@ public class Server {
             portsConfig = new PortsConfig(Integer.parseInt(loadedConfig.get("rmi port")), Integer.parseInt(loadedConfig.get("socket port")));
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.FINE, "[ERROR]: load server config failed");
             return;
         }
 
@@ -43,15 +47,14 @@ public class Server {
         try {
             rmiServer.runRmiServer(timerConfig, portsConfig);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]:launch server RMI failed");
             return;
         }
         //Lancia server socket
         try {
             SocketServer.getIstance().runSocketServer(timerConfig, portsConfig);
         } catch (IOException e) {
-            e.printStackTrace();
-            return;
+            LOGGER.log(Level.WARNING, "[ERROR]:launch server SOCKET failed");
         }
     }
 }

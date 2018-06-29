@@ -10,11 +10,15 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * RMI server
  */
 public class RmiServer {
+
+    private static final Logger LOGGER = Logger.getLogger(RmiServer.class.getName());
 
     /**
      * Lauches RMI server, setting policy and listening port. The it makes the bind of RMI controller.
@@ -33,7 +37,7 @@ public class RmiServer {
         Registry registry = LocateRegistry.createRegistry(portsConfig.getRmiPort());
         registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
 
-        System.out.println("[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
+        LOGGER.log(Level.INFO, "[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
     }
 
 }

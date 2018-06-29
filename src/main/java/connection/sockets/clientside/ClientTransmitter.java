@@ -5,6 +5,9 @@ import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 import connection.sockets.communication.requests.server.ServerRequest;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ClientTransmitter implements Runnable {
     //Gestore dello smistamento delle richieste del server
 
@@ -12,6 +15,8 @@ public class ClientTransmitter implements Runnable {
     private ResponseRegistry responseRegistry;
     private SocketClient client;
     private boolean isRunning;
+
+    private static final Logger LOGGER = Logger.getLogger(ClientTransmitter.class.getName());
 
     //Costruttori
     public ClientTransmitter(SocketClient client, ClientActionHandler clientActionHandler) {
@@ -45,7 +50,7 @@ public class ClientTransmitter implements Runnable {
                  }
              }
          } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: listening thread failed");
          }
     }
 
