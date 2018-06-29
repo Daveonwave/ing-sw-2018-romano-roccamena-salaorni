@@ -2,9 +2,7 @@ package connection.sockets.clientside;
 
 import connection.sockets.communication.rensponses.client.ClientResponse;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class ResponseRegistry {
@@ -59,7 +57,7 @@ public class ResponseRegistry {
             try {
                 wait();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         toRetrieve = searchResponse(responseId);
         }

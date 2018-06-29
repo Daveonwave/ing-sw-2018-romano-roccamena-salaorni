@@ -26,7 +26,7 @@ public class ClientTransmitter implements Runnable {
     }
 
     //Sempre attivo per la ricezione e gestione delle richieste
-    public void run() {
+    public synchronized void run() {
          try {
              while (isRunning){
                  if(client.getIn().available() == 0) {

@@ -32,7 +32,7 @@ public class ObjectPrinter implements Serializable {
     }
 
     //Setta il colore della print da colore
-    public void consoleSetColor(Color color) {
+    public void consoleSetColor(DieColor color) {
         if (color.equals(DieColor.PURPLE)) {
             Console.setColor(ConsoleColors.PURPLE);
         }

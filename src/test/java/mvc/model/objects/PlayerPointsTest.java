@@ -13,6 +13,9 @@ public class PlayerPointsTest {
         points.setPrivateObjectivePoints(10);
         points.setFavorTokensPoints(1);
         points.setOpenSpacesLostPoints(-3);
+        int sum = points.getFavorTokensPoints() + points.getOpenSpacesLostPoints() + points.getPrivateObjectivePoints() + points.getPublicObjectivePoints();
+
         assertEquals(23, points.getTotalPoints());
+        assertEquals(23, sum);
     }
 }

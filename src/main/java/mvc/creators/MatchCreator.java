@@ -67,7 +67,7 @@ public class MatchCreator {
      * Support method to create public objective cards
      * @return list of extracted cards
      */
-    private List<PublicObjectiveCard> createPublicObjectiveCards() {
+    public List<PublicObjectiveCard> createPublicObjectiveCards() {
         return createPublicObjectiveCards(true);
     }
 
@@ -113,7 +113,7 @@ public class MatchCreator {
      * @param numberOfPlayers players count
      * @return
      */
-    private List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers){
+    public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers){
         return createPrivateObjectiveCards(numberOfPlayers, true);
     }
 
@@ -159,7 +159,7 @@ public class MatchCreator {
      * @param difficultyLevelSP difficulty level of single player
      * @return list of extracted cards
      */
-    private List<ToolCard> createTools(int difficultyLevelSP) {
+    public List<ToolCard> createTools(int difficultyLevelSP) {
         return createTools(difficultyLevelSP, true);
     }
 
@@ -198,7 +198,7 @@ public class MatchCreator {
      * @param numberOfPlayers players count
      * @return list of extracted windows
      */
-    private List<Window> createWindows(int numberOfPlayers) {
+    public List<Window> createWindows(int numberOfPlayers) {
         return createWindows(numberOfPlayers, true);
     }
 
@@ -228,7 +228,7 @@ public class MatchCreator {
      * Support method to create dice bag
      * @return
      */
-    private List<Die> createDiceBag() {
+    public List<Die> createDiceBag() {
         return createDiceBag(true);
     }
 
