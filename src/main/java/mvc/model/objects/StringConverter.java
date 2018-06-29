@@ -5,7 +5,7 @@ import mvc.model.objects.enums.DieColor;
 public final class StringConverter {
     //Convertitore di oggetti in stringa
 
-    public static String getColorString(mvc.model.objects.enums.DieColor color) {
+    public static String getColorString(DieColor color) {
         String out = "";
 
         if (color.equals(DieColor.PURPLE)) {

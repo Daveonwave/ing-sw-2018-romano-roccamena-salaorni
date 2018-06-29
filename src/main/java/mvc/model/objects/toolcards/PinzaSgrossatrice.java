@@ -15,7 +15,7 @@ public class PinzaSgrossatrice extends ToolCard {
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
+        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChosenDie());
         boolean increaseShade = input.getIncreaseShade();
 
         //Controllo correttezza uso
@@ -32,7 +32,7 @@ public class PinzaSgrossatrice extends ToolCard {
             die.setShade(die.getShade()-1);
 
         //Assegna la scelta del dado
-        player.getToolCardEffect().setChoosenDie(die);
+        player.getToolCardEffect().setChosenDie(die);
     }
 
     //Usa carta strumento

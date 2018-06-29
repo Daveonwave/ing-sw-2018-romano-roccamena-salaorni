@@ -244,8 +244,8 @@ public class MultiPlayerMatch extends Match {
             if (player.getTurnDiePlaced())
                 throw new MatchException("hai gia piazzato un dado");
 
-        if (player.getToolCardEffect().getChoosenDie() != null)
-            if (!player.getToolCardEffect().getChoosenDie().sameDie(die))
+        if (player.getToolCardEffect().getChosenDie() != null)
+            if (!player.getToolCardEffect().getChosenDie().sameDie(die))
                 throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
@@ -259,7 +259,7 @@ public class MultiPlayerMatch extends Match {
         else
             player.getToolCardEffect().setReplaceDie(false);
 
-        player.getToolCardEffect().setChoosenDie(null);
+        player.getToolCardEffect().setChosenDie(null);
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
     //Mossa di utilizzo di una carta strumento
@@ -319,7 +319,7 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("non è il tuo turno");
 
         //Se giocatore è legato ad un dado per l'effetto di una carta, viene liberato dal vincolo
-        player.getToolCardEffect().setChoosenDie(null);
+        player.getToolCardEffect().setChosenDie(null);
 
         //Il giocatore potra utilizzare di nuovo carte in turni successivi
         player.setTurnToolCardUsed(false);

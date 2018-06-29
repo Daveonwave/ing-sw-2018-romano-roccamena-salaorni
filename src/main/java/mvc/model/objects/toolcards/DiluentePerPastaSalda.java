@@ -14,7 +14,7 @@ public class DiluentePerPastaSalda extends ToolCard {
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
+        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChosenDie());
 
         //Toglie il dado e lo rimette nel sacco
         match.getMatchDice().getDraftPool().remove(die);
@@ -26,7 +26,7 @@ public class DiluentePerPastaSalda extends ToolCard {
         match.getMatchDice().getDraftPool().add(die);
 
         //Aggiorna effetti
-        player.getToolCardEffect().setChoosenDie(die);
+        player.getToolCardEffect().setChosenDie(die);
     }
 
     //Usa carta strumento

@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class ToolCardEffect implements Serializable {
     //Effetto di una carta strumento su un giocatore
 
-    private Die choosenDie;
+    private Die chosenDie;
     private boolean skipTurn;
     private boolean replaceDie;
     private boolean ignoreAdjacentCellsRestriction;
 
     //Costruttori
-    public ToolCardEffect(Die choosenDie, boolean skipTurn, boolean replaceDie, boolean ignoreAdjacentCellsRestriction) {
-        this.choosenDie = choosenDie;
+    public ToolCardEffect(Die chosenDie, boolean skipTurn, boolean replaceDie, boolean ignoreAdjacentCellsRestriction) {
+        this.chosenDie = chosenDie;
         this.skipTurn = skipTurn;
         this.replaceDie = replaceDie;
         this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
@@ -22,8 +22,8 @@ public class ToolCardEffect implements Serializable {
     }
 
     //Setter/Getter
-    public void setChoosenDie(Die choosenDie) {
-        this.choosenDie = choosenDie;
+    public void setChosenDie(Die chosenDie) {
+        this.chosenDie = chosenDie;
     }
     public void setSkipTurn(boolean skipTurn) {
         this.skipTurn = skipTurn;
@@ -35,8 +35,8 @@ public class ToolCardEffect implements Serializable {
         this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
     }
 
-    public Die getChoosenDie() {
-        return choosenDie;
+    public Die getChosenDie() {
+        return chosenDie;
     }
     public boolean getSkipTurn() {
         return skipTurn;

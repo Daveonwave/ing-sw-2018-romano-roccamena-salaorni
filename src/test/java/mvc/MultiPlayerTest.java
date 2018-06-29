@@ -628,7 +628,7 @@ public class MultiPlayerTest extends MVCTest {
         //Controllo effetti carta
         if (die.getShade()!=4)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!player1.getToolCardEffect().getChoosenDie().sameDie(die))
+        if (!player1.getToolCardEffect().getChosenDie().sameDie(die))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Piazzamento dado diverso
@@ -728,7 +728,7 @@ public class MultiPlayerTest extends MVCTest {
         //Controlla effetto su dado
         if (!match.getMatchDice().containsDieInPool(new Die(DieColor.RED, 4)))
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!player2.getToolCardEffect().getChoosenDie().sameDie(new Die(DieColor.RED, 4)))
+        if (!player2.getToolCardEffect().getChosenDie().sameDie(new Die(DieColor.RED, 4)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Piazzamento non corretti

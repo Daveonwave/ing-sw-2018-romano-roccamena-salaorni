@@ -12,14 +12,14 @@ public class ToolCardInput implements Serializable {
     private Die roundTrackDie;
 
     private Die payDie;
-    private Die choosenDie;
+    private Die chosenDie;
 
     private int choosenShade;
 
     private boolean increaseShade;
 
     //Costruttori
-    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie, Die payDie, Die choosenDie, int choosenShade, boolean increaseShade) {
+    public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie, Die payDie, Die chosenDie, int choosenShade, boolean increaseShade) {
         this.originCell1 = originCell1;
         this.originCell2 = originCell2;
         this.destinationCell1 = destinationCell1;
@@ -27,7 +27,7 @@ public class ToolCardInput implements Serializable {
         this.roundTrackRound = roundTrackRound;
         this.roundTrackDie = roundTrackDie;
         this.payDie = payDie;
-        this.choosenDie = choosenDie;
+        this.chosenDie = chosenDie;
         this.choosenShade = choosenShade;
         this.increaseShade = increaseShade;
     }
@@ -40,24 +40,24 @@ public class ToolCardInput implements Serializable {
         this(originCell1, null, destinationCell1, null);
     }
     //Taglierina circolare
-    public ToolCardInput(int roundTrackRound, Die roundTrackDie, Die choosenDie) {
-        this(null, null, null, null, roundTrackRound, roundTrackDie, null, choosenDie, 0, true);
+    public ToolCardInput(int roundTrackRound, Die roundTrackDie, Die chosenDie) {
+        this(null, null, null, null, roundTrackRound, roundTrackDie, null, chosenDie, 0, true);
     }
     //Taglierina manuale
     public ToolCardInput(Cell originCell1, Cell originCell2, Cell destinationCell1, Cell destinationCell2, int roundTrackRound, Die roundTrackDie) {
         this(originCell1, originCell2, destinationCell1, destinationCell2, roundTrackRound, roundTrackDie, null, null, 0, true);
     }
     //Pennello per pasta salda, Tampone diamantato
-    public ToolCardInput(Die choosenDie) {
-        this(null, null, null, null, 0, null, null, choosenDie, 0, true);
+    public ToolCardInput(Die chosenDie) {
+        this(null, null, null, null, 0, null, null, chosenDie, 0, true);
     }
     //Diluente per pasta salda
-    public ToolCardInput(Die choosenDie, int choosenShade) {
-        this(null, null, null, null, 0, null, null, choosenDie, choosenShade, true);
+    public ToolCardInput(Die chosenDie, int choosenShade) {
+        this(null, null, null, null, 0, null, null, chosenDie, choosenShade, true);
     }
     //Pinza sgrossatrice
-    public ToolCardInput(Die choosenDie, boolean increaseShade) {
-        this(null, null, null, null, 0, null, null, choosenDie, 0, increaseShade);
+    public ToolCardInput(Die chosenDie, boolean increaseShade) {
+        this(null, null, null, null, 0, null, null, chosenDie, 0, increaseShade);
     }
     //Tenaglia a rotelle, Martelletto, Riga di sughero
     public ToolCardInput() {
@@ -86,8 +86,8 @@ public class ToolCardInput implements Serializable {
     public void setPayDie(Die payDie) {
         this.payDie = payDie;
     }
-    public void setChoosenDie(Die choosenDie) {
-        this.choosenDie = choosenDie;
+    public void setChosenDie(Die chosenDie) {
+        this.chosenDie = chosenDie;
     }
     public void setChoosenShade(int choosenShade) {
         this.choosenShade = choosenShade;
@@ -117,8 +117,8 @@ public class ToolCardInput implements Serializable {
     public Die getPayDie() {
         return payDie;
     }
-    public Die getChoosenDie() {
-        return choosenDie;
+    public Die getChosenDie() {
+        return chosenDie;
     }
     public int getChoosenShade() {
         return choosenShade;

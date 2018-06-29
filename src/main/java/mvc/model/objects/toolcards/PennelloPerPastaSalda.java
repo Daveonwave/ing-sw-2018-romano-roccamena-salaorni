@@ -16,7 +16,7 @@ public class PennelloPerPastaSalda extends ToolCard {
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
+        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChosenDie());
 
         //Controlla giocatore non ha gia piazzato questo turno
         if (player.getTurnDiePlaced())
@@ -32,7 +32,7 @@ public class PennelloPerPastaSalda extends ToolCard {
         }
 
         //Aggiorna effetti
-        player.getToolCardEffect().setChoosenDie(die);
+        player.getToolCardEffect().setChosenDie(die);
     }
 
     //Usa carta strumento

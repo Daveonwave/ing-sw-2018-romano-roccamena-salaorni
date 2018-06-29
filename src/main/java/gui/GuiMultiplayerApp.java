@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -884,13 +883,13 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
                 if (matchView.draftPoolToolCards().contains(name)) {
                     if (name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
-                        matchView.getInput().setChoosenDie(selectedDie.getDie());
+                        matchView.getInput().setChosenDie(selectedDie.getDie());
                         selectedDie.getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                         this.console.setText("scegli un dado del tracciato dei round");
                     } else {
                         for(DieView dieView : matchView.getDice()) {
                             if(dieView.getDie().getColor().equals(selectedDie.getDie().getColor()) && dieView.getDie().getShade() == selectedDie.getDie().getShade()){
-                                matchView.getInput().setChoosenDie(dieView.getDie());
+                                matchView.getInput().setChosenDie(dieView.getDie());
                                 break;
                             }
                         }
@@ -1176,8 +1175,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(matchView.getSelectedToolCard() != null){
             String name = matchView.getSelectedToolCard().getToolCard().getName();
             if(name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
-                if(matchView.getInput().getChoosenDie() != null) {
-                    matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
+                if(matchView.getInput().getChosenDie() != null) {
+                    matchView.retrieveDieView(matchView.getInput().getChosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
                     matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
                     matchView.getInput().setRoundTrackRound(roundView);
                     try {
@@ -1383,8 +1382,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             matchView.setSelectedToolCard(null);
         }
         if(matchView.getInput() != null) {
-            if (matchView.getInput().getChoosenDie() != null) {
-                matchView.retrieveDieView(matchView.getInput().getChoosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
+            if (matchView.getInput().getChosenDie() != null) {
+                matchView.retrieveDieView(matchView.getInput().getChosenDie()).getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
             }
             if (matchView.getInput().getOriginCell2() != null) {
                 matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView().getStyleClass().remove(FXGuiConstant.SELECTED);
@@ -1447,7 +1446,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
             if(matchView.toPlaceToolCards().contains(toolCard.getName())) {
                 for (DieView dieView : matchView.getDice()) {
-                    if (dieView.getDie() == matchView.getInput().getChoosenDie()) {
+                    if (dieView.getDie() == matchView.getInput().getChosenDie()) {
                         matchView.setSelectedDie(dieView);
                         matchView.getSelectedDie().getImageView().getStyleClass().add(FXGuiConstant.SELECTED);
                         toPlace = true;

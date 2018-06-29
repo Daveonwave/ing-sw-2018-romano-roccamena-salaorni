@@ -50,8 +50,8 @@ public class SinglePlayerMatch extends Match {
         if (player.getTurnDiePlaced())
             throw new MatchException("hai gia piazzato un dado");
 
-        if (player.getToolCardEffect().getChoosenDie() != null &&
-                !player.getToolCardEffect().getChoosenDie().sameDie(die))
+        if (player.getToolCardEffect().getChosenDie() != null &&
+                !player.getToolCardEffect().getChosenDie().sameDie(die))
                 throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
@@ -65,7 +65,7 @@ public class SinglePlayerMatch extends Match {
         else
             player.getToolCardEffect().setReplaceDie(false);
 
-        player.getToolCardEffect().setChoosenDie(null);
+        player.getToolCardEffect().setChosenDie(null);
         player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
     }
     //Mossa di utilizzo di una carta strumento

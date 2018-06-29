@@ -15,13 +15,13 @@ public class TamponeDiamantato extends ToolCard{
 
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
-        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChoosenDie());
+        Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChosenDie());
 
         //Esegue effetto
         die.invertShade();
 
         //Aggiorna effetti
-        player.getToolCardEffect().setChoosenDie(die);
+        player.getToolCardEffect().setChosenDie(die);
     }
 
     //Usa carta strumento
