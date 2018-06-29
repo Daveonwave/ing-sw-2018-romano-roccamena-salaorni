@@ -1,7 +1,6 @@
 package connection.sockets.communication.rensponses.client;
 
 import connection.sockets.communication.handlers.ClientResponseHandler;
-import connection.sockets.communication.rensponses.ExceptionResponse;
 
 import java.rmi.RemoteException;
 

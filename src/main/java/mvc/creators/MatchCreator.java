@@ -5,7 +5,6 @@ import mvc.model.objects.enums.DieColor;
 import resources.ResourceRetriever;
 import util.RandomHandler;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +33,7 @@ public class MatchCreator {
      * @return the list of extracted cards
      */
     private List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
-        ResourceRetriever resourceRetriever = new ResourceRetriever();
+        //ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
         int countExtracted = 1;
 

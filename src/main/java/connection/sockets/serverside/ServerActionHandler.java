@@ -1,6 +1,5 @@
 package connection.sockets.serverside;
 
-import connection.sockets.serverside.ViewProxy;
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.handlers.ServerResponseHandler;
 import connection.sockets.communication.rensponses.client.*;

@@ -8,9 +8,13 @@ import connection.sockets.communication.requests.server.ServerRequest;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class IOSupport {
     //Classe utile per mandare e ricevere oggetti - nome da cambiare
+
+    private static final Logger LOGGER = Logger.getLogger(IOSupport.class.getName());
 
     //Costruttori
     private IOSupport(){}
@@ -21,10 +25,10 @@ public class IOSupport {
         try {
             outputStream.writeObject(request);
             outputStream.flush();
-            System.out.println("[SOCKET] Invio richiesta al server");
+            LOGGER.log(Level.INFO, "[SOCKET]: invio richiesta al server");
 
         } catch(IOException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: send request to server failed");
         }
     }
     //Invio richiesta al client
@@ -33,10 +37,10 @@ public class IOSupport {
         try {
             outputStream.writeObject(request);
             outputStream.flush();
-            System.out.println("[SOCKET] Invio richiesta al client");
+            LOGGER.log(Level.INFO,"[SOCKET]: invio richiesta al client");
 
         } catch(IOException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: send request to client failed");
         }
     }
 
@@ -46,10 +50,10 @@ public class IOSupport {
         try {
             outputStream.writeObject(response);
             outputStream.flush();
-            System.out.println("[SOCKET] Invio risposta al server");
+            LOGGER.log(Level.INFO,"[SOCKET]: invio risposta al server");
 
         } catch(IOException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: send response to server failed");
         }
     }
     //Invio risposta al client
@@ -58,10 +62,10 @@ public class IOSupport {
         try {
             outputStream.writeObject(response);
             outputStream.flush();
-            System.out.println("[SOCKET] Invio risposta al client");
+            LOGGER.log(Level.INFO,"[SOCKET]: invio risposta al client");
 
         } catch(IOException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: send response to client failed");
         }
     }
 
@@ -71,12 +75,12 @@ public class IOSupport {
 
         try {
             request = (ServerRequest) inputStream.readObject();
-            System.out.println("[SOCKET] Ricezione richiesta del server");
+            LOGGER.log(Level.INFO,"[SOCKET]: ricezione richiesta dal server");
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving request from server failed");
         } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: received request from server doesn't match with any class");
         }
         return request;
     }
@@ -86,12 +90,12 @@ public class IOSupport {
 
         try {
             request = (ClientRequest) inputStream.readObject();
-            System.out.println("[SOCKET] Ricezione richiesta del client");
+            LOGGER.log(Level.INFO,"[SOCKET]: ricezione richiesta dal client");
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving request from client failed");
         } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: received request from client doesn't match with any class");
         }
         return request;
     }
@@ -102,12 +106,12 @@ public class IOSupport {
 
         try {
             response = (ClientResponse) inputStream.readObject();
-            System.out.println("[SOCKET] Ricezione risposta dal server");
+            LOGGER.log(Level.INFO,"[SOCKET]: ricezione risposta dal server");
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving response from server failed");
         } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: received response from server doesn't match with any class");
         }
         return response;
     }
@@ -117,12 +121,12 @@ public class IOSupport {
 
         try {
             response = (ServerResponse) inputStream.readObject();
-            System.out.println("[SOCKET] Ricezione risposta dal client");
+            LOGGER.log(Level.INFO,"[SOCKET]: ricezione risposta dal client");
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving response from client failed");
         } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: received response from client doesn't match with any class");
         }
         return response;
     }
@@ -132,12 +136,12 @@ public class IOSupport {
 
         try {
             response = inputStream.readObject();
-            System.out.println("from server");
+            LOGGER.log(Level.INFO,"[SOCKET]: ricezione oggetto generico dal server");
 
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving object from server failed");
         } catch (ClassNotFoundException cnfe){
-            cnfe.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: received object from server doesn't match with any class");
         }
         return response;
     }

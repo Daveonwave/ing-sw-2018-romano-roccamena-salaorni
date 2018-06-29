@@ -1,7 +1,6 @@
 package resources;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;

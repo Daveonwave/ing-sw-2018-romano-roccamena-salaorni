@@ -4,7 +4,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import mvc.model.objects.PrivateObjectiveCard;
-import mvc.model.objects.Window;
 
 import java.io.IOException;
 

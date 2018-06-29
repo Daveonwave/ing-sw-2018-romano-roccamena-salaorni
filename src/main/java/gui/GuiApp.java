@@ -79,14 +79,12 @@ public class GuiApp extends Application implements Serializable {
 
     //Chiude la connessione al server
     private void disconnectRmiController() throws RemoteException {
-        //showInfo("disconnecting rmi...");
 
         //TODO: implementazione
 
         guiView = null;
     }
     private void disconnectSocketController() throws RemoteException {
-        //showInfo("disconnecting socket...");
 
         //TODO: implementazione
 

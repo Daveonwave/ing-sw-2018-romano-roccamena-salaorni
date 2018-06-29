@@ -9,7 +9,6 @@ import mvc.view.console.Console;
 import mvc.view.console.ConsoleColors;
 import mvc.view.console.ConsoleView;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public class ObjectPrinter implements Serializable {
