@@ -281,7 +281,7 @@ public class ControllerTest extends MVCTest {
     @Test
     public void randomFourPlayerActivityTest() {
         //Inizializzazione test
-        controller = createTestController();
+        this.controller = createTestController();
         AppViewStub view = new EmptyView(controller);
 
         createFourUsersList();

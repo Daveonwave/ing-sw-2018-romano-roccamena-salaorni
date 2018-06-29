@@ -385,7 +385,7 @@ public class MultiPlayerTest extends MVCTest {
 
     //Test randomizzati
     @Test
-    public void randomTwoPlayerStart() {
+    public synchronized void randomTwoPlayerStart() {
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch();
 
@@ -447,7 +447,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
     }
     @Test
-    public void randomFourPlayerTurnsFlow() {
+    public synchronized void randomFourPlayerTurnsFlow() {
         //Creazione partita
         MultiPlayerMatch match = createFourPlayerMatch();
 
@@ -488,7 +488,7 @@ public class MultiPlayerTest extends MVCTest {
 
     //Test fissi
     @Test
-    public void fixedTwoPlayer1() {
+    public synchronized void fixedTwoPlayer1() {
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch1();
 
@@ -798,7 +798,7 @@ public class MultiPlayerTest extends MVCTest {
         validEndTurn(match, player2);
     }
     @Test
-    public void fixedToolCard2() {
+    public synchronized void fixedToolCard2() {
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch2();
 

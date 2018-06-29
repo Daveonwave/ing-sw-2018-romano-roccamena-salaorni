@@ -23,8 +23,12 @@ public class MVCTest extends BaseTest {
     protected final User user4 = new User("bob", new EmptyView(createTestController()));
 
     //Crea controller locale di test
-    public static AppController createTestController() {
-        return new AppController(new TimerConfig(30000, 30000));
+    public AppController createTestController() {
+        AppController output = new AppController(new TimerConfig(30000, 30000));
+
+        output.getModel().resetAppModel();
+
+        return output;
     }
 
     //Crea liste di utenti di test
