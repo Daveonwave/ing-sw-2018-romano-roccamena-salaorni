@@ -30,7 +30,7 @@ public class MultiPlayerTurnHandler extends TurnHandler {
         this.playersCount = playersCount;
         this.firstPlayerIndex = firstPlayerIndex;
         this.turnPlayerIndex = firstPlayerIndex;
-        this.roundTurnsIndices = new ArrayList<Integer>();
+        this.roundTurnsIndices = new ArrayList<>();
     }
 
     //Getter
@@ -43,6 +43,7 @@ public class MultiPlayerTurnHandler extends TurnHandler {
     public int getTurnPlayerIndex() {
         return turnPlayerIndex;
     }
+    @Override
     public int getRound() {
         return round;
     }

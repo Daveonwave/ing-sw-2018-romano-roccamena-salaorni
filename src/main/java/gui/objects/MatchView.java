@@ -140,13 +140,13 @@ public class MatchView {
      */
     public List<String> windowToolCards() {
 
-        List<String> toolCards = new ArrayList<>();
-        toolCards.add("pennello per eglomise");
-        toolCards.add("alesatore per lamina di rame");
-        toolCards.add("lathekin");
-        toolCards.add("taglierina manuale");
+        List<String> toolCardGroup = new ArrayList<>();
+        toolCardGroup.add("pennello per eglomise");
+        toolCardGroup.add("alesatore per lamina di rame");
+        toolCardGroup.add("lathekin");
+        toolCardGroup.add("taglierina manuale");
 
-        return toolCards;
+        return toolCardGroup;
     }
 
     /**
@@ -154,15 +154,15 @@ public class MatchView {
      * @return list of those tool cards
      */
     public List<String> draftPoolToolCards() {
-        List<String> toolCards = new ArrayList<>();
+        List<String> toolCardGroup = new ArrayList<>();
 
-        toolCards.add("pinza sgrossatrice");
-        toolCards.add("taglierina circolare");
-        toolCards.add("pennello per pasta salda");
-        toolCards.add("tampone diamantato");
-        toolCards.add("diluente per pasta salda");
+        toolCardGroup.add("pinza sgrossatrice");
+        toolCardGroup.add("taglierina circolare");
+        toolCardGroup.add("pennello per pasta salda");
+        toolCardGroup.add("tampone diamantato");
+        toolCardGroup.add("diluente per pasta salda");
 
-        return toolCards;
+        return toolCardGroup;
     }
 
     /**
@@ -170,13 +170,13 @@ public class MatchView {
      * @return list of those tool cards
      */
     public List<String> noSelectionToolCards() {
-        List<String> toolCards = new ArrayList<>();
+        List<String> toolCardGroup = new ArrayList<>();
 
-        toolCards.add("martelletto");
-        toolCards.add("tenaglia a rotelle");
-        toolCards.add("riga di sughero");
+        toolCardGroup.add("martelletto");
+        toolCardGroup.add("tenaglia a rotelle");
+        toolCardGroup.add("riga di sughero");
 
-        return toolCards;
+        return toolCardGroup;
     }
 
     /**
@@ -184,12 +184,12 @@ public class MatchView {
      * @return list of those tool cards
      */
     public List<String> toPlaceToolCards() {
-        List<String> toolCards = new ArrayList<>();
+        List<String> toolCardGroup = new ArrayList<>();
 
-        toolCards.add("pinza sgrossatrice");
-        toolCards.add("riga di sughero");
-        toolCards.add("tampone diamantato");
+        toolCardGroup.add("pinza sgrossatrice");
+        toolCardGroup.add("riga di sughero");
+        toolCardGroup.add("tampone diamantato");
 
-        return toolCards;
+        return toolCardGroup;
     }
 }

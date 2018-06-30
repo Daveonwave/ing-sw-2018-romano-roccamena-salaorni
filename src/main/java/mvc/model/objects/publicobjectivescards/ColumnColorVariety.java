@@ -25,11 +25,8 @@ public class ColumnColorVariety extends PublicObjectiveCard {
             //Confronto ogni dado della colonna con i successivi
             for(int first = 0; first < GameConstants.WINDOW_ROWS_COUNT; first++){
                 for(int i = first + 1; i < GameConstants.WINDOW_ROWS_COUNT; i++){
-                    if(columnCells.get(i).getDie() == null || columnCells.get(first).getDie() == null){
-                        varietyColumn = false;
-                        break;
-                    }
-                    if(columnCells.get(i).getDie().getColor().equals(columnCells.get(first).getDie().getColor())) {
+                    if(columnCells.get(i).getDie() == null || columnCells.get(first).getDie() == null
+                            || columnCells.get(i).getDie().getColor().equals(columnCells.get(first).getDie().getColor())){
                         varietyColumn = false;
                         break;
                     }

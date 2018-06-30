@@ -7,17 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create model's windows
+ * Create window patterns
  */
 public class WindowsCreator {
     //Creatore di finestre di gioco
 
+    //Private constructor
+    private WindowsCreator(){}
+
     /**
-     * Create all model's windows
-     * @return
+     * Create all windows patterns
+     * @return list with all the windows
      */
     public static List<Window> createWindows() {
-        List<Window> windows = new ArrayList<Window>(24);
+        List<Window> windows = new ArrayList<>(24);
 
         //Crea finestre
         for (int i = 0; i < 23; i++) {
@@ -706,6 +709,7 @@ public class WindowsCreator {
 
                     windows.get(i).setCells(cells);
                     break;
+                default:
             }
         }
 

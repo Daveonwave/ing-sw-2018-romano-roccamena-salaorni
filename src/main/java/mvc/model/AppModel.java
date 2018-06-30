@@ -28,9 +28,9 @@ public class AppModel {
      * Create new application model instance
      */
     private AppModel() {
-        this.names = new TokenMap<String>();
-        this.users = new TokenMap<User>();
-        this.matches = new TokenMap<MatchModel>();
+        this.names = new TokenMap<>();
+        this.users = new TokenMap<>();
+        this.matches = new TokenMap<>();
     }
 
     //Getter singleton
@@ -38,7 +38,7 @@ public class AppModel {
      * Retrieve application model instance
      * @return
      */
-    public synchronized static AppModel get() {
+    public static synchronized AppModel get() {
         if (instance == null) {
             instance = new AppModel();
         }

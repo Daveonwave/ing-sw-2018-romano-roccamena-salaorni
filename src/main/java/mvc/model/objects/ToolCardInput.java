@@ -8,8 +8,10 @@ import java.io.Serializable;
 public class ToolCardInput implements Serializable {
     //Input utilizzo di carte strumento
 
-    private Cell originCell1, originCell2;
-    private Cell destinationCell1, destinationCell2;
+    private Cell originCell1;
+    private Cell originCell2;
+    private Cell destinationCell1;
+    private Cell destinationCell2;
 
     private int roundTrackRound;
     private Die roundTrackDie;

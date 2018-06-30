@@ -5,6 +5,8 @@ import mvc.exceptions.AppModelException;
 import mvc.view.console.Console;
 import mvc.view.console.ConsoleView;
 
+import java.rmi.RemoteException;
+
 public class LogoutHandler extends MenuInputHandler {
     //Gestore login
 

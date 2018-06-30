@@ -12,7 +12,7 @@ import java.util.List;
 public class RoundTrack implements Serializable {
     //Tracciato dei round di una partita
 
-    List<List<Die>> diceStack;
+    private List<List<Die>> diceStack;
 
     //Costruttori
     /**
@@ -79,9 +79,8 @@ public class RoundTrack implements Serializable {
     public boolean containsDice(int round, List<Die> dice) {
         for (Die d1 : diceStack.get(round-1)) {
             for (Die d2 : dice) {
-                if (d1 != null && d2 != null)
-                    if (d1.sameDie(d2))
-                        return true;
+                if ((d1 != null && d2 != null) && d1.sameDie(d2))
+                    return true;
             }
         }
 
@@ -95,9 +94,8 @@ public class RoundTrack implements Serializable {
      */
     public boolean containsDie(int round, Die die) {
         for (Die d1 : diceStack.get(round-1)) {
-            if (die != null && d1 != null)
-                if (die.sameDie(d1))
-                    return true;
+            if ((die != null && d1 != null) && die.sameDie(d1))
+                return true;
         }
 
         return false;

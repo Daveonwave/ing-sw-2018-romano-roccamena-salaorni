@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *  Receiver of the client requests and responsibile of their sorting
@@ -26,9 +28,10 @@ public class ServerTransmitter implements Runnable {
 
     private boolean isRunning;
 
+    private static final Logger LOGGER = Logger.getLogger(ServerTransmitter.class.getName());
+
     /**
      * Class constructor
-     *
      * @param socket communication gate
      * @param clientRequestHandler handler of the client sendRequest
      * @throws IOException
@@ -62,8 +65,8 @@ public class ServerTransmitter implements Runnable {
     }
 
     /**
-     * Handles the comunication between client and server. It is always listening for some sendRequest from the client
-     * and, when it receives one, send it to the clientRequestHandle to obtain a response (excption or not).
+     * Handles the communication between client and server. It is always listening for some sendRequest from the client
+     * and, when it receives one, send it to the clientRequestHandle to obtain a response (exception or not).
      */
     public void run() {
         try{
@@ -74,7 +77,7 @@ public class ServerTransmitter implements Runnable {
                     IOSupport.responseToClient(out, clientResponse);
             }
         } catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: handle of the client request failed");
         }
         close();
     }
@@ -88,7 +91,7 @@ public class ServerTransmitter implements Runnable {
             try {
                 in.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "[ERROR]: input stream closure failed");
             }
         }
 
@@ -96,14 +99,14 @@ public class ServerTransmitter implements Runnable {
             try {
                 out.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "[ERROR]: output stream closure failed");
             }
         }
 
         try {
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, "[ERROR]: socket port closure failed");
         }
     }
 

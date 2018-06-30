@@ -15,11 +15,16 @@ public class ObjectivesCreator {
     //Creatore carte obiettivo del gioco
 
     /**
+     * Private constructor
+     */
+    private ObjectivesCreator(){}
+
+    /**
      * Create all private objective cards
      * @return
      */
     public static List<PrivateObjectiveCard> createPrivateObjectiveCards() {
-        List<PrivateObjectiveCard> cards = new ArrayList<PrivateObjectiveCard>();
+        List<PrivateObjectiveCard> cards = new ArrayList<>();
 
         //Crea ogni carta obiettivo privata
         cards.add(new ShadesOfBlue());
@@ -35,7 +40,7 @@ public class ObjectivesCreator {
      * @return
      */
     public static List<PublicObjectiveCard> createPublicObjectiveCards() {
-        List<PublicObjectiveCard> cards = new ArrayList<PublicObjectiveCard>();
+        List<PublicObjectiveCard> cards = new ArrayList<>();
 
         //Crea ogni carta obiettivo publica
         cards.add(new ColorDiagonals());

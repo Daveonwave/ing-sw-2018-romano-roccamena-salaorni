@@ -230,7 +230,7 @@ public class Window implements Serializable {
      * @return
      */
     public List<Cell> getColumnCells(int columnIndex){
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
@@ -269,7 +269,7 @@ public class Window implements Serializable {
 
     //Ottiene tutte le celle ortogonalmente adiacenti
     public List<Cell> getOrthogonalCells(Cell cell) {
-        List<Cell> cellList = new ArrayList<Cell>();
+        List<Cell> cellList = new ArrayList<>();
 
         Cell up = getUpCell(cell);
         Cell down = getDownCell(cell);
@@ -318,7 +318,7 @@ public class Window implements Serializable {
 
     //Ottiene tutte le celle diagonalmente adiacenti
     public List<Cell> getDiagonalsCells(Cell cell){
-        List<Cell> cellList = new ArrayList<Cell>();
+        List<Cell> cellList = new ArrayList<>();
 
         Cell upLeft = getUpLeftCell(cell);
         Cell upRight = getUpRightCell(cell);
@@ -375,9 +375,8 @@ public class Window implements Serializable {
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
-                if(c.getDie() != null) {
-                    if (color.equals(c.getDie().getColor()))
-                        result.add(c);
+                if(c.getDie() != null && color.equals(c.getDie().getColor())) {
+                    result.add(c);
                 }
             }
         }
@@ -388,9 +387,8 @@ public class Window implements Serializable {
 
         for(Cell[] cc : cells){
             for(Cell c : cc){
-                if(c.getDie() != null) {
-                    if (c.getDie().getShade() == shade)
-                        result.add(c);
+                if(c.getDie() != null && c.getDie().getShade() == shade) {
+                    result.add(c);
                 }
             }
         }
@@ -407,9 +405,8 @@ public class Window implements Serializable {
         for (Cell c : adjacentCells) {
             Die placedDie = c.getDie();
 
-            if (die != null) {
-                if (die.sameColor(placedDie) || die.sameShade(placedDie))
-                    return false;
+            if (die != null && die.sameColor(placedDie) || die.sameShade(placedDie)) {
+                return false;
             }
         }
 
@@ -448,13 +445,12 @@ public class Window implements Serializable {
 
     //Ottiene celle piazzabili con un dado
     public List<Cell> getValidCells(Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells) {
-        List<Cell> result = new ArrayList<Cell>();
+        List<Cell> result = new ArrayList<>();
 
         for (Cell[] cc : cells) {
             for (Cell c : cc) {
-                if (noWindowRestriction(c, die, ignoreStartPlace, ignoreAdjacentCells))
-                    if (c.getCellRestriction().canPlaceDie(die))
-                        result.add(c);
+                if (noWindowRestriction(c, die, ignoreStartPlace, ignoreAdjacentCells) && c.getCellRestriction().canPlaceDie(die))
+                    result.add(c);
             }
         }
 

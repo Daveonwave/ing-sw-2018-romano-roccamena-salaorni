@@ -5,6 +5,8 @@ import mvc.model.objects.enums.DieColor;
 public final class StringConverter {
     //Convertitore di oggetti in stringa
 
+    private StringConverter(){}
+
     public static String getColorString(DieColor color) {
         String out = "";
 

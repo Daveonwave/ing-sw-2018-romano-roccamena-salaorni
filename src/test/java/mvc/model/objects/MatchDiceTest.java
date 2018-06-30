@@ -16,7 +16,15 @@ public class MatchDiceTest {
     MatchDice matchDice = new MatchDice(3, diceBag, draftPool);
 
     @Test
+    public void sameElements(){
+        MatchDice matchDiceWrong = new MatchDice(0, null, null);
+        matchDiceWrong.setPlayersCount(2);
+        assertFalse(matchDice.sameMatchDice(matchDiceWrong));
+    }
+
+    @Test
     public void samePlayersCount() {
+
     }
 
     @Test

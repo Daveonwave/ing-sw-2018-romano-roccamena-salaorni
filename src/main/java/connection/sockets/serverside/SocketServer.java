@@ -11,7 +11,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+/**
+ * Kernel class of the server
+ */
 public class SocketServer implements Closeable {
     //Server Socket
 
@@ -24,7 +29,11 @@ public class SocketServer implements Closeable {
 
     private boolean isReady;
 
-    //Costruttori - Singleton
+    private static final Logger LOGGER = Logger.getLogger(SocketServer.class.getName());
+
+    /**
+     * Constructor singleton
+     */
     private SocketServer() {
         this.serverActionHandler = null;
         this.serverSocket = null;
@@ -47,8 +56,11 @@ public class SocketServer implements Closeable {
         return serverSocket;
     }
 
-    //Restituisce il singleton del server
-    public static SocketServer getIstance() {
+    /**
+     * Return the singleton instance of the server
+     * @return server instance
+     */
+    public static SocketServer getInstance() {
         if(singletonServer == null ){
             singletonServer = new SocketServer();
         }
@@ -56,21 +68,34 @@ public class SocketServer implements Closeable {
         return singletonServer;
     }
 
-    //Crea il server
+    /**
+     * Create the server
+     * @param portsConfig configuration of the socket port
+     * @throws IOException
+     */
     public void init(PortsConfig portsConfig) throws IOException {
         serverSocket = new ServerSocket(portsConfig.getSocketPort());
         this.isReady = true;
-        System.out.println("[SOCKET SERVER READY : PORT " + portsConfig.getSocketPort() + "]");
+        LOGGER.info("[SOCKET SERVER READY : PORT " + portsConfig.getSocketPort() + "]");
     }
 
-    //Apre la connessione con il client
+    /**
+     * Accept and set the connection with the client
+     * @return return the socket used for the connection
+     * @throws IOException
+     */
     private Socket acceptConnection() throws IOException{
         Socket accepted = serverSocket.accept();
-        System.out.println("[SOCKET] Aperta connessione con: " + accepted.getRemoteSocketAddress());
+        LOGGER.info("[SOCKET] Aperta connessione con: " + accepted.getRemoteSocketAddress());
         return accepted;
     }
 
-    //Inizializza e fa funzionare il server
+    /**
+     * Initialize the connection and all the instances related with the server
+     * @param timerConfig configuration of the timer
+     * @param portsConfig configuration of the ports
+     * @throws IOException
+     */
     public void runSocketServer(TimerConfig timerConfig, PortsConfig portsConfig) throws IOException{
         this.init(portsConfig);
 
@@ -91,13 +116,16 @@ public class SocketServer implements Closeable {
                 threadPool.submit(serverTransmitter);
 
             } catch (IOException e){
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING, "[ERROR]: initialize server connection failed");
                 break;
             }
         }
     }
 
-    //Chiude la connessione del server
+    /**
+     * Close the connsectio
+     * @throws IOException
+     */
     public void close() throws IOException {
         serverSocket.close();
         threadPool.shutdown();

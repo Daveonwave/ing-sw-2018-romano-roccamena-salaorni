@@ -2,6 +2,9 @@ package connection.sockets.communication.rensponses;
 
 import java.rmi.RemoteException;
 
+/**
+ * Response with an exception wrapped inside
+ */
 public abstract class ExceptionResponse {
 
     private boolean isException;

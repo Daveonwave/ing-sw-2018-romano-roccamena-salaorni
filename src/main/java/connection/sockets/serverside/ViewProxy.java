@@ -38,7 +38,9 @@ public class ViewProxy implements AppViewStub {
 
     //Metodi da eliminare ?? ////////////////////////////////////////////////////
     public String login(String userToken) throws RemoteException {return null;}
-    public void logout() throws RemoteException{}
+    public void logout() throws RemoteException{
+        //da eliminare?
+    }
     /////////////////////////////////////////////////////////////////////////////
 
     //Richieste osservazione attività multiplayer

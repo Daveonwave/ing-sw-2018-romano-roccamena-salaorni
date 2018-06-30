@@ -26,7 +26,7 @@ public class PennelloPerPastaSalda extends ToolCard {
         die.roll();
 
         //Controlla se il dado è piazzabile
-        if (player.getWindow().getValidCells(die).size() == 0) {
+        if (player.getWindow().getValidCells(die).isEmpty()) {
             player.setTurnDiePlaced(true);
             throw new MatchException("non puoi piu piazzare il dado");
         }

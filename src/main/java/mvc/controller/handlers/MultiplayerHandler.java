@@ -29,7 +29,7 @@ public class MultiplayerHandler {
     public MultiplayerHandler(AppController controller, int usersCount, int delay) {
         this.ready = false;
         this.usersCount = usersCount;
-        this.waitingUsersToken = new ArrayList<String>();
+        this.waitingUsersToken = new ArrayList<>();
         this.controller = controller;
         this.noPlayersHandler = new NoPlayersHandler(controller, delay);
     }
@@ -68,7 +68,7 @@ public class MultiplayerHandler {
      * @return
      */
     public synchronized List<String> retrieveWaitingUsersToken() {
-        List<String> copyUsers = new ArrayList<String>();
+        List<String> copyUsers = new ArrayList<>();
         for (String token : waitingUsersToken)
             copyUsers.add(token);
 

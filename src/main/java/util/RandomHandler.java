@@ -11,6 +11,11 @@ public class RandomHandler {
     private static Random random;
 
     /**
+     * Private constructor
+     */
+    private RandomHandler(){}
+
+    /**
      * Create a Random object given a seed
      * @param seed Seed value
      */

@@ -122,6 +122,8 @@ public class Die implements Serializable {
             case 6:
                 this.shade = 1;
                 break;
+            default:
+
         }
     }
 

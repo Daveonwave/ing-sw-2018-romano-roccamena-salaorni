@@ -6,6 +6,9 @@ import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 import mvc.model.objects.PlayerPoints;
 
+/**
+ * Observation request on getting points action
+ */
 public class OnGetPointsRequest implements ServerRequest {
 
     private final String tokenMatch;
@@ -13,7 +16,13 @@ public class OnGetPointsRequest implements ServerRequest {
     private final Player player;
     private final PlayerPoints points;
 
-    //Costruttori
+    /**
+     * Costructor of the specific request
+     * @param tokenMatch id of the match
+     * @param match object match
+     * @param player current player
+     * @param points player points
+     */
     public OnGetPointsRequest(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) {
         this.tokenMatch = tokenMatch;
         this.match = match;
@@ -35,7 +44,11 @@ public class OnGetPointsRequest implements ServerRequest {
         return points;
     }
 
-    @Override
+    /**
+     * Handle the specific server request
+     * @param handler ServerRequestHandler
+     * @return the related response
+     */
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);
     }

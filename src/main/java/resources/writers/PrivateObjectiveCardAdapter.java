@@ -27,6 +27,7 @@ public class PrivateObjectiveCardAdapter extends TypeAdapter<PrivateObjectiveCar
             switch (in.nextName()){
                 case "name":
                     //Todo: typeAdapter
+                default:
 
             }
         }

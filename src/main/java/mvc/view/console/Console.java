@@ -3,11 +3,18 @@ package mvc.view.console;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public final class Console {
     //Funzioni base di visualizzazione console
 
     private static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+    private static final Logger LOGGER = Logger.getLogger(Console.class.getName());
+
+    //Costruttori
+    private Console(){}
 
     //Ottiene stringa centrata
     public static String centeredStringBorder(String text, int width, String pad) {
@@ -21,13 +28,13 @@ public final class Console {
 
     //Pulisce schermo
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
+        LOGGER.log(Level.FINE, "\033[H\033[2J");
         System.out.flush();
     }
 
     //Colore scrittura
     public static void setColor(String color) {
-        System.out.println(color);
+        LOGGER.log(Level.FINE, color);
         System.out.flush();
     }
     public static void resetColor() {
@@ -44,13 +51,13 @@ public final class Console {
         println("");
     }
     public static void println(String text) {
-        System.out.println(text);
+        LOGGER.fine(text);
         System.out.flush();
     }
     public static void printlnCentered(String text, int width, String pad) {
         String border = centeredStringBorder(text, width, pad);
 
-        System.out.println(border + text + border);
+        LOGGER.fine(border + text + border);
 
         System.out.flush();
     }

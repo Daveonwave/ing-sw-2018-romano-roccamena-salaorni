@@ -13,11 +13,16 @@ public class ToolsCreator {
     //Creatore carte strumento gioco
 
     /**
+     * Private constructor
+     */
+    private ToolsCreator(){}
+
+    /**
      * Create all tool cards
      * @return
      */
     public static List<ToolCard> createToolCards() {
-        List<ToolCard> cards = new ArrayList<ToolCard>();
+        List<ToolCard> cards = new ArrayList<>();
 
         //Crea ogni carta strumento
         cards.add(new AlesatorePerLaminaDiRame());

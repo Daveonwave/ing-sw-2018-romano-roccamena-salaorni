@@ -39,7 +39,7 @@ public class Player implements Serializable {
         this.window = window;
         this.startWindows = startWindows;
 
-        this.privateObjectiveCards = new ArrayList<PrivateObjectiveCard>();
+        this.privateObjectiveCards = new ArrayList<>();
         this.privateObjectiveCards.add(privateObjectiveCard);
 
         this.favorTokens = favorTokens;

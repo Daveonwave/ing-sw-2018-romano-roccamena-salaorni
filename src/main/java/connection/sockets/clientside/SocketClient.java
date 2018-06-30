@@ -11,6 +11,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Kernel class of the client
+ */
 public class SocketClient {
     //Client Socket
 
@@ -44,7 +47,12 @@ public class SocketClient {
         return responseRegistry;
     }
 
-    //Inizializza il client
+    /**
+     * Initialize the client and create all the related instances
+     * @param addressConfig configuration of the ip address
+     * @param portsConfig configuration of the socket port
+     * @throws IOException
+     */
     public void init(AddressConfig addressConfig, PortsConfig portsConfig) throws IOException{
         socket = new Socket(addressConfig.getAddress(), portsConfig.getSocketPort());
         out = new ObjectOutputStream(socket.getOutputStream());
@@ -60,6 +68,10 @@ public class SocketClient {
     }
 
     //Chiude il client
+    /**
+     * Close the connection and the IO streams
+     * @throws IOException
+     */
     public void close() throws IOException {
         in.close();
         out.close();
@@ -67,22 +79,21 @@ public class SocketClient {
         clientTransmitter.setRunning(false);
     }
 
-    //Ottiene risposta del server
+     /**
+     * Get the response saved inside the storage of response (response registry)
+     * @param idAction id of the wanted response
+     * @return
+     */
     public ClientResponse getResponse(int idAction){
         return responseRegistry.retrieveResponse(idAction);
     }
 
-    //Invia richiesta al server
+    /**
+     * Send the request to server
+     * @param request
+     */
     public void sendRequest(ClientRequest request){
         IOSupport.requestToServer(out, request);
     }
-
-
-    //Map (int, idResponse)
-    //Altra classe sincronizzata
-    //Richieste con id e response con id uguale
-    //Wait e notify
-    //Retrieve response con wait
-    //Search and head della map
 
 }

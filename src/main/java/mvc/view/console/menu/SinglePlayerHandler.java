@@ -8,6 +8,8 @@ import mvc.view.console.Console;
 import mvc.view.console.ConsoleView;
 import mvc.view.console.printer.ObjectPrinter;
 
+import java.io.IOException;
+
 public class SinglePlayerHandler extends MenuInputHandler {
     //Gestore partita singleplayer
 
@@ -17,7 +19,7 @@ public class SinglePlayerHandler extends MenuInputHandler {
     }
 
     //Gestione input
-    public void onInputHandle() throws Exception {
+    public void onInputHandle() throws IOException {
         ConsoleView view = getConsoleView();
         ConsoleMenu menu = getParentMenu();
 

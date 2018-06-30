@@ -5,13 +5,21 @@ import connection.sockets.communication.rensponses.server.ServerResponse;
 import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.ToolCard;
 
+/**
+ * Observation request on the usage of a tool card
+ */
 public class OnUseToolCardRequest implements ServerRequest {
 
     private final String tokenMatch;
     private final MultiPlayerMatch match;
     private final ToolCard toolCard;
 
-    //costruttori
+    /**
+     * Constructor of the specific request
+     * @param tokenMatch id of the match
+     * @param match object match
+     * @param toolCard selected tool card
+     */
     public OnUseToolCardRequest(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) {
         this.tokenMatch = tokenMatch;
         this.match = match;
@@ -29,7 +37,11 @@ public class OnUseToolCardRequest implements ServerRequest {
         return toolCard;
     }
 
-    @Override
+    /**
+     * Handle the specific server request
+     * @param handler ServerRequestHandler
+     * @return the related response
+     */
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);
     }

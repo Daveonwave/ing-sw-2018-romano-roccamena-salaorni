@@ -22,4 +22,6 @@ public class FXGuiConstant {
     public static final String TAGLIERINA_CIRCOLARE = "taglierina circolare";
     public static final String SELECTED = "selected";
 
+    private FXGuiConstant(){}
+
 }

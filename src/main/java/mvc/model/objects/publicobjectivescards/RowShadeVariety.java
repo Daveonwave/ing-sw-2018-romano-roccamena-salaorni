@@ -25,11 +25,8 @@ public class RowShadeVariety extends PublicObjectiveCard {
             //Confronto ogni dado della riga con i successivi
             for(int first = 0; first < GameConstants.WINDOW_COLUMNS_COUNT; first++){
                 for(int i = first + 1; i < GameConstants.WINDOW_COLUMNS_COUNT; i++){
-                    if(rowCells.get(i).getDie() == null || rowCells.get(first).getDie() == null){
-                        varietyRow = false;
-                        break;
-                    }
-                    if(rowCells.get(i).getDie().getShade() == rowCells.get(first).getDie().getShade()) {
+                    if(rowCells.get(i).getDie() == null || rowCells.get(first).getDie() == null
+                            || rowCells.get(i).getDie().getShade() == rowCells.get(first).getDie().getShade()){
                         varietyRow = false;
                         break;
                     }

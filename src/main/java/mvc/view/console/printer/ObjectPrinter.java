@@ -64,7 +64,7 @@ public class ObjectPrinter implements Serializable {
                 rowString += "|";
             }
 
-            Console.printlnCentered(rowString, consoleView.WIDTH, " ");
+            Console.printlnCentered(rowString, ConsoleView.WIDTH, " ");
         }
     }
     public void printWindowDice(Window window) {
@@ -81,7 +81,7 @@ public class ObjectPrinter implements Serializable {
                 rowString += "|";
             }
 
-            Console.printlnCentered(rowString, consoleView.WIDTH, " ");
+            Console.printlnCentered(rowString, ConsoleView.WIDTH, " ");
         }
     }
 }

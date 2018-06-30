@@ -52,7 +52,7 @@ public class Server {
         }
         //Lancia server socket
         try {
-            SocketServer.getIstance().runSocketServer(timerConfig, portsConfig);
+            SocketServer.getInstance().runSocketServer(timerConfig, portsConfig);
         } catch (IOException e) {
             LOGGER.log(Level.WARNING, "[ERROR]:launch server SOCKET failed");
         }

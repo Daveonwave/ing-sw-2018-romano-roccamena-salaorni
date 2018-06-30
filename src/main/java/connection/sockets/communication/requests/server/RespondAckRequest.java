@@ -3,12 +3,19 @@ package connection.sockets.communication.requests.server;
 import connection.sockets.communication.handlers.ServerRequestHandler;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 
+/**
+ * Request of acknowledgement
+ */
 public class RespondAckRequest implements ServerRequest {
 
     private final String message;
     private final String tokenMatch;
 
-    //Costruttori
+    /**
+     * Constructor of a specific request
+     * @param message message sent to client
+     * @param tokenMatch id of the match
+     */
     public RespondAckRequest(String message, String tokenMatch) {
         this.message = message;
         this.tokenMatch = tokenMatch;
@@ -22,6 +29,11 @@ public class RespondAckRequest implements ServerRequest {
         return tokenMatch;
     }
 
+    /**
+     * Handle the specific server request
+     * @param handler ServerRequestHandler
+     * @return the related response
+     */
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);    }
 

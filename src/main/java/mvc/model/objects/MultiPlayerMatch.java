@@ -240,13 +240,11 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        if (!player.getToolCardEffect().getReplaceDie())
-            if (player.getTurnDiePlaced())
-                throw new MatchException("hai gia piazzato un dado");
+        if (!player.getToolCardEffect().getReplaceDie() && player.getTurnDiePlaced())
+            throw new MatchException("hai gia piazzato un dado");
 
-        if (player.getToolCardEffect().getChosenDie() != null)
-            if (!player.getToolCardEffect().getChosenDie().sameDie(die))
-                throw new MatchException("non puoi scegliere quel dado");
+        if (player.getToolCardEffect().getChosenDie() != null && !player.getToolCardEffect().getChosenDie().sameDie(die))
+            throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
         player.getWindow().placeDie(cell, die);

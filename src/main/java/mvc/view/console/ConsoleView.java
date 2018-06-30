@@ -175,7 +175,9 @@ public class ConsoleView extends AppView {
             Console.clearScreen();
             try {
                 showMainMenu();
-            } catch (IOException e) {}
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

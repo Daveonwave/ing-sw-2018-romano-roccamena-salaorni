@@ -5,8 +5,16 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 
 import java.rmi.RemoteException;
 
+/**
+ * Response on a ack notify request
+ */
 public class RespondAckResponse extends ExceptionResponse implements ServerResponse {
 
+    /**
+     * Handle he response thanks to a specific handler
+     * @param handler ServerResponseHandler
+     * @throws RemoteException
+     */
     public void handleAction(ServerResponseHandler handler) throws RemoteException {
         handler.handleAction(this);
     }
