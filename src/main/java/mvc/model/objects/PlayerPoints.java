@@ -2,6 +2,9 @@ package mvc.model.objects;
 
 import java.io.Serializable;
 
+/**
+ * Match points of a player
+ */
 public class PlayerPoints implements Serializable {
     //Punti di un giocatore
 
@@ -11,6 +14,13 @@ public class PlayerPoints implements Serializable {
     private int openSpacesLostPoints;
 
     //Costruttori
+    /**
+     * Create new player's points
+     * @param privateObjectivePoints Private objective points count
+     * @param publicObjectivePoints Public objective points count
+     * @param favorTokensPoints Favor tokens points count
+     * @param openSpacesLostPoints Open spaces lost points count
+     */
     public PlayerPoints(int privateObjectivePoints, int publicObjectivePoints, int favorTokensPoints, int openSpacesLostPoints) {
         this.privateObjectivePoints = privateObjectivePoints;
         this.publicObjectivePoints = publicObjectivePoints;
@@ -46,6 +56,10 @@ public class PlayerPoints implements Serializable {
     }
 
     //Ottiene punti totali
+    /**
+     * Calculate total player points
+     * @return
+     */
     public int getTotalPoints() {
         return privateObjectivePoints + publicObjectivePoints + favorTokensPoints + openSpacesLostPoints;
     }

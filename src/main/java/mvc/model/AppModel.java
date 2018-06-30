@@ -57,6 +57,13 @@ public class AppModel {
     }
 
     //Utente
+    /**
+     * Register new online user
+     * @param name User's name
+     * @param appView User's application view
+     * @return
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized String createUser(String name, AppViewStub appView) throws RemoteException {
         //Controllo correttezza
         if (name == null || name.equals("") ||appView == null)
@@ -70,6 +77,11 @@ public class AppModel {
         names.put(token, name);
         return token;
     }
+    /**
+     * Unregister an online user
+     * @param tokenUser User's token
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized void destroyUser(String tokenUser) throws RemoteException {
         //Controllo correttezza
         if (tokenUser == null)
@@ -79,6 +91,12 @@ public class AppModel {
         names.destroyObject(tokenUser);
         users.destroyObject(tokenUser);
     }
+    /**
+     * Retrieve server user instance by user's token
+     * @param tokenUser User's token
+     * @return
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized User retrieveUser(String tokenUser) throws RemoteException {
         //Controllo correttezza
         if (tokenUser == null)
@@ -94,6 +112,12 @@ public class AppModel {
     }
 
     //Partita
+    /**
+     * Register new online multiplayer match
+     * @param match Match instance
+     * @return
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized String createMatch(MatchModel match) throws RemoteException {
         //Controlla correttezza
         if (match==null)
@@ -102,6 +126,11 @@ public class AppModel {
         //Crea partita
         return matches.createObject(match);
     }
+    /**
+     * Unregister an online multiplayer match
+     * @param tokenMatch Token of the match
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized void destroyMatch(String tokenMatch) throws RemoteException {
         //Controlla correttezza
         if (tokenMatch==null)
@@ -110,6 +139,13 @@ public class AppModel {
         //Distrugge oggetto
         matches.destroyObject(tokenMatch);
     }
+
+    /**
+     * Retrieve server match model instance by its token
+     * @param tokenMatch Token of the match
+     * @return
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized MatchModel retrieveMatchModel(String tokenMatch) throws RemoteException {
         //Controlla correttezza
         if (tokenMatch==null)
@@ -123,6 +159,13 @@ public class AppModel {
         return match;
     }
 
+    /**
+     * Retrieve an online player
+     * @param tokenUser User's token
+     * @param tokenMatch Token of the match
+     * @return
+     * @throws RemoteException AppModelException if invalid action requested
+     */
     public synchronized Player retrievePlayer(String tokenUser, String tokenMatch) throws RemoteException {
         //Controlla correttezza
         if (tokenUser==null || tokenMatch==null)

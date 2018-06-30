@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Player of a game match
+ */
 public class Player implements Serializable {
     //Giocatore di una partita
 
@@ -23,6 +26,14 @@ public class Player implements Serializable {
 
     //Costruttori
     //MultiPlayer -> un solo obiettivo privato
+    /**
+     * Create new multiplayer player
+     * @param user User of the player
+     * @param window Window of the player
+     * @param startWindows Player's start windows
+     * @param privateObjectiveCard Private objective cards of the player
+     * @param favorTokens Player's favor tokens
+     */
     public Player(User user, Window window, List<Window> startWindows, PrivateObjectiveCard privateObjectiveCard, int favorTokens) {
         this.user = user;
         this.window = window;
@@ -40,6 +51,14 @@ public class Player implements Serializable {
         this.active = true;
     }
     //SinglePlayer -> due obiettivi privati
+    /**
+     * Create new singleplayer player
+     * @param user User of the player
+     * @param window Window of the player
+     * @param startWindows Player's start windows
+     * @param privateObjectiveCards Private objective card of the player
+     * @param favorTokens Player's favor tokens
+     */
     public Player(User user, Window window, List<Window> startWindows, List<PrivateObjectiveCard> privateObjectiveCards, int favorTokens) {
         this.user = user;
         this.window = window;
@@ -112,6 +131,11 @@ public class Player implements Serializable {
     }
 
     //Verifica uguaglianze
+    /**
+     * Asserts equality of two players
+     * @param player Player instance
+     * @return
+     */
     public boolean samePlayer(Player player) {
         if (player == null)
             return false;
@@ -125,6 +149,12 @@ public class Player implements Serializable {
     }
 
     //Ottiene finestra iniziale
+    /**
+     * Obtain start window instance given a window state
+     * @param window Window instance
+     * @return
+     * @throws RemoteException MatchException if invalid window passed
+     */
     public synchronized Window retrieveStartWindow(Window window) throws RemoteException {
         if (window==null)
             throw new MatchException("finestra non valida");

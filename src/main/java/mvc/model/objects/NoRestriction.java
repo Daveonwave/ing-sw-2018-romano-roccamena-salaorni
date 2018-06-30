@@ -1,5 +1,8 @@
 package mvc.model.objects;
 
+/**
+ * No cell restriction implementation
+ */
 public class NoRestriction implements CellRestriction {
     //Nessuna restrizione di cella
 

@@ -52,7 +52,6 @@ public class MatchModel {
     }
 
     //Notifica osservatori
-
     /**
      * Notify player leave event to observers
      * @param tokenMatch Token of the match
