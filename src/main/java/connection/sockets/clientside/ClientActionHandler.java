@@ -49,7 +49,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         ServerResponse response = new OnPlayerLeaveResponse();
 
         try{
-            view.onPlayerLeave(request.getTokenMatch(), request.getMatch());
+            view.onPlayerLeave(request.getTokenMatch(), request.getPlayer());
             ((OnPlayerLeaveResponse) response).setExceptionFlag(false);
         } catch (RemoteException e) {
             ((OnPlayerLeaveResponse) response).setExceptionFlag(true);
@@ -70,7 +70,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
         ServerResponse response = new OnPlayerRejoinResponse();
 
         try{
-            view.onPlayerRejoin(request.getTokenMatch(), request.getMatch());
+            view.onPlayerRejoin(request.getTokenMatch(), request.getPlayer());
             ((OnPlayerRejoinResponse) response).setExceptionFlag(false);
         } catch(RemoteException e){
             ((OnPlayerRejoinResponse) response).setExceptionFlag(true);
