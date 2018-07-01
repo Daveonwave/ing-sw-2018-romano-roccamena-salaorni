@@ -183,10 +183,10 @@ public class ConsoleView extends AppView {
 
     //Osservazione multiplayer
 
-    public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+    public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
         // implementazione
     }
-    public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+    public void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
         //implementazione
     }
 

@@ -47,21 +47,21 @@ public class ViewProxy implements AppViewStub {
     /**
      * Observation method on activity of the player when he leaves the match
      * @param tokenMatch id of the match
-     * @param match object match
+     * @param player object match
      * @throws RemoteException
      */
-    public void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnPlayerLeaveRequest(tokenMatch, match));
+    public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
+        serverTransmitter.request(new OnPlayerLeaveRequest(tokenMatch, player));
         serverResponseHandler.handleAction((OnPlayerLeaveResponse) serverTransmitter.getResponse());
     }
     /**
      * Observation method on activity of player when he rejoins the match
      * @param tokenMatch id of the match
-     * @param match object match
+     * @param player object match
      * @throws RemoteException
      */
-    public void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnPlayerRejoinRequest(tokenMatch, match));
+    public void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
+        serverTransmitter.request(new OnPlayerRejoinRequest(tokenMatch, player));
         serverResponseHandler.handleAction((OnPlayerRejoinResponse) serverTransmitter.getResponse());
     }
 
