@@ -322,6 +322,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     public String getMultiTokenMatch() {
         return multiTokenMatch;
     }
+    private MultiPlayerMatch getMultiPlayerMatch() {
+        return multiPlayerMatch;
+    }
+    private MatchView getMatchView() {
+        return matchView;
+    }
 
     public void setGuiView(GuiView guiView) {
         this.guiView = guiView;
@@ -776,6 +782,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             } catch (RemoteException e) {
                 // eccezione gestita
             }
+            stage.close();
         });
     }
 
@@ -838,6 +845,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     private void updateRoundDice(MultiPlayerMatch match){
         for (RoundView roundView : matchView.getRounds()){
             if(roundView.getRound() < match.getTurnHandler().getRound()){
+                roundView.getImageView().setVisible(true);
                 roundView.getDieViews().clear();
                 for (Die die: match.getRoundTrack().retrieveDice(roundView.getRound())){
                     roundView.getDieViews().add(new DieView(null,die));
@@ -854,6 +862,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     private void setScene(Parent root){
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("fxml/style.css").toExternalForm());
+        if(stage == null){
+            stage = new Stage();
+        }
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -881,6 +892,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @param match current match
      */
     private void initializeMatchRoundsGui(MultiPlayerMatch match) throws AppViewException{
+
         roundDice.setVisible(false);
         console.setEditable(false);
         round1.setVisible(false);
@@ -1382,9 +1394,44 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
 
    //Osservazione multiplayer
     public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
+        if(player2Name.getText().equals(player.getUser().getName()))
+            player2Name.getStyleClass().add(FXGuiConstant.LEFT);
+        if(player3Name.getText().equals(player.getUser().getName()))
+            player3Name.getStyleClass().add(FXGuiConstant.LEFT);
+        if(player4Name.getText().equals(player.getUser().getName()))
+            player4Name.getStyleClass().add(FXGuiConstant.LEFT);
 
     }
     public void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
+        if(player2Name.getText().equals(player.getUser().getName())) {
+            player2Name.getStyleClass().remove(FXGuiConstant.LEFT);
+            player2Name.getStyleClass().add(FXGuiConstant.REJOIN);
+        }
+        if(player3Name.getText().equals(player.getUser().getName())) {
+            player3Name.getStyleClass().remove(FXGuiConstant.LEFT);
+            player3Name.getStyleClass().add(FXGuiConstant.REJOIN);
+        }
+        if(player4Name.getText().equals(player.getUser().getName())) {
+            player4Name.getStyleClass().remove(FXGuiConstant.LEFT);
+            player4Name.getStyleClass().add(FXGuiConstant.REJOIN);
+        }
+
+        if(player.getUser().getName().equals(guiView.getUserName())){
+            try {
+                createMatchRoundsGui(multiPlayerMatch);
+            } catch (IOException e) {
+                //eccezione gestita
+            }
+            GuiMultiplayerApp newController = guiView.getMultiplayerApps().get(tokenMatch);
+            for(Player player1: newController.getMultiPlayerMatch().getPlayers()){
+               newController.updateCells(player1);
+            }
+            newController.updateRoundDice(newController.getMultiPlayerMatch());
+            for(ToolCardView toolCardView : newController.getMatchView().getToolCards()){
+                if(toolCardView.getToolCard().getFavorTokens() > 0)
+                    associateCostLabel(newController.getMatchView().getToolCards().indexOf(toolCardView)).setText("Costo: 2FavorTokens");
+            }
+        }
 
     }
 
@@ -1408,7 +1455,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @param match match in which this event occurred
      */
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-
+        //has no effect on th e gui because it's called right after OnMatchStart
     }
 
     /**

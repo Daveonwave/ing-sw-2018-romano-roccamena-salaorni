@@ -21,6 +21,8 @@ public class FXGuiConstant {
     public static final String CHOICE_MESSAGE = "devi prima compiere una scelta";
     public static final String TAGLIERINA_CIRCOLARE = "taglierina circolare";
     public static final String SELECTED = "selected";
+    public static final String LEFT = "left";
+    public static final String REJOIN = "rejoin";
 
     private FXGuiConstant(){}
 

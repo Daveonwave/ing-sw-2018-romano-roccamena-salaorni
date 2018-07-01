@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Platform;
+import javafx.scene.control.RadioButton;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -121,7 +122,18 @@ public class GuiView extends AppView {
      * @throws RemoteException
      */
     public synchronized void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
-        //da implementare
+        Platform.runLater(() -> {
+            try {
+                if(player.getUser().getName().equals(getUserName())){
+                    guiApp.addMatchLeft(tokenMatch);
+                }
+                getMultiplayerApps().get(tokenMatch).onPlayerLeave(tokenMatch,player);
+            } catch (IOException e) {
+                //Segnala errore
+
+                GuiMessage.showError("impossibile visualizzare le finestre");
+            }
+        });
     }
 
     /**
@@ -131,7 +143,15 @@ public class GuiView extends AppView {
      * @throws RemoteException
      */
     public synchronized void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
-        //da implementare
+        Platform.runLater(() -> {
+            try {
+                getMultiplayerApps().get(tokenMatch).onPlayerRejoin(tokenMatch,player);
+            } catch (IOException e) {
+                //Segnala errore
+
+                GuiMessage.showError("impossibile visualizzare le finestre");
+            }
+        });
     }
 
     /**

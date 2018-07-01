@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import mvc.exceptions.AppControllerException;
 import mvc.stubs.AppControllerStub;
@@ -16,6 +17,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * controller for the gui menu scene
@@ -28,6 +31,7 @@ public class GuiApp extends Application implements Serializable {
     private boolean waitingMultiplayer = false;
     private boolean connected = false;
     private boolean rmiConnection = true;
+    private List<RadioButton> matches;
 
     private transient Client client = new Client();
 
@@ -38,6 +42,8 @@ public class GuiApp extends Application implements Serializable {
     Label connectionLabel;
     @FXML
     TextField userNameText;
+    @FXML
+    AnchorPane leftMatchesAnchorPane;
     @FXML
     TextArea serverLogText;
     @FXML
@@ -342,7 +348,6 @@ public class GuiApp extends Application implements Serializable {
         System.exit(0);
     }
 
-
     /**
      * load an fxml file and change the scene of the current stage
      * @param fxml
@@ -350,14 +355,61 @@ public class GuiApp extends Application implements Serializable {
      * @throws IOException
      */
     public void changeScene(String fxml, Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource(fxml));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent root = loader.load();
+        GuiApp guiApp = loader.getController();
+        guiApp.matches = new ArrayList<>();
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    private void updateMatchesLeft(){
+        int yPosition = 43;
+        for (RadioButton match : matches){
+            if(yPosition > 473){
+                serverLogText.setText("[ERRORE] hai raggiunto il limite massimo di partite da visualizzare");
+                return;
+            }
+            match.setPrefSize(201,17.6);
+            leftMatchesAnchorPane.getChildren().remove(match);
+            leftMatchesAnchorPane.getChildren().add(match);
+            match.setLayoutX(6);
+            match.setLayoutY(yPosition);
+            yPosition += 43;
+        }
+    }
+
+    public void addMatchLeft(String tokenMatch){
+
+        for(RadioButton match : matches){
+            if(match.getText().equals(tokenMatch)) {
+                return;
+            }
+        }
+        RadioButton matchLeft = new RadioButton(tokenMatch);
+        matches.add(matchLeft);
+        updateMatchesLeft();
+    }
+
+    public void rejoin(MouseEvent mouseEvent){
+        RadioButton eliminatedMatch = null;
+        for(RadioButton match: this.matches){
+            if(match.isSelected()){
+                try {
+                    guiView.getController().rejoinMatch(guiView.getUserToken(),match.getText());
+                } catch (RemoteException e) {
+                    serverLogText.setText("[ERRORE] " + e.getMessage());
+                }
+                match.setVisible(false);
+                eliminatedMatch = match;
+                break;
+            }
+        }
+        matches.remove(eliminatedMatch);
+        updateMatchesLeft();
     }
 
     /**
