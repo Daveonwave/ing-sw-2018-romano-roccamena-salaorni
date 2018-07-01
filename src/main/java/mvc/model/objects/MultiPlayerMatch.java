@@ -247,7 +247,7 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("non puoi scegliere quel dado");
 
         //Posiziona il dado
-        player.getWindow().placeDie(cell, die);
+        player.getWindow().placeDie(cell, die, false, player.getToolCardEffect().getIgnoreAdjacentCellsRestriction(), false, false);
 
         matchDice.getDraftPool().remove(die);
 
@@ -316,8 +316,9 @@ public class MultiPlayerMatch extends Match {
         if (!isPlayerTurn(player))
             throw new MatchException("non è il tuo turno");
 
-        //Se giocatore è legato ad un dado per l'effetto di una carta, viene liberato dal vincolo
+        //Resetta eventuali effetti tool card
         player.getToolCardEffect().setChosenDie(null);
+        player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
 
         //Il giocatore potra utilizzare di nuovo carte in turni successivi
         player.setTurnToolCardUsed(false);
