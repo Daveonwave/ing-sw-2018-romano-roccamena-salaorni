@@ -15,7 +15,7 @@ public class MatchView {
     private List<ToolCardView> toolCards;
     private List<ObjectiveCardView> publicObjective;
     private ObjectiveCardView privateObjective;
-    private List<DieView> dice;
+    private List<DieView> draftPool;
     private List<PlayerView> players;
     private DieView selectedDie;
     private List<RoundView> rounds;
@@ -27,18 +27,18 @@ public class MatchView {
      * @param toolCards tool cards view
      * @param publicObjective public objective view
      * @param privateObjective private objective view
-     * @param dice draft pool view
+     * @param draftPool draft pool view
      * @param players players view
      * @param selectedDie selected die
      * @param rounds rounds view
      * @param input tool card's input
      * @param selectedToolCard selected tool card
      */
-    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, ObjectiveCardView privateObjective, List<DieView> dice, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input, ToolCardView selectedToolCard) {
+    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, ObjectiveCardView privateObjective, List<DieView> draftPool, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input, ToolCardView selectedToolCard) {
         this.toolCards = toolCards;
         this.publicObjective = publicObjective;
         this.privateObjective = privateObjective;
-        this.dice = dice;
+        this.draftPool = draftPool;
         this.players = players;
         this.selectedDie = selectedDie;
         this.rounds = rounds;
@@ -52,8 +52,8 @@ public class MatchView {
     public List<ObjectiveCardView> getPublicObjective() {
         return publicObjective;
     }
-    public List<DieView> getDice() {
-        return dice;
+    public List<DieView> getDraftPool() {
+        return draftPool;
     }
     public List<PlayerView> getPlayers() {
         return players;
@@ -78,8 +78,8 @@ public class MatchView {
     public void setPrivateObjective(ObjectiveCardView privateObjective) {
         this.privateObjective = privateObjective;
     }
-    public void setDice(List<DieView> dice) {
-        this.dice = dice;
+    public void setDraftPool(List<DieView> draftPool) {
+        this.draftPool = draftPool;
     }
     public void setPlayers(List<PlayerView> players) {
         this.players = players;
@@ -102,7 +102,7 @@ public class MatchView {
      * @return die view
      */
     public DieView retrieveDieView(Die die) {
-        for (DieView dieView : dice) {
+        for (DieView dieView : draftPool) {
             if (dieView.getDie().getColor().equals(die.getColor())&& dieView.getDie().getShade() == die.getShade())
                 return dieView;
         }
@@ -166,7 +166,7 @@ public class MatchView {
     }
 
     /**
-     * creates a list of tool cards whose effet don't need any dice
+     * creates a list of tool cards whose effet don't need any draftPool
      * @return list of those tool cards
      */
     public List<String> noSelectionToolCards() {
