@@ -111,10 +111,10 @@ public class GuiView extends AppView {
     }
 
     //Osservazione multiplayer
-    public synchronized void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+    public synchronized void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
 
     }
-    public synchronized void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+    public synchronized void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
 
     }
 

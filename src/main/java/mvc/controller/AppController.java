@@ -322,7 +322,7 @@ public class AppController implements AppControllerStub {
         }
 
         //Notifica abbandono giocatore
-        matchModel.notifyPlayerLeave(tokenMatch);
+        matchModel.notifyPlayerLeave(tokenMatch, player);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
     }
     /**
@@ -347,9 +347,10 @@ public class AppController implements AppControllerStub {
         }
 
         //Notifica ripartecipazione giocatore
-        matchModel.notifyPlayerRejoin(tokenMatch);
+        matchModel.notifyPlayerRejoin(tokenMatch, player);
         matchBroadcastAck(tokenMatch, matchModel, "il giocatore " + player.getUser().getName() + " si è riunito alla partita");
     }
+
     /**
      * Request the partecipation of a logged player to a new multiplayer match
      * @param tokenUser User's token
@@ -366,7 +367,6 @@ public class AppController implements AppControllerStub {
             startMatch();
         }
     }
-
     /**
      * Cancel the partecipation sendRequest of a logged player to a new multiplayer match
      * @param tokenUser User's token
@@ -382,7 +382,6 @@ public class AppController implements AppControllerStub {
         //Notifica l'utente dell'uscita
         userAck(null, model.retrieveUser(tokenUser), "iscrizione partita cancellata");
     }
-
     /**
      * Request the choose window action of a logged user on an online multiplayer match
      * @param tokenUser User's token

@@ -57,19 +57,20 @@ public class MatchModel {
      * @param tokenMatch Token of the match
      * @throws RemoteException Connection error occured
      */
-    public synchronized void notifyPlayerLeave(String tokenMatch) throws RemoteException {
+    public synchronized void notifyPlayerLeave(String tokenMatch, Player player) throws RemoteException {
         for (MultiplayerObserver observer : matchObservers)
-            observer.onPlayerLeave(tokenMatch, match);
+            observer.onPlayerLeave(tokenMatch, player);
     }
     /**
      * Notify player rejoined a match to observers
      * @param tokenMatch Token of the match
      * @throws RemoteException Connection error occured
      */
-    public synchronized void notifyPlayerRejoin(String tokenMatch) throws RemoteException {
+    public synchronized void notifyPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
         for (MultiplayerObserver observer : matchObservers)
-            observer.onPlayerRejoin(tokenMatch, match);
+            observer.onPlayerRejoin(tokenMatch, player);
     }
+
     /**
      * Notify match started to observers
      * @param tokenMatch Token of the match
