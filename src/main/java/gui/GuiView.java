@@ -114,29 +114,23 @@ public class GuiView extends AppView {
         }
     }
 
-<<<<<<< Updated upstream
-    //Osservazione multiplayer
-    public synchronized void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
-
-    }
-    public synchronized void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
-=======
-    /**
-     * method called by the model when a player leaves the match, calls corresponding method of the gui controller
-     * @param tokenMatch token of the match
-     * @param match match in which this event occurred
-     */
-    public synchronized void onPlayerLeave(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        //da implementare
-    }
->>>>>>> Stashed changes
-
     /**
      * method called by the model when a player leaves the match, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
-     * @param match match in which this event occurred
+     * @param player player who left the match
+     * @throws RemoteException
      */
-    public synchronized void onPlayerRejoin(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
+    public synchronized void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
+        //da implementare
+    }
+
+    /**
+     * method called by the model when a player rejoin the match, calls the corresponding method of the gui controller
+     * @param tokenMatch token of the match
+     * @param player player who rejoined the match
+     * @throws RemoteException
+     */
+    public synchronized void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
         //da implementare
     }
 
