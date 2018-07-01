@@ -11,20 +11,20 @@ public class ToolCardEffect implements Serializable {
     private Die chosenDie;
     private boolean skipTurn;
     private boolean replaceDie;
-    private boolean ignoreAdjacentCellsRestriction;
+    private boolean ignoreIsolatedRestriction;
 
     /**
      * Constructor of a specific effect
      * @param chosenDie selected die
      * @param skipTurn flag for some effects
      * @param replaceDie flag for some effects
-     * @param ignoreAdjacentCellsRestriction flag for some effects
+     * @param ignoreIsolatedRestriction flag for some effects
      */
-    public ToolCardEffect(Die chosenDie, boolean skipTurn, boolean replaceDie, boolean ignoreAdjacentCellsRestriction) {
+    public ToolCardEffect(Die chosenDie, boolean skipTurn, boolean replaceDie, boolean ignoreIsolatedRestriction) {
         this.chosenDie = chosenDie;
         this.skipTurn = skipTurn;
         this.replaceDie = replaceDie;
-        this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
+        this.ignoreIsolatedRestriction = ignoreIsolatedRestriction;
     }
     /**
      * Generic Constructor
@@ -43,8 +43,8 @@ public class ToolCardEffect implements Serializable {
     public void setReplaceDie(boolean replaceDie) {
         this.replaceDie = replaceDie;
     }
-    public void setIgnoreAdjacentCellsRestriction(boolean ignoreAdjacentCellsRestriction) {
-        this.ignoreAdjacentCellsRestriction = ignoreAdjacentCellsRestriction;
+    public void setIgnoreIsolatedRestriction(boolean ignoreIsolatedRestriction) {
+        this.ignoreIsolatedRestriction = ignoreIsolatedRestriction;
     }
 
     public Die getChosenDie() {
@@ -56,7 +56,7 @@ public class ToolCardEffect implements Serializable {
     public boolean getReplaceDie() {
         return replaceDie;
     }
-    public boolean getIgnoreAdjacentCellsRestriction() {
-        return ignoreAdjacentCellsRestriction;
+    public boolean getIgnoreIsolatedRestriction() {
+        return ignoreIsolatedRestriction;
     }
 }

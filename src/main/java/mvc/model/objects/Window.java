@@ -429,7 +429,10 @@ public class Window implements Serializable {
             return true;
 
         if (ignoreAdjacentCells)
-            return noStartPlaceRestriction(cell, die);
+            if (isEmpty())
+                return noStartPlaceRestriction(cell, die);
+            else
+                return true;
 
         if (ignoreStartPlace)
             return noAdjacentCellsRestriction(cell, die);

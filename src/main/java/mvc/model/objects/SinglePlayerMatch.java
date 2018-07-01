@@ -66,7 +66,7 @@ public class SinglePlayerMatch extends Match {
             player.getToolCardEffect().setReplaceDie(false);
 
         player.getToolCardEffect().setChosenDie(null);
-        player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(false);
+        player.getToolCardEffect().setIgnoreIsolatedRestriction(false);
     }
     //Mossa di utilizzo di una carta strumento
     public void useToolCard(ToolCardInput input, ToolCard toolCard) throws RemoteException {

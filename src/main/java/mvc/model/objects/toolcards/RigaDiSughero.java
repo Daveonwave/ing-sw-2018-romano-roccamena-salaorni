@@ -11,7 +11,6 @@ public class RigaDiSughero extends ToolCard {
     //Costruttori
     public RigaDiSughero() {
         super("riga di sughero", "Dopo aver scelto un dado, piazzalo in una cella che non sia adiacente ad un altro, rispettando tutte le altre restrizioni", DieColor.YELLOW);
-
     }
 
     private void cardEffect(Player player) throws RemoteException {
@@ -20,7 +19,7 @@ public class RigaDiSughero extends ToolCard {
             throw new MatchException("hai gia piazzato un dado");
 
         //Esegue effetto carta
-        player.getToolCardEffect().setIgnoreAdjacentCellsRestriction(true);
+        player.getToolCardEffect().setIgnoreIsolatedRestriction(true);
     }
 
     //Usa carta strumento
