@@ -251,7 +251,7 @@ public class MultiPlayerMatch extends Match {
                 throw new MatchException("il dado va piazzato isolato");
 
         //Posiziona il dado
-        player.getWindow().placeDie(cell, die);
+        player.getWindow().placeDie(cell, die, false, player.getToolCardEffect().getIgnoreIsolatedRestriction(), false, false);
 
         matchDice.getDraftPool().remove(die);
 
