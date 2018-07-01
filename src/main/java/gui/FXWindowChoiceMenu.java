@@ -169,7 +169,7 @@ public class FXWindowChoiceMenu {
 
     /**
      * initialize the scene for the starting window choice
-     * @param match match of the model
+     * @param match current match
      */
     public void initializeMenu(MultiPlayerMatch match) throws AppViewException{
         for(Player player : match.getPlayers()){

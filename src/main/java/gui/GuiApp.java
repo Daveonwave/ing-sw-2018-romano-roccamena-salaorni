@@ -17,6 +17,9 @@ import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * controller for the gui menu scene
+ */
 public class GuiApp extends Application implements Serializable {
     //Applicazione gui principale
 
@@ -67,23 +70,37 @@ public class GuiApp extends Application implements Serializable {
         return waitingMultiplayer;
     }
 
-
+    /**
+     * connect the client to the server using rmi
+     * @return controller associated to this view
+     */
     private AppControllerStub connectRmiController() throws IOException, NotBoundException {
         client.launchClient(true);
         return client.getRmiController();
     }
+
+    /**
+     * connect to the server using sockets
+     * @return controller associated to this view
+     */
     private AppControllerStub connectSocketController() throws IOException, NotBoundException {
         client.launchClient(false);
         return client.getSocketController();
     }
 
-    //Chiude la connessione al server
+    /**
+     * disconnect the client from the server using rmi
+     */
     private void disconnectRmiController() throws RemoteException {
 
         //TODO: implementazione
 
         guiView = null;
     }
+
+    /**
+     * disconnect the client from the server using rmi
+     */
     private void disconnectSocketController() throws RemoteException {
 
         //TODO: implementazione
@@ -92,8 +109,10 @@ public class GuiApp extends Application implements Serializable {
     }
 
 
-
-    //Eventi componenti gui
+    /**
+     * when the "connect" button is clicked, calls the corresponding connection method
+     * @param event on click event
+     */
     public void onConnectClicked(MouseEvent event) {
         AppControllerStub controller = null;
 
@@ -148,6 +167,11 @@ public class GuiApp extends Application implements Serializable {
         //Visualizza messaggio
         GuiMessage.showInfo("Connesso al server");
     }
+
+    /**
+     * when th "disconnect" button is clicked, calls the corresponding disconnect method
+     * @param event on click event
+     */
     public void onDisconnectClicked(MouseEvent event) {
         connectionLabel.setText("DISCONNETTENDO...");
 
@@ -188,6 +212,11 @@ public class GuiApp extends Application implements Serializable {
         //Visualizza messaggio
         GuiMessage.showInfo("Disconnesso dal server");
     }
+
+    /**
+     * when the "login" button is clicked calls the login method of the view
+     * @param event on click event
+     */
     public void onLoginClicked(MouseEvent event) {
         String name = userNameText.getText();
 
@@ -213,6 +242,11 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(false);
         multiplayerButton.setDisable(false);
     }
+
+    /**
+     * when the "logout" button is clicked calls the logout method of the view
+     * @param event on click event
+     */
     public void onLogoutClicked(MouseEvent event) {
         try {
             guiView.logout();
@@ -235,6 +269,11 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(true);
         multiplayerButton.setDisable(true);
     }
+
+    /**
+     * when the "multiplayer" button is clicked calls the join lobby method
+     * @param event on click event
+     */
     public void onMultiplayerClicked(MouseEvent event) throws IOException {
         //Esegue la partecipazione ad una nuova partita
         try {
@@ -255,6 +294,11 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
         cancelButton.setDisable(false);
     }
+
+    /**
+     * when the "cancel" button is clicked cancel the last operation done
+     * @param event on click event
+     */
     public void onCancelClicked(MouseEvent event) {
         //Esegue la cancellazione alla partecipazione di un multiplayer
         try {
@@ -275,6 +319,11 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(false);
         cancelButton.setDisable(true);
     }
+
+    /**
+     * when the "exit" button is clicked close the menu gui
+     * @param event on click event
+     */
     public void onExitClicked(MouseEvent event) {
         //Chiude connessione
         try {
@@ -294,7 +343,12 @@ public class GuiApp extends Application implements Serializable {
     }
 
 
-    //Cambia scena nella gui caricandola da un nuovo file FXML
+    /**
+     * load an fxml file and change the scene of the current stage
+     * @param fxml
+     * @param stage
+     * @throws IOException
+     */
     public void changeScene(String fxml, Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource(fxml));
@@ -305,13 +359,20 @@ public class GuiApp extends Application implements Serializable {
         stage.setResizable(false);
         stage.show();
     }
-    //Avvio applicazione
+
+    /**
+     * method the starts the gui
+     * @param primaryStage stage to open
+     */
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle(FXGuiConstant.TITLE);
         changeScene(FXGuiConstant.FXML_PATH, primaryStage);
     }
 
-    //Lancia applicazione
+    /**
+     * static method that runs the gui
+     * @param args arg
+     */
     public static void run(String[] args) {
         launch(args);
     }
