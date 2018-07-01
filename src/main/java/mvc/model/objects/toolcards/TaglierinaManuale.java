@@ -30,8 +30,8 @@ public class TaglierinaManuale extends ToolCard {
         //Controlla correttezza uso
         for(int i = 1; i<match.getTurnHandler().getRound(); i++) {
            for(Die die: match.getRoundTrack().retrieveDice(i)){
-               if(origin2 == null && origin1.getDie().sameColor(die)
-                       || origin1.getDie().sameColor(die) && origin2.getDie().sameColor(die)) {
+               if((origin2 == null && origin1.getDie().sameColor(die))
+                       || (origin2 != null && origin1.getDie().sameColor(die) && origin2.getDie().sameColor(die))) {
                    sameColor = true;
                    break;
                }

@@ -47,7 +47,7 @@ public class NoPlayersHandler extends TimedSubcontroller {
                 e.printStackTrace();
             }
         } else {
-            if (lobby.getWaitingUsersToken().isEmpty()) {
+            if (!lobby.getWaitingUsersToken().isEmpty()) {
                 controller.startMatch();
             }
         }

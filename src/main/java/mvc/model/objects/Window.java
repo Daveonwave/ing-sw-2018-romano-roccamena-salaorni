@@ -405,7 +405,7 @@ public class Window implements Serializable {
         for (Cell c : adjacentCells) {
             Die placedDie = c.getDie();
 
-            if (die != null && die.sameColor(placedDie) || die.sameShade(placedDie)) {
+            if (die != null && (die.sameColor(placedDie) || die.sameShade(placedDie))) {
                 return false;
             }
         }

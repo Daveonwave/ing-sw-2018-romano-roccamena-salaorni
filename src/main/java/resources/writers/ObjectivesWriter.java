@@ -1,9 +1,11 @@
 package resources.writers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import mvc.creators.ObjectivesCreator;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
+import resources.PrivateObjectiveCardAdapter;
 import resources.ResourceFileInfo;
 import util.FileHandler;
 
@@ -18,14 +20,22 @@ public class ObjectivesWriter {
         List<PublicObjectiveCard> publics = ObjectivesCreator.createPublicObjectiveCards();
 
         //Converte e serializza
-        Gson gson = new Gson();
-        String text =  gson.toJson(privates);
+        /*Gson gson = new Gson();
 
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PRIVATE_OBJECTIVE_CARDS_FILE_NAME, text);
+
 
         text =  gson.toJson(publics);
         fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PUBLIC_OBJECTIVE_CARDS_FILE_NAME, text);
+        */
 
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(PrivateObjectiveCard.class, new PrivateObjectiveCardAdapter());
+        Gson gson = gsonBuilder.create();
+
+        String text =  gson.toJson(privates);
+
+
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json", text);
     }
 }

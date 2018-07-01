@@ -1,6 +1,7 @@
 package resources;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
@@ -8,7 +9,9 @@ import mvc.model.objects.ToolCard;
 import mvc.model.objects.Window;
 import util.FileHandler;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +33,19 @@ public class ResourceRetriever {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
 
+        List<PrivateObjectiveCard> result = new ArrayList<>();
+
         String jsonFile = null;
-        try {
-            jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PRIVATE_OBJECTIVE_CARDS_FILE_NAME);
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(PrivateObjectiveCard.class, new PrivateObjectiveCardAdapter());
+        gson = gsonBuilder.create();
+
+        try(Reader reader = new FileReader(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json")) {
+            Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
+            result = gson.fromJson(reader, founderListType);
+
+            //jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,10 +59,18 @@ public class ResourceRetriever {
         *       PublicObjectiveCard non astratta.
         */
 
-        Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
-        List<PrivateObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
+        //Type founderListType = new TypeToken<List<PrivateObjectiveCard>>(){}.getType();
+        //List<PrivateObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
         return result;
     }
+
+    public static void main(String[] args) {
+        List<PrivateObjectiveCard> p;
+        p = new ResourceRetriever().retrievePrivateObjectiveCards();
+        System.out.println(p);
+    }
+
+
 
     /**
      * Deserializes and reads public objective cards from publics.json
@@ -60,7 +81,7 @@ public class ResourceRetriever {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
 
-        String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PUBLIC_OBJECTIVE_CARDS_FILE_NAME);
+        String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.PUBLIC_OBJECTIVE_CARDS_FILE_NAME + "adapter");
 
         Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
         return gson.fromJson(jsonFile, founderListType);
