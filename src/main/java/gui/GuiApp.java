@@ -75,6 +75,9 @@ public class GuiApp extends Application implements Serializable {
     public boolean getWaitingMultiplayer() {
         return waitingMultiplayer;
     }
+    public List<RadioButton> getMatches() {
+        return matches;
+    }
 
     /**
      * connect the client to the server using rmi
@@ -256,7 +259,10 @@ public class GuiApp extends Application implements Serializable {
     public void onLogoutClicked(MouseEvent event) {
         try {
             guiView.logout();
-
+            for(RadioButton matchLeft : matches){
+                matchLeft.setVisible(false);
+            }
+            matches.clear();
             //Segnala errori
         } catch (AppControllerException e) {
             GuiMessage.showError(e.getMessage());
@@ -369,7 +375,7 @@ public class GuiApp extends Application implements Serializable {
     /**
      * shows all the radio button representing every game you left
      */
-    private void updateMatchesLeft(){
+    public void updateMatchesLeft(){
         int yPosition = 43;
         for (RadioButton match : matches){
             if(yPosition > 473){
