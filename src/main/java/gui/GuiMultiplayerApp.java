@@ -856,6 +856,18 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
     }
 
     /**
+     * updates the label stating the cost of a tool card
+     * @param toolCard tool card used
+     */
+    private void updateToolCardCost(ToolCard toolCard) throws AppViewException{
+        for(ToolCardView toolCardView : matchView.getToolCards()){
+            if(toolCardView.getToolCard().getName().equals(toolCard.getName())){
+                associateCostLabel(matchView.getToolCards().indexOf(toolCardView)).setText("Costo: 2FavorToken");
+            }
+        }
+    }
+
+    /**
      * creates a new scene from the fxml parent loaded and shows it in the saved stage
      * @param root Parent loaded from fxml file
      */
@@ -972,44 +984,66 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         DieView selectedDie = retrieveDie(mouseEvent.getSource());
 
         if (selectedDie != matchView.getSelectedDie()) {
-            if (matchView.getSelectedToolCard() != null) {
-                String name = matchView.getSelectedToolCard().getToolCard().getName();
-                if (matchView.draftPoolToolCards().contains(name)) {
-                    if (name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
-                        matchView.getInput().setChosenDie(selectedDie.getDie());
-                        select(selectedDie.getImageView());
-                        this.console.setText("scegli un dado del tracciato dei round");
-                    } else {
-                        for(DieView dieView : matchView.getDraftPool()) {
-                            if(dieView.getDie().getColor().equals(selectedDie.getDie().getColor()) && dieView.getDie().getShade() == selectedDie.getDie().getShade()){
-                                matchView.getInput().setChosenDie(dieView.getDie());
-                                break;
-                            }
-                        }
-                        try {
-                            guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
-                        } catch (RemoteException e) {
-                            //eccezione gestita
-                        }
-                    }
-                } else {
-                    console.setText("il dado selezionato non va bene per questa tool card");
-                }
-
-            } else {
-                if(matchView.getSelectedDie() != null){
-                    deselect(matchView.getSelectedDie().getImageView());
-                }
-                matchView.setSelectedDie(selectedDie);
-                select(matchView.getSelectedDie().getImageView());
-                this.console.setText("hai selezionato un dado ");
-
-            }
-
+            onNewDieClick(selectedDie);
         } else {
             this.console.setText("hai deselezionato un dado ");
             deselect(matchView.getSelectedDie().getImageView());
             matchView.setSelectedDie(null);
+        }
+    }
+
+    /**
+     * determines the move to make if the clicked die is not the die already selected
+     * @param selectedDie clicked die
+     */
+    public void onNewDieClick(DieView selectedDie){
+        if (matchView.getSelectedToolCard() != null) {
+            onDieClickWithToolCardSelected(selectedDie);
+        } else {
+            if(matchView.getSelectedDie() != null){
+                deselect(matchView.getSelectedDie().getImageView());
+            }
+            matchView.setSelectedDie(selectedDie);
+            select(matchView.getSelectedDie().getImageView());
+            this.console.setText("hai selezionato un dado ");
+
+        }
+    }
+
+    /**
+     * determines the move to make if a tool card is selected
+     * @param selectedDie clicked die
+     */
+    private void onDieClickWithToolCardSelected(DieView selectedDie){
+        String name = matchView.getSelectedToolCard().getToolCard().getName();
+        if (matchView.draftPoolToolCards().contains(name)) {
+            if (name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
+                matchView.getInput().setChosenDie(selectedDie.getDie());
+                select(selectedDie.getImageView());
+                this.console.setText("scegli un dado del tracciato dei round");
+            } else {
+               useToolCardWithDie(selectedDie);
+            }
+        } else {
+            console.setText("il dado selezionato non va bene per questa tool card");
+        }
+    }
+
+    /**
+     * calls the mathod useToolCard from the controller
+     * @param selectedDie clicked die
+     */
+    private void useToolCardWithDie(DieView selectedDie){
+        for(DieView dieView : matchView.getDraftPool()) {
+            if(dieView.getDie().getColor().equals(selectedDie.getDie().getColor()) && dieView.getDie().getShade() == selectedDie.getDie().getShade()){
+                matchView.getInput().setChosenDie(dieView.getDie());
+                break;
+            }
+        }
+        try {
+            guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
+        } catch (RemoteException e) {
+            //eccezione gestita
         }
     }
 
@@ -1029,72 +1063,96 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         CellView selectedCell = retrieveCell(mouseEvent.getSource());
 
         if(selectedCell.getCell().getDie()==null){
-            if(matchView.getSelectedDie() != null){
-                toPlace = false;
-                for(DieView dieView : matchView.getDraftPool()){
-                    if(dieView.getDie().getColor().equals(matchView.getSelectedDie().getDie().getColor()) && dieView.getDie().getShade() == matchView.getSelectedDie().getDie().getShade()){
-                        deselect(matchView.getSelectedDie().getImageView());
-                        matchView.setSelectedDie(dieView);
-                        select(matchView.getSelectedDie().getImageView());
-                        break;
-                    }
-                }
-                try {
-                    guiView.getController().placeDie(guiView.getUserToken(), multiTokenMatch,selectedCell.getCell(), matchView.getSelectedDie().getDie());
-                } catch (RemoteException e) {
-                    //eccezione gestita
-                }
-            } else {
-                if(matchView.getSelectedToolCard() != null && matchView.getInput().getOriginCell1()!= null) {
-                    String name = matchView.getSelectedToolCard().getToolCard().getName();
-                    if (matchView.windowToolCards().contains(name)) {
-                        if(name.equals("lathekin") || twoMoves) {
-                            if(matchView.getInput().getDestinationCell1() == null) {
-                                matchView.getInput().setDestinationCell1(selectedCell.getCell());
-                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
-                                console.setText("prima cella di destinazione selezionata");
-                                return;
-                            }else{
-                                matchView.getInput().setDestinationCell2(selectedCell.getCell());
-                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
-                            }
-                        }else{
-                            deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
-                            matchView.getInput().setDestinationCell1(selectedCell.getCell());
-                        }
-                        try {
-                            guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
-                        } catch (RemoteException e) {
-                            //eccezione gestita
-                        }
-                    }
-                }
-            }
+           onCellClickWithoutDie(selectedCell);
         } else {
             if (matchView.getSelectedToolCard() != null){
-                String name = matchView.getSelectedToolCard().getToolCard().getName();
-                if(matchView.windowToolCards().contains(name)){
-                    if((name.equals("lathekin") || twoMoves) && matchView.getInput().getDestinationCell1() != null) {
-                        if(matchView.getInput().getOriginCell2() != null){
-                            deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
-                        }
-                        matchView.getInput().setOriginCell2(selectedCell.getCell());
-                        select(selectedCell.getImageView());
-                        console.setText("seconda cella di partenza selezionata");
-                        return;
-                    }
-                    if(matchView.getInput().getOriginCell1() != null){
-                        deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
-                    }
-                    matchView.getInput().setOriginCell1(selectedCell.getCell());
-                    select(selectedCell.getImageView());
-                    console.setText("prima cella di partenza selezionata");
-                }
+                onCellClickWithDieWithToolCard(selectedCell);
             } else {
                 if(matchView.getSelectedDie() != null){
                     console.setText("la cella è già occupata da un altro dado");
                 }
             }
+        }
+    }
+
+    /**
+     * determines the move to make if the clicked cell is empty
+     * @param selectedCell clicked cell
+     */
+    private void onCellClickWithoutDie(CellView selectedCell){
+        if(matchView.getSelectedDie() != null){
+            toPlace = false;
+            for(DieView dieView : matchView.getDraftPool()){
+                if(dieView.getDie().getColor().equals(matchView.getSelectedDie().getDie().getColor()) && dieView.getDie().getShade() == matchView.getSelectedDie().getDie().getShade()){
+                    deselect(matchView.getSelectedDie().getImageView());
+                    matchView.setSelectedDie(dieView);
+                    select(matchView.getSelectedDie().getImageView());
+                    break;
+                }
+            }
+            try {
+                guiView.getController().placeDie(guiView.getUserToken(), multiTokenMatch,selectedCell.getCell(), matchView.getSelectedDie().getDie());
+            } catch (RemoteException e) {
+                //eccezione gestita
+            }
+        } else {
+            if(matchView.getSelectedToolCard() != null && matchView.getInput().getOriginCell1()!= null) {
+               onCellClickWithoutDieWithToolCard(selectedCell);
+            }
+        }
+    }
+
+    /**
+     * determines the move to make if the clicked cell is empty and a tool card is selected
+     * @param selectedCell clicked cell
+     */
+    private void onCellClickWithoutDieWithToolCard(CellView selectedCell){
+        String name = matchView.getSelectedToolCard().getToolCard().getName();
+        if (matchView.windowToolCards().contains(name)) {
+            if(name.equals("lathekin") || twoMoves) {
+                if(matchView.getInput().getDestinationCell1() == null) {
+                    matchView.getInput().setDestinationCell1(selectedCell.getCell());
+                    deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+                    console.setText("prima cella di destinazione selezionata");
+                    return;
+                }else{
+                    matchView.getInput().setDestinationCell2(selectedCell.getCell());
+                    deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
+                }
+            }else{
+                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+                matchView.getInput().setDestinationCell1(selectedCell.getCell());
+            }
+            try {
+                guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
+            } catch (RemoteException e) {
+                //eccezione gestita
+            }
+        }
+    }
+
+    /**
+     * determines the move to make if the clicked cell is not empty cell and a tool card is selected
+     * @param selectedCell clicked cell
+     */
+    private void onCellClickWithDieWithToolCard(CellView selectedCell){
+        String name = matchView.getSelectedToolCard().getToolCard().getName();
+        if(matchView.windowToolCards().contains(name)){
+            if((name.equals("lathekin") || twoMoves) && matchView.getInput().getDestinationCell1() != null) {
+                if(matchView.getInput().getOriginCell2() != null){
+                    deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
+                }
+                matchView.getInput().setOriginCell2(selectedCell.getCell());
+                select(selectedCell.getImageView());
+                console.setText("seconda cella di partenza selezionata");
+                return;
+            }
+            if(matchView.getInput().getOriginCell1() != null){
+                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+            }
+            matchView.getInput().setOriginCell1(selectedCell.getCell());
+            select(selectedCell.getImageView());
+            console.setText("prima cella di partenza selezionata");
         }
     }
 
@@ -1114,127 +1172,9 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             console.setText(FXGuiConstant.CHOICE_MESSAGE);
             return;
         }
-
         ToolCardView selectedToolCard = retrieveToolCard(mouseEvent.getSource());
-
         if(selectedToolCard != matchView.getSelectedToolCard()){
-            if(matchView.getSelectedToolCard() != null){
-                deselect(matchView.getSelectedToolCard().getImageView());
-            }
-            matchView.setSelectedToolCard(selectedToolCard);
-            console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
-            select(matchView.getSelectedToolCard().getImageView());
-            if(matchView.getSelectedDie() != null) {
-                deselect(matchView.getSelectedDie().getImageView());
-                matchView.setSelectedDie(null);
-            }
-            matchView.setInput(new ToolCardInput(null, null, null,null, multiPlayerMatch.getTurnHandler().getRound(),null,null,null,0,false));
-            String name = matchView.getSelectedToolCard().getToolCard().getName();
-            if(matchView.noSelectionToolCards().contains(name)){
-                try {
-                    guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
-                } catch (RemoteException e) {
-                    //eccezione gestita
-                }
-            }else{
-                if(selectedToolCard.getToolCard().getName().equals("pinza sgrossatrice")){
-                    choice = true;
-                    Pane pane = new Pane();
-                    this.choicePane = pane;
-                    pane.setPrefWidth(208);
-                    pane.setPrefHeight(91);
-                    matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(451);
-                    pane.setLayoutY(207);
-                    Button increase = new Button("+");
-                    increase.setPrefSize(52,45);
-                    pane.getChildren().add(increase);
-                    increase.setLayoutX(24);
-                    increase.setLayoutY(23);
-                    console.setText("decidi se aumentare o diminuire il valore del dado");
-                    increase.setOnMouseClicked(event -> {
-                        console.setText("seleziona il dado di cui aumentare il valore");
-                        pane.setVisible(false);
-                        choice = false;
-                        matchView.getInput().setIncreaseShade(true);
-                    });
-                    Button decrease = new Button("-");
-                    decrease.setPrefSize(52,45);
-                    pane.getChildren().add(decrease);
-                    decrease.setLayoutX(132);
-                    decrease.setLayoutY(23);
-                    decrease.setOnMouseClicked(event -> {
-                        console.setText("seleziona il dado di cui diminuire il valore");
-                        matchAnchorPane.getChildren().remove(pane);
-                        choice = false;
-                        matchView.getInput().setIncreaseShade(false);
-                    });
-                }
-                if(selectedToolCard.getToolCard().getName().equals("diluente per pasta salda")){
-                    choice = true;
-                    Pane pane = new Pane();
-                    this.choicePane = pane;
-                    pane.setPrefWidth(208);
-                    pane.setPrefHeight(91);
-                    matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(451);
-                    pane.setLayoutY(207);
-                    TextField textField = new TextField();
-                    textField.setPrefSize(108,38);
-                    pane.getChildren().add(textField);
-                    textField.setLayoutX(13);
-                    textField.setLayoutY(27);
-                    Button button = new Button("scegli");
-                    button.setPrefSize(51.625,25);
-                    pane.getChildren().add(button);
-                    button.setLayoutX(135);
-                    button.setLayoutY(34);
-                    console.setText("scegli che valore dare al dado ripescato");
-                    button.setOnMouseClicked(event -> {
-                        if(Integer.parseInt(textField.getText())>0 && Integer.parseInt(textField.getText())<7){
-                            matchView.getInput().setChosenShade(Integer.parseInt(textField.getText()));
-                            console.setText("selezionare il dado da ripescare");
-                            choice = false;
-                            matchAnchorPane.getChildren().remove(pane);
-                        }else{
-                            console.setText("input non valido");
-                        }
-                    });
-                }
-                if(selectedToolCard.getToolCard().getName().equals("taglierina manuale")) {
-                    choice = true;
-                    Pane pane = new Pane();
-                    this.choicePane = pane;
-                    pane.setPrefWidth(208);
-                    pane.setPrefHeight(91);
-                    matchAnchorPane.getChildren().add(pane);
-                    pane.setLayoutX(451);
-                    pane.setLayoutY(207);
-                    TextField textField = new TextField();
-                    textField.setPrefSize(108, 38);
-                    pane.getChildren().add(textField);
-                    textField.setLayoutX(13);
-                    textField.setLayoutY(27);
-                    Button button = new Button("scegli");
-                    button.setPrefSize(51.625, 25);
-                    pane.getChildren().add(button);
-                    button.setLayoutX(135);
-                    button.setLayoutY(34);
-                    console.setText("scegli quanti spostamenti vuoi fare( 1 o 2)");
-                    button.setOnMouseClicked(event -> {
-                        if (Integer.parseInt(textField.getText()) > 0 && Integer.parseInt(textField.getText()) < 3) {
-                            if(Integer.parseInt(textField.getText()) == 2) {
-                                twoMoves = true;
-                            }
-                            console.setText("selezionare i dadi da spostare");
-                            choice = false;
-                            matchAnchorPane.getChildren().remove(pane);
-                        } else {
-                            console.setText("input non valido");
-                        }
-                    });
-                }
-            }
+            onNewToolCardClick(selectedToolCard);
         }else{
             console.setText("hai deselezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
             deselect(matchView.getSelectedToolCard().getImageView());
@@ -1248,6 +1188,136 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             matchView.setInput(null);
         }
 
+    }
+
+    /**
+     * determines the move to make if the clicked tool card is not the one that is already selected
+     * @param selectedToolCard tool card clicked
+     */
+    private void onNewToolCardClick(ToolCardView selectedToolCard){
+        if(matchView.getSelectedToolCard() != null){
+            deselect(matchView.getSelectedToolCard().getImageView());
+        }
+        matchView.setSelectedToolCard(selectedToolCard);
+        console.setText("hai selezionato la carta tool " + matchView.getSelectedToolCard().getToolCard().getName());
+        select(matchView.getSelectedToolCard().getImageView());
+        if(matchView.getSelectedDie() != null) {
+            deselect(matchView.getSelectedDie().getImageView());
+            matchView.setSelectedDie(null);
+        }
+        matchView.setInput(new ToolCardInput(null, null, null,null, multiPlayerMatch.getTurnHandler().getRound(),null,null,null,0,false));
+        String name = matchView.getSelectedToolCard().getToolCard().getName();
+        if(matchView.noSelectionToolCards().contains(name)){
+            try {
+                guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
+            } catch (RemoteException e) {
+                //eccezione gestita
+            }
+        }else{
+          onToolCardWithChoiceClick(selectedToolCard);
+        }
+    }
+
+    /**
+     * determines the move to make if the clicked tool card is a tool card which requires a choice by the player
+     * @param selectedToolCard tool card clicked
+     */
+    private void onToolCardWithChoiceClick(ToolCardView selectedToolCard){
+        if(selectedToolCard.getToolCard().getName().equals("pinza sgrossatrice")){
+            choice = true;
+            Pane pane = new Pane();
+            this.choicePane = pane;
+            pane.setPrefWidth(208);
+            pane.setPrefHeight(91);
+            matchAnchorPane.getChildren().add(pane);
+            pane.setLayoutX(451);
+            pane.setLayoutY(207);
+            Button increase = new Button("+");
+            increase.setPrefSize(52,45);
+            pane.getChildren().add(increase);
+            increase.setLayoutX(24);
+            increase.setLayoutY(23);
+            console.setText("decidi se aumentare o diminuire il valore del dado");
+            increase.setOnMouseClicked(event -> {
+                console.setText("seleziona il dado di cui aumentare il valore");
+                pane.setVisible(false);
+                choice = false;
+                matchView.getInput().setIncreaseShade(true);
+            });
+            Button decrease = new Button("-");
+            decrease.setPrefSize(52,45);
+            pane.getChildren().add(decrease);
+            decrease.setLayoutX(132);
+            decrease.setLayoutY(23);
+            decrease.setOnMouseClicked(event -> {
+                console.setText("seleziona il dado di cui diminuire il valore");
+                matchAnchorPane.getChildren().remove(pane);
+                choice = false;
+                matchView.getInput().setIncreaseShade(false);
+            });
+        }
+        if(selectedToolCard.getToolCard().getName().equals("diluente per pasta salda")){
+            choice = true;
+            Pane pane = new Pane();
+            this.choicePane = pane;
+            pane.setPrefWidth(208);
+            pane.setPrefHeight(91);
+            matchAnchorPane.getChildren().add(pane);
+            pane.setLayoutX(451);
+            pane.setLayoutY(207);
+            TextField textField = new TextField();
+            textField.setPrefSize(108,38);
+            pane.getChildren().add(textField);
+            textField.setLayoutX(13);
+            textField.setLayoutY(27);
+            Button button = new Button("scegli");
+            button.setPrefSize(51.625,25);
+            pane.getChildren().add(button);
+            button.setLayoutX(135);
+            button.setLayoutY(34);
+            console.setText("scegli che valore dare al dado ripescato");
+            button.setOnMouseClicked(event -> {
+                if(Integer.parseInt(textField.getText())>0 && Integer.parseInt(textField.getText())<7){
+                    matchView.getInput().setChosenShade(Integer.parseInt(textField.getText()));
+                    console.setText("selezionare il dado da ripescare");
+                    choice = false;
+                    matchAnchorPane.getChildren().remove(pane);
+                }else{
+                    console.setText("input non valido");
+                }
+            });
+        }
+        if(selectedToolCard.getToolCard().getName().equals("taglierina manuale")) {
+            choice = true;
+            Pane pane = new Pane();
+            this.choicePane = pane;
+            pane.setPrefWidth(208);
+            pane.setPrefHeight(91);
+            matchAnchorPane.getChildren().add(pane);
+            pane.setLayoutX(451);
+            pane.setLayoutY(207);
+            TextField textField = new TextField();
+            textField.setPrefSize(108, 38);
+            pane.getChildren().add(textField);
+            textField.setLayoutX(13);
+            textField.setLayoutY(27);
+            Button button = new Button("scegli");
+            button.setPrefSize(51.625, 25);
+            pane.getChildren().add(button);
+            button.setLayoutX(135);
+            button.setLayoutY(34);
+            console.setText("scegli quanti spostamenti vuoi fare( 1 o 2)");
+            button.setOnMouseClicked(event -> {
+                if (Integer.parseInt(textField.getText()) > 0 && Integer.parseInt(textField.getText()) < 3) {
+                    twoMoves = Integer.parseInt(textField.getText()) == 2;
+                    console.setText("selezionare i dadi da spostare");
+                    choice = false;
+                    matchAnchorPane.getChildren().remove(pane);
+                } else {
+                    console.setText("input non valido");
+                }
+            });
+        }
     }
 
     /**
@@ -1538,6 +1608,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @throws RemoteException throws a match exception
      */
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
+        multiPlayerMatch = match;
         DieView dieView = matchView.retrieveDieView(die);
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getCell().setDie(dieView.getDie());
         matchView.retrievePlayer(match.getTurnPlayer()).getWindow().getCells()[cell.getRow()][cell.getColumn()].getImageView().setImage(dieView.getImageView().getImage());
@@ -1556,13 +1627,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @throws RemoteException throws a match exception
      */
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException  {
-
-        if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName()) && matchView.toPlaceToolCards().contains(toolCard.getName())){
-            for (DieView dieView : matchView.getDraftPool()) {
-                if (dieView.getDie() == matchView.getInput().getChosenDie()) {
-                    matchView.setSelectedDie(dieView);
-                    select(matchView.getSelectedDie().getImageView());
-                    toPlace = true;
+        multiPlayerMatch = match;
+        if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
+            if(matchView.toPlaceToolCards().contains(toolCard.getName())) {
+                for (DieView dieView : matchView.getDraftPool()) {
+                    if (dieView.getDie() == matchView.getInput().getChosenDie()) {
+                        matchView.setSelectedDie(dieView);
+                        select(matchView.getSelectedDie().getImageView());
+                        toPlace = true;
+                    }
                 }
             }
             favorTokens.setText("" + match.getTurnPlayer().getFavorTokens());
@@ -1571,6 +1644,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             matchView.setInput(null);
             twoMoves = false;
         }
+
 
         for (Die die : match.getMatchDice().getDraftPool()){
             DieView dieView = matchView.getDraftPool().get(match.getMatchDice().getDraftPool().indexOf(die));
@@ -1592,13 +1666,8 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             updateRoundDice(match);
             roundDice.setVisible(false);
         }
-        for(ToolCardView toolCardView : matchView.getToolCards()){
-            if(toolCardView.getToolCard().getName().equals(toolCard.getName())){
-                associateCostLabel(matchView.getToolCards().indexOf(toolCardView)).setText("Costo: 2FavorToken");
-            }
-        }
 
-
+        updateToolCardCost(toolCard);
 
     }
 
