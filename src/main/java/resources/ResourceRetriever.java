@@ -9,9 +9,7 @@ import mvc.model.objects.ToolCard;
 import mvc.model.objects.Window;
 import util.FileHandler;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,24 +29,19 @@ public class ResourceRetriever {
      */
     public List<PrivateObjectiveCard> retrievePrivateObjectiveCards() {
         FileHandler fileHandler = new FileHandler();
-        Gson gson = new Gson();
-
-        List<PrivateObjectiveCard> result = new ArrayList<>();
 
         String jsonFile = null;
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(PrivateObjectiveCard.class, new PrivateObjectiveCardAdapter());
-        gson = gsonBuilder.create();
+        Gson gson = gsonBuilder.create();
 
-        try(Reader reader = new FileReader(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json")) {
-            Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
-            result = gson.fromJson(reader, founderListType);
-
-            //jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json");
+        try {
+            jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/privatesAdapted.json");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         /*GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(PrivateObjectiveCard.class, )*/
@@ -59,16 +52,16 @@ public class ResourceRetriever {
         *       PublicObjectiveCard non astratta.
         */
 
-        //Type founderListType = new TypeToken<List<PrivateObjectiveCard>>(){}.getType();
-        //List<PrivateObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
+        Type founderListType = new TypeToken<ArrayList<PrivateObjectiveCard>>(){}.getType();
+        List<PrivateObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
         return result;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         List<PrivateObjectiveCard> p;
         p = new ResourceRetriever().retrievePrivateObjectiveCards();
         System.out.println(p);
-    }
+    }*/
 
 
 
@@ -107,12 +100,24 @@ public class ResourceRetriever {
      * @return list with all windows
      * @throws IOException
      */
-    public List<Window> retrieveWindows() throws IOException {
+    public List<Window> retrieveWindows() {
         FileHandler fileHandler = new FileHandler();
         Gson gson = new Gson();
-        String jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME);
+        String jsonFile = null;
+        try {
+            jsonFile = fileHandler.fileRead(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Type founderListType = new TypeToken<ArrayList<Window>>(){}.getType();
         return gson.fromJson(jsonFile, founderListType);
     }
+
+    public static void main(String[] args) {
+        List<Window> p;
+        p = new ResourceRetriever().retrieveWindows();
+        System.out.println(p.toString());
+    }
+
 
 }

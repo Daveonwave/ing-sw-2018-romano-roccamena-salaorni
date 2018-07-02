@@ -37,5 +37,4 @@ public class RespondAckRequest implements ServerRequest {
     public ServerResponse handleAction(ServerRequestHandler handler) {
         return handler.handleAction(this);    }
 
-
 }

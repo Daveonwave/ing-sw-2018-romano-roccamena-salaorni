@@ -208,7 +208,7 @@ public class MatchCreator {
      * @return list of dice
      */
     private List<Die> createDiceBag(boolean shuffle) {
-        List<Die> diceBag = new ArrayList<Die>();
+        List<Die> diceBag = new ArrayList<>();
 
         for (int i = 1; i <= GameConstants.SINGLE_COLOR_DICE_COUNT; i++) {
             diceBag.add(new Die(DieColor.YELLOW));

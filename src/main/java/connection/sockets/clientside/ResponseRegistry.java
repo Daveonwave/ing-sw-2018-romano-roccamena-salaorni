@@ -47,7 +47,7 @@ public class ResponseRegistry {
         return null;
     }
 
-    //Ottiene la risposta dalla pila e libera la pila
+    //Ottiene la risposta dalla pila e libera la mappa
     public synchronized ClientResponse retrieveResponse(int responseId){
         ClientResponse toRetrieve;
 

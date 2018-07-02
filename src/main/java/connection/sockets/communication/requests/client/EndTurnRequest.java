@@ -11,26 +11,26 @@ import java.rmi.RemoteException;
 public class EndTurnRequest extends ClientRequest {
 
     private final String userToken;
-    private final String userMatch;
+    private final String tokenMatch;
 
     /**
      * Costructor of the specific sendRequest
      * @param userToken id of the user
-     * @param userMatch id of the match
+     * @param tokenMatch id of the match
      * @param idAction id of the sendRequest
      */
-    public EndTurnRequest(String userToken, String userMatch, int idAction) {
+    public EndTurnRequest(String userToken, String tokenMatch, int idAction) {
         super(idAction);
         this.userToken = userToken;
-        this.userMatch = userMatch;
+        this.tokenMatch = tokenMatch;
     }
 
     //Getter
     public String getUserToken() {
         return userToken;
     }
-    public String getUserMatch() {
-        return userMatch;
+    public String getTokenMatch() {
+        return tokenMatch;
     }
 
     /**

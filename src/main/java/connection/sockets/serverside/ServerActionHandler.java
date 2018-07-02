@@ -239,7 +239,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
         ClientResponse response = new EndTurnResponse(request.getIdAction());
 
         try{
-            controller.endTurn(request.getUserToken(), request.getUserMatch());
+            controller.endTurn(request.getUserToken(), request.getTokenMatch());
             response.setExceptionFlag(false);
         } catch(RemoteException e){
             response.setExceptionFlag(true);
