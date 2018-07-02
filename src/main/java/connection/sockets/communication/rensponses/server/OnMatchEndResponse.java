@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on match end observation request
+ * Response on match end observation sendRequest
  */
 public class OnMatchEndResponse extends ExceptionResponse implements ServerResponse {
 

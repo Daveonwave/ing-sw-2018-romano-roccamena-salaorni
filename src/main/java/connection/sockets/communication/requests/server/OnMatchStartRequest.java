@@ -5,7 +5,7 @@ import connection.sockets.communication.rensponses.server.ServerResponse;
 import mvc.model.objects.MultiPlayerMatch;
 
 /**
- * Observation request on the start of the match
+ * Observation sendRequest on the start of the match
  */
 public class OnMatchStartRequest implements ServerRequest {
 
@@ -13,7 +13,7 @@ public class OnMatchStartRequest implements ServerRequest {
     private final MultiPlayerMatch match;
 
     /**
-     * Costructor of the specific request
+     * Costructor of the specific sendRequest
      * @param tokenMatch id of the match
      * @param match object match
      */
@@ -31,7 +31,7 @@ public class OnMatchStartRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

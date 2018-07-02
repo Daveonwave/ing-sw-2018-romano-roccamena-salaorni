@@ -28,7 +28,7 @@ public class IOSupport {
             LOGGER.log(Level.INFO, "[SOCKET]: invio richiesta al server");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send request to server failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: send sendRequest to server failed");
         }
     }
     //Invio richiesta al client
@@ -40,7 +40,7 @@ public class IOSupport {
             LOGGER.log(Level.INFO,"[SOCKET]: invio richiesta al client");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send request to client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: send sendRequest to client failed");
         }
     }
 
@@ -78,9 +78,9 @@ public class IOSupport {
             LOGGER.log(Level.INFO,"[SOCKET]: ricezione richiesta dal server");
 
         } catch (IOException ioe) {
-            LOGGER.log(Level.WARNING, "[ERROR]: receiving request from server failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving sendRequest from server failed");
         } catch (ClassNotFoundException cnfe){
-            LOGGER.log(Level.WARNING, "[ERROR]: received request from server doesn't match with any class");
+            LOGGER.log(Level.WARNING, "[ERROR]: received sendRequest from server doesn't match with any class");
         }
         return request;
     }
@@ -93,9 +93,9 @@ public class IOSupport {
             LOGGER.log(Level.INFO,"[SOCKET]: ricezione richiesta dal client");
 
         } catch (IOException ioe) {
-            LOGGER.log(Level.WARNING, "[ERROR]: receiving request from client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: receiving sendRequest from client failed");
         } catch (ClassNotFoundException cnfe){
-            LOGGER.log(Level.WARNING, "[ERROR]: received request from client doesn't match with any class");
+            LOGGER.log(Level.WARNING, "[ERROR]: received sendRequest from client doesn't match with any class");
         }
         return request;
     }

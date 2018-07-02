@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
- * Generic response to a server request
+ * Generic response to a server sendRequest
  */
 public interface ServerResponse extends Serializable {
     //Risposta server

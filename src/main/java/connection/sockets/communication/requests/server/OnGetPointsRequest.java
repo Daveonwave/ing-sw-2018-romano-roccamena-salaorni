@@ -7,7 +7,7 @@ import mvc.model.objects.Player;
 import mvc.model.objects.PlayerPoints;
 
 /**
- * Observation request on getting points action
+ * Observation sendRequest on getting points action
  */
 public class OnGetPointsRequest implements ServerRequest {
 
@@ -17,7 +17,7 @@ public class OnGetPointsRequest implements ServerRequest {
     private final PlayerPoints points;
 
     /**
-     * Costructor of the specific request
+     * Costructor of the specific sendRequest
      * @param tokenMatch id of the match
      * @param match object match
      * @param player current player
@@ -45,7 +45,7 @@ public class OnGetPointsRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on die placement observation request
+ * Response on die placement observation sendRequest
  */
 public class OnPlaceDieResponse extends ExceptionResponse implements ServerResponse {
 

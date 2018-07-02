@@ -7,7 +7,7 @@ import mvc.model.objects.Die;
 import mvc.model.objects.MultiPlayerMatch;
 
 /**
- * Observation request on the placement of a die
+ * Observation sendRequest on the placement of a die
  */
 public class OnPlaceDieRequest implements ServerRequest{
 
@@ -17,7 +17,7 @@ public class OnPlaceDieRequest implements ServerRequest{
     private final Die die;
 
     /**
-     * Constructor of the specific request
+     * Constructor of the specific sendRequest
      * @param tokenMatch id of the match
      * @param match object match
      * @param cell selected cell
@@ -45,7 +45,7 @@ public class OnPlaceDieRequest implements ServerRequest{
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

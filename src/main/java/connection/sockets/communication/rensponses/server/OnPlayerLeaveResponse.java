@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on player leave observation request
+ * Response on player leave observation sendRequest
  */
 public class OnPlayerLeaveResponse extends ExceptionResponse implements ServerResponse {
 

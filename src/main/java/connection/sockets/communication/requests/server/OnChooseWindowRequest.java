@@ -5,7 +5,7 @@ import connection.sockets.communication.rensponses.server.ServerResponse;
 import mvc.model.objects.MultiPlayerMatch;
 
 /**
- * Observation request on the window choice
+ * Observation sendRequest on the window choice
  */
 public class OnChooseWindowRequest implements ServerRequest {
 
@@ -13,7 +13,7 @@ public class OnChooseWindowRequest implements ServerRequest {
     private final MultiPlayerMatch match;
 
     /**
-     * Constructor od the specific request
+     * Constructor od the specific sendRequest
      * @param tokenMatch id of the match
      * @param match object match
      */
@@ -31,7 +31,7 @@ public class OnChooseWindowRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

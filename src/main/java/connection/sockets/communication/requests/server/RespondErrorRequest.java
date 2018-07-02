@@ -12,7 +12,7 @@ public class RespondErrorRequest implements ServerRequest {
     private final String tokenMatch;
 
     /**
-     * Constructor of the specific request
+     * Constructor of the specific sendRequest
      * @param message error message sent to client
      * @param tokenMatch id of the match
      */
@@ -30,7 +30,7 @@ public class RespondErrorRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

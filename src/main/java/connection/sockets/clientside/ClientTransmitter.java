@@ -1,5 +1,7 @@
 package connection.sockets.clientside;
 
+import connection.sockets.communication.ClientReader;
+import connection.sockets.communication.ClientWriter;
 import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
@@ -34,25 +36,20 @@ public class ClientTransmitter implements Runnable {
     public synchronized void run() {
          try {
              while (isRunning){
-                 if(client.getIn().available() == 0) {
-                     this.wait(5000);
-                 } else{
-                     if (IOSupport.fromServer(client.getIn()) instanceof ServerRequest) {
-                         ServerResponse response = ((ServerRequest) IOSupport.fromServer(client.getIn())).handleAction(clientActionHandler);
+                 Object received = ClientReader.fromServer(client.getIn());
 
-                         if (response != null)
-                             IOSupport.responseToServer(client.getOut(), response);
+                 if (received instanceof ServerRequest) {
+                     ServerResponse response = ((ServerRequest) received).handleAction(clientActionHandler);
 
-                     } else {
-                         ClientResponse response = (ClientResponse) IOSupport.fromServer(client.getIn());
-                         responseRegistry.insert(response);
-                     }
+                     if (response != null)
+                         ClientWriter.responseToServer(client.getOut(), response);
+
+                 } else {
+                     responseRegistry.insert((ClientResponse) received);
                  }
              }
          } catch (Exception e) {
             LOGGER.log(Level.WARNING, "[ERROR]: listening thread failed");
          }
     }
-
-
 }

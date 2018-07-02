@@ -6,7 +6,7 @@ import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 
 /**
- * Observation request on the leave of a player
+ * Observation sendRequest on the leave of a player
  */
 public class OnPlayerLeaveRequest implements ServerRequest {
 
@@ -14,7 +14,7 @@ public class OnPlayerLeaveRequest implements ServerRequest {
     private final Player player;
 
     /**
-     * Constructor of the specific request
+     * Constructor of the specific sendRequest
      * @param tokenMatch id of the match
      * @param player interested player
      */
@@ -32,7 +32,7 @@ public class OnPlayerLeaveRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */
