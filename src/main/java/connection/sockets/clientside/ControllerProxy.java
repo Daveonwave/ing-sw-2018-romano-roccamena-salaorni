@@ -17,6 +17,8 @@ public class ControllerProxy implements AppControllerStub {
     private final transient SocketClient client;
     private transient ClientActionHandler clientActionHandler;
 
+    private static int idRequestCounter = 0;
+
     /**
      * Class Constructor
      * @param client the gate of the connection
@@ -38,7 +40,6 @@ public class ControllerProxy implements AppControllerStub {
      * @return a new unique id
      */
     private static int getAndUpdateIdCounter(){
-        int idRequestCounter = 0;
         idRequestCounter ++;
         return idRequestCounter - 1;
     }

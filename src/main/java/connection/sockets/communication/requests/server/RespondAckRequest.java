@@ -12,7 +12,7 @@ public class RespondAckRequest implements ServerRequest {
     private final String tokenMatch;
 
     /**
-     * Constructor of a specific request
+     * Constructor of a specific sendRequest
      * @param message message sent to client
      * @param tokenMatch id of the match
      */
@@ -30,7 +30,7 @@ public class RespondAckRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

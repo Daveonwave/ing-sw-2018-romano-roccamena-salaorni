@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on tool card usage observation request
+ * Response on tool card usage observation sendRequest
  */
 public class OnUseToolCardResponse extends ExceptionResponse implements ServerResponse {
 

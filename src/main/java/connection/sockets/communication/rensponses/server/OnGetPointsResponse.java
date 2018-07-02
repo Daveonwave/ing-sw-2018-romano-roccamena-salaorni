@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on getting points observation request
+ * Response on getting points observation sendRequest
  */
 public class OnGetPointsResponse extends ExceptionResponse implements ServerResponse {
 

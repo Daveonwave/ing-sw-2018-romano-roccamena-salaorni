@@ -6,7 +6,7 @@ import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.ToolCard;
 
 /**
- * Observation request on the usage of a tool card
+ * Observation sendRequest on the usage of a tool card
  */
 public class OnUseToolCardRequest implements ServerRequest {
 
@@ -15,7 +15,7 @@ public class OnUseToolCardRequest implements ServerRequest {
     private final ToolCard toolCard;
 
     /**
-     * Constructor of the specific request
+     * Constructor of the specific sendRequest
      * @param tokenMatch id of the match
      * @param match object match
      * @param toolCard selected tool card
@@ -38,7 +38,7 @@ public class OnUseToolCardRequest implements ServerRequest {
     }
 
     /**
-     * Handle the specific server request
+     * Handle the specific server sendRequest
      * @param handler ServerRequestHandler
      * @return the related response
      */

@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on a ack notify request
+ * Response on a ack notify sendRequest
  */
 public class RespondAckResponse extends ExceptionResponse implements ServerResponse {
 

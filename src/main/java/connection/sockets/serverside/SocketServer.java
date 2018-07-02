@@ -130,5 +130,4 @@ public class SocketServer implements Closeable {
         serverSocket.close();
         threadPool.shutdown();
     }
-
 }

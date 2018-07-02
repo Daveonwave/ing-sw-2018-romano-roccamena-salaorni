@@ -20,7 +20,7 @@ public class ViewProxy implements AppViewStub {
 
     /**
      * Class constructor
-     * @param serverTransmitter used to send request to client
+     * @param serverTransmitter used to send sendRequest to client
      */
     public ViewProxy(ServerTransmitter serverTransmitter) {
         this.serverTransmitter = serverTransmitter;
@@ -51,7 +51,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
-        serverTransmitter.request(new OnPlayerLeaveRequest(tokenMatch, player));
+        serverTransmitter.sendRequest(new OnPlayerLeaveRequest(tokenMatch, player));
         serverResponseHandler.handleAction((OnPlayerLeaveResponse) serverTransmitter.getResponse());
     }
     /**
@@ -61,7 +61,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
-        serverTransmitter.request(new OnPlayerRejoinRequest(tokenMatch, player));
+        serverTransmitter.sendRequest(new OnPlayerRejoinRequest(tokenMatch, player));
         serverResponseHandler.handleAction((OnPlayerRejoinResponse) serverTransmitter.getResponse());
     }
 
@@ -73,7 +73,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onMatchStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnMatchStartRequest(tokenMatch, match));
+        serverTransmitter.sendRequest(new OnMatchStartRequest(tokenMatch, match));
         serverResponseHandler.handleAction((OnMatchStartResponse) serverTransmitter.getResponse());
     }
     /**
@@ -83,7 +83,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onChooseWindows(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnChooseWindowRequest(tokenMatch, match));
+        serverTransmitter.sendRequest(new OnChooseWindowRequest(tokenMatch, match));
         serverResponseHandler.handleAction((OnChooseWindowResponse) serverTransmitter.getResponse());
     }
     /**
@@ -93,7 +93,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onTurnStart(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnTurnStartRequest(tokenMatch, match));
+        serverTransmitter.sendRequest(new OnTurnStartRequest(tokenMatch, match));
         serverResponseHandler.handleAction((OnTurnStartResponse)serverTransmitter.getResponse());
     }
     /**
@@ -103,7 +103,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onTurnEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnTurnEndRequest(tokenMatch, match));
+        serverTransmitter.sendRequest(new OnTurnEndRequest(tokenMatch, match));
         serverResponseHandler.handleAction((OnTurnEndResponse) serverTransmitter.getResponse());
     }
     /**
@@ -115,7 +115,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onPlaceDie(String tokenMatch, MultiPlayerMatch match, Cell cell, Die die) throws RemoteException {
-        serverTransmitter.request(new OnPlaceDieRequest(tokenMatch, match, cell, die));
+        serverTransmitter.sendRequest(new OnPlaceDieRequest(tokenMatch, match, cell, die));
         serverResponseHandler.handleAction((OnPlaceDieResponse) serverTransmitter.getResponse());
     }
     /**
@@ -126,7 +126,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onUseTool(String tokenMatch, MultiPlayerMatch match, ToolCard toolCard) throws RemoteException {
-        serverTransmitter.request(new OnUseToolCardRequest(tokenMatch, match, toolCard));
+        serverTransmitter.sendRequest(new OnUseToolCardRequest(tokenMatch, match, toolCard));
         serverResponseHandler.handleAction((OnUseToolCardResponse) serverTransmitter.getResponse());
     }
     /**
@@ -138,7 +138,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onGetPoints(String tokenMatch, MultiPlayerMatch match, Player player, PlayerPoints points) throws RemoteException {
-        serverTransmitter.request(new OnGetPointsRequest(tokenMatch, match, player, points));
+        serverTransmitter.sendRequest(new OnGetPointsRequest(tokenMatch, match, player, points));
         serverResponseHandler.handleAction((OnGetPointsResponse) serverTransmitter.getResponse());
     }
     /**
@@ -148,7 +148,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void onMatchEnd(String tokenMatch, MultiPlayerMatch match) throws RemoteException {
-        serverTransmitter.request(new OnMatchEndRequest(tokenMatch, match));
+        serverTransmitter.sendRequest(new OnMatchEndRequest(tokenMatch, match));
         serverResponseHandler.handleAction((OnMatchEndResponse) serverTransmitter.getResponse());
     }
 
@@ -160,7 +160,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void respondError(String message, String tokenMatch) throws RemoteException {
-        serverTransmitter.request(new RespondErrorRequest(message, tokenMatch));
+        serverTransmitter.sendRequest(new RespondErrorRequest(message, tokenMatch));
         serverResponseHandler.handleAction((RespondErrorResponse) serverTransmitter.getResponse());
     }
     /**
@@ -170,7 +170,7 @@ public class ViewProxy implements AppViewStub {
      * @throws RemoteException
      */
     public void respondAck(String message, String tokenMatch) throws RemoteException {
-        serverTransmitter.request(new RespondAckRequest(message, tokenMatch));
+        serverTransmitter.sendRequest(new RespondAckRequest(message, tokenMatch));
         serverResponseHandler.handleAction((RespondAckResponse) serverTransmitter.getResponse());
     }
 }

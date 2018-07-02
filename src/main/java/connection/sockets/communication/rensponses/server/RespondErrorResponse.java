@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on a error notify request
+ * Response on a error notify sendRequest
  */
 public class RespondErrorResponse extends ExceptionResponse implements ServerResponse {
 

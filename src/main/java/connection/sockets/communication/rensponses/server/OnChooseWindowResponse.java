@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response of choose window observation request
+ * Response of choose window observation sendRequest
  */
 public class OnChooseWindowResponse extends ExceptionResponse implements ServerResponse {
 

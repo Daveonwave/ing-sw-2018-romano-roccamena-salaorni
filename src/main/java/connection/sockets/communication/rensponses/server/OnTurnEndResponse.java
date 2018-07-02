@@ -6,7 +6,7 @@ import connection.sockets.communication.rensponses.ExceptionResponse;
 import java.rmi.RemoteException;
 
 /**
- * Response on turn end observation request
+ * Response on turn end observation sendRequest
  */
 public class OnTurnEndResponse extends ExceptionResponse implements ServerResponse {
 

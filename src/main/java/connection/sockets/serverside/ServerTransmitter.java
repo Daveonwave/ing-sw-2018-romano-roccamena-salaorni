@@ -2,6 +2,8 @@ package connection.sockets.serverside;
 
 
 import connection.sockets.communication.IOSupport;
+import connection.sockets.communication.ServerReader;
+import connection.sockets.communication.ServerWriter;
 import connection.sockets.communication.handlers.ClientRequestHandler;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -71,13 +74,13 @@ public class ServerTransmitter implements Runnable {
     public void run() {
         try{
             while(isRunning){
-                ClientResponse clientResponse = IOSupport.requestFromClient(in).handleAction(clientRequestHandler);
+                ClientResponse clientResponse = ServerReader.requestFromClient(in).handleAction(clientRequestHandler);
 
                 if(clientResponse != null)
-                    IOSupport.responseToClient(out, clientResponse);
+                    ServerWriter.responseToClient(out, clientResponse);
             }
         } catch(Exception e){
-            LOGGER.log(Level.WARNING, "[ERROR]: handle of the client request failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: handle of the client sendRequest failed");
         }
         close();
     }
@@ -111,18 +114,17 @@ public class ServerTransmitter implements Runnable {
     }
 
     /**
-     * Receives a response to a sent request
+     * Receives a response to a sent sendRequest
      * @return response
      */
     public ServerResponse getResponse(){
-        return IOSupport.responseFromClient(in);
+        return ServerReader.responseFromClient(in);
     }
-
     /**
      * Make a sendRequest
      * @param request send sendRequest to be write on the outStream
      */
-    public void request(ServerRequest request){
-        IOSupport.requestToClient(out, request);
+    public void sendRequest(ServerRequest request){
+        ServerWriter.requestToClient(out, request);
     }
 }

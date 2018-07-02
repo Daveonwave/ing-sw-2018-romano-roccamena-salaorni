@@ -15,36 +15,19 @@ public class ResponseRegistry {
 
     //Insertion in the first position without a value
     public synchronized void insert(ClientResponse response){
-        if(registry.isEmpty()) {
-            registry.put(0, response);
-        }
-        else{
-            for(Integer i : registry.keySet()){
-                if(!registry.containsValue(i)){
-                    registry.putIfAbsent(i, response);
-                    break;
-                }
-            }
-        }
+        registry.put(response.getIdAction(), response);
+
         notifyAll();
     }
 
     //Elimina la risposta dalla pila
-    public synchronized void delete(ClientResponse response){
-        ClientResponse toRemove = searchResponse(response.getIdAction());
-        if(toRemove != null){
-            registry.remove(toRemove);
-        }
+    public synchronized void delete(int responseId){
+        registry.remove(responseId);
     }
 
     //Cerca la risposta nella pila
-    public ClientResponse searchResponse(int responseId){
-        for(ClientResponse res : registry.values()){
-            if(res.getIdAction() == responseId){
-                return res;
-            }
-        }
-        return null;
+    public synchronized ClientResponse searchResponse(int responseId){
+        return registry.get(responseId);
     }
 
     //Ottiene la risposta dalla pila e libera la mappa
@@ -59,9 +42,10 @@ public class ResponseRegistry {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-        toRetrieve = searchResponse(responseId);
+            toRetrieve = searchResponse(responseId);
         }
-        delete(toRetrieve);
+        delete(responseId);
+
         return toRetrieve;
     }
 

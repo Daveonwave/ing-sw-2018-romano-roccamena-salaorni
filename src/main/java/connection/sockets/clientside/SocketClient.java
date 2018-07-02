@@ -2,6 +2,7 @@ package connection.sockets.clientside;
 
 import config.AddressConfig;
 import config.PortsConfig;
+import connection.sockets.communication.ClientWriter;
 import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
@@ -59,9 +60,9 @@ public class SocketClient {
         in = new ObjectInputStream(socket.getInputStream());
 
         clientActionHandler = new ClientActionHandler();
+        responseRegistry = new ResponseRegistry();
         clientTransmitter = new ClientTransmitter(this, clientActionHandler);
         controllerProxy = new ControllerProxy(this, clientActionHandler);
-        responseRegistry = new ResponseRegistry();
 
         clientTransmitter.setRunning(true);
         new Thread(clientTransmitter).start();
@@ -79,7 +80,7 @@ public class SocketClient {
         clientTransmitter.setRunning(false);
     }
 
-     /**
+    /**
      * Get the response saved inside the storage of response (response registry)
      * @param idAction id of the wanted response
      * @return
@@ -87,13 +88,11 @@ public class SocketClient {
     public ClientResponse getResponse(int idAction){
         return responseRegistry.retrieveResponse(idAction);
     }
-
     /**
-     * Send the request to server
+     * Send the sendRequest to server
      * @param request
      */
     public void sendRequest(ClientRequest request){
-        IOSupport.requestToServer(out, request);
+        ClientWriter.requestToServer(out, request);
     }
-
 }
