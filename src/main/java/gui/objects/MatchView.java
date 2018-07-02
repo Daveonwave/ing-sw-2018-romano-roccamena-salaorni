@@ -14,7 +14,6 @@ public class MatchView {
 
     private List<ToolCardView> toolCards;
     private List<ObjectiveCardView> publicObjective;
-    private ObjectiveCardView privateObjective;
     private List<DieView> draftPool;
     private List<PlayerView> players;
     private DieView selectedDie;
@@ -26,24 +25,20 @@ public class MatchView {
      *
      * @param toolCards tool cards view
      * @param publicObjective public objective view
-     * @param privateObjective private objective view
      * @param draftPool draft pool view
      * @param players players view
      * @param selectedDie selected die
      * @param rounds rounds view
      * @param input tool card's input
-     * @param selectedToolCard selected tool card
      */
-    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, ObjectiveCardView privateObjective, List<DieView> draftPool, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input, ToolCardView selectedToolCard) {
+    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, List<DieView> draftPool, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input) {
         this.toolCards = toolCards;
         this.publicObjective = publicObjective;
-        this.privateObjective = privateObjective;
         this.draftPool = draftPool;
         this.players = players;
         this.selectedDie = selectedDie;
         this.rounds = rounds;
         this.input = input;
-        this.selectedToolCard = selectedToolCard;
     }
 
     public List<ToolCardView> getToolCards() {
@@ -73,13 +68,6 @@ public class MatchView {
 
     public void setToolCards(List<ToolCardView> toolCards) {
         this.toolCards = toolCards;
-    }
-
-    public void setPrivateObjective(ObjectiveCardView privateObjective) {
-        this.privateObjective = privateObjective;
-    }
-    public void setDraftPool(List<DieView> draftPool) {
-        this.draftPool = draftPool;
     }
     public void setPlayers(List<PlayerView> players) {
         this.players = players;

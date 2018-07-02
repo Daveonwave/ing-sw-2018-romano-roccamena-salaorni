@@ -1,7 +1,6 @@
 package gui;
 
 import javafx.application.Platform;
-import javafx.scene.control.RadioButton;
 import mvc.model.objects.*;
 import mvc.stubs.AppControllerStub;
 import mvc.view.AppView;
@@ -116,10 +115,9 @@ public class GuiView extends AppView {
     }
 
     /**
-     * method called by the model when a player leaves the match, calls the corresponding method of the gui controller
+     * method called by the model when a player leaves the match, calls the corresponding method of the gui controller. If this method is called for the player who left the match, calls the menu method which add a radio button to the menu
      * @param tokenMatch token of the match
      * @param player player who left the match
-     * @throws RemoteException
      */
     public synchronized void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
         Platform.runLater(() -> {
@@ -131,7 +129,7 @@ public class GuiView extends AppView {
             } catch (IOException e) {
                 //Segnala errore
 
-                GuiMessage.showError("impossibile visualizzare le finestre");
+                GuiMessage.showError("impossibile lasciare la partita");
             }
         });
     }
@@ -149,7 +147,7 @@ public class GuiView extends AppView {
             } catch (IOException e) {
                 //Segnala errore
 
-                GuiMessage.showError("impossibile visualizzare le finestre");
+                GuiMessage.showError("impossibile rientrare in partita");
             }
         });
     }

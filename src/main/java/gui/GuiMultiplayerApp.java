@@ -892,7 +892,6 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @param match current match
      */
     private void initializeMatchRoundsGui(MultiPlayerMatch match) throws AppViewException{
-
         roundDice.setVisible(false);
         console.setEditable(false);
         round1.setVisible(false);
@@ -909,11 +908,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         console.setText("partita iniziata. Turno di "+ match.getTurnPlayer().getUser().getName());
         int window = 2;
         //Setta componenti view finestre e carte private
-        matchView = new MatchView(new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),null,null);
+        matchView = new MatchView(new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),null,new ArrayList<>(),null);
         for (Player player : match.getPlayers()) {
             if (player.getUser().getName().equals(guiView.getUserName())) {
                 matchView.getPlayers().add(new PlayerView(new WindowView(associateWindow(1), player.getWindow(), associateCells(player.getWindow().getCells(), 1)), player));
-                matchView.setPrivateObjective(new ObjectiveCardView(privateObjective1, player.getPrivateObjectiveCards().get(0)));
+                new ObjectiveCardView(privateObjective1, player.getPrivateObjectiveCards().get(0));
                 favorTokens.setText("" + player.getFavorTokens());
             } else {
                 matchView.getPlayers().add(new PlayerView(new WindowView(associateWindow(window), player.getWindow(), associateCells(player.getWindow().getCells(), window)), player));
@@ -1046,30 +1045,27 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
                     //eccezione gestita
                 }
             } else {
-                if(matchView.getSelectedToolCard() != null) {
-                    if (matchView.getInput().getOriginCell1() != null) {
-                        String name = matchView.getSelectedToolCard().getToolCard().getName();
-                        if (matchView.windowToolCards().contains(name)) {
-                            if(name.equals("lathekin") || twoMoves) {
-                                if(matchView.getInput().getDestinationCell1() == null) {
-                                    matchView.getInput().setDestinationCell1(selectedCell.getCell());
-                                    deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
-                                    console.setText("prima cella di destinazione selezionata");
-                                    return;
-                                }else{
-                                    matchView.getInput().setDestinationCell2(selectedCell.getCell());
-                                    deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
-                                }
-                            }else{
-                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+                if(matchView.getSelectedToolCard() != null && matchView.getInput().getOriginCell1()!= null) {
+                    String name = matchView.getSelectedToolCard().getToolCard().getName();
+                    if (matchView.windowToolCards().contains(name)) {
+                        if(name.equals("lathekin") || twoMoves) {
+                            if(matchView.getInput().getDestinationCell1() == null) {
                                 matchView.getInput().setDestinationCell1(selectedCell.getCell());
+                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+                                console.setText("prima cella di destinazione selezionata");
+                                return;
+                            }else{
+                                matchView.getInput().setDestinationCell2(selectedCell.getCell());
+                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
                             }
-                            try {
-                                guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
-                            } catch (RemoteException e) {
-                                //eccezione gestita
-                            }
-
+                        }else{
+                            deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
+                            matchView.getInput().setDestinationCell1(selectedCell.getCell());
+                        }
+                        try {
+                            guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch,matchView.getInput(),matchView.getSelectedToolCard().getToolCard());
+                        } catch (RemoteException e) {
+                            //eccezione gestita
                         }
                     }
                 }
@@ -1078,16 +1074,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             if (matchView.getSelectedToolCard() != null){
                 String name = matchView.getSelectedToolCard().getToolCard().getName();
                 if(matchView.windowToolCards().contains(name)){
-                    if(name.equals("lathekin") || twoMoves) {
-                        if(matchView.getInput().getDestinationCell1() != null) {
-                            if(matchView.getInput().getOriginCell2() != null){
-                                deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
-                            }
-                            matchView.getInput().setOriginCell2(selectedCell.getCell());
-                            select(selectedCell.getImageView());
-                            console.setText("seconda cella di partenza selezionata");
-                            return;
+                    if((name.equals("lathekin") || twoMoves) && matchView.getInput().getDestinationCell1() != null) {
+                        if(matchView.getInput().getOriginCell2() != null){
+                            deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell2().getRow()][matchView.getInput().getOriginCell2().getColumn()].getImageView());
                         }
+                        matchView.getInput().setOriginCell2(selectedCell.getCell());
+                        select(selectedCell.getImageView());
+                        console.setText("seconda cella di partenza selezionata");
+                        return;
                     }
                     if(matchView.getInput().getOriginCell1() != null){
                         deselect(matchView.retrieveThisPlayer(guiView.getUserName()).getWindow().getCells()[matchView.getInput().getOriginCell1().getRow()][matchView.getInput().getOriginCell1().getColumn()].getImageView());
@@ -1268,17 +1262,14 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         DieView selectedRoundDie = retrieveRoundDie(mouseEvent.getSource());
         if(matchView.getSelectedToolCard() != null){
             String name = matchView.getSelectedToolCard().getToolCard().getName();
-            if(name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE)) {
-
-                if(matchView.getInput().getChosenDie() != null) {
-                    deselect(matchView.retrieveDieView(matchView.getInput().getChosenDie()).getImageView());
-                    matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
-                    matchView.getInput().setRoundTrackRound(round);
-                    try {
-                        guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
-                    } catch (RemoteException e) {
-                        //eccezione gestita
-                    }
+            if(name.equals(FXGuiConstant.TAGLIERINA_CIRCOLARE) && matchView.getInput().getChosenDie() != null) {
+                deselect(matchView.retrieveDieView(matchView.getInput().getChosenDie()).getImageView());
+                matchView.getInput().setRoundTrackDie(selectedRoundDie.getDie());
+                matchView.getInput().setRoundTrackRound(round);
+                try {
+                    guiView.getController().useToolCard(guiView.getUserToken(), multiTokenMatch, matchView.getInput(), matchView.getSelectedToolCard().getToolCard());
+                } catch (RemoteException e) {
+                    //eccezione gestita
                 }
             }
         }
@@ -1392,7 +1383,11 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         }
     }
 
-   //Osservazione multiplayer
+    /**
+     * when a player leaves the match turns his name to color red
+     * @param tokenMatch token of the match
+     * @param player player who left the match
+     */
     public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
         if(player2Name.getText().equals(player.getUser().getName()))
             player2Name.getStyleClass().add(FXGuiConstant.LEFT);
@@ -1402,6 +1397,12 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             player4Name.getStyleClass().add(FXGuiConstant.LEFT);
 
     }
+
+    /**
+     * when a player rejoins the match turns his name to white. If the player receiving this command is the one who rejoined the match recreates the match scene
+     * @param tokenMatch token of the match
+     * @param player player who rejoined
+     */
     public void onPlayerRejoin(String tokenMatch, Player player) throws RemoteException {
         if(player2Name.getText().equals(player.getUser().getName())) {
             player2Name.getStyleClass().remove(FXGuiConstant.LEFT);

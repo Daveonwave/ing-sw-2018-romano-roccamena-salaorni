@@ -366,6 +366,9 @@ public class GuiApp extends Application implements Serializable {
         stage.show();
     }
 
+    /**
+     * shows all the radio button representing every game you left
+     */
     private void updateMatchesLeft(){
         int yPosition = 43;
         for (RadioButton match : matches){
@@ -382,6 +385,10 @@ public class GuiApp extends Application implements Serializable {
         }
     }
 
+    /**
+     * when you leave a match saves a new radio button in "Matches Left"
+     * @param tokenMatch token of the match
+     */
     public void addMatchLeft(String tokenMatch){
 
         for(RadioButton match : matches){
@@ -394,6 +401,10 @@ public class GuiApp extends Application implements Serializable {
         updateMatchesLeft();
     }
 
+    /**
+     * when you press the "rejoin button" rejoins the first selected match
+     * @param mouseEvent on click event
+     */
     public void rejoin(MouseEvent mouseEvent){
         RadioButton eliminatedMatch = null;
         for(RadioButton match: this.matches){

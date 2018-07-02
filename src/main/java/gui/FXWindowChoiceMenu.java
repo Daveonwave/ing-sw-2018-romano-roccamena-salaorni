@@ -199,7 +199,7 @@ public class FXWindowChoiceMenu {
         try {
             guiMultiplayerApp.getGuiView().getController().chooseWindow(guiMultiplayerApp.getGuiView().getUserToken(), guiMultiplayerApp.getMultiTokenMatch(),retrieveWindows(mouseEvent.getSource()).getWindow());
         } catch (RemoteException e) {
-            e.printStackTrace();
+            // eccezione gestita
         }
         windowChoiceText.setText("In attesa degli altri giocatori...");
         windowChoiceAnchorPane.setDisable(true);
