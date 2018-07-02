@@ -44,6 +44,9 @@ public class GuiView extends AppView {
         return this.multiplayerApps;
 
     }
+    public GuiApp getGuiApp() {
+        return guiApp;
+    }
 
     /**
      * method called by the model when an error occurred

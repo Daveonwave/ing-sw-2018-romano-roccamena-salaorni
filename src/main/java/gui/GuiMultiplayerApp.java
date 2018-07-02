@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mvc.exceptions.AppViewException;
 import mvc.model.objects.*;
+import mvc.model.objects.Cell;
 import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;
 
@@ -1695,5 +1693,15 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
         } catch (IOException e) {
             //eccezione gestita
         }
+        RadioButton endedMatch = null;
+        for (RadioButton matchLeft: guiView.getGuiApp().getMatches()){
+            if (matchLeft.getText().equals(tokenMatch)){
+                matchLeft.setVisible(false);
+                endedMatch = matchLeft;
+                break;
+            }
+        }
+        guiView.getGuiApp().getMatches().remove(endedMatch);
+        guiView.getGuiApp().updateMatchesLeft();
     }
 }
