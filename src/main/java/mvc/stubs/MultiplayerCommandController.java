@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * Multiplayer commands feature of the application controller
+ */
 public interface MultiplayerCommandController extends Remote, Serializable {
     //Controllore remoto operazioni su partite multiplayer
 

@@ -9,6 +9,9 @@ import util.FileHandler;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Writes tool cards on memory
+ */
 public class WindowsWriter {
     //Creatore di risorse di finestre
 

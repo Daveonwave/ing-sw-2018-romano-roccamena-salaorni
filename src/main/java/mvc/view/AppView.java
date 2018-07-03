@@ -21,6 +21,10 @@ public abstract class AppView implements AppViewStub, Serializable {
     private boolean logged;
 
     //Costruttori
+    /**
+     * Create new application view
+     * @param controller Application controller of the view
+     */
     public AppView(AppControllerStub controller) {
         this.controller = controller;
         this.userToken = "";
@@ -74,11 +78,18 @@ public abstract class AppView implements AppViewStub, Serializable {
     }
 
     //Operazioni multiplayer
-    public synchronized void joinMatch() throws IOException {
+    /**
+     * Join a multiplayer match
+     * @throws IOException
+     */
+    public synchronized void joinMatch() throws RemoteException {
         controller.joinMatch(userToken);
     }
+    /**
+     * Cancel partecipation of a multiplayer match
+     * @throws RemoteException
+     */
     public synchronized void cancelJoinMatch() throws RemoteException {
         controller.cancelJoinMatch(userToken);
     }
-
 }

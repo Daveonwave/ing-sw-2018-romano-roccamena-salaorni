@@ -3,6 +3,9 @@ package mvc.stubs;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * User action features of the application controller
+ */
 public interface UserController extends Remote {
     //Controllore remoto utente
 
