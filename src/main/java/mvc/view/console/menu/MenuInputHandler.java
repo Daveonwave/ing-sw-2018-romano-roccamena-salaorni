@@ -2,9 +2,7 @@ package mvc.view.console.menu;
 
 import mvc.view.console.ConsoleView;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.rmi.RemoteException;
 
 public abstract class MenuInputHandler implements Serializable {
     //Input di un menu

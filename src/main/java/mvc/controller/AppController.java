@@ -1,7 +1,7 @@
 package mvc.controller;
 
 import config.TimerConfig;
-import mvc.controller.handlers.MultiplayerHandler;
+import mvc.controller.handlers.MultiPlayerHandler;
 import mvc.controller.handlers.NoPlayersHandler;
 import mvc.controller.handlers.TimedTurnHandler;
 import mvc.creators.MatchCreator;
@@ -29,7 +29,7 @@ public class AppController implements AppControllerStub {
     //Configurazioni timer
     private transient TimerConfig timerConfig;
     //Gestore partite multiplayer
-    private transient MultiplayerHandler multiPlayerLobby;
+    private transient MultiPlayerHandler multiPlayerLobby;
 
 
     //Costruttori
@@ -40,7 +40,7 @@ public class AppController implements AppControllerStub {
     public AppController(TimerConfig timerConfig) {
         this.model = AppModel.get();
         this.timerConfig = timerConfig;
-        this.multiPlayerLobby = new MultiplayerHandler(this, 4, timerConfig.getJoinWaitTime());
+        this.multiPlayerLobby = new MultiPlayerHandler(this, 4, timerConfig.getJoinWaitTime());
     }
 
 
@@ -51,7 +51,7 @@ public class AppController implements AppControllerStub {
     public void setTimerConfig(TimerConfig timerConfig) {
         this.timerConfig = timerConfig;
     }
-    public void setMultiPlayerLobby(MultiplayerHandler multiPlayerLobby) {
+    public void setMultiPlayerLobby(MultiPlayerHandler multiPlayerLobby) {
         this.multiPlayerLobby = multiPlayerLobby;
     }
 
@@ -61,7 +61,7 @@ public class AppController implements AppControllerStub {
     public TimerConfig getTimerConfig() {
         return timerConfig;
     }
-    public MultiplayerHandler getMultiPlayerLobby() {
+    public MultiPlayerHandler getMultiPlayerLobby() {
         return multiPlayerLobby;
     }
 

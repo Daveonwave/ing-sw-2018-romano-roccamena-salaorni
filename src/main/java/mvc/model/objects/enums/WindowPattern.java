@@ -26,6 +26,6 @@ public enum WindowPattern {
     SYMPHONY_OF_LIGHT,
     WATER_OF_LIGHT,
     LUX_MUNDI,
-    SUNSS_GLORY;
+    SUNSS_GLORY
 }
 

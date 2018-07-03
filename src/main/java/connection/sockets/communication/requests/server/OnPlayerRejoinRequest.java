@@ -2,7 +2,6 @@ package connection.sockets.communication.requests.server;
 
 import connection.sockets.communication.handlers.ServerRequestHandler;
 import connection.sockets.communication.rensponses.server.ServerResponse;
-import mvc.model.objects.MultiPlayerMatch;
 import mvc.model.objects.Player;
 
 /**

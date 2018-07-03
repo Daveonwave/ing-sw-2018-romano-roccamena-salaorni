@@ -43,8 +43,7 @@ public class ResourceRetriever {
         }
 
 
-        /*GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(PrivateObjectiveCard.class, )*/
+        //builder.registerTypeAdapter(PrivateObjectiveCard.class, )*/
 
         /*Todo: problema = quando si fa la deserializzazione (line 46) il metodo cerca una classe con un no-args
         *       constructor, ma PrivateObjectiveCard ha un costruttore con argomenti.
@@ -56,13 +55,6 @@ public class ResourceRetriever {
         List<PrivateObjectiveCard> result = gson.fromJson(jsonFile, founderListType);
         return result;
     }
-
-    /*public static void main(String[] args) {
-        List<PrivateObjectiveCard> p;
-        p = new ResourceRetriever().retrievePrivateObjectiveCards();
-        System.out.println(p);
-    }*/
-
 
 
     /**
@@ -111,12 +103,6 @@ public class ResourceRetriever {
         }
         Type founderListType = new TypeToken<ArrayList<Window>>(){}.getType();
         return gson.fromJson(jsonFile, founderListType);
-    }
-
-    public static void main(String[] args) {
-        List<Window> p;
-        p = new ResourceRetriever().retrieveWindows();
-        System.out.println(p.toString());
     }
 
 

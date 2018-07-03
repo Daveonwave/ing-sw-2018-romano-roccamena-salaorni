@@ -28,7 +28,7 @@ public class NoPlayersHandler extends TimedSubcontroller {
      */
     public synchronized void onTimedTask() throws Exception {
         AppController controller = getController();
-        MultiplayerHandler lobby = controller.getMultiPlayerLobby();
+        MultiPlayerHandler lobby = controller.getMultiPlayerLobby();
 
         //Controlla se non ci sono giocatori sufficienti
         if (lobby.getWaitingUsersToken().size() == 1) {

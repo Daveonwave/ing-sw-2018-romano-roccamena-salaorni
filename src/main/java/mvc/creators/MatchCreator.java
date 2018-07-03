@@ -110,7 +110,7 @@ public class MatchCreator {
     /**
      * Support method to create private objective cards
      * @param numberOfPlayers players count
-     * @return
+     * @return list of private objective cards depending on the number of players
      */
     public List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers){
         return createPrivateObjectiveCards(numberOfPlayers, true);
@@ -225,7 +225,7 @@ public class MatchCreator {
     }
     /**
      * Support method to create dice bag
-     * @return
+     * @return list with all the dice of dicebag
      */
     public List<Die> createDiceBag() {
         return createDiceBag(true);
@@ -281,17 +281,17 @@ public class MatchCreator {
      * @param windows Windows instances
      * @param fromIndex Start index of sub
      * @param toIndex End index of sub
-     * @return
+     * @return list of selected windows
      */
     private static List<Window> selectWindows(List<Window> windows, int fromIndex, int toIndex) {
         List<Window> sub = windows.subList(fromIndex, toIndex);
-        return new ArrayList<Window>(sub);
+        return new ArrayList<>(sub);
     }
     /**
      * Create new multiplayer match instance
      * @param users Partecipant users
      * @param seed Seed of the match
-     * @return
+     * @return the match
      */
     public static MultiPlayerMatch createMultiPlayer(List<User> users, long seed) {
         //Verifica condizione sulla casualità
@@ -336,12 +336,19 @@ public class MatchCreator {
     /**
      * Create new multiplayer match instance with default seed computation
      * @param users Partecipant users
-     * @return
+     * @return the match
      */
     public static MultiPlayerMatch createMultiPlayer(List<User> users) {
         return createMultiPlayer(users, -1);
     }
 
+    /**
+     * Create new single player match instance
+     * @param user user who plays
+     * @param difficultyLevelSP difficulty level of the game
+     * @param seed seed of the match
+     * @return the match
+     */
     public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP, long seed) {
         //Verifica condizione sulla casualità
         boolean seeded = seed > 0;
@@ -373,6 +380,12 @@ public class MatchCreator {
         //Crea partita
         return new SinglePlayerMatch(player, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
     }
+    /**
+     * Create new single player match instance with default seed computation
+     * @param user user who plays
+     * @param difficultyLevelSP difficulty level of the game
+     * @return the match
+     */
     public static SinglePlayerMatch createSinglePlayer(User user, int difficultyLevelSP){
         return createSinglePlayer(user, difficultyLevelSP, -1);
     }

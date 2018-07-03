@@ -11,7 +11,6 @@ public abstract class TimedSubcontroller extends TimedTaskHandler {
     private AppController controller;
 
     //Costruttori
-
     /**
      * Create new timed subcontroller
      * @param controller Parent controller instance

@@ -2,7 +2,6 @@ package connection.sockets.clientside;
 
 import connection.sockets.communication.ClientReader;
 import connection.sockets.communication.ClientWriter;
-import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.rensponses.server.ServerResponse;
 import connection.sockets.communication.requests.server.ServerRequest;

@@ -13,8 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mvc.exceptions.AppViewException;
-import mvc.model.objects.*;
 import mvc.model.objects.Cell;
+import mvc.model.objects.*;
 import mvc.stubs.MultiplayerObserver;
 import mvc.stubs.ViewResponder;
 

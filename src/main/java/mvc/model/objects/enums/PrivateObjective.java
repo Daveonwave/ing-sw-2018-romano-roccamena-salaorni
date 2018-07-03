@@ -7,5 +7,5 @@ public enum PrivateObjective {
     SHADES_OF_YELLOW,
     SHADES_OF_GREEN,
     SHADES_OF_BLUE,
-    SHADES_OF_PURPLE;
+    SHADES_OF_PURPLE
 }

@@ -26,7 +26,7 @@ public class ResponseRegistry {
     }
 
     //Cerca la risposta nella pila
-    public synchronized ClientResponse searchResponse(int responseId){
+    public synchronized ClientResponse search(int responseId){
         return registry.get(responseId);
     }
 
@@ -34,7 +34,7 @@ public class ResponseRegistry {
     public synchronized ClientResponse retrieveResponse(int responseId){
         ClientResponse toRetrieve;
 
-        toRetrieve = searchResponse(responseId);
+        toRetrieve = search(responseId);
 
         while(toRetrieve == null){
             try {
@@ -42,7 +42,7 @@ public class ResponseRegistry {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            toRetrieve = searchResponse(responseId);
+            toRetrieve = search(responseId);
         }
         delete(responseId);
 

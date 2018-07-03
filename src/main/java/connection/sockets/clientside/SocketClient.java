@@ -3,7 +3,6 @@ package connection.sockets.clientside;
 import config.AddressConfig;
 import config.PortsConfig;
 import connection.sockets.communication.ClientWriter;
-import connection.sockets.communication.IOSupport;
 import connection.sockets.communication.rensponses.client.ClientResponse;
 import connection.sockets.communication.requests.client.ClientRequest;
 
