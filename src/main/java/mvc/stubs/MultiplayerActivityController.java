@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * Multiplayer activity feature of application controller
+ */
 public interface MultiplayerActivityController extends Remote, Serializable {
     //Controllore remoto dell'attività di un giocatore in partite multiplayer
 

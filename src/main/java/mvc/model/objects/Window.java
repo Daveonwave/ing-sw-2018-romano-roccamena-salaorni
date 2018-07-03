@@ -2,6 +2,7 @@ package mvc.model.objects;
 
 import mvc.exceptions.AppModelException;
 import mvc.exceptions.MatchException;
+import mvc.model.objects.enums.DieColor;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
@@ -242,24 +243,44 @@ public class Window implements Serializable {
     }
 
     //Ottiene celle ortogonalmente adiacenti ad una data
+    /**
+     * Get upper cell of a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getUpCell(Cell cell) {
         if (cell.isNorthBorder())
             return null;
         else
             return cells[cell.getRow()-1][cell.getColumn()];
     }
+    /**
+     * Get down cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getDownCell(Cell cell) {
         if (cell.isSouthBorder())
             return null;
         else
             return cells[cell.getRow()+1][cell.getColumn()];
     }
+    /**
+     * Get left cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getLeftCell(Cell cell) {
         if (cell.isWestBorder())
             return null;
         else
             return cells[cell.getRow()][cell.getColumn()-1];
     }
+    /**
+     * Get right cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getRightCell(Cell cell) {
         if (cell.isEastBorder())
             return null;
@@ -268,6 +289,11 @@ public class Window implements Serializable {
     }
 
     //Ottiene tutte le celle ortogonalmente adiacenti
+    /**
+     * Get orthogonal adjacent cells for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public List<Cell> getOrthogonalCells(Cell cell) {
         List<Cell> cellList = new ArrayList<>();
 
@@ -289,6 +315,11 @@ public class Window implements Serializable {
     }
 
     //Ottiene celle diagonalmente adiacenti ad una data
+    /**
+     * Get upper left cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getUpLeftCell(Cell cell) {
         if(cell.isNorthBorder() || cell.isWestBorder()){
             return null;
@@ -296,6 +327,11 @@ public class Window implements Serializable {
         else
             return cells[cell.getRow()-1][cell.getColumn()-1];
     }
+    /**
+     * Get upper right cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getUpRightCell(Cell cell){
         if(cell.isNorthBorder() || cell.isEastBorder()){
             return null;
@@ -303,12 +339,22 @@ public class Window implements Serializable {
         else
             return cells[cell.getRow()-1][cell.getColumn()+1];
     }
+    /**
+     * Get down left cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getDownLeftCell(Cell cell) {
         if(cell.isSouthBorder() || cell.isWestBorder())
             return null;
         else
             return cells[cell.getRow()+1][cell.getColumn()-1];
     }
+    /**
+     * Get down left cell for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public Cell getDownRightCell(Cell cell){
         if(cell.isSouthBorder() || cell.isEastBorder())
             return null;
@@ -317,6 +363,11 @@ public class Window implements Serializable {
     }
 
     //Ottiene tutte le celle diagonalmente adiacenti
+    /**
+     * Get diagonal adjacent cells for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public List<Cell> getDiagonalsCells(Cell cell){
         List<Cell> cellList = new ArrayList<>();
 
@@ -338,6 +389,11 @@ public class Window implements Serializable {
     }
 
     //Ottieni diagonali armoniche e disarmoniche
+    /**
+     * Get harmonious diagonal for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public List<Cell> getHarmoniousDiagonal(Cell cell){
         List<Cell> result = new ArrayList<>();
 
@@ -353,6 +409,11 @@ public class Window implements Serializable {
         }
         return result;
     }
+    /**
+     * Get disharmoniuos diagonal for a given cell
+     * @param cell Cell instance
+     * @return
+     */
     public List<Cell> getDisharmoniousDiagonal(Cell cell){
         List<Cell> result = new ArrayList<>();
 
@@ -370,7 +431,12 @@ public class Window implements Serializable {
     }
 
     //Ottiene celle per caratteristica
-    public List<Cell> getSameColorCells(mvc.model.objects.enums.DieColor color){
+    /**
+     * Obtain cells with given color
+     * @param color Color value
+     * @return
+     */
+    public List<Cell> getSameColorCells(DieColor color){
         List<Cell> result = new ArrayList<>();
 
         for(Cell[] cc : cells){
@@ -382,6 +448,11 @@ public class Window implements Serializable {
         }
         return result;
     }
+    /**
+     * Obtain cells with given shade
+     * @param shade Shade value
+     * @return
+     */
     public List<Cell> getSameShadeCells(int shade){
         List<Cell> result = new ArrayList<>();
 
@@ -396,9 +467,21 @@ public class Window implements Serializable {
     }
 
     //Verifica restrizioni di finestra
+    /**
+     * Asserts no start place restriction are present for a given placement
+     * @param cell Cell instance
+     * @param die Die instance
+     * @return
+     */
     public boolean noStartPlaceRestriction(Cell cell, Die die) {
         return cell.isInBorder();
     }
+    /**
+     * Asserts no orthogonal adjacent restriction are present for a given placement
+     * @param cell Cell instance
+     * @param die Die instance
+     * @return
+     */
     public boolean noAdjacentCellsRestriction(Cell cell, Die die) {
         List<Cell> adjacentCells = getOrthogonalCells(cell);
 
@@ -412,6 +495,12 @@ public class Window implements Serializable {
 
         return true;
     }
+    /**
+     * Asserts no isolated cell restriction are present for a given placement
+     * @param cell Cell instance
+     * @param die Die instance
+     * @return
+     */
     public boolean noIsolatedRestriction(Cell cell, Die die) {
         List<Cell> adjacentCells = getOrthogonalCells(cell);
         adjacentCells.addAll(getDiagonalsCells(cell));
@@ -424,6 +513,12 @@ public class Window implements Serializable {
         return false;
     }
 
+    /**
+     * Asserts no window restriction are present for a given placement
+     * @param cell Cell instance
+     * @param die Die instance
+     * @return
+     */
     public boolean noWindowRestriction(Cell cell, Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells) {
         if (ignoreStartPlace && ignoreAdjacentCells)
             return true;
@@ -442,11 +537,24 @@ public class Window implements Serializable {
         else
             return noAdjacentCellsRestriction(cell, die) && noIsolatedRestriction(cell, die);
     }
+    /**
+     * Asserts no window restriction are present for a given placement
+     * @param cell Cell instance
+     * @param die Die instance
+     * @return
+     */
     public boolean noWindowRestriction(Cell cell, Die die) {
         return noWindowRestriction(cell, die, false, false);
     }
 
     //Ottiene celle piazzabili con un dado
+    /**
+     * Computes valid cells for a given die
+     * @param die Die instance
+     * @param ignoreStartPlace If needed to ignore start place restriction
+     * @param ignoreAdjacentCells If needed to ignore orthogonal adjacent restriction
+     * @return
+     */
     public List<Cell> getValidCells(Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells) {
         List<Cell> result = new ArrayList<>();
 
@@ -459,11 +567,26 @@ public class Window implements Serializable {
 
         return result;
     }
+    /**
+     * Computes valid cells for a given die with all restrictions
+     * @param die Die instance
+     * @return
+     */
     public List<Cell> getValidCells(Die die) {
         return getValidCells(die, false, false);
     }
 
     //Movimenti dadi fra celle
+    /**
+     * Place a die inside a cell
+     * @param cell Cell instance
+     * @param die Die instance
+     * @param ignoreStartPlace If needed to ignore start place restriction
+     * @param ignoreAdjacentCells If needed to ignore orthogonal adjacent restriction
+     * @param ignoreColorRestriction If needed to ignore color restriction
+     * @param ignoreShadeRestriction If needed to ignore shade restriction
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void placeDie(Cell cell, Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
         if (!noWindowRestriction(cell, die, ignoreStartPlace, ignoreAdjacentCells))
@@ -472,10 +595,26 @@ public class Window implements Serializable {
         //Esegue piazzamento
         cell.placeDie(die, ignoreColorRestriction, ignoreShadeRestriction);
     }
+    /**
+     * Place a die inside a cell with all restrictions
+     * @param cell Cell instance
+     * @param die Die instance
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void placeDie(Cell cell, Die die) throws RemoteException {
         placeDie(cell, die, false, false, false, false);
     }
 
+    /**
+     * Move die from a cell to another
+     * @param origin Origin cell
+     * @param destination Destination cell
+     * @param ignoreStartPlace If needed to ignore start place restriction
+     * @param ignoreAdjacentCells If needed to ignore orthogonal adjacent restriction
+     * @param ignoreColorRestriction If needed to ignore color restriction
+     * @param ignoreShadeRestriction If needed to ignore shade restriction
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void moveDie(Cell origin, Cell destination, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
         Die tempNode = origin.getDie();
@@ -492,10 +631,26 @@ public class Window implements Serializable {
         //Esegue movimento
         origin.moveDie(destination, ignoreColorRestriction, ignoreShadeRestriction);
     }
+    /**
+     * Move die from a cell to another with all restrictions
+     * @param origin Origin cell
+     * @param destination Destination cell
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void moveDie(Cell origin, Cell destination) throws RemoteException {
         moveDie(origin, destination, false, false, false, false);
     }
 
+    /**
+     * Swap dice within two cells
+     * @param cell1 Cell instance
+     * @param cell2 Cell instance
+     * @param ignoreStartPlace If needed to ignore start place restriction
+     * @param ignoreAdjacentCells If needed to ignore orthogonal adjacent restriction
+     * @param ignoreColorRestriction If needed to ignore color restriction
+     * @param ignoreShadeRestriction If needed to ignore shade restriction
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void swapDice(Cell cell1, Cell cell2, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
         if (!noWindowRestriction(cell1, cell2.getDie(), ignoreStartPlace, ignoreAdjacentCells) || !noWindowRestriction(cell2, cell1.getDie(), ignoreStartPlace, ignoreAdjacentCells))
@@ -504,6 +659,12 @@ public class Window implements Serializable {
         //Esegue scambio
         cell1.swapDice(cell2, ignoreColorRestriction, ignoreShadeRestriction);
     }
+    /**
+     * Swap dice within two cells with all restrictions
+     * @param cell1 Cell instance
+     * @param cell2 Cell intance
+     * @throws RemoteException MatchException if invalid action requested
+     */
     public void swapDice(Cell cell1, Cell cell2) throws RemoteException {
         swapDice(cell1, cell2, false, false, false, false);
     }

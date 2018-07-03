@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * User of the application
+ */
 public class User implements Serializable {
     //Utente dell'applicazione
 
@@ -14,6 +17,12 @@ public class User implements Serializable {
     private List<Player> players;
 
     //Costruttori
+    /**
+     * Create new user
+     * @param name User's name
+     * @param appView Application view of the user
+     * @param players Players associated with the user
+     */
     public User(String name, AppViewStub appView, List<Player> players) {
         this.name = name;
         this.appView = appView;
@@ -45,6 +54,11 @@ public class User implements Serializable {
     }
 
     //Verifica uguaglianze
+    /**
+     * Asserts equality of two users
+     * @param user User instance
+     * @return
+     */
     public boolean sameUser(User user) {
         if (user==null)
             return false;
@@ -58,9 +72,17 @@ public class User implements Serializable {
     }
 
     //Operazioni su giocatori associati
+    /**
+     * Register a player for the user
+     * @param player
+     */
     public void addPlayer(Player player){
         players.add(player);
     }
+    /**
+     * Unregister a player for the user
+     * @param player
+     */
     public void removePlayer(Player player){
         players.remove(player);
     }

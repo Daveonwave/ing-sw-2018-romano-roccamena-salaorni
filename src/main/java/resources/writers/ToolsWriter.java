@@ -9,6 +9,9 @@ import util.FileHandler;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Writes tool cards on memory
+ */
 public class ToolsWriter {
     //Creatore di carte strumento
 

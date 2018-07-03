@@ -5,8 +5,7 @@ import mvc.model.objects.enums.DieColor;
 import java.rmi.RemoteException;
 
 /**
- * Abstract toolcard
- * @use toolcard father card
+ * Tool card object
  */
 public abstract class ToolCard extends ColorCard {
     //Carta strumento
@@ -14,6 +13,12 @@ public abstract class ToolCard extends ColorCard {
     private int favorTokens;
 
     //Costruttori
+    /**
+     * Create new tool card
+     * @param name Card name
+     * @param description Card description
+     * @param color Card color
+     */
     public ToolCard(String name, String description, DieColor color) {
         super(name, description, color);
     }

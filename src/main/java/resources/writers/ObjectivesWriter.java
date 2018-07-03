@@ -12,6 +12,9 @@ import util.FileHandler;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Writes objective cards on memory
+ */
 public class ObjectivesWriter {
 
     public static void main(String[] args) throws IOException {

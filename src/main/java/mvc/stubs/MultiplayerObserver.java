@@ -5,6 +5,9 @@ import mvc.model.objects.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * RìMultiplayer match observer definition
+ */
 public interface MultiplayerObserver extends Remote{
 
     //Osservatore remoto partita
