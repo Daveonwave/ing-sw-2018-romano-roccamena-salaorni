@@ -19,7 +19,7 @@
 
 
 ## Diagramma UML delle classi:
-![Caption Figura](UML completo.png)
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20completo.png)
 
 
 
