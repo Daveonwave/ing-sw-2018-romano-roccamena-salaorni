@@ -19,7 +19,7 @@
 
 
 ## Diagramma UML delle classi:
-[Caption Figura](UML completo.png)
+![Caption Figura](UML completo.png)
 
 
 
