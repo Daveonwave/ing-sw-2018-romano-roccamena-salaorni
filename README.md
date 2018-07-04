@@ -25,20 +25,30 @@ Il diagramma UML delle classi mostrato in figura è il diagramma totale della st
 Nel diagramma non sono state inserite le classi che fungono da meri contenitori di costanti utili per il gioco. Inoltre abbiamo scelto di non aggiungere classi le cui funzionalità non sono state implementate per tempo; tuttavia, tali classi, sono state lasciate nel codice in virtù del fatto che è stato compiuto lavoro anche intorno ad esse e, nonostante non siano complete, le riteniamo valide e parzialmente funzionanti.
 
 La struttura base della nostra architettura mvc nasce a partire dalle seguenti interfacce:
+
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20mvc%20interfaces.png) 
+
 Le due interfacce principali sono AppViewStub e AppControllerStub che svolgono le funzioni:
 - AppViewStub : osservarzione del model da parte della view
 - AppControllerStub : aggiornamento dello stato della view attraverso le chiamate del model. 
 
+
 L'implementazione delle interfacce è stata sviluppata nelle seguenti classi:
+
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20mvc%20structure.png)
+
 Esse comprendo il model, il controller e una classe astratta chiamata AppView che verrà estesa dalle interfacce grafiche.
 
+
 L'interfaccia grafica sviluppata attraverso JavaFx ha assunto una struttura di questo tipo:
+
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20gui.png)
 
+
 Infine la parte di connessione è stata implementata nel seguente modo:
+
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20connection.png)
+
 Abbiamo adottato i pattern visitor e command per l'implementazione della connessione tramite socket. Rmi invece è strutturato come spiegato in classe.
 
 ## Funzionalità implementate: 
