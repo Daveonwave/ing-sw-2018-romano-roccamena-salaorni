@@ -19,7 +19,7 @@ public class ClientWriter {
             outputStream.flush();
             LOGGER.log(Level.INFO, "[SOCKET]: invio richiesta al server");
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send sendRequest to server failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: invio richiesta al server fallito");
         }
     }
     public static synchronized void responseToServer(ObjectOutputStream outputStream, ServerResponse response) {
@@ -30,7 +30,7 @@ public class ClientWriter {
             LOGGER.log(Level.INFO,"[SOCKET]: invio risposta al server");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send response to server failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: invio risposta al server fallito");
         }
     }
 }

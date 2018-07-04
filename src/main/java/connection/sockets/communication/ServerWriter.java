@@ -20,7 +20,7 @@ public class ServerWriter {
             LOGGER.log(Level.INFO,"[SOCKET]: invio richiesta al client");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send sendRequest to client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: invio richiesta al client fallito");
         }
     }
     public static synchronized void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
@@ -31,7 +31,7 @@ public class ServerWriter {
             LOGGER.log(Level.INFO,"[SOCKET]: invio risposta al client");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: send response to client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: invio risposta al client fallito");
         }
     }
 }

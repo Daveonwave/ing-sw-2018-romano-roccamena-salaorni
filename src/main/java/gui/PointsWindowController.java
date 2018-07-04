@@ -77,12 +77,10 @@ public class PointsWindowController {
     @FXML
     Label player4TotalPoints;
 
-
-
+    //Getter/Setter
     public Map<String, PlayerPoints> getPoints() {
         return points;
     }
-
     public MultiPlayerMatch getMatch() {
         return match;
     }
@@ -90,7 +88,6 @@ public class PointsWindowController {
     public void setPoints(Map<String, PlayerPoints> points) {
         this.points = points;
     }
-
     public void setMatch(MultiPlayerMatch match) {
         this.match = match;
     }

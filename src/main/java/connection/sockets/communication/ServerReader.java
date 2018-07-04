@@ -20,9 +20,9 @@ public class ServerReader {
             LOGGER.log(Level.INFO,"[SOCKET]: ricezione richiesta dal client");
 
         } catch (IOException ioe) {
-            LOGGER.log(Level.WARNING, "[ERROR]: receiving sendRequest from client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: ricezione richiesta dal client fallita");
         } catch (ClassNotFoundException cnfe){
-            LOGGER.log(Level.WARNING, "[ERROR]: received sendRequest from client doesn't match with any class");
+            LOGGER.log(Level.WARNING, "[ERROR]: classe richiesta non trovata");
         }
         return request;
     }
@@ -34,9 +34,9 @@ public class ServerReader {
             LOGGER.log(Level.INFO,"[SOCKET]: ricezione risposta dal client");
 
         } catch (IOException ioe) {
-            LOGGER.log(Level.WARNING, "[ERROR]: receiving response from client failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: ricezione risposta dal client fallita");
         } catch (ClassNotFoundException cnfe){
-            LOGGER.log(Level.WARNING, "[ERROR]: received response from client doesn't match with any class");
+            LOGGER.log(Level.WARNING, "[ERROR]: classe risposta non trovata");
         }
         return response;
     }

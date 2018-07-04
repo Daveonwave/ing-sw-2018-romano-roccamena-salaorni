@@ -13,7 +13,7 @@ import java.util.List;
 public class MatchView {
 
     private List<ToolCardView> toolCards;
-    private List<ObjectiveCardView> publicObjective;
+    private List<ObjectiveCardView> publicObjectives;
     private List<DieView> draftPool;
     private List<PlayerView> players;
     private DieView selectedDie;
@@ -24,16 +24,17 @@ public class MatchView {
     /**
      *
      * @param toolCards tool cards view
-     * @param publicObjective public objective view
+     * @param publicObjectives public objective view
      * @param draftPool draft pool view
      * @param players players view
      * @param selectedDie selected die
      * @param rounds rounds view
      * @param input tool card's input
      */
-    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjective, List<DieView> draftPool, List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input) {
+    public MatchView(List<ToolCardView> toolCards, List<ObjectiveCardView> publicObjectives, List<DieView> draftPool,
+                     List<PlayerView> players, DieView selectedDie, List<RoundView> rounds, ToolCardInput input) {
         this.toolCards = toolCards;
-        this.publicObjective = publicObjective;
+        this.publicObjectives = publicObjectives;
         this.draftPool = draftPool;
         this.players = players;
         this.selectedDie = selectedDie;
@@ -44,8 +45,8 @@ public class MatchView {
     public List<ToolCardView> getToolCards() {
         return toolCards;
     }
-    public List<ObjectiveCardView> getPublicObjective() {
-        return publicObjective;
+    public List<ObjectiveCardView> getPublicObjectives() {
+        return publicObjectives;
     }
     public List<DieView> getDraftPool() {
         return draftPool;

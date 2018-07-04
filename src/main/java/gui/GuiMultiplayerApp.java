@@ -941,7 +941,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             matchView.getRounds().add(new RoundView(associateRound(i), new ArrayList<>(), i));
         }
         for (PublicObjectiveCard card : match.getPublicObjectiveCards()) {
-            matchView.getPublicObjective().add(new ObjectiveCardView(associatePublicObjective(match.getPublicObjectiveCards().indexOf(card) + 1), card));
+            matchView.getPublicObjectives().add(new ObjectiveCardView(associatePublicObjective(match.getPublicObjectiveCards().indexOf(card) + 1), card));
         }
 
     }
