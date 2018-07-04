@@ -5,10 +5,23 @@ import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Receiver of the messages in the socket bridge client side
+ */
 public class ClientReader {
 
     private static final Logger LOGGER = Logger.getLogger(ClientReader.class.getName());
 
+    /**
+     * Private class constructor
+     */
+    private ClientReader(){}
+
+    /**
+     * Receive an object from the server that is a response to a client request or a request of the server
+     * @param inputStream stream from which the client reads.
+     * @return the content of the stream
+     */
     public static synchronized Object fromServer(ObjectInputStream inputStream){
         Object response = null;
 

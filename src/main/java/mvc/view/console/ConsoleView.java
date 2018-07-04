@@ -176,7 +176,7 @@ public class ConsoleView extends AppView {
             try {
                 showMainMenu();
             } catch (IOException e) {
-                e.printStackTrace();
+                //Gestione eccezione;
             }
         }
     }

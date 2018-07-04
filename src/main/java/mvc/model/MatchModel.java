@@ -23,7 +23,7 @@ public class MatchModel {
      */
     public MatchModel(MultiPlayerMatch match) {
         this.match = new MultiPlayerMatch(match);
-        this.matchObservers = new ArrayList<MultiplayerObserver>();
+        this.matchObservers = new ArrayList<>();
     }
 
     //Setter/Getter

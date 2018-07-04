@@ -34,7 +34,7 @@ public class MatchCreator {
      */
     private List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
         //ResourceRetriever resourceRetriever = new ResourceRetriever();
-        List<PublicObjectiveCard> result = new ArrayList<PublicObjectiveCard>();
+        List<PublicObjectiveCard> result = new ArrayList<>();
         int countExtracted = 1;
 
         int count;
@@ -79,7 +79,7 @@ public class MatchCreator {
      */
     private List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle){
         ResourceRetriever resourceRetriever = new ResourceRetriever();
-        List<PrivateObjectiveCard> result = new ArrayList<PrivateObjectiveCard>();
+        List<PrivateObjectiveCard> result = new ArrayList<>();
         int countExtracted = 1;
 
         int count;
@@ -125,7 +125,7 @@ public class MatchCreator {
      */
     private List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
-        List<ToolCard> result = new ArrayList<ToolCard>();
+        List<ToolCard> result = new ArrayList<>();
         int countExtracted = 1;
 
         int count;
@@ -171,7 +171,7 @@ public class MatchCreator {
      */
     private List<Window> createWindows(int numberOfPlayers, boolean shuffle) {
         ResourceRetriever resourceRetriever = new ResourceRetriever();
-        List<Window> result = new ArrayList<Window>();
+        List<Window> result = new ArrayList<>();
         int countExtracted = 1;
 
         //TODO: update serializzazione
@@ -239,7 +239,7 @@ public class MatchCreator {
      * @return list of dice
      */
     public List<Die> createDraftPool(List<Die> dieBag, int numberOfPlayers){
-        List<Die> result = new ArrayList<Die>();
+        List<Die> result = new ArrayList<>();
 
         //Aggiunge dadi a riserva e li toglie dal sacco
         if(numberOfPlayers == 1){
@@ -264,13 +264,12 @@ public class MatchCreator {
      * @return object round track
      */
     private RoundTrack createRoundTrack(){
-       List<List<Die>> diceStack = new ArrayList<List<Die>>();
+       List<List<Die>> diceStack = new ArrayList<>();
 
        for (int i = 0; i<GameConstants.ROUNDS_COUNT; i++)
            diceStack.add(new ArrayList<Die>());
 
-       RoundTrack result = new RoundTrack(diceStack);
-       return result;
+       return new RoundTrack(diceStack);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -305,7 +304,7 @@ public class MatchCreator {
         else
             RandomHandler.createRandom();
 
-        List<Player> players = new ArrayList<Player>();
+        List<Player> players = new ArrayList<>();
         List<Window> extractedWindows = matchCreator.createWindows(users.size(), !seeded);
         List<PrivateObjectiveCard> extractedPrivateObjectiveCards = matchCreator.createPrivateObjectiveCards(users.size(), !seeded);
         List<PublicObjectiveCard> extractedPublicObjectiveCards = matchCreator.createPublicObjectiveCards(!seeded);
@@ -329,9 +328,7 @@ public class MatchCreator {
         MatchDice matchDice = new MatchDice(users.size(),diceBag, draftPool);
 
         //Crea partita
-        MultiPlayerMatch match = new MultiPlayerMatch(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
-
-        return match;
+        return new MultiPlayerMatch(players, extractedPublicObjectiveCards, extractedToolCards, matchDice, roundTrack);
     }
     /**
      * Create new multiplayer match instance with default seed computation

@@ -23,6 +23,8 @@ public class AppModel {
     //Partite online
     public final TokenMap<MatchModel> matches;
 
+    private static final String INVALID_PARAMS = "parametri non validi";
+
     //Costruttori
     /**
      * Create new application model instance
@@ -67,7 +69,7 @@ public class AppModel {
     public synchronized String createUser(String name, AppViewStub appView) throws RemoteException {
         //Controllo correttezza
         if (name == null || name.equals("") ||appView == null)
-            throw new AppModelException("parametri non validi");
+            throw new AppModelException(INVALID_PARAMS);
 
         if (names.values().contains(name))
             throw new AppModelException("l'utente " + name + " è gia connesso");
@@ -85,7 +87,7 @@ public class AppModel {
     public synchronized void destroyUser(String tokenUser) throws RemoteException {
         //Controllo correttezza
         if (tokenUser == null)
-            throw new AppModelException("parametri non validi");
+            throw new AppModelException(INVALID_PARAMS);
 
         //Distrugge utente
         names.destroyObject(tokenUser);
@@ -100,7 +102,7 @@ public class AppModel {
     public synchronized User retrieveUser(String tokenUser) throws RemoteException {
         //Controllo correttezza
         if (tokenUser == null)
-            throw new AppModelException("parametri non validi");
+            throw new AppModelException(INVALID_PARAMS);
 
         //Ottiene utente
         User user = users.get(tokenUser);

@@ -5,5 +5,6 @@ import base.BaseTest;
 
 public class AppTest extends BaseTest {
     //Testing applicazione
-    //TODO: updating
+
+    //Todo: add a test sennò da issue blocker
 }

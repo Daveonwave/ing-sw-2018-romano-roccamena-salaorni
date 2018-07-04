@@ -203,7 +203,7 @@ public class AppController implements AppControllerStub {
     public synchronized void startMatch() throws RemoteException {
         //Ottiene utenti partecipanti
         List<String> partecipantTokens = multiPlayerLobby.retrieveWaitingUsersToken();
-        List<User> partecipantUsers = new ArrayList<User>();
+        List<User> partecipantUsers = new ArrayList<>();
         for (String partecipantToken : partecipantTokens)
             partecipantUsers.add(model.retrieveUser(partecipantToken));
 
@@ -294,7 +294,9 @@ public class AppController implements AppControllerStub {
             if (!match.getTurnPlayer().isActive()) {
                 try {
                     finishTurn(match, tokenMatch, matchModel, match.getTurnPlayer());
-                } catch (RemoteException e) { }
+                } catch (RemoteException e) {
+                    //Eccezione gestita
+                }
             }
         }
     }

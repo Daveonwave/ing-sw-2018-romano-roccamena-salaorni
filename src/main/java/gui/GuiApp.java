@@ -19,6 +19,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * controller for the gui menu scene
@@ -65,6 +67,7 @@ public class GuiApp extends Application implements Serializable {
     @FXML
     Button exitButton;
 
+    private static Logger LOGGER = Logger.getLogger(GuiApp.class.getName());
 
 
     //Getter
@@ -157,7 +160,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText(FXGuiConstant.DISCONNECTED);
 
             //Visualizza errore
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage());
             GuiMessage.showError("Errore imprevisto");
             return;
         }
@@ -198,7 +201,7 @@ public class GuiApp extends Application implements Serializable {
             connectionLabel.setText("CONNESSO");
 
             //Visualizza errore
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING, e.getMessage());
             GuiMessage.showError("Impossibile disconnettersi dal server");
             return;
         }

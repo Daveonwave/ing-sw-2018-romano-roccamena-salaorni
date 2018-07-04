@@ -45,7 +45,7 @@ public class ResourceRetriever {
 
         //builder.registerTypeAdapter(PrivateObjectiveCard.class, )*/
 
-        /*Todo: problema = quando si fa la deserializzazione (line 46) il metodo cerca una classe con un no-args
+        /*      Problema = quando si fa la deserializzazione (line 46) il metodo cerca una classe con un no-args
         *       constructor, ma PrivateObjectiveCard ha un costruttore con argomenti.
         *       SOLUZIONE: o usare un TypeAdapter di GSON oppure mettere un no-args constructor o rendere la classe
         *       PublicObjectiveCard non astratta.

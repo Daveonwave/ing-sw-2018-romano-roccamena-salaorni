@@ -11,8 +11,6 @@ public class NoRestriction implements CellRestriction {
         if (!(cellRestriction instanceof NoRestriction))
             return false;
 
-        NoRestriction converted = (NoRestriction) cellRestriction;
-
         return true;
     }
 

@@ -55,7 +55,7 @@ Abbiamo creato due file jar esterni per far partire server e client e, in aggiun
 
 La struttura, come spiegato nella presentazione dei diagrammi UML, si sviluppa a partire dalle due interfacce sopracitate in cui abbiamo racchiuso tutte le potenziali azioni attuabili dall'utente e gli eventi che si sarebbero potuti verificare nel corso del gioco.
 L'implementazione del model è stata avviata tenendo subito conto della possibilità di sviluppare le funzionalità di multiplayer e singleplayer contemporaneamente, senza dover separare troppo l'implementazione delle due modalità di gioco. Per questo si può notare che nella classe MatchCreator sono presenti flag e metodi con riferimenti alla partita single player.
-L'interfaccia grafica è stata sviluppata attraverso il softaware "SceneBuilder" e l'implementazione delle classi mostrate nel corrispondente diagramma UML. E' stata divisa in quattro finestre che racchiudono tutte le funzionalità utili durante la partita, tra cui la gestione del multi partita e la possibilità di ripartecipare ad una partita una volta chiusa volontariamente.
-Infine è' possibile notare nel codice la presenza di un package "console" in cui è stata parzialmente implementata la Cli.
+L'interfaccia grafica è stata sviluppata attraverso il software "SceneBuilder" e l'implementazione delle classi mostrate nel corrispondente diagramma UML. E' stata divisa in quattro finestre che racchiudono tutte le funzionalità utili durante la partita, tra cui la gestione del multi partita e la possibilità di ripartecipare ad una partita una volta chiusa volontariamente.
+Infine è possibile notare nel codice la presenza di un package "console" in cui è stata parzialmente implementata la Cli.
 
-La limitazione del nostro progetto, oltre a quelle relative alle funzionalità non implementate, è quella della disconnessione involontaria che non viene gestita solo parzialmente nella connessione socket.  
+La limitazione del nostro progetto, oltre a quelle relative alle funzionalità non implementate, è quella della disconnessione involontaria che non viene gestita, o solo parzialmente nella connessione socket.  

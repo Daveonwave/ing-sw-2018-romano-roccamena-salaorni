@@ -16,6 +16,7 @@ public class MultiPlayerMatch extends Match {
     private List<Player> players;
     private transient TimedTurnHandler timedTurnHandler;
 
+    private static final String NOT_YOUR_TURN = "non è il tuo turno";
     //Costruttori
 
     /**
@@ -238,7 +239,7 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("non puoi piazzare un dado ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("non è il tuo turno");
+            throw new MatchException(NOT_YOUR_TURN);
 
         if (!player.getToolCardEffect().getReplaceDie() && player.getTurnDiePlaced())
             throw new MatchException("hai gia piazzato un dado");
@@ -246,9 +247,8 @@ public class MultiPlayerMatch extends Match {
         if (player.getToolCardEffect().getChosenDie() != null && !player.getToolCardEffect().getChosenDie().sameDie(die))
             throw new MatchException("non puoi scegliere quel dado");
 
-        if (player.getToolCardEffect().getIgnoreIsolatedRestriction())
-            if (player.getWindow().noIsolatedRestriction(cell, die))
-                throw new MatchException("il dado va piazzato isolato");
+        if (player.getToolCardEffect().getIgnoreIsolatedRestriction() && player.getWindow().noIsolatedRestriction(cell, die))
+            throw new MatchException("il dado va piazzato isolato");
 
         //Posiziona il dado
         player.getWindow().placeDie(cell, die, false, player.getToolCardEffect().getIgnoreIsolatedRestriction(), false, false);
@@ -278,7 +278,7 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("non puoi usare una carta strumento ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("non è il tuo turno");
+            throw new MatchException(NOT_YOUR_TURN);
 
         if (player.getTurnToolCardUsed())
             throw new MatchException("hai gia usato una carta strumento");
@@ -318,7 +318,7 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("non puoi terminare il turno ora");
 
         if (!isPlayerTurn(player))
-            throw new MatchException("non è il tuo turno");
+            throw new MatchException(NOT_YOUR_TURN);
 
         //Resetta eventuali effetti tool card
         player.getToolCardEffect().setChosenDie(null);

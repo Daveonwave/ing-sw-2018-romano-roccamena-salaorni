@@ -147,7 +147,7 @@ public class Window implements Serializable {
      * @param die
      * @return
      */
-    public boolean containsDie(Die die) {
+    /*public boolean containsDie(Die die) {
         for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
             for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
                 Cell cell = cells[row][col];
@@ -166,7 +166,7 @@ public class Window implements Serializable {
         }
 
         return false;
-    }
+    }*/
     /**
      * Asserts the window contains a given cell structure
      * @param cell Cell instance

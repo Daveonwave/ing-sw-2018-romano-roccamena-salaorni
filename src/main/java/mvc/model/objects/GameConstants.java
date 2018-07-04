@@ -22,4 +22,9 @@ public final class GameConstants {
     public static final int WINDOW_COLUMNS_COUNT = 5;
 
     public static final int ROUNDS_COUNT = 10;
+
+    /**
+     * Private class contructor
+     */
+    private GameConstants(){}
 }

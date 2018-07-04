@@ -29,13 +29,11 @@ public final class Console {
     //Pulisce schermo
     public static void clearScreen() {
         LOGGER.log(Level.FINE, "\033[H\033[2J");
-        System.out.flush();
     }
 
     //Colore scrittura
     public static void setColor(String color) {
         LOGGER.log(Level.FINE, color);
-        System.out.flush();
     }
     public static void resetColor() {
         setColor(ConsoleColors.RESET);
@@ -52,14 +50,12 @@ public final class Console {
     }
     public static void println(String text) {
         LOGGER.fine(text);
-        System.out.flush();
     }
     public static void printlnCentered(String text, int width, String pad) {
         String border = centeredStringBorder(text, width, pad);
 
         LOGGER.fine(border + text + border);
 
-        System.out.flush();
     }
 
 }

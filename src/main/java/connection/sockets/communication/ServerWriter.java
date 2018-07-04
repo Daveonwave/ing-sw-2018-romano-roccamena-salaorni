@@ -8,10 +8,23 @@ import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Sender of the messages in the socket connection server side
+ */
 public class ServerWriter {
 
     private static final Logger LOGGER = Logger.getLogger(ServerWriter.class.getName());
 
+    /**
+     * Private class constructor
+     */
+    private ServerWriter(){}
+
+    /**
+     * Send a server request to the client
+     * @param outputStream stream in which the server writes
+     * @param request request to send
+     */
     public static synchronized void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
 
         try {
@@ -23,6 +36,11 @@ public class ServerWriter {
             LOGGER.log(Level.WARNING, "[ERROR]: invio richiesta al client fallito");
         }
     }
+    /**
+     * Send a response to the client
+     * @param outputStream stream in which the server writes
+     * @param response response to send
+     */
     public static synchronized void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
 
         try {
