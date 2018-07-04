@@ -621,7 +621,7 @@ public class Window implements Serializable {
 
         origin.setDie(null);
 
-        if (!noWindowRestriction(destination, origin.getDie(), ignoreStartPlace, ignoreAdjacentCells)) {
+        if (!noWindowRestriction(destination, tempNode, ignoreStartPlace, ignoreAdjacentCells)) {
             origin.setDie(tempNode);
 
             throw new MatchException("restrizioni di finestra non rispettate");

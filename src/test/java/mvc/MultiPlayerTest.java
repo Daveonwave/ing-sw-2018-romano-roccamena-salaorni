@@ -485,8 +485,6 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
     }
 
-/*
-    //Test fissi
     @Test
     public synchronized void fixedTwoPlayer1() {
         //Creazione partita
@@ -561,9 +559,10 @@ public class MultiPlayerTest extends MVCTest {
 
         //Azioni non valide
         invalidPlaceDie(match, player2, retrieveCell(window2, 1, 2), retrieveDieFromDraftPool(match, 1)); // RESTRIZIONE CELLA ISOLATA
+        invalidPlaceDie(match, player2, retrieveCell(window2, 0, 3), retrieveDieFromDraftPool(match, 1)); // NO ADIACENZA
 
-        //Piazzamento corretto dado 5R in 3,2
-        cell = retrieveCell(window2, 3, 2);
+        //Piazzamento corretto dado 5R in 1,4
+        cell = retrieveCell(window2, 1, 4);
         die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player2, cell, die);
@@ -575,6 +574,14 @@ public class MultiPlayerTest extends MVCTest {
         /////////////////
         //GIOCA PLAYER1//
         /////////////////
+
+        //Mosse non valide
+        toolCard = retrieveToolCard(match,0);                                           //CELLE INVALIDE
+        input = new ToolCardInput(window1.getCells()[0][1], window1.getCells()[0][3]);
+
+        invalidUseToolCard(match, player1, input, toolCard);
+
+        testUseToolCard(player1, toolCard, window1.getDifficulty(), 0);
 
         //Piazzamento corretto dado 4P in 1,1
         cell = retrieveCell(window1, 1, 1);
@@ -600,9 +607,9 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER2//
         /////////////////
 
-        //Piazzamento corretto dado 6R in 1,4
-        cell = retrieveCell(window2, 1, 4);
-        die = retrieveDieFromDraftPool(match, 1);
+        //Piazzamento corretto dado 3B in 3,4
+        cell = retrieveCell(window2, 3, 4);
+        die = retrieveDieFromDraftPool(match, 3);
 
         validPlaceDie(match, player2, cell, die);
         testPlaceDie(match, player2, cell, die, 4);
@@ -617,8 +624,8 @@ public class MultiPlayerTest extends MVCTest {
         //Azioni non valide
         invalidPlaceDie(match, player1, retrieveCell(window2, 2, 3), retrieveDieFromDraftPool(match, 0)); // RESTRIZIONE CELLA ISOLATA
 
-        //Utilizza tampone diamantato                                                   // TAMPONE DIAMANTATO
-        die = retrieveDieFromDraftPool(match, 0);
+        //Utilizza tampone diamantato      6R->1R                                             // TAMPONE DIAMANTATO
+        die = retrieveDieFromDraftPool(match, 1);
         toolCard = retrieveToolCard(match,1);
         input = new ToolCardInput(die);
 
@@ -626,17 +633,17 @@ public class MultiPlayerTest extends MVCTest {
         testUseToolCard(player1, toolCard, 4, 1);
 
         //Controllo effetti carta
-        if (die.getShade()!=4)
+        if (die.getShade()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
         if (!player1.getToolCardEffect().getChosenDie().sameDie(die))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Piazzamento dado diverso
-        invalidPlaceDie(match, player1, retrieveCell(window2, 0, 0), retrieveDieFromDraftPool(match, 1));
+        invalidPlaceDie(match, player1, retrieveCell(window2, 0, 0), retrieveDieFromDraftPool(match, 0));
 
-        //Piazzamento corretto nuovo dado 4Y in 0,4
-        cell = retrieveCell(window1, 0, 4);
-        die = retrieveDieFromDraftPool(match, 0);
+        //Piazzamento corretto nuovo dado 1R in 2,0
+        cell = retrieveCell(window1, 2, 0);
+        die = retrieveDieFromDraftPool(match, 1);
 
         validPlaceDie(match, player1, cell, die);
         testPlaceDie(match, player1, cell, die, 3);
@@ -648,9 +655,9 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER1//
         /////////////////
 
-        //Piazzamento corretto dado 2G in 3,4
-        cell = retrieveCell(window1, 3, 4);
-        die = retrieveDieFromDraftPool(match, 0);
+        //Piazzamento corretto dado 2G in 2,1
+        cell = retrieveCell(window1, 2, 1);
+        die = retrieveDieFromDraftPool(match, 1);
 
         validPlaceDie(match, player1, cell, die);
         testPlaceDie(match, player1, cell, die, 2);
@@ -677,7 +684,7 @@ public class MultiPlayerTest extends MVCTest {
             testAssertError(INVALID_STATE_MESSAGE);
         if (match.getRoundTrack().retrieveDice(2).size()!=1)
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!match.getRoundTrack().containsDie(2, new Die(DieColor.BLUE, 3)))
+        if (!match.getRoundTrack().containsDie(2, new Die(DieColor.YELLOW, 3)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //--------------------------------------- ROUND 3 -------------------------------------------//
@@ -687,7 +694,7 @@ public class MultiPlayerTest extends MVCTest {
         /////////////////
 
         //Piazzamento non valido
-        invalidPlaceDie(match, player1, retrieveCell(window1, 0, 2), retrieveDieFromDraftPool(match, 2)); // CELLA OCCUPATA
+        invalidPlaceDie(match, player1, retrieveCell(window1, 2, 0), retrieveDieFromDraftPool(match, 4)); // CELLA OCCUPATA
 
         //Piazzamento corretto 3B in 0,0
         cell = retrieveCell(window1, 0, 0);
@@ -703,8 +710,8 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER2//
         /////////////////
 
-        //Piazzamento corretto 1P in 3,0
-        cell = retrieveCell(window2, 3, 0);
+        //Piazzamento corretto 1P in 0, 3
+        cell = retrieveCell(window2, 0, 3);
         die = retrieveDieFromDraftPool(match, 3);
 
         validPlaceDie(match, player2, cell, die);
@@ -717,26 +724,26 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER2//
         /////////////////
 
-        //Utilizza diluente per pasta salda                                                 // DILUENTE PER PASTA SALDA
+        //Utilizza diluente per pasta salda             3G->6R                           // DILUENTE PER PASTA SALDA
         die = retrieveDieFromDraftPool(match, 2);
         toolCard = retrieveToolCard(match,2);
-        input = new ToolCardInput(die, 4);
+        input = new ToolCardInput(die, 6);
 
         validUseToolCard(match, player2, input, toolCard);
         testUseToolCard(player2, toolCard, 4, 1);
 
         //Controlla effetto su dado
-        if (!match.getMatchDice().containsDieInPool(new Die(DieColor.RED, 4)))
+        if (!match.getMatchDice().containsDieInPool(new Die(DieColor.RED, 6)))
             testAssertError(INVALID_STATE_MESSAGE);
-        if (!player2.getToolCardEffect().getChosenDie().sameDie(new Die(DieColor.RED, 4)))
+        if (!player2.getToolCardEffect().getChosenDie().sameDie(new Die(DieColor.RED, 6)))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Piazzamento non corretti
-        invalidPlaceDie(match, player2, retrieveCell(window2, 3, 4), retrieveDieFromDraftPool(match, 0)); // DADO DIVERSO
-        invalidPlaceDie(match, player2, retrieveCell(window2, 3, 1), retrieveDieFromDraftPool(match, 2)); // COLORE UGUALE ADIACENTE
+        invalidPlaceDie(match, player2, retrieveCell(window2, 0, 4), retrieveDieFromDraftPool(match, 2)); // ADIACENZA COLORE
+        invalidPlaceDie(match, player2, retrieveCell(window2, 3, 3), retrieveDieFromDraftPool(match, 2)); // NO RESTRIZIONE CELLA
 
-        //Piazzamento corretto 4R in 0,3
-        cell = retrieveCell(window2, 0, 3);
+        //Piazzamento corretto 6R in 0,2
+        cell = retrieveCell(window2, 0, 2);
         die = retrieveDieFromDraftPool(match, 2);
 
         validPlaceDie(match, player2, cell, die);
@@ -749,8 +756,8 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER1//
         /////////////////
 
-        //Piazzamento corretto 3Y in 2,3
-        cell = retrieveCell(window1, 2, 3);
+        //Piazzamento corretto 3Y in 3,0
+        cell = retrieveCell(window1, 3, 0);
         die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player1, cell, die);
@@ -773,8 +780,8 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER2//
         /////////////////
 
-        //Piazzamento corretto 3Y in 0,0
-        cell = retrieveCell(window2, 0, 0);
+        //Piazzamento corretto 3Y in 0,1
+        cell = retrieveCell(window2, 0, 1);
         die = retrieveDieFromDraftPool(match, 0);
 
         validPlaceDie(match, player2, cell, die);
@@ -783,13 +790,13 @@ public class MultiPlayerTest extends MVCTest {
         //Utilizza alesatore per lamina di rame                                                // ALESATORE LAMINA RAME
         toolCard = retrieveToolCard(match,0);
 
-        //Uso invalido 0,0 -> 1,2
-        input = new ToolCardInput(window2.getCells()[0][0], window2.getCells()[1][2]);
+        //Uso invalido 0,1->2,2                                     // ADIACENZA NUMERO
+        input = new ToolCardInput(window2.getCells()[0][1], window2.getCells()[2][2]);
 
         invalidUseToolCard(match, player2, input, toolCard);
 
-        //Uso valido 0,0 -> 0,2
-        input = new ToolCardInput(window2.getCells()[0][0], window2.getCells()[0][2]);
+        //Uso valido 0,0->0,4
+        input = new ToolCardInput(window2.getCells()[0][1], window2.getCells()[0][4]);
 
         validUseToolCard(match, player2, input, toolCard);
         testUseToolCard(player2, toolCard, 3, 1);
@@ -797,8 +804,7 @@ public class MultiPlayerTest extends MVCTest {
         //Finisce turno
         validEndTurn(match, player2);
     }
-
-    */@Test
+    @Test
     public synchronized void fixedToolCard2() {
         //Creazione partita
         MultiPlayerMatch match = createTwoPlayerMatch2();
