@@ -1,10 +1,16 @@
 # Prova finale di Ingegneria del Software 2018 
  
-## Membri del gruppo:
+## Membri del gruppo:	
 
-### Roccamena Massimiliano 
-### Romanò Lorenzo : 10522287
-### Salaorni Davide : 10526800
+	- Roccamena Massimiliano
+		Codice Persona :
+		Matricola :
+	- Romanò Lorenzo : 
+		Codice Persona : 10522287
+		Matricola : 
+	- Salaorni Davide :
+		Codice Persona : 10526800
+		Matricola : 846534
 	
 ## Coverage dei test:
 
