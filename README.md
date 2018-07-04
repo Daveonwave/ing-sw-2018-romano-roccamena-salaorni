@@ -1,10 +1,10 @@
-** Prova finale di Ingegneria del Software 2018 **
+# Prova finale di Ingegneria del Software 2018 
  
 ## Membri del gruppo:
 
-	- Roccamena Massimiliano 
-	- Romanò Lorenzo : 10522287
-	- Salaorni Davide : 10526800
+	### Roccamena Massimiliano 
+	### Romanò Lorenzo : 10522287
+	### Salaorni Davide : 10526800
 	
 ## Coverage dei test:
 
