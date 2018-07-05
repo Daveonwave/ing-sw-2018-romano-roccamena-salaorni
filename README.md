@@ -19,7 +19,7 @@ Una prima Overview dell'analisi del nostro progetto è questa:
 
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/overview.PNG)
 
-Durante l'implementazione dell'applicazione abbiamo risolto tutti i bug e le vulnerabilità del codice, cercando di ridurre al minimo, dove possibile complessità e duplicazione.
+Durante l'implementazione dell'applicazione abbiamo risolto tutti i bug e le vulnerabilità del codice, cercando di ridurre al minimo, dove possibile, complessità e duplicazione.
 Per quanto riguarda la copertura dei test, il valore mostrato fa riferimento al codice nella sua interezza, tuttavia la coverage effettiva delle classi richieste da testare (model e controller) è la seguente:
 
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/coverage1.PNG)
