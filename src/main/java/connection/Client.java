@@ -41,7 +41,7 @@ public class Client {
         PortsConfig portsConfig;
 
         try {
-            loadedConfig = ConfigLoader.loadServerConfig();
+            loadedConfig = ConfigLoader.loadClientConfig();
 
             addressConfig = new AddressConfig(loadedConfig.get("server address"));
             portsConfig = new PortsConfig(Integer.parseInt(loadedConfig.get("rmi port")), Integer.parseInt(loadedConfig.get("socket port")));
