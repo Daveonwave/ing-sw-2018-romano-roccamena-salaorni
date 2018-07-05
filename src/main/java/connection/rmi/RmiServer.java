@@ -29,7 +29,7 @@ public class RmiServer {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "server.policy");
         System.setSecurityManager(new SecurityManager());
-        System.setProperty("java.rmi.server.hostname", "192.168.2.5");
+        System.setProperty("java.rmi.server.hostname", "localhost");
 
         //Crea controller dell'applicazione
         AppControllerStub appController = new RmiController(timerConfig);

@@ -41,15 +41,22 @@ public class MultiPlayerTest extends MVCTest {
     private MultiPlayerMatch createTwoPlayerMatch2() {
         return MatchCreator.createMultiPlayer(createTwoUsersList(), 100);
     }
+
+    private MultiPlayerMatch createTwoPlayerMatch3() {
+        return MatchCreator.createMultiPlayer(createTwoUsersList(), 106);
+    }
+    private MultiPlayerMatch createTwoPlayerMatch4() {
+        return MatchCreator.createMultiPlayer(createTwoUsersList(), 80);
+    }
+    private MultiPlayerMatch createTwoPlayerMatch5() {
+        return MatchCreator.createMultiPlayer(createTwoUsersList(), 82);
+    }
+
     private MultiPlayerMatch createThreePlayerMatch2() {
         return MatchCreator.createMultiPlayer(createThreeUsersList(), 100);
     }
     private MultiPlayerMatch createFourPlayerMatch2() {
         return MatchCreator.createMultiPlayer(createFourUsersList(), 100);
-    }
-
-    private MultiPlayerMatch createTwoPlayerMatch3() {
-        return MatchCreator.createMultiPlayer(createTwoUsersList(), 1000);
     }
     private MultiPlayerMatch createThreePlayerMatch3() {
         return MatchCreator.createMultiPlayer(createThreeUsersList(), 1000);
@@ -829,16 +836,32 @@ public class MultiPlayerTest extends MVCTest {
         //GIOCA PLAYER1//
         /////////////////
 
-        //Utilizza pinza sgrossatrice                                               //PINZA SGROSSATRICE
-        die = retrieveDieFromDraftPool(match, 0);
-        toolCard = retrieveToolCard(match,0);
-        input = new ToolCardInput(die, true);
+        //Utilizza tenaglia rotelle prima di aver scelto il primo dado                    // TENAGLIA ROTELLE
+        toolCard = retrieveToolCard(match,2);
+        input = new ToolCardInput();
 
+        invalidUseToolCard(match, player1, input, toolCard);
+
+        //Piazzamento corretto 5B in 0,0
+        cell = retrieveCell(window1, 0, 0);
+        die = retrieveDieFromDraftPool(match, 3);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 4);
+
+        //Utilizza tenaglia rotelle
         validUseToolCard(match, player1, input, toolCard);
-        testUseToolCard(player1, toolCard, 4, 1);
 
-        if (!die.sameDie(new Die(DieColor.YELLOW, 5)))
-            testAssertError(INVALID_STATE_MESSAGE);
+        //Piazzamento corretto 6G in 1,0
+        cell = retrieveCell(window1, 1, 0);
+        die = retrieveDieFromDraftPool(match, 2);
+
+        validPlaceDie(match, player1, cell, die);
+        testPlaceDie(match, player1, cell, die, 3);
+
+        //Prova ripiazzamento ulteriore
+        invalidPlaceDie(match, player1, retrieveCell(window1, 0, 1), retrieveDieFromDraftPool(match, 0));
+
 
         //Finisce turno
         validEndTurn(match, player1);
@@ -846,42 +869,21 @@ public class MultiPlayerTest extends MVCTest {
         /////////////////
         //GIOCA PLAYER2//
         /////////////////
+        die = retrieveDieFromDraftPool(match, 0);
+        toolCard = retrieveToolCard(match,0);
+        input = new ToolCardInput(die, true);
 
-        //Utilizza tenaglia rotelle prima di aver scelto il primo dado                    // TENAGLIA ROTELLE
-        toolCard = retrieveToolCard(match,2);
-        input = new ToolCardInput();
-
-        invalidUseToolCard(match, player2, input, toolCard);
-
-        //Piazzamento corretto 5B in 0,0
-        cell = retrieveCell(window2, 0, 0);
-        die = retrieveDieFromDraftPool(match, 3);
-
-        validPlaceDie(match, player2, cell, die);
-        testPlaceDie(match, player2, cell, die, 4);
-
-        //Utilizza tenaglia rotelle
         validUseToolCard(match, player2, input, toolCard);
+        testUseToolCard(player2, toolCard, 2, 1);
 
-        //Piazzamento corretto 6G in 0,1
-        cell = retrieveCell(window2, 0, 1);
-        die = retrieveDieFromDraftPool(match, 2);
-
-        validPlaceDie(match, player2, cell, die);
-        testPlaceDie(match, player2, cell, die, 3);
-
-        //Prova ripiazzamento ulteriore
-        invalidPlaceDie(match, player2, retrieveCell(window2, 1, 0), retrieveDieFromDraftPool(match, 0));
+        if (!die.sameDie(new Die(DieColor.YELLOW, 5)))
+            testAssertError(INVALID_STATE_MESSAGE);
 
         //Finisce turno
         validEndTurn(match, player2);
 
-        //Controlla salto turno
-        if (!match.getTurnPlayer().samePlayer(player1))
-            testAssertError(INVALID_STATE_MESSAGE);
-
         /////////////////
-        //GIOCA PLAYER1//
+        //GIOCA PLAYER2//
         /////////////////
 
         //Utilizza pennello per pasta salda                                           //PENNELLO PER PASTA SALDA
@@ -889,26 +891,237 @@ public class MultiPlayerTest extends MVCTest {
         toolCard = retrieveToolCard(match,1);
         input = new ToolCardInput(die);
 
-        validUseToolCard(match, player1, input, toolCard);
-        testUseToolCard(player1, toolCard, 3, 1);
+        validUseToolCard(match, player2, input, toolCard);
+        testUseToolCard(player2, toolCard, 1, 1);
 
         if (!die.getColor().equals(DieColor.PURPLE))
             testAssertError(INVALID_STATE_MESSAGE);
 
         //Prova piazzamento altro dado
-        invalidPlaceDie(match, player1, retrieveCell(window1, 1, 0), retrieveDieFromDraftPool(match, 0));
+        invalidPlaceDie(match, player2, retrieveCell(window1, 1, 0), retrieveDieFromDraftPool(match, 0));
 
         //Piazzamento corretto 5P in 1, 0
-        cell = retrieveCell(window1, 1, 0);
+        cell = retrieveCell(window2, 1, 0);
         die = retrieveDieFromDraftPool(match, 2);
 
-        validPlaceDie(match, player1, cell, die);
-        testPlaceDie(match, player1, cell, die, 2);
+        validPlaceDie(match, player2, cell, die);
+        testPlaceDie(match, player2, cell, die, 2);
 
         //Finisce turno
-        validEndTurn(match, player1);
-    }
+        validEndTurn(match, player2);
 
+        //Controlla salto turno
+        if (!match.getTurnPlayer().samePlayer(player2))
+            testAssertError(INVALID_STATE_MESSAGE);
+    }
+    @Test
+    public synchronized void fixedToolCard3(){
+        MultiPlayerMatch match = createThreePlayerMatch1();
+        Player player1 = retrievePlayer(match,0);
+        Player player2 = retrievePlayer(match, 1);
+        Player player3 = retrievePlayer(match, 2);
+
+        validBeginMatch(match);
+        validChooseWindow(match,player1, retrieveStartWindow(player1, 3));
+        validChooseWindow(match,player2, retrieveStartWindow(player2, 2));
+        validChooseWindow(match, player3, retrieveStartWindow(player3, 0));
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+        Window window3 = player3.getWindow();
+        //GIOCATORE1
+        cell = retrieveCell(window1,3,4);
+        die = retrieveDieFromDraftPool(match, 5);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match, player1);
+        //GIOCATORE 2
+        cell = retrieveCell(window2, 0,0);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player2,cell,die);
+        validEndTurn(match, player2);
+        //GIOCATORE3
+        cell = retrieveCell(window3,3,1);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player3,cell,die);
+        validEndTurn(match,player3);
+        //GIOCATORE3
+        cell = retrieveCell(window3,2,0);
+        die = retrieveDieFromDraftPool(match,3);
+        validPlaceDie(match, player3,cell,die);
+        validEndTurn(match,player3);
+        //GIOCATORE2
+        cell = retrieveCell(window2,0,1);
+        die = retrieveDieFromDraftPool(match, 1);
+        validPlaceDie(match,player2,cell,die);
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        cell = retrieveCell(window1,2,4);
+        die = retrieveDieFromDraftPool(match,1);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        cell = retrieveCell(window2,0,2);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player2,cell,die);
+        input = new ToolCardInput(1,retrieveDieFromDraftPool(match,0),match.getRoundTrack().retrieveDice(1).get(0));
+        invalidUseToolCard(match,player2,input,retrieveToolCard(match,1));
+        validEndTurn(match,player2);
+        //GIOCATORE3
+        cell = retrieveCell(window3,3,0);
+        die = retrieveDieFromDraftPool(match,2);
+        validPlaceDie(match,player3,cell,die);
+        input = new ToolCardInput(retrieveCell(window3,2,0),retrieveCell(window3,3,1),retrieveCell(window3,1,0),retrieveCell(window3,2,1));
+        invalidUseToolCard(match,player3,input,retrieveToolCard(match,0));
+        input = new ToolCardInput(retrieveCell(window3,3,1),retrieveCell(window3,2,0),retrieveCell(window3,1,1),retrieveCell(window3,2,2));
+        validUseToolCard(match,player3,input,retrieveToolCard(match,0));
+        validEndTurn(match,player3);
+        //GIOCATORE1
+        input = new ToolCardInput(1,match.getRoundTrack().retrieveDice(1).get(0),retrieveDieFromDraftPool(match,0));
+        validUseToolCard(match,player1,input,retrieveToolCard(match,1));
+    }
+    @Test
+    public synchronized void fixedToolCard4(){
+        MultiPlayerMatch match = createTwoPlayerMatch3();
+
+        Player player1 = retrievePlayer(match, 0);
+        Player player2 = retrievePlayer(match, 1);
+
+        //Inizio partita
+        validBeginMatch(match);
+        validChooseWindow(match, player1, retrieveStartWindow(player1, 1));
+        validChooseWindow(match, player2, retrieveStartWindow(player2, 1));
+
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+
+        //GIOCATORE1
+        cell = retrieveCell(window1,3,4);
+        die = retrieveDieFromDraftPool(match,4);
+        validPlaceDie(match,player1,cell,die);
+        input = null;
+        invalidUseToolCard(match,player1,input,retrieveToolCard(match,2));
+        invalidUseToolCard(match,player1,input,retrieveToolCard(match,0));
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        cell = retrieveCell(window2,3,4);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player2,cell,die);
+        validEndTurn(match,player2);
+        //GIOCATORE2
+        input = null;
+        validUseToolCard(match,player2,input,retrieveToolCard(match,2));
+        cell = retrieveCell(window2,0,2);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player2,cell,die);
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        validUseToolCard(match,player1,null,retrieveToolCard(match,0));
+    }
+    @Test
+    public synchronized void fixedToolCard5(){
+        MultiPlayerMatch match = createTwoPlayerMatch4();
+
+        Player player1 = retrievePlayer(match, 0);
+        Player player2 = retrievePlayer(match, 1);
+
+        //Inizio partita
+        validBeginMatch(match);
+        validChooseWindow(match, player1, retrieveStartWindow(player1, 1));
+        validChooseWindow(match, player2, retrieveStartWindow(player2, 1));
+
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+
+        //GIOCATORE1
+        cell = retrieveCell(window1,3,4);
+        die = retrieveDieFromDraftPool(match,1);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        cell = retrieveCell(window1,2,4);
+        die = retrieveDieFromDraftPool(match,2);
+        validPlaceDie(match,player1,cell,die);
+        input = new ToolCardInput(retrieveCell(window1,3,4),retrieveCell(window1,2,3));
+        validUseToolCard(match,player1,input,retrieveToolCard(match,2));
+
+    }
+    @Test
+    public synchronized void fixedToolCard6(){
+        MultiPlayerMatch match = createTwoPlayerMatch5();
+
+        Player player1 = retrievePlayer(match, 0);
+        Player player2 = retrievePlayer(match, 1);
+
+        //Inizio partita
+        validBeginMatch(match);
+        validChooseWindow(match, player1, retrieveStartWindow(player1, 1));
+        validChooseWindow(match, player2, retrieveStartWindow(player2, 1));
+
+        Window window1 = player1.getWindow();
+        Window window2 = player2.getWindow();
+
+        Cell cell;
+        Die die;
+        ToolCard toolCard;
+        ToolCardInput input;
+
+        //GIOCATORE1
+        cell = retrieveCell(window1,2,4);
+        die = retrieveDieFromDraftPool(match,2);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        cell = retrieveCell(window1, 2, 3);
+        die = retrieveDieFromDraftPool(match,3);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        die = new Die(DieColor.GREEN,3);
+        match.getMatchDice().getDraftPool().set(0,die);
+        die = new Die(DieColor.GREEN,4);
+        match.getMatchDice().getDraftPool().set(1,die);
+        cell = retrieveCell(window1,3,3);
+        die = retrieveDieFromDraftPool(match,0);
+        validPlaceDie(match,player1,cell,die);
+        validEndTurn(match,player1);
+        //GIOCATORE1
+        validEndTurn(match,player1);
+        //GIOCATORE2
+        validEndTurn(match,player2);
+        //GIOCATORE1
+        input = new ToolCardInput(retrieveCell(window1,2,3),retrieveCell(window1,1,3));
+        invalidUseToolCard(match,player1,input,retrieveToolCard(match,0));
+        input = new ToolCardInput(retrieveCell(window1,2,4),retrieveCell(window1,2,2));
+        invalidUseToolCard(match,player1,input,retrieveToolCard(match,0));
+        input = new ToolCardInput(retrieveCell(window1,3,3),retrieveCell(window1,2,4),retrieveCell(window1,1,2),retrieveCell(window1,3,4));
+        validUseToolCard(match,player1,input,retrieveToolCard(match,0));
+
+
+    }
 
 
 
