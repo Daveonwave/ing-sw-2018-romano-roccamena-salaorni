@@ -6,13 +6,24 @@ import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
+/**
+ * Specific tool card
+ */
 public class TenagliaRotelle extends ToolCard {
 
-    //Costruttori
+    /**
+     * Class constructor
+     */
     public TenagliaRotelle() {
         super("tenaglia a rotelle", "Dopo il tuo primo turno scegli subito un altro dado; salta il tuo secondo turno in questo round", DieColor.RED);
     }
 
+    /**
+     * Handle the effect of the specific tool card
+     * @param match object match
+     * @param player player that uses it
+     * @throws RemoteException
+     */
     private void cardEffect(Match match, Player player) throws RemoteException {
         //Controlla correttezza uso
         if (!match.getTurnHandler().isFirstTurnWave())
@@ -29,9 +40,21 @@ public class TenagliaRotelle extends ToolCard {
     }
 
     //Usa carta strumento
+    /**
+     * Use this specific tool card in a multi player match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
         cardEffect(match, match.getTurnPlayer());
     }
+    /**
+     * Use this specific tool card in a single player match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
         cardEffect(match, match.getPlayer());
 

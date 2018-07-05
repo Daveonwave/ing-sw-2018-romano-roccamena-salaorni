@@ -6,13 +6,25 @@ import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
+/**
+ * Specific tool card
+ */
 public class TaglierinaManuale extends ToolCard {
 
-    //Costruttori
+    /**
+     * Class constructor
+     */
     public TaglierinaManuale() {
         super("taglierina manuale", "Muovi fino a due dadi, dello stesso colore di un solo dado del tracciato dei round, rispettando tutte le restrizioni", DieColor.BLUE);
     }
 
+    /**
+     * Handle the effect of the specific tool card
+     * @param match object match
+     * @param player player that uses it
+     * @param input cell or die pre-selected
+     * @throws RemoteException
+     */
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
         Window window = player.getWindow();
@@ -57,9 +69,21 @@ public class TaglierinaManuale extends ToolCard {
     }
 
     //Usa carta strumento
+    /**
+     * Use this specific tool card in a multi player match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public void useToolCard(MultiPlayerMatch match, ToolCardInput input) throws RemoteException {
         cardEffect(match, match.getTurnPlayer(), input);
     }
+    /**
+     * Use this specific tool card in a multi player match
+     * @param match object match
+     * @param input input of the tool card
+     * @throws RemoteException
+     */
     public void useToolCard(SinglePlayerMatch match, ToolCardInput input) throws RemoteException {
         cardEffect(match, match.getPlayer(), input);
     }
