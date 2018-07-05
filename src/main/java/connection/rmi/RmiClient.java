@@ -36,6 +36,7 @@ public class RmiClient implements Serializable {
             this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
         } catch(Exception e){
             e.printStackTrace();
+            throw new RemoteException(e.getMessage());
         }
     }
 

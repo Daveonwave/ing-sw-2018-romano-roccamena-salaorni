@@ -1436,7 +1436,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      */
     public void respondError(String message, String tokenMatch) throws RemoteException{
         if(console != null){
-            console.setText("[ERRORE]" + message);
+            console.setText("[ERRORE] " + message);
         }
     }
 
@@ -1558,7 +1558,7 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
             }
         }
         if(match.getTurnPlayer().getUser().getName().equals(guiView.getUserName())){
-            console.setText(console.getText() + "\n Hai 90 secondi per finire il tuo turno");
+            console.setText(console.getText() + "\nHai 90 secondi per finire il tuo turno");
         }
 
     }
