@@ -83,7 +83,7 @@ public class ServerTransmitter implements Runnable {
                     serverWriter.responseToClient(out, clientResponse);
             }
         } catch(Exception e){
-            LOGGER.log(Level.WARNING, "[ERROR]: handle of the client sendRequest failed");
+            LOGGER.log(Level.WARNING, "[ERROR]: gestione della richiesta del client fallita");
         }
         close();
     }

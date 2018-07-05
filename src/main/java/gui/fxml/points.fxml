@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="402.0" prefWidth="578.0" style="-fx-background-color: black;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PointsWindowController">
+<AnchorPane prefHeight="402.0" prefWidth="578.0" style="-fx-background-color: black;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.PointsWindowController">
    <children>
       <AnchorPane prefHeight="402.0" prefWidth="622.0" styleClass="pointsbackground" stylesheets="@style.css" />
       <Button layoutX="223.0" layoutY="357.0" mnemonicParsing="false" onMouseClicked="#endGame" prefHeight="39.0" prefWidth="185.0" styleClass="shiny-orange" stylesheets="@style.css" text="Termina Partita" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="204.0" />
