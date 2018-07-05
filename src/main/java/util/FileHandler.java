@@ -3,7 +3,7 @@ package util;
 import java.io.*;
 
 /**
- * Input/output text file handler
+ * Input/output file handler
  */
 public class FileHandler {
     //Gestore di scrittura e lettura da file
@@ -29,6 +29,22 @@ public class FileHandler {
         }
     }
     /**
+     * Write object on a file given its path
+     * @param path Path of the file
+     * @param obj Object to save
+     * @throws IOException File communication error
+     */
+    public void fileWriteObject(String path, Object obj) throws IOException {
+        FileOutputStream fos = new FileOutputStream(path);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+        oos.writeObject(obj);
+
+        oos.flush();
+        oos.close();
+        fos.close();
+    }
+    /**
      * Read text from a file given its path
      * @param path Path of the file
      * @return
@@ -50,5 +66,17 @@ public class FileHandler {
         }
 
     }
+    /**
+     * Read text from a file given its path
+     * @param path Path of the file
+     * @return
+     * @throws IOException File communication error
+     * @throws ClassNotFoundException File communication error
+     */
+    public Object fileReadObject(String path) throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(path);
+        ObjectInputStream ois = new ObjectInputStream(fis);
 
+        return ois.readObject();
+    }
 }

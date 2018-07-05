@@ -20,10 +20,8 @@ public class ToolsWriter {
         List<ToolCard> cards = ToolsCreator.createToolCards();
 
         //Converte e serializza
-        Gson gson = new Gson();
-        String text =  gson.toJson(cards);
-
         FileHandler fileHandler = new FileHandler();
-        fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.TOOL_CARDS_FILE_NAME, text);
+
+        fileHandler.fileWriteObject(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.TOOL_CARDS_FILE_NAME, cards);
     }
 }

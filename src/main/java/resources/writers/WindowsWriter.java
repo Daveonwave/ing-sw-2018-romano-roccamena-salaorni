@@ -20,11 +20,9 @@ public class WindowsWriter {
             List<Window> windows = WindowsCreator.createWindows();
 
             //Converte e serializza
-            Gson gson = new Gson();
-            String text =  gson.toJson(windows);
-
             FileHandler fileHandler = new FileHandler();
-            fileHandler.fileWrite(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME, text);
+
+            fileHandler.fileWriteObject(ResourceFileInfo.RESOURCE_FILES_PATH + "/" + ResourceFileInfo.WINDOWS_FILE_NAME, windows);
 
     }
 }

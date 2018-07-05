@@ -5,6 +5,7 @@ import mvc.model.objects.enums.DieColor;
 import resources.ResourceRetriever;
 import util.RandomHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.List;
  */
 public class MatchCreator {
     //Creatore di componenti del gioco
+
+    private static ResourceRetriever resourceRetriever = new ResourceRetriever();
 
     private boolean singlePlayer;
 
@@ -44,9 +47,14 @@ public class MatchCreator {
             count = GameConstants.MP_PUBLIC_OBJECTIVES_COUNT;
         }
 
-        //TODO: update serializzazione
-        //List<PublicObjectiveCard> cards = resourceRetriever.retrievePublicObjectiveCards();
-        List<PublicObjectiveCard> cards = ObjectivesCreator.createPublicObjectiveCards();
+        List<PublicObjectiveCard> cards = null;
+        try {
+            cards = resourceRetriever.retrievePublicObjectiveCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         while (countExtracted <= count) {
             int index = RandomHandler.retrieveRandom().nextInt(cards.size());
@@ -89,9 +97,14 @@ public class MatchCreator {
             count = numberOfPlayers;
         }
 
-        //TODO: update serializzazione
-        //List<PrivateObjectiveCard> cards = resourceRetriever.retrievePrivateObjectiveCards();
-        List<PrivateObjectiveCard> cards = ObjectivesCreator.createPrivateObjectiveCards();
+        List<PrivateObjectiveCard> cards = null;
+        try {
+            cards = resourceRetriever.retrievePrivateObjectiveCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         while (countExtracted <= count) {
             int index = RandomHandler.retrieveRandom().nextInt(cards.size());
@@ -135,9 +148,14 @@ public class MatchCreator {
             count = GameConstants.MP_TOOL_CARDS_COUNT;
         }
 
-        //TODO: update serializzazione
-        //List<ToolCard> cards = resourceRetriever.retrieveToolCards();
-        List<ToolCard> cards = ToolsCreator.createToolCards();
+        List<ToolCard> cards = null;
+        try {
+            cards = resourceRetriever.retrieveToolCards();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         while (countExtracted <= count) {
             int index = RandomHandler.retrieveRandom().nextInt(cards.size());
@@ -174,9 +192,14 @@ public class MatchCreator {
         List<Window> result = new ArrayList<>();
         int countExtracted = 1;
 
-        //TODO: update serializzazione
-        //List<Window> windows = resourceRetriever.retrieveWindows();
-        List<Window> windows = WindowsCreator.createWindows();
+        List<Window> windows = null;
+        try {
+            windows = resourceRetriever.retrieveWindows();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         while (countExtracted <= numberOfPlayers*4) {
             int index = RandomHandler.retrieveRandom().nextInt(windows.size());
