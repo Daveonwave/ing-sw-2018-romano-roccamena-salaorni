@@ -27,7 +27,7 @@ public class ClientWriter {
             outputStream.flush();
             LOGGER.log(Level.INFO, "[SOCKET]: invio richiesta al server");
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: invio richiesta al server fallito");
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
     /**
@@ -43,7 +43,7 @@ public class ClientWriter {
             LOGGER.log(Level.INFO,"[SOCKET]: invio risposta al server");
 
         } catch(IOException e){
-            LOGGER.log(Level.WARNING, "[ERROR]: invio risposta al server fallito");
+            LOGGER.log(Level.WARNING, e.getMessage());
         }
     }
 }

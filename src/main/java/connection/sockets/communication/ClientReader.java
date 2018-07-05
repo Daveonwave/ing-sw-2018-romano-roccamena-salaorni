@@ -25,9 +25,9 @@ public class ClientReader {
             LOGGER.log(Level.INFO,"[SOCKET]: ricezione oggetto generico dal server");
 
         } catch (IOException ioe) {
-            LOGGER.log(Level.WARNING, "[ERROR]: ricezione oggetto generico dal server fallita");
+            LOGGER.log(Level.WARNING, ioe.getMessage());
         } catch (ClassNotFoundException cnfe){
-            LOGGER.log(Level.WARNING, "[ERROR]: classe oggetto ricevuto non trovata");
+            LOGGER.log(Level.WARNING, cnfe.getMessage());
         }
         return response;
     }
