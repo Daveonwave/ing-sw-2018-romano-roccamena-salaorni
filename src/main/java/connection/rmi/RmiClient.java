@@ -28,12 +28,15 @@ public class RmiClient implements Serializable {
         System.setProperty("java.security.policy", "client.policy");
         System.setSecurityManager(new SecurityManager());
 
-        //Ottiene registro rmi server
-        Registry registry = LocateRegistry.getRegistry(addressConfig.getAddress(), portsConfig.getRmiPort());
+        try {
+            //Ottiene registro rmi server
+            Registry registry = LocateRegistry.getRegistry(addressConfig.getAddress(), portsConfig.getRmiPort());
 
-        //Scarica stub controller dal server
-        this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
-
+            //Scarica stub controller dal server
+            this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     //Getter

@@ -3,11 +3,11 @@
 ## Membri del gruppo:	
 
 	- Roccamena Massimiliano
-		Codice Persona :
-		Matricola :
+		Codice Persona : 10499005
+		Matricola : 847275
 	- Romanò Lorenzo : 
 		Codice Persona : 10522287
-		Matricola : 
+		Matricola : 848033
 	- Salaorni Davide :
 		Codice Persona : 10526800
 		Matricola : 846534

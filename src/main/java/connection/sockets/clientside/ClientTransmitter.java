@@ -9,6 +9,9 @@ import connection.sockets.communication.requests.server.ServerRequest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Thread of the client always active that handle the messages received from the server
+ */
 public class ClientTransmitter implements Runnable {
     //Gestore dello smistamento delle richieste del server
 
@@ -19,7 +22,11 @@ public class ClientTransmitter implements Runnable {
 
     private static final Logger LOGGER = Logger.getLogger(ClientTransmitter.class.getName());
 
-    //Costruttori
+    /**
+     * Constructor of the transmitter
+     * @param client kernel of the client structure
+     * @param clientActionHandler handler of the messages
+     */
     public ClientTransmitter(SocketClient client, ClientActionHandler clientActionHandler) {
         this.clientActionHandler = clientActionHandler;
         this.client = client;
@@ -32,6 +39,9 @@ public class ClientTransmitter implements Runnable {
     }
 
     //Sempre attivo per la ricezione e gestione delle richieste
+    /**
+     * Implemented from the interfaces and core method of this class
+     */
     public synchronized void run() {
          try {
              while (isRunning){

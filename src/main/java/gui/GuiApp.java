@@ -113,8 +113,11 @@ public class GuiApp extends Application implements Serializable {
      */
     private void disconnectSocketController() throws RemoteException {
 
-        //TODO: implementazione
-
+        try {
+            client.getSocketClient().close();
+        } catch (IOException e){
+            LOGGER.log(Level.WARNING, e.getMessage());
+        }
         guiView = null;
     }
 
