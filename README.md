@@ -82,4 +82,4 @@ Infine è possibile notare nel codice la presenza di un package "console" in cui
 La limitazione del nostro progetto, oltre a quelle relative alle funzionalità non implementate, è quella della disconnessione involontaria che non viene gestita, o solo parzialmente nella connessione socket.  
 
 ### Note tecniche
-Abbiamo inserito i file jar all'interno della cartella "out/artifacts/", tuttavia abbiamo riscontrato dei problemi nel funzionamento dell'eseguibile relativo al server e non siamo riusciti a risolverlo per tempo, dunque non è runnabile.
+Non siamo riusciti a caricare i file jar poichè github non ce lo permetteva. Inoltre, purtroppo, abbiamo riscontrato dei problemi nel funzionamento dell'eseguibile relativo al server e non siamo riusciti a risolverlo per tempo, dunque non è runnabile.
