@@ -29,15 +29,20 @@ public class RmiServer {
         //Setta impostazioni sicurezza
         System.setProperty("java.security.policy", "server.policy");
         System.setSecurityManager(new SecurityManager());
+        System.setProperty("java.rmi.server.hostname", "192.168.2.5");
 
         //Crea controller dell'applicazione
         AppControllerStub appController = new RmiController(timerConfig);
 
         //Crea registro rmi e carica controller
-        Registry registry = LocateRegistry.createRegistry(portsConfig.getRmiPort());
-        registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
+        try {
+            Registry registry = LocateRegistry.createRegistry(portsConfig.getRmiPort());
+            registry.bind(ServerInfo.REMOTE_OBJECT_NAME, appController);
 
-        LOGGER.log(Level.INFO, "[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
+            LOGGER.log(Level.INFO, "[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

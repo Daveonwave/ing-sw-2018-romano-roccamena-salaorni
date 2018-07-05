@@ -8,6 +8,7 @@
 ###########################
 #   Aggiunte esclusioni   #
 ###########################
+docs
 .idea
 .idea/compiler.xml
 target

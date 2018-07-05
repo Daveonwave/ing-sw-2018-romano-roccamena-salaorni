@@ -5,6 +5,7 @@ import config.PortsConfig;
 import connection.ServerInfo;
 import mvc.stubs.AppControllerStub;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -34,7 +35,7 @@ public class RmiClient implements Serializable {
 
             //Scarica stub controller dal server
             this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
-        } catch(Exception e){
+        } catch(RemoteException e){
             e.printStackTrace();
             throw new RemoteException(e.getMessage());
         }
