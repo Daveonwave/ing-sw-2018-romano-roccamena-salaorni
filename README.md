@@ -14,9 +14,20 @@
 	
 ## Coverage dei test:
 
+Durante lo sviluppo del progetto ci siamo avvalsi dell'aiuto di SonarQube come richiesto ai labaoratori.
+Una prima Overview dell'analisi del nostro progetto è questa:
 
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/overview.PNG)
 
+Durante l'implementazione dell'applicazione abbiamo risolto tutti i bug e le vulnerabilità del codice, cercando di ridurre al minimo, dove possibile complessità e duplicazione.
+Per quanto riguarda la copertura dei test, il valore mostrato fa riferimento al codice nella sua interezza, tuttavia la coverage effettiva delle classi richieste da testare (model e controller) è la seguente:
 
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/coverage1.PNG)
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/coverage2.PNG)
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/coverage3.PNG)
+![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/coverage4.PNG)
+
+Alcune parti di tali classi risultano scoperte per una buona percentuale, tuttavia il motivo è dato dal fatto che, fin da subito, durante lo sviluppo del gioco, abbiamo implementato metodi appositi per la funzionalità del single player, non completamente finalizzata al termine del progetto (dunque non presentata come funzionalità aggiuntiva), che non sono stati testati.
 
 ## Diagramma UML delle classi:
 ![alt text](https://github.com/Daveonwave/ing-sw-2018-romano-roccamena-salaorni/blob/master/docs/UML%20completo.png)
@@ -60,7 +71,7 @@ Tuttavia, è presente nel nostro codice una parziale implementazione di CLI e si
 ## Limitazioni e scelte di design:  
 
 Il nostro progetto è stato strutturato per svolgere un'intera partita a Sagrada.
-Prevede 2 file di configurazione esterni nella cartella "src/main/java/config/" in cui è possibile settare indirizzo ip e porta di client e server e timer collocati all'interno del gioco.
+Prevede 2 file di configurazione esterni nella cartella "src/main/java/config/" in cui è possibile settare indirizzo ip e porta di client e server e timer collocati all'interno del gioco. Inoltre, gli elementi di gioco (carte strumento, obiettivi e schemi finestra) vengono caricate da file serializzati contentuti nel package "src/resources/files", generati da apposite classi mantenute all'interno del codice nel package "src/resources/writers". 
 Abbiamo creato due file jar esterni per far partire server e client e, in aggiunta, abbiamo offerto la possibilità di usare l'applicazione attraverso due script appositi.
 
 La struttura, come spiegato nella presentazione dei diagrammi UML, si sviluppa a partire dalle due interfacce sopracitate in cui abbiamo racchiuso tutte le potenziali azioni attuabili dall'utente e gli eventi che si sarebbero potuti verificare nel corso del gioco.
@@ -69,3 +80,6 @@ L'interfaccia grafica è stata sviluppata attraverso il software "SceneBuilder" 
 Infine è possibile notare nel codice la presenza di un package "console" in cui è stata parzialmente implementata la Cli.
 
 La limitazione del nostro progetto, oltre a quelle relative alle funzionalità non implementate, è quella della disconnessione involontaria che non viene gestita, o solo parzialmente nella connessione socket.  
+
+### Note tecniche
+Abbiamo inserito i file jar all'interno della cartella "out/artifacts/", tuttavia abbiamo riscontrato dei problemi nel funzionamento dell'eseguibile relativo al server e non siamo riusciti a risolverlo per tempo, dunque non è runnabile.

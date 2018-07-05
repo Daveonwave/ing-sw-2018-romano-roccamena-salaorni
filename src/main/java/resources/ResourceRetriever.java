@@ -16,7 +16,7 @@ public class ResourceRetriever {
     //Ottiene oggetti partita da file
 
     /**
-     * Deserializes and reads private objective cards from privates.json
+     * Deserializes and reads private objective cards from privates.ser
      * @return list with all public objectives cards
      * @throws IOException
      */
@@ -27,7 +27,7 @@ public class ResourceRetriever {
     }
 
     /**
-     * Deserializes and reads public objective cards from publics.json
+     * Deserializes and reads public objective cards from publics.ser
      * @return list with all private objective cards
      * @throws IOException
      */
@@ -38,7 +38,7 @@ public class ResourceRetriever {
     }
 
     /**
-     * Deserializes and reads tool cards from tools.json
+     * Deserializes and reads tool cards from tools.ser
      * @return list with all tool cards
      * @throws IOException
      */
@@ -49,7 +49,7 @@ public class ResourceRetriever {
     }
 
     /**
-     * Deserializes and reads windows from windows.json
+     * Deserializes and reads windows from windows.ser
      * @return list with all windows
      * @throws IOException
      */
