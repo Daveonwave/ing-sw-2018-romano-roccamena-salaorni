@@ -74,7 +74,7 @@ public class ServerTransmitter implements Runnable {
      * Handles the communication between client and server. It is always listening for some sendRequest from the client
      * and, when it receives one, send it to the clientRequestHandle to obtain a response (exception or not).
      */
-    public void run() {
+    public synchronized void run() {
         try{
             while(isRunning){
                 ClientResponse clientResponse = serverReader.requestFromClient(in).handleAction(clientRequestHandler);

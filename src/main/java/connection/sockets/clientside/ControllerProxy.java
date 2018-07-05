@@ -54,8 +54,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public String login(String name, AppViewStub view) throws RemoteException {
         ClientRequest request = new LoginRequest(name, null, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        return clientActionHandler.handleAction((LoginResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        return clientActionHandler.handleAction((LoginResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Logout action
@@ -64,8 +64,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void logout(String tokenUser) throws RemoteException {
         ClientRequest request = new LogoutRequest(tokenUser, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((LogoutResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((LogoutResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
 
     //Richieste attività multiplayer
@@ -76,8 +76,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void joinMatch(String tokenUser) throws RemoteException {
         ClientRequest request = new JoinMatchRequest(tokenUser, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((JoinMatchResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((JoinMatchResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Abort the join match action
@@ -86,8 +86,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void cancelJoinMatch(String tokenUser) throws RemoteException {
         ClientRequest request = new CancelJoinMatchRequest(tokenUser, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((CancelJoinMatchResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((CancelJoinMatchResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Leave match action
@@ -97,8 +97,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void leaveMatch(String tokenUser, String tokenMatch) throws RemoteException {
         ClientRequest request = new LeaveMatchRequest(tokenUser, tokenMatch, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((LeaveMatchResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((LeaveMatchResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Rejoin Match action
@@ -108,8 +108,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void rejoinMatch(String tokenUser, String tokenMatch) throws RemoteException {
         ClientRequest request = new RejoinMatchRequest(tokenUser, tokenMatch, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((RejoinMatchResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((RejoinMatchResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
 
     //Richieste comando multiplayer
@@ -122,8 +122,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void chooseWindow(String tokenUser, String tokenMatch, Window window) throws RemoteException {
         ClientRequest request = new ChooseWindowRequest(tokenUser, tokenMatch, window, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((ChooseWindowResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((ChooseWindowResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Place die action
@@ -135,8 +135,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void placeDie(String tokenUser, String tokenMatch, Cell cell, Die die) throws RemoteException {
         ClientRequest request = new PlaceDieRequest(tokenUser, tokenMatch, cell, die, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((PlaceDieResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((PlaceDieResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * Use tool card action
@@ -148,8 +148,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void useToolCard(String tokenUser, String tokenMatch, ToolCardInput input, ToolCard toolCard) throws RemoteException {
         ClientRequest request = new UseToolCardRequest(tokenUser, tokenMatch, input, toolCard, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((UseToolCardResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((UseToolCardResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
     /**
      * End turn action
@@ -159,8 +159,8 @@ public class ControllerProxy implements AppControllerStub {
      */
     public void endTurn(String tokenUser, String tokenMatch) throws RemoteException {
         ClientRequest request = new EndTurnRequest(tokenUser, tokenMatch, getAndUpdateIdCounter());
-        client.sendRequest(request);
-        clientActionHandler.handleAction((EndTurnResponse) client.getResponse(request.getIdAction()));
+        client.getClientTransmitter().sendRequest(request);
+        clientActionHandler.handleAction((EndTurnResponse) client.getClientTransmitter().getResponse(request.getIdAction()));
     }
 
 }

@@ -79,19 +79,5 @@ public class SocketClient {
         clientTransmitter.setRunning(false);
     }
 
-    /**
-     * Get the response saved inside the storage of response (response registry)
-     * @param idAction id of the wanted response
-     * @return
-     */
-    public ClientResponse getResponse(int idAction){
-        return responseRegistry.retrieveResponse(idAction);
-    }
-    /**
-     * Send the sendRequest to server
-     * @param request
-     */
-    public void sendRequest(ClientRequest request){
-        ClientWriter.requestToServer(out, request);
-    }
+
 }
