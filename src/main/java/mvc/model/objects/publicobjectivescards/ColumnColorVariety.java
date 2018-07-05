@@ -7,12 +7,21 @@ import mvc.model.objects.Window;
 
 import java.util.List;
 
+
+/**
+ * public objective card "column color variety"
+ */
 public class ColumnColorVariety extends PublicObjectiveCard {
     public ColumnColorVariety() {
         super("colori diversi - colonna", "Colonne senza colori ripetuti");
     }
 
-    @Override
+
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points = 0;
         boolean varietyColumn;
@@ -30,9 +39,6 @@ public class ColumnColorVariety extends PublicObjectiveCard {
                         varietyColumn = false;
                         break;
                     }
-                }
-                if(!varietyColumn){
-                    break;
                 }
             }
             if(varietyColumn){

@@ -2,9 +2,6 @@ package connection.sockets.clientside;
 
 import config.AddressConfig;
 import config.PortsConfig;
-import connection.sockets.communication.ClientWriter;
-import connection.sockets.communication.rensponses.client.ClientResponse;
-import connection.sockets.communication.requests.client.ClientRequest;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

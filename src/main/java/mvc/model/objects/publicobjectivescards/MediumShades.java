@@ -6,12 +6,21 @@ import mvc.model.objects.Window;
 
 import java.util.List;
 
+
+/**
+ * public objective card "medium shades"
+ */
 public class MediumShades extends PublicObjectiveCard {
     public MediumShades() {
         super("sfumature medie", "Set di 3 & 4 ovunque");
     }
 
-    @Override
+
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points;
         int lowerSetAmount;

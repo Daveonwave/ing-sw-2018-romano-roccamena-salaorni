@@ -15,11 +15,13 @@ public class FileHandler {
      * @throws IOException File communicaion error
      */
     public void fileWrite(String path, String text) throws IOException{
+        boolean created = false;
 
         File file = new File(path);
         if (!file.exists()) {
-            file.createNewFile();
+            created = file.createNewFile();
         }
+        if(created)
 
         try(FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), false);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
@@ -36,12 +38,10 @@ public class FileHandler {
      */
     public void fileWriteObject(String path, Object obj) throws IOException {
         FileOutputStream fos = new FileOutputStream(path);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-        oos.writeObject(obj);
-
-        oos.flush();
-        oos.close();
+        try(ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(obj);
+            oos.flush();
+        }
         fos.close();
     }
     /**
@@ -75,8 +75,8 @@ public class FileHandler {
      */
     public Object fileReadObject(String path) throws IOException, ClassNotFoundException {
         FileInputStream fis = new FileInputStream(path);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-
-        return ois.readObject();
+        try (ObjectInputStream ois = new ObjectInputStream(fis)){
+            return ois.readObject();
+        }
     }
 }

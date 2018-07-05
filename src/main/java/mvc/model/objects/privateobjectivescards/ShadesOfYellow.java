@@ -4,12 +4,19 @@ import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.Window;
 import mvc.model.objects.enums.DieColor;
 
+/**
+ * private objective card "shades of yellow"
+ */
 public class ShadesOfYellow extends PrivateObjectiveCard {
     public ShadesOfYellow() {
         super("sfumature gialle", "Somma dei valori di tutti i dadi gialli.", DieColor.YELLOW);
     }
 
-    @Override
+    /**
+     * calculates the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points = 0;
         for (int i = 0; i < 4; i++){

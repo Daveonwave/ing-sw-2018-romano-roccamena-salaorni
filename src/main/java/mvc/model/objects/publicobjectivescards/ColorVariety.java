@@ -7,12 +7,21 @@ import mvc.model.objects.enums.DieColor;
 
 import java.util.List;
 
+
+/**
+ * public objective card "color variety"
+ */
 public class ColorVariety extends PublicObjectiveCard {
     public ColorVariety() {
         super("varietà di colore", "Set di dadi di ogni colore ovunque");
     }
 
-    @Override
+
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points;
         int lowerColorAmount = 20;

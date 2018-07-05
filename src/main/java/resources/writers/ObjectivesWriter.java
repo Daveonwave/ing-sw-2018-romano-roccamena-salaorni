@@ -1,16 +1,12 @@
 package resources.writers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import mvc.creators.ObjectivesCreator;
 import mvc.model.objects.PrivateObjectiveCard;
 import mvc.model.objects.PublicObjectiveCard;
-import resources.PrivateObjectiveCardAdapter;
 import resources.ResourceFileInfo;
 import util.FileHandler;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

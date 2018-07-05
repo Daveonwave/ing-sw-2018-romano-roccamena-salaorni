@@ -7,6 +7,9 @@ import mvc.model.objects.enums.DieColor;
 
 import java.util.List;
 
+/**
+ * private objective card "color diagonals"
+ */
 public class ColorDiagonals extends PublicObjectiveCard {
 
     //Costruttori
@@ -15,7 +18,11 @@ public class ColorDiagonals extends PublicObjectiveCard {
                 " dello stesso colore diagonalmente adiacenti");
     }
 
-    @Override
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
 
         int points = 0;

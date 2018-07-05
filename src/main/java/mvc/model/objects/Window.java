@@ -19,6 +19,8 @@ public class Window implements Serializable {
     private int difficulty;
     private String name;
 
+    private static final String NOT_RESPECTED_RESTRICTION = "restrizioni di finestra non rispettate";
+
     //Costruttori
     /**
      * Create new window
@@ -141,32 +143,6 @@ public class Window implements Serializable {
         return true;
     }
 
-    //Verifica che dado o cella sia contenuto
-    /**
-     * Assert the window contains a given die
-     * @param die
-     * @return
-     */
-    /*public boolean containsDie(Die die) {
-        for (int row = 0; row<GameConstants.WINDOW_ROWS_COUNT; row++) {
-            for (int col = 0; col<GameConstants.WINDOW_COLUMNS_COUNT; col++) {
-                Cell cell = cells[row][col];
-
-                if (cell==null)
-                    continue;
-
-                if (die==null ^ cell.getDie()==null)
-                    return false;
-                if (die==null && cell.getDie()==null)
-                    return true;
-
-                if (cell.getDie().sameDie(die))
-                    return true;
-            }
-        }
-
-        return false;
-    }*/
     /**
      * Asserts the window contains a given cell structure
      * @param cell Cell instance
@@ -590,7 +566,7 @@ public class Window implements Serializable {
     public void placeDie(Cell cell, Die die, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
         if (!noWindowRestriction(cell, die, ignoreStartPlace, ignoreAdjacentCells))
-            throw new MatchException("restrizioni di finestra non rispettate");
+            throw new MatchException(NOT_RESPECTED_RESTRICTION);
 
         //Esegue piazzamento
         cell.placeDie(die, ignoreColorRestriction, ignoreShadeRestriction);
@@ -624,7 +600,7 @@ public class Window implements Serializable {
         if (!noWindowRestriction(destination, tempNode, ignoreStartPlace, ignoreAdjacentCells)) {
             origin.setDie(tempNode);
 
-            throw new MatchException("restrizioni di finestra non rispettate");
+            throw new MatchException(NOT_RESPECTED_RESTRICTION);
         }
         origin.setDie(tempNode);
 
@@ -654,7 +630,7 @@ public class Window implements Serializable {
     public void swapDice(Cell cell1, Cell cell2, boolean ignoreStartPlace, boolean ignoreAdjacentCells, boolean ignoreColorRestriction, boolean ignoreShadeRestriction) throws RemoteException {
         //Verifica restrizioni di finestra
         if (!noWindowRestriction(cell1, cell2.getDie(), ignoreStartPlace, ignoreAdjacentCells) || !noWindowRestriction(cell2, cell1.getDie(), ignoreStartPlace, ignoreAdjacentCells))
-            throw new MatchException("restrizioni di finestra non rispettate");
+            throw new MatchException(NOT_RESPECTED_RESTRICTION);
 
         //Esegue scambio
         cell1.swapDice(cell2, ignoreColorRestriction, ignoreShadeRestriction);

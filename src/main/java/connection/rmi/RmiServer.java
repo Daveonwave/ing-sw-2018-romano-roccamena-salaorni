@@ -4,6 +4,7 @@ package connection.rmi;
 import config.PortsConfig;
 import config.TimerConfig;
 import connection.ServerInfo;
+import mvc.creators.MatchCreator;
 import mvc.stubs.AppControllerStub;
 
 import java.rmi.AlreadyBoundException;
@@ -13,12 +14,13 @@ import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  * RMI server
  */
 public class RmiServer {
 
-    private static final Logger LOGGER = Logger.getLogger(RmiServer.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MatchCreator.class.getName());
 
     /**
      * Lauches RMI server, setting policy and listening port. The it makes the bind of RMI controller.
@@ -41,7 +43,7 @@ public class RmiServer {
 
             LOGGER.log(Level.INFO, "[RMI SERVER READY : PORT " + portsConfig.getRmiPort() + "]");
         } catch(Exception e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
         }
     }
 

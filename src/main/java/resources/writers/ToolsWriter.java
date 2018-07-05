@@ -1,6 +1,5 @@
 package resources.writers;
 
-import com.google.gson.Gson;
 import mvc.creators.ToolsCreator;
 import mvc.model.objects.ToolCard;
 import resources.ResourceFileInfo;

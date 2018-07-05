@@ -2,13 +2,20 @@ package mvc.controller.handlers;
 
 import mvc.controller.AppController;
 import mvc.controller.TimedSubcontroller;
+import mvc.creators.MatchCreator;
 import mvc.exceptions.AppControllerException;
 import mvc.model.objects.User;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Timed subcontroller of no players available feature
  */
 public class NoPlayersHandler extends TimedSubcontroller {
+
+    private static final Logger LOGGER = Logger.getLogger(MatchCreator.class.getName());
+
     //Gestore evento di nessun giocatore disponibile per una partita multiplayer
 
     //Costruttori
@@ -44,7 +51,7 @@ public class NoPlayersHandler extends TimedSubcontroller {
             try {
                 controller.userError(null,user, "nessun giocatore disponibile");
             } catch (AppControllerException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.WARNING,e.getMessage());
             }
         } else {
             if (!lobby.getWaitingUsersToken().isEmpty()) {

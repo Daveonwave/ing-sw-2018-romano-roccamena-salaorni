@@ -1,6 +1,5 @@
 package resources.writers;
 
-import com.google.gson.Gson;
 import mvc.creators.WindowsCreator;
 import mvc.model.objects.Window;
 import resources.ResourceFileInfo;

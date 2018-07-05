@@ -6,13 +6,22 @@ import mvc.model.objects.Window;
 
 import java.util.List;
 
+
+/**
+ * public objective card "light shades"
+ */
 public class LightShades extends PublicObjectiveCard {
 
     public LightShades() {
         super("sfumature chiare", "Set di 1 & 2 ovunque");
     }
 
-    @Override
+
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points;
         int lowerSetAmount;

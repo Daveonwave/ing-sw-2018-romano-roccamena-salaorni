@@ -48,7 +48,6 @@ public class ServerReader {
 
         } catch (IOException ioe) {
             LOGGER.log(Level.WARNING, ioe.getMessage());
-            ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe){
             LOGGER.log(Level.WARNING, cnfe.getMessage());
         }

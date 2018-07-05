@@ -3,19 +3,23 @@ package connection.rmi;
 import config.AddressConfig;
 import config.PortsConfig;
 import connection.ServerInfo;
+import mvc.creators.MatchCreator;
 import mvc.stubs.AppControllerStub;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * RMI client
  */
 public class RmiClient implements Serializable {
+
+    private static final Logger LOGGER = Logger.getLogger(MatchCreator.class.getName());
 
     private AppControllerStub  controller;
 
@@ -36,7 +40,7 @@ public class RmiClient implements Serializable {
             //Scarica stub controller dal server
             this.controller = (AppControllerStub) registry.lookup(ServerInfo.REMOTE_OBJECT_NAME);
         } catch(RemoteException e){
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
             throw new RemoteException(e.getMessage());
         }
     }

@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Creator of model's match instances
@@ -17,8 +19,9 @@ public class MatchCreator {
     //Creatore di componenti del gioco
 
     private static ResourceRetriever resourceRetriever = new ResourceRetriever();
-
     private boolean singlePlayer;
+
+    private static final Logger LOGGER = Logger.getLogger(MatchCreator.class.getName());
 
     //Costruttori
     /**
@@ -36,7 +39,6 @@ public class MatchCreator {
      * @return the list of extracted cards
      */
     private List<PublicObjectiveCard> createPublicObjectiveCards(boolean shuffle) {
-        //ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PublicObjectiveCard> result = new ArrayList<>();
         int countExtracted = 1;
 
@@ -50,19 +52,20 @@ public class MatchCreator {
         List<PublicObjectiveCard> cards = null;
         try {
             cards = resourceRetriever.retrievePublicObjectiveCards();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            LOGGER.log(Level.WARNING,ioe.getMessage());
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
         }
 
         while (countExtracted <= count) {
-            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
-            PublicObjectiveCard extracted = cards.get(index);
-
-            if (!result.contains(extracted)) {
-                result.add(extracted);
-                countExtracted++;
+            if(cards != null) {
+                int index = RandomHandler.retrieveRandom().nextInt(cards.size());
+                PublicObjectiveCard extracted = cards.get(index);
+                if (!result.contains(extracted)) {
+                    result.add(extracted);
+                    countExtracted++;
+                }
             }
         }
         if (shuffle)
@@ -86,7 +89,6 @@ public class MatchCreator {
      * @return list of extracted cards
      */
     private List<PrivateObjectiveCard> createPrivateObjectiveCards(int numberOfPlayers, boolean shuffle){
-        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<PrivateObjectiveCard> result = new ArrayList<>();
         int countExtracted = 1;
 
@@ -100,19 +102,21 @@ public class MatchCreator {
         List<PrivateObjectiveCard> cards = null;
         try {
             cards = resourceRetriever.retrievePrivateObjectiveCards();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            LOGGER.log(Level.WARNING,ioe.getMessage());
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
         }
 
         while (countExtracted <= count) {
-            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
-            PrivateObjectiveCard extracted = cards.get(index);
+            if(cards != null) {
+                int index = RandomHandler.retrieveRandom().nextInt(cards.size());
+                PrivateObjectiveCard extracted = cards.get(index);
 
-            if (!result.contains(extracted)) {
-                result.add(extracted);
-                countExtracted++;
+                if (!result.contains(extracted)) {
+                    result.add(extracted);
+                    countExtracted++;
+                }
             }
         }
         if(shuffle)
@@ -137,7 +141,6 @@ public class MatchCreator {
      * @return list of extracted cards
      */
     private List<ToolCard> createTools(int difficultyLevelSP, boolean shuffle) {
-        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<ToolCard> result = new ArrayList<>();
         int countExtracted = 1;
 
@@ -151,19 +154,21 @@ public class MatchCreator {
         List<ToolCard> cards = null;
         try {
             cards = resourceRetriever.retrieveToolCards();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            LOGGER.log(Level.WARNING,ioe.getMessage());
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
         }
 
         while (countExtracted <= count) {
-            int index = RandomHandler.retrieveRandom().nextInt(cards.size());
-            ToolCard extracted = cards.get(index);
+            if(cards != null) {
+                int index = RandomHandler.retrieveRandom().nextInt(cards.size());
+                ToolCard extracted = cards.get(index);
 
-            if (!result.contains(extracted)) {
-                result.add(extracted);
-                countExtracted++;
+                if (!result.contains(extracted)) {
+                    result.add(extracted);
+                    countExtracted++;
+                }
             }
         }
         if (shuffle)
@@ -188,26 +193,26 @@ public class MatchCreator {
      * @return list of extracted windows
      */
     private List<Window> createWindows(int numberOfPlayers, boolean shuffle) {
-        ResourceRetriever resourceRetriever = new ResourceRetriever();
         List<Window> result = new ArrayList<>();
         int countExtracted = 1;
 
         List<Window> windows = null;
         try {
             windows = resourceRetriever.retrieveWindows();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioe) {
+            LOGGER.log(Level.WARNING,ioe.getMessage());
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.WARNING,e.getMessage());
         }
 
         while (countExtracted <= numberOfPlayers*4) {
-            int index = RandomHandler.retrieveRandom().nextInt(windows.size());
-            Window extracted = windows.get(index);
-
-            if (!result.contains(extracted)) {
-                result.add(extracted);
-                countExtracted++;
+            if(windows != null) {
+                int index = RandomHandler.retrieveRandom().nextInt(windows.size());
+                Window extracted = windows.get(index);
+                if (!result.contains(extracted)) {
+                    result.add(extracted);
+                    countExtracted++;
+                }
             }
         }
         if (shuffle)

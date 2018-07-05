@@ -7,8 +7,6 @@ import mvc.model.objects.Window;
 import util.FileHandler;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

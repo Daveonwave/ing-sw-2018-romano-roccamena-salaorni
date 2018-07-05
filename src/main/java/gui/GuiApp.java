@@ -67,7 +67,7 @@ public class GuiApp extends Application implements Serializable {
     @FXML
     Button exitButton;
 
-    private static Logger LOGGER = Logger.getLogger(GuiApp.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(GuiApp.class.getName());
 
     //Getter
     public void setWaitingMultiplayer(boolean waitingMultiplayer) {
@@ -103,8 +103,6 @@ public class GuiApp extends Application implements Serializable {
      * disconnect the client from the server using rmi
      */
     private void disconnectRmiController() throws RemoteException {
-
-        //TODO: implementazione
 
         guiView = null;
     }

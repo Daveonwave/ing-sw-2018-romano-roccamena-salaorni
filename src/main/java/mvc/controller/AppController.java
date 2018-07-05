@@ -31,6 +31,8 @@ public class AppController implements AppControllerStub {
     //Gestore partite multiplayer
     private transient MultiPlayerHandler multiPlayerLobby;
 
+    private static final String PLAYER = "Il giocatore ";
+
     //Costruttori
     /**
      * Create new application controller with specified timer configuration
@@ -256,7 +258,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica fine turno del giocatore
         matchModel.notifyTurnEnd(tokenMatch, match);
-        matchBroadcastAck(tokenMatch, matchModel, "Il giocatore " + player.getUser().getName() + " finisce il suo turno");
+        matchBroadcastAck(tokenMatch, matchModel, PLAYER + player.getUser().getName() + " finisce il suo turno");
 
         //Controllo se i round sono finiti
         if (match.getTurnHandler().isEnded()) {
@@ -320,7 +322,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica abbandono giocatore
         matchModel.notifyPlayerLeave(tokenMatch, player);
-        matchBroadcastAck(tokenMatch, matchModel, "Il giocatore " + player.getUser().getName() + " ha abbandonato la partita");
+        matchBroadcastAck(tokenMatch, matchModel, PLAYER + player.getUser().getName() + " ha abbandonato la partita");
     }
     /**
      * Set a logged player to be active again on an online multiplayer match
@@ -345,7 +347,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica ripartecipazione giocatore
         matchModel.notifyPlayerRejoin(tokenMatch, player);
-        matchBroadcastAck(tokenMatch, matchModel, "Il giocatore " + player.getUser().getName() + " si è riunito alla partita");
+        matchBroadcastAck(tokenMatch, matchModel, PLAYER + player.getUser().getName() + " si è riunito alla partita");
     }
 
     /**
@@ -441,7 +443,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica il piazzamento del dado
         matchModel.notifyPlaceDie(tokenMatch, cell, die);
-        matchBroadcastAck(tokenMatch, matchModel, "Il giocatore " + user.getName() + " ha piazzato un dado");
+        matchBroadcastAck(tokenMatch, matchModel, PLAYER + user.getName() + " ha piazzato un dado");
     }
     /**
      * Request the tool card action of a logged user on an online multiplayer match
@@ -470,7 +472,7 @@ public class AppController implements AppControllerStub {
 
         //Notifica l'utilizzo della carta strumento
         matchModel.notifyUseTool(tokenMatch, toolCard);
-        matchBroadcastAck(tokenMatch, matchModel, "Il giocatore " + user.getName() + " ha usato la carta strumento " + toolCard.getName());
+        matchBroadcastAck(tokenMatch, matchModel, PLAYER + user.getName() + " ha usato la carta strumento " + toolCard.getName());
     }
     /**
      * Request the end turn action of a logged user on an online multiplayer match

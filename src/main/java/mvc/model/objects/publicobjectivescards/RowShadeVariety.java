@@ -7,12 +7,21 @@ import mvc.model.objects.Window;
 
 import java.util.List;
 
+
+/**
+ * public objective card "row shade variety"
+ */
 public class RowShadeVariety extends PublicObjectiveCard {
     public RowShadeVariety() {
         super("sfumature diverse - riga", "Righe senza colori ripetuti");
     }
 
-    @Override
+
+    /**
+     * calculate the points associated to this card of a window
+     * @param window Window instance
+     * @return points calculated
+     */
     public int getPoints(Window window) {
         int points = 0;
         boolean varietyRow;
@@ -31,8 +40,6 @@ public class RowShadeVariety extends PublicObjectiveCard {
                         break;
                     }
                 }
-                if(!varietyRow)
-                    break;
             }
             if(varietyRow){
                 points += 5;
