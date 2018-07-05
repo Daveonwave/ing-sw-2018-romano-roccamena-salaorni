@@ -19,6 +19,10 @@ public class TenagliaRotelle extends ToolCard {
             throw new MatchException("puoi usare questa carta solo al tuo secondo turno");
         if (!player.getTurnDiePlaced())
             throw new MatchException("prima scegli il tuo primo dado");
+        MultiPlayerTurnHandler turnHandler =((MultiPlayerTurnHandler) match.getTurnHandler());
+        if(turnHandler.getTurnPlayerIndex() == turnHandler.leftIndexShift(turnHandler.getFirstPlayerIndex())){
+            throw new MatchException("non puoi usare questa tool card perchè il prossimo turno è il tuo");
+        }
 
         player.getToolCardEffect().setReplaceDie(true);
         player.getToolCardEffect().setSkipTurn(true);

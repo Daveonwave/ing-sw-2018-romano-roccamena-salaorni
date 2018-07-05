@@ -11,7 +11,11 @@ public class ObjectiveCardView extends ObjectView {
 
     private Card card;
 
-    //Costruttori
+    /**
+     *
+     * @param imageView image view of this objective card
+     * @param card card associated to this card view
+     */
     public ObjectiveCardView(ImageView imageView, Card card) {
         super(imageView);
         this.card = card;

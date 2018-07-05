@@ -1457,12 +1457,19 @@ public class GuiMultiplayerApp implements ViewResponder, MultiplayerObserver, Se
      * @param player player who left the match
      */
     public void onPlayerLeave(String tokenMatch, Player player) throws RemoteException {
-        if(player2Name.getText().equals(player.getUser().getName()))
+        if(player2Name.getText().equals(player.getUser().getName())) {
+            player2Name.getStyleClass().remove(FXGuiConstant.REJOIN);
             player2Name.getStyleClass().add(FXGuiConstant.LEFT);
-        if(player3Name.getText().equals(player.getUser().getName()))
+        }
+        if(player3Name.getText().equals(player.getUser().getName())) {
+            player3Name.getStyleClass().remove(FXGuiConstant.REJOIN);
             player3Name.getStyleClass().add(FXGuiConstant.LEFT);
-        if(player4Name.getText().equals(player.getUser().getName()))
+        }
+
+        if(player4Name.getText().equals(player.getUser().getName())) {
+            player4Name.getStyleClass().remove(FXGuiConstant.REJOIN);
             player4Name.getStyleClass().add(FXGuiConstant.LEFT);
+        }
 
     }
 

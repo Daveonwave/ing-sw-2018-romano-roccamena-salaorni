@@ -1,7 +1,7 @@
 //CONFIGURAZIONE CLIENT
 
 //Indirizzo IP server
-server address=192.168.43.22
+server address=192.168.2.5
 
 //Porta RMI server
 rmi port=1099

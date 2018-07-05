@@ -284,12 +284,14 @@ public class MultiPlayerMatch extends Match {
             throw new MatchException("hai gia usato una carta strumento");
 
         boolean firstUse = toolCard.getFavorTokens() == 0;
-        if (firstUse)
+        if (firstUse) {
             if (player.getFavorTokens() < 1)
                 throw new MatchException("punti favore insufficenti");
-        else
+        }
+        else {
             if (player.getFavorTokens() < 2)
                 throw new MatchException("punti favore insufficenti");
+        }
 
         //Utilizza la carta strumento
         toolCard.useToolCard(this, input);

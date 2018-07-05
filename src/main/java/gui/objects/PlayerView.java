@@ -12,7 +12,11 @@ public class PlayerView implements Serializable{
     private WindowView window;
     private Player player;
 
-    //Costruttori
+    /**
+     *
+     * @param window window associated to this player view
+     * @param player player associated to this player view
+     */
     public PlayerView(WindowView window, Player player) {
         this.window = window;
         this.player = player;

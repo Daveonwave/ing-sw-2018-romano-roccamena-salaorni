@@ -14,7 +14,12 @@ public class RoundView implements Serializable{
     private List<DieView> dieViews;
     private int round;
 
-    //Costruttori
+    /**
+     *
+     * @param imageView image view of this round
+     * @param dieViews dice left in the round
+     * @param round round associated to this round view
+     */
     public RoundView(ImageView imageView, List<DieView> dieViews, int round) {
         this.imageView = imageView;
         this.dieViews = dieViews;

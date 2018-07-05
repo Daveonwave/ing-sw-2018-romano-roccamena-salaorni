@@ -14,7 +14,11 @@ public class DieView extends ObjectView {
 
     private Die die;
 
-    //Costruttori
+    /**
+     *
+     * @param imageView image view of this die view
+     * @param die die associated to this die view
+     */
     public DieView(ImageView imageView, Die die) {
         super(imageView);
         this.die = die;

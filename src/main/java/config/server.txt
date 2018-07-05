@@ -1,7 +1,7 @@
 //CONFIGURAZIONE SERVER
 
 //Tempo di attesa partecipazione multiplayer
-join wait time=2000
+join wait time=5000
 
 //Tempo massimo per completare un turno
 turn max time=90000

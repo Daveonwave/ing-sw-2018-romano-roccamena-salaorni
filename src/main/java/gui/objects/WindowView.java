@@ -14,7 +14,12 @@ public class WindowView extends ObjectView{
     private Window window;
     private CellView[][] cells;
 
-    //costruttori
+    /**
+     *
+     * @param imageView image view of this window view
+     * @param window window associated to this window view
+     * @param cells cells of the window
+     */
     public WindowView(ImageView imageView, Window window, CellView[][] cells) {
         super(imageView);
         this.window = window;

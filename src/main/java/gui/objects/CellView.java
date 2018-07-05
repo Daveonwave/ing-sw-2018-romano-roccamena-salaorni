@@ -18,7 +18,11 @@ public class CellView implements Serializable {
     private Cell cell;
     private ImageView imageView;
 
-    //Costruttori
+    /**
+     *
+     * @param cell cell associated to this cell view
+     * @param imageView image view of the cell view
+     */
     public CellView(Cell cell, ImageView imageView) {
         this.cell = cell;
         this.imageView = imageView;

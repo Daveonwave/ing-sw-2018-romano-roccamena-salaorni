@@ -11,7 +11,11 @@ public class ToolCardView extends ObjectView{
 
     private ToolCard toolCard;
 
-    //Costruttori
+    /**
+     *
+     * @param imageView image view of this tool card view
+     * @param toolCard tool card associated to this tool card view
+     */
     public ToolCardView(ImageView imageView, ToolCard toolCard) {
         super(imageView);
         this.toolCard = toolCard;

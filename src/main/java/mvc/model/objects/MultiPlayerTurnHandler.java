@@ -54,7 +54,7 @@ public class MultiPlayerTurnHandler extends TurnHandler {
      * @param playerIndex Player index
      * @return
      */
-    private int leftIndexShift(int playerIndex) {
+    public int leftIndexShift(int playerIndex) {
         if (playerIndex == 0)
             return playersCount - 1;
         else

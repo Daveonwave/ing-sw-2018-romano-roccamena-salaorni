@@ -14,7 +14,10 @@ public abstract class ObjectView implements Serializable{
 
     private ImageView imageView;
 
-    //Costruttori
+    /**
+     *
+     * @param imageView image view of this object view
+     */
     public ObjectView( ImageView imageView) {
         this.imageView = imageView;
 
