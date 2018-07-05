@@ -20,7 +20,6 @@ public class GuiView extends AppView {
     private transient GuiApp guiApp;
     private transient Map<String, GuiMultiplayerApp> multiplayerApps;
 
-
     /**
      *
      * @param appController controller associated to the view
@@ -54,66 +53,69 @@ public class GuiView extends AppView {
      * @param tokenMatch match in which this event occurred
      */
     public void respondError(String message, String tokenMatch)throws RemoteException{
-        if (tokenMatch == null) {
-            if (guiApp.getWaitingMultiplayer()) {
-                //Imposta stato componenti
-                guiApp.setWaitingMultiplayer(false);
+        synchronized (guiApp) {
+            if (tokenMatch == null) {
+                if (guiApp.getWaitingMultiplayer()) {
+                    //Imposta stato componenti
+                    guiApp.setWaitingMultiplayer(false);
 
-                guiApp.multiplayerButton.setDisable(false);
-                guiApp.cancelButton.setDisable(true);
-            }
-
-            guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
-
-        } else {
-            GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
-
-            if (guiMultiplayerApp == null) {
-                //Segnala errore
-                GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
-                return;
-            }
-
-            //Inoltra la risposta alla gui corrispondente
-            //Esecuzione nel thread javafx
-            Platform.runLater(() -> {
-                try {
-                    guiMultiplayerApp.respondError(message, tokenMatch);
-                } catch (IOException e) {
-                    //Segnala errore
-                    GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    guiApp.multiplayerButton.setDisable(false);
+                    guiApp.cancelButton.setDisable(true);
                 }
-            });
+
+                guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[ERROR] " + message);
+
+            } else {
+                GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
+
+                if (guiMultiplayerApp == null) {
+                    //Segnala errore
+                    GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
+                    return;
+                }
+
+                //Inoltra la risposta alla gui corrispondente
+                //Esecuzione nel thread javafx
+                Platform.runLater(() -> {
+                    try {
+                        guiMultiplayerApp.respondError(message, tokenMatch);
+                    } catch (IOException e) {
+                        //Segnala errore
+                        GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    }
+                });
+            }
         }
     }
-
     /**
      * method called by the model to notify an event occurred
      * @param message message too print
      * @param tokenMatch match in which this event occurred
      */
     public void respondAck(String message, String tokenMatch) throws RemoteException{
-        if (tokenMatch == null) {
-            guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
-        } else {
-            GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
+        synchronized (guiApp) {
+            if (tokenMatch == null) {
+                guiApp.serverLogText.setText(guiApp.serverLogText.getText() + "\n[INFO] " + message);
+            } else {
+                GuiMultiplayerApp guiMultiplayerApp = multiplayerApps.get(tokenMatch);
 
-            if (guiMultiplayerApp == null) {
-                //Segnala errore
-                GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
-                return;
-            }
-
-            //Inoltra la risposta alla gui corrispondente
-            //Esecuzione nel thread javafx
-            Platform.runLater(() -> {
-                try {
-                    guiMultiplayerApp.respondAck(message, tokenMatch);
-                } catch (IOException e) {
+                if (guiMultiplayerApp == null) {
                     //Segnala errore
-                    GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    GuiMessage.showError("richiesta comunicazione con partit multiplayer inesistente");
+                    return;
                 }
-            });
+
+                //Inoltra la risposta alla gui corrispondente
+                //Esecuzione nel thread javafx
+                Platform.runLater(() -> {
+                    try {
+                        guiMultiplayerApp.respondAck(message, tokenMatch);
+                    } catch (IOException e) {
+                        //Segnala errore
+                        GuiMessage.showError("errore inaspettato durante la comunicazione con il server per una partita multiplayer");
+                    }
+                });
+            }
         }
     }
 
@@ -136,7 +138,6 @@ public class GuiView extends AppView {
             }
         });
     }
-
     /**
      * method called by the model when a player rejoin the match, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -154,7 +155,6 @@ public class GuiView extends AppView {
             }
         });
     }
-
     /**
      * method called by the model when a match starts, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -183,7 +183,6 @@ public class GuiView extends AppView {
         });
 
     }
-
     /**
      * method called by the model when the window choice stage of the game starts, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -202,7 +201,6 @@ public class GuiView extends AppView {
         });
 
     }
-
     /**
      * method called by the model when a turn starts, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -221,7 +219,6 @@ public class GuiView extends AppView {
 
 
     }
-
     /**
      * method called by the gui when a turn ends, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -241,7 +238,6 @@ public class GuiView extends AppView {
 
 
     }
-
     /**
      * method called by the model when a die is placed, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -263,7 +259,6 @@ public class GuiView extends AppView {
 
 
     }
-
     /**
      * mathod called by the model when a tool card is used, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -282,7 +277,6 @@ public class GuiView extends AppView {
         });
 
     }
-
     /**
      * method called by the model when a player's points are calculated, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match
@@ -302,7 +296,6 @@ public class GuiView extends AppView {
         });
 
     }
-
     /**
      * method called by the model when a match ends, calls the corresponding method of the gui controller
      * @param tokenMatch token of the match

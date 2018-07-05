@@ -31,7 +31,6 @@ public class AppController implements AppControllerStub {
     //Gestore partite multiplayer
     private transient MultiPlayerHandler multiPlayerLobby;
 
-
     //Costruttori
     /**
      * Create new application controller with specified timer configuration
@@ -42,7 +41,6 @@ public class AppController implements AppControllerStub {
         this.timerConfig = timerConfig;
         this.multiPlayerLobby = new MultiPlayerHandler(this, 4, timerConfig.getJoinWaitTime());
     }
-
 
     //Setter/Getter
     public void setModel(AppModel model){
@@ -65,7 +63,6 @@ public class AppController implements AppControllerStub {
         return multiPlayerLobby;
     }
 
-
     //Resetta i timer
     /**
      * Reset no player handler
@@ -82,7 +79,6 @@ public class AppController implements AppControllerStub {
     public synchronized void resetTimedTurnHandler(MultiPlayerMatch match, String tokenMatch, MatchModel matchModel) {
         match.setTimedTurnHandler(new TimedTurnHandler(this, timerConfig.getTurnMaxTime(), match, tokenMatch, matchModel));
     }
-
 
     //Ack ed error su utenti di un match o singolarmente
     /**
@@ -146,7 +142,6 @@ public class AppController implements AppControllerStub {
     public synchronized void userError(String tokenMatch, User user, String message) throws RemoteException {
         viewError(tokenMatch, user.getAppView(), message);
     }
-
 
     //Operazioni su utente
     /**

@@ -82,7 +82,7 @@ public abstract class AppView implements AppViewStub, Serializable {
      * Join a multiplayer match
      * @throws IOException
      */
-    public synchronized void joinMatch() throws RemoteException {
+    public void joinMatch() throws RemoteException {
         controller.joinMatch(userToken);
     }
     /**

@@ -69,7 +69,6 @@ public class GuiApp extends Application implements Serializable {
 
     private static Logger LOGGER = Logger.getLogger(GuiApp.class.getName());
 
-
     //Getter
     public void setWaitingMultiplayer(boolean waitingMultiplayer) {
         this.waitingMultiplayer = waitingMultiplayer;
@@ -109,7 +108,6 @@ public class GuiApp extends Application implements Serializable {
 
         guiView = null;
     }
-
     /**
      * disconnect the client from the server using rmi
      */
@@ -119,7 +117,6 @@ public class GuiApp extends Application implements Serializable {
 
         guiView = null;
     }
-
 
     /**
      * when the "connect" button is clicked, calls the corresponding connection method
@@ -179,7 +176,6 @@ public class GuiApp extends Application implements Serializable {
         //Visualizza messaggio
         GuiMessage.showInfo("Connesso al server");
     }
-
     /**
      * when th "disconnect" button is clicked, calls the corresponding disconnect method
      * @param event on click event
@@ -224,7 +220,6 @@ public class GuiApp extends Application implements Serializable {
         //Visualizza messaggio
         GuiMessage.showInfo("Disconnesso dal server");
     }
-
     /**
      * when the "login" button is clicked calls the login method of the view
      * @param event on click event
@@ -254,7 +249,6 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(false);
         multiplayerButton.setDisable(false);
     }
-
     /**
      * when the "logout" button is clicked calls the logout method of the view
      * @param event on click event
@@ -284,7 +278,6 @@ public class GuiApp extends Application implements Serializable {
         logoutButton.setDisable(true);
         multiplayerButton.setDisable(true);
     }
-
     /**
      * when the "multiplayer" button is clicked calls the join lobby method
      * @param event on click event
@@ -309,7 +302,6 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(true);
         cancelButton.setDisable(false);
     }
-
     /**
      * when the "cancel" button is clicked cancel the last operation done
      * @param event on click event
@@ -334,7 +326,6 @@ public class GuiApp extends Application implements Serializable {
         multiplayerButton.setDisable(false);
         cancelButton.setDisable(true);
     }
-
     /**
      * when the "exit" button is clicked close the menu gui
      * @param event on click event
@@ -374,7 +365,6 @@ public class GuiApp extends Application implements Serializable {
         stage.setResizable(false);
         stage.show();
     }
-
     /**
      * shows all the radio button representing every game you left
      */
@@ -393,7 +383,6 @@ public class GuiApp extends Application implements Serializable {
             yPosition += 43;
         }
     }
-
     /**
      * when you leave a match saves a new radio button in "Matches Left"
      * @param tokenMatch token of the match
@@ -409,7 +398,6 @@ public class GuiApp extends Application implements Serializable {
         matches.add(matchLeft);
         updateMatchesLeft();
     }
-
     /**
      * when you press the "rejoin button" rejoins the first selected match
      * @param mouseEvent on click event
@@ -440,7 +428,6 @@ public class GuiApp extends Application implements Serializable {
         primaryStage.setTitle(FXGuiConstant.TITLE);
         changeScene(FXGuiConstant.FXML_PATH, primaryStage);
     }
-
     /**
      * static method that runs the gui
      * @param args arg
