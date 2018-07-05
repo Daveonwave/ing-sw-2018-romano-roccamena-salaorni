@@ -6,14 +6,26 @@ import mvc.model.objects.enums.DieColor;
 
 import java.rmi.RemoteException;
 
+/**
+ * Specific tool card
+ */
 public class PennelloPerPastaSalda extends ToolCard {
 
-    //Costruttori
+    /**
+     * Class constructo
+     */
     public PennelloPerPastaSalda() {
         super("pennello per pasta salda", "Dopo aver scelto un dado, tira nuovamente quel dado; se non puoi piazzarlo, riponilo nella riserva", DieColor.PURPLE);
 
     }
 
+    /**
+     * Handle of the specific tool card
+     * @param match
+     * @param player
+     * @param input
+     * @throws RemoteException
+     */
     private void cardEffect(Match match, Player player, ToolCardInput input) throws RemoteException {
         //Ottiene dati
         Die die = match.getMatchDice().retrieveDieFromDraftPool(input.getChosenDie());

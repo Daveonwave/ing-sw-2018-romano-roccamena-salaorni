@@ -11,7 +11,7 @@ public abstract class ExceptionResponse {
     private RemoteException exception = null;
 
     //Setter/Getter
-    public boolean isException() {
+    public boolean isExceptionFlag() {
         return isException;
     }
     public RemoteException getException() {

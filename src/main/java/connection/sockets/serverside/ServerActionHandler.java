@@ -263,7 +263,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnPlayerLeaveResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -274,7 +274,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnPlayerRejoinResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
 
@@ -286,7 +286,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnMatchStartResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -297,7 +297,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnTurnStartResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -308,7 +308,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnTurnEndResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -319,7 +319,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnChooseWindowResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -330,7 +330,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnPlaceDieResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -341,7 +341,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnUseToolCardResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -352,7 +352,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnGetPointsResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -363,7 +363,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to observation requests.
      */
     public void handleAction(OnMatchEndResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
 
@@ -376,7 +376,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to requests of the controller.
      */
     public void handleAction(RespondAckResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
     /**
@@ -387,7 +387,7 @@ public class ServerActionHandler implements ClientRequestHandler, ServerResponse
      * Responses to requests of the controller.
      */
     public void handleAction(RespondErrorResponse response) throws RemoteException {
-        if(response.isException())
+        if(response.isExceptionFlag())
             throw response.getException();
     }
 

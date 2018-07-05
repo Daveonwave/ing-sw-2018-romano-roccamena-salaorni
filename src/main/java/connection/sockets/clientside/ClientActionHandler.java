@@ -309,7 +309,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public String handleAction(LoginResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
         return response.getTokenUser();
@@ -323,7 +323,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(LogoutResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -338,7 +338,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(JoinMatchResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -351,7 +351,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(RejoinMatchResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -364,7 +364,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(LeaveMatchResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -377,7 +377,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(CancelJoinMatchResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -392,7 +392,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(ChooseWindowResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -405,7 +405,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(PlaceDieResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -418,7 +418,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(EndTurnResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
@@ -431,7 +431,7 @@ public class ClientActionHandler implements ClientResponseHandler, ServerRequest
      */
     public void handleAction(UseToolCardResponse response) throws RemoteException {
 
-        if(response.isException()) {
+        if(response.isExceptionFlag()) {
             throw response.getException();
         }
     }
