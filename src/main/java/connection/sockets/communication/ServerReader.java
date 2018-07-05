@@ -16,16 +16,11 @@ public class ServerReader {
     private static final Logger LOGGER = Logger.getLogger(ServerReader.class.getName());
 
     /**
-     * Private class constructor
-     */
-    private ServerReader(){}
-
-    /**
-     * Receive a request from the client
-     * @param inputStream stream from which the server reads
-     * @return request of the client
-     */
-    public static synchronized ClientRequest requestFromClient(ObjectInputStream inputStream) {
+    * Receive a request from the client
+    * @param inputStream stream from which the server reads
+    * @return request of the client
+     * */
+    public synchronized ClientRequest requestFromClient(ObjectInputStream inputStream) {
         ClientRequest request = null;
 
         try {
@@ -44,7 +39,7 @@ public class ServerReader {
      * @param inputStream stream from which the server reads
      * @return response relative to a server request
      */
-    public static synchronized ServerResponse responseFromClient(ObjectInputStream inputStream) {
+    public synchronized ServerResponse responseFromClient(ObjectInputStream inputStream) {
         ServerResponse response = null;
 
         try {

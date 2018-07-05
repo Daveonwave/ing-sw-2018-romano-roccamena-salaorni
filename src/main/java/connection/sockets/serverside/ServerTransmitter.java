@@ -27,6 +27,9 @@ public class ServerTransmitter implements Runnable {
 
     private ClientRequestHandler clientRequestHandler;
 
+    private ServerReader serverReader;
+    private ServerWriter serverWriter;
+
     private boolean isRunning;
 
     private static final Logger LOGGER = Logger.getLogger(ServerTransmitter.class.getName());
@@ -42,6 +45,8 @@ public class ServerTransmitter implements Runnable {
         this.in = new ObjectInputStream(socket.getInputStream());
         this.out = new ObjectOutputStream(socket.getOutputStream());
         this.clientRequestHandler = clientRequestHandler;
+        serverReader = new ServerReader();
+        serverWriter = new ServerWriter();
     }
 
     //Setter/Getter
@@ -72,10 +77,10 @@ public class ServerTransmitter implements Runnable {
     public void run() {
         try{
             while(isRunning){
-                ClientResponse clientResponse = ServerReader.requestFromClient(in).handleAction(clientRequestHandler);
+                ClientResponse clientResponse = serverReader.requestFromClient(in).handleAction(clientRequestHandler);
 
                 if(clientResponse != null)
-                    ServerWriter.responseToClient(out, clientResponse);
+                    serverWriter.responseToClient(out, clientResponse);
             }
         } catch(Exception e){
             LOGGER.log(Level.WARNING, "[ERROR]: handle of the client sendRequest failed");
@@ -116,13 +121,13 @@ public class ServerTransmitter implements Runnable {
      * @return response
      */
     public ServerResponse getResponse(){
-        return ServerReader.responseFromClient(in);
+        return serverReader.responseFromClient(in);
     }
     /**
      * Make a sendRequest
      * @param request send sendRequest to be write on the outStream
      */
     public void sendRequest(ServerRequest request){
-        ServerWriter.requestToClient(out, request);
+        serverWriter.requestToClient(out, request);
     }
 }

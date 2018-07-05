@@ -16,16 +16,11 @@ public class ServerWriter {
     private static final Logger LOGGER = Logger.getLogger(ServerWriter.class.getName());
 
     /**
-     * Private class constructor
-     */
-    private ServerWriter(){}
-
-    /**
-     * Send a server request to the client
-     * @param outputStream stream in which the server writes
-     * @param request request to send
-     */
-    public static synchronized void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
+    * Send a server request to the client
+    * @param outputStream stream in which the server writes
+    * @param request request to send
+    */
+    public synchronized void requestToClient(ObjectOutputStream outputStream, ServerRequest request) {
 
         try {
             outputStream.writeObject(request);
@@ -41,7 +36,7 @@ public class ServerWriter {
      * @param outputStream stream in which the server writes
      * @param response response to send
      */
-    public static synchronized void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
+    public synchronized void responseToClient(ObjectOutputStream outputStream, ClientResponse response) {
 
         try {
             outputStream.writeObject(response);
